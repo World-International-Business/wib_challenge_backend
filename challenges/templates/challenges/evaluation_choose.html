@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <h2 class="text-center">Choisissez une évaluation</h2>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Évaluations</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {% for challenge in challenges %}
+                                <a class="text-decoration-none mb-2"
+                                   href="{% url 'challenge_evaluation_detail' challenge.slug challenge.id %}">
+                                    <li class="list-group-item list-group-item-action list-group-item-primary rounded">
+                                        {{ challenge.title }}
+                                    </li>
+                                </a>
+                                {% empty %}
+                                <li class="list-group-item">
+                                    Aucune évaluation disponible
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
