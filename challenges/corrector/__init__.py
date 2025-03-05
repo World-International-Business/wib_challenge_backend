@@ -1,50 +1,20 @@
 import json
-import os
-from functools import cache
 
-from google import genai
-from pydantic import BaseModel
-
-from challenges.models import Answer, Submission
+from challenges.models import Submission
+from .utils import *
 
 
-@cache
-def get_genai_client():
-    return genai.Client(api_key=os.getenv('GENAI_API_KEY'))
-
-
-class CorrectorResponse(BaseModel):
-    correct: bool
-
-
-def correct_answer(answer: Answer):
-    prompt = f"""
-    Domain: {answer.question.domain.name}
-    Question: {answer.question.title}
-    Description: {answer.question.description}
-    
-    Answer: {answer.text}
-     
-    Check the correctness of the answer, and respond with JSON in the following format:
-    {{
-        "correct": true/false,
-    }}
-    
-    respond in french language
-    """
-
+def correct_answers(answers: list[Answer]):
     client = get_genai_client()
-
+    prompt = make_final_prompt(answers)
+    print(prompt)
     response = client.models.generate_content(
-        model="gemini-2.0-flash",
+        model=GEMINI_MODEL,
         contents=[prompt],
-        config={
-            'response_mime_type': 'application/json',
-            'response_schema': CorrectorResponse,
-        },
+        config=GENIMI_CONFIG,
     )
-    data = json.loads(response.text)
-    return CorrectorResponse(**data)
+    datas = json.loads(response.text)
+    return [CorrectorResponse(**data) for data in datas]
 
 
 def correct_answer_choice(answer: Answer):
@@ -52,6 +22,7 @@ def correct_answer_choice(answer: Answer):
         correct_choice = answer.question.choices.get(is_correct=True)
         correct = answer.selected_choices.first() == correct_choice,
         return CorrectorResponse(
+            id=answer.id,
             correct=bool(correct),
         )
     else:
@@ -60,24 +31,38 @@ def correct_answer_choice(answer: Answer):
         correct_count = correct_choices.filter(id__in=selected_choices).count()
         correct = correct_count != 0
         return CorrectorResponse(
+            id=answer.id,
             correct=correct,
         )
 
 
 def correct_submission(submission: Submission):
-    answers = submission.answers.all()
-    for answer in answers:
-        if answer.corrected:
-            continue
-        if answer.question.question_type == answer.question.QuestionType.OPEN_ANSWER:
-            response = correct_answer(answer)
-        else:
-            response = correct_answer_choice(answer)
+    client = get_genai_client()
+    answers = list(submission.answers.all())
+    choices_answers, open_answers = split_choices_and_open_answers(answers)
+
+    for answer in choices_answers:
+        response = correct_answer_choice(answer)
         answer.is_correct = response.correct
         answer.save()
+
+    # APIUsage.objects.get_or_create(date=date.today())
+
+    if len(open_answers) != 0:
+        max_tokens = client.models.get(model=f"models/{GEMINI_MODEL}").input_token_limit - 50000
+        batches = split_batches(open_answers, max_tokens)
+
+        for batch in batches:
+            response = correct_answers(batch)
+            print(response)
+            for answer, response in zip(batch, response):
+                answer.is_correct = response.correct
+                answer.save()
+
     if len(answers) == 0:
         submission.result = 0
     else:
         submission.result = sum(answer.average_score for answer in answers) / submission.challenge.questions.count()
+    submission.status = Submission.CorrectionStatus.CORRECTED
     submission.save()
     return answers

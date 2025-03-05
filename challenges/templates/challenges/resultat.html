@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h3 class="card-title">Score Final</h3>
                         <div class="h4 mb-3">
-                            {{ submission.result|floatformat }}<br>
+                            {{ submission.result_percent|floatformat:2 }}%<br/>
                             Domaine : {{ submission.challenge.domain.name }}<br>
                             Durée : {{ submission.challenge.duration }} (HH:MM:SS)
                         </div>
@@ -33,8 +33,11 @@
         <!-- Détail des réponses -->
         <div class="row">
             <div class="col">
-                <h3 class="mb-4">Détail des réponses</h3>
-                {% for answer in submission.answers.all %}
+                <div class="d-flex justify-content-between">
+                    <h3 class="mb-4">Détail des réponses </h3>
+                    <h3>{{ submission.correct_count }} / {{ submission.challenge.questions.count }}</h3>
+                </div>
+                {% for answer in answers %}
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>Question {{ forloop.counter }}</span>
@@ -49,10 +52,12 @@
                             {% if not answer.question.is_open_answer %}
                                 <div class="list-group mt-3">
                                     {% for choice in answer.question.choices.all %}
-                                        <div class="list-group-item {% if choice in answer.selected_choices.all %}list-group-item-primary{% endif %} {% if choice.is_correct %}list-group-item-success{% endif %}">
+                                        <div class="list-group-item
+
+                                                {% if choice in answer.selected_choices.all %}{{ choice.is_correct|yesno:'list-group-item-success,list-group-item-danger' }} {% elif choice.is_correct %}list-group-item-success{% endif %}">
                                             {{ choice.text }}
                                             {% if choice in answer.selected_choices.all %}
-                                                <i class="fas fa-check-circle float-end"></i>
+                                                <i class="far {{ choice.is_correct|yesno:'fa-check-circle,fa-times-circle' }} float-end"></i>
                                             {% endif %}
                                         </div>
                                     {% endfor %}

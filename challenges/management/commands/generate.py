@@ -14,39 +14,48 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('--submission', action='store_true', help='Create Submission')
+        parser.add_argument('--challenge', action='store_true', help='Create Challenge')
         parser.add_argument('--userId', type=int, help='UserId')
+        parser.add_argument('--question_type', type=str, help='Type de question')
 
     @transaction.atomic
     def handle(self, *args, **kwargs):
         path = Path(__file__).resolve().parent
         data = json.loads(open(path / 'data.json', encoding='utf8').read())
 
-        domain = Domain.objects.create(**data['domains'][0])
+        domain, _ = Domain.objects.get_or_create(**data['domains'][0])
         self.stdout.write(self.style.SUCCESS('Creating Domain {}'.format(domain)))
 
         questions = []
 
         for q in data['questions']:
-            question = Question.objects.create(
+            if bool(kwargs['question_type']) and kwargs['question_type'] != q['question_type']:
+                continue
+            question, _ = Question.objects.get_or_create(
                 **q
             )
             questions.append(question)
             self.stdout.write(self.style.SUCCESS('Creating Question {}'.format(question)))
 
-        # Create Choices
+        questions_ids = [question.id for question in questions]
         for choice_data in data['choices']:
-            Choice.objects.create(
+            if choice_data['question_id'] not in questions_ids:
+                continue
+            Choice.objects.get_or_create(
                 **choice_data
             )
             self.stdout.write(self.style.SUCCESS('Creating Choice {}'.format(choice_data)))
 
+        if not kwargs['challenge']:
+            return
         # Create Challenge
         challenge_questions = data['challenges'][0].pop('questions')
         duration = data['challenges'][0].pop('duration')
-        challenge = Challenge.objects.create(
+        challenge, _ = Challenge.objects.get_or_create(
             **data['challenges'][0]
 
         )
+        challenge_questions = [_id for _id in challenge_questions if _id in questions_ids]
         challenge.questions.set(challenge_questions)  # Set related questions
         self.stdout.write(self.style.SUCCESS('Creating Challenge {}'.format(challenge)))
         self.stdout.write(
@@ -56,7 +65,7 @@ class Command(BaseCommand):
             return
 
         # Create Submission
-        submission = Submission.objects.create(
+        submission, _ = Submission.objects.get_or_create(
             challenge=challenge,
             candidate_id=kwargs['userId'],
             result=data['submissions'][0]['result'],
@@ -68,7 +77,10 @@ class Command(BaseCommand):
 
         # Create Answers
         for answer_data in data['submissions'][0]['answers']:
-            question = questions[answer_data['question_id'] - 1]  # Adjust index if needed
+            try:
+                question = questions[answer_data['question_id'] - 1]  # Adjust index if needed
+            except IndexError:
+                continue
             answer = Answer.objects.create(
                 submission=submission,
                 question=question,

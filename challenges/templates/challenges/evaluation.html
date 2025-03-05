@@ -37,11 +37,15 @@
             <!-- Questions QCM -->
             {% if choices_questions %}
                 <div class="container">
-                    <h2 class="mb-3">Questions à choix multiples</h2>
+                    <h2 class="mb-3">Questions à choix</h2>
                     {% for question in choices_questions %}
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h5>{{ question.title }}</h5>
+                                {{ question.description }}
+                                {% if question.is_multiple_choice %}
+                                    <small class="text-muted">Sélectionnez toutes les réponses correctes</small>
+                                {% endif %}
                             </div>
                             <div class="card-body">
                                 <div class="container">
@@ -115,7 +119,7 @@
 
     <script>
         // Vérifiez si un temps est déjà stocké dans le Local Storage
-        let totalTime = localStorage.getItem('remainingTime') || ({{ challenges.duration | default:60 }} * 60);
+        let totalTime = localStorage.getItem('remainingTime') || ({{ challenge.duration.seconds}})
         let timerElement = document.getElementById('timer');
         let formElement = document.getElementById('evaluationForm');
 
@@ -128,7 +132,7 @@
 
             if (totalTime <= 0) {
                 clearInterval(timerInterval);
-                formElement.submit(); // Submit the form when the time is up
+                {#formElement.submit(); // Submit the form when the time is up#}
             }
 
             // Sauvegardez le temps restant dans le Local Storage

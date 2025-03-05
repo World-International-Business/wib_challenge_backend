@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.core.exceptions import ValidationError
 
 from accounts.models import User
 
@@ -54,8 +53,8 @@ class UserAdmin(admin.ModelAdmin):
         if not change:
             obj.set_password(obj.password)
         super().save_model(request, obj, form, change)
-        if obj.challenges.filter(domain=form.instance.domain).count() != obj.challenges.count():
-            raise ValidationError('Les challenges sélectionnés ne sont pas du même domaine que l\'utilisateur')
+        # if obj.challenges.filter(domain=form.instance.domain).count() != obj.challenges.count():
+        #     raise ValidationError('Les challenges sélectionnés ne sont pas du même domaine que l\'utilisateur')
 
     def get_domain_name(self, obj):
         return obj.domain.name if obj.domain else ""

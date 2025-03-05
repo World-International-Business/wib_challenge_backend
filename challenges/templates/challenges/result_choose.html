@@ -20,7 +20,7 @@
                                     <li class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
                                         <span>{{ submission.challenge.title }}</span>
                                         <span>{{ submission.submitted_at }}</span>
-                                        <span class="badge bg-primary text-white">{{ submission.result }}%</span>
+                                        <span class="badge bg-primary text-white">{{ submission.result_percent|floatformat:2 }}%</span>
                                     </li>
                                 </a>
                                 {% empty %}

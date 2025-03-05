@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
+from django.utils.timezone import now
 
 
 class Settings(models.Model):
@@ -48,7 +49,7 @@ class Question(models.Model):
         verbose_name_plural = 'Questions'
 
     def __str__(self):
-        return self.get_question_type_display() + ' - ' + self.title
+        return self.get_question_type_display() + ' - ' + self.domain.name + ' - ' + self.title
 
     @property
     def is_multiple_choice(self):
@@ -123,6 +124,14 @@ class Submission(models.Model):
     def is_corrected(self):
         return self.status == self.CorrectionStatus.CORRECTED
 
+    @property
+    def result_percent(self):
+        return 100 * self.result
+
+    @property
+    def correct_count(self):
+        return self.answers.filter(is_correct=True).count()
+
     def __str__(self):
         return f'{self.candidate} - {self.challenge} - {self.submitted_at}'
 
@@ -158,3 +167,19 @@ class Answer(models.Model):
 
     def __str__(self):
         return f'{self.question} '
+
+
+class APIUsage(models.Model):
+    date = models.DateField('Date', default=now)
+    count = models.IntegerField('Nombre de requêtes', default=0)
+
+    class Meta:
+        verbose_name = 'Utilisation GEMINI API'
+        verbose_name_plural = 'Utilisation GEMINI API'
+
+    def __str__(self):
+        return f'{self.date} - {self.count}'
+
+    @property
+    def limit_reached(self):
+        return self.count > 1500

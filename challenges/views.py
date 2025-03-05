@@ -11,8 +11,13 @@ from .models import Submission, Answer
 
 
 def home_view(request):
-    # Récupérer les 3 derniers challenges
-    return render(request, 'challenges/home.html')
+    if not request.user.is_authenticated:
+        return render(request, 'challenges/home.html')
+    context = {
+        'latest_challenges': Challenge.objects.filter(submissions__candidate=request.user).prefetch_related(
+            'submissions')
+    }
+    return render(request, 'challenges/home.html', context)
 
 
 @login_required
@@ -32,7 +37,14 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
 
     submission = get_object_or_404(Submission, challenge_id=challenge_id, candidate_id=candidate.id, id=submission_id)
 
-    return render(request, 'challenges/resultat.html', {'submission': submission, })
+    answers = []
+    for question in submission.challenge.questions.all():
+        answer = submission.answers.filter(question=question).first()
+        if not answer:
+            answer = Answer(submission=submission, question=question, text=None)
+        answers.append(answer)
+
+    return render(request, 'challenges/resultat.html', {'submission': submission, 'answers': answers})
 
 
 @login_required
@@ -53,7 +65,7 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         'challenge': challenge,
         'open_answer_questions': challenge.questions.filter(question_type=Question.QuestionType.OPEN_ANSWER),
         'choices_questions': challenge.questions.exclude(question_type=Question.QuestionType.OPEN_ANSWER),
-    }
+    }  # TODO check timer ps: ask to ai
     return render(request, 'challenges/evaluation.html', context)
 
 
@@ -94,4 +106,9 @@ def submit_evaluation_view(request):
                 answers.append(answer)
     submission.save()
     correct_submission(submission)
-    return redirect('home')
+    return redirect(
+        'resultat-detail',
+        challenge_id=submission.challenge.id,
+        slug=submission.challenge.slug,
+        submission_id=submission.id,
+    )

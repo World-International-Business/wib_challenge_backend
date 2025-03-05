@@ -4,75 +4,78 @@
 {% block title %}Accueil - Plateforme de Challenge{% endblock %}
 
 {% block content %}
-<div class="container">
-    <!-- Hero Section -->
-    <div class="row align-items-center py-5">
-        <div class="col-lg-6">
-            <h1 class="display-4 fw-bold">Bienvenue sur la Plateforme de Challenge</h1>
-            <p class="lead">Testez vos compétences, relevez des défis et montrez votre expertise dans différents domaines de la programmation.</p>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="row align-items-center py-5">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold">Bienvenue sur la Plateforme de Challenge</h1>
+                <p class="lead">Testez vos compétences, relevez des défis et montrez votre expertise dans différents
+                    domaines de la programmation.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'images/acceuil.jpg' %}" alt="Hero Image" class="img-fluid">
+            </div>
         </div>
-        <div class="col-lg-6">
-            <img src="{% static 'images/acceuil.jpg' %}" alt="Hero Image" class="img-fluid">
-        </div>
-    </div>
 
-    <!-- Features Section -->
-    <div class="row py-5">
-        <div class="col-12 text-center mb-5">
-            <h2 class="display-5">Pourquoi choisir notre plateforme ?</h2>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="fas fa-code fa-3x text-primary mb-3"></i>
-                    <h3 class="card-title h4">Challenges Techniques</h3>
-                    <p class="card-text">Des défis adaptés à tous les niveaux, du débutant à l'expert.</p>
-                </div>
+        <!-- Features Section -->
+        <div class="row py-5">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5">Pourquoi choisir notre plateforme ?</h2>
             </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
-                    <h3 class="card-title h4">Progression</h3>
-                    <p class="card-text">Suivez votre évolution et améliorez vos compétences.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="fas fa-certificate fa-3x text-primary mb-3"></i>
-                    <h3 class="card-title h4">Certification</h3>
-                    <p class="card-text">Obtenez des certificats pour valider vos compétences.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-     <!-- Latest Challenges Section -->
-     <div class="row py-5">
-        <div class="col-12 text-center mb-5">
-            <h2 class="display-5">Derniers Challenges</h2>
-        </div>
-        {% for challenge in latest_challenges %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h3 class="card-title h5">{{ challenge.title }}</h3>
-                        <p class="card-text">{{ challenge.description|truncatewords:20 }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge bg-primary">{{ challenge.get_level_display }}</span>
-                            <a href="{% url 'challenge_detail' challenge.id %}" class="btn btn-outline-primary btn-sm">Voir plus</a>
-                        </div>
+                    <div class="card-body text-center">
+                        <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title h4">Challenges Techniques</h3>
+                        <p class="card-text">Des défis adaptés à tous les niveaux, du débutant à l'expert.</p>
                     </div>
                 </div>
             </div>
-        {% empty %}
-            <div class="col-12 text-center">
-                <p>Aucun challenge disponible pour le moment.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title h4">Progression</h3>
+                        <p class="card-text">Suivez votre évolution et améliorez vos compétences.</p>
+                    </div>
+                </div>
             </div>
-        {% endfor %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <i class="fas fa-certificate fa-3x text-primary mb-3"></i>
+                        <h3 class="card-title h4">Certification</h3>
+                        <p class="card-text">Obtenez des certificats pour valider vos compétences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if latest_challenges %}
+            <!-- Latest Challenges Section -->
+            <div class="row py-5">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5">Derniers Challenges</h2>
+                </div>
+                {% for challenge in latest_challenges %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h3 class="card-title h5">{{ challenge.title }}</h3>
+                                <p class="card-text">{{ challenge.description|truncatewords:20 }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="badge bg-primary">{{ challenge.get_level_display }}</span>
+                                    <a href="{% url 'resultat-detail' challenge.submissions.first.id challenge.slug challenge.id %}"
+                                       class="btn btn-outline-primary btn-sm">Voir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12 text-center">
+                        <p>Aucun challenge disponible pour le moment.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
-</div>
 {% endblock %}
