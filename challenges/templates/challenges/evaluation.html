@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
-<style>
-    input:checked + li {
-        --bs-list-group-bg: var(--bs-primary-bg-subtle);
-        --bs-list-group-color: var(--bs-primary-color);
-    }
 
-    input {
-        font-size: 0.75rem;
-    }
-</style>
 
 {% block content %}
     <div class="container mt-4">
@@ -119,7 +110,7 @@
 
     <script>
         // Vérifiez si un temps est déjà stocké dans le Local Storage
-        let totalTime = localStorage.getItem('remainingTime') || ({{ challenge.duration.seconds}})
+        let totalTime = {{time_left|floatformat}}
         let timerElement = document.getElementById('timer');
         let formElement = document.getElementById('evaluationForm');
 
@@ -132,11 +123,10 @@
 
             if (totalTime <= 0) {
                 clearInterval(timerInterval);
-                {#formElement.submit(); // Submit the form when the time is up#}
+                formElement.submit(); // Submit the form when the time is up
             }
 
             // Sauvegardez le temps restant dans le Local Storage
-            localStorage.setItem('remainingTime', totalTime);
             totalTime--;
         }
 
@@ -144,46 +134,62 @@
         let timerInterval = setInterval(updateTimer, 1000);
         updateTimer(); // Initial update
 
-        // Réinitialisez le Local Storage lorsque le formulaire est soumis
-        formElement.addEventListener('submit', function () {
-            localStorage.removeItem('remainingTime');
-        });
-
 
         document.addEventListener("DOMContentLoaded", function () {
             // Initialiser l'éditeur pour chaque question d'implémentation
-            {% for data in challenges %}
-                {% for question in data.implementation_questions %}
-                    let editor{{ question.id }} = ace.edit("editor_{{ question.id }}");
-                    editor{{ question.id }}.setTheme("ace/theme/monokai"); // Choisissez le thème
-                    editor{{ question.id }}.session.setMode("ace/mode/python"); // Choisissez le langage
-                    editor{{ question.id }}.setOptions({
-                        fontSize: "14px",
-                        showPrintMargin: false,
-                        showGutter: true,
-                        highlightActiveLine: true,
-                        enableBasicAutocompletion: true,
-                        enableLiveAutocompletion: true,
-                        enableSnippets: true
-                    });
-                {% endfor %}
-            {% endfor %}
+            {#            {% for data in challenges %}#}
+            {#                {% for question in data.implementation_questions %}#}
+            {#                    let editor{{ question.id }} = ace.edit("editor_{{ question.id }}");#}
+            {#                    editor{{ question.id }}.setTheme("ace/theme/monokai"); // Choisissez le thème#}
+            {#                    editor{{ question.id }}.session.setMode("ace/mode/python"); // Choisissez le langage#}
+            {#                    editor{{ question.id }}.setOptions({#}
+            {#                        fontSize: "14px",#}
+            {#                        showPrintMargin: false,#}
+            {#                        showGutter: true,#}
+            {#                        highlightActiveLine: true,#}
+            {#                        enableBasicAutocompletion: true,#}
+            {#                        enableLiveAutocompletion: true,#}
+            {#                        enableSnippets: true#}
+            {#                    });#}
+            {#                {% endfor %}#}
+            {#            {% endfor %}#}
+            {##}
+            {#            // Initialiser l'éditeur pour les questions par défaut#}
+            {#            {% for default_question in default_implementation_questions %}#}
+            {#                let defaultEditor = ace.edit("editor_default_{{ default_question.id }}");#}
+            {#                defaultEditor.setTheme("ace/theme/monokai");#}
+            {#                defaultEditor.session.setMode("ace/mode/python");#}
+            {#                defaultEditor.setOptions({#}
+            {#                    fontSize: "14px",#}
+            {#                    showPrintMargin: false,#}
+            {#                    showGutter: true,#}
+            {#                    highlightActiveLine: true,#}
+            {#                    enableBasicAutocompletion: true,#}
+            {#                    enableLiveAutocompletion: true,#}
+            {#                    enableSnippets: true#}
+            {#                });#}
+            {#            {% endfor %}#}
 
-            // Initialiser l'éditeur pour les questions par défaut
-            {% for default_question in default_implementation_questions %}
-                let defaultEditor = ace.edit("editor_default_{{ default_question.id }}");
-                defaultEditor.setTheme("ace/theme/monokai");
-                defaultEditor.session.setMode("ace/mode/python");
-                defaultEditor.setOptions({
-                    fontSize: "14px",
-                    showPrintMargin: false,
-                    showGutter: true,
-                    highlightActiveLine: true,
-                    enableBasicAutocompletion: true,
-                    enableLiveAutocompletion: true,
-                    enableSnippets: true
-                });
-            {% endfor %}
+            function updateTimer() {
+                let minutes = Math.floor(totalTime / 60);
+                let seconds = totalTime % 60;
+
+                document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+
+                if (totalTime <= 0) {
+                    clearInterval(timerInterval);
+                    formElement.submit(); // Submit the form when the time is up
+                }
+
+                // Sauvegardez le temps restant dans le Local Storage
+                totalTime--;
+            }
+
+            // Update the timer every second
+            let timerInterval = setInterval(updateTimer, 1000);
+            updateTimer(); // Initial update
+
         });
 
         {#// Avant la soumission du formulaire, copier le contenu des éditeurs dans les textareas#}

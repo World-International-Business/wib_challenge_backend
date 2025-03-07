@@ -16,7 +16,7 @@
                         <ul class="list-group">
                             {% for submission in submissions %}
                                 <a class="text-decoration-none mb-2"
-                                   href="{% url 'resultat-detail' submission.id submission.challenge.slug submission.challenge.id %}">
+                                   href="{% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}">
                                     <li class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
                                         <span>{{ submission.challenge.title }}</span>
                                         <span>{{ submission.submitted_at }}</span>

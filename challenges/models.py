@@ -1,12 +1,22 @@
+from datetime import timedelta
+
 from django.conf import settings
-from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
 from django.utils.timezone import now
 
+from questions.models import Question, Choice, Domain
+
 
 class Settings(models.Model):
-    default_challenge_duration = models.DurationField('Durée par défaut d\'un challenge', default='1:00:00')
+    default_challenge_duration = models.DurationField("Durée par défaut d'un challenge", default=timedelta(hours=1))
+    beginner_challenge_duration = models.DurationField("Durée d'un challenge pour les débutants",
+                                                       default=timedelta(hours=1))
+    intermediate_challenge_duration = models.DurationField("Durée d'un challenge pour les intermédiaires",
+                                                           default=timedelta(hours=1))
+    advanced_challenge_duration = models.DurationField("Durée d'un challenge pour les avancés",
+                                                       default=timedelta(hours=1))
+    is_database_already_populated = models.BooleanField('Base de données déjà peuplée', default=False)
 
     class Meta:
         verbose_name = 'Paramètre'
@@ -14,67 +24,6 @@ class Settings(models.Model):
 
     def __str__(self):
         return 'Paramètres'
-
-
-class Domain(models.Model):
-    name = models.CharField('Nom', max_length=255)
-    description = models.TextField('Description', blank=True, null=True)
-
-    class Meta:
-        verbose_name = 'Domaine'
-        verbose_name_plural = 'Domaines'
-        ordering = ['name']
-
-    def __str__(self):
-        return self.name
-
-
-class Question(models.Model):
-    Level = get_user_model().ExperienceLevel
-
-    class QuestionType(models.TextChoices):
-        MULTIPLE_CHOICE = 'MCQ', 'Choix multiple'
-        UNIQUE_CHOICE = 'UCQ', 'Choix unique'
-        OPEN_ANSWER = 'OA', 'Réponse ouverte'
-
-    domain = models.ForeignKey(Domain, on_delete=models.CASCADE, verbose_name='Domaine', related_name='questions')
-    title = models.CharField('Titre', max_length=255)
-    description = models.TextField('Description', blank=True, null=True)
-    level = models.IntegerField('Niveau', choices=Level.choices, default=Level.BEGINNER, blank=True)
-    question_type = models.CharField('Type de question', choices=QuestionType.choices,
-                                     default=QuestionType.OPEN_ANSWER, max_length=3)
-
-    class Meta:
-        verbose_name = 'Question'
-        verbose_name_plural = 'Questions'
-
-    def __str__(self):
-        return self.get_question_type_display() + ' - ' + self.domain.name + ' - ' + self.title
-
-    @property
-    def is_multiple_choice(self):
-        return self.question_type == self.QuestionType.MULTIPLE_CHOICE
-
-    @property
-    def is_unique_choice(self):
-        return self.question_type == self.QuestionType.UNIQUE_CHOICE
-
-    @property
-    def is_open_answer(self):
-        return self.question_type == self.QuestionType.OPEN_ANSWER
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Question', related_name='choices')
-    text = models.CharField('Texte', max_length=255)
-    is_correct = models.BooleanField('Correcte', default=False)
-
-    class Meta:
-        verbose_name = 'Choix'
-        verbose_name_plural = 'Choix'
-
-    def __str__(self):
-        return self.text
 
 
 class Challenge(models.Model):
@@ -99,6 +48,28 @@ class Challenge(models.Model):
             self.duration = Settings.objects.first().default_challenge_duration
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+
+class SubmissionAttempt(models.Model):
+    challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, verbose_name='Challenge',
+                                  related_name='attempts')
+    candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Utilisateur',
+                                  related_name='attempts')
+    submission = models.OneToOneField('Submission', on_delete=models.CASCADE, verbose_name='Soumission',
+                                      related_name='attempt', blank=True, null=True)
+    started_at = models.DateTimeField('Commencé le', auto_now_add=True)
+    ended_at = models.DateTimeField('Terminé le', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Tentative de soumission'
+        verbose_name_plural = 'Tentatives de soumission'
+
+    def __str__(self):
+        return f'{self.candidate} - {self.challenge} - {self.started_at}'
+
+    @property
+    def is_finished(self):
+        return self.ended_at is not None
 
 
 class Submission(models.Model):

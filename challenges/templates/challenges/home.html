@@ -64,7 +64,7 @@
                                 <p class="card-text">{{ challenge.description|truncatewords:20 }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="badge bg-primary">{{ challenge.get_level_display }}</span>
-                                    <a href="{% url 'resultat-detail' challenge.submissions.first.id challenge.slug challenge.id %}"
+                                    <a href="{% url 'result-detail' challenge.submissions.first.id challenge.slug challenge.id %}"
                                        class="btn btn-outline-primary btn-sm">Voir plus</a>
                                 </div>
                             </div>

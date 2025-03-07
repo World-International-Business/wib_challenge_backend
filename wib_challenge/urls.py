@@ -28,8 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
 
-    path('resultats/', evaluation_results, name='resultats'),
-    path('resultats/<int:submission_id>-<slug:slug>-<int:challenge_id>', evaluation_results, name='resultat-detail'),
+    path('resultats/', evaluation_results, name='results'),
+    path('resultats/<int:submission_id>-<slug:slug>-<int:challenge_id>', evaluation_results, name='result-detail'),
     # URLs d'authentification
 
     path('evaluation/', challenge_evaluation_view, name='challenge_evaluation'),

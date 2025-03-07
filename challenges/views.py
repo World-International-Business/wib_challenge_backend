@@ -3,10 +3,11 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.utils import timezone
 
 from accounts.models import User
 from challenges.corrector import correct_submission
-from .models import Challenge, Question
+from .models import Challenge, Question, SubmissionAttempt
 from .models import Submission, Answer
 
 
@@ -27,7 +28,7 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
         submissions = User.objects.get(id=request.user.id).submissions.prefetch_related('challenge')
         if submissions.count() == 1:
             submission = submissions.first()
-            return redirect('resultat-detail', submission_id=submission.id, slug=submission.challenge.slug,
+            return redirect('result-detail', submission_id=submission.id, slug=submission.challenge.slug,
                             challenge_id=submission.challenge.id)
 
         context = {
@@ -51,9 +52,9 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
 def challenge_evaluation_view(request, slug=None, challenge_id=None):
     if not slug or not challenge_id:
         challenges = User.objects.get(id=request.user.id).challenges.exclude(submissions__candidate_id=request.user.id)
-        if challenges.count() == 1:
-            challenge = challenges.first()
-            return redirect('challenge_evaluation_detail', slug=challenge.slug, challenge_id=challenge.id)
+        # if challenges.count() == 1:
+        #     challenge = challenges.first()
+        #     return redirect('challenge_evaluation_detail', slug=challenge.slug, challenge_id=challenge.id)
         context = {
             'challenges': challenges
         }
@@ -61,10 +62,15 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
 
     challenge = get_object_or_404(Challenge, slug=slug, id=challenge_id)
 
+    attempt, _ = SubmissionAttempt.objects.get_or_create(candidate=request.user, challenge=challenge)
+    elapsed_time = (timezone.now() - attempt.started_at).total_seconds()
+    time_left = max(challenge.duration - elapsed_time, 0)
+
     context = {
         'challenge': challenge,
         'open_answer_questions': challenge.questions.filter(question_type=Question.QuestionType.OPEN_ANSWER),
         'choices_questions': challenge.questions.exclude(question_type=Question.QuestionType.OPEN_ANSWER),
+        'time_left': time_left,
     }  # TODO check timer ps: ask to ai
     return render(request, 'challenges/evaluation.html', context)
 
@@ -82,6 +88,12 @@ def submit_evaluation_view(request):
         candidate=request.user,
         challenge=challenge
     )
+
+    attempt, _ = SubmissionAttempt.objects.get_or_create(candidate=request.user, challenge=challenge)
+    attempt.ended_at = timezone.now()
+    attempt.submission = submission
+    attempt.save()
+
     for key in request.POST:
         if key.startswith('answer_'):
             question_id = int(key.split('_')[-1])
@@ -107,7 +119,7 @@ def submit_evaluation_view(request):
     submission.save()
     correct_submission(submission)
     return redirect(
-        'resultat-detail',
+        'result-detail',
         challenge_id=submission.challenge.id,
         slug=submission.challenge.slug,
         submission_id=submission.id,

@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from accounts.models import User
 
+admin.site.site_header = 'WIB Challenge Administration'
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -56,8 +58,6 @@ class UserAdmin(admin.ModelAdmin):
         # if obj.challenges.filter(domain=form.instance.domain).count() != obj.challenges.count():
         #     raise ValidationError('Les challenges sélectionnés ne sont pas du même domaine que l\'utilisateur')
 
+    @admin.display(ordering='domain__name', description='Domain', empty_value='-')
     def get_domain_name(self, obj):
-        return obj.domain.name if obj.domain else ""
-
-    get_domain_name.admin_order_field = 'domain__name'  # Permet le tri sur ce champ
-    get_domain_name.short_description = 'Domain Name'
+        return obj.domain.name if obj.domain else None

@@ -39,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'challenges',
     'django.contrib.sites',  # Nécessaire pour Allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',  # Provider Google
+    'accounts',
+    'questions',
+    'challenges',
 ]
 
 MIDDLEWARE = [

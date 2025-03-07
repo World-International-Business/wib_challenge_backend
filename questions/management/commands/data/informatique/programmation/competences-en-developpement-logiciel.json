@@ -1,0 +1,1766 @@
+{
+  "domain": "Informatique",
+  "category": "Programmation",
+  "criteria": "Compétences en Développement Logiciel",
+  "tags": [
+    "Python",
+    "Elixir",
+    "Go",
+    "Dart",
+    "TypeScript",
+    "JavaScript",
+    "Ruby",
+    "C++",
+    "C#",
+    "Objective-C",
+    "Java",
+    "Perl",
+    "Lua",
+    "Rust",
+    "Swift",
+    "PHP",
+    "Kotlin",
+    "Haskell",
+    "Scala",
+    "Shell"
+  ],
+  "questions": [
+    {
+      "title": "Qu'est-ce qu'une variable en programmation ?",
+      "description": "Expliquez le concept de variable dans un langage de programmation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Quelles sont les structures de contrôle en Python ?",
+      "description": "Décrivez les principales structures de contrôle.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Comment gérez-vous les exceptions en Python ?",
+      "description": "Expliquez les méthodes de gestion des exceptions.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Quel est le rôle des listes en Python ?",
+      "description": "Décrivez l'utilisation des listes.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Comment fonctionnent les modules en Python ?",
+      "description": "Expliquez l'importation et l'utilisation des modules.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Comment créer une classe en Python ?",
+      "description": "Décrivez le processus de création d'une classe.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un dictionnaire en Python ?",
+      "description": "Expliquez l'utilisation des dictionnaires.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Quelle est la différence entre une liste et un tuple en Python ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Comment lire et écrire dans un fichier en Python ?",
+      "description": "Expliquez le processus.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une fonction lambda en Python ?",
+      "description": "Décrivez l'utilisation des fonctions lambda.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Python"
+      ]
+    },
+    {
+      "title": "Quel est le rôle des classes en Java ?",
+      "description": "Expliquez le concept de classe en Java.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Comment gérez-vous les exceptions en Java ?",
+      "description": "Décrivez les méthodes de gestion des exceptions.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales interfaces en Java ?",
+      "description": "Listez et expliquez quelques interfaces.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Comment fonctionne le garbage collector en Java ?",
+      "description": "Décrivez le fonctionnement du garbage collector.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que l'héritage en Java ?",
+      "description": "Expliquez le concept d'héritage.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une interface en Java ?",
+      "description": "Décrivez le rôle des interfaces.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Comment créer une collection en Java ?",
+      "description": "Expliquez le processus.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Comment manipuler des chaînes en Java ?",
+      "description": "Décrivez les méthodes de manipulation des chaînes.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Décrivez le cycle de vie d'un thread en Java.",
+      "description": "Expliquez les étapes du cycle de vie.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "Java"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le DOM en JavaScript ?",
+      "description": "Expliquez le Document Object Model.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Comment gérer les événements en JavaScript ?",
+      "description": "Décrivez la gestion des événements.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre let, const et var en JavaScript ?",
+      "description": "Expliquez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Comment créer une fonction en JavaScript ?",
+      "description": "Décrivez le processus de création d'une fonction.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Comment manipuler le DOM en JavaScript ?",
+      "description": "Expliquez les méthodes de manipulation du DOM.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une promesse en JavaScript ?",
+      "description": "Décrivez le concept de promesse.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Comment utiliser les fonctions fléchées en JavaScript ?",
+      "description": "Expliquez l'utilisation des fonctions fléchées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que l'async/await en JavaScript ?",
+      "description": "Décrivez l'utilisation de l'async/await.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures pratiques pour écrire du code JavaScript ?",
+      "description": "Listez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "title": "Quel est le rôle des classes en C# ?",
+      "description": "Expliquez le concept de classe en C#.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Quelle est la différence entre une structure et une classe en C# ?",
+      "description": "Expliquez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Comment utiliser LINQ en C# ?",
+      "description": "Décrivez l'utilisation de LINQ.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que l'héritage en C# ?",
+      "description": "Expliquez le concept d'héritage.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Comment gérer les événements en C# ?",
+      "description": "Décrivez la gestion des événements.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Comment fonctionne le garbage collector en C# ?",
+      "description": "Décrivez le fonctionnement du garbage collector.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Quel est le rôle des interfaces en C# ?",
+      "description": "Expliquez le rôle des interfaces.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Comment créer une collection en C# ?",
+      "description": "Expliquez le processus.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Comment manipuler des chaînes en C# ?",
+      "description": "Décrivez les méthodes de manipulation des chaînes.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une méthode d'extension en C# ?",
+      "description": "Décrivez l'utilisation des méthodes d'extension.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C#"
+      ]
+    },
+    {
+      "title": "Quelle est la différence entre C++ et C ?",
+      "description": "Expliquez les principales différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Comment gérer la mémoire en C++ ?",
+      "description": "Décrivez les méthodes de gestion de la mémoire.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que l'héritage multiple en C++ ?",
+      "description": "Expliquez le concept d'héritage multiple.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Comment utiliser les templates en C++ ?",
+      "description": "Décrivez l'utilisation des templates.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un pointeur en C++ ?",
+      "description": "Décrivez l'utilisation des pointeurs.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Comment créer une classe en C++ ?",
+      "description": "Expliquez le processus de création d'une classe.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre une classe et une structure en C++ ?",
+      "description": "Expliquez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Comment utiliser la surcharge d'opérateurs en C++ ?",
+      "description": "Décrivez l'utilisation de la surcharge d'opérateurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une référence en C++ ?",
+      "description": "Expliquez le concept de référence.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Comment gérer les exceptions en C++ ?",
+      "description": "Décrivez les méthodes de gestion des exceptions.",
+      "level": 3,
+      "question_type": "OA",
+      "tags": [
+        "C++"
+      ]
+    },
+    {
+      "title": "Quel est le rôle des gems dans Ruby ?",
+      "description": "Décrivez l'utilisation des gems.",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Gestion de versions",
+          "is_correct": false
+        },
+        {
+          "text": "Bibliothèques externes",
+          "is_correct": true
+        },
+        {
+          "text": "Compilation du code",
+          "is_correct": false
+        },
+        {
+          "text": "Debugging",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Quelles sont les caractéristiques de Ruby ?",
+      "description": "Choisissez les bonnes réponses.",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Orienté objet",
+          "is_correct": true
+        },
+        {
+          "text": "Statique",
+          "is_correct": false
+        },
+        {
+          "text": "Dynamique",
+          "is_correct": true
+        },
+        {
+          "text": "Compilé",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Quels sont les principaux types de données en Ruby ?",
+      "description": "Sélectionnez toutes les réponses correctes.",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "String",
+          "is_correct": true
+        },
+        {
+          "text": "Array",
+          "is_correct": true
+        },
+        {
+          "text": "Hash",
+          "is_correct": true
+        },
+        {
+          "text": "Integer",
+          "is_correct": true
+        }
+      ],
+      "tags": [
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Ruby ?",
+      "description": "Choisissez la meilleure réponse.",
+      "level": 2,
+      "question_type": "UCQ",
+      "choices": [
+        {
+          "text": "Utiliser begin/rescue",
+          "is_correct": true
+        },
+        {
+          "text": "Ignorer les erreurs",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des print statements",
+          "is_correct": false
+        },
+        {
+          "text": "Ne pas gérer les erreurs",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Quelle est la différence entre une méthode et un bloc en Ruby ?",
+      "description": "Choisissez la meilleure réponse.",
+      "level": 1,
+      "question_type": "UCQ",
+      "choices": [
+        {
+          "text": "Méthode a un nom, bloc n'en a pas",
+          "is_correct": true
+        },
+        {
+          "text": "Bloc est plus rapide",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode est plus flexible",
+          "is_correct": false
+        },
+        {
+          "text": "Les deux sont identiques",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures pratiques pour écrire du code Ruby ?",
+      "description": "Listez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Ruby"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Composer en PHP ?",
+      "description": "Décrivez l'utilisation de Composer.",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Gestion de dépendances",
+          "is_correct": true
+        },
+        {
+          "text": "Compilation du code",
+          "is_correct": false
+        },
+        {
+          "text": "Déploiement",
+          "is_correct": false
+        },
+        {
+          "text": "Debugging",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre GET et POST en PHP ?",
+      "description": "Choisissez les bonnes réponses.",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "GET est visible dans l'URL",
+          "is_correct": true
+        },
+        {
+          "text": "POST peut envoyer plus de données",
+          "is_correct": true
+        },
+        {
+          "text": "GET est plus sécurisé",
+          "is_correct": false
+        },
+        {
+          "text": "POST est plus rapide",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Comment manipuler des sessions en PHP ?",
+      "description": "Sélectionnez toutes les réponses correctes.",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "session_start()",
+          "is_correct": true
+        },
+        {
+          "text": "session_destroy()",
+          "is_correct": true
+        },
+        {
+          "text": "session_set_cookie_params()",
+          "is_correct": false
+        },
+        {
+          "text": "session_save_path()",
+          "is_correct": true
+        }
+      ],
+      "tags": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Comment exécuter une requête SQL en PHP ?",
+      "description": "Choisissez la meilleure réponse.",
+      "level": 1,
+      "question_type": "UCQ",
+      "choices": [
+        {
+          "text": "Utiliser PDO",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser MySQLi",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser des fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des print statements",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Quel est le rôle des variables superglobales en PHP ?",
+      "description": "Décrivez leur utilisation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "PHP"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de la syntaxe Swift ?",
+      "description": "Expliquez les caractéristiques syntaxiques de Swift.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Comment gérer les options de type en Swift ?",
+      "description": "Décrivez comment utiliser les types optionnels.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Quelles sont les structures de contrôle en Swift ?",
+      "description": "Listez les structures de contrôle disponibles.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Comment fonctionne la gestion de la mémoire en Swift ?",
+      "description": "Expliquez le concept d'ARC (Automatic Reference Counting).",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Comment créer et utiliser des closures en Swift ?",
+      "description": "Décrivez le fonctionnement des closures.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une structure en Swift ?",
+      "description": "Expliquez le concept de structure.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Comment utiliser des protocoles en Swift ?",
+      "description": "Décrivez le fonctionnement des protocoles.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales différences entre Swift et Objective-C ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le multithreading en Swift ?",
+      "description": "Expliquez l'utilisation du multithreading.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Swift ?",
+      "description": "Décrivez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Swift"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Go dans le développement moderne ?",
+      "description": "Décrivez l'utilisation de Go.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Comment fonctionne la gestion de la mémoire en Go ?",
+      "description": "Expliquez le fonctionnement du garbage collector.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Quelles sont les goroutines en Go ?",
+      "description": "Décrivez le concept de goroutines.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Comment créer un serveur HTTP en Go ?",
+      "description": "Expliquez le processus de création d'un serveur.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un canal en Go ?",
+      "description": "Décrivez l'utilisation des canaux.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Go ?",
+      "description": "Expliquez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales caractéristiques de Go ?",
+      "description": "Listez les caractéristiques.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Comment utiliser les interfaces en Go ?",
+      "description": "Décrivez l'utilisation des interfaces.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Quelle est la différence entre une fonction et une méthode en Go ?",
+      "description": "Expliquez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Go"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Kotlin dans le développement Android ?",
+      "description": "Décrivez l'utilisation de Kotlin.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Comment gérer les nullables en Kotlin ?",
+      "description": "Expliquez le concept de types nullables.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que la programmation fonctionnelle en Kotlin ?",
+      "description": "Décrivez les caractéristiques de la programmation fonctionnelle.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Comment créer une extension de fonction en Kotlin ?",
+      "description": "Expliquez le processus.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales différences entre Kotlin et Java ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Comment gérer les coroutines en Kotlin ?",
+      "description": "Expliquez l'utilisation des coroutines.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un data class en Kotlin ?",
+      "description": "Décrivez le concept de data class.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Comment utiliser les lambdas en Kotlin ?",
+      "description": "Expliquez l'utilisation des lambdas.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures pratiques pour écrire du code Kotlin ?",
+      "description": "Listez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Comment traiter les exceptions en Kotlin ?",
+      "description": "Décrivez les méthodes de gestion des exceptions.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Kotlin"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le système de gestion de la mémoire en Rust ?",
+      "description": "Expliquez le concept de propriété et d'emprunt.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Comment manipuler les erreurs en Rust ?",
+      "description": "Décrivez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un trait en Rust ?",
+      "description": "Expliquez le concept de trait.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Comment créer une structure en Rust ?",
+      "description": "Décrivez le processus de création d'une structure.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Quelle est la différence entre une référence et un pointeur en Rust ?",
+      "description": "Expliquez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Comment fonctionne le système de modules en Rust ?",
+      "description": "Décrivez l'organisation des modules.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le borrowing en Rust ?",
+      "description": "Expliquez le borrowing et son utilisation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Comment utiliser des bibliothèques externes en Rust ?",
+      "description": "Décrivez le processus d'importation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Rust et C++ ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Comment écrire des tests en Rust ?",
+      "description": "Expliquez le processus d'écriture de tests.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Rust"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que la programmation fonctionnelle en Scala ?",
+      "description": "Décrivez les caractéristiques de la programmation fonctionnelle.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Comment créer un objet en Scala ?",
+      "description": "Expliquez le processus de création d'un objet.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Quelles sont les fonctionnalités des traits en Scala ?",
+      "description": "Décrivez les caractéristiques des traits.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Comment manipuler les collections en Scala ?",
+      "description": "Décrivez les méthodes de manipulation des collections.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le pattern matching en Scala ?",
+      "description": "Expliquez le concept de pattern matching.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Scala ?",
+      "description": "Décrivez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Scala et Java ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Comment utiliser les futures en Scala ?",
+      "description": "Décrivez l'utilisation des futures.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une fonction d'ordre supérieur en Scala ?",
+      "description": "Expliquez le concept de fonction d'ordre supérieur.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scala"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de TypeScript dans le développement web ?",
+      "description": "Décrivez l'utilisation de TypeScript.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Comment utiliser des types génériques en TypeScript ?",
+      "description": "Expliquez le concept de types génériques.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales différences entre TypeScript et JavaScript ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Comment gérer les modules en TypeScript ?",
+      "description": "Décrivez la gestion des modules.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une interface en TypeScript ?",
+      "description": "Expliquez le concept d'interface.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Comment utiliser des décorateurs en TypeScript ?",
+      "description": "Décrivez l'utilisation des décorateurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Comment effectuer une vérification de type en TypeScript ?",
+      "description": "Expliquez le processus de vérification de type.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que la programmation asynchrone en TypeScript ?",
+      "description": "Décrivez le concept de programmation asynchrone.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Comment utiliser des types union en TypeScript ?",
+      "description": "Expliquez l'utilisation des types union.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Perl dans le développement ?",
+      "description": "Décrivez l'utilisation de Perl.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Comment gérer les expressions régulières en Perl ?",
+      "description": "Expliquez l'utilisation des expressions régulières.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales fonctionnalités de Perl ?",
+      "description": "Listez les fonctionnalités.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Comment manipuler des fichiers en Perl ?",
+      "description": "Décrivez la manipulation de fichiers.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que la contexture en Perl ?",
+      "description": "Expliquez le concept de contexture.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Comment travailler avec des modules en Perl ?",
+      "description": "Décrivez l'utilisation des modules.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Perl et Python ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Perl ?",
+      "description": "Expliquez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'une référence en Perl ?",
+      "description": "Décrivez le concept de référence.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Perl"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Haskell dans le développement ?",
+      "description": "Décrivez l'utilisation de Haskell.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Comment gérer les monades en Haskell ?",
+      "description": "Expliquez le concept de monades.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales caractéristiques de Haskell ?",
+      "description": "Listez les caractéristiques.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Comment utiliser des fonctions pures en Haskell ?",
+      "description": "Décrivez l'utilisation des fonctions pures.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le lazy evaluation en Haskell ?",
+      "description": "Expliquez le concept de lazy evaluation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Comment créer des types de données personnalisés en Haskell ?",
+      "description": "Décrivez le processus.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Haskell et d'autres langages ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Haskell ?",
+      "description": "Expliquez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un type algébrique en Haskell ?",
+      "description": "Décrivez le concept de type algébrique.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Haskell"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Lua dans le développement ?",
+      "description": "Décrivez l'utilisation de Lua.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Comment utiliser les tables en Lua ?",
+      "description": "Expliquez l'utilisation des tables.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales fonctionnalités de Lua ?",
+      "description": "Listez les fonctionnalités.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Lua ?",
+      "description": "Décrivez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le métaprogramming en Lua ?",
+      "description": "Expliquez le concept de métaprogramming.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Comment créer des modules en Lua ?",
+      "description": "Décrivez le processus de création de modules.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Lua et d'autres langages ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Comment utiliser des fonctions anonymes en Lua ?",
+      "description": "Expliquez l'utilisation des fonctions anonymes.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Lua"
+      ]
+    },
+    {
+      "title": "Quel est le rôle d'Elixir dans le développement ?",
+      "description": "Décrivez l'utilisation d'Elixir.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Comment gérer les processus en Elixir ?",
+      "description": "Expliquez le modèle de processus.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales caractéristiques d'Elixir ?",
+      "description": "Listez les caractéristiques.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Comment utiliser les macros en Elixir ?",
+      "description": "Décrivez l'utilisation des macros.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le pattern matching en Elixir ?",
+      "description": "Expliquez le concept de pattern matching.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Comment travailler avec les modules en Elixir ?",
+      "description": "Décrivez l'utilisation des modules.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Elixir et d'autres langages ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Elixir ?",
+      "description": "Expliquez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Elixir"
+      ]
+    },
+    {
+      "title": "Quel est le rôle du Shell dans le développement ?",
+      "description": "Décrivez l'utilisation du Shell.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Comment exécuter des scripts Shell ?",
+      "description": "Expliquez le processus d'exécution de scripts.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales commandes Shell ?",
+      "description": "Listez les commandes courantes.",
+      "level": 1,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Comment utiliser les variables d'environnement en Shell ?",
+      "description": "Décrivez l'utilisation des variables d'environnement.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Qu'est-ce qu'un script Shell interactif ?",
+      "description": "Expliquez le concept de script interactif.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Comment rediriger l'entrée et la sortie en Shell ?",
+      "description": "Décrivez le processus de redirection.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Shell et d'autres langages de script ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Comment créer des fonctions en Shell ?",
+      "description": "Expliquez le processus de création de fonctions.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Shell"
+      ]
+    },
+    {
+      "title": "Quel est le rôle d'Objective-C dans le développement iOS ?",
+      "description": "Décrivez l'utilisation d'Objective-C.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Comment gérer la mémoire en Objective-C ?",
+      "description": "Expliquez le concept de gestion de la mémoire avec ARC.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales caractéristiques d'Objective-C ?",
+      "description": "Listez les caractéristiques.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Comment gérer les exceptions en Objective-C ?",
+      "description": "Décrivez les méthodes de gestion des exceptions.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que le runtime en Objective-C ?",
+      "description": "Expliquez le concept de runtime.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Comment créer une interface utilisateur en Objective-C ?",
+      "description": "Décrivez le processus de création d'UI avec UIKit.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Objective-C et Swift ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Comment utiliser des protocoles en Objective-C ?",
+      "description": "Expliquez l'utilisation des protocoles.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Objective-C"
+      ]
+    },
+    {
+      "title": "Quel est le rôle de Dart dans le développement d'applications ?",
+      "description": "Décrivez l'utilisation de Dart.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Comment gérer les futures en Dart ?",
+      "description": "Expliquez le concept de futures.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Quelles sont les principales caractéristiques de Dart ?",
+      "description": "Listez les caractéristiques.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Comment créer une application Flutter avec Dart ?",
+      "description": "Décrivez le processus de création d'une application Flutter.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que la programmation asynchrone en Dart ?",
+      "description": "Expliquez le concept de programmation asynchrone.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs en Dart ?",
+      "description": "Décrivez les méthodes de gestion des erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Quelles sont les différences entre Dart et JavaScript ?",
+      "description": "Décrivez les différences.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Comment utiliser des classes et des objets en Dart ?",
+      "description": "Expliquez le concept de classes et d'objets.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    },
+    {
+      "title": "Quels sont les avantages de l'utilisation de Dart pour le développement mobile ?",
+      "description": "Listez les avantages.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Dart"
+      ]
+    }
+  ]
+}

@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from wib_challenge.enums import ExperienceLevel
+
 
 class _UserManager(UserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -25,15 +27,9 @@ class _UserManager(UserManager):
 
 
 class User(AbstractUser):
-    class ExperienceLevel(models.IntegerChoices):
-        BEGINNER = 1, _('Débutant')
-        INTERMEDIATE = 2, _('Intermédiaire')
-        ADVANCED = 3, _('Avancé')
-        EXPERT = 4, _('Expert')
-
     username = None
     email = models.EmailField(_("email address"), unique=True)
-    domain = models.ForeignKey('challenges.Domain', on_delete=models.SET_NULL, null=True, blank=True)
+    domain = models.ForeignKey('questions.Domain', on_delete=models.SET_NULL, null=True, blank=True)
     challenges = models.ManyToManyField('challenges.Challenge', related_name='users', blank=True)
     experience_level = models.IntegerField('Expérience', choices=ExperienceLevel.choices,
                                            default=ExperienceLevel.BEGINNER)

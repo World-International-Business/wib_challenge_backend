@@ -1,6 +1,7 @@
 import json
+from datetime import date
 
-from challenges.models import Submission
+from challenges.models import Submission, APIUsage
 from .utils import *
 
 
@@ -46,9 +47,8 @@ def correct_submission(submission: Submission):
         answer.is_correct = response.correct
         answer.save()
 
-    # APIUsage.objects.get_or_create(date=date.today())
-
     if len(open_answers) != 0:
+        usage, _ = APIUsage.objects.get_or_create(date=date.today())
         max_tokens = client.models.get(model=f"models/{GEMINI_MODEL}").input_token_limit - 50000
         batches = split_batches(open_answers, max_tokens)
 
@@ -58,7 +58,8 @@ def correct_submission(submission: Submission):
             for answer, response in zip(batch, response):
                 answer.is_correct = response.correct
                 answer.save()
-
+        usage.count += 1
+        usage.save()
     if len(answers) == 0:
         submission.result = 0
     else:

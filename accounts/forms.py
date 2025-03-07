@@ -1,14 +1,15 @@
-# accounts/forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+
+from wib_challenge.enums import ExperienceLevel
 from .models import User
+
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True, label="Adresse Email")
     first_name = forms.CharField(max_length=30, required=True, label="Prénom")
     last_name = forms.CharField(max_length=30, required=True, label="Nom")
-    # experience_level = forms.ChoiceField(choices=User.ExperienceLevel.choices, required=False,label="Niveau d'expérience")
-    # experience = forms.IntegerField(min_value=0, required=False, label="Année dexpérience")
+
 
     class Meta:
         model = User
@@ -24,7 +25,7 @@ class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(required=True, label="Adresse Email")
     first_name = forms.CharField(max_length=30, required=True, label="Prénom")
     last_name = forms.CharField(max_length=30, required=True, label="Nom")
-    experience_level = forms.ChoiceField(choices=User.ExperienceLevel.choices, required=False, label="Niveau d'expérience")
+    experience_level = forms.ChoiceField(choices=ExperienceLevel.choices, required=False, label="Niveau d'expérience")
     experience = forms.IntegerField(min_value=0, required=False, label="Années d'expérience")
 
     class Meta:

@@ -24,7 +24,7 @@ GENIMI_CONFIG = {
     'response_schema': list[CorrectorResponse],
 }
 
-answer_prompt = """
+_answer_prompt = """
 ID: {id}
 Domain: {domain}
 Question: {question}
@@ -33,7 +33,7 @@ Answer: {answer}
 
 """
 
-prompt = """
+_prompt = """
 Check the correctness of all answers and respond with JSON in the following format:
 [
     {
@@ -46,9 +46,9 @@ Check the correctness of all answers and respond with JSON in the following form
 
 
 def make_answer_prompt(answer: Answer):
-    return answer_prompt.format(
+    return _answer_prompt.format(
         id=answer.id,
-        domain=answer.question.domain.name,
+        domain=answer.question.category.name,
         question=answer.question.title,
         description=answer.question.description,
         answer=answer.text
@@ -59,7 +59,7 @@ def make_final_prompt(answers: list[Answer]):
     output = ""
     for answer in answers:
         output += make_answer_prompt(answer)
-    output += prompt
+    output += _prompt
     return output
 
 

@@ -1,0 +1,463 @@
+{
+  "domain": "E-commerce",
+  "category": "Shopify",
+  "criteria": "Compétences en Gestion de Boutique en Ligne",
+  "tags": [
+    "Thèmes",
+    "Applications",
+    "SEO",
+    "Marketing",
+    "Personnalisation",
+    "Gestion des Stocks",
+    "Analyse des Ventes",
+    "Service Client",
+    "Expédition",
+    "Paiement"
+  ],
+  "questions": [
+    {
+      "title": "Comment choisir le bon thème pour votre boutique Shopify ?",
+      "description": "Décrivez les critères à considérer.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Thèmes"
+      ]
+    },
+    {
+      "title": "Quels sont les avantages d'utiliser des applications tierces sur Shopify ?",
+      "description": "Expliquez les bénéfices des applications.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "title": "Comment optimiser le SEO de votre boutique Shopify ?",
+      "description": "Listez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Quelles stratégies de marketing pouvez-vous utiliser avec Shopify ?",
+      "description": "Décrivez quelques stratégies efficaces.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Marketing"
+      ]
+    },
+    {
+      "title": "Comment personnaliser le design de votre boutique Shopify ?",
+      "description": "Expliquez le processus de personnalisation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Personnalisation"
+      ]
+    },
+    {
+      "title": "Comment gérer les stocks sur Shopify ?",
+      "description": "Décrivez les meilleures pratiques de gestion des stocks.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Gestion des Stocks"
+      ]
+    },
+    {
+      "title": "Comment analyser les ventes sur Shopify ?",
+      "description": "Listez les outils et méthodes d'analyse.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Analyse des Ventes"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures pratiques pour le service client sur Shopify ?",
+      "description": "Décrivez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Service Client"
+      ]
+    },
+    {
+      "title": "Comment configurer l'expédition sur Shopify ?",
+      "description": "Expliquez le processus de configuration de l'expédition.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Expédition"
+      ]
+    },
+    {
+      "title": "Quels sont les différents modes de paiement disponibles sur Shopify ?",
+      "description": "Listez les options de paiement.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Paiement"
+      ]
+    },
+    {
+      "title": "Comment personnaliser les pages produits sur Shopify ?",
+      "description": "Décrivez le processus de personnalisation des pages.",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Utiliser un éditeur de code",
+          "is_correct": true
+        },
+        {
+          "text": "Modifier le CSS seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Ajouter des images uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Changer le titre seulement",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Personnalisation"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures applications pour le marketing sur Shopify ?",
+      "description": "Sélectionnez toutes les bonnes réponses.",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Mailchimp",
+          "is_correct": true
+        },
+        {
+          "text": "Oberlo",
+          "is_correct": true
+        },
+        {
+          "text": "Hootsuite",
+          "is_correct": true
+        },
+        {
+          "text": "Photoshop",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Applications",
+        "Marketing"
+      ]
+    },
+    {
+      "title": "Comment configurer des remises sur Shopify ?",
+      "description": "Choisissez la meilleure réponse.",
+      "level": 1,
+      "question_type": "UCQ",
+      "choices": [
+        {
+          "text": "Utiliser l'onglet 'Remises'",
+          "is_correct": true
+        },
+        {
+          "text": "Modifier les produits manuellement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser une application tierce",
+          "is_correct": false
+        },
+        {
+          "text": "Envoyer un email",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Gestion des Stocks"
+      ]
+    },
+    {
+      "title": "Quel est l'impact du temps de chargement sur votre boutique Shopify ?",
+      "description": "Listez les conséquences d'un temps de chargement lent.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "SEO",
+        "Analyse des Ventes"
+      ]
+    },
+    {
+      "title": "Comment effectuer une analyse de la concurrence sur Shopify ?",
+      "description": "Expliquez le processus d'analyse de la concurrence.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Analyse des Ventes"
+      ]
+    },
+    {
+      "title": "Quelles sont les étapes pour lancer une campagne publicitaire sur Shopify ?",
+      "description": "Décrivez les étapes clés.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Marketing"
+      ]
+    },
+    {
+      "title": "Comment utiliser les avis clients pour améliorer votre boutique Shopify ?",
+      "description": "Expliquez l'importance des avis clients.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Service Client"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures pratiques pour gérer les retours sur Shopify ?",
+      "description": "Listez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Service Client",
+        "Gestion des Stocks"
+      ]
+    },
+    {
+      "title": "Comment créer des rapports de vente sur Shopify ?",
+      "description": "Décrivez le processus de création de rapports.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Analyse des Ventes"
+      ]
+    },
+    {
+      "title": "Quelles sont les fonctionnalités de l'application Shopify POS ?",
+      "description": "Listez les fonctionnalités de Shopify POS.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "title": "Comment optimiser vos fiches produits pour le SEO sur Shopify ?",
+      "description": "Expliquez les pratiques d'optimisation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Comment utiliser les réseaux sociaux pour promouvoir votre boutique Shopify ?",
+      "description": "Décrivez les stratégies de promotion sur les réseaux sociaux.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Marketing"
+      ]
+    },
+    {
+      "title": "Quelles sont les options d'expédition offertes par Shopify ?",
+      "description": "Listez les options d'expédition disponibles.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Expédition"
+      ]
+    },
+    {
+      "title": "Qu'est-ce que Liquid et comment est-il utilisé dans Shopify ?",
+      "description": "Décrivez le langage de template Liquid.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Liquid"
+      ]
+    },
+    {
+      "title": "Comment créer un thème personnalisé pour Shopify ?",
+      "description": "Expliquez le processus de création d'un thème.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Thèmes"
+      ]
+    },
+    {
+      "title": "Comment utiliser l'API Shopify pour récupérer des données ?",
+      "description": "Décrivez les étapes pour interagir avec l'API.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "API"
+      ]
+    },
+    {
+      "title": "Quelles sont les meilleures pratiques pour optimiser les performances d'un thème Shopify ?",
+      "description": "Listez les pratiques recommandées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "title": "Comment intégrer des scripts personnalisés dans Shopify ?",
+      "description": "Expliquez le processus d'intégration des scripts.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Scripts"
+      ]
+    },
+    {
+      "title": "Comment utiliser les webhooks dans Shopify ?",
+      "description": "Décrivez le concept de webhooks et leur utilisation.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "title": "Comment personnaliser la page produit avec Liquid ?",
+      "description": "Expliquez comment utiliser Liquid pour personnaliser les pages.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Liquid"
+      ]
+    },
+    {
+      "title": "Comment créer une application Shopify personnalisée ?",
+      "description": "Décrivez les étapes de création d'une application.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "title": "Comment utiliser les sections et blocs dans un thème Shopify ?",
+      "description": "Expliquez leur utilisation et leur importance.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Thèmes"
+      ]
+    },
+    {
+      "title": "Comment tester un thème Shopify avant de le déployer ?",
+      "description": "Décrivez les méthodes de test disponibles.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Tests"
+      ]
+    },
+    {
+      "title": "Comment gérer les traductions dans un thème Shopify ?",
+      "description": "Expliquez le processus de gestion des traductions.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Thèmes"
+      ]
+    },
+    {
+      "title": "Comment interagir avec les données de commande via l'API Shopify ?",
+      "description": "Décrivez le processus d'accès aux données de commande.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "API"
+      ]
+    },
+    {
+      "title": "Comment utiliser le filtrage Liquid pour afficher des produits ?",
+      "description": "Expliquez l'utilisation des filtres Liquid pour les produits.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Liquid"
+      ]
+    },
+    {
+      "title": "Comment intégrer des formulaires personnalisés dans Shopify ?",
+      "description": "Décrivez le processus d'intégration de formulaires.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Liquid"
+      ]
+    },
+    {
+      "title": "Comment utiliser les métadonnées des produits dans Liquid ?",
+      "description": "Expliquez comment accéder aux métadonnées.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Liquid"
+      ]
+    },
+    {
+      "title": "Comment créer des redirections en utilisant Liquid ?",
+      "description": "Décrivez comment mettre en place des redirections.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Liquid"
+      ]
+    },
+    {
+      "title": "Comment gérer les erreurs API dans une application Shopify ?",
+      "description": "Expliquez les meilleures pratiques pour gérer les erreurs.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "API"
+      ]
+    },
+    {
+      "title": "Comment ajouter des balises de suivi dans un thème Shopify ?",
+      "description": "Décrivez le processus d'ajout de balises de suivi.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Comment utiliser Shopify CLI pour le développement ?",
+      "description": "Expliquez l'utilisation de Shopify CLI.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "title": "Comment gérer les paramètres de l'application Shopify ?",
+      "description": "Décrivez le processus de gestion des paramètres.",
+      "level": 2,
+      "question_type": "OA",
+      "tags": [
+        "Applications"
+      ]
+    }
+  ]
+}
