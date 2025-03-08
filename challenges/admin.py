@@ -42,9 +42,9 @@ class ChallengeAdmin(admin.ModelAdmin):
         domain = form.cleaned_data['domain']
         if questions.count() == 0:
             raise ValidationError('Un challenge doit avoir au moins une question')
-        if questions.filter(domain=domain).count() != questions.count():
-            raise ValidationError(
-                'Toutes les questions du challenge doivent appartenir au même domaine que celui du challenge')
+        # if questions.filter(domain=domain).count() != questions.count():
+        #     raise ValidationError(
+        #         'Toutes les questions du challenge doivent appartenir au même domaine que celui du challenge')
         return super().save_form(request, form, change)
 
 
