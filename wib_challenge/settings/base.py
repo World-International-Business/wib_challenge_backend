@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts',
     'questions',
     'challenges',
+    'django_select2',
 ]
 
 MIDDLEWARE = [

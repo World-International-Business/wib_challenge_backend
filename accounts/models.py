@@ -34,6 +34,8 @@ class User(AbstractUser):
     experience_level = models.IntegerField('Expérience', choices=ExperienceLevel.choices,
                                            default=ExperienceLevel.BEGINNER)
     experience = models.IntegerField('Années d\'expérience', default=0)
+    # Ajout du champ compétences (ManyToMany avec Tag)
+    skills = models.ManyToManyField('questions.Tag', related_name='users', blank=True, verbose_name="Compétences")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']

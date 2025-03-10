@@ -7,7 +7,7 @@ admin.site.site_header = 'WIB Challenge Administration'
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['id', 'email', 'full_name', 'experience_display', 'get_domain_name', 'is_active', 'is_staff',
+    list_display = ['id', 'email', 'full_name', 'experience_display', 'get_domain_name', 'display_skills', 'is_active', 'is_staff',
                     'date_joined']
     list_filter = ['is_active', 'is_staff']
     search_fields = ['email', 'first_name', 'last_name']
@@ -18,8 +18,8 @@ class UserAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('email',)
         }),
-        ('Personal Info', {
-            'fields': ('first_name', 'last_name', 'domain', 'experience_level', 'experience')
+        ('Informations Personnelles', {
+            'fields': ('first_name', 'last_name', 'domain', 'experience_level', 'experience', 'skills')
         }),
         ('Challenges', {
             'fields': ('challenges',)
@@ -39,6 +39,10 @@ class UserAdmin(admin.ModelAdmin):
     @admin.display(description='Experience')
     def experience_display(self, obj):
         return obj.get_experience_level_display()
+
+    @admin.display(description='Compétences')
+    def display_skills(self, obj):
+        return ", ".join([skill.name for skill in obj.skills.all()]) if obj.skills.exists() else "-"
 
     def delete_queryset(self, request, queryset):
         queryset.update(is_active=False)

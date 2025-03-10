@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="container">
     <h2 class="text-center mb-4">Modifier votre profil</h2>
     <form method="POST">
@@ -25,4 +26,21 @@
         </div>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        // Vérifie si jQuery et Select2 sont bien chargés
+        if (typeof $.fn.select2 !== "undefined") {
+            $('#id_skills').select2({
+                placeholder: "Sélectionnez vos compétences",
+                allowClear: true,
+                width: '100%'
+            });
+        } else {
+            console.error("Erreur : Select2 n'est pas chargé !");
+        }
+    });
+</script>
+
 {% endblock %}

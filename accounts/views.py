@@ -52,7 +52,7 @@ def update_profile(request):
         form = UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('home')  # Rediriger vers la page de profil après mise à jour
+            return redirect('challenge_evaluation')  # Rediriger vers la page de profil après mise à jour
     else:
         form = UserUpdateForm(instance=request.user)
 
