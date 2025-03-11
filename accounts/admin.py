@@ -1,9 +1,12 @@
 from django.contrib import admin
 
-from accounts.models import User
+from accounts.models import User, UserSkill
 
 admin.site.site_header = 'WIB Challenge Administration'
 
+class UserSkillInline(admin.TabularInline):  # Affichage en tableau (peut aussi être `StackedInline`)
+    model = UserSkill
+    extra = 1
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -19,7 +22,7 @@ class UserAdmin(admin.ModelAdmin):
             'fields': ('email',)
         }),
         ('Informations Personnelles', {
-            'fields': ('first_name', 'last_name', 'domain', 'experience_level', 'experience', 'skills')
+            'fields': ('first_name', 'last_name', 'domain', 'experience_level', 'experience')
         }),
         ('Challenges', {
             'fields': ('challenges',)
@@ -31,6 +34,7 @@ class UserAdmin(admin.ModelAdmin):
             'fields': ('last_login', 'date_joined')
         }),
     )
+    inlines = [UserSkillInline]
 
     @admin.display(description='Full Name')
     def full_name(self, obj):
@@ -40,9 +44,8 @@ class UserAdmin(admin.ModelAdmin):
     def experience_display(self, obj):
         return obj.get_experience_level_display()
 
-    @admin.display(description='Compétences')
     def display_skills(self, obj):
-        return ", ".join([skill.name for skill in obj.skills.all()]) if obj.skills.exists() else "-"
+        return ", ".join([skill.skill.name for skill in obj.userskill_set.all()]) if obj.userskill_set.exists() else "-"
 
     def delete_queryset(self, request, queryset):
         queryset.update(is_active=False)

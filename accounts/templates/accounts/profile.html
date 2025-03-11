@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<style>
+    .skill-item input[type="checkbox"] {
+        display: none;
+    }
+</style>
 <div class="container">
     <h2 class="text-center mb-4">Modifier votre profil</h2>
-    <form method="POST">
+    <form method="POST" id="profile-form">
         {% csrf_token %}
+        <!-- Afficher les erreurs globales du formulaire -->
+        {% if form.errors or skill_formset.errors %}
+            <div class="alert alert-danger">
+                <strong>Erreur :</strong> Veuillez corriger les erreurs ci-dessous.
+                {% if skill_formset.non_form_errors %}
+                    <ul>
+                        {% for error in skill_formset.non_form_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endif %}
         <div class="row">
             {% for field in form %}
                 <div class="col-md-6 mb-3">
@@ -21,26 +38,122 @@
                 </div>
             {% endfor %}
         </div>
+
+        <h3>Mes Compétences</h3>
+        {{ skill_formset.management_form }}
+
+        <div id="skills-container">
+            {% for form in skill_formset %}
+                <div class="skill-item d-flex align-items-center mb-2">
+                    <div class="me-3" style="flex: 1;">
+                        {{ form.skill.label_tag }}
+                        {{ form.skill }}
+                        {% if form.skill.errors %}
+                            <div class="text-danger">
+                                {% for error in form.skill.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="me-1" style="flex: 1;">
+                        {{ form.experience_level.label_tag }}
+                        {{ form.experience_level }}
+                        {% if form.experience_level.errors %}
+                            <div class="text-danger">
+                                {% for error in form.experience_level.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button type="button" class="btn btn-danger remove-skill">Supprimer</button>
+                    <!-- Champ caché pour l'ID -->
+                    {% if form.instance.pk %}
+                        {{ form.id }}
+                    {% endif %}
+                    <!-- Champ caché pour DELETE -->
+                    {{ form.DELETE }}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+            <button type="button" id="add-skill" class="btn btn-secondary">Ajouter la compétence</button>
+        </div>
+
+        <br><br>
         <div class="d-grid">
             <button type="submit" class="btn btn-success" style="width: 300px; display: block; margin: 0 auto;">Enregistrer les modifications</button>
         </div>
     </form>
+
+    <!-- Formulaire vide pour duplication JS -->
+    <div id="empty-form" style="display: none;">
+        <div class="skill-item d-flex align-items-center mb-2">
+            <div class="me-3" style="flex: 1;">
+                {{ skill_formset.empty_form.skill.label_tag }}
+                {{ skill_formset.empty_form.skill }}
+            </div>
+            <div class="me-1" style="flex: 1;">
+                {{ skill_formset.empty_form.experience_level.label_tag }}
+                {{ skill_formset.empty_form.experience_level }}
+            </div>
+            <button type="button" class="btn btn-danger remove-skill">Supprimer</button>
+            <!-- Champ caché pour l'ID -->
+            {{ skill_formset.empty_form.id }}
+            <!-- Champ caché pour DELETE -->
+            {{ skill_formset.empty_form.DELETE }}
+        </div>
+    </div>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        const formsetPrefix = "{{ skill_formset.prefix }}";
+        const totalForms = document.getElementById(`id_${formsetPrefix}-TOTAL_FORMS`);
+        const skillsContainer = document.getElementById("skills-container");
+        const addSkillButton = document.getElementById("add-skill");
 
-        // Vérifie si jQuery et Select2 sont bien chargés
-        if (typeof $.fn.select2 !== "undefined") {
-            $('#id_skills').select2({
-                placeholder: "Sélectionnez vos compétences",
-                allowClear: true,
-                width: '100%'
+        // Ajouter une compétence
+        addSkillButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const formCount = parseInt(totalForms.value);
+            const newForm = document.getElementById("empty-form").innerHTML.replace(/__prefix__/g, formCount);
+
+            // Ajouter le nouveau formulaire au conteneur
+            const newFormDiv = document.createElement("div");
+            newFormDiv.innerHTML = newForm;
+            skillsContainer.appendChild(newFormDiv);
+
+            // Mettre à jour les attributs id et name des nouveaux champs
+            const newFields = newFormDiv.querySelectorAll("input, select, textarea");
+            newFields.forEach(field => {
+                const oldId = field.id;
+                const oldName = field.name;
+                if (oldId) field.id = oldId.replace(/__prefix__/g, formCount);
+                if (oldName) field.name = oldName.replace(/__prefix__/g, formCount);
             });
-        } else {
-            console.error("Erreur : Select2 n'est pas chargé !");
-        }
+
+            // Mettre à jour le nombre total de formulaires
+            totalForms.value = formCount + 1;
+        });
+
+        // Supprimer une compétence
+        skillsContainer.addEventListener("click", function (e) {
+            if (e.target.classList.contains("remove-skill")) {
+                e.preventDefault();
+                const skillItem = e.target.closest(".skill-item");
+                const deleteInput = skillItem.querySelector("input[name*='DELETE']");
+                if (deleteInput) {
+                    deleteInput.value = "on";  // Marquer le formulaire pour suppression
+                    skillItem.style.display = "none";  // Masquer l'élément
+                } else {
+                    skillItem.remove();  // Supprimer l'élément s'il n'a pas d'ID
+                }
+                totalForms.value = parseInt(totalForms.value) - 1;
+            }
+        });
     });
 </script>
-
 {% endblock %}

@@ -1,9 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.forms import formset_factory, modelformset_factory, inlineformset_factory
 from django.shortcuts import render, redirect
 
-from .forms import UserRegisterForm, UserUpdateForm
+from questions.models import Tag
+from .forms import UserRegisterForm, UserUpdateForm, UserSkillFormSet, UserSkillForm
+from .models import UserSkill
 
 # Create your views here.
 
@@ -48,12 +51,34 @@ def logout_view(request):
 
 @login_required
 def update_profile(request):
-    if request.method == "POST":
-        form = UserUpdateForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect('challenge_evaluation')  # Rediriger vers la page de profil après mise à jour
-    else:
-        form = UserUpdateForm(instance=request.user)
+    user = request.user
+    user_form = UserUpdateForm(instance=user)
+    skill_formset = UserSkillFormSet(instance=user)
 
-    return render(request, 'accounts/profile.html', {'form': form})
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=user)
+        skill_formset = UserSkillFormSet(request.POST, instance=user)
+        if user_form.is_valid() and skill_formset.is_valid():
+            user_form.save()
+            skill_formset.save()
+            return redirect('challenge_evaluation')
+        else:
+            print(user_form.errors)
+            print(skill_formset.errors)
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        # initial = [
+        #     {
+        #         'skill': skill.skill,
+        #         'experience_level': skill.experience_level
+        #     }
+        #     for skill in UserSkill.objects.filter(user=request.user)
+        # ]
+        # UserSkillFormSet = inlineformset_factory(User, UserSkill, form=UserSkillForm, extra=1)
+        skill_formset = UserSkillFormSet(instance=request.user)
+
+
+    return render(request, 'accounts/profile.html', {
+        'form': user_form,
+        'skill_formset': skill_formset,
+    })
