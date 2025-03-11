@@ -6,11 +6,15 @@
         <div class="row mb-4">
             <h2 class="text-center">Choisissez une évaluation</h2>
         </div>
-        <div class="alert alert-warning text-center shadow-sm p-3" role="alert">
-    <strong> Avant de continuer !</strong>
-    Pour accéder aux évaluations, veuillez <a href="{% url 'update_profile' %}" class="alert-link">mettre à jour votre profil</a>
-    en renseignant votre niveau d'expérience, vos années d'expérience et vos compétences.
-</div>
+        {% if not user.has_skill_infos %}
+            <div class="alert alert-warning text-center shadow-sm p-3" role="alert">
+                <strong> Avant de continuer !</strong>
+                Pour accéder aux évaluations, veuillez <a href="{% url 'update_profile' %}" class="alert-link">mettre à
+                jour
+                votre profil</a>
+                en renseignant votre niveau d'expérience, vos années d'expérience et vos compétences.
+            </div>
+        {% endif %}
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -26,7 +30,7 @@
                                         {{ challenge.title }}
                                     </li>
                                 </a>
-                                {% empty %}
+                            {% empty %}
                                 <li class="list-group-item">
                                     Aucune évaluation disponible
                                 </li>

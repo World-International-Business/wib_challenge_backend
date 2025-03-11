@@ -1,8 +1,8 @@
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
-from questions.models import Tag
 from django.utils.translation import gettext_lazy as _
 
+from questions.models import Tag
 from wib_challenge.enums import ExperienceLevel
 
 
@@ -35,7 +35,8 @@ class User(AbstractUser):
     experience_level = models.IntegerField('Expérience', choices=ExperienceLevel.choices,
                                            default=ExperienceLevel.BEGINNER)
     experience = models.IntegerField('Années d\'expérience', default=0)
-    skills = models.ManyToManyField('questions.Tag', related_name='users', blank=True, verbose_name="Compétences", through='UserSkill')
+    skills = models.ManyToManyField('questions.Tag', related_name='users', blank=True, verbose_name="Compétences",
+                                    through='UserSkill')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
@@ -46,6 +47,11 @@ class User(AbstractUser):
         self.is_active = False
         self.save()
         return self
+
+    @property
+    def has_skill_infos(self):
+        return self.skills.exists()
+
 
 class UserSkill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

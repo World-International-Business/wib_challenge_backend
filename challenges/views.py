@@ -50,11 +50,11 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
 
 @login_required
 def challenge_evaluation_view(request, slug=None, challenge_id=None):
+    if not request.user.has_skill_infos:
+        messages.warning(request, 'Veuillez renseigner vos compétences avant de continuer.')
+        return redirect('update_profile')
     if not slug or not challenge_id:
         challenges = User.objects.get(id=request.user.id).challenges.exclude(submissions__candidate_id=request.user.id)
-        # if challenges.count() == 1:
-        #     challenge = challenges.first()
-        #     return redirect('challenge_evaluation_detail', slug=challenge.slug, challenge_id=challenge.id)
         context = {
             'challenges': challenges
         }
