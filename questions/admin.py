@@ -69,25 +69,25 @@ class QuestionAdmin(admin.ModelAdmin):
             return obj.choices.count()
         return '-'
 
-    def save_formset(self, request, form, formset, change):
-        instances = formset.save(commit=False)
-        print(instances)
-        print(form.instance.question_type)
-        if form.instance.question_type == Question.QuestionType.OPEN_ANSWER:
-            if len(instances) > 0:
-                raise ValidationError('Une question de type "Réponse ouverte" ne peut pas avoir de choix')
-        else:
-            if len(instances) == 0:
-                raise ValidationError(
-                    'Une question de type "Choix multiple" ou "Choix unique" doit avoir au moins un choix')
-            elif len([choice for choice in instances if choice.is_correct]) == 0:
-                raise ValidationError(
-                    'Une question de type "Choix multiple" ou "Choix unique" doit avoir au moins un choix correct')
+        # def save_formset(self, request, form, formset, change):
+        #     instances = formset.save(commit=False)
+        #     print(instances)
+        #     print(form.instance.question_type)
+        #     if form.instance.question_type == Question.QuestionType.OPEN_ANSWER:
+        #         if len(instances) > 0:
+        #             raise ValidationError('Une question de type "Réponse ouverte" ne peut pas avoir de choix')
+        #     else:
+        #         if len(instances) == 0:
+        #             raise ValidationError(
+        #                 'Une question de type "Choix multiple" ou "Choix unique" doit avoir au moins un choix')
+        #         elif len([choice for choice in instances if choice.is_correct]) == 0:
+        #             raise ValidationError(
+        #                 'Une question de type "Choix multiple" ou "Choix unique" doit avoir au moins un choix correct')
 
         super().save_formset(request, form, formset, change)
 
-    def save_model(self, request, obj, form, change):
-        if change and obj.domain != form.initial['domain'] and obj.challenges.count() > 0:
-            raise ValidationError(
-                'Le domaine d\'une question ne peut pas être modifié, veillez supprimer les challenges associés ou retirer la question de ces challenges')
-        super().save_model(request, obj, form, change)
+    # def save_model(self, request, obj, form, change):
+    # if change and obj.domain != form.initial['domain'] and obj.challenges.count() > 0:
+    #     raise ValidationError(
+    #         'Le domaine d\'une question ne peut pas être modifié, veillez supprimer les challenges associés ou retirer la question de ces challenges')
+    # super().save_model(request, obj, form, change)

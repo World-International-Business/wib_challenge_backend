@@ -109,66 +109,11 @@
     {#<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>#}
 
     <script>
-        // Vérifiez si un temps est déjà stocké dans le Local Storage
-        let totalTime = {{time_left|floatformat}}
-        let timerElement = document.getElementById('timer');
-        let formElement = document.getElementById('evaluationForm');
-
-        function updateTimer() {
-            let minutes = Math.floor(totalTime / 60);
-            let seconds = totalTime % 60;
-
-            document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
-            document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
-
-            if (totalTime <= 0) {
-                clearInterval(timerInterval);
-                formElement.submit(); // Submit the form when the time is up
-            }
-
-            // Sauvegardez le temps restant dans le Local Storage
-            totalTime--;
-        }
-
-        // Update the timer every second
-        let timerInterval = setInterval(updateTimer, 1000);
-        updateTimer(); // Initial update
-
 
         document.addEventListener("DOMContentLoaded", function () {
-            // Initialiser l'éditeur pour chaque question d'implémentation
-            {#            {% for data in challenges %}#}
-            {#                {% for question in data.implementation_questions %}#}
-            {#                    let editor{{ question.id }} = ace.edit("editor_{{ question.id }}");#}
-            {#                    editor{{ question.id }}.setTheme("ace/theme/monokai"); // Choisissez le thème#}
-            {#                    editor{{ question.id }}.session.setMode("ace/mode/python"); // Choisissez le langage#}
-            {#                    editor{{ question.id }}.setOptions({#}
-            {#                        fontSize: "14px",#}
-            {#                        showPrintMargin: false,#}
-            {#                        showGutter: true,#}
-            {#                        highlightActiveLine: true,#}
-            {#                        enableBasicAutocompletion: true,#}
-            {#                        enableLiveAutocompletion: true,#}
-            {#                        enableSnippets: true#}
-            {#                    });#}
-            {#                {% endfor %}#}
-            {#            {% endfor %}#}
-            {##}
-            {#            // Initialiser l'éditeur pour les questions par défaut#}
-            {#            {% for default_question in default_implementation_questions %}#}
-            {#                let defaultEditor = ace.edit("editor_default_{{ default_question.id }}");#}
-            {#                defaultEditor.setTheme("ace/theme/monokai");#}
-            {#                defaultEditor.session.setMode("ace/mode/python");#}
-            {#                defaultEditor.setOptions({#}
-            {#                    fontSize: "14px",#}
-            {#                    showPrintMargin: false,#}
-            {#                    showGutter: true,#}
-            {#                    highlightActiveLine: true,#}
-            {#                    enableBasicAutocompletion: true,#}
-            {#                    enableLiveAutocompletion: true,#}
-            {#                    enableSnippets: true#}
-            {#                });#}
-            {#            {% endfor %}#}
+            let totalTime = {{time_left}}
+            let timerElement = document.getElementById('timer');
+            let formElement = document.getElementById('evaluationForm');
 
             function updateTimer() {
                 let minutes = Math.floor(totalTime / 60);
@@ -192,14 +137,6 @@
 
         });
 
-        {#// Avant la soumission du formulaire, copier le contenu des éditeurs dans les textareas#}
-        {#document.getElementById('evaluationForm').addEventListener('submit', function () {#}
-        {#    {% for data in challenges %}#}
-        {#        {% for question in data.implementation_questions %}#}
-        {#            document.getElementById('code_{{ question.id }}').value = editor{{ question.id }}.getValue();#}
-        {#        {% endfor %}#}
-        {#    {% endfor %}#}
-        {# }); #}
 
     </script>
 {% endblock %}

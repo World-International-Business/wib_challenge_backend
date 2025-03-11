@@ -23,7 +23,7 @@ class SettingsAdmin(admin.ModelAdmin):
 
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'domain', 'duration']
+    list_display = ['title', 'domain', 'question_count', 'slug', 'duration']
     search_fields = ['title']
     readonly_fields = ['slug']
     ordering = ['title']
@@ -35,6 +35,10 @@ class ChallengeAdmin(admin.ModelAdmin):
             'fields': ['slug']
         }),
     )
+
+    @admin.display(description='Nombre de questions', )
+    def question_count(self, obj):
+        return obj.questions.count()
 
     def save_form(self, request, form, change):
         # print(request, form.cleaned_data, change)

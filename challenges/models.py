@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.timezone import now
 
+from accounts.models import User
 from questions.models import Question, Choice, Domain
 
 
@@ -17,6 +18,12 @@ class Settings(models.Model):
     advanced_challenge_duration = models.DurationField("Durée d'un challenge pour les avancés",
                                                        default=timedelta(hours=1))
     is_database_already_populated = models.BooleanField('Base de données déjà peuplée', default=False)
+
+    open_answer_question_count_per_tag = models.PositiveIntegerField('Nombre de réponses ouvertes par tag', default=5)
+    multiple_choice_question_count_per_tag = models.PositiveIntegerField('Nombre de questions multiples choix par tag',
+                                                                         default=3)
+    unique_choice_question_count_per_tag = models.PositiveIntegerField('Nombre de questions choix unique par tag',
+                                                                       default=2)
 
     class Meta:
         verbose_name = 'Paramètre'
@@ -70,6 +77,21 @@ class SubmissionAttempt(models.Model):
     @property
     def is_finished(self):
         return self.ended_at is not None
+
+    @property
+    def performance_percent(self):
+        if self.ended_at:
+            return 100 - 100 * (
+                    self.ended_at - self.started_at).total_seconds() / self.challenge.duration.total_seconds()
+        else:
+            return 0.0
+
+    @property
+    def performance(self):
+        if self.ended_at:
+            return timedelta(seconds=(self.ended_at - self.started_at).seconds)
+        else:
+            return None
 
 
 class Submission(models.Model):

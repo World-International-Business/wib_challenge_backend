@@ -54,8 +54,8 @@ class User(AbstractUser):
 
 
 class UserSkill(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    skill = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='skills_infos')
+    skill = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='user_skills')
     experience_level = models.IntegerField(choices=ExperienceLevel.choices, default=ExperienceLevel.BEGINNER)
 
     class Meta:

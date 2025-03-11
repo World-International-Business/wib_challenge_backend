@@ -23,7 +23,8 @@
                         <div class="h4 mb-3">
                             {{ submission.result_percent|floatformat:2 }}%<br/>
                             Domaine : {{ submission.challenge.domain.name }}<br>
-                            Durée : {{ submission.challenge.duration }} (HH:MM:SS)
+                            Durée : {{ attempt.performance }} / {{ submission.challenge.duration }} (HH:MM:SS)<br/>
+                            Performance Temporelle: {{ attempt.performance_percent|floatformat:2 }} %
                         </div>
                     </div>
                 </div>
@@ -53,6 +54,8 @@
                                 <div class="list-group mt-3">
                                     {% for choice in answer.question.choices.all %}
                                         <div class="list-group-item
+
+
 
                                                 {% if choice in answer.selected_choices.all %}{{ choice.is_correct|yesno:'list-group-item-success,list-group-item-danger' }} {% elif choice.is_correct %}list-group-item-success{% endif %}">
                                             {{ choice.text }}

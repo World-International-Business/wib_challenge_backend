@@ -45,7 +45,7 @@ class UserAdmin(admin.ModelAdmin):
         return obj.get_experience_level_display()
 
     def display_skills(self, obj):
-        return ", ".join([skill.skill.name for skill in obj.userskill_set.all()]) if obj.userskill_set.exists() else "-"
+        return ", ".join([skill.skill.name for skill in obj.skills_infos.all()]) if obj.skills_infos.exists() else "-"
 
     def delete_queryset(self, request, queryset):
         queryset.update(is_active=False)
