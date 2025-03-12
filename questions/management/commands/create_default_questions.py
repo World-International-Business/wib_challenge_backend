@@ -40,7 +40,7 @@ class Command(BaseCommand):
                 question, created = self.get_or_create_model(
                     Question,
                     title=question_data['title'],
-                    description=question_data['description'],
+                    description=question_data['description'] if 'description' in question_data else None,
                     level=question_data['level'],
                     question_type=question_data['question_type'],
                     category=category
