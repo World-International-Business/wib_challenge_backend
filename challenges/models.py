@@ -93,6 +93,10 @@ class SubmissionAttempt(models.Model):
         else:
             return None
 
+    @property
+    def remaining_time(self):
+        return self.challenge.duration - (now() - self.started_at)
+
 
 class Submission(models.Model):
     class CorrectionStatus(models.TextChoices):

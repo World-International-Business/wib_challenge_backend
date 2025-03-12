@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import render, redirect
 
 from .forms import UserRegisterForm, UserUpdateForm, UserSkillFormSet
@@ -15,7 +16,7 @@ def register_view(request):
             user = form.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.success(request, "Inscription réussie ! Bienvenue 😊")
-            return redirect('home')  # Rediriger vers la page d'accueil ou tableau de bord
+            return redirect('challenge_evaluation')
     else:
         form = UserRegisterForm()
 
@@ -31,7 +32,7 @@ def login_view(request):
                             backend='django.contrib.auth.backends.ModelBackend')
         if user is not None:
             login(request, user)
-            return redirect('home')  # Rediriger vers la page d'accueil ou une autre page après connexion
+            return redirect('challenge_evaluation')
         else:
             messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")
 
@@ -44,19 +45,17 @@ def logout_view(request):
     return redirect('home')
 
 
+@transaction.atomic
 @login_required
 def update_profile(request):
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST, instance=request.user)
         skill_formset = UserSkillFormSet(request.POST, instance=request.user)
         if user_form.is_valid() and skill_formset.is_valid():
-            user = user_form.save()
-            skills = skill_formset.save()
+            user_form.save()
+            skill_formset.save()
 
             return redirect('challenge_evaluation')
-        else:
-            print(user_form.errors)
-            print(skill_formset.errors)
     else:
         user_form = UserUpdateForm(instance=request.user)
         skill_formset = UserSkillFormSet(instance=request.user)

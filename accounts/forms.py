@@ -2,9 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import inlineformset_factory
 
+from questions.models import Domain
 from wib_challenge.enums import ExperienceLevel
 from .models import User, UserSkill
-from questions.models import Domain
 
 
 class UserRegisterForm(UserCreationForm):
@@ -45,6 +45,11 @@ class UserUpdateForm(forms.ModelForm):
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
 
+    def clean_domain(self):
+        domain = self.cleaned_data['domain']
+        if not domain:
+            raise forms.ValidationError("Veuillez sélectionner un domaine.")
+        return domain
 
 class UserSkillForm(forms.ModelForm):
     class Meta:
@@ -60,4 +65,4 @@ class UserSkillForm(forms.ModelForm):
         }
 
 
-UserSkillFormSet = inlineformset_factory(User, UserSkill, form=UserSkillForm, extra=1, can_delete=True, fk_name='user')
+UserSkillFormSet = inlineformset_factory(User, UserSkill, form=UserSkillForm, extra=1, fk_name='user')

@@ -5,12 +5,6 @@
         .skill-item input[type="checkbox"] {
             display: none;
         }
-         .skill-item input[type="checkbox"][name*="DELETE"]:checked + .skill-item {
-    display: none;
-}
-        .skill-item.hidden {
-    display: none;
-}
     </style>
     <div class="container">
         {% if not user.has_skill_infos %}
@@ -30,11 +24,11 @@
                 <div class="alert alert-danger">
                     <strong>Erreur :</strong> Veuillez corriger les erreurs ci-dessous.
                     {% if skill_formset.errors %}
-                        <ul>
-                            {% for error in skill_formset.errors %}
-                                <li>{{ error.as_text }}</li>
-                            {% endfor %}
-                        </ul>
+                        {% for error in skill_formset.errors %}
+                            {% if error %}
+                                {{ error.as_ul }}
+                            {% endif %}
+                        {% endfor %}
                     {% endif %}
                 </div>
             {% endif %}
@@ -86,7 +80,10 @@
                                 </div>
                             {% endif %}
                         </div>
-                        <button type="button" class="btn btn-danger remove-skill">Supprimer <i class="bi bi-trash"></i></button>
+                        <button type="button" class="btn btn-danger remove-skill">
+                            <i class="bi bi-trash"></i>
+                            <span>Supprimer</span>
+                        </button>
                         {% if form.instance.pk %}
                             {{ form.DELETE }}
                         {% endif %}
@@ -116,8 +113,8 @@
                     {{ skill_formset.empty_form.experience_level }}
                 </div>
                 <button type="button" class="btn btn-danger remove-skill">
-                    Supprimer
                     <i class="bi bi-trash"></i>
+                    <span>Supprimer</span>
                 </button>
             </div>
         </div>
@@ -153,14 +150,25 @@
 
             // Supprimer une compétence
             skillsContainer.addEventListener("click", function (e) {
-                if (e.target.classList.contains("remove-skill")) {
-                    e.preventDefault();
-                    const skillItem = e.target.closest(".skill-item");
+                button = e.target.closest('button')
+                if (button && button.classList.contains("remove-skill")) {
+                    const skillItem = button.closest(".skill-item");
                     const deleteInput = skillItem.querySelector("input[name*='DELETE']");
                     if (deleteInput) {
-                        deleteInput.checked = !deleteInput.checked;
-                        console.log("Suppression marquée pour :", deleteInput.name);
-                        skillItem.classList.add("hidden");
+                        deleteInput.checked = !deleteInput.checked
+                        skillItem.querySelectorAll("input, select").forEach(field => {
+                            field.disabled = deleteInput.checked;
+                        });
+                        console.log(deleteInput.checked);
+                        button.lastElementChild.textContent = deleteInput.checked ? "Restaurer" : "Supprimer";
+                        if (deleteInput.checked) {
+                            button.classList.remove("btn-danger");
+                            button.classList.add("btn-success");
+                        } else {
+                            button.classList.remove("btn-success");
+                            button.classList.add("btn-danger");
+                        }
+                        button.firstElementChild.className = deleteInput.checked ? "bi bi-arrow-counterclockwise" : "bi bi-trash";
                     } else {
                         skillItem.remove();
                         totalForms.value = parseInt(totalForms.value) - 1;

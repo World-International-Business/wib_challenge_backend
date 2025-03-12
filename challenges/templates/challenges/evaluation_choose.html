@@ -26,8 +26,9 @@
                             {% for challenge in challenges %}
                                 <a class="text-decoration-none mb-2"
                                    href="{% url 'challenge_evaluation_detail' challenge.slug challenge.id %}">
-                                    <li class="list-group-item list-group-item-action list-group-item-primary rounded">
-                                        {{ challenge.title }}
+                                    <li class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
+                                        <span>{{ challenge.title }}</span>
+
                                     </li>
                                 </a>
                             {% empty %}

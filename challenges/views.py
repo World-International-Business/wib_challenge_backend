@@ -72,7 +72,7 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
                 request.user.challenges.add(challenge)
                 challenges = [challenge]
         context = {
-            'challenges': challenges
+            'challenges': challenges,
         }
         return render(request, 'challenges/evaluation_choose.html', context)
 
@@ -83,15 +83,15 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         messages.warning(request, 'Cette évaluation a déjà été terminée.')
         return redirect('result-detail', submission_id=attempt.submission.id, slug=challenge.slug,
                         challenge_id=challenge.id)
-    elapsed_time = (timezone.now() - attempt.started_at).total_seconds()
-    time_left = max(challenge.duration.total_seconds() - elapsed_time, 0)
+
+    time_left = max(attempt.remaining_time.total_seconds(), 0)
 
     context = {
         'challenge': challenge,
         'open_answer_questions': challenge.questions.filter(question_type=Question.QuestionType.OPEN_ANSWER),
         'choices_questions': challenge.questions.exclude(question_type=Question.QuestionType.OPEN_ANSWER),
-        'time_left': math.ceil(time_left)  # Convert seconds to minutes,
-    }  # TODO check timer ps: ask to ai
+        'time_left': math.ceil(time_left)
+    }
     return render(request, 'challenges/evaluation.html', context)
 
 
