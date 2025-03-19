@@ -1,9 +1,9 @@
+import os
+import uuid
+
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-from questions.models import Tag
-from wib_challenge.enums import ExperienceLevel
 
 
 class _UserManager(UserManager):
@@ -12,8 +12,6 @@ class _UserManager(UserManager):
             raise ValueError(_('The Email field must be set'))
         if not extra_fields.get('first_name'):
             raise ValueError(_('The First Name field must be set'))
-        if not extra_fields.get('last_name'):
-            raise ValueError(_('The Last Name field must be set'))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -23,21 +21,29 @@ class _UserManager(UserManager):
     def create_superuser(self, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('role', User.Roles.ADMIN)
 
         return self.create_user(email, password, **extra_fields)
 
 
+def profile_pictures_upload(instance, filename):
+    if instance.pk:
+        old_file = instance.__class__.objects.get(pk=instance.pk).picture
+        if old_file and old_file.name:
+            old_file.delete(save=False)
+    return f"profiles/{uuid.uuid4()}{os.path.splitext(filename)[1]}"
+
+
 class User(AbstractUser):
+    class Roles(models.TextChoices):
+        ADMIN = 'admin', _('Administrateur')
+        USER = 'dev', _('Développeur')
+        ORG = 'org', _('Organisation')
+
     username = None
     email = models.EmailField(_("email address"), unique=True)
-    domain = models.ForeignKey('questions.Domain', on_delete=models.SET_NULL, null=True, blank=True)
-    challenges = models.ManyToManyField('challenges.Challenge', related_name='users', blank=True)
-    experience_level = models.IntegerField('Expérience', choices=ExperienceLevel.choices,
-                                           default=ExperienceLevel.BEGINNER)
-    experience = models.IntegerField('Années d\'expérience', default=0)
-    skills = models.ManyToManyField('questions.Tag', related_name='users', blank=True, verbose_name="Compétences",
-                                    through='UserSkill')
-
+    role = models.CharField(_('Rôle'), max_length=10, choices=Roles.choices, default=Roles.USER)
+    picture = models.ImageField(_('Photo de profil'), upload_to=profile_pictures_upload, null=True, blank=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
@@ -47,19 +53,3 @@ class User(AbstractUser):
         self.is_active = False
         self.save()
         return self
-
-    @property
-    def has_skill_infos(self):
-        return self.skills.exists()
-
-
-class UserSkill(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='skills_infos')
-    skill = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='user_skills')
-    experience_level = models.IntegerField(choices=ExperienceLevel.choices, default=ExperienceLevel.BEGINNER)
-
-    class Meta:
-        unique_together = ('user', 'skill')
-
-    def __str__(self):
-        return f"{self.user.email} - {self.skill.name} ({self.get_experience_level_display()})"

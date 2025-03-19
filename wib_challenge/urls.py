@@ -18,31 +18,9 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from django.contrib import admin
 from django.urls import path, include
 
-from accounts.views import login_view, register_view, logout_view, update_profile
-from challenges.views import (
-    challenge_evaluation_view, submit_evaluation_view
-)
-from challenges.views import evaluation_results, home_view
-
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', home_view, name='home'),
-
-    path('resultats/', evaluation_results, name='results'),
-    path('resultats/<int:submission_id>-<slug:slug>-<int:challenge_id>', evaluation_results, name='result-detail'),
-    # URLs d'authentification
-
-    path('evaluation/', challenge_evaluation_view, name='challenge_evaluation'),
-    path('evaluation/<slug:slug>-<int:challenge_id>', challenge_evaluation_view, name='challenge_evaluation_detail'),
-    path('submit_evaluation/', submit_evaluation_view, name='submit_evaluation'),
-
-    # URLs d'authentification
-    path('login/', login_view, name='login'),
-    path('register/', register_view, name='register'),
-    path('logout/', logout_view, name='logout'),
-    path('profile/update/', update_profile, name='update_profile'),
-    path('accounts/', include('allauth.urls')),  # Django Allauth URLs
-
+    path('administration/', admin.site.urls),
+    path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
 ]
 
 urlpatterns += debug_toolbar_urls()

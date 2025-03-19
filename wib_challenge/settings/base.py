@@ -9,15 +9,11 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
-
-import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-dotenv.load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -39,17 +35,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',  # Nécessaire pour Allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',  # Provider Google
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
+    'corsheaders',
+    # 'core',
+    # 'candidate',
     'accounts',
-    'questions',
-    'challenges',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -58,15 +54,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'wib_challenge.urls'
+APPEND_SLASH = True
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': []
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -138,30 +134,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'staticfiles'
-]
+# Rest framework
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
+}
 
+# Simple JWT
 
-SOCIALACCOUNT_ADAPTER = "accounts.adapters.MySocialAccountAdapter"
-ACCOUNT_ADAPTER = "accounts.adapters.MyAccountAdapter"
-SOCIALACCOUNT_LOGIN_ON_GET = True
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
-ACCOUNT_LOGIN_METHODS = {'email'}
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_LOGIN_BY_CODE_ENABLED = False
-ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = False
-ACCOUNT_EMAIL_VERIFICATION = "none"
-LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = "/"
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"  # Force la redirection après inscription
-SOCIALACCOUNT_AUTO_SIGNUP = True  # Active l'inscription automatique
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False,
-
-SITE_ID = 1
+SIMPLE_JWT = {
+    'UPDATE_LAST_LOGIN': True,
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
