@@ -9,7 +9,13 @@ from accounts.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ('password', 'groups', 'user_permissions', 'is_staff', 'is_superuser')
+        exclude = ('groups', 'user_permissions', 'is_staff', 'is_superuser')
+        extra_kwargs = {
+            'password': {'write_only': True},
+            'date_joined': {'read_only': True},
+            'last_login': {'read_only': True},
+            'is_active': {'read_only': True},
+        }
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -74,3 +80,8 @@ class PasswordChangeSerializer(serializers.Serializer):
         if self.context['request'].user.check_password(value):
             raise serializers.ValidationError(_("Le nouveau mot de passe doit être différent de l'ancien."))
         return value
+
+    def save(self, **kwargs):
+        self.context['request'].user.set_password(self.validated_data['new_password'])
+        self.context['request'].user.save()
+        return {'detail': _('Mot de passe changé')}

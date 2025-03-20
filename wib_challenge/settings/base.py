@@ -36,11 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_spectacular',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
-    # 'core',
-    # 'candidate',
+    'core',
+    'candidate',
     'accounts',
 ]
 
@@ -143,7 +144,13 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    'DEFAULT_VERSION': '1.0',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'PAGE_SIZE': 20
 }
 
@@ -153,4 +160,34 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': True,
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+}
+
+# Open API
+
+SPECTACULAR_SETTINGS = {
+    'SCHEMA_PATH_PREFIX': r'^/api/',
+    'SCHEMA_COERCE_PATH_PK_SUFFIX': True,
+    'TITLE': 'WIB Challenge API',
+    'DESCRIPTION': 'API for WIB Challenge',
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+    },
+    'CONTACT': {
+        'name': 'WIB Challenge',
+        'url': 'wibchallenge.pythonanywhere.com',
+        'email': 'wibchallenge@gmail.com',
+    },
+    'VERSION': '0.1.0',
+    'SERVERS': [
+        {
+            'url': 'http://127.0.0.1:8000',
+            'description': 'Local',
+        },
+        {
+            'url': 'https://wibchallenge.pythonanywhere.com',
+            'description': 'Production',
+        },
+    ],
 }

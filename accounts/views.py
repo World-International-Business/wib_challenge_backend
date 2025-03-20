@@ -5,12 +5,12 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
+from drf_spectacular.utils import extend_schema, OpenApiExample
 from rest_framework import generics, viewsets, status
 from rest_framework.decorators import action
-from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import get_object_or_404, GenericAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from accounts.models import User
@@ -21,7 +21,7 @@ from wib_challenge.permissions import IsSelf
 
 class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView, generics.ListAPIView):
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated, IsSelf]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsSelf]
 
     def get_serializer_class(self, *args, **kwargs):
         if self.action == 'list':
@@ -31,14 +31,46 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
     def get_queryset(self):
         return self.queryset if self.request.user.is_staff else self.queryset.filter(is_active=False, is_staff=False)
 
+    @extend_schema(
+        request=PasswordChangeSerializer,
+        examples=[
+            OpenApiExample(
+                name='Incorrect password',
+                description=_('Le mot de passe actuel est incorrect.'),
+                response_only=True,
+                status_codes=(400,),
+                value={
+                    'old_password': {
+                        'detail': _('Le mot de passe actuel est incorrect.')
+                    }
+                },
+            ),
+            OpenApiExample(
+                name='Same password',
+                description=_('Le nouveau mot de passe doit être différent de l\'ancien.'),
+                response_only=True,
+                status_codes=(400,),
+                value={
+                    'new_password': {
+                        'detail': _('Le nouveau mot de passe doit être différent de l\'ancien.')
+                    }
+                },
+            ),
+            OpenApiExample(
+                name='Success',
+                description=_('Success'),
+                response_only=True,
+                status_codes=(200,),
+                value={'detail': _('Mot de passe changé')},
+            ),
+        ]
+    )
     @action(detail=True, methods=['post'], url_path='change-password')
     def change_password(self, request, pk=None):
         serializer = PasswordChangeSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
-        user = self.get_object()
-        user.set_password(serializer.validated_data['new_password'])
-        user.save()
-        return Response({'detail': _('Mot de passe changé')}, status=status.HTTP_200_OK)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class RegisterUser(generics.CreateAPIView):
@@ -55,11 +87,12 @@ class RegisterUser(generics.CreateAPIView):
         )
 
 
-class PasswordResetView(APIView):
+class PasswordResetView(GenericAPIView):
     permission_classes = []
+    serializer_class = PasswordResetSerializer
 
     def post(self, request):
-        serializer = PasswordResetSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         value = serializer.validated_data['email']
@@ -91,8 +124,9 @@ class PasswordResetView(APIView):
         )
 
 
-class PasswordResetConfirmView(APIView):
+class PasswordResetConfirmView(GenericAPIView):
     permission_classes = []
+    serializer_class = PasswordResetConfirmSerializer
 
     def post(self, request, uidb64, token):
         try:
@@ -108,6 +142,6 @@ class PasswordResetConfirmView(APIView):
             'password': request.data.get('password'),
             'verification_code': request.data.get('verification_code')
         }
-        serializer = PasswordResetConfirmSerializer(data=data)
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         return Response({"message": _("Mot de passe changé")}, status=status.HTTP_200_OK)
