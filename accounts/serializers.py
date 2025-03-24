@@ -1,12 +1,15 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
+from drf_spectacular.utils import inline_serializer
 from rest_framework import serializers
 
 from accounts.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    profile = serializers.HyperlinkedRelatedField(view_name='candidate:profiles-detail', read_only=True)
+
     class Meta:
         model = User
         exclude = ('groups', 'user_permissions', 'is_staff', 'is_superuser')
@@ -16,15 +19,6 @@ class UserSerializer(serializers.ModelSerializer):
             'last_login': {'read_only': True},
             'is_active': {'read_only': True},
         }
-
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
-
-
-class UserListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'role', 'is_active', 'picture', 'email', 'first_name', 'last_name', 'date_joined', 'last_login')
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
@@ -43,6 +37,14 @@ class PasswordResetSerializer(serializers.Serializer):
             raise serializers.ValidationError(_("Cet utilisateur est désactivé."))
 
         return value
+
+
+PasswordResetResponseSerializer = inline_serializer('PasswordResetResponseSerializer', fields={
+    'detail': serializers.CharField(),
+    'uidb64': serializers.CharField(),
+    'token': serializers.CharField(),
+    'verification_code': serializers.IntegerField()
+})
 
 
 class PasswordResetConfirmSerializer(serializers.Serializer):
@@ -84,4 +86,14 @@ class PasswordChangeSerializer(serializers.Serializer):
     def save(self, **kwargs):
         self.context['request'].user.set_password(self.validated_data['new_password'])
         self.context['request'].user.save()
-        return {'detail': _('Mot de passe changé')}
+
+    @property
+    def data(self):
+        return {'message': _('Mot de passe changé')}
+
+
+UserRegisterResponse = inline_serializer('UserRegisterResponse', fields={
+    'access': serializers.CharField(),
+    'refresh': serializers.CharField(),
+    'data': UserSerializer()
+})

@@ -10,8 +10,6 @@ class _UserManager(UserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError(_('The Email field must be set'))
-        if not extra_fields.get('first_name'):
-            raise ValueError(_('The First Name field must be set'))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -35,6 +33,9 @@ def profile_pictures_upload(instance, filename):
 
 
 class User(AbstractUser):
+    class Meta(AbstractUser.Meta):
+        ordering = ['first_name', 'last_name', 'email']
+
     class Roles(models.TextChoices):
         ADMIN = 'admin', _('Administrateur')
         USER = 'dev', _('Développeur')
@@ -45,7 +46,7 @@ class User(AbstractUser):
     role = models.CharField(_('Rôle'), max_length=10, choices=Roles.choices, default=Roles.USER)
     picture = models.ImageField(_('Photo de profil'), upload_to=profile_pictures_upload, null=True, blank=True)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name']
 
     objects = _UserManager()
 

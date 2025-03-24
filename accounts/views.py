@@ -9,30 +9,35 @@ from drf_spectacular.utils import extend_schema, OpenApiExample
 from rest_framework import generics, viewsets, status
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404, GenericAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from accounts.models import User
-from accounts.serializers import UserListSerializer, UserSerializer, PasswordChangeSerializer, \
-    PasswordResetConfirmSerializer, PasswordResetSerializer
-from wib_challenge.permissions import IsSelf
+from accounts.serializers import UserSerializer, PasswordChangeSerializer, \
+    PasswordResetConfirmSerializer, PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer
+from wib_challenge.permissions import IsSelf, ReadOnly
+from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageResponseSerializer
 
 
 class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView, generics.ListAPIView):
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly, IsSelf]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsSelf | IsAdminUser | ReadOnly]
 
     def get_serializer_class(self, *args, **kwargs):
-        if self.action == 'list':
-            return UserListSerializer
+        if self.action == 'change_password':
+            return PasswordChangeSerializer
         return UserSerializer
 
     def get_queryset(self):
-        return self.queryset if self.request.user.is_staff else self.queryset.filter(is_active=False, is_staff=False)
+        return self.queryset if self.request.user.is_staff else self.queryset.filter(is_active=True, is_staff=False)
 
     @extend_schema(
         request=PasswordChangeSerializer,
+        responses={
+            status.HTTP_200_OK: SimpleMessageResponseSerializer,
+            status.HTTP_400_BAD_REQUEST: FieldErrorSerializer
+        },
         examples=[
             OpenApiExample(
                 name='Incorrect password',
@@ -73,6 +78,9 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@extend_schema(
+    responses=UserRegisterResponse
+)
 class RegisterUser(generics.CreateAPIView):
     serializer_class = UserSerializer
 
@@ -83,10 +91,16 @@ class RegisterUser(generics.CreateAPIView):
         return Response(
             headers=response.headers,
             status=response.status_code,
-            data={**token.validated_data, **response.data}
+            data={**token.validated_data, 'data': response.data}
         )
 
 
+@extend_schema(
+    responses={
+        status.HTTP_200_OK: PasswordResetResponseSerializer,
+        status.HTTP_400_BAD_REQUEST: FieldErrorSerializer
+    }
+)
 class PasswordResetView(GenericAPIView):
     permission_classes = []
     serializer_class = PasswordResetSerializer
@@ -116,7 +130,7 @@ class PasswordResetView(GenericAPIView):
 
         return Response({
             'detail': _('Un email de réinitialisation de mot de passe vous a été envoyé.'),
-            'uid': uid,
+            'uidb64': uid,
             'token': f'{token}|{verification_code}',
             'verification_code': verification_code
         },
@@ -124,6 +138,12 @@ class PasswordResetView(GenericAPIView):
         )
 
 
+@extend_schema(
+    responses={
+        status.HTTP_200_OK: SimpleMessageResponseSerializer,
+        status.HTTP_400_BAD_REQUEST: FieldErrorSerializer
+    }
+)
 class PasswordResetConfirmView(GenericAPIView):
     permission_classes = []
     serializer_class = PasswordResetConfirmSerializer
@@ -137,10 +157,10 @@ class PasswordResetConfirmView(GenericAPIView):
             return Response({"message": _("Token invalide")}, status=status.HTTP_400_BAD_REQUEST)
 
         data = {
-            'uid': uidb64,
+            'uidb64': uidb64,
             'token': token,
             'password': request.data.get('password'),
-            'verification_code': request.data.get('verification_code')
+            # 'verification_code': request.data.get('verification_code')
         }
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
