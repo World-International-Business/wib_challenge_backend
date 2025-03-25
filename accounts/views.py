@@ -77,11 +77,16 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @action(detail=False, methods=['get'], url_path='account')
+    def account(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 @extend_schema(
     responses=UserRegisterResponse
 )
-class RegisterUser(generics.CreateAPIView):
+class RegisterUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
 
     def create(self, request, *args, **kwargs):

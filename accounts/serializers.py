@@ -3,12 +3,21 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import inline_serializer
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from accounts.models import User
 
 
+class WithUserTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        data['data'] = UserSerializer(self.user).data
+        return data
+
+
 class UserSerializer(serializers.ModelSerializer):
-    profile = serializers.HyperlinkedRelatedField(view_name='candidate:profiles-detail', read_only=True)
+    profile = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = User

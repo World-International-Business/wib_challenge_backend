@@ -42,6 +42,10 @@ class AccountTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK, 'Login must return 200 status code')
         self.assertIn('access', response.data, 'Response must contain access token')
         self.assertIn('refresh', response.data, 'Response must contain refresh token')
+        self.assertIn('data', response.data, 'Response must contain user data')
+        self.assertEqual(response.data['data']['email'], self.user.email, 'User email must match')
+        self.assertEqual(response.data['data']['first_name'], self.user.first_name, 'User first name must match')
+        self.assertEqual(response.data['data']['last_name'], self.user.last_name, 'User last name must match')
 
     def test_logout_blacklist_token(self):
         response = self.client.post(reverse('accounts:token_obtain_pair'),

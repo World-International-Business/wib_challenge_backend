@@ -160,6 +160,7 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': True,
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'TOKEN_OBTAIN_SERIALIZER': 'accounts.serializers.WithUserTokenObtainPairSerializer',
 }
 
 # Open API
