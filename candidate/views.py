@@ -10,7 +10,7 @@ from wib_challenge.permissions import IsOwner, ReadOnly
 
 
 class CandidateProfileViewSet(viewsets.ModelViewSet):
-    queryset = CandidateProfile.objects.all()
+    queryset = CandidateProfile.objects.prefetch_related('profile_technologies', 'profession', 'user').all()
     serializer_class = CandidateProfileSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwner | ReadOnly]
 
@@ -49,7 +49,7 @@ class LanguageViewSet(NestedProfileViewSet):
 
 
 class ProjectViewSet(NestedProfileViewSet):
-    queryset = Project.objects.all()
+    queryset = Project.objects.prefetch_related('images').all()
     serializer_class = ProjectSerializer
     parser_classes = [MultiPartParser, FormParser, JSONParser]
 

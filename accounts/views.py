@@ -82,6 +82,8 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
         serializer = UserSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    # TODO check get user by username
+
 
 @extend_schema(
     responses=UserRegisterResponse

@@ -15,21 +15,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from debug_toolbar.toolbar import debug_toolbar_urls
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 urlpatterns = [
     path('administration/', admin.site.urls),
-    path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
-    path('api/', include(('candidate.urls', 'candidate'), namespace='candidates')),
     path('api/', include(('core.urls', 'core'), namespace='core')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
+    path('api/', include(('questions.urls', 'questions'), namespace='questions')),
+    path('api/', include(('candidate.urls', 'candidates'), namespace='candidates')),
     path('api/docs/redoc', SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
     re_path('^api/docs(/swagger)?/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
 
-urlpatterns += [
-    path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
-    *debug_toolbar_urls()
-]
+if settings.DEBUG:
+    urlpatterns += [
+        *debug_toolbar_urls(),
+        path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
+    ]

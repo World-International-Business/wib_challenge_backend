@@ -8,7 +8,7 @@ from wib_challenge.permissions import ReadOnly
 
 class ProfessionViewSet(viewsets.ModelViewSet):
     serializer_class = ProfessionSerializer
-    queryset = Profession.objects.all()
+    queryset = Profession.objects.prefetch_related('technologies').all()
     permission_classes = [IsAdminUser | ReadOnly]
 
 

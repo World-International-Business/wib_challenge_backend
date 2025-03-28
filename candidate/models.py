@@ -4,7 +4,7 @@ import uuid
 from django.conf import settings
 from django.core import validators
 from django.db import models
-from django.db.models.signals import post_delete, pre_save
+from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
@@ -18,23 +18,25 @@ min_max_validator = [
 
 class CandidateProfile(BaseModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile',
-                                verbose_name=_('Utilisateur'))
+                                verbose_name=_('Utilisateur'), unique=True)
 
     profession = models.ForeignKey(Profession, on_delete=models.PROTECT, verbose_name=_('Profession'))
-    location = models.CharField(_('Localisation'), max_length=255)
-    short_bio = models.TextField(_('Courte biographie'), max_length=255)
-    biography = models.TextField(_('Biographie'))
+    location = models.CharField(_('Localisation'), max_length=255, blank=True)
+    short_bio = models.TextField(_('Courte biographie'), max_length=255, blank=True)
+    biography = models.TextField(_('Biographie'), blank=True)
     disability = models.BooleanField(_('Handicap'), default=False)
 
-    years_experience = models.PositiveSmallIntegerField(_('Expérience professionnelle'), default=0)
-    other_years_experience = models.PositiveSmallIntegerField(_('Autre expérience'), default=0)
+    years_experience = models.PositiveSmallIntegerField(_('Expérience professionnelle'), null=True)
+    other_years_experience = models.PositiveSmallIntegerField(_('Autre expérience'), null=True)
 
-    highest_degree = models.PositiveSmallIntegerField(_('Diplôme le plus élevé'), default=0, help_text=_('Bac + X'))
+    highest_degree = models.PositiveSmallIntegerField(_('Diplôme le plus élevé'), null=True, help_text=_('Bac + X'))
 
     technologies = models.ManyToManyField(Technology, related_name='profiles', verbose_name=_('Technologies'),
                                           through='ProfileTechnology')
 
-    interested_by = models.CharField(_('Intéressé par'), max_length=512, default='', blank=True)
+    interested_by = models.CharField(_('Intéressé par'), max_length=512, blank=True)
+
+    # TODO add links to profile ( name, url)
 
     def __str__(self):
         return self.user.get_full_name()
@@ -130,7 +132,7 @@ class ProjectImage(BaseModel):
         verbose_name_plural = _('Images de projet')
 
 
-class ProfileTechnology(BaseModel):
+class ProfileTechnology(models.Model):
     profile = models.ForeignKey(CandidateProfile, on_delete=models.CASCADE, related_name='profile_technologies',
                                 verbose_name=_('Profil'))
     technology = models.ForeignKey(Technology, on_delete=models.CASCADE, related_name='profile_technologies',
@@ -138,5 +140,11 @@ class ProfileTechnology(BaseModel):
 
     level = models.PositiveSmallIntegerField(_('Niveau'), default=0, validators=min_max_validator)
 
+    class Meta:
+        verbose_name = _('Technologie de profil')
+        verbose_name_plural = _('Technologies de profil')
+        unique_together = ('profile', 'technology')
+        ordering = ('id',)
 
-receiver([post_delete, pre_save], sender=ProjectImage)(delete_old_image)
+
+receiver([pre_delete, pre_save], sender=ProjectImage)(delete_old_image)

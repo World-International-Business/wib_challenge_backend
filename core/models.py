@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import post_delete, pre_save
+from django.db.models.signals import pre_save, pre_delete
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
@@ -11,18 +11,6 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
         ordering = ['-created_at', '-updated_at']
-
-
-class Profession(BaseModel):
-    title = models.CharField(_('Titre'), max_length=255, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = _('Profession')
-        verbose_name_plural = _('Professions')
-        ordering = ['title']
 
 
 class Technology(BaseModel):
@@ -38,7 +26,20 @@ class Technology(BaseModel):
         ordering = ['name']
 
 
-@receiver([post_delete, pre_save], sender=Technology)
+class Profession(BaseModel):
+    title = models.CharField(_('Titre'), max_length=255, unique=True)
+    technologies = models.ManyToManyField(Technology, verbose_name=_('Technologies'), related_name='professions')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Profession')
+        verbose_name_plural = _('Professions')
+        ordering = ['title']
+
+
+@receiver([pre_delete, pre_save], sender=Technology)
 def delete_old_image(sender, instance, **kwargs):
     if instance.pk:
         old_image = sender.objects.get(pk=instance.pk).image
