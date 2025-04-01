@@ -21,13 +21,16 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        exclude = ('groups', 'user_permissions', 'is_staff', 'is_superuser')
+        exclude = ('groups', 'user_permissions', 'is_superuser')
+        read_only_fields = ['id', 'date_joined', 'last_login', 'is_active']
         extra_kwargs = {
             'password': {'write_only': True},
-            'date_joined': {'read_only': True},
-            'last_login': {'read_only': True},
-            'is_active': {'read_only': True},
         }
+
+    def validate_role(self, value):
+        if value == User.Roles.ADMIN:
+            raise serializers.ValidationError(_("Vous ne pouvez pas créer un compte admin."))
+        return value
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)

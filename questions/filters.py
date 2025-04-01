@@ -7,7 +7,7 @@ class QuestionFilterSet(filters.FilterSet):
     """
     FilterSet for the Question model.
     """
-    # TODO filter by tests
+    evaluation = filters.NumberFilter(field_name='evaluation__id', lookup_expr='exact')
     technology = filters.CharFilter(field_name='technology__name', lookup_expr='exact')
     profession = filters.CharFilter(field_name='technology__professions', lookup_expr='exact')
     order_by = filters.OrderingFilter(

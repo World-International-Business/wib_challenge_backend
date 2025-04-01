@@ -18,7 +18,7 @@ class ProfileTechnologySerializer(serializers.ModelSerializer):
 class CandidateProfileSerializer(serializers.ModelSerializer):
     profession = serializers.SlugRelatedField(slug_field='title', queryset=Profession.objects)
     user = serializers.HyperlinkedRelatedField(view_name='accounts:users-detail', read_only=True)
-    technologies = ProfileTechnologySerializer(many=True, source='profile_technologies')
+    technologies = ProfileTechnologySerializer(many=True, source='profile_technologies', required=False)
 
     class Meta:
         model = CandidateProfile
@@ -43,7 +43,7 @@ class CandidateProfileSerializer(serializers.ModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    images = serializers.SlugRelatedField(slug_field='images', many=True, read_only=True)
+    images = serializers.SlugRelatedField(slug_field='image', many=True, read_only=True)
     pictures = serializers.ListField(
         child=serializers.ImageField(allow_empty_file=False, use_url=False),
         write_only=True,

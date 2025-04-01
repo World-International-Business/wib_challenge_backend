@@ -1,5 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
+from drf_spectacular.utils import extend_schema_field, inline_serializer
 from rest_framework import serializers
 
 from questions.models import Question, Choice
@@ -56,6 +58,18 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
         model = Question
         fields = '__all__'
 
+    @extend_schema_field(
+        inline_serializer(
+            name='Publisher',
+            fields={
+                'id': serializers.IntegerField(),
+                'username': serializers.UUIDField(),
+                'role': serializers.ChoiceField(choices=get_user_model().Roles.choices),
+                'email': serializers.EmailField(),
+                'picture': serializers.URLField(allow_null=True),
+            }
+        )
+    )
     def get_publisher(self, obj: Question):
         return {
             'id': obj.publisher.id,

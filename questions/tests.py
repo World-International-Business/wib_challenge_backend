@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse_lazy
 from rest_framework.test import APITestCase
 
 from accounts.models import User
-from core.models import Technology, Profession
+from core.models import Technology, Profession, Language
 from questions.models import Question
 from questions.serializers import QuestionSerializer
 
@@ -21,7 +21,7 @@ class QuestionTestCase(APITestCase):
             {
                 'text': 'Question 1',
                 'technology': self.technology.pk,
-                'language': Question.Language.ENGLISH,
+                'language': Language.ENGLISH,
                 'difficulty': Question.Difficulty.EASY,
                 'explanation': 'Explanation 1',
                 'choices': [
@@ -34,7 +34,7 @@ class QuestionTestCase(APITestCase):
             {
                 'text': 'Question 2',
                 'technology': self.technology.pk,
-                'language': Question.Language.ENGLISH,
+                'language': Language.ENGLISH,
                 'difficulty': Question.Difficulty.MEDIUM,
                 'explanation': 'Explanation 2',
                 'choices': [
@@ -47,7 +47,7 @@ class QuestionTestCase(APITestCase):
             {
                 'text': 'Question 3',
                 'technology': self.technology.pk,
-                'language': Question.Language.ENGLISH,
+                'language': Language.ENGLISH,
                 'difficulty': Question.Difficulty.HARD,
                 'explanation': 'Explanation 3',
                 'choices': [
@@ -60,7 +60,7 @@ class QuestionTestCase(APITestCase):
             {
                 'text': 'Question 4',
                 'technology': self.technology.pk,
-                'language': Question.Language.ENGLISH,
+                'language': Language.ENGLISH,
                 'difficulty': Question.Difficulty.EXPERT,
                 'explanation': 'Explanation 4',
                 'choices': [
@@ -82,7 +82,7 @@ class QuestionTestCase(APITestCase):
         data = {
             'text': 'New Question',
             'technology': self.technology.pk,
-            'language': Question.Language.ENGLISH,
+            'language': Language.ENGLISH,
             'difficulty': Question.Difficulty.EASY,
             'explanation': 'Explanation for new question',
             'choices': [
@@ -96,7 +96,7 @@ class QuestionTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         question = Question.objects.get(pk=response.data['id'])
         self.assertEqual(question.text, data['text'])
-        self.assertEqual(question.language, data['language'])
+        self.assertEqual(Language, data['language'])
         self.assertEqual(question.difficulty, data['difficulty'])
         self.assertEqual(question.explanation, data['explanation'])
         self.assertEqual(question.publisher, self.user)
@@ -110,7 +110,7 @@ class QuestionTestCase(APITestCase):
         data = {
             'text': 'New Question',
             'technology': self.technology.pk,
-            'language': Question.Language.ENGLISH,
+            'language': Language.ENGLISH,
             'difficulty': Question.Difficulty.EASY,
             'duration': 30,
             'explanation': 'Explanation for new question',
@@ -122,7 +122,7 @@ class QuestionTestCase(APITestCase):
             ],
             'translated': {
                 'text': 'New Question',
-                'language': Question.Language.FRENCH,
+                'language': Language.FRENCH,
                 'explanation': 'Explanation for new question',
                 'choices': [
                     {'text': 'Choice 1', 'is_correct': True},
@@ -137,16 +137,16 @@ class QuestionTestCase(APITestCase):
         question = Question.objects.get(pk=response.data['id']).translated
         data = data['translated']
         self.assertEqual(question.text, data['text'])
-        self.assertEqual(question.language, data['language'])
+        self.assertEqual(Language, data['language'])
         self.assertEqual(question.publisher, self.user)
         self.assertEqual(question.technology, self.technology)
         self.assertEqual(question.duration, question.original.duration)
 
-    def test_create_with_unsufficient_choices(self):
+    def test_create_with_insufficient_choices(self):
         data = {
             'text': 'New Question',
             'technology': self.technology.pk,
-            'language': Question.Language.ENGLISH,
+            'language': Language.ENGLISH,
             'difficulty': Question.Difficulty.EASY,
             'explanation': 'Explanation for new question',
             'choices': [
@@ -157,11 +157,11 @@ class QuestionTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn('choices', response.data)
 
-    def test_create_question_with_translation_unsufficient_choice_data(self):
+    def test_create_question_with_translation_insufficient_choice_data(self):
         data = {
             'text': 'New Question',
             'technology': self.technology.pk,
-            'language': Question.Language.ENGLISH,
+            'language': Language.ENGLISH,
             'difficulty': Question.Difficulty.EASY,
             'duration': 30,
             'explanation': 'Explanation for new question',
@@ -173,7 +173,7 @@ class QuestionTestCase(APITestCase):
             ],
             'translated': {
                 'text': 'New Question',
-                'language': Question.Language.FRENCH,
+                'language': Language.FRENCH,
                 'explanation': 'Explanation for new question',
                 'choices': [
                     {'text': 'Choice 1'},
