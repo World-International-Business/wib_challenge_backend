@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema_field, inline_serializer
 from rest_framework import serializers
 
 from core.models import Technology
+from core.serializers import TechnologySerializer
 from evaluations.models import Evaluation
 
 
@@ -27,7 +28,8 @@ class EvaluationSerializer(serializers.ModelSerializer):
             questions = questions.order_by('technology__name')
         elif obj.questions_order == Evaluation.QuestionOrder.ADDED:
             questions = questions.order_by('-created_at')
-        return float(questions[:20].aggregate(total_time=Sum('duration'))['total_time'])
+        aggregate = questions[:20].aggregate(estimated_time=Sum('duration'))
+        return aggregate['estimated_time'] or 0
 
     @extend_schema_field(
         inline_serializer(
@@ -42,7 +44,7 @@ class EvaluationSerializer(serializers.ModelSerializer):
         return [
             {
                 'name': technology.name,
-                'image': technology.image
+                'image': self.context['request'].build_absolute_uri(technology.image.url),
             }
             for technology in obj.technologies.all()
         ]

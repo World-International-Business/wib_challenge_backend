@@ -11,7 +11,7 @@ from questions.serializers import QuestionSerializer
 
 
 class QuestionViewSetMixin:
-    queryset = Question.objects.prefetch_related('choices').exclude(translated__isnull=False)
+    queryset = Question.objects.prefetch_related('choices').exclude(translated__isnull=True)
     serializer_class = QuestionSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter]
@@ -42,5 +42,8 @@ class QuestionViewSet(QuestionViewSetMixin, viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method not in SAFE_METHODS:
-            return [permission() for permission in [*self.permission_classes, IsQuestionNotPending]]
+            return [permission() for permission in self.permission_classes + [IsQuestionNotPending]]
         return super().get_permissions()
+    
+    def perform_create(self, serializer):
+        serializer.save(publisher=self.request.user)

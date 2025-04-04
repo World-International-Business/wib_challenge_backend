@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 
 from evaluations.models import Evaluation
 from evaluations.serializers import EvaluationSerializer
@@ -16,4 +17,4 @@ class EvaluationViewSet(viewsets.ModelViewSet):
     def get_by_slug(self, request, slug: str):
         evaluation = get_object_or_404(self.get_queryset(), slug=slug)
         serializer = self.get_serializer(evaluation)
-        return self.response(serializer.data)
+        return Response(serializer.data)
