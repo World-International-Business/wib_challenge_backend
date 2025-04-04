@@ -1,13 +1,17 @@
 import random
 
 from django.db.models import Sum
+from drf_spectacular.utils import extend_schema_field, inline_serializer
 from rest_framework import serializers
 
+from core.models import Technology
 from evaluations.models import Evaluation
 
 
 class EvaluationSerializer(serializers.ModelSerializer):
     estimated_time = serializers.SerializerMethodField()
+    technologies = serializers.SerializerMethodField()
+    technologies_ids = serializers.PrimaryKeyRelatedField(many=True, write_only=True, queryset=Technology.objects)
 
     class Meta:
         model = Evaluation
@@ -24,3 +28,34 @@ class EvaluationSerializer(serializers.ModelSerializer):
         elif obj.questions_order == Evaluation.QuestionOrder.ADDED:
             questions = questions.order_by('-created_at')
         return float(questions[:20].aggregate(total_time=Sum('duration'))['total_time'])
+
+    @extend_schema_field(
+        inline_serializer(
+            name='EvaluationTechnologies',
+            fields={
+                'name': serializers.CharField(),
+                'image': serializers.URLField(),
+            }
+        )
+    )
+    def get_technologies(self, obj: Evaluation) -> list:
+        return [
+            {
+                'name': technology.name,
+                'image': technology.image
+            }
+            for technology in obj.technologies.all()
+        ]
+
+    def create(self, validated_data):
+        technologies = validated_data.pop('technologies_ids')
+        evaluation = Evaluation.objects.create(**validated_data)
+        evaluation.technologies.add(*technologies)
+        return evaluation
+
+    def update(self, instance, validated_data):
+        technologies = validated_data.pop('technologies_ids')
+        instance = super().update(instance, validated_data)
+        instance.technologies.clear()
+        instance.technologies.add(*technologies)
+        return instance

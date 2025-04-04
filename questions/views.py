@@ -11,7 +11,7 @@ from questions.serializers import QuestionSerializer
 
 
 class QuestionViewSetMixin:
-    queryset = Question.objects.prefetch_related('choices').all()
+    queryset = Question.objects.prefetch_related('choices').exclude(translated__isnull=False)
     serializer_class = QuestionSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter]

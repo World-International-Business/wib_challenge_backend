@@ -6,7 +6,7 @@ from accounts.models import User
 from core.models import BaseModel, Technology, Language
 
 
-# TODO add  votes and comments and comments likes and test foreign key
+# TODO add  votes and comments and comments likes
 class Question(BaseModel):
     class Meta:
         verbose_name = _('Question')
@@ -31,7 +31,7 @@ class Question(BaseModel):
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDING, verbose_name=_('Statut'))
     publisher = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions', verbose_name=_('Éditeur'))
     evaluation = models.ForeignKey('evaluations.Evaluation', on_delete=models.CASCADE, related_name='questions',
-                                   verbose_name=_('Évaluation'))  # TODO add evaluation to serializer
+                                   verbose_name=_('Évaluation'))
     translated = models.OneToOneField('self', on_delete=models.CASCADE, related_name='original', null=True,
                                       verbose_name=_('Question en anglais'))
     duration = models.IntegerField(_('Durée'), default=20, help_text=_('Durée en secondes'),
