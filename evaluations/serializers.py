@@ -5,7 +5,7 @@ from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
 from evaluations.models import Evaluation, SubmissionAttempt, Answer, Submission
-from questions.models import Choice
+from questions.models import Choice, Question
 
 
 class EvaluationSerializer(serializers.ModelSerializer):
@@ -29,7 +29,7 @@ class EvaluationSerializer(serializers.ModelSerializer):
         """
         Return True if the evaluation is under construction
         """
-        return obj.questions.count() < 20
+        return obj.questions.filter(status=Question.Status.PUBLISHED).count() < 20
 
 
 class SubmissionSerializer(serializers.ModelSerializer):

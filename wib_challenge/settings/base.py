@@ -200,6 +200,10 @@ SPECTACULAR_SETTINGS = {
             'description': 'Local',
         },
         {
+            'url': 'http://192.168.1.199:8001',
+            'description': 'Remote',
+        },
+        {
             'url': 'https://wibchallenge.pythonanywhere.com',
             'description': 'Production',
         },
