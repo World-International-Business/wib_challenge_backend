@@ -4,6 +4,7 @@ from rest_framework.test import APITestCase
 
 from accounts.models import User
 from core.models import Technology, Profession, Language
+from evaluations.models import Evaluation
 from questions.models import Question
 from questions.serializers import QuestionSerializer
 
@@ -11,12 +12,14 @@ from questions.serializers import QuestionSerializer
 class QuestionTestCase(APITestCase):
 
     def setUp(self):
-        self.url = reverse_lazy('questions:questions-list')
-        self.url_detail = reverse_lazy('questions:questions-detail', args=[1])
         self.technology = Technology.objects.create(name='Technology')
         self.user = User.objects.create(email='a@a', password='password')
         self.profession = Profession.objects.create(title='Developer Fullstack')
         self.profession.technologies.add(self.technology)
+        self.evaluation = Evaluation.objects.create(title='Evaluation', technology=self.technology,
+                                                    profession=self.profession)
+        self.url = reverse_lazy('evaluations:questions-list', args=[self.evaluation.pk])
+        self.url_detail = reverse_lazy('evaluations:questions-detail', args=[self.evaluation.pk, 1])
         questions = [
             {
                 'text': 'Question 1',
@@ -73,7 +76,7 @@ class QuestionTestCase(APITestCase):
         ]
         self.questions = []
         for question in questions:
-            serializer = QuestionSerializer(data=question)
+            serializer = QuestionSerializer(data={**question, 'evaluation': self.evaluation.pk})
             serializer.is_valid(raise_exception=True)
             self.questions.append(serializer.save(publisher=self.user))
         self.client.force_authenticate(user=self.user)
@@ -83,6 +86,7 @@ class QuestionTestCase(APITestCase):
             'text': 'New Question',
             'technology': self.technology.pk,
             'language': Language.ENGLISH,
+            'evaluation': self.evaluation.pk,
             'difficulty': Question.Difficulty.EASY,
             'explanation': 'Explanation for new question',
             'choices': [
@@ -96,7 +100,7 @@ class QuestionTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         question = Question.objects.get(pk=response.data['id'])
         self.assertEqual(question.text, data['text'])
-        self.assertEqual(Language, data['language'])
+        self.assertEqual(question.language, data['language'])
         self.assertEqual(question.difficulty, data['difficulty'])
         self.assertEqual(question.explanation, data['explanation'])
         self.assertEqual(question.publisher, self.user)
@@ -109,8 +113,8 @@ class QuestionTestCase(APITestCase):
     def test_create_question_with_translation(self):
         data = {
             'text': 'New Question',
-            'technology': self.technology.pk,
             'language': Language.ENGLISH,
+            'evaluation': self.evaluation.pk,
             'difficulty': Question.Difficulty.EASY,
             'duration': 30,
             'explanation': 'Explanation for new question',
@@ -137,7 +141,7 @@ class QuestionTestCase(APITestCase):
         question = Question.objects.get(pk=response.data['id']).translated
         data = data['translated']
         self.assertEqual(question.text, data['text'])
-        self.assertEqual(Language, data['language'])
+        self.assertEqual(question.language, data['language'])
         self.assertEqual(question.publisher, self.user)
         self.assertEqual(question.technology, self.technology)
         self.assertEqual(question.duration, question.original.duration)
@@ -162,6 +166,7 @@ class QuestionTestCase(APITestCase):
             'text': 'New Question',
             'technology': self.technology.pk,
             'language': Language.ENGLISH,
+            'evaluation': self.evaluation.pk,
             'difficulty': Question.Difficulty.EASY,
             'duration': 30,
             'explanation': 'Explanation for new question',
@@ -184,7 +189,6 @@ class QuestionTestCase(APITestCase):
             }
         }
         response = self.client.post(self.url, data, format='json')
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         question = Question.objects.get(pk=response.data['id']).translated
         self.assertEqual(question.text, data['text'])

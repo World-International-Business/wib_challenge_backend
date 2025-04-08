@@ -21,4 +21,7 @@ profile_router.register(r'languages', LanguageViewSet, basename='languages')
 
 profile_router.register(r'projects', ProjectViewSet, basename='projects')
 
-urlpatterns = router.urls + profile_router.urls
+urlpatterns = [
+    *router.urls,
+    *profile_router.urls
+]

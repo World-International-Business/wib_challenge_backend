@@ -21,7 +21,7 @@ REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] += [
 ]
 
 REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] += [
-    'rest_framework.renderers.BrowsableAPIRenderer',
+    'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

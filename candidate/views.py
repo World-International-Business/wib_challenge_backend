@@ -1,7 +1,10 @@
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 
 from candidate.models import CandidateProfile, Experience, Education, Language, Project
 from candidate.serializers import CandidateProfileSerializer, ExperienceSerializer, EducationSerializer, \
@@ -10,7 +13,10 @@ from wib_challenge.permissions import IsOwner, ReadOnly
 
 
 class CandidateProfileViewSet(viewsets.ModelViewSet):
-    queryset = CandidateProfile.objects.prefetch_related('profile_technologies', 'profession', 'user').all()
+    queryset = (CandidateProfile.objects
+                .prefetch_related('profile_technologies', 'profession')
+                .select_related('user').all()
+                )
     serializer_class = CandidateProfileSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwner | ReadOnly]
 
@@ -22,11 +28,18 @@ class CandidateProfileViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+    @action(detail=False, methods=['get'], url_path=r'user/(?P<user_id>\d+)')
+    def get_by_user(self, request, user_id: int):
+        profile = get_object_or_404(self.get_queryset(), user=user_id)
+        serializer = self.get_serializer(profile)
+        return Response(serializer.data)
+
 
 class NestedProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwner | ReadOnly]
 
     def get_queryset(self):
+        get_object_or_404(CandidateProfile, pk=self.kwargs['profile_pk'])
         return self.queryset.filter(profile__user=self.kwargs['profile_pk'])
 
     def perform_create(self, serializer):

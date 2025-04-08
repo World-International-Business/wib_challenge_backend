@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema_field, inline_serializer
 from rest_framework import serializers
 
+from core.serializers import TechnologySerializer
 from questions.models import Question, Choice
 
 
@@ -53,10 +54,13 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
     choices = ChoiceSerializer(many=True)
     translated = _NestedQuestionSerializer(required=False)
     publisher = serializers.SerializerMethodField()
+    profession = serializers.SerializerMethodField()
+    technology = TechnologySerializer(source='evaluation.technology', read_only=True)
 
     class Meta:
         model = Question
         fields = '__all__'
+        read_only_fields = ['publisher', 'is_translated', 'status', 'technology']
 
     @extend_schema_field(
         inline_serializer(
@@ -79,6 +83,23 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
             'picture': obj.publisher.picture.url if obj.publisher.picture else None
         }
 
+    @extend_schema_field(
+        inline_serializer(
+            name='Profession',
+            fields={
+                'id': serializers.IntegerField(),
+                'title': serializers.CharField(),
+            }
+        )
+    )
+    def get_profession(self, obj: Question):
+        if not obj.evaluation.profession:
+            return None
+        return {
+            'id': obj.evaluation.profession.id,
+            'title': obj.evaluation.profession.title
+        }
+
     def create_question(self, data):
         choices_data = data.pop('choices', [])
         question = Question.objects.create(**data)
@@ -89,6 +110,7 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
     @transaction.atomic
     def create(self, validated_data):
         translated_data = validated_data.pop('translated', None)
+        translated = None
         if translated_data:
             for (choices1, choices2) in zip(validated_data['choices'], translated_data['choices']):
                 choices2['is_correct'] = choices1['is_correct']
@@ -97,6 +119,8 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
         question = self.create_question(validated_data)
         if translated_data:
             question.translated = translated
+            question.is_translated = True
+        question.is_translated = translated is not None
         question.save()
         return question
 
@@ -122,6 +146,8 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
             else:
                 translated = self.create_question(translated_data)
             instance.translated = translated
+            instance.is_translated = True
         instance = self.update_question(instance, validated_data)
+        instance.status = Question.Status.PENDING
         instance.save()
         return instance
