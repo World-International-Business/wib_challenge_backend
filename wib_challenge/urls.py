@@ -21,14 +21,18 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
+from wib_challenge.views import index
+
 urlpatterns = [
     path('administration/', admin.site.urls),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+    *static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
     path('api/', include(('core.urls', 'core'), namespace='core')),
     path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('candidate.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
+    path('', index, name='index'),
 ]
 
 if settings.DEBUG:
@@ -37,6 +41,5 @@ if settings.DEBUG:
         path('api/docs/redoc', SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
         re_path('^api/docs(/swagger)?/$', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
         *debug_toolbar_urls(),
-        *static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
         path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
     ]

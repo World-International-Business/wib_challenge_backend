@@ -6,6 +6,7 @@ from rest_framework import serializers
 
 from evaluations.models import Evaluation, SubmissionAttempt, Answer, Submission
 from questions.models import Choice, Question
+from questions.serializers import QuestionSerializer
 
 
 class EvaluationSerializer(serializers.ModelSerializer):
@@ -40,6 +41,7 @@ class SubmissionSerializer(serializers.ModelSerializer):
 
 class SubmissionAttemptSerializer(serializers.ModelSerializer):
     submission = SubmissionSerializer(read_only=True)
+    questions = QuestionSerializer(many=True, read_only=True)
 
     class Meta:
         model = SubmissionAttempt

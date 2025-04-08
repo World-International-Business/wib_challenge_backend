@@ -54,5 +54,11 @@ class QuestionViewSet(QuestionViewSetMixin, viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         from evaluations.models import Evaluation
-        serializer.save(publisher=self.request.user,
-                        technology=get_object_or_404(Evaluation, pk=self.kwargs['evaluation_pk']).technology)
+        kwargs = {
+            'evaluation': get_object_or_404(Evaluation, pk=self.kwargs['evaluation_pk']),
+            'publisher': self.request.user,
+            'technology': get_object_or_404(Evaluation, pk=self.kwargs['evaluation_pk']).technology
+        }
+        if self.request.user.is_staff:
+            kwargs['status'] = Question.Status.PUBLISHED
+        serializer.save(**kwargs)
