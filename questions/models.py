@@ -52,7 +52,7 @@ class Tag(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return self.name
+        return self.criteria.category.domain.name + ' - ' + self.name
 
 
 class Question(models.Model):
