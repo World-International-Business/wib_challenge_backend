@@ -33,7 +33,7 @@ def generate_challenge_for_user(user: User):
         # Question.QuestionType.UNIQUE_CHOICE: 5,
     }
     for skill in user.skills.all():
-        skill_questions = skill.questions.filter(level__lte=F('tags__user_skills__experience_level'))
+        skill_questions = skill.questions.all() # (level__lte=F('tags__user_skills__experience_level'))
         queryset = skill_questions.annotate(
             type_priority=Case(
                 *[When(question_type=qt, then=idx) for idx, qt in enumerate(QUESTION_QUOTAS.keys())],
