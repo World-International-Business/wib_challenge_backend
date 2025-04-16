@@ -1,0 +1,206 @@
+{
+    "domain": "RH",
+    "category": "Formation",
+    "criteria": "",
+    "tags": [
+        "Formation"
+    ],
+    "questions": [
+        {
+            "title": "Quels sont les principaux objectifs d'un programme de formation en entreprise ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment évaluez-vous l'efficacité d'un programme de formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels critères utilisez-vous pour sélectionner les formateurs ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment identifiez-vous les besoins en formation au sein de votre organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quelle est l'importance de la formation continue pour les employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment intégrez-vous la technologie dans vos programmes de formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels sont les défis que vous rencontrez lors de la mise en œuvre d'un nouveau programme de formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment encouragez-vous les employés à participer aux formations proposées ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels types de formation considérez-vous comme les plus bénéfiques pour votre organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment gérez-vous le retour sur investissement d'un programme de formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quelle est votre approche pour former des équipes multiculturelles ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment assurez-vous la mise à jour régulière des contenus de formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels outils de suivi utilisez-vous pour mesurer les progrès des participants ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment collaborez-vous avec les managers pour définir les besoins en formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quelle est l'importance de la formation sur les soft skills dans votre organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment mesurez-vous l'impact de la formation sur la performance des employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels retours recevez-vous des employés après une formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment adaptez-vous vos programmes de formation aux évolutions du marché ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels sont les formats de formation que vous privilégiez (présentiel, en ligne, hybride) ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment gérez-vous la formation des nouveaux employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment favorisez-vous l'apprentissage collaboratif au sein de votre organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment gérez-vous les formations obligatoires versus les formations optionnelles ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quelle est votre vision de la formation dans les prochaines années ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment gérez-vous les différences de niveaux de compétence parmi les participants ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quels types de feedback sollicitez-vous pour améliorer vos programmes de formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment encouragez-vous l'auto-formation chez vos employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Quelles stratégies mettez-vous en place pour maintenir l'engagement des participants pendant la formation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        },
+        {
+            "title": "Comment intégrez-vous le retour d'expérience des employés dans vos formations futures ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Formation"]
+        }
+    ]
+}

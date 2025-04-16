@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col">
+                <h2>Évaluation {{ challenge.title|default:"" }}</h2>
+                <p>{{ challenge.description|default:"" }}</p>
+            </div>
+            <div class="col-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Temps restant</h5>
+                        <div id="timer" class="display-4 text-center">
+                            <span id="minutes">--</span>:<span id="seconds">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form action="{% url 'submit_evaluation' %}" method="POST" id="evaluationForm">
+            {% csrf_token %}
+            <input type="hidden" name="challenge_id" value="{{ challenge.id }}">
+            <!-- Questions QCM -->
+            {% if choices_questions %}
+                <div class="container">
+                    <h2 class="mb-3">Questions à choix</h2>
+                    {% for question in choices_questions %}
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5>{{ question.title }}</h5>
+                                {{ question.description }}
+                                {% if question.is_multiple_choice %}
+                                    <small class="text-muted">Sélectionnez toutes les réponses correctes</small>
+                                {% endif %}
+                            </div>
+                            <div class="card-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <ul class="list-group">
+                                            {% for choice in question.choices.all %}
+                                                <label class="form-check-label"
+                                                       for="choice_{{ question.id }}_{{ forloop.counter }}">
+                                                    <li class="list-group-item list-group-item-action rounded-2 mb-2">
+                                                        <input class="form-check-input "
+                                                               type="{{ question.is_multiple_choice|yesno:'checkbox,radio' }}"
+                                                               name="answer_{{ question.id }}"
+                                                               id="choice_{{ question.id }}_{{ forloop.counter }}"
+                                                               value="{{ choice.id }}"
+                                                        />
+                                                        {{ choice.text }}
+                                                    </li>
+                                                </label>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <!-- Questions Textuelles -->
+            {% if open_answer_questions %}
+                <div class="container">
+                    <h2 class="mb-3">Questions ouvertes</h2>
+                    {% for question in open_answer_questions %}
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5>{{ question.title }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-floating">
+                                            <textarea class="form-control"
+                                                      name="answer_{{ question.id }}"
+                                                      id="answer_{{ question.id }}"
+                                                      placeholder="Réponse"
+                                                      style="height: 100px"
+                                            ></textarea>
+                                                <label for="answer_{{ question.id }}">Réponse</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="text-center mb-4">
+                <button type="submit" class="btn btn-primary btn-lg">Soumettre l'évaluation</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>#}
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>#}
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let totalTime = {{time_left}}
+            let timerElement = document.getElementById('timer');
+            let formElement = document.getElementById('evaluationForm');
+
+            function updateTimer() {
+                let minutes = Math.floor(totalTime / 60);
+                let seconds = totalTime % 60;
+
+                document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+
+                if (totalTime <= 0) {
+                    clearInterval(timerInterval);
+                    formElement.submit(); // Submit the form when the time is up
+                }
+
+                // Sauvegardez le temps restant dans le Local Storage
+                totalTime--;
+            }
+
+            // Update the timer every second
+            let timerInterval = setInterval(updateTimer, 1000);
+            updateTimer(); // Initial update
+
+        });
+
+
+    </script>
+{% endblock %}

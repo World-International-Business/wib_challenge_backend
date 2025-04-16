@@ -1,0 +1,244 @@
+{
+    "domain": "RH",
+    "category": "Gestion des talents",
+    "criteria": "",
+    "tags": [
+        "Gestion des talents"
+    ],
+    "questions": [
+        {
+            "title": "Comment identifiez-vous les talents clés au sein de votre organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelles stratégies utilisez-vous pour retenir les talents dans votre entreprise ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment évaluez-vous le potentiel de développement des employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel rôle joue la formation dans la gestion des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment favorisez-vous la mobilité interne des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelles techniques utilisez-vous pour motiver les employés à atteindre leur plein potentiel ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment gérez-vous les performances des talents au sein de l'organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quels outils de suivi utilisez-vous pour mesurer l'engagement des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment intégrez-vous la diversité dans votre gestion des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment établissez-vous des relations de mentorat pour développer les talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelles sont les meilleures pratiques pour recruter des talents de haut niveau ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment assurez-vous un retour d'expérience constructif aux employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle est l'importance du feedback 360° dans la gestion des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment gérez-vous les talents à distance ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment développez-vous une culture de reconnaissance au sein de votre organisation ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelles sont les compétences essentielles pour la gestion des talents aujourd'hui ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment évaluez-vous la réussite de vos programmes de gestion des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment favorisez-vous le développement personnel des employés ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle est votre approche pour gérer les talents à fort potentiel ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment intégrez-vous la gestion des talents dans la stratégie globale de l'entreprise ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment gérez-vous le développement des compétences techniques et comportementales ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelles sont les tendances émergentes dans la gestion des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment assurez-vous la continuité du développement des talents dans des contextes changeants ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment évaluez-vous l'impact des programmes de gestion des talents sur la performance globale de l'entreprise ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Comment encouragez-vous l'innovation dans le développement des talents ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle est votre vision de la gestion des talents pour les prochaines années ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": [
+                "Gestion des talents"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{#{% load socialaccount %}#}
+{% block title %}Connexion - Plateforme de Challenge{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">Connexion</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nom d'utilisateur ( Email )</label>
+                            <input type="text" name="username" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" name="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Pas encore de compte ? <a href="{% url 'register' %}">Inscrivez-vous</a></p>
+{#                        <a class="btn btn-danger" href="{% provider_login_url 'google' %}" >#}
+{#    <i class="bi bi-google"></i> Se connecter avec Google#}
+{#</a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#<script>#}
+{#function openGooglePopup() {#}
+{#    var width = 600;#}
+{#    var height = 600;#}
+{#    var left = (screen.width - width) / 2;#}
+{#    var top = (screen.height - height) / 2;#}
+{##}
+{#    var googleLoginUrl = "{% provider_login_url 'google' %}";#}
+{##}
+{#    var popup = window.open(googleLoginUrl, "Google Login", `width=${width}, height=${height}, top=${top}, left=${left}`);#}
+{##}
+{#    if (!popup || popup.closed || typeof popup.closed == 'undefined') {#}
+{#        alert("Veuillez autoriser les popups pour ce site.");#}
+{#        return;#}
+{#    }#}
+{##}
+{#    // Écouteur pour recevoir le message de la popup#}
+{#    window.addEventListener("message", function(event) {#}
+{#        if (event.data === "login_success") {#}
+{#            window.location.href = "/";  // Redirige vers l'accueil#}
+{#        }#}
+{#    });#}
+{##}
+{#    // Vérifie toutes les 500ms si la popup est fermée#}
+{#    var timer = setInterval(function() {#}
+{#        if (popup.closed) {#}
+{#            clearInterval(timer);#}
+{#        }#}
+{#    }, 500);#}
+{#}#}
+{#</script>#}
+
+{% endblock %}
