@@ -13,7 +13,7 @@ class Command(BaseCommand):
     data_dir = Path(__file__).resolve().parent / 'data'
 
     def get_or_create_model(self, model: models.Model, defaults=None, **kwargs):
-        obj, created = model.objects.get_or_create(defaults=defaults, **kwargs)
+        obj, created = model.objects.get_or_create( **kwargs)
         if created:
             self.stdout.write(self.style.SUCCESS(f'Creating Model {model._meta.verbose_name} {obj}'))
         return obj, created

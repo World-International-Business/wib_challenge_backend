@@ -1,0 +1,199 @@
+{
+    "domain": "RH",
+    "category": "Recrutement",
+    "criteria": "Recrutement",
+    "tags": [
+        "Recrutement"
+    ],
+    "questions": [
+        {
+            "title": "Quelles sont les compétences clés que vous recherchez chez un candidat ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment évaluez-vous l'adéquation culturelle d'un candidat avec votre entreprise ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quel est selon vous le rôle d'un recruteur dans le processus de sélection ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment gérez-vous les désaccords au sein de votre équipe de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelles méthodes utilisez-vous pour attirer des candidats passifs ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment mesurez-vous l'efficacité de vos campagnes de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quels sont les défis les plus courants que vous rencontrez lors du recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment intégrez-vous la diversité dans votre processus de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelles questions posez-vous généralement lors d’un entretien pour évaluer les soft skills ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quel est l'impact de la marque employeur sur votre stratégie de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment adaptez-vous votre approche de recrutement en fonction des différents profils de candidats ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelle importance accordez-vous à l'expérience candidate durant le processus de sélection ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment gérez-vous les candidatures non retenues ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelles technologies ou outils utilisez-vous pour faciliter le recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment assurez-vous la transparence dans le processus de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quels sont les critères principaux pour sélectionner un candidat lors de l'entretien final ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment formez-vous votre équipe de recrutement sur les meilleures pratiques ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelle est votre stratégie pour réduire le turnover chez les nouvelles recrues ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelles tendances actuelles influencent le recrutement dans votre secteur ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment évaluez-vous l'impact des réseaux sociaux sur votre processus de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelles sont les meilleures pratiques pour rédiger une offre d'emploi attrayante ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment gérez-vous les délais de recrutement tout en maintenant la qualité ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quels sont les indicateurs de performance que vous suivez lors du recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment assurez-vous l'engagement des managers dans le processus de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quels types de tests ou d'évaluations utilisez-vous dans votre processus de recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Comment gérez-vous les candidats qui ne répondent pas aux attentes ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        },
+        {
+            "title": "Quelles stratégies mettez-vous en place pour fidéliser vos employés après le recrutement ?",
+            "description": "",
+            "level": 2,
+            "question_type": "OA",
+            "tags": ["Recrutement"]
+        }
+    ]
+}
