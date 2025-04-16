@@ -37,14 +37,15 @@ class JSONInputForm(forms.Form):
 
 # Define the view
 def json_input(request):
+    n = None
     if request.method == 'POST':
         form = JSONInputForm(request.POST)
         if form.is_valid():
             json_data = form.cleaned_data['jsondata']
-            process_json(json_data)
+            n = process_json(json_data)
     else:
         form = JSONInputForm()
-    return render(request, 'json_input.html', {'form': form})
+    return render(request, 'json_input.html', {'form': form, 'n': n})
 
 
 def process_json(json_data):
@@ -59,6 +60,7 @@ def process_json(json_data):
             f.write(json.dumps(data, indent=4, ensure_ascii=False))
 
         call_command('create_default_questions', data_dir=file_name.parent)
+        return len(data.get("questions", []))
 
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON data"}, status=400)

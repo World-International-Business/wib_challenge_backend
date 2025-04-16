@@ -9,6 +9,9 @@
     <h2>Upload JSON Data</h2>
     <form method="post">
         {% csrf_token %}
+        {%if n %}
+            <p style="color: green;">{{ n }} Questions added</p>
+        {% endif %}
         <textarea name="jsondata" rows="20" cols="80" placeholder='{"tags": ["example"], "questions": [{"title": "Example?", "question_type": "OA"}]}'></textarea><br>
         <input type="submit" value="Submit">
     </form>
