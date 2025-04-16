@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',  # Nécessaire pour Allauth
+    # 'django.contrib.sites',  # Nécessaire pour Allauth
     # 'allauth',
     # 'allauth.account',
     # 'allauth.socialaccount',

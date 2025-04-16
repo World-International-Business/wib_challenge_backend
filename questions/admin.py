@@ -52,9 +52,9 @@ class ChoiceInline(admin.TabularInline):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['title', 'question_type', 'level', 'created_at']
+    list_display = ['title', 'question_type', 'level', 'created_at', 'category__domain']
     search_fields = ['title']
-    list_filter = ['level', 'question_type']
+    list_filter = ['level', 'question_type', 'category__domain', 'tags']
     ordering = ['title']
     inlines = [ChoiceInline]
     fieldsets = (
