@@ -13,13 +13,18 @@ class Command(BaseCommand):
     data_dir = Path(__file__).resolve().parent / 'data'
 
     def get_or_create_model(self, model: models.Model, defaults=None, **kwargs):
-        obj, created = model.objects.get_or_create( **kwargs)
+        obj, created = model.objects.get_or_create(**kwargs, defaults=defaults)
         if created:
             self.stdout.write(self.style.SUCCESS(f'Creating Model {model._meta.verbose_name} {obj}'))
         return obj, created
 
+    def add_arguments(self, parser):
+        parser.add_argument('--data-dir', type=str, help='Directory containing JSON files with questions data',
+                            default=self.data_dir)
+
     @transaction.atomic
     def handle(self, *args, **options):
+        self.data_dir = Path(options['data_dir']).resolve().absolute()
         self.data_dir.mkdir(exist_ok=True)
 
         files = self.data_dir.glob('**/*.json')
@@ -28,22 +33,25 @@ class Command(BaseCommand):
             self.stdout.write(f'Importing questions from {file.name}\n')
 
             domain, _ = self.get_or_create_model(Domain, name=data['domain'].strip())
-            category, _ = self.get_or_create_model(Category, name=data['category'].strip(), domain=domain)
-            criteria, _ = self.get_or_create_model(Criteria, name=data['criteria'].strip(), category=category)
+            category, _ = self.get_or_create_model(Category, name=data['category'].strip(), defaults={'domain': domain})
+            criteria, _ = self.get_or_create_model(Criteria, name=data['criteria'].strip(),
+                                                   defaults={'category': category})
 
             tags_dict = {}
             for tag in data.get('tags', []):
-                obj, _ = self.get_or_create_model(Tag, name=tag, criteria=criteria)
+                obj, _ = self.get_or_create_model(Tag, name=tag, defaults={'criteria': criteria})
                 tags_dict[tag] = obj
 
             for question_data in data.get('questions', []):
                 question, created = self.get_or_create_model(
                     Question,
                     title=question_data['title'],
-                    description=question_data['description'] if 'description' in question_data else None,
                     level=question_data['level'],
                     question_type=question_data['question_type'],
-                    category=category
+                    defaults={
+                        'category': category,
+                        'description': question_data.get('description', None),
+                    }
                 )
 
                 if not created:
@@ -55,7 +63,7 @@ class Command(BaseCommand):
                     for choice_data in question_data['choices']:
                         self.get_or_create_model(
                             Choice,
-                            question=question,
+                            defaults={'question': question},
                             text=choice_data['text'],
                             is_correct=choice_data['is_correct']
                         )

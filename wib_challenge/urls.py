@@ -21,6 +21,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from django import forms
 from django.conf import settings
 from django.contrib import admin
+from django.core.management import call_command
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import path
@@ -57,6 +58,7 @@ def process_json(json_data):
         with open(file_name, "w", encoding="utf-8") as f:
             f.write(json.dumps(data, indent=4, ensure_ascii=False))
 
+        call_command('create_default_questions', data_dir=file_name.parent)
 
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON data"}, status=400)

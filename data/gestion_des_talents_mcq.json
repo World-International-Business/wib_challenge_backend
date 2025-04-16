@@ -1,0 +1,631 @@
+{
+    "domain": "Ressources Humaines",
+    "category": "Gestion des talents",
+    "criteria": "Évaluation des compétences",
+    "tags": [
+        "Gestion des talents"
+    ],
+    "questions": [
+        {
+            "title": "Quel est le principal défi dans la gestion des talents ?",
+            "description": "Identifier les talents tout en maintenant l'engagement.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Conserver les talents dans l'entreprise",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluer les performances de manière objective",
+                    "is_correct": true
+                },
+                {
+                    "text": "Former tous les employés",
+                    "is_correct": false
+                },
+                {
+                    "text": "Augmenter les salaires de tous les employés",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle approche est la plus efficace pour le développement de carrière ?",
+            "description": "Stratégies pour aider les employés à progresser.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Formation continue",
+                    "is_correct": true
+                },
+                {
+                    "text": "Promotions basées sur l'ancienneté",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluations annuelles uniquement",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune formation",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel outil est le plus utile pour identifier les talents ?",
+            "description": "Outils d'évaluation des compétences.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Évaluations 360 degrés",
+                    "is_correct": true
+                },
+                {
+                    "text": "Sondages de satisfaction",
+                    "is_correct": false
+                },
+                {
+                    "text": "Formations en ligne",
+                    "is_correct": false
+                },
+                {
+                    "text": "Réunions d'équipe",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est le principal bénéfice d'un programme de mentorat ?",
+            "description": "Impact du mentorat sur le développement des talents.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Réduction des coûts de formation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Accroître l'engagement des employés",
+                    "is_correct": true
+                },
+                {
+                    "text": "Diminuer le turnover",
+                    "is_correct": false
+                },
+                {
+                    "text": "Augmenter les bénéfices",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quels indicateurs sont essentiels pour mesurer l'engagement des employés ?",
+            "description": "Indicateurs de performance et d'engagement.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Taux de rotation et satisfaction au travail",
+                    "is_correct": true
+                },
+                {
+                    "text": "Heures de travail et absences",
+                    "is_correct": false
+                },
+                {
+                    "text": "Nombres de formations suivies",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluations de performance uniquement",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle méthode est la plus efficace pour évaluer les compétences des employés ?",
+            "description": "Méthodes d'évaluation des compétences.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Auto-évaluation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluation par les pairs",
+                    "is_correct": true
+                },
+                {
+                    "text": "Évaluation par le superviseur uniquement",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluations annuelles",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est le principal avantage d'une culture d'entreprise forte ?",
+            "description": "Impact de la culture d'entreprise sur les performances.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Augmentation des coûts d'exploitation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Amélioration de la rétention des talents",
+                    "is_correct": true
+                },
+                {
+                    "text": "Baisse de la productivité",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune influence sur l'engagement",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle stratégie peut aider à réduire le turnover des employés ?",
+            "description": "Stratégies de rétention des talents.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Offrir des primes de performance",
+                    "is_correct": true
+                },
+                {
+                    "text": "Augmenter la charge de travail",
+                    "is_correct": false
+                },
+                {
+                    "text": "Réduire les heures de travail",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluer les employés moins souvent",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est le rôle d'une évaluation 360 degrés ?",
+            "description": "Fonctionnement et avantages de l'évaluation 360 degrés.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Évaluer uniquement la performance du superviseur",
+                    "is_correct": false
+                },
+                {
+                    "text": "Obtenir un retour d'information complet sur les compétences",
+                    "is_correct": true
+                },
+                {
+                    "text": "Évaluer les performances financières",
+                    "is_correct": false
+                },
+                {
+                    "text": "Fournir des feedbacks annuels",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle méthode est la plus appropriée pour favoriser la diversité dans le recrutement ?",
+            "description": "Stratégies de diversité en recrutement.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Recrutement par cooptation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Utilisation de panels diversifiés",
+                    "is_correct": true
+                },
+                {
+                    "text": "Publications d'offres d'emploi standards",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune stratégie spécifique",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est l'impact d'un programme de développement des leaders ?",
+            "description": "Effets sur l'entreprise et les employés.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Augmentation des coûts à court terme",
+                    "is_correct": false
+                },
+                {
+                    "text": "Amélioration de la performance organisationnelle",
+                    "is_correct": true
+                },
+                {
+                    "text": "Diminution de l'engagement",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune amélioration mesurable",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel type de formation est le plus efficace pour le développement des compétences techniques ?",
+            "description": "Formations techniques et leur efficacité.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Formation en ligne uniquement",
+                    "is_correct": false
+                },
+                {
+                    "text": "Formations sur le terrain",
+                    "is_correct": true
+                },
+                {
+                    "text": "Séminaires théoriques",
+                    "is_correct": false
+                },
+                {
+                    "text": "Sessions d'information",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle est l'importance de la rétroaction dans la gestion des talents ?",
+            "description": "Impact de la rétroaction sur le développement personnel.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Aucune importance",
+                    "is_correct": false
+                },
+                {
+                    "text": "Favorise le développement personnel",
+                    "is_correct": true
+                },
+                {
+                    "text": "Crée des conflits",
+                    "is_correct": false
+                },
+                {
+                    "text": "Réduit l'engagement",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est le principal objectif des programmes de reconnaissance des employés ?",
+            "description": "Impact sur l'engagement et la satisfaction.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Augmenter les coûts d'exploitation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Améliorer la satisfaction des employés",
+                    "is_correct": true
+                },
+                {
+                    "text": "Réduire le turnover",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune influence sur la performance",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle technique est la plus efficace pour gérer les performances ?",
+            "description": "Évaluation des performances des employés.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Évaluations annuelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Feedback continu",
+                    "is_correct": true
+                },
+                {
+                    "text": "Tests de performance uniques",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune évaluation",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est l'impact d'un feedback constructif sur la performance ?",
+            "description": "Effets positifs d'un feedback efficace.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Augmentation de l'anxiété",
+                    "is_correct": false
+                },
+                {
+                    "text": "Amélioration de la performance",
+                    "is_correct": true
+                },
+                {
+                    "text": "Réduction de la motivation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune influence",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle stratégie est efficace pour encourager l'innovation au sein des équipes ?",
+            "description": "Encourager la créativité et l'innovation.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Favoriser un environnement de travail fermé",
+                    "is_correct": false
+                },
+                {
+                    "text": "Encourager la prise de risque",
+                    "is_correct": true
+                },
+                {
+                    "text": "Réduire le temps de pause",
+                    "is_correct": false
+                },
+                {
+                    "text": "Évaluer strictement les idées",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est le principal avantage des programmes de formation croisée ?",
+            "description": "Impact sur les compétences des employés.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Augmentation des coûts de formation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Flexibilité et adaptation des employés",
+                    "is_correct": true
+                },
+                {
+                    "text": "Diminution de la collaboration",
+                    "is_correct": false
+                },
+                {
+                    "text": "Aucune amélioration",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est le rôle des évaluations des performances dans la gestion des talents ?",
+            "description": "Importance des évaluations dans le développement.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Évaluer uniquement les résultats financiers",
+                    "is_correct": false
+                },
+                {
+                    "text": "Identifier les domaines d'amélioration",
+                    "is_correct": true
+                },
+                {
+                    "text": "Réduire le personnel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Ignorer les performances individuelles",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel type de feedback est le plus efficace pour améliorer les performances ?",
+            "description": "Différents types de feedback et leur impact.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Feedback vague",
+                    "is_correct": false
+                },
+                {
+                    "text": "Feedback spécifique et constructif",
+                    "is_correct": true
+                },
+                {
+                    "text": "Feedback uniquement positif",
+                    "is_correct": false
+                },
+                {
+                    "text": "Feedback uniquement négatif",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quelle est la meilleure approche pour la gestion du changement ?",
+            "description": "Stratégies pour faciliter le changement organisationnel.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Imposer des changements sans préparation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Communiquer clairement les raisons du changement",
+                    "is_correct": true
+                },
+                {
+                    "text": "Éviter de consulter les employés",
+                    "is_correct": false
+                },
+                {
+                    "text": "Retarder l'implémentation des changements",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est un indicateur clé de la réussite d'un programme de gestion des talents ?",
+            "description": "Mesurer l'efficacité des programmes de gestion des talents.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Taux de satisfaction des employés",
+                    "is_correct": true
+                },
+                {
+                    "text": "Coûts de formation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Taux de rotation",
+                    "is_correct": false
+                },
+                {
+                    "text": "Nombre de promotions",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        },
+        {
+            "title": "Quel est l'impact de la flexibilité au travail sur la productivité ?",
+            "description": "Avantages de la flexibilité pour les employés.",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Diminution de la productivité",
+                    "is_correct": false
+                },
+                {
+                    "text": "Augmentation de l'engagement et de la productivité",
+                    "is_correct": true
+                },
+                {
+                    "text": "Aucune influence",
+                    "is_correct": false
+                },
+                {
+                    "text": "Diminution de la satisfaction",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Gestion des talents"
+            ]
+        }
+    ]
+}
