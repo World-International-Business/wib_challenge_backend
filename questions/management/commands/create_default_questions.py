@@ -61,9 +61,10 @@ class Command(BaseCommand):
 
                 if question.is_multiple_choice or question.is_unique_choice:
                     for choice_data in question_data['choices']:
-                        self.get_or_create_model(
-                            Choice,
-                            defaults={'question': question},
-                            text=choice_data['text'],
-                            is_correct=choice_data['is_correct']
-                        )
+                        Choice.objects.create(question=question, text=choice_data['text'], is_correct=choice_data['is_correct'])
+                        # self.get_or_create_model(
+                        #     Choice,
+                        #     defaults={'question': question},
+                        #     text=choice_data['text'],
+                        #     is_correct=choice_data['is_correct']
+                        # )
