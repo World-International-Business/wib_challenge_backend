@@ -1,5 +1,6 @@
 import json
 from datetime import date
+from django.db import transaction
 
 from challenges.models import Submission, APIUsage
 from .utils import *
@@ -36,7 +37,7 @@ def correct_answer_choice(answer: Answer):
             correct=correct,
         )
 
-
+@transaction.atomic
 def correct_submission(submission: Submission):
     client = get_genai_client()
     answers = list(submission.answers.all())
