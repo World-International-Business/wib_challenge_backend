@@ -2,10 +2,12 @@ import math
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import mail_managers
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils import timezone
 
 from accounts.models import User
@@ -28,38 +30,116 @@ def home_view(request):
 @login_required
 def evaluation_results(request, submission_id=None, slug=None, challenge_id=None):
     candidate = request.user
+    if request.user.is_staff and request.GET.get('user_id', None):
+        candidate = get_object_or_404(User, pk=request.GET.get('user_id'))
     if not slug or not challenge_id:
-        submissions = User.objects.get(id=request.user.id).submissions.prefetch_related('challenge')
+        if request.user.is_staff and candidate == request.user:
+            submissions = Submission.objects.all()
+        else:
+            submissions = User.objects.get(id=candidate.id).submissions.all()
+        submissions = submissions.prefetch_related('challenge').select_related('candidate').all()
+
         if submissions.count() == 1:
             submission = submissions.first()
             return redirect('result-detail', submission_id=submission.id, slug=submission.challenge.slug,
                             challenge_id=submission.challenge.id)
 
         context = {
-            'submissions': submissions
+            'submissions': submissions,
+            'add_id': request.user.is_staff,
         }
         return render(request, 'challenges/result_choose.html', context)
 
-    submission = get_object_or_404(Submission, challenge_id=challenge_id, candidate_id=candidate.id, id=submission_id)
-    attempt = SubmissionAttempt.objects.get(candidate=candidate, submission=submission)
+    submission = get_object_or_404(
+        Submission.objects.prefetch_related('challenge__questions', 'challenge__questions__choices',
+                                            'answers', 'challenge__attempts', 'answers__selected_choices',
+                                            'answers__question', 'challenge__domain'
+                                            ).select_related('candidate'),
+        challenge_id=challenge_id, candidate_id=candidate.id, id=submission_id)
+    attempt = submission.attempt
 
     answers = []
+
     for question in submission.challenge.questions.all():
         answer = submission.answers.filter(question=question).first()
         if not answer:
             answer = Answer(submission=submission, question=question, text=None)
         answers.append(answer)
 
+    # Calcul des statistiques
+    total_questions = submission.challenge.questions.count()
+    answer_count = submission.answers.count()
+    correct_count = submission.answers.filter(is_correct=True).count()
+    wrong_count = submission.answers.filter(is_correct=False).count()
+    unanswered_count = total_questions - answer_count
+    partial_correct_count = 0
+    for answer in answers:
+        if 0 < answer.average_score < 1:
+            partial_correct_count += 1
+
+    # Calcul des pourcentages pour les statistiques partielles
+    correct_percent = (correct_count / total_questions * 100) if total_questions > 0 else 0
+    wrong_percent = (wrong_count / total_questions * 100) if total_questions > 0 else 0
+    unanswered_percent = (unanswered_count / total_questions * 100) if total_questions > 0 else 0
+    partial_correct_percent = (partial_correct_count / total_questions * 100) if total_questions > 0 else 0
+
+    top_submissions = Submission.objects.filter(
+        challenge__domain=submission.challenge.domain
+    ).select_related('candidate').order_by('-result')[:10]
+
+    # Structure pour stocker les données des candidats
+    candidates = []
+    user_in_top = False
+
+    for i, sub in enumerate(top_submissions):
+        candidates.append({
+            'rank': i + 1,
+            'self': sub.candidate.id == candidate.id,
+            'first_name': sub.candidate.first_name,
+            'last_name': sub.candidate.last_name,
+            'score': sub.result_percent,
+        })
+        if sub.candidate.id == candidate.id:
+            user_in_top = True
+
+    if not user_in_top:
+        candidates.append(None)
+        user_rank = Submission.objects.filter(
+            challenge__domain=submission.challenge.domain,
+            result__gt=submission.result
+        ).count() + 1
+        candidates.append({
+            'rank': user_rank,
+            'first_name': candidate.first_name,
+            'self': True,
+            'last_name': candidate.last_name,
+            'score': submission.result_percent,
+        })
+
     return render(request, 'challenges/resultat.html', {
         'submission': submission,
         'answers': answers,
         'attempt': attempt,
+        'answer_count': answer_count,
+        'correct_count': correct_count,
+        'wrong_count': wrong_count,
+        'unanswered_count': unanswered_count,
+        'correct_percent': correct_percent,
+        'wrong_percent': wrong_percent,
+        'unanswered_percent': unanswered_percent,
+        'partial_correct_count': partial_correct_count,
+        'partial_correct_percent': partial_correct_percent,
+        'total_questions': total_questions,
+        'candidates': candidates,
     })
 
 
 @transaction.atomic
 @login_required
 def challenge_evaluation_view(request, slug=None, challenge_id=None):
+    if request.user.is_staff:
+        messages.info(request, 'Vous ne pouvez pas passer d\'évaluation en tant que membre du personnel.')
+        return redirect('home')
     if not request.user.has_skill_infos:
         messages.warning(request, 'Veuillez renseigner vos compétences avant de continuer.')
         return redirect('update_profile')
@@ -137,12 +217,23 @@ def submit_evaluation_view(request):
                 answer.selected_choices.set(values)
                 answers.append(answer)
     submission.save()
-    messages.success(request, 'Reponses envoyées avec success')
-    return render(request, 'challenges/home.html')
-    # correct_submission(submission)
-    # return redirect(
-    #     'result-detail',
-    #     challenge_id=submission.challenge.id,
-    #     slug=submission.challenge.slug,
-    #     submission_id=submission.id,
-    # )
+    try:
+        correct_submission(submission)
+        return redirect(
+            'result-detail',
+            challenge_id=submission.challenge.id,
+            slug=submission.challenge.slug,
+            submission_id=submission.id,
+        )
+    except:
+        url = request.build_absolute_uri(reverse("admin:challenges_submission_change", args=[submission.id]))
+        mail_managers(
+            subject=f'Erreur lors de la correction de la soumission {submission.id}',
+            message=f'Une erreur est survenue lors de la correction de la soumission {submission.id} '
+                    f'pour le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
+                    f' Challenge: {submission.challenge.title}.'
+                    f'View in admin: {url}',
+            fail_silently=False,
+        )
+        messages.success(request, 'Réponses envoyées avec success')
+        return render(request, 'challenges/home.html')

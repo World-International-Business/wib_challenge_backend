@@ -6,44 +6,102 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col">
-                {% if user.is_authenticated %}
-                    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-                {% endif %}
-                <h1 class="h3">Résultats de l'évaluation</h1>
-                <h2 class="h2 text-muted">{{ submission.challenge.title }}</h2>
+                <h3>{{ submission.candidate.first_name }} {{ submission.candidate.last_name }}</h3>
+                <h5 class="text-muted">Correction du {{ submission.challenge.title }}</h5>
             </div>
         </div>
 
         <!-- Score global -->
         <div class="row mb-5">
-            <div class="col-md-6 mx-auto">
+            <div class="col-md-6 mx-auto my-auto">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h3 class="card-title">Score Final</h3>
-                        <div class="h4 mb-3">
-                            {{ submission.result_percent|floatformat:2 }}%<br/>
-                            Domaine : {{ submission.challenge.domain.name }}<br>
-                            Durée : {{ attempt.performance }} / {{ submission.challenge.duration }} (HH:MM:SS)<br/>
-                            Performance Temporelle: {{ attempt.performance_percent|floatformat:2 }} %
+                        <p class="card-title h4">Score Final : {{ submission.result_percent|floatformat:2 }}%</p>
+                        <div class="h5 mb-3 text-start">
+                            <span class="fw-bold">Domaine :</span> {{ submission.challenge.domain.name }}<br>
+                            <span class="fw-bold">Durée :</span> {{ attempt.performance }}
+                            / {{ submission.challenge.duration }}<br/>
+                            <span class="fw-bold">Performance Temporelle:</span>
+                            {{ attempt.performance_percent|floatformat:2 }} %
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto my-auto">
+                <div class="card ">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Stats</h4>
+                        <div class="h6 mb-3 text-start">
+                            <span class="fw-bold">Nombre de questions :</span> {{ total_questions }}<br>
+                            <span class="fw-bold">Nombre de réponses :</span> {{ answer_count }}<br>
+                            <span class="fw-bold">Nombre de bonnes réponses :</span> {{ correct_count }}
+                            ({{ correct_percent|floatformat:1 }}%)<br>
+                            <span class="fw-bold">Nombre de réponses partiellement correctes :</span> {{ partial_correct_count }}
+                            ({{ partial_correct_percent|floatformat:1 }}%)<br>
+                            <span class="fw-bold">Nombre de mauvaises réponses :</span> {{ wrong_count }}
+                            ({{ wrong_percent|floatformat:1 }}%)<br>
+                            <span class="fw-bold">Nombre de questions non répondues :</span> {{ unanswered_count }}
+                            ({{ unanswered_percent|floatformat:1 }}%)<br>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Détail des réponses -->
+        {% if user.is_staff %}
+            <div class="row mb-5">
+                <div class="col col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="mb-0">Classement des Participants</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Prénom</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for candidate in candidates %}
+                                    {% if candidate is None %}
+                                        <tr>
+                                            <td colspan="4" class="text-center">...</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr {% if candidate.self %}class="table-primary fw-bold"{% endif %}>
+                                            <td>{{ candidate.rank }}</td>
+                                            <td>{{ candidate.last_name }}</td>
+                                            <td>{{ candidate.first_name }}</td>
+                                            <td>{{ candidate.score|floatformat:2 }}%</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-between">
-                    <h3 class="mb-4">Détail des réponses </h3>
-                    <h3>{{ submission.correct_count }} / {{ submission.challenge.questions.count }}</h3>
+                    <h4 class="mb-4">Détail des réponses </h4>
+                    <h4>{{ submission.correct_count }} / {{ submission.challenge.questions.count }}</h4>
                 </div>
                 {% for answer in answers %}
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <span>Question {{ forloop.counter }}</span>
-                            {% if answer.is_correct %}
+                            {% if answer.average_score == 1 %}
                                 <span class="badge bg-success">Correct</span>
+                            {% elif answer.average_score > 0 %}
+                                <span class="badge bg-warning">Partiellement correct</span>
                             {% else %}
                                 <span class="badge bg-danger">Incorrect</span>
                             {% endif %}
@@ -57,20 +115,24 @@
 
 
 
+
                                                 {% if choice in answer.selected_choices.all %}{{ choice.is_correct|yesno:'list-group-item-success,list-group-item-danger' }} {% elif choice.is_correct %}list-group-item-success{% endif %}">
                                             {{ choice.text }}
                                             {% if choice in answer.selected_choices.all %}
-                                                <i class="far {{ choice.is_correct|yesno:'fa-check-circle,fa-times-circle' }} float-end"></i>
+                                                <i class="far
+
+
+
+                                                        {{ choice.is_correct|yesno:'fa-check-circle,fa-times-circle' }} float-end"></i>
                                             {% endif %}
                                         </div>
                                     {% endfor %}
                                 </div>
-
                             {% else %}
                                 <div class="mt-3">
                                     <h6>Votre réponse :</h6>
-                                    <pre class="bg-light p-3">{% if answer.text %}{{ answer.text }}
-                                    {% else %}Aucune réponse{% endif %}</pre>
+                                    <pre class="bg-light p-3">{% if answer.text %}{{ answer.text }}{% else %}Aucune
+                                        réponse{% endif %}</pre>
                                 </div>
                             {% endif %}
 
@@ -83,6 +145,5 @@
                 {% endfor %}
             </div>
         </div>
-
     </div>
 {% endblock %}
