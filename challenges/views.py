@@ -217,6 +217,14 @@ def submit_evaluation_view(request):
                 answer.selected_choices.set(values)
                 answers.append(answer)
     submission.save()
+    mail_managers(
+        subject=f'Nouvelle soumission pour le challenge {challenge.title}',
+        message=f'Une nouvelle soumission a été faite pour le challenge {challenge.title} '
+                f'par le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
+                f' Soumission ID: {submission.id}.'
+                f'Voir dans admin: {request.build_absolute_uri(reverse("admin:challenges_submission_change", args=[submission.id]))}',
+        fail_silently=False,
+    )
     try:
         correct_submission(submission)
         return redirect(
@@ -232,7 +240,7 @@ def submit_evaluation_view(request):
             message=f'Une erreur est survenue lors de la correction de la soumission {submission.id} '
                     f'pour le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
                     f' Challenge: {submission.challenge.title}.'
-                    f'View in admin: {url}',
+                    f'Voir dans admin: {url}',
             fail_silently=False,
         )
         messages.success(request, 'Réponses envoyées avec success')
