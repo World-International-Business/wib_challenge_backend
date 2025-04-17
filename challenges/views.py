@@ -137,10 +137,12 @@ def submit_evaluation_view(request):
                 answer.selected_choices.set(values)
                 answers.append(answer)
     submission.save()
-    correct_submission(submission)
-    return redirect(
-        'result-detail',
-        challenge_id=submission.challenge.id,
-        slug=submission.challenge.slug,
-        submission_id=submission.id,
-    )
+    messages.success(request, 'Reponses envoyées avec success')
+    return render(request, 'challenges/home.html')
+    # correct_submission(submission)
+    # return redirect(
+    #     'result-detail',
+    #     challenge_id=submission.challenge.id,
+    #     slug=submission.challenge.slug,
+    #     submission_id=submission.id,
+    # )
