@@ -2,7 +2,7 @@ from collections import defaultdict
 from random import shuffle
 
 from django.db import transaction
-from django.db.models import Case, When, IntegerField, F
+from django.db.models import Case, When, IntegerField
 
 from accounts.models import User
 from challenges.models import Challenge, Settings
@@ -33,7 +33,7 @@ def generate_challenge_for_user(user: User):
         # Question.QuestionType.UNIQUE_CHOICE: 5,
     }
     for skill in user.skills.all():
-        skill_questions = skill.questions.all() # (level__lte=F('tags__user_skills__experience_level'))
+        skill_questions = skill.questions.all()  # (level__lte=F('tags__user_skills__experience_level'))
         queryset = skill_questions.annotate(
             type_priority=Case(
                 *[When(question_type=qt, then=idx) for idx, qt in enumerate(QUESTION_QUOTAS.keys())],
@@ -54,13 +54,12 @@ def generate_challenge_for_user(user: User):
             selected_questions.extend(selected)
             remaining_needed -= len(selected)
 
-        # Étape 4 : Compléter avec d'autres questions si nécessaire
         if remaining_needed > 0:
             remaining_questions = [
-                q for qt, qs in questions_by_type.items() if qt not in QUESTION_QUOTAS
-                for q in qs
+                q for qt, qs in questions_by_type.items()
+                for q in qs if q not in selected_questions
             ]
-            shuffle(remaining_questions)  # Mélanger pour plus d'équité
+            shuffle(remaining_questions)
             selected_questions.extend(remaining_questions[:remaining_needed])
 
         print(selected_questions)
