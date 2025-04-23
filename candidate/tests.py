@@ -57,3 +57,27 @@ class CandidateProfileTestCase(APITestCase):
         self.assertEqual(response.data['technologies'][0]['level'], 2)
         self.assertEqual(response.data['technologies'][1]['name'], 'JavaScript')
         self.assertEqual(response.data['technologies'][1]['level'], 1)
+
+    def test_create_profile_with_experience(self):
+        response = self.client.post(reverse('candidates:candidates-list'), {
+            'profession': self.fullstack.title,
+        }, format='json')
+        candidate_id = response.data['id']
+
+        response = self.client.post(reverse('candidates:experiences-list', args=[candidate_id]), {
+            'company': 'Google',
+            'title': 'Software Engineer',
+            'start_date': '2020-01-01',
+            'end_date': '2022-12-31',
+            'description': 'Worked on various projects.',
+            'location': 'San Francisco',
+        }, format='json')
+
+        print(response.data)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['company'], 'Google')
+        self.assertEqual(response.data['title'], 'Software Engineer')
+        self.assertEqual(response.data['start_date'], '2020-01-01')
+        self.assertEqual(response.data['end_date'], '2022-12-31')
+        self.assertEqual(response.data['description'], 'Worked on various projects.')

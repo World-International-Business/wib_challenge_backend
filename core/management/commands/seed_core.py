@@ -2,7 +2,8 @@ from django.core.management import BaseCommand
 from pathlib import Path
 import json
 import urllib
-from core.models import Profession, Technology  
+from core.models import Profession, Technology
+from django.core.files.base import ContentFile
 from django.conf import settings
 from django.db import transaction
 
@@ -18,10 +19,8 @@ class Command(BaseCommand):
     def download_image(self, url: str, destination: Path):
         response = urllib.request.urlopen(url)
         destination.mkdir(parents=True, exist_ok=True)
-        file = (destination / url.split('/')[-1] ).with_suffix('.png')
-        with open(file, 'wb') as f:
-            f.write(response.read())
-        return file.name
+        file = url.split('/')[-1] + '.png'
+        return file, response.read()
 
     @transaction.atomic
     def handle(self, *args, **options):
@@ -44,8 +43,8 @@ class Command(BaseCommand):
                 technology, created = Technology.objects.get_or_create(name=tech['name'])
                 if created:
                     self.stdout.write(self.style.SUCCESS(f'Created {tech}'))
-                    technology.image = self.download_image(tech['url'], media / 'technologies')
-                    technology.save()
+                    file, content = self.download_image(tech['url'], media / 'technologies')
+                    technology.image.save(file, ContentFile(content))
                 else:
                     self.stdout.write(self.style.WARNING(f'{tech} already exists'))
         self.stdout.write(self.style.SUCCESS('Successfully seeded technologies'))

@@ -52,6 +52,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Project
+        read_only_fields = ['profile']
         fields = '__all__'
 
     def create(self, validated_data):
@@ -71,16 +72,19 @@ class ProjectImageSerializer(serializers.ModelSerializer):
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experience
+        read_only_fields = ['profile']
         fields = '__all__'
 
 
 class EducationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Education
+        read_only_fields = ['profile']
         fields = '__all__'
 
 
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
+        read_only_fields = ['profile']
         fields = '__all__'
