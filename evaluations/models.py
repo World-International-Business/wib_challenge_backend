@@ -75,10 +75,6 @@ class SubmissionAttempt(models.Model):
 
 
 class Submission(models.Model):
-    evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, verbose_name=_('Évaluation'),
-                                   related_name='submissions')
-    candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('Utilisateur'),
-                                  related_name='submissions')
     score = models.FloatField(_('Résultat'), blank=True, null=True, max_length=20)
     submitted_at = models.DateTimeField(_('Soumis le'), auto_now_add=True)
 
@@ -114,6 +110,7 @@ class Answer(models.Model):
     class Meta:
         verbose_name = _('Réponse')
         verbose_name_plural = _('Réponses')
+        unique_together = ('attempt', 'question')
 
     @property
     def corrected(self):

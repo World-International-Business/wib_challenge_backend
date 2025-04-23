@@ -54,3 +54,15 @@ class User(AbstractUser):
         self.is_active = False
         self.save()
         return self
+
+    @property
+    def is_admin(self):
+        return self.role == self.Roles.ADMIN
+
+    @property
+    def is_org(self):
+        return self.role == self.Roles.ORG
+
+    @property
+    def is_dev(self):
+        return self.role == self.Roles.USER

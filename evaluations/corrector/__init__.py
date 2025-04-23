@@ -1,11 +1,12 @@
-from evaluations.models import Submission, SubmissionAttempt
+from evaluations.models import Submission, SubmissionAttempt, Answer
 from questions.models import Question
 
 
-def correct_submission(submission: Submission, attempt: SubmissionAttempt, save=True):
+def correct_submission(submission: Submission, save=True):
     """
     Correct the submission
     """
+    attempt = submission.attempt
     answers = attempt.answers.prefetch_related('selected_choices', 'question__choices').all()
     for answer in answers:
         correct_choices = answer.question.choices.filter(is_correct=True)

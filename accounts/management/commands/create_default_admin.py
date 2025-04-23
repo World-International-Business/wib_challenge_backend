@@ -4,6 +4,8 @@ from django.core.management import BaseCommand
 class Command(BaseCommand):
     help = 'Create admin user'
 
+    requires_migrations_checks = True
+
     def handle(self, *args, **options):
         from accounts.models import User
 

@@ -166,14 +166,14 @@ REST_FRAMEWORK = {
     'DEFAULT_VERSION': '1.0',
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'PAGE_SIZE': 20,
-    'SEARCH_PARAM': 'query',
+    'SEARCH_PARAM': 'search',
 }
 
 # Simple JWT
 
 SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': True,
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'TOKEN_OBTAIN_SERIALIZER': 'accounts.serializers.WithUserTokenObtainPairSerializer',
 }
@@ -202,7 +202,7 @@ SPECTACULAR_SETTINGS = {
             'description': 'Local',
         },
         {
-            'url': 'http://192.168.1.199:8001',
+            'url': 'http://192.168.1.92:8000',
             'description': 'Remote',
         },
         {

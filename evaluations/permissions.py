@@ -10,3 +10,11 @@ class RejectUnConstructedEvaluation(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return obj.questions.filter(status=Question.Status.PUBLISHED).count() > 20
+
+class IsSelfCandidate(permissions.BasePermission):
+    """
+    Permission to only allow the candidate to see their own submission attempts.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return obj.candidate == request.user

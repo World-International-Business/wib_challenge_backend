@@ -85,7 +85,8 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
 
     @extend_schema_field(
         inline_serializer(
-            name='Profession',
+            name='QuestionProfession',
+            allow_null=True,
             fields={
                 'id': serializers.IntegerField(),
                 'title': serializers.CharField(),

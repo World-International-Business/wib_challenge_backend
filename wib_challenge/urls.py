@@ -1,6 +1,5 @@
 """
 URL configuration for wib_challenge project.
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
 Examples:
@@ -20,7 +19,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
-
 from wib_challenge.views import index
 
 urlpatterns = [
@@ -32,14 +30,17 @@ urlpatterns = [
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('candidate.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
-    path('', index, name='index'),
+    re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += [
+
+    urlpatterns = [
         path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-        path('api/docs/redoc', SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
-        re_path('^api/docs(/swagger)?/$', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+        path('api/docs/redoc',
+             SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
+        re_path('^api/docs(/swagger)?/$',
+                SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
         *debug_toolbar_urls(),
         path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
-    ]
+    ] + urlpatterns
