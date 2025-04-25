@@ -1,7 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
-from candidate.models import (
+from candidates.models import (
     CandidateProfile, Experience, ProfileTechnology, Education, Language, Project, ProjectImage
 )
 from core.models import Profession, Technology

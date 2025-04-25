@@ -42,10 +42,11 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'core',
-    'candidate',
+    'candidates',
     'accounts',
     'questions',
-    'evaluations'
+    'evaluations',
+    'organizations'
 ]
 
 MIDDLEWARE = [

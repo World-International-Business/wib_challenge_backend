@@ -1,6 +1,6 @@
 from rest_framework_nested import routers
 
-from candidate.views import (
+from candidates.views import (
     CandidateProfileViewSet, ExperienceViewSet, LanguageViewSet, EducationViewSet,
     ProjectViewSet, ProjectImageViewSet
 )

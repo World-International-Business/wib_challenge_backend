@@ -1,9 +1,9 @@
-from django.contrib.auth import get_user_model
 from django.db import transaction
-from django.utils.translation import gettext_lazy as _
-from drf_spectacular.utils import extend_schema_field, inline_serializer
+from drf_spectacular.utils import extend_schema_field
+from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
+from accounts.models import User
 from core.serializers import TechnologySerializer
 from questions.models import Question, Choice
 
@@ -11,69 +11,32 @@ from questions.models import Question, Choice
 class ChoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Choice
-        fields = '__all__'
+        fields = ['id', 'text', 'is_correct', 'question']
         extra_kwargs = {
             'question': {'read_only': True},
         }
 
 
-class _NestedChoiceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Choice
-        fields = ['text', 'is_correct']
-        extra_kwargs = {
-            'question': {'read_only': True},
-            'is_correct': {'required': False},
-        }
+class PublisherSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    username = serializers.CharField()
+    role = serializers.ChoiceField(choices=User.Roles.choices)
+    email = serializers.EmailField()
+    picture = serializers.URLField(allow_null=True)
 
 
-class _ValidateChoiceMixin:
-
-    def validate_choices(self, value):
-        if len(value) < 2:
-            raise serializers.ValidationError(_('Au moins deux choix sont requis.'))
-        if getattr(self.Meta, 'nested_question', False):
-            return value
-        if not any(choice['is_correct'] for choice in value):
-            raise serializers.ValidationError(_('Au moins un choix doit être correct.'))
-        if all(choice['is_correct'] for choice in value):
-            raise serializers.ValidationError(_('Au moins un choix doit être incorrect.'))
-        return value
-
-
-class _NestedQuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
-    choices = _NestedChoiceSerializer(many=True)
-
-    class Meta:
-        model = Question
-        fields = ['text', 'explanation', 'language', 'choices']
-        nested_question = True
-
-
-class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
+class QuestionSerializer(WritableNestedModelSerializer):
     choices = ChoiceSerializer(many=True)
-    translated = _NestedQuestionSerializer(required=False)
     publisher = serializers.SerializerMethodField()
-    profession = serializers.SerializerMethodField()
-    technology = TechnologySerializer(source='evaluation.technology', read_only=True)
+    profession = serializers.SlugRelatedField(slug_field='title', read_only=True)
+    technology = TechnologySerializer(read_only=True)
 
     class Meta:
         model = Question
         fields = '__all__'
-        read_only_fields = ['publisher', 'is_translated', 'status', 'technology']
+        read_only_fields = ['publisher', 'status', 'technology']
 
-    @extend_schema_field(
-        inline_serializer(
-            name='Publisher',
-            fields={
-                'id': serializers.IntegerField(),
-                'username': serializers.UUIDField(),
-                'role': serializers.ChoiceField(choices=get_user_model().Roles.choices),
-                'email': serializers.EmailField(),
-                'picture': serializers.URLField(allow_null=True),
-            }
-        )
-    )
+    @extend_schema_field(PublisherSerializer)
     def get_publisher(self, obj: Question):
         return {
             'id': obj.publisher.id,
@@ -83,72 +46,12 @@ class QuestionSerializer(_ValidateChoiceMixin, serializers.ModelSerializer):
             'picture': obj.publisher.picture.url if obj.publisher.picture else None
         }
 
-    @extend_schema_field(
-        inline_serializer(
-            name='QuestionProfession',
-            allow_null=True,
-            fields={
-                'id': serializers.IntegerField(),
-                'title': serializers.CharField(),
-            }
-        )
-    )
-    def get_profession(self, obj: Question):
-        if not obj.evaluation.profession:
-            return None
-        return {
-            'id': obj.evaluation.profession.id,
-            'title': obj.evaluation.profession.title
-        }
-
-    def create_question(self, data):
-        choices_data = data.pop('choices', [])
-        question = Question.objects.create(**data)
-        for choice_data in choices_data:
-            Choice.objects.create(question=question, **choice_data)
-        return question
-
     @transaction.atomic
     def create(self, validated_data):
-        translated_data = validated_data.pop('translated', None)
-        translated = None
-        if translated_data:
-            for (choices1, choices2) in zip(validated_data['choices'], translated_data['choices']):
-                choices2['is_correct'] = choices1['is_correct']
-            translated = self.create_question({**validated_data, **translated_data})
-
-        question = self.create_question(validated_data)
-        if translated_data:
-            question.translated = translated
-            question.is_translated = True
-        question.is_translated = translated is not None
-        question.save()
-        return question
-
-    def update_question(self, instance, validated_data):
-        choices_data = validated_data.pop('choices', [])
-        for attr, value in validated_data.items():
-            setattr(instance, attr, value)
-        instance.save()
-        instance.choices.all().delete()
-        for choice_data in choices_data:
-            Choice.objects.create(question=instance, **choice_data)
-        return instance
+        return super().create(validated_data)
 
     @transaction.atomic
     def update(self, instance, validated_data):
-        translated_data = validated_data.pop('translated', None)
-        if translated_data:
-            for (choices1, choices2) in zip(validated_data['choices'], translated_data['choices']):
-                choices2['is_correct'] = choices1['is_correct']
-            translated_data = {**validated_data, **translated_data}
-            if instance.translated:
-                translated = self.update_question(instance.translated, translated_data)
-            else:
-                translated = self.create_question(translated_data)
-            instance.translated = translated
-            instance.is_translated = True
-        instance = self.update_question(instance, validated_data)
+        instance = super().update(instance, validated_data)
         instance.status = Question.Status.PENDING
-        instance.save()
         return instance

@@ -4,5 +4,5 @@ from django.utils.translation import gettext_lazy as _
 
 class CandidateConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'candidate'
+    name = 'candidates'
     verbose_name = _('Candidats')

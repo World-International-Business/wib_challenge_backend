@@ -1,5 +1,3 @@
-import random
-
 from django.db.models import Sum
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
@@ -15,6 +13,7 @@ class EvaluationSerializer(serializers.ModelSerializer):
     is_under_construction = serializers.SerializerMethodField()
     technology = TechnologySerializer(read_only=True)
     profession = ProfessionSerializer(read_only=True)
+    questions_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Evaluation
@@ -22,21 +21,24 @@ class EvaluationSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'created_at', 'updated_at', 'slug']
 
     def get_estimated_time(self, obj: Evaluation) -> float:
-        questions = obj.questions.all()
-        ids = list(questions.values_list('id', flat=True)[:20])
-        questions = questions.filter(id__in=random.sample(ids, len(questions)))
-        aggregate = questions[:20].aggregate(estimated_time=Sum('duration'))
-        return aggregate['estimated_time'] or 0
+        """Retourne l'estimation du temps nécessaire pour compléter l'évaluation"""
+        aggregate = obj.questions.filter(status=Question.Status.PUBLISHED).order_by('?')[:20].aggregate(
+            total_time=Sum('duration'))
+        return aggregate['total_time'] or 0
 
     def get_is_under_construction(self, obj: Evaluation) -> bool:
-        """
-        Return True if the evaluation is under construction
-        """
-        return obj.questions.filter(status=Question.Status.PUBLISHED).count() < 20
+        """Retourne True si l'évaluation est en construction"""
+        return not obj.is_constructed
+
+    def get_questions_count(self, obj: Evaluation) -> int:
+        """Retourne le nombre de questions publiées"""
+        return obj.questions.filter(status=Question.Status.PUBLISHED).count()
 
 
 class AnswerSerializer(WritableNestedModelSerializer):
-    selected_choices = serializers.PrimaryKeyRelatedField(many=True, write_only=True, queryset=Choice.objects)
+    selected_choices = serializers.PrimaryKeyRelatedField(many=True, queryset=Choice.objects)
+    question_id = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Question.objects, source='question')
+    question = QuestionSerializer(read_only=True)
 
     class Meta:
         model = Answer
@@ -44,23 +46,44 @@ class AnswerSerializer(WritableNestedModelSerializer):
         read_only_fields = ['attempt', 'is_correct', 'answered_at', 'score']
 
     def validate_status(self, value):
-        if value not in [Answer.Status.DISCARDED, Answer.Status.TIMEOUT]:
-            raise serializers.ValidationError('Status must be discarded or timeout')
+        """Valide que le statut est dans la liste des statuts autorisés"""
+        valid_statuses = [Answer.Status.DISCARDED, Answer.Status.TIMEOUT]
+        if value not in valid_statuses:
+            raise serializers.ValidationError(f'Status must be one of {", ".join(valid_statuses)}')
         return value
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True, read_only=True, source='attempt.answers')
+    candidate = serializers.PrimaryKeyRelatedField(read_only=True, source='attempt.candidate')
+    evaluation = serializers.PrimaryKeyRelatedField(read_only=True, source='attempt.evaluation')
+    started_at = serializers.DateTimeField(read_only=True, source='attempt.started_at')
+    ended_at = serializers.DateTimeField(read_only=True, source='attempt.ended_at')
+    correct_answers_count = serializers.SerializerMethodField()
+    incorrect_answers_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Submission
         fields = '__all__'
 
+    def get_correct_answers_count(self, obj):
+        """Retourne le nombre de réponses correctes"""
+        return obj.attempt.answers.filter(is_correct=True).count()
+
+    def get_incorrect_answers_count(self, obj):
+        """Retourne le nombre de réponses incorrectes"""
+        return obj.attempt.answers.filter(is_correct=False).count()
+
 
 class SubmissionAttemptSerializer(serializers.ModelSerializer):
     submission = SubmissionSerializer(read_only=True)
     questions = QuestionSerializer(many=True, read_only=True)
+    answers_count = serializers.SerializerMethodField()
 
     class Meta:
         model = SubmissionAttempt
         fields = '__all__'
+
+    def get_answers_count(self, obj):
+        """Retourne le nombre de réponses données"""
+        return obj.answers.count()

@@ -1,4 +1,5 @@
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth.hashers import make_password
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import inline_serializer
@@ -33,7 +34,9 @@ class UserSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+        from django.db import transaction
+        with transaction.atomic():
+            return User.objects.create_user(**validated_data)
 
 
 class PasswordResetSerializer(serializers.Serializer):
@@ -67,15 +70,18 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     def validate(self, attrs):
         try:
             uid = urlsafe_base64_decode(attrs['uidb64']).decode()
-            user = User.objects.get(pk=uid)
-        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = User.objects.filter(pk=uid).only('id').first()
+
+            if not user:
+                raise serializers.ValidationError(_("L'utilisateur n'existe pas."))
+
+            if not default_token_generator.check_token(user, attrs['token']):
+                raise serializers.ValidationError(_("Le token est expiré ou invalide."))
+
+            User.objects.filter(pk=uid).update(password=make_password(attrs['password']))
+
+        except (TypeError, ValueError, OverflowError):
             raise serializers.ValidationError(_("L'utilisateur n'existe pas."))
-
-        if not default_token_generator.check_token(user, attrs['token']):
-            raise serializers.ValidationError(_("Le token est expiré ou invalide."))
-
-        user.set_password(attrs['password'])
-        user.save()
 
         return attrs
 
@@ -85,9 +91,11 @@ class PasswordChangeSerializer(serializers.Serializer):
     new_password = serializers.CharField(min_length=8)
 
     def validate_old_password(self, value):
-        if not self.context['request'].user.is_staff:
-            if not self.context['request'].user.check_password(value):
-                raise serializers.ValidationError(_("Le mot de passe actuel est incorrect."))
+        if self.context['request'].user.is_staff:
+            return value
+
+        if not self.context['request'].user.check_password(value):
+            raise serializers.ValidationError(_("Le mot de passe actuel est incorrect."))
         return value
 
     def validate_new_password(self, value):
@@ -96,8 +104,9 @@ class PasswordChangeSerializer(serializers.Serializer):
         return value
 
     def save(self, **kwargs):
-        self.context['request'].user.set_password(self.validated_data['new_password'])
-        self.context['request'].user.save()
+        user = self.context['request'].user
+        user.set_password(self.validated_data['new_password'])
+        user.save(update_fields=['password'])
 
     @property
     def data(self):

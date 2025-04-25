@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/', include(('core.urls', 'core'), namespace='core')),
     path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
-    path('api/', include(('candidate.urls', 'candidates'), namespace='candidates')),
+    path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
     re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
 ]

@@ -6,8 +6,8 @@ from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
-from candidate.models import CandidateProfile, Experience, Education, Language, Project
-from candidate.serializers import CandidateProfileSerializer, ExperienceSerializer, EducationSerializer, \
+from candidates.models import CandidateProfile, Experience, Education, Language, Project
+from candidates.serializers import CandidateProfileSerializer, ExperienceSerializer, EducationSerializer, \
     LanguageSerializer, ProjectSerializer
 from wib_challenge.permissions import IsOwner, ReadOnly
 
@@ -40,7 +40,7 @@ class NestedProfileViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         get_object_or_404(CandidateProfile, pk=self.kwargs['profile_pk'])
-        return self.queryset.filter(profile__user=self.request.user)
+        return self.queryset.filter(profile=self.kwargs['profile_pk'])
 
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)

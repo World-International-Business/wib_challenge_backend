@@ -4,11 +4,6 @@ from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 
-class Language(models.TextChoices):
-    ENGLISH = 'english', _('Anglais')
-    FRENCH = 'french', _('Français')
-
-
 class BaseModel(models.Model):
     created_at = models.DateTimeField(_('Date de création'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Date de modification'), auto_now=True)

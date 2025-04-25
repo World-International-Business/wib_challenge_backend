@@ -25,10 +25,13 @@ class _UserManager(UserManager):
 
 
 def profile_pictures_upload(instance, filename):
-    if instance.pk:
-        old_file = instance.__class__.objects.get(pk=instance.pk).picture
-        if old_file and old_file.name:
-            old_file.delete(save=False)
+    # Évite une requête DB inutile si c'est un nouvel utilisateur
+    if not (not instance.pk or not hasattr(instance, '_original_picture_path') or not instance._original_picture_path):
+        if os.path.exists(instance._original_picture_path):
+            try:
+                os.remove(instance._original_picture_path)
+            except (FileNotFoundError, PermissionError):
+                pass
     return f"profiles/{uuid.uuid4()}{os.path.splitext(filename)[1]}"
 
 
@@ -50,9 +53,13 @@ class User(AbstractUser):
 
     objects = _UserManager()
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._original_picture_path = self.picture.path if self.pk and self.picture else None
+
     def delete(self, **kwargs):
         self.is_active = False
-        self.save()
+        self.save(update_fields=['is_active'])
         return self
 
     @property
