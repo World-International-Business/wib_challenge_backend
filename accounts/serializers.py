@@ -17,8 +17,19 @@ class WithUserTokenObtainPairSerializer(TokenObtainPairSerializer):
         return data
 
 
+class PublisherSerializer(serializers.ModelSerializer):
+
+    full_name = serializers.CharField(source='get_full_name', read_only=True)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'role', 'picture', 'full_name']
+        read_only_fields = ['id', 'username', 'role', 'picture']
+
+
 class UserSerializer(serializers.ModelSerializer):
     profile = serializers.PrimaryKeyRelatedField(read_only=True)
+    organization = serializers.PrimaryKeyRelatedField(read_only=True)
 
     class Meta:
         model = User
@@ -30,7 +41,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def validate_role(self, value):
         if value == User.Roles.ADMIN:
-            raise serializers.ValidationError(_("Vous ne pouvez pas créer un compte admin."))
+            raise serializers.ValidationError(
+                _("Vous ne pouvez pas créer un compte admin."))
         return value
 
     def create(self, validated_data):
@@ -46,10 +58,12 @@ class PasswordResetSerializer(serializers.Serializer):
         try:
             user = User.objects.get(email=value)
         except User.DoesNotExist:
-            raise serializers.ValidationError(_("Il n'existe pas d'utilisateur avec cet email."))
+            raise serializers.ValidationError(
+                _("Il n'existe pas d'utilisateur avec cet email."))
 
         if not user.is_active:
-            raise serializers.ValidationError(_("Cet utilisateur est désactivé."))
+            raise serializers.ValidationError(
+                _("Cet utilisateur est désactivé."))
 
         return value
 
@@ -73,12 +87,15 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
             user = User.objects.filter(pk=uid).only('id').first()
 
             if not user:
-                raise serializers.ValidationError(_("L'utilisateur n'existe pas."))
+                raise serializers.ValidationError(
+                    _("L'utilisateur n'existe pas."))
 
             if not default_token_generator.check_token(user, attrs['token']):
-                raise serializers.ValidationError(_("Le token est expiré ou invalide."))
+                raise serializers.ValidationError(
+                    _("Le token est expiré ou invalide."))
 
-            User.objects.filter(pk=uid).update(password=make_password(attrs['password']))
+            User.objects.filter(pk=uid).update(
+                password=make_password(attrs['password']))
 
         except (TypeError, ValueError, OverflowError):
             raise serializers.ValidationError(_("L'utilisateur n'existe pas."))
@@ -95,12 +112,14 @@ class PasswordChangeSerializer(serializers.Serializer):
             return value
 
         if not self.context['request'].user.check_password(value):
-            raise serializers.ValidationError(_("Le mot de passe actuel est incorrect."))
+            raise serializers.ValidationError(
+                _("Le mot de passe actuel est incorrect."))
         return value
 
     def validate_new_password(self, value):
         if self.context['request'].user.check_password(value):
-            raise serializers.ValidationError(_("Le nouveau mot de passe doit être différent de l'ancien."))
+            raise serializers.ValidationError(
+                _("Le nouveau mot de passe doit être différent de l'ancien."))
         return value
 
     def save(self, **kwargs):

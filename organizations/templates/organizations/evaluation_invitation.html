@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation à une évaluation technique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white !important;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        .warning {
+            background-color: #fcf8e3;
+            border-left: 4px solid #f0ad4e;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <img src="{{ logo_url }}" alt="WIB Challenge Logo" class="logo">
+    <h1>Invitation à une évaluation technique</h1>
+</div>
+
+<div class="content">
+    <p>Bonjour {{ candidate_name }},</p>
+
+    <p>L'entreprise <strong>{{ company_name }}</strong> vous a invité à réaliser un test technique sur la plateforme WIB
+        Challenge :</p>
+
+    <p><strong>{{ test_name }}</strong></p>
+
+    <div style="text-align: center;">
+        <a href="{{ test_url }}" class="cta-button">Accéder au test</a>
+    </div>
+
+    <p>Les candidats répondent généralement dans les <strong>48 heures</strong> à ce QCM. Celui-ci est relativement
+        court et permettra à l'entreprise de répondre rapidement à votre candidature.</p>
+
+    <div class="warning">
+        <p>Attention : Cette invitation expire le <strong>{{ expire_at|date:"d F Y à H:i" }}</strong>. Veuillez compléter votre évaluation avant cette date.</p>
+        <p>Nous vous rappelons que notre outil de test technique est équipé d'un système de détection de comportements
+            suspects. Si une anomalie est détectée pendant votre test, les recruteurs en seront informés.</p>
+    </div>
+
+    <p>N'hésitez pas à nous contacter pour toute question, nous vous répondrons avec plaisir 😃</p>
+
+    <p>Bonne chance dans votre évaluation !</p>
+
+    <p>Cordialement,<br>
+        L'équipe WIB Challenge</p>
+</div>
+
+<div class="footer">
+    <p>© {{ current_year }} WIB Challenge - Tous droits réservés</p>
+    <p>
+        <a href="{{ unsubscribe_url }}">Se désabonner</a> |
+        <a href="{{ privacy_url }}">Politique de confidentialité</a>
+    </p>
+</div>
+</body>
+</html>

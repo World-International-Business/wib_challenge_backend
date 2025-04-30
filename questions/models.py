@@ -22,13 +22,11 @@ class Question(BaseModel):
         EASY = 'easy', _('Facile')
         MEDIUM = 'medium', _('Moyen')
         HARD = 'hard', _('Difficile')
-        EXPERT = 'expert', _('Expert')
 
     DIFFICULTY_WEIGHTS = {
-        Difficulty.EASY: 50,
-        Difficulty.MEDIUM: 100,
-        Difficulty.HARD: 150,
-        Difficulty.EXPERT: 200
+        Difficulty.EASY: 100,
+        Difficulty.MEDIUM: 300,
+        Difficulty.HARD: 500,
     }
 
     class Status(models.TextChoices):

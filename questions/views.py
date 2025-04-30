@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import get_object_or_404
@@ -20,6 +21,7 @@ class QuestionViewSetMixin:
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['text', 'technology__name', 'choices__text']
     filterset_class = QuestionFilterSet
+    queryset = Question.objects.all()
 
     def get_queryset(self):
         queryset = (Question.objects
@@ -45,6 +47,8 @@ class ReadOnlyQuestionViewSet(QuestionViewSetMixin, viewsets.ReadOnlyModelViewSe
 
 class QuestionViewSet(QuestionViewSetMixin, viewsets.ModelViewSet):
     _evaluation = None  #
+
+
 
     def get_evaluation(self):
         if self._evaluation is None:

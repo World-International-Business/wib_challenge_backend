@@ -44,7 +44,7 @@ class User(AbstractUser):
         USER = 'dev', _('Développeur')
         ORG = 'org', _('Organisation')
 
-    username = models.UUIDField(_('username'), unique=True, default=uuid.uuid4)
+    username = models.UUIDField(_('username'), unique=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(_("email address"), unique=True)
     role = models.CharField(_('Rôle'), max_length=10, choices=Roles.choices, default=Roles.USER)
     picture = models.ImageField(_('Photo de profil'), upload_to=profile_pictures_upload, null=True, blank=True)

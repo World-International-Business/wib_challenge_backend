@@ -23,20 +23,25 @@ class Evaluation(BaseModel):
 
     title = models.CharField(_('Title'), max_length=255)
     description = models.TextField(_('Description'), blank=True)
-    slug = models.SlugField(_('Slug'), max_length=255, unique=True, db_index=True)
-    image = models.ImageField(_('Image'), upload_to=_upload_to, blank=True, null=True)
+    slug = models.SlugField(_('Slug'), max_length=255,
+                            unique=True, db_index=True)
+    image = models.ImageField(
+        _('Image'), upload_to=_upload_to, blank=True, null=True)
     technology = models.ForeignKey('core.Technology', related_name='evaluations', verbose_name=_('Technologie'),
                                    on_delete=models.CASCADE, null=True, blank=True, db_index=True)
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE, related_name='evaluations',
                                    verbose_name=_('Profession'), null=True, blank=True, db_index=True)
     difficulty = models.CharField(_('Difficulty'), choices=Difficulty.choices, default=Difficulty.BEGINNER,
                                   max_length=20, db_index=True)
+    publisher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('Créateur'),
+                                  related_name='evaluations', db_index=True)
 
     class Meta:
         verbose_name = _('Evaluation')
         verbose_name_plural = _('Evaluations')
         ordering = ['-created_at']
-        indexes = [models.Index(fields=['slug']), models.Index(fields=['difficulty']), ]
+        indexes = [models.Index(fields=['slug']),
+                   models.Index(fields=['difficulty']), ]
 
     def __str__(self):
         return self.title
@@ -59,9 +64,11 @@ class SubmissionAttempt(models.Model):
                                   related_name='attempts', db_index=True)
     submission = models.OneToOneField('Submission', on_delete=models.CASCADE, verbose_name=_('Soumission'),
                                       related_name='attempt', blank=True, null=True)
-    started_at = models.DateTimeField(_('Commencé le'), auto_now_add=True, db_index=True)
+    started_at = models.DateTimeField(
+        _('Commencé le'), auto_now_add=True, db_index=True)
     ended_at = models.DateTimeField(_('Terminé le'), blank=True, null=True)
-    questions = models.ManyToManyField(Question, verbose_name=_('Questions'), blank=True, related_name='attempts')
+    questions = models.ManyToManyField(Question, verbose_name=_(
+        'Questions'), blank=True, related_name='attempts')
 
     class Meta:
         verbose_name = _('Tentative de soumission')
@@ -77,8 +84,10 @@ class SubmissionAttempt(models.Model):
 
 
 class Submission(models.Model):
-    score = models.FloatField(_('Résultat'), blank=True, null=True)  # Retrait de max_length inutile pour FloatField
-    submitted_at = models.DateTimeField(_('Soumis le'), auto_now_add=True, db_index=True)
+    # Retrait de max_length inutile pour FloatField
+    score = models.FloatField(_('Résultat'), blank=True, null=True)
+    submitted_at = models.DateTimeField(
+        _('Soumis le'), auto_now_add=True, db_index=True)
 
     class Meta:
         verbose_name = _('Soumission')
@@ -105,17 +114,22 @@ class Answer(models.Model):
                                  db_index=True)
     selected_choices = models.ManyToManyField(Choice, verbose_name=_('Choix sélectionnés'), blank=True,
                                               related_name='answers')
-    is_correct = models.BooleanField(_('Correcte'), blank=True, null=True, db_index=True)
-    answered_at = models.DateTimeField(_('Répondu le'), auto_now_add=True, db_index=True)
-    delta_time = models.PositiveSmallIntegerField(_('Durée'), validators=[MaxValueValidator(200)])
-    status = models.CharField(_('Statut'), choices=Status.choices, default=Status.PENDING, max_length=20, db_index=True)
+    is_correct = models.BooleanField(
+        _('Correcte'), blank=True, null=True, db_index=True)
+    answered_at = models.DateTimeField(
+        _('Répondu le'), auto_now_add=True, db_index=True)
+    delta_time = models.PositiveSmallIntegerField(
+        _('Durée'), validators=[MaxValueValidator(200)])
+    status = models.CharField(_('Statut'), choices=Status.choices,
+                              default=Status.PENDING, max_length=20, db_index=True)
     score = models.IntegerField(_('Résultat'), default=0)
 
     class Meta:
         verbose_name = _('Réponse')
         verbose_name_plural = _('Réponses')
         unique_together = ('attempt', 'question')
-        indexes = [models.Index(fields=['status']), models.Index(fields=['is_correct'])]
+        indexes = [models.Index(fields=['status']),
+                   models.Index(fields=['is_correct'])]
 
     @property
     def corrected(self):

@@ -82,7 +82,10 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
         serializer = UserSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    # TODO check get user by username
+    @action(detail=False, methods=['get'], url_path='username/<str:username>')
+    def username(self, request, username=None):
+        user = get_object_or_404(self.get_queryset(), username=username)
+        return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
 
 
 @extend_schema(

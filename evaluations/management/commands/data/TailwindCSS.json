@@ -1,0 +1,392 @@
+{
+  "technology": "Tailwind CSS",
+  "title": "Évaluation Tailwind CSS Complète",
+  "description": "Cette évaluation couvre les concepts fondamentaux et avancés de Tailwind CSS, incluant l'utilisation des classes utilitaires, la personnalisation, la réactivité et les bonnes pratiques.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Tailwind CSS?",
+      "explanation": "Tailwind CSS est un framework CSS utilitaire de bas niveau qui permet de construire des designs personnalisés sans quitter votre HTML. Contrairement aux frameworks comme Bootstrap qui offrent des composants prédéfinis, Tailwind fournit des classes utilitaires de bas niveau qui peuvent être combinées pour créer n'importe quel design.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {"text": "Un framework CSS utilitaire basé sur des classes", "is_correct": true},
+        {"text": "Un préprocesseur CSS comme Sass ou Less", "is_correct": false},
+        {"text": "Une bibliothèque de composants UI prêts à l'emploi", "is_correct": false},
+        {"text": "Un outil de compilation CSS", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment définir la couleur de texte en rouge avec Tailwind CSS?",
+      "explanation": "En Tailwind, les couleurs de texte sont définies avec le préfixe `text-` suivi du nom de la couleur et éventuellement d'une variante d'intensité. `text-red-500` applique une couleur rouge de moyenne intensité au texte.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {"text": "`text-red-500`", "is_correct": true},
+        {"text": "`color-red`", "is_correct": false},
+        {"text": "`red-text`", "is_correct": false},
+        {"text": "`font-color-red`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle classe Tailwind permet de centrer horizontalement un élément en utilisant Flexbox?",
+      "explanation": "La classe `justify-center` utilise la propriété CSS `justify-content: center` pour centrer horizontalement les éléments dans un conteneur Flexbox. Vous devez également appliquer `flex` au conteneur parent pour activer Flexbox.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`justify-center`", "is_correct": true},
+        {"text": "`items-center`", "is_correct": false},
+        {"text": "`flex-center`", "is_correct": false},
+        {"text": "`center-x`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment ajouter une marge externe de 4 unités à droite d'un élément avec Tailwind?",
+      "explanation": "Tailwind utilise un système de mesure où chaque unité équivaut généralement à 0.25rem (4px par défaut). La classe `mr-4` ajoute une marge à droite (margin-right) de 1rem ou 16px.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {"text": "`mr-4`", "is_correct": true},
+        {"text": "`m-right-4`", "is_correct": false},
+        {"text": "`margin-right-4`", "is_correct": false},
+        {"text": "`right-margin-4`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment rendre un élément visible uniquement sur les écrans de taille moyenne et supérieure avec Tailwind?",
+      "explanation": "Tailwind utilise des préfixes de breakpoints comme `md:` pour appliquer des styles à des tailles d'écran spécifiques. La classe `hidden` cache l'élément, tandis que `md:block` le rend visible (display: block) à partir du breakpoint medium et au-delà.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {"text": "`hidden md:block`", "is_correct": true},
+        {"text": "`invisible md:visible`", "is_correct": false},
+        {"text": "`display-none md:display-block`", "is_correct": false},
+        {"text": "`md:show`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est la classe Tailwind pour définir une largeur de 100% sur un élément?",
+      "explanation": "La classe `w-full` dans Tailwind CSS équivaut à `width: 100%` en CSS standard, faisant que l'élément occupe toute la largeur de son conteneur.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {"text": "`w-full`", "is_correct": true},
+        {"text": "`width-100`", "is_correct": false},
+        {"text": "`w-100`", "is_correct": false},
+        {"text": "`full-width`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment installer Tailwind CSS dans un projet?",
+      "explanation": "Tailwind CSS peut être installé via npm ou yarn. Après l'installation, vous devez configurer PostCSS pour qu'il utilise Tailwind en créant un fichier de configuration pour Tailwind et en important ses styles dans votre CSS.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "En installant le package via npm/yarn et en configurant PostCSS", "is_correct": true},
+        {"text": "En ajoutant simplement un lien CDN dans le HTML", "is_correct": false},
+        {"text": "En téléchargeant les fichiers CSS depuis le site officiel", "is_correct": false},
+        {"text": "En utilisant un bundle manager comme Webpack sans configuration", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment ajouter une transition d'opacité lors du survol d'un élément avec Tailwind?",
+      "explanation": "La classe `transition` active les transitions CSS, `opacity-50` définit une opacité à 50%, et `hover:opacity-100` change l'opacité à 100% au survol. Ensemble, elles créent une transition fluide d'opacité lors du survol.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {"text": "`transition opacity-50 hover:opacity-100`", "is_correct": true},
+        {"text": "`opacity-transition hover:opacity-full`", "is_correct": false},
+        {"text": "`fade-effect hover:no-fade`", "is_correct": false},
+        {"text": "`transform-opacity hover:visible`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment personnaliser les couleurs dans Tailwind CSS?",
+      "explanation": "Pour personnaliser les couleurs dans Tailwind, vous devez étendre ou remplacer les valeurs existantes dans le fichier de configuration `tailwind.config.js`. Vous pouvez ajouter vos propres couleurs dans le thème sous la propriété `colors`.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "En modifiant le fichier tailwind.config.js", "is_correct": true},
+        {"text": "En utilisant des variables CSS personnalisées", "is_correct": false},
+        {"text": "En créant une feuille de style séparée avec des classes personnalisées", "is_correct": false},
+        {"text": "En ajoutant des attributs style inline", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est la bonne façon d'appliquer un padding horizontal de 4 unités et un padding vertical de 2 unités avec Tailwind?",
+      "explanation": "Tailwind utilise `px-` pour le padding horizontal (à gauche et à droite) et `py-` pour le padding vertical (en haut et en bas). Ainsi, `px-4 py-2` applique un padding de 1rem horizontalement et de 0.5rem verticalement.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`px-4 py-2`", "is_correct": true},
+        {"text": "`p-4-2`", "is_correct": false},
+        {"text": "`padding-x-4 padding-y-2`", "is_correct": false},
+        {"text": "`p-horizontal-4 p-vertical-2`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer une grille responsive de 3 colonnes sur les écrans larges et 1 colonne sur les petits écrans?",
+      "explanation": "La classe `grid` active CSS Grid, `grid-cols-1` définit une colonne par défaut (pour les petits écrans), et `md:grid-cols-3` change à trois colonnes à partir du breakpoint medium.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {"text": "`grid grid-cols-1 md:grid-cols-3`", "is_correct": true},
+        {"text": "`display-grid cols-1 cols-md-3`", "is_correct": false},
+        {"text": "`grid-layout col-count-1 md:col-count-3`", "is_correct": false},
+        {"text": "`flex flex-col md:flex-row md:flex-wrap`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est la classe Tailwind pour appliquer un border-radius arrondi à un élément?",
+      "explanation": "Tailwind offre plusieurs classes pour les border-radius. La classe `rounded` applique un border-radius modéré (0.25rem par défaut), tandis que `rounded-full` crée un élément complètement circulaire ou elliptique.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {"text": "`rounded`", "is_correct": true},
+        {"text": "`border-radius`", "is_correct": false},
+        {"text": "`circle`", "is_correct": false},
+        {"text": "`curved`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment appliquer une ombre portée moyenne à un élément avec Tailwind?",
+      "explanation": "Tailwind propose plusieurs classes pour les ombres. La classe `shadow-md` applique une ombre portée de taille moyenne, créant un effet de surélévation modéré pour l'élément.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`shadow-md`", "is_correct": true},
+        {"text": "`box-shadow`", "is_correct": false},
+        {"text": "`elevation-2`", "is_correct": false},
+        {"text": "`drop-shadow`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment utiliser l'espace de nommage groupe (group) pour styliser des éléments enfants lors du survol du parent?",
+      "explanation": "La classe `group` sur un élément parent, combinée avec `group-hover:` sur les enfants, permet de modifier le style des enfants lorsque le parent est survolé. C'est une technique utile pour les cartes, boutons complexes, etc.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```html\n<div class=\"group hover:bg-blue-500\">\n  <span class=\"text-gray-500 group-hover:text-white\">Texte</span>\n</div>\n```", "is_correct": true},
+        {"text": "```html\n<div class=\"hover-group bg-blue-500:hover\">\n  <span class=\"text-gray-500 text-white:parent-hover\">Texte</span>\n</div>\n```", "is_correct": false},
+        {"text": "```html\n<div class=\"parent-hover hover:bg-blue-500\">\n  <span class=\"text-gray-500 hover-child:text-white\">Texte</span>\n</div>\n```", "is_correct": false},
+        {"text": "```html\n<div class=\"hover:children bg-blue-500\">\n  <span class=\"text-gray-500 hover:parent:text-white\">Texte</span>\n</div>\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer un bouton avec une couleur de fond et qui devient plus foncé au survol en Tailwind?",
+      "explanation": "La classe `bg-blue-500` définit un fond bleu de moyenne intensité, et `hover:bg-blue-700` le remplace par un bleu plus foncé au survol. Les classes supplémentaires ajoutent du padding, des coins arrondis et une couleur de texte blanche.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {"text": "`<button class=\"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\">Bouton</button>`", "is_correct": true},
+        {"text": "`<button class=\"background-blue hover-darker text-white bold p-2-4 round\">Bouton</button>`", "is_correct": false},
+        {"text": "`<button class=\"blue hover:darker white bold padding-medium radius\">Bouton</button>`", "is_correct": false},
+        {"text": "`<button style=\"tailwind: bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded\">Bouton</button>`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est la directive permettant d'injecter les styles de base de Tailwind dans votre CSS?",
+      "explanation": "La directive `@tailwind base` injecte les styles de base (reset) de Tailwind, qui normalisent le styling entre les différents navigateurs. Il existe également les directives `@tailwind components` et `@tailwind utilities` pour les autres couches de Tailwind.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {"text": "`@tailwind base`", "is_correct": true},
+        {"text": "`@import tailwind`", "is_correct": false},
+        {"text": "`@include tailwind-base`", "is_correct": false},
+        {"text": "`@use tailwind/base`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer une classe personnalisée qui utilise les utilitaires Tailwind?",
+      "explanation": "La directive `@apply` permet d'extraire des classes utilitaires répétitives en un seul ensemble CSS personnalisé. Cela aide à réduire la duplication tout en maintenant l'approche utilitaire de Tailwind.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "```css\n.btn {\n  @apply py-2 px-4 bg-blue-500 text-white rounded;\n}\n```", "is_correct": true},
+        {"text": "```css\n.btn {\n  extend: py-2 px-4 bg-blue-500 text-white rounded;\n}\n```", "is_correct": false},
+        {"text": "```css\n.btn {\n  @include \"py-2 px-4 bg-blue-500 text-white rounded\";\n}\n```", "is_correct": false},
+        {"text": "```css\n.btn {\n  tailwind: py-2 px-4 bg-blue-500 text-white rounded;\n}\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment faire pour que Tailwind ne génère que les classes CSS utilisées dans votre projet?",
+      "explanation": "Par défaut, Tailwind utilise PurgeCSS pour scanner vos fichiers HTML et JavaScript, et ne garder que les classes CSS effectivement utilisées dans votre application. Cette optimisation se configure dans le fichier tailwind.config.js en spécifiant les fichiers à scanner.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {"text": "En configurant le purge/content dans tailwind.config.js avec les chemins des fichiers du projet", "is_correct": true},
+        {"text": "En ajoutant un script qui supprime les classes non utilisées après la compilation", "is_correct": false},
+        {"text": "En important manuellement les classes nécessaires dans votre fichier CSS", "is_correct": false},
+        {"text": "En utilisant l'option `--reduce` lors de la compilation", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment définir une hauteur minimum de 100% de la hauteur de la fenêtre avec Tailwind?",
+      "explanation": "La classe `min-h-screen` définit `min-height: 100vh`, ce qui fait que l'élément aura une hauteur minimale égale à la hauteur de la fenêtre visible (viewport). C'est souvent utilisé pour les mises en page pleine page.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`min-h-screen`", "is_correct": true},
+        {"text": "`h-full`", "is_correct": false},
+        {"text": "`height-100vh`", "is_correct": false},
+        {"text": "`full-height`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est la classe Tailwind pour aligner verticalement des éléments au centre dans un conteneur Flexbox?",
+      "explanation": "La classe `items-center` utilise la propriété CSS `align-items: center` pour aligner verticalement les éléments dans un conteneur Flexbox. Il faut également appliquer `flex` au conteneur parent pour activer Flexbox.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`items-center`", "is_correct": true},
+        {"text": "`justify-center`", "is_correct": false},
+        {"text": "`align-middle`", "is_correct": false},
+        {"text": "`vertical-center`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment ajouter des breakpoints personnalisés dans Tailwind CSS?",
+      "explanation": "Les breakpoints personnalisés peuvent être ajoutés en modifiant la section `screens` dans votre fichier de configuration Tailwind. Vous pouvez ajouter, modifier ou remplacer les breakpoints existants comme 'sm', 'md', 'lg', 'xl', etc.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {"text": "```js\n// tailwind.config.js\nmodule.exports = {\n  theme: {\n    screens: {\n      'tablet': '640px',\n      'laptop': '1024px',\n      'desktop': '1280px',\n    }\n  }\n}\n```", "is_correct": true},
+        {"text": "```css\n@custom-media --tablet (min-width: 640px);\n@custom-media --laptop (min-width: 1024px);\n@custom-media --desktop (min-width: 1280px);\n```", "is_correct": false},
+        {"text": "```js\n// tailwind.js\nTailwind.addScreens({\n  'tablet': '640px',\n  'laptop': '1024px',\n  'desktop': '1280px'\n});\n```", "is_correct": false},
+        {"text": "```html\n<meta name=\"tailwind:breakpoints\" content=\"tablet=640px,laptop=1024px,desktop=1280px\">\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer un système de grille personnalisé dans Tailwind?",
+      "explanation": "Le système de grille dans Tailwind peut être personnalisé en modifiant les options `gridTemplateColumns` et `gridColumn` dans le fichier de configuration. Vous pouvez définir vos propres modèles de colonnes et classes d'espacement.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {"text": "```js\n// tailwind.config.js\nmodule.exports = {\n  theme: {\n    extend: {\n      gridTemplateColumns: {\n        'auto-fill': 'repeat(auto-fill, minmax(250px, 1fr))',\n      }\n    }\n  }\n}\n```", "is_correct": true},
+        {"text": "```css\n.grid-custom {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n}\n```", "is_correct": false},
+        {"text": "```js\nTailwind.customizeGrid({\n  columns: {\n    'auto-fill': 'repeat(auto-fill, minmax(250px, 1fr))',\n  }\n});\n```", "is_correct": false},
+        {"text": "```html\n<div class=\"grid\" data-columns=\"auto-fill: repeat(auto-fill, minmax(250px, 1fr))\">\n  <!-- contenu -->\n</div>\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment désactiver la préfixation automatique des propriétés obsolètes ou expérimentales dans Tailwind?",
+      "explanation": "Tailwind utilise Autoprefixer via PostCSS pour ajouter automatiquement des préfixes vendeurs. Pour le désactiver, vous devez modifier la configuration PostCSS en définissant `autoprefixer: false` ou en supprimant le plugin Autoprefixer.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {"text": "En configurant `autoprefixer: false` dans postcss.config.js", "is_correct": true},
+        {"text": "En ajoutant `prefixes: 'none'` dans tailwind.config.js", "is_correct": false},
+        {"text": "En utilisant l'option `--no-autoprefixer` lors de la compilation", "is_correct": false},
+        {"text": "En créant un fichier `.autoprefixerrc` avec `{\"enabled\": false}`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment modifier l'espacement par défaut dans Tailwind?",
+      "explanation": "L'espacement (pour les marges, paddings, etc.) peut être personnalisé en modifiant l'option `spacing` dans la configuration de Tailwind. Vous pouvez définir vos propres valeurs d'espacement ou étendre celles existantes.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```js\n// tailwind.config.js\nmodule.exports = {\n  theme: {\n    spacing: {\n      '1': '8px',\n      '2': '12px',\n      '3': '16px',\n      '4': '24px',\n      //...\n    }\n  }\n}\n```", "is_correct": true},
+        {"text": "```css\n:root {\n  --spacing-1: 8px;\n  --spacing-2: 12px;\n  --spacing-3: 16px;\n  --spacing-4: 24px;\n}\n```", "is_correct": false},
+        {"text": "```js\n// tailwind.js\nTailwind.setDefaultSpacing({\n  '1': '8px',\n  '2': '12px',\n  //...\n});\n```", "is_correct": false},
+        {"text": "```html\n<meta name=\"tailwind:spacing\" content=\"1=8px,2=12px,3=16px,4=24px\">\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment utiliser Just-in-Time Mode dans Tailwind CSS?",
+      "explanation": "À partir de Tailwind CSS v3.0, le mode JIT (Just-in-Time) est activé par défaut. Il génère les classes à la demande plutôt que de générer toutes les classes possibles puis de les purger. Cela améliore considérablement les performances et permet des variantes arbitraires.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "Il est activé par défaut dans Tailwind CSS v3.0+", "is_correct": true},
+        {"text": "En ajoutant `mode: 'jit'` dans tailwind.config.js", "is_correct": false},
+        {"text": "En installant le plugin `@tailwindcss/jit`", "is_correct": false},
+        {"text": "En utilisant l'option `--jit` lors de la compilation", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer une variante personnalisée pour les états comme 'active' ou 'focus-within'?",
+      "explanation": "Depuis Tailwind v3.0 avec JIT, vous pouvez utiliser directement n'importe quelle variante comme `active:`, `focus-within:`, etc. Pour les versions antérieures, vous deviez les enregistrer explicitement dans la configuration.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {"text": "Dans Tailwind v3+, elles sont disponibles par défaut (ex: `active:bg-red-500`)", "is_correct": true},
+        {"text": "```js\n// tailwind.config.js (< v3.0)\nmodule.exports = {\n  variants: {\n    extend: {\n      backgroundColor: ['active', 'focus-within']\n    }\n  }\n}\n```", "is_correct": true},
+        {"text": "```css\n@variants active, focus-within {\n  .bg-red-500 {\n    background-color: #ef4444;\n  }\n}\n```", "is_correct": false},
+        {"text": "```js\nTailwind.addVariants(['active', 'focus-within']);\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment appliquer différents styles selon le mode clair/sombre avec Tailwind CSS?",
+      "explanation": "Tailwind fournit la variante `dark:` pour appliquer des styles spécifiques en mode sombre. Par défaut, elle utilise la préférence du système (`prefers-color-scheme: dark`), mais elle peut être configurée pour fonctionner avec une classe manuellement ajoutée.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "`<div class=\"bg-white dark:bg-gray-800 text-black dark:text-white\">Contenu</div>`", "is_correct": true},
+        {"text": "`<div class=\"theme-light bg-white text-black theme-dark:bg-gray-800 theme-dark:text-white\">Contenu</div>`", "is_correct": false},
+        {"text": "`<div class=\"bg-white text-black\" data-dark=\"bg-gray-800 text-white\">Contenu</div>`", "is_correct": false},
+        {"text": "`<div class=\"light:bg-white light:text-black dark:bg-gray-800 dark:text-white\">Contenu</div>`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment extraire des composants réutilisables en Tailwind sans utiliser @apply?",
+      "explanation": "Les composants réutilisables en Tailwind peuvent être créés en utilisant des composants React, Vue, etc., des inclusions de templates, ou simplement en copiant les classes HTML dans des fragments réutilisables. Cette approche conserve la philosophie utilitaire de Tailwind.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "En créant des composants dans votre framework (React/Vue/etc.) ou des includes partiels", "is_correct": true},
+        {"text": "En utilisant la directive @component dans CSS", "is_correct": false},
+        {"text": "En ajoutant des préfixes composant- aux classes Tailwind", "is_correct": false},
+        {"text": "En utilisant l'extension Tailwind Components", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment utiliser les valeurs arbitraires dans Tailwind CSS?",
+      "explanation": "Dans Tailwind v3.0+, vous pouvez utiliser des valeurs arbitraires en les mettant entre crochets. Par exemple, `w-[762px]` pour une largeur spécifique de 762px. Cette fonctionnalité est disponible grâce au mode JIT.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {"text": "`w-[762px] h-[350px] bg-[#1da1f2]`", "is_correct": true},
+        {"text": "`w(762px) h(350px) bg(#1da1f2)`", "is_correct": false},
+        {"text": "`width:762px height:350px background:#1da1f2`", "is_correct": false},
+        {"text": "`w--762px h--350px bg--#1da1f2`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment configurer Tailwind pour utiliser rem au lieu de px?",
+      "explanation": "Par défaut, Tailwind utilise déjà rem pour la plupart de ses utilitaires, comme l'espacement et les tailles de texte. Pour les autres propriétés, vous pouvez personnaliser les unités dans le fichier de configuration.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "Tailwind utilise déjà rem par défaut pour la plupart des utilitaires", "is_correct": true},
+        {"text": "En configurant `units: 'rem'` dans tailwind.config.js", "is_correct": false},
+        {"text": "En ajoutant `@tailwind units rem;` dans votre CSS", "is_correct": false},
+        {"text": "En utilisant un plugin de conversion px-to-rem", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est la meilleure pratique pour organiser les classes Tailwind dans les éléments HTML?",
+      "explanation": "Il est recommandé de regrouper les classes Tailwind par catégorie (layout, spacing, typography, etc.) pour améliorer la lisibilité. Certains développeurs utilisent des outils comme Prettier avec des plugins dédiés pour formater automatiquement les classes.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {"text": "Les regrouper par catégorie et utiliser des outils de formatage comme Prettier", "is_correct": true},
+        {"text": "Les organiser par ordre alphabétique", "is_correct": false},
+        {"text": "Toujours extraire les classes dans des composants CSS", "is_correct": false},
+        {"text": "Limiter à un maximum de 5 classes par élément", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment intégrer des polices personnalisées dans un projet Tailwind?",
+      "explanation": "Pour intégrer des polices personnalisées dans Tailwind, vous devez d'abord les importer via CSS (par exemple avec @font-face), puis les ajouter à la section fontFamily dans le thème de la configuration Tailwind.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "```js\n// tailwind.config.js\nmodule.exports = {\n  theme: {\n    extend: {\n      fontFamily: {\n        'custom': ['CustomFont', 'sans-serif'],\n      }\n    }\n  }\n}\n\n// Dans votre CSS\n@font-face {\n  font-family: 'CustomFont';\n  src: url('/fonts/CustomFont.woff2');\n}\n```", "is_correct": true},
+        {"text": "```html\n<link href=\"/fonts/CustomFont.css\" rel=\"stylesheet\">\n<meta name=\"tailwind:font\" content=\"custom=CustomFont\">\n```", "is_correct": false},
+        {"text": "```js\nTailwind.addFont('custom', 'CustomFont', '/fonts/CustomFont.woff2');\n```", "is_correct": false},
+        {"text": "```css\n@tailwind fonts {\n  .font-custom {\n    font-family: 'CustomFont', sans-serif;\n  }\n}\n```", "is_correct": false}
+      ]
+    }
+  ]
+}

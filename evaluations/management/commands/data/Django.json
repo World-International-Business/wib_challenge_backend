@@ -1,0 +1,416 @@
+{
+  "technology": "Django",
+  "title": "Évaluation Django Complète",
+  "description": "Cette évaluation couvre les concepts fondamentaux et avancés de Django, incluant les modèles, les vues, les templates, les formulaires, et la sécurité.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Django?",
+      "explanation": "Django est un framework web Python de haut niveau qui encourage un développement rapide et propre. Il suit le principe DRY (Don't Repeat Yourself) et adopte le modèle architectural MVT (Model-View-Template).",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {"text": "Un framework web Python", "is_correct": true},
+        {"text": "Un système de gestion de base de données", "is_correct": false},
+        {"text": "Un langage de programmation", "is_correct": false},
+        {"text": "Un serveur web", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle commande permet de créer un nouveau projet Django?",
+      "explanation": "La commande `django-admin startproject nom_du_projet` permet de créer un nouveau projet Django avec la structure de base nécessaire.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`django-admin startproject nom_du_projet`", "is_correct": true},
+        {"text": "`python manage.py startproject nom_du_projet`", "is_correct": false},
+        {"text": "`django create-project nom_du_projet`", "is_correct": false},
+        {"text": "`pip install django-project nom_du_projet`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle commande permet de créer une nouvelle application Django?",
+      "explanation": "La commande `python manage.py startapp nom_de_l_app` crée une nouvelle application Django avec la structure standard incluant models.py, views.py, etc.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`python manage.py startapp nom_de_l_app`", "is_correct": true},
+        {"text": "`django-admin startapp nom_de_l_app`", "is_correct": true},
+        {"text": "`python manage.py createapp nom_de_l_app`", "is_correct": false},
+        {"text": "`django create-app nom_de_l_app`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle est l'architecture utilisée par Django?",
+      "explanation": "Django utilise l'architecture MVT (Model-View-Template), une variante de MVC. Le Model définit les données, la View contient la logique de présentation, et le Template gère l'affichage.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {"text": "MVT (Model-View-Template)", "is_correct": true},
+        {"text": "MVC (Model-View-Controller)", "is_correct": false},
+        {"text": "MVP (Model-View-Presenter)", "is_correct": false},
+        {"text": "MVVM (Model-View-ViewModel)", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Dans un modèle Django, comment définit-on une clé étrangère vers le modèle User?",
+      "explanation": "La classe `ForeignKey` établit une relation une-à-plusieurs entre deux modèles. Le premier paramètre est le modèle cible et on peut utiliser le modèle User du système d'authentification de Django avec `settings.AUTH_USER_MODEL` pour éviter les dépendances circulaires.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "`user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)`", "is_correct": true},
+        {"text": "`user = models.ForeignKey('auth.User', on_delete=models.CASCADE)`", "is_correct": true},
+        {"text": "`user = models.OneToOne(User)`", "is_correct": false},
+        {"text": "`user = models.RelatedField(User, type='foreign')`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Quelle commande exécute les migrations de base de données dans Django?",
+      "explanation": "La commande `python manage.py migrate` applique les migrations à la base de données, créant les tables nécessaires ou les modifiant selon les changements définis dans les fichiers de migration.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`python manage.py migrate`", "is_correct": true},
+        {"text": "`python manage.py makemigrations`", "is_correct": false},
+        {"text": "`python manage.py syncdb`", "is_correct": false},
+        {"text": "`python manage.py updatedb`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer un superutilisateur dans Django?",
+      "explanation": "La commande `python manage.py createsuperuser` lance un assistant interactif qui demande un nom d'utilisateur, une adresse email et un mot de passe pour créer un compte administrateur avec tous les privilèges.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`python manage.py createsuperuser`", "is_correct": true},
+        {"text": "`python manage.py createadmin`", "is_correct": false},
+        {"text": "`django-admin createsuperuser`", "is_correct": false},
+        {"text": "`python manage.py adduser --admin`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment définir une URL dans Django?",
+      "explanation": "Dans Django, les URLs sont définies dans le fichier urls.py en utilisant la fonction `path()` qui prend le motif d'URL, la vue à appeler et un nom optionnel pour l'URL.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {"text": "```python\nfrom django.urls import path\n\nurlpatterns = [\n    path('articles/', views.article_list, name='article_list'),\n]\n```", "is_correct": true},
+        {"text": "```python\nfrom django.urls import url\n\nurlpatterns = [\n    url(r'^articles/$', views.article_list, name='article_list'),\n]\n```", "is_correct": false},
+        {"text": "```python\nfrom django.routes import route\n\nroutes = [\n    route('articles/', views.article_list, name='article_list'),\n]\n```", "is_correct": false},
+        {"text": "```python\nfrom django.urls import map\n\nurlmapping = {\n    'articles/': views.article_list\n}\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment récupérer tous les objets d'un modèle en Django?",
+      "explanation": "La méthode `Model.objects.all()` renvoie un QuerySet contenant tous les objets de la base de données pour le modèle spécifié.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {"text": "`ModelName.objects.all()`", "is_correct": true},
+        {"text": "`ModelName.all()`", "is_correct": false},
+        {"text": "`ModelName.objects.get_all()`", "is_correct": false},
+        {"text": "`ModelName.find_all()`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment filtrer des objets dans un QuerySet Django?",
+      "explanation": "La méthode `filter()` permet d'obtenir un nouveau QuerySet contenant les objets qui correspondent aux paramètres de recherche spécifiés.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {"text": "`ModelName.objects.filter(field_name='value')`", "is_correct": true},
+        {"text": "`ModelName.filter(field_name='value')`", "is_correct": false},
+        {"text": "`ModelName.objects.find(field_name='value')`", "is_correct": false},
+        {"text": "`ModelName.query(field_name='value')`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer une vue basée sur une classe dans Django?",
+      "explanation": "Les vues basées sur des classes (Class-Based Views) sont implémentées en héritant de classes comme `View`, `TemplateView`, `ListView`, etc. de django.views.generic. Elles offrent un moyen réutilisable et orienté objet de gérer les requêtes HTTP.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```python\nfrom django.views.generic import ListView\n\nclass ArticleListView(ListView):\n    model = Article\n    template_name = 'articles/article_list.html'\n```", "is_correct": true},
+        {"text": "```python\nfrom django.views import View\n\nclass ArticleListView(View):\n    def get(self, request):\n        articles = Article.objects.all()\n        return render(request, 'articles/article_list.html', {'articles': articles})\n```", "is_correct": true},
+        {"text": "```python\nclass ArticleListView:\n    @staticmethod\n    def as_view(request):\n        articles = Article.objects.all()\n        return render(request, 'articles/article_list.html', {'articles': articles})\n```", "is_correct": false},
+        {"text": "```python\nfrom django.views import ClassView\n\nclass ArticleListView(ClassView):\n    model = Article\n    template = 'articles/article_list.html'\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer un formulaire à partir d'un modèle Django?",
+      "explanation": "Django permet de générer automatiquement des formulaires à partir de modèles en utilisant `ModelForm`. Cela crée un formulaire avec des champs correspondant aux champs du modèle, avec les validations appropriées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {"text": "```python\nfrom django import forms\nfrom .models import Article\n\nclass ArticleForm(forms.ModelForm):\n    class Meta:\n        model = Article\n        fields = ['title', 'content']\n```", "is_correct": true},
+        {"text": "```python\nfrom django.forms import Form\nfrom .models import Article\n\nclass ArticleForm(Form):\n    model = Article\n    fields = ['title', 'content']\n```", "is_correct": false},
+        {"text": "```python\nfrom django.forms import create_form\nfrom .models import Article\n\nArticleForm = create_form(model=Article, fields=['title', 'content'])\n```", "is_correct": false},
+        {"text": "```python\nfrom django.forms import ModelToForm\n\nclass ArticleForm(ModelToForm):\n    source = Article\n    include = ['title', 'content']\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment afficher un template dans Django?",
+      "explanation": "La fonction `render()` combine un template avec un contexte (dictionnaire de variables) et renvoie une réponse HTTP avec le contenu rendu.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {"text": "```python\nfrom django.shortcuts import render\n\ndef my_view(request):\n    return render(request, 'my_template.html', {'key': 'value'})\n```", "is_correct": true},
+        {"text": "```python\nfrom django.template import Template\n\ndef my_view(request):\n    return Template('my_template.html').render({'key': 'value'})\n```", "is_correct": false},
+        {"text": "```python\nfrom django.views import display\n\ndef my_view(request):\n    return display('my_template.html', context={'key': 'value'})\n```", "is_correct": false},
+        {"text": "```python\nfrom django.response import TemplateResponse\n\ndef my_view(request):\n    return TemplateResponse('my_template.html', {'key': 'value'})\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment étendre un template dans Django?",
+      "explanation": "Django utilise l'héritage de templates pour réutiliser le code HTML. La balise `{% extends %}` spécifie le template parent, et les blocs `{% block %}` définissent les sections qui peuvent être remplacées dans les templates enfants.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {"text": "```html\n{% extends \"base.html\" %}\n\n{% block content %}\n  <h1>Mon contenu</h1>\n{% endblock %}\n```", "is_correct": true},
+        {"text": "```html\n{% include \"base.html\" %}\n\n{% override content %}\n  <h1>Mon contenu</h1>\n{% endoverride %}\n```", "is_correct": false},
+        {"text": "```html\n{% inherit \"base.html\" %}\n\n{% section content %}\n  <h1>Mon contenu</h1>\n{% endsection %}\n```", "is_correct": false},
+        {"text": "```html\n{% parent \"base.html\" %}\n\n{% replace content %}\n  <h1>Mon contenu</h1>\n{% endreplace %}\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment définir une relation many-to-many dans un modèle Django?",
+      "explanation": "Le champ `ManyToManyField` est utilisé pour définir une relation plusieurs-à-plusieurs entre deux modèles. Django crée automatiquement une table de jointure pour gérer cette relation.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {"text": "```python\nclass Article(models.Model):\n    tags = models.ManyToManyField(Tag)\n```", "is_correct": true},
+        {"text": "```python\nclass Article(models.Model):\n    tags = models.ManyToMany(Tag)\n```", "is_correct": false},
+        {"text": "```python\nclass Article(models.Model):\n    tags = models.RelatedTo(Tag, many=True)\n```", "is_correct": false},
+        {"text": "```python\nclass Article(models.Model):\n    tags = models.Multiple(Tag)\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment ajouter un middleware dans Django?",
+      "explanation": "Les middlewares sont configurés dans la liste `MIDDLEWARE` du fichier settings.py. L'ordre est important car ils s'exécutent dans l'ordre pour les requêtes et dans l'ordre inverse pour les réponses.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {"text": "Ajouter la classe du middleware à la liste MIDDLEWARE dans settings.py", "is_correct": true},
+        {"text": "Décorer la fonction de vue avec @middleware('nom_du_middleware')", "is_correct": false},
+        {"text": "Créer un fichier middleware.py à la racine du projet", "is_correct": false},
+        {"text": "Hériter de la classe Middleware dans la vue concernée", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer un signal dans Django?",
+      "explanation": "Les signaux permettent à certaines actions de déclencher des événements ailleurs dans l'application. Django fournit plusieurs signaux prédéfinis comme `pre_save`, `post_save`, etc. qu'on peut connecter à des fonctions.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "```python\nfrom django.db.models.signals import post_save\nfrom django.dispatch import receiver\nfrom .models import Profile, User\n\n@receiver(post_save, sender=User)\ndef create_user_profile(sender, instance, created, **kwargs):\n    if created:\n        Profile.objects.create(user=instance)\n```", "is_correct": true},
+        {"text": "```python\nfrom django.signals import on_save\nfrom .models import Profile, User\n\n@on_save(model=User)\ndef create_user_profile(user, is_new):\n    if is_new:\n        Profile.objects.create(user=user)\n```", "is_correct": false},
+        {"text": "```python\nfrom django.events import subscribe\nfrom .models import Profile, User\n\n@subscribe('user.created')\ndef create_user_profile(user):\n    Profile.objects.create(user=user)\n```", "is_correct": false},
+        {"text": "```python\nfrom django.hooks import Hook\nfrom .models import User\n\nclass UserHook(Hook):\n    model = User\n    \n    def after_create(self, instance):\n        Profile.objects.create(user=instance)\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment implémenter l'authentification par token dans Django?",
+      "explanation": "Django REST framework fournit plusieurs mécanismes d'authentification, dont l'authentification par token. Après avoir configuré `rest_framework.authtoken` dans `INSTALLED_APPS`, on peut utiliser la classe `TokenAuthentication`.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {"text": "```python\n# settings.py\nINSTALLED_APPS = [\n    # ...\n    'rest_framework.authtoken',\n]\n\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': [\n        'rest_framework.authentication.TokenAuthentication',\n    ],\n}\n```", "is_correct": true},
+        {"text": "```python\n# settings.py\nAUTH_BACKENDS = [\n    'django.auth.backends.TokenBackend',\n]\n\nTOKEN_AUTH = {\n    'ENABLED': True,\n    'EXPIRY': 3600,  # seconds\n}\n```", "is_correct": false},
+        {"text": "```python\n# views.py\nfrom django.token import require_token\n\n@require_token\ndef my_protected_view(request):\n    return JsonResponse({'data': 'protected'})\n```", "is_correct": false},
+        {"text": "```python\n# middleware.py\nfrom django.auth.tokens import check_token\n\nclass TokenMiddleware:\n    def __init__(self, get_response):\n        self.get_response = get_response\n        \n    def __call__(self, request):\n        token = request.headers.get('Authorization')\n        if not check_token(token):\n            return HttpResponse('Unauthorized', status=401)\n        return self.get_response(request)\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment créer une pagination dans Django?",
+      "explanation": "Django fournit des classes de pagination dans le module `django.core.paginator`. La classe `Paginator` permet de diviser une collection d'objets en pages.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```python\nfrom django.core.paginator import Paginator\n\ndef article_list(request):\n    article_list = Article.objects.all()\n    paginator = Paginator(article_list, 10)  # 10 articles par page\n    page_number = request.GET.get('page')\n    page_obj = paginator.get_page(page_number)\n    return render(request, 'articles/list.html', {'page_obj': page_obj})\n```", "is_correct": true},
+        {"text": "```python\nfrom django.views.generic import ListView\n\nclass ArticleListView(ListView):\n    model = Article\n    template_name = 'articles/list.html'\n    paginate_by = 10  # 10 articles par page\n```", "is_correct": true},
+        {"text": "```python\nfrom django.pagination import paginate\n\ndef article_list(request):\n    articles = Article.objects.all()\n    paginated_articles = paginate(articles, per_page=10, current_page=request.GET.get('page'))\n    return render(request, 'articles/list.html', {'articles': paginated_articles})\n```", "is_correct": false},
+        {"text": "```python\nfrom django.utils.pagination import add_pagination\n\n@add_pagination(items_per_page=10)\ndef article_list(request):\n    articles = Article.objects.all()\n    return render(request, 'articles/list.html', {'articles': articles})\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment implémenter la validation personnalisée dans un formulaire Django?",
+      "explanation": "Pour ajouter une validation personnalisée à un champ de formulaire, on crée une méthode commençant par `clean_` suivi du nom du champ. Pour valider le formulaire entier, on implémente la méthode `clean()`.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "```python\nclass ArticleForm(forms.ModelForm):\n    def clean_title(self):\n        title = self.cleaned_data.get('title')\n        if 'spam' in title.lower():\n            raise forms.ValidationError(\"Le titre ne peut pas contenir 'spam'\")\n        return title\n```", "is_correct": true},
+        {"text": "```python\nclass ArticleForm(forms.ModelForm):\n    def validate_title(self):\n        title = self.data['title']\n        if 'spam' in title.lower():\n            self.add_error('title', \"Le titre ne peut pas contenir 'spam'\")\n        return title\n```", "is_correct": false},
+        {"text": "```python\nclass ArticleForm(forms.ModelForm):\n    def title_validator(self, value):\n        if 'spam' in value.lower():\n            return False, \"Le titre ne peut pas contenir 'spam'\"\n        return True, value\n```", "is_correct": false},
+        {"text": "```python\nclass ArticleForm(forms.ModelForm):\n    class Meta:\n        model = Article\n        fields = ['title', 'content']\n        validators = {\n            'title': [lambda x: 'spam' not in x.lower() or \"Le titre ne peut pas contenir 'spam'\"],\n        }\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment intégrer les médias (CSS, JS) dans un projet Django?",
+      "explanation": "Django gère les fichiers statiques via l'application `django.contrib.staticfiles`. On configure `STATIC_URL` et `STATIC_ROOT` dans settings.py, et on peut utiliser le tag `{% static %}` dans les templates pour générer les URLs des fichiers statiques.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```html\n{% load static %}\n<link rel=\"stylesheet\" href=\"{% static 'css/style.css' %}\">\n<script src=\"{% static 'js/script.js' %}\"></script>\n```", "is_correct": true},
+        {"text": "```python\n# settings.py\nSTATIC_URL = '/static/'\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]\n```", "is_correct": true},
+        {"text": "```html\n<link rel=\"stylesheet\" href=\"{{ STATIC_PATH }}/css/style.css\">\n<script src=\"{{ STATIC_PATH }}/js/script.js\"></script>\n```", "is_correct": false},
+        {"text": "```python\nfrom django.assets import register\n\nregister('main.css', 'css/style.css')\nregister('main.js', 'js/script.js')\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment utiliser les permissions dans Django?",
+      "explanation": "Django fournit un système de permissions intégré qui permet de contrôler l'accès aux vues et aux modèles. Les permissions peuvent être attribuées à des utilisateurs ou à des groupes.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "```python\nfrom django.contrib.auth.decorators import permission_required\n\n@permission_required('app.add_model')\ndef my_view(request):\n    # Vue accessible uniquement aux utilisateurs avec la permission 'app.add_model'\n    return render(request, 'template.html')\n```", "is_correct": true},
+        {"text": "```python\nfrom django.contrib.auth.mixins import PermissionRequiredMixin\n\nclass MyView(PermissionRequiredMixin, View):\n    permission_required = 'app.add_model'\n    # Vue accessible uniquement aux utilisateurs avec la permission 'app.add_model'\n```", "is_correct": true},
+        {"text": "```python\nfrom django.auth import requires_perm\n\n@requires_perm('app.add_model')\ndef my_view(request):\n    # Vue accessible uniquement aux utilisateurs avec la permission 'app.add_model'\n    return render(request, 'template.html')\n```", "is_correct": false},
+        {"text": "```python\nclass MyView(View):\n    @check_permission('app.add_model')\n    def get(self, request):\n        # Vue accessible uniquement aux utilisateurs avec la permission 'app.add_model'\n        return render(request, 'template.html')\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment implémenter la pagination dans un template Django?",
+      "explanation": "Une fois que l'objet `page_obj` est passé au template depuis la vue, on peut utiliser ses attributs pour construire la navigation de pagination.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```html\n<div class=\"pagination\">\n  <span class=\"step-links\">\n    {% if page_obj.has_previous %}\n      <a href=\"?page=1\">&laquo; première</a>\n      <a href=\"?page={{ page_obj.previous_page_number }}\">précédente</a>\n    {% endif %}\n    \n    <span class=\"current\">\n      Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.\n    </span>\n    \n    {% if page_obj.has_next %}\n      <a href=\"?page={{ page_obj.next_page_number }}\">suivante</a>\n      <a href=\"?page={{ page_obj.paginator.num_pages }}\">dernière &raquo;</a>\n    {% endif %}\n  </span>\n</div>\n```", "is_correct": true},
+        {"text": "```html\n<div class=\"pagination\">\n  {% paginate %}\n    {% if has_previous %}<a href=\"?page={{ previous_page }}\">Précédent</a>{% endif %}\n    Page {{ current_page }} sur {{ total_pages }}\n    {% if has_next %}<a href=\"?page={{ next_page }}\">Suivant</a>{% endif %}\n  {% endpaginate %}\n</div>\n```", "is_correct": false},
+        {"text": "```html\n<div class=\"pagination\">\n  {{ pagination.links }}\n</div>\n```", "is_correct": false},
+        {"text": "```html\n<div class=\"pagination\">\n  {% for page in pages %}\n    <a href=\"?page={{ page.number }}\" class=\"{% if page.is_current %}active{% endif %}\">{{ page.number }}</a>\n  {% endfor %}\n</div>\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment mettre en place le système de messages dans Django?",
+      "explanation": "Django fournit un framework de messages qui permet d'afficher des notifications à l'utilisateur après une action (succès, erreur, info, etc.). Il est généralement configuré par défaut.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {"text": "```python\nfrom django.contrib import messages\n\ndef my_view(request):\n    # ...\n    messages.success(request, 'Opération réussie!')\n    return redirect('home')\n```", "is_correct": true},
+        {"text": "```html\n{% if messages %}\n  <ul class=\"messages\">\n    {% for message in messages %}\n      <li class=\"{{ message.tags }}\">{{ message }}</li>\n    {% endfor %}\n  </ul>\n{% endif %}\n```", "is_correct": true},
+        {"text": "```python\nfrom django.flash import flash\n\ndef my_view(request):\n    # ...\n    flash(request, 'success', 'Opération réussie!')\n    return redirect('home')\n```", "is_correct": false},
+        {"text": "```html\n{% if request.has_messages %}\n  <div class=\"alerts\">\n    {{ request.show_messages }}\n  </div>\n{% endif %}\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment configurer les e-mails dans Django?",
+      "explanation": "Django offre une API simple pour envoyer des e-mails. Les paramètres comme le serveur SMTP, le port, et les identifiants sont configurés dans settings.py.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {"text": "```python\n# settings.py\nEMAIL_HOST = 'smtp.example.com'\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'username'\nEMAIL_HOST_PASSWORD = 'password'\nEMAIL_USE_TLS = True\n```", "is_correct": true},
+        {"text": "```python\nfrom django.core.mail import send_mail\n\nsend_mail(\n    'Subject',\n    'Message.',\n    'from@example.com',\n    ['to@example.com'],\n    fail_silently=False,\n)\n```", "is_correct": true},
+        {"text": "```python\n# settings.py\nMAIL = {\n    'server': 'smtp.example.com',\n    'port': 587,\n    'username': 'username',\n    'password': 'password',\n    'use_tls': True,\n}\n```", "is_correct": false},
+        {"text": "```python\nfrom django.mail import Mailer\n\nmailer = Mailer()\nmailer.send(\n    subject='Subject',\n    body='Message.',\n    from_email='from@example.com',\n    to=['to@example.com'],\n)\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment mettre en place la localisation (i18n) dans Django?",
+      "explanation": "Django fournit un excellent support pour la traduction et la localisation. On utilise des marqueurs de traduction dans le code et les templates, puis on génère et compile les fichiers de traduction.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {"text": "```python\n# settings.py\nUSE_I18N = True\nLANGUAGE_CODE = 'fr'\nLANGUAGES = [\n    ('en', 'English'),\n    ('fr', 'French'),\n]\nLOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]\n```", "is_correct": true},
+        {"text": "```python\nfrom django.utils.translation import gettext as _\n\ndef my_view(request):\n    message = _('Welcome to my site')\n    return render(request, 'template.html', {'message': message})\n```", "is_correct": true},
+        {"text": "```html\n{% load i18n %}\n\n<h1>{% translate \"Welcome to my site\" %}</h1>\n<p>{% blocktranslate %}This is a longer text that needs translation.{% endblocktranslate %}</p>\n```", "is_correct": true},
+        {"text": "```python\n# settings.py\nTRANSLATION = {\n    'enabled': True,\n    'default': 'fr',\n    'available': ['en', 'fr'],\n    'path': 'translations',\n}\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment utiliser la mise en cache dans Django?",
+      "explanation": "Django fournit plusieurs niveaux de mise en cache: par vue, par template, par fragment ou à bas niveau avec l'API de cache. La configuration détermine où les données sont stockées (mémoire, fichier, base de données, Redis, etc.).",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {"text": "```python\n# settings.py\nCACHES = {\n    'default': {\n        'BACKEND': 'django.core.cache.backends.redis.RedisCache',\n        'LOCATION': 'redis://127.0.0.1:6379/1',\n    }\n}\n```", "is_correct": true},
+        {"text": "```python\nfrom django.views.decorators.cache import cache_page\n\n@cache_page(60 * 15)  # cache pendant 15 minutes\ndef my_view(request):\n    # ...\n```", "is_correct": true},
+        {"text": "```html\n{% load cache %}\n\n{% cache 500 sidebar %}\n  <!-- contenu mis en cache -->\n{% endcache %}\n```", "is_correct": true},
+        {"text": "```python\n# settings.py\nCACHING = {\n    'engine': 'redis',\n    'host': '127.0.0.1',\n    'port': 6379,\n    'db': 1,\n}\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment mettre en place les tests dans Django?",
+      "explanation": "Django fournit un framework de test qui étend unittest. Il inclut des classes spécifiques comme TestCase qui configurent automatiquement une base de données de test et divers utilitaires pour tester les vues et les modèles.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {"text": "```python\nfrom django.test import TestCase\nfrom .models import Article\n\nclass ArticleTestCase(TestCase):\n    def setUp(self):\n        Article.objects.create(title=\"Test\", content=\"Content\")\n        \n    def test_article_exists(self):\n        article = Article.objects.get(title=\"Test\")\n        self.assertEqual(article.content, \"Content\")\n```", "is_correct": true},
+        {"text": "```python\nfrom django.test import Client\n\nclass ViewTestCase(TestCase):\n    def test_home_view(self):\n        client = Client()\n        response = client.get('/')\n        self.assertEqual(response.status_code, 200)\n```", "is_correct": true},
+        {"text": "```python\nfrom django.testing import UnitTest\nfrom .models import Article\n\nclass ArticleUnitTest(UnitTest):\n    @before\n    def create_article(self):\n        Article.objects.create(title=\"Test\", content=\"Content\")\n        \n    @test\n    def article_exists(self):\n        article = Article.objects.get(title=\"Test\")\n        self.assertEqual(article.content, \"Content\")\n```", "is_correct": false},
+        {"text": "```python\nfrom django.spec import describe, it\nfrom .models import Article\n\ndescribe(\"Article\", () => {\n    before(() => {\n        Article.objects.create(title=\"Test\", content=\"Content\")\n    })\n    \n    it(\"exists and has correct content\", () => {\n        article = Article.objects.get(title=\"Test\")\n        expect(article.content).to.equal(\"Content\")\n    })\n})\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment déployer une application Django en production?",
+      "explanation": "Un déploiement Django typique utilise un serveur WSGI comme Gunicorn ou uWSGI, un serveur HTTP comme Nginx ou Apache, et parfois un proxy inverse. Il nécessite également des paramètres de sécurité appropriés.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {"text": "```python\n# settings.py pour la production\nDEBUG = False\nALLOWED_HOSTS = ['example.com', 'www.example.com']\nSECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')\nSECURE_SSL_REDIRECT = True\nSESSION_COOKIE_SECURE = True\nCSRF_COOKIE_SECURE = True\n```", "is_correct": true},
+        {"text": "Utiliser Gunicorn ou uWSGI comme serveur WSGI avec Nginx ou Apache comme serveur HTTP", "is_correct": true},
+        {"text": "```bash\n# Déploiement incorrect\npython manage.py runserver 0.0.0.0:80\n```", "is_correct": false},
+        {"text": "Transférer simplement tous les fichiers sur le serveur et exécuter avec `python manage.py runserver`", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment mettre en place un système de vérification d'email (confirmation) lors de l'inscription?",
+      "explanation": "Un système de vérification d'email typique génère un token unique, l'envoie à l'utilisateur par email, et vérifie le token lorsque l'utilisateur clique sur le lien de confirmation.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {"text": "```python\nfrom django.contrib.auth.tokens import default_token_generator\nfrom django.utils.encoding import force_bytes\nfrom django.utils.http import urlsafe_base64_encode\n\ndef register_user(request):\n    # Créer un utilisateur inactif\n    user = User.objects.create_user(username=username, email=email, password=password, is_active=False)\n    \n    # Générer un token\n    token = default_token_generator.make_token(user)\n    uid = urlsafe_base64_encode(force_bytes(user.pk))\n    \n    # Envoyer un email avec le lien de confirmation\n    confirmation_link = f\"https://example.com/activate/{uid}/{token}/\"\n    send_mail('Confirmez votre email', f'Cliquez ici pour confirmer: {confirmation_link}', 'from@example.com', [email])\n```", "is_correct": true},
+        {"text": "Utiliser django-allauth ou django-registration qui fournissent cette fonctionnalité prête à l'emploi", "is_correct": true},
+        {"text": "```python\nfrom django.auth.verification import generate_verification_link\n\ndef register_user(request):\n    user = User.objects.create_user(username=username, email=email, password=password)\n    \n    # Générer et envoyer le lien automatiquement\n    generate_verification_link(user, callback=lambda user: user.is_active = True)\n```", "is_correct": false},
+        {"text": "```python\nfrom django.utils.crypto import get_random_string\n\ndef register_user(request):\n    verification_code = get_random_string(length=6, allowed_chars='0123456789')\n    \n    # Envoyer le code par email\n    send_mail('Votre code', f'Code: {verification_code}', 'from@example.com', [email])\n    \n    # Stocker le code en session\n    request.session['verification_code'] = verification_code\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment implémenter un système de recherche dans Django?",
+      "explanation": "Django offre plusieurs options pour la recherche, de la simple requête avec `filter()` à l'utilisation de moteurs de recherche dédiés comme PostgreSQL Full Text Search ou l'intégration d'Elasticsearch.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {"text": "```python\n# Recherche simple\ndef search(request):\n    query = request.GET.get('q')\n    results = Article.objects.filter(title__icontains=query) | Article.objects.filter(content__icontains=query)\n    return render(request, 'search_results.html', {'results': results, 'query': query})\n```", "is_correct": true},
+        {"text": "```python\n# Avec Django Q\nfrom django.db.models import Q\n\ndef search(request):\n    query = request.GET.get('q')\n    results = Article.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))\n    return render(request, 'search_results.html', {'results': results, 'query': query})\n```", "is_correct": true},
+        {"text": "```python\nfrom django.search import SearchEngine\n\ndef search(request):\n    query = request.GET.get('q')\n    engine = SearchEngine()\n    results = engine.find(query, models=[Article])\n    return render(request, 'search_results.html', {'results': results, 'query': query})\n```", "is_correct": false},
+        {"text": "```python\nfrom django.core.search import search_models\n\ndef search(request):\n    query = request.GET.get('q')\n    results = search_models(query, [Article], fields=['title', 'content'])\n    return render(request, 'search_results.html', {'results': results, 'query': query})\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment implémenter un système de paiement avec Django?",
+      "explanation": "Pour gérer les paiements, on utilise généralement une bibliothèque cliente d'une passerelle de paiement comme Stripe ou PayPal. Django facilite l'intégration grâce à son système de vues et formulaires.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {"text": "```python\n# Avec Stripe\nimport stripe\nfrom django.conf import settings\n\nstripe.api_key = settings.STRIPE_SECRET_KEY\n\ndef payment(request):\n    if request.method == 'POST':\n        # Créer une session de paiement Stripe\n        session = stripe.checkout.Session.create(\n            payment_method_types=['card'],\n            line_items=[{\n                'price_data': {\n                    'currency': 'eur',\n                    'product_data': {\n                        'name': 'Product',\n                    },\n                    'unit_amount': 2000,  # 20.00 EUR\n                },\n                'quantity': 1,\n            }],\n            mode='payment',\n            success_url=request.build_absolute_uri('/success/'),\n            cancel_url=request.build_absolute_uri('/cancel/'),\n        )\n        return redirect(session.url)\n    return render(request, 'payment.html', {\n        'stripe_public_key': settings.STRIPE_PUBLIC_KEY\n    })\n```", "is_correct": true},
+        {"text": "Utiliser une bibliothèque comme django-payments qui abstrait différentes passerelles de paiement", "is_correct": true},
+        {"text": "```python\nfrom django.payments import PaymentProcessor\n\ndef payment(request):\n    processor = PaymentProcessor('stripe')\n    if request.method == 'POST':\n        payment_url = processor.create_session(\n            amount=2000,\n            currency='eur',\n            product_name='Product',\n            success_url='/success/',\n            cancel_url='/cancel/'\n        )\n        return redirect(payment_url)\n    return render(request, 'payment.html')\n```", "is_correct": false},
+        {"text": "```python\nfrom django.commerce import initialize_payment\n\ndef payment(request):\n    if request.method == 'POST':\n        payment_link = initialize_payment({\n            'amount': 2000,\n            'currency': 'eur',\n            'description': 'Product',\n            'customer_email': request.user.email\n        })\n        return redirect(payment_link)\n    return render(request, 'payment.html')\n```", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment améliorer les performances d'une application Django?",
+      "explanation": "L'optimisation des performances de Django implique souvent de réduire les requêtes de base de données, utiliser la mise en cache, configurer des requêtes optimisées, et gérer efficacement les assets statiques.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {"text": "Utiliser `select_related()` et `prefetch_related()` pour réduire le nombre de requêtes de base de données", "is_correct": true},
+        {"text": "Mettre en place un système de cache (Django cache, Redis, Memcached)", "is_correct": true},
+        {"text": "Utiliser une CDN pour servir les fichiers statiques", "is_correct": true},
+        {"text": "Augmenter la valeur de `MAX_PARALLEL_QUERIES` dans settings.py pour paralléliser les requêtes", "is_correct": false}
+      ]
+    },
+    {
+      "text": "Comment gérer les tâches asynchrones dans Django?",
+      "explanation": "Pour les tâches asynchrones ou programmées, on utilise généralement Celery avec un broker comme Redis ou RabbitMQ. Celery permet d'exécuter des tâches en arrière-plan et de planifier des tâches récurrentes.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {"text": "```python\n# settings.py\nCELERY_BROKER_URL = 'redis://localhost:6379/0'\nCELERY_RESULT_BACKEND = 'redis://localhost:6379/0'\n\n# tasks.py\nfrom celery import shared_task\n\n@shared_task\ndef long_running_task(param):\n    # Tâche longue...\n    return result\n\n# views.py\ndef my_view(request):\n    # Exécuter la tâche en arrière-plan\n    task = long_running_task.delay(param)\n    return HttpResponse(f'Tâche {task.id} démarrée')\n```", "is_correct": true},
+        {"text": "Utiliser Django Q ou Django RQ comme alternatives à Celery", "is_correct": true},
+        {"text": "```python\nfrom django.async import task\n\n@task\ndef long_running_task(param):\n    # Tâche longue...\n    return result\n\ndef my_view(request):\n    # Exécuter la tâche en arrière-plan\n    task_id = long_running_task.run_async(param)\n    return HttpResponse(f'Tâche {task_id} démarrée')\n```", "is_correct": false},
+        {"text": "```python\nfrom django.threading import ThreadPool\n\ndef long_running_task(param):\n    # Tâche longue...\n    return result\n\ndef my_view(request):\n    # Exécuter la tâche dans un thread séparé\n    pool = ThreadPool()\n    future = pool.submit(long_running_task, param)\n    return HttpResponse('Tâche démarrée')\n```", "is_correct": false}
+      ]
+    }
+  ]
+}

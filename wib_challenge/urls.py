@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
 from wib_challenge.views import index
 
 urlpatterns = [
@@ -30,11 +31,11 @@ urlpatterns = [
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
+    path('api/', include(('organizations.urls', 'organizations'), namespace='organizations')),
     re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
 ]
 
 if settings.DEBUG:
-
     urlpatterns = [
         path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
         path('api/docs/redoc',
@@ -43,4 +44,5 @@ if settings.DEBUG:
                 SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
         *debug_toolbar_urls(),
         path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
-    ] + urlpatterns
+        *urlpatterns,
+    ]

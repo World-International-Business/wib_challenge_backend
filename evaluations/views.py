@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 
-from evaluations.corrector import correct_submission
+from corrector import correct_submission
 from evaluations.models import Evaluation, SubmissionAttempt, Submission, Answer
 from evaluations.permissions import RejectUnConstructedEvaluation
 from evaluations.serializers import EvaluationSerializer, AnswerSerializer, SubmissionAttemptSerializer, \
@@ -74,12 +74,12 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         """Démarre une nouvelle session d'évaluation"""
         evaluation = self.get_object()
 
-        # Vérifier s'il existe déjà une tentative non terminée pour cet utilisateur
         existing_attempt = SubmissionAttempt.objects.filter(evaluation=evaluation, candidate=request.user,
                                                             submission__isnull=True).first()
 
         if existing_attempt:
             serializer = SubmissionAttemptSerializer(existing_attempt)
+            # TODO add logic to Submission serializer for excluding questions with answers
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         with transaction.atomic():

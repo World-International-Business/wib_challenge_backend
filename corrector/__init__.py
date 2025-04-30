@@ -2,10 +2,12 @@ from django.db import transaction
 from django.utils import timezone
 
 from evaluations.models import Submission, SubmissionAttempt, Answer
+from organizations.models import OrgSubmission, OrgSubmissionAttempt
 
 
 @transaction.atomic
-def correct_submission(submission: Submission, attempt: SubmissionAttempt, save=True):
+def correct_submission(submission: Submission | OrgSubmission, attempt: SubmissionAttempt | OrgSubmissionAttempt,
+                       save=True):
     """
     Corrige une soumission en évaluant chaque réponse
     
@@ -21,7 +23,6 @@ def correct_submission(submission: Submission, attempt: SubmissionAttempt, save=
     answers = attempt.answers.prefetch_related(
         'selected_choices', 'question__choices').all()
 
-    # Réinitialiser le score avant de recalculer
     total_score = 0
 
     for answer in answers:
