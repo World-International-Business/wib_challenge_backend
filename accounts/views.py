@@ -6,7 +6,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema, OpenApiExample
-from rest_framework import generics, viewsets, status
+from rest_framework import generics, viewsets, status, mixins
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404, GenericAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
@@ -20,9 +20,11 @@ from wib_challenge.permissions import IsSelf, ReadOnly
 from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageResponseSerializer
 
 
-class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView, generics.ListAPIView):
+class UserViewSet(mixins.UpdateModelMixin,
+                  mixins.DestroyModelMixin, viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly, IsSelf | IsAdminUser | ReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly,
+                          IsSelf | ReadOnly]
 
     def get_serializer_class(self, *args, **kwargs):
         if self.action == 'change_password':
@@ -52,7 +54,8 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
             ),
             OpenApiExample(
                 name='Same password',
-                description=_('Le nouveau mot de passe doit être différent de l\'ancien.'),
+                description=_(
+                    'Le nouveau mot de passe doit être différent de l\'ancien.'),
                 response_only=True,
                 status_codes=(400,),
                 value={
@@ -72,7 +75,8 @@ class UserViewSet(viewsets.GenericViewSet, generics.RetrieveUpdateDestroyAPIView
     )
     @action(detail=True, methods=['post'], url_path='change-password')
     def change_password(self, request, pk=None):
-        serializer = PasswordChangeSerializer(data=request.data, context={'request': request})
+        serializer = PasswordChangeSerializer(
+            data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -96,7 +100,8 @@ class RegisterUserView(generics.CreateAPIView):
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
-        token = TokenObtainPairSerializer(data={'email': request.data['email'], 'password': request.data['password']})
+        token = TokenObtainPairSerializer(
+            data={'email': request.data['email'], 'password': request.data['password']})
         token.is_valid(raise_exception=True)
         return Response(
             headers=response.headers,
@@ -120,7 +125,8 @@ class PasswordResetView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         value = serializer.validated_data['email']
-        user = get_object_or_404(User.objects.filter(is_active=True), email=value)
+        user = get_object_or_404(
+            User.objects.filter(is_active=True), email=value)
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
 
@@ -133,9 +139,11 @@ class PasswordResetView(GenericAPIView):
 
         user.email_user(
             subject=_("Réinitialisation de mot de passe"),
-            message=render_to_string('accounts/password_reset_email.txt', context),
+            message=render_to_string(
+                'accounts/password_reset_email.txt', context),
             from_email="security@example.com",
-            html_message=render_to_string('accounts/password_reset_email.html', context),
+            html_message=render_to_string(
+                'accounts/password_reset_email.html', context),
         )
 
         return Response({

@@ -24,15 +24,13 @@ from wib_challenge.views import index
 
 urlpatterns = [
     path('administration/', admin.site.urls),
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
-    *static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
     path('api/', include(('core.urls', 'core'), namespace='core')),
     path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
     path('api/', include(('organizations.urls', 'organizations'), namespace='organizations')),
-    re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
+    # re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
 ]
 
 if settings.DEBUG:
@@ -44,5 +42,6 @@ if settings.DEBUG:
                 SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
         *debug_toolbar_urls(),
         path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
-        *urlpatterns,
+        *urlpatterns, *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+        *static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
     ]

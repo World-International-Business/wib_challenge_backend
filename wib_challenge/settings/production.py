@@ -15,40 +15,54 @@ if not DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
         'charset': 'utf8mb4',
     }
 
+# Configuration du cache Redis
+REDIS_URL = config('REDIS_URL', default='redis://redis:6379/0')
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'SOCKET_CONNECT_TIMEOUT': 5,
+            'SOCKET_TIMEOUT': 5,
+            'IGNORE_EXCEPTIONS': True,
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+            'CONNECTION_POOL_KWARGS': {'max_connections': 100}
+        },
+        'KEY_PREFIX': 'wib_challenge'
+    }
+}
+
+# Temps de vie par défaut pour le cache
+CACHE_TTL = 60 * 15  # 15 minutes
+
+# Cache des sessions
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 SECURE_HSTS_SECONDS = True
 
 SECURE_SSL_REDIRECT = True
-
 SESSION_COOKIE_SECURE = True
-
 CSRF_COOKIE_SECURE = True
-
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
 SECURE_HSTS_PRELOAD = True
 
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
-
 CORS_ALLOW_CREDENTIALS = True
 
+# Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
 EMAIL_HOST = 'smtp.gmail.com'
-
 EMAIL_PORT = 587
-
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-
 EMAIL_USE_TLS = True
-
 EMAIL_USE_SSL = False
-
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 SERVER_EMAIL = EMAIL_HOST_USER
 
 ADMINS = [

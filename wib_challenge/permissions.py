@@ -14,6 +14,8 @@ class IsOwner(BasePermission):
             return bool(request.user == obj.user)
         elif hasattr(obj, 'profile'):
             return bool(request.user == obj.profile.user)
+        elif hasattr(obj, 'organization'):
+            return bool(request.user == obj.organization.user)
         else:
             return False
 
