@@ -1,37 +1,6 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-wib_challenge}
-      MYSQL_USER: ${MYSQL_USER:-wib_user}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-wib_password}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_password}
-    volumes:
-      - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    networks:
-      - wib-network
-
-  redis:
-    image: redis:7-alpine
-    restart: always
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-    networks:
-      - wib-network
-
   web:
     build: .
     restart: always
@@ -45,11 +14,6 @@ services:
       - media_volume:/app/media
     env_file:
       - ./.env
-    environment:
-      - DATABASE_URL=mysql://${MYSQL_USER:-wib_user}:${MYSQL_PASSWORD:-wib_password}@db:3306/${MYSQL_DATABASE:-wib_challenge}
-      - REDIS_URL=redis://redis:6379/0
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,web,nginx}
-      - DEBUG=0
     expose:
       - 8000
     networks:
@@ -74,7 +38,5 @@ networks:
     driver: bridge
 
 volumes:
-  mysql_data:
   static_volume:
   media_volume:
-  redis_data:
