@@ -34,12 +34,13 @@ class Command(BaseCommand):
 
         with data_file.open(encoding='utf-8') as f:
             data = json.load(f)
+            tech_name = data.pop('technology')
             try:
                 tech = Technology.objects.get(
-                    name__iexact=data.pop('technology'))
+                    name__iexact=tech_name)
             except Technology.DoesNotExist:
                 self.stdout.write(self.style.ERROR(
-                    f'Technology "{data["technology"]}" not found. Skipping file {data_file.name}.'))
+                    f'Technology "{tech_name}" not found. Skipping file {data_file.name}.'))
                 return
             questions = data.pop('questions', [])
 
@@ -71,7 +72,7 @@ class Command(BaseCommand):
                 questions_obj.append(question)
                 choices_data.append(choices)
 
-            Question.objects.bulk_create(questions_obj)
+            questions_obj = Question.objects.bulk_create(questions_obj)
             choices_obj = []
             for i, question in enumerate(questions_obj):
                 choices = choices_data[i]

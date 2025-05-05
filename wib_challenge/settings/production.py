@@ -34,7 +34,6 @@ CACHES = {
     }
 }
 
-# Temps de vie par défaut pour le cache
 CACHE_TTL = 60 * 15  # 15 minutes
 
 # Cache des sessions
@@ -43,13 +42,19 @@ SESSION_CACHE_ALIAS = 'default'
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
-SECURE_HSTS_SECONDS = True
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# Security settings for HTTPS
+if config('SECURE_SSL_ENABLED', default=False, cast=bool):
+    SECURE_HSTS_SECONDS = 31536000  # 1 year - recommended value for production
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+else:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
 
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
 CORS_ALLOW_CREDENTIALS = True

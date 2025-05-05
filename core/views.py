@@ -2,6 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAdminUser
+from django.http import HttpResponse
 
 from core.filters import TechnologyFilter, ProfessionFilter
 from core.models import Profession, Technology
@@ -29,3 +30,10 @@ class TechnologyViewSet(viewsets.ModelViewSet):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     filterset_class = TechnologyFilter
     search_fields = ['name', 'professions__title']
+
+
+def health_check(request):
+    """
+    Endpoint simple pour les healthchecks Docker
+    """
+    return HttpResponse("ok", content_type="text/plain")

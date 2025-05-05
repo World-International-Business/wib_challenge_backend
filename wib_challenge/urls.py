@@ -21,6 +21,7 @@ from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 from wib_challenge.views import index
+from core.views import health_check
 
 urlpatterns = [
     path('administration/', admin.site.urls),
@@ -30,6 +31,7 @@ urlpatterns = [
     path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
     path('api/', include(('organizations.urls', 'organizations'), namespace='organizations')),
+    path('health/', health_check, name='health_check'),
     # re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
 ]
 
