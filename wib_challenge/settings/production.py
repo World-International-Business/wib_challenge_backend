@@ -15,30 +15,30 @@ if not DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
         'charset': 'utf8mb4',
     }
 
-# Configuration du cache Redis
-REDIS_URL = config('REDIS_URL', default='redis://redis:6379/0')
+# # Configuration du cache Redis
+# REDIS_URL = config('REDIS_URL', default='redis://redis:6379/0')
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_URL,
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'SOCKET_CONNECT_TIMEOUT': 5,
-            'SOCKET_TIMEOUT': 5,
-            'IGNORE_EXCEPTIONS': True,
-            'PARSER_CLASS': 'redis.connection.HiredisParser',
-            'CONNECTION_POOL_KWARGS': {'max_connections': 100}
-        },
-        'KEY_PREFIX': 'wib_challenge'
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': REDIS_URL,
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             'SOCKET_CONNECT_TIMEOUT': 5,
+#             'SOCKET_TIMEOUT': 5,
+#             'IGNORE_EXCEPTIONS': True,
+#             'PARSER_CLASS': 'redis.connection.HiredisParser',
+#             'CONNECTION_POOL_KWARGS': {'max_connections': 100}
+#         },
+#         'KEY_PREFIX': 'wib_challenge'
+#     }
+# }
 
-CACHE_TTL = 60 * 15  # 15 minutes
+# CACHE_TTL = 60 * 15  # 15 minutes
 
-# Cache des sessions
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
+# # Cache des sessions
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_CACHE_ALIAS = 'default'
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
