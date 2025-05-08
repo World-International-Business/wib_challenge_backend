@@ -23,10 +23,10 @@ class SettingsAdmin(admin.ModelAdmin):
 
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
-    list_display = ['title', 'domain', 'question_count', 'slug', 'duration']
+    list_display = ['id', 'title', 'domain', 'question_count', 'slug', 'duration']
     search_fields = ['title']
     readonly_fields = ['slug']
-    ordering = ['title']
+    ordering = ['title', 'id']
     fieldsets = (
         ('Challenge', {
             'fields': ['title', 'description', 'domain', 'duration', 'questions']
@@ -101,7 +101,7 @@ class AnswerInline(admin.TabularInline):
 @admin.register(Submission)
 class SubmissionAdmin(admin.ModelAdmin):
     list_display = ['challenge', 'get_candidate_email', 'result', 'submitted_at']
-    search_fields = ['challenge__title', 'candidate_first_name', 'candidate_last_name', 'candidate_email']
+    search_fields = ['challenge__title', 'candidate__first_name', 'candidate__last_name', 'candidate__email']
     ordering = ['-submitted_at']
     readonly_fields = ['submitted_at']
     inlines = [AnswerInline]
