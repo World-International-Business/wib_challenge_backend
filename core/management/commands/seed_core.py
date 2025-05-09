@@ -38,6 +38,8 @@ class Command(BaseCommand):
                 if created:
                     self.stdout.write(self.style.SUCCESS(f'Created {tech["name"]}'))
                     file, content = self.download_image(tech['url'], media / 'technologies')
+                    if technology.image and technology.image.path:
+                        pass
                     technology.image.save(file, ContentFile(content))
                 else:
                     self.stdout.write(self.style.WARNING(f'{tech["name"]} already exists'))
