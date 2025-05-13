@@ -153,7 +153,7 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
 @login_required
 def personality_evaluation_view(request):
     if request.user.is_staff:
-        messages.info('Vous ne pouvez pas passer d\'évaluation en tant que membre du personnel.')
+        messages.info(request, 'Vous ne pouvez pas passer d\'évaluation en tant que membre du personnel.')
         return redirect('personality_candidates')
 
     if request.user.personality_challenges.exists():
