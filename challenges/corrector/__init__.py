@@ -1,8 +1,9 @@
 import json
 from datetime import date
+
 from django.db import transaction
 
-from challenges.models import Submission, APIUsage
+from challenges.models import Submission, APIUsage, PersonalityChallenge
 from .utils import *
 
 
@@ -68,3 +69,30 @@ def correct_submission(submission: Submission):
     submission.status = Submission.CorrectionStatus.CORRECTED
     submission.save()
     return answers
+
+
+@transaction.atomic
+def correct_personality_challenge(challenge: PersonalityChallenge):
+    client = get_genai_client()
+    answers = list(challenge.answers.all())
+
+    if len(answers) == 0:
+        return None
+    usage, _ = APIUsage.objects.get_or_create(date=date.today())
+
+    prompt = make_personality_prompt(answers)
+
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=[prompt],
+        config=PERSONALITY_CONFIG,
+    )
+
+    challenge.personality_detail = response.text
+    challenge.corrected = True
+    challenge.save()
+
+    usage.count += 1
+    usage.save()
+
+    return challenge

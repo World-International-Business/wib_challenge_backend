@@ -20,7 +20,9 @@ from django.contrib import admin
 from django.urls import path
 
 from accounts.views import login_view, register_view, logout_view, update_profile
-from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view
+from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
+    generate_challenge, generate_logical_challenge, generate_personality_challenge, personality_details_view, \
+    personality_evaluation_view
 from wib_challenge.views import json_input
 
 urlpatterns = [
@@ -29,6 +31,7 @@ urlpatterns = [
     path('resultats/', evaluation_results, name='results'),
     path('resultats/<int:submission_id>-<slug:slug>-<int:challenge_id>', evaluation_results, name='result-detail'),
     path('evaluation/', challenge_evaluation_view, name='challenge_evaluation'),
+    path('evaluation/personality/', personality_evaluation_view, name='personality_evaluation'),
     path('evaluation/<slug:slug>-<int:challenge_id>', challenge_evaluation_view, name='challenge_evaluation_detail'),
     path('submit_evaluation/', submit_evaluation_view, name='submit_evaluation'),
     path('login/', login_view, name='login'),
@@ -36,5 +39,12 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('profile/update/', update_profile, name='update_profile'),
     path('add-questions/', json_input, name='add_questions'),
+    path('create-challenge/', generate_challenge, name='challenge_create'),
+    path('create-challenge/logical/', generate_logical_challenge, name='logical_challenge_create'),
+    path('create-challenge/personality/', generate_personality_challenge, name='personality_challenge_create'),
+    
+    # Nouvelles routes pour l'analyse de personnalité (admin uniquement)
+    path('personalities/', personality_details_view, name='personality_candidates'),
+    path('personalities/<int:user_id>/', personality_details_view, name='personality_details'),
 ]
 urlpatterns += debug_toolbar_urls()

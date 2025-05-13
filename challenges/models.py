@@ -40,7 +40,7 @@ class Challenge(models.Model):
     duration = models.DurationField('Durée', blank=True, help_text='Durée en HH:MM:SS')
     slug = models.SlugField('Slug', max_length=255, blank=True, null=True)
     questions = models.ManyToManyField(Question, verbose_name='Questions', blank=True, related_name='challenges')
-
+    is_logical = models.BooleanField('Test logique', default=False)
     is_active = models.BooleanField('Actif', default=True)
 
     class Meta:
@@ -180,3 +180,42 @@ class APIUsage(models.Model):
     @property
     def limit_reached(self):
         return self.count > 1500
+
+
+class PersonalityChallenge(models.Model):
+    title = models.CharField('Titre', max_length=255)
+    description = models.TextField('Description', blank=True, null=True)
+    slug = models.SlugField('Slug', max_length=255, blank=True, null=True)
+    questions = models.ManyToManyField(Question, verbose_name='Questions', blank=True,
+                                       related_name='personality_challenges')
+    personality_detail = models.TextField('Détails de la personne', blank=True, null=True)
+    candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Utilisateur',
+                                  related_name='personality_challenges')
+    is_passed = models.BooleanField('Passé', default=False)
+    corrected = models.BooleanField('Corrigé', default=False)
+
+    class Meta:
+        verbose_name = 'Challenge de Personnalité'
+        verbose_name_plural = 'Challenges de Personnalité'
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+
+class PersonalityAnswer(models.Model):
+    submission = models.ForeignKey(PersonalityChallenge, on_delete=models.CASCADE, verbose_name='Soumission',
+                                   related_name='answers')
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Question',
+                                 related_name='personality_answers')
+    text = models.TextField('Réponse textuelle', blank=True, null=True)
+    selected_choices = models.ManyToManyField(Choice, verbose_name='Choix sélectionnés', blank=True,
+                                              related_name='personality_submissions')
+    answered_at = models.DateTimeField('Répondu le', auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Réponse de Personnalité'
+        verbose_name_plural = 'Réponses de personnalités'

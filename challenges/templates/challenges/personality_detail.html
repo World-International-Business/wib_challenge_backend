@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load challenges_extras %}
+
+{% block title %}Profil de personnalité - {{ candidate.get_full_name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Profil de personnalité: {{ candidate.get_full_name }}</h1>
+        <a href="{% url 'personality_candidates' %}" class="btn btn-secondary">
+            Retour à la liste
+        </a>
+    </div>
+    
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Informations du candidat</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Nom:</strong> {{ candidate.get_full_name }}</p>
+                    <p><strong>Email:</strong> {{ candidate.email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Date d'inscription:</strong> {{ candidate.date_joined|date:"d/m/Y" }}</p>
+                    <p><strong>Tests de personnalité complétés:</strong> {{ personality_challenges|length }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% for challenge in personality_challenges %}
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">{{ challenge.title }}</h5>
+            <small class="text-muted">Complété le {{ challenge.answers.first.answered_at|date:"d/m/Y à H:i" }}</small>
+        </div>
+        <div class="card-body">
+            <div class="personality-analysis">
+                <h6 class="border-bottom pb-2 mb-3">Analyse de personnalité</h6>
+                <div class="analysis-content">
+                    {{ challenge.personality_detail|render_markdown }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="alert alert-info">
+        Ce candidat n'a pas encore complété de test de personnalité avec des résultats disponibles.
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

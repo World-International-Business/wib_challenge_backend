@@ -4,7 +4,7 @@ from functools import cache
 from google import genai
 from pydantic import BaseModel
 
-from challenges.models import Answer
+from challenges.models import Answer, PersonalityAnswer
 
 
 @cache
@@ -22,6 +22,12 @@ GEMINI_MODEL = "gemini-1.5-flash"
 GENIMI_CONFIG = {
     'response_mime_type': 'application/json',
     'response_schema': list[CorrectorResponse],
+}
+
+# Configuration pour l'analyse de personnalité
+PERSONALITY_CONFIG = {
+    'temperature': 0.7,
+    'max_output_tokens': 2048,
 }
 
 _answer_prompt = """
@@ -44,6 +50,29 @@ Check the correctness of all answers and respond with JSON in the following form
 ]
 """
 
+_personality_answer_prompt = """
+Question: {question}
+{extras}
+Réponse: {answer}
+"""
+
+_personality_prompt = """
+Tu es un psychologue expert en analyse comportementale. Analyse les réponses du candidat à ce test de personnalité.
+
+Voici ses réponses:
+
+{answers}
+
+Sur la base de ces réponses, fournis une analyse complète de la personnalité du candidat, comprenant:
+1. Traits de personnalité dominants
+2. Forces et qualités
+3. Points d'amélioration potentiels
+4. Style de travail et de communication
+5. Compatibilité avec différents environnements professionnels
+
+Reste objectif et factuel dans ton analyse. Limite ta réponse à environ 600 mots.
+"""
+
 
 def make_answer_prompt(answer: Answer):
     return _answer_prompt.format(
@@ -61,6 +90,30 @@ def make_final_prompt(answers: list[Answer]):
         output += make_answer_prompt(answer)
     output += _prompt
     return output
+
+
+def make_personality_answer_prompt(answer: PersonalityAnswer):
+    answer_text = answer.text
+    extras = ''
+    if not answer_text and answer.selected_choices.exists():
+        answer_text = ", ".join([choice.text for choice in answer.selected_choices.all()])
+        extras = ', '.join([choice.text for choice in answer.question.choices.all()])
+
+    return _personality_answer_prompt.format(
+        question=answer.question.title,
+        answer=answer_text,
+        extras=f'Choix proposés: {extras}'
+    )
+
+
+def make_personality_prompt(answers: list[PersonalityAnswer]):
+    answers_text = ""
+    for answer in answers:
+        answers_text += make_personality_answer_prompt(answer)
+
+    return _personality_prompt.format(
+        answers=answers_text
+    )
 
 
 def split_batches(answers: list[Answer], max_tokens=900000) -> list[list[Answer]]:

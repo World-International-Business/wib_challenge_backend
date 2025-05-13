@@ -15,11 +15,12 @@
                 en renseignant votre niveau d'expérience, vos années d'expérience et vos compétences.
             </div>
         {% endif %}
+
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Évaluations</h3>
+                        <h3>Évaluations techniques</h3>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
@@ -28,15 +29,80 @@
                                    href="{% url 'challenge_evaluation_detail' challenge.slug challenge.id %}">
                                     <li class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
                                         <span>{{ challenge.title }}</span>
-
                                     </li>
                                 </a>
-                            {% empty %}
+                                {% empty %}
                                 <li class="list-group-item">
                                     Aucune évaluation disponible
                                 </li>
                             {% endfor %}
                         </ul>
+                        {% if challenges|length > 0 %}
+                            <div class="d-flex justify-content-center mt-4">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        {% if challenges.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="?page={{ challenges.previous_page_number }}">Previous</a>
+                                            </li>
+                                        {% endif %}
+                                        {% for page_number in challenges.paginator.page_range %}
+                                            {% if challenges.number == page_number %}
+                                                <li class="page-item active">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_number }}">{{ page_number }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_number }}">{{ page_number }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if challenges.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="?page={{ challenges.next_page_number }}">Next</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        {% endif %}
+
+                        {% if user.has_skill_infos and not user.is_staff %}
+                            <div class="text-center mt-4">
+                                {% if not challenges %}
+                                    <button type="button" class="btn btn-primary mb-3" id="create-challenge-button">
+                                        Créer un Test
+                                    </button>
+                                {% endif %}
+                                <div class="row justify-content-center">
+                                    {% if not has_logical_test %}
+                                        <div class="col-auto mb-2">
+                                            <button type="button" class="btn btn-info" id="create-logical-button">
+                                                Créer un test logique
+                                            </button>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if not has_personality_test %}
+                                        <div class="col-auto mb-2">
+                                            <button type="button" class="btn btn-success"
+                                                    id="create-personality-button">
+                                                Créer un test de personnalité
+                                            </button>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <p class="text-muted mt-2">
+                                    <small>Les tests générés seront adaptés à votre profil et à votre domaine
+                                        d'expertise.</small>
+                                </p>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="card-footer text-muted fst-italic">
                         Une fois que vous avez cliqué sur le challenge, le chrono se lancera et vous ne pourrez pas
@@ -46,4 +112,73 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        // Bouton pour créer tous les tests
+        const createChallengeButton = document.getElementById('create-challenge-button');
+        if (createChallengeButton) {
+            createChallengeButton.addEventListener('click', () => {
+                createChallengeButton.disabled = true;
+                createChallengeButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création en cours...';
+
+                fetch('{% url 'challenge_create' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                }).then(() => {
+                    window.location.reload()
+                }).catch(() => {
+                    createChallengeButton.disabled = false;
+                    createChallengeButton.innerHTML = 'Erreur - Réessayer';
+                })
+            });
+        }
+
+        // Bouton pour créer un test de personnalité
+        const createPersonalityButton = document.getElementById('create-personality-button');
+        if (createPersonalityButton) {
+            createPersonalityButton.addEventListener('click', () => {
+                createPersonalityButton.disabled = true;
+                createPersonalityButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création en cours...';
+
+                fetch('{% url 'personality_challenge_create' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                }).then(() => {
+                    window.location.href = '{% url 'personality_evaluation' %}'
+                }).catch(() => {
+                    createPersonalityButton.disabled = false;
+                    createPersonalityButton.innerHTML = 'Erreur - Réessayer';
+                })
+            });
+        }
+
+        // Bouton pour créer un test logique
+        const createLogicalButton = document.getElementById('create-logical-button');
+        if (createLogicalButton) {
+            createLogicalButton.addEventListener('click', () => {
+                createLogicalButton.disabled = true;
+                createLogicalButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création en cours...';
+
+                fetch('{% url 'logical_challenge_create' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                }).then(() => {
+                    window.location.reload()
+                }).catch(() => {
+                    createLogicalButton.disabled = false;
+                    createLogicalButton.innerHTML = 'Erreur - Réessayer';
+                })
+            });
+        }
+    </script>
 {% endblock %}

@@ -3,9 +3,6 @@
 
 {% block content %}
     <div class="container mt-4">
-        <div class="row mb-4">
-            <h2 class="text-center">Choisissez une evaluation pour voir les résultats</h2>
-        </div>
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -16,7 +13,10 @@
                         <div class="list-group">
                             {% for submission in submissions %}
                                 <a class="text-decoration-none mb-2"
-                                   href="{% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}{% if add_id %}?user_id={{ submission.candidate.id }}{% endif %}">
+                                   href="
+
+
+                                           {% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}{% if add_id %}?user_id={{ submission.candidate.id }}{% endif %}">
                                     <div class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
                                         <div class="w-50 nowrap text-truncate">{{ submission.challenge.title }}</div>
                                         <div class="text-end me-5 w-25">{{ submission.submitted_at }}</div>
@@ -32,6 +32,39 @@
                                 </li>
                             {% endfor %}
                         </div>
+                        {% if submissions|length > 0 %}
+                            <div class="d-flex justify-content-center mt-4">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        {% if submissions.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="?page={{ submissions.previous_page_number }}">Previous</a>
+                                            </li>
+                                        {% endif %}
+                                        {% for page_number in submissions.paginator.page_range %}
+                                            {% if submissions.number == page_number %}
+                                                <li class="page-item active">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_number }}">{{ page_number }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="?page={{ page_number }}">{{ page_number }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if submissions.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link"
+                                                   href="?page={{ submissions.next_page_number }}">Next</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

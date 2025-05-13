@@ -1,9 +1,12 @@
 import math
 
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.core.mail import mail_managers
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
+from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -11,9 +14,10 @@ from django.urls import reverse
 from django.utils import timezone
 
 from accounts.models import User
-from challenges.challenge_gen import generate_challenge_for_user
-from challenges.corrector import correct_submission
-from challenges.models import Challenge, SubmissionAttempt, Submission, Answer
+from challenges.challenge_gen import generate_challenge_for_user, generate_personality_challenge_for_user, \
+    generate_logical_challenge_for_user
+from challenges.corrector import correct_submission, correct_personality_challenge
+from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, PersonalityChallenge, PersonalityAnswer
 from questions.models import Question
 
 
@@ -37,12 +41,23 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
             submissions = Submission.objects.all()
         else:
             submissions = User.objects.get(id=candidate.id).submissions.all()
-        submissions = submissions.prefetch_related('challenge').select_related('candidate').all()
+        submissions = submissions.prefetch_related('challenge').select_related('candidate').order_by(
+            '-submitted_at').all()
 
         if submissions.count() == 1:
             submission = submissions.first()
             return redirect('result-detail', submission_id=submission.id, slug=submission.challenge.slug,
                             challenge_id=submission.challenge.id)
+
+        # paginate
+        page = request.GET.get('page', 1)
+        paginator = Paginator(submissions, 20)
+        try:
+            submissions = paginator.page(page)
+        except PageNotAnInteger:
+            submissions = paginator.page(1)
+        except EmptyPage:
+            submissions = paginator.page(paginator.num_pages)
 
         context = {
             'submissions': submissions,
@@ -136,6 +151,31 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
 
 @transaction.atomic
 @login_required
+def personality_evaluation_view(request):
+    if request.user.is_staff:
+        messages.info('Vous ne pouvez pas passer d\'évaluation en tant que membre du personnel.')
+        return redirect('personality_candidates')
+
+    if request.user.personality_challenges.exists():
+        challenge = request.user.personality_challenges.first()
+    else:
+        challenge = generate_personality_challenge_for_user(request.user)
+
+    if challenge.corrected or challenge.is_passed:
+        messages.info(request, 'Vous avez déjà passé cette évaluation.')
+        return redirect('home')
+
+    context = {
+        'challenge': challenge,
+        'open_answer_questions': challenge.questions.filter(question_type=Question.QuestionType.OPEN_ANSWER),
+        'choices_questions': challenge.questions.exclude(question_type=Question.QuestionType.OPEN_ANSWER),
+    }
+    return render(request, 'challenges/personallity_evaluation.html', context)
+
+
+
+@transaction.atomic
+@login_required
 def challenge_evaluation_view(request, slug=None, challenge_id=None):
     if request.user.is_staff:
         messages.info(request, 'Vous ne pouvez pas passer d\'évaluation en tant que membre du personnel.')
@@ -147,12 +187,28 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         challenges = User.objects.get(id=request.user.id).challenges.exclude(submissions__candidate_id=request.user.id)
         if challenges.count() == 0:
             challenges = Challenge.objects.filter(attempts__candidate=request.user, attempts__ended_at__isnull=True)
-            if challenges.count() == 0:
-                challenge = generate_challenge_for_user(request.user)
-                request.user.challenges.add(challenge)
-                challenges = [challenge]
+
+        page = request.GET.get('page', 1)
+        paginator = Paginator(challenges, 20)
+        try:
+            challenges = paginator.page(page)
+        except PageNotAnInteger:
+            challenges = paginator.page(1)
+        except EmptyPage:
+            challenges = paginator.page(paginator.num_pages)
+
+        has_personality_test = PersonalityChallenge.objects.filter(candidate=request.user).exists()
+
+        has_logical_test = Challenge.objects.filter(
+            is_logical=True,
+            users=request.user
+        ).exists()
+
         context = {
+            'domain': request.user.domain.name,
             'challenges': challenges,
+            'has_personality_test': has_personality_test,
+            'has_logical_test': has_logical_test,
         }
         return render(request, 'challenges/evaluation_choose.html', context)
 
@@ -181,18 +237,26 @@ def submit_evaluation_view(request):
     if request.method != 'POST':
         return redirect('home')
 
+    is_challenge = request.POST.get('personality', None) is None
+    admin_url = "admin:challenges_submission_change" if is_challenge else "admin:challenges_personalitychallenge_change"
+    _Challenge = Challenge if is_challenge else PersonalityChallenge
+    _Answer = Answer if is_challenge else PersonalityAnswer
+    _correct_submission = correct_submission if is_challenge else correct_personality_challenge
     answers = []
 
-    challenge = get_object_or_404(Challenge, id=request.POST.get('challenge_id'))
-    submission = Submission.objects.create(
-        candidate=request.user,
-        challenge=challenge
-    )
-
-    attempt, _ = SubmissionAttempt.objects.get_or_create(candidate=request.user, challenge=challenge)
-    attempt.ended_at = timezone.now()
-    attempt.submission = submission
-    attempt.save()
+    challenge = get_object_or_404(_Challenge,
+                                  id=request.POST.get('challenge_id'))
+    if is_challenge:
+        submission = Submission.objects.create(
+            candidate=request.user,
+            challenge=challenge
+        )
+        attempt, _ = SubmissionAttempt.objects.get_or_create(candidate=request.user, challenge=challenge)
+        attempt.ended_at = timezone.now()
+        attempt.submission = submission
+        attempt.save()
+    else:
+        submission = challenge
 
     for key in request.POST:
         if key.startswith('answer_'):
@@ -203,38 +267,45 @@ def submit_evaluation_view(request):
             question = get_object_or_404(Question, id=question_id)
             if question.question_type == Question.QuestionType.OPEN_ANSWER:
                 answers.append(
-                    Answer.objects.create(
+                    _Answer.objects.create(
                         submission=submission,
                         question=question,
                         text=values[0]
                     )
                 )
             else:
-                answer = Answer.objects.create(
+                answer = _Answer.objects.create(
                     submission=submission,
                     question=question,
                 )
                 answer.selected_choices.set(values)
                 answers.append(answer)
+    if hasattr(submission, 'is_passed'):
+        submission.is_passed = True
     submission.save()
     mail_managers(
         subject=f'Nouvelle soumission pour le challenge {challenge.title}',
         message=f'Une nouvelle soumission a été faite pour le challenge {challenge.title} '
                 f'par le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
                 f' Soumission ID: {submission.id}.'
-                f'Voir dans admin: {request.build_absolute_uri(reverse("admin:challenges_submission_change", args=[submission.id]))}',
+                f'Voir dans admin: {request.build_absolute_uri(reverse(admin_url, args=[submission.id]))}',
         fail_silently=False,
     )
     try:
-        correct_submission(submission)
-        return redirect(
+        _correct_submission(submission)
+        result_url = request.build_absolute_uri(reverse(
             'result-detail',
-            challenge_id=submission.challenge.id,
-            slug=submission.challenge.slug,
-            submission_id=submission.id,
-        )
+            kwargs={
+                'submission_id': submission.id,
+                'slug': challenge.slug,
+                'challenge_id': challenge.id
+            }
+        ))
+        messages.success(request,
+                         'Réponses envoyées avec success' + ('\n Result: ' + result_url if is_challenge else ''))
+
     except:
-        url = request.build_absolute_uri(reverse("admin:challenges_submission_change", args=[submission.id]))
+        url = request.build_absolute_uri(reverse(admin_url, args=[submission.id]))
         mail_managers(
             subject=f'Erreur lors de la correction de la soumission {submission.id}',
             message=f'Une erreur est survenue lors de la correction de la soumission {submission.id} '
@@ -243,5 +314,86 @@ def submit_evaluation_view(request):
                     f'Voir dans admin: {url}',
             fail_silently=False,
         )
-        messages.success(request, 'Réponses envoyées avec success')
-        return render(request, 'challenges/home.html')
+    return render(request, 'challenges/home.html')
+
+
+def generate_challenge(request):
+    if request.method != 'POST' or not request.user.has_skill_infos or request.user.is_staff:
+        return redirect('home')
+    challenge = generate_challenge_for_user(request.user)
+    request.user.challenges.add(challenge)
+    if request.user.challenges.filter(is_logical=True).count() == 0:
+        logical_challenge = generate_logical_challenge_for_user(request.user)
+        request.user.challenges.add(logical_challenge)
+    if request.user.personality_challenges.count() == 0:
+        generate_personality_challenge_for_user(request.user)
+    return HttpResponse()
+
+
+def generate_personality_challenge(request):
+    if request.method != 'POST' or not request.user.has_skill_infos or request.user.is_staff:
+        return redirect('home')
+
+    if PersonalityChallenge.objects.filter(candidate=request.user).exists():
+        messages.info(request, 'Vous avez déjà un test de personnalité disponible.')
+        return HttpResponse()
+
+    challenge = generate_personality_challenge_for_user(request.user)
+    request.user.personality_challenges.add(challenge)
+    return HttpResponse()
+
+
+def generate_logical_challenge(request):
+    if request.method != 'POST' or not request.user.has_skill_infos or request.user.is_staff:
+        return redirect('home')
+
+    # Vérifier si l'utilisateur a déjà un test logique
+    if Challenge.objects.filter(
+            is_logical=True,
+            users=request.user
+    ).exists():
+        messages.info(request, 'Vous avez déjà un test logique disponible.')
+        return HttpResponse()
+
+    challenge = generate_logical_challenge_for_user(request.user)
+    request.user.challenges.add(challenge)
+    return HttpResponse()
+
+
+@staff_member_required
+def personality_details_view(request, user_id=None):
+    """Vue pour afficher les détails de personnalité des candidats (admin uniquement)"""
+
+    if user_id:
+        candidate = get_object_or_404(User, id=user_id)
+        personality_challenges = PersonalityChallenge.objects.filter(
+            candidate=candidate,
+            corrected=True
+        ).order_by('-id')
+
+        context = {
+            'candidate': candidate,
+            'personality_challenges': personality_challenges,
+        }
+        return render(request, 'challenges/personality_detail.html', context)
+
+    # Récupérer tous les utilisateurs qui ont un test de personnalité
+    users_with_challenges = User.objects.filter(
+        personality_challenges__isnull=False
+    ).distinct().order_by('last_name', 'first_name')
+
+    # Ajouter des informations sur le statut des tests
+    for user in users_with_challenges:
+        challenges = PersonalityChallenge.objects.filter(candidate=user)
+        user.has_corrected_challenge = challenges.filter(corrected=True).exists()
+        user.total_challenges = challenges.count()
+        user.corrected_challenges = challenges.filter(corrected=True).count()
+
+    paginator = Paginator(users_with_challenges, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'challenges/personality_candidates.html', context)

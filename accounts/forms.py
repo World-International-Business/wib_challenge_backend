@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import inlineformset_factory
 
-from questions.models import Domain
+from questions.models import Domain, Tag
 from wib_challenge.enums import ExperienceLevel
 from .models import User, UserSkill
 
@@ -30,7 +30,7 @@ class UserUpdateForm(forms.ModelForm):
     experience_level = forms.ChoiceField(choices=ExperienceLevel.choices, required=False, label="Niveau d'expérience")
     experience = forms.IntegerField(min_value=0, required=False, label="Années d'expérience")
     domain = forms.ModelChoiceField(
-        queryset=Domain.objects.all(),  # Récupère tous les domaines de la BD
+        queryset=Domain.objects.exclude(name__iexact='Test Psychotechnique'),  # Récupère tous les domaines de la BD
         required=False,
         empty_label="Sélectionner un domaine",
         label="Domaine"
@@ -52,6 +52,12 @@ class UserUpdateForm(forms.ModelForm):
         return domain
 
 class UserSkillForm(forms.ModelForm):
+    skill = forms.ModelChoiceField(
+        queryset=Tag.objects.exclude(criteria__category__domain__name__iexact='Test Psychotechnique'),
+        required=True,
+        empty_label="Sélectionner une compétence",
+        label="Compétence"
+    )
     class Meta:
         model = UserSkill
         fields = ['skill', 'experience_level']
