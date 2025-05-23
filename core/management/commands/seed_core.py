@@ -1,8 +1,9 @@
 import json
 import urllib.request
+import mimetypes
 from pathlib import Path
+from uuid import uuid4
 
-from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.management import BaseCommand
 from django.db import transaction
@@ -19,16 +20,17 @@ class Command(BaseCommand):
         parser.add_argument('--force', action='store_true', help='Force seed even if data already exists')
 
     @staticmethod
-    def download_image(url: str, destination: Path):
+    def download_image(url: str):
         response = urllib.request.urlopen(url)
-        destination.mkdir(parents=True, exist_ok=True)
-        file = url.split('/')[-1] + '.png'
+        ext = mimetypes.guess_extension(response.info().get_content_type())
+        if ext is None:
+            ext = '.png'
+        file = uuid4().hex + ext
         return file, response.read()
 
     @transaction.atomic
     def handle(self, *args, **options):
         data_dir = Path(__file__).parent / 'data'
-        media = Path(settings.MEDIA_ROOT)
 
         # Chargement des technologies
         with open(data_dir / 'technologies.json', 'r', encoding='utf-8') as f:
@@ -37,9 +39,7 @@ class Command(BaseCommand):
                 technology, created = Technology.objects.get_or_create(name=tech['name'])
                 if created:
                     self.stdout.write(self.style.SUCCESS(f'Created {tech["name"]}'))
-                    file, content = self.download_image(tech['url'], media / 'technologies')
-                    if technology.image and technology.image.path:
-                        pass
+                    file, content = self.download_image(tech['url'])
                     technology.image.save(file, ContentFile(content))
                 else:
                     self.stdout.write(self.style.WARNING(f'{tech["name"]} already exists'))
