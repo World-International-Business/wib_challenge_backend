@@ -105,12 +105,15 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         attempt = self.verify_attempt(request, session_pk)
 
         answers_to_create = []
+        
+        excluded_question_ids = attempt.answers.values_list('question_id', flat=True)
 
         for answer_data in request.data:
             try:
                 serializer = AnswerSerializer(data=answer_data)
                 serializer.is_valid(raise_exception=True)
-
+                if serializer.validated_data['question'].id in excluded_question_ids:
+                    continue
                 answer = Answer(attempt=attempt, question_id=serializer.validated_data['question'].id,
                                 delta_time=serializer.validated_data.get('delta_time', 0),
                                 status=serializer.validated_data.get('status', Answer.Status.PENDING))
@@ -147,8 +150,8 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         attempt.save()
 
         correct_submission(submission, attempt)
-
-        serializer = SubmissionAttemptSerializer(attempt.refresh_from_db(), context={'request': request})
+        attempt.refresh_from_db()
+        serializer = SubmissionAttemptSerializer(attempt, context={'request': request})
         return Response(serializer.data)
 
     @method_decorator(cache_page(60 * 30))
