@@ -145,6 +145,67 @@
     ]
   },
   {
+    "profession": "Chef·fe de projet technique",
+    "technologies": [
+      "Jira",
+      "Confluence",
+      "Agile",
+      "SCRUM",
+      "Kanban",
+      "Git",
+      "GitHub",
+      "GitLab",
+      "UML",
+      "Gestion de projet",
+      "Linear",
+      "Notion",
+      "Azure DevOps",
+      "Trello",
+      "Microsoft Project",
+      "Slack",
+      "Miro"
+    ]
+  },
+  {
+    "profession": "Chef·fe de projet digital",
+    "technologies": [
+      "Jira",
+      "Confluence",
+      "Agile",
+      "SCRUM",
+      "Kanban",
+      "Trello",
+      "ClickUp",
+      "Linear",
+      "Notion",
+      "Miro",
+      "Figma",
+      "Adobe XD",
+      "Microsoft Project",
+      "Slack",
+      "Asana",
+      "Gestion de projet"
+    ]
+  },
+  {
+    "profession": "PMO (Project Management Officer)",
+    "technologies": [
+      "Microsoft Project",
+      "Jira",
+      "Confluence",
+      "Trello",
+      "ClickUp",
+      "Linear",
+      "Notion",
+      "Agile",
+      "SCRUM",
+      "Kanban",
+      "PMP",
+      "Microsoft Office",
+      "Gestion de projet"
+    ]
+  },
+  {
     "profession": "Chief data officer",
     "technologies": [
       "Tableau Software",
@@ -271,7 +332,7 @@
       "Hadoop",
       "Spark",
       "Deep Learning",
-      "NLP",
+      "NLP (Natural language processing)",
       "Snowflake",
       "Databricks",
       "DBT",
@@ -286,8 +347,8 @@
       "TypeScript",
       "React",
       "Angular",
-      "Vue.js",
-      "Node.js",
+      "vueJS",
+      "NodeJS",
       "Express",
       "Python",
       "Django",
@@ -305,7 +366,7 @@
       "GraphQL",
       "HTML5",
       "CSS3",
-      "NextJS",
+      "Next JS",
       "NUXT",
       "Redux",
       "Prisma",
@@ -343,7 +404,7 @@
       "Python",
       "C#",
       "PHP",
-      "Node.js",
+      "NodeJS",
       "Ruby",
       "Go",
       "SQL",
@@ -376,8 +437,8 @@
       "TypeScript",
       "React",
       "Angular",
-      "Vue.js",
-      "Next.js",
+      "vueJS",
+      "Next JS",
       "SASS",
       "Tailwind CSS",
       "Bootstrap",
@@ -428,7 +489,7 @@
       "IBM Mainframe",
       "Oracle",
       "SQL",
-      "PL/SQL",
+      "PLSQL",
       "RPG",
       "Programmation AS/400",
       "Natural",
@@ -489,8 +550,8 @@
       "PHP",
       "React",
       "Angular",
-      "Vue.js",
-      "Node.js",
+      "vueJS",
+      "NodeJS",
       "Django",
       "Ruby on Rails",
       "Laravel",
@@ -501,7 +562,7 @@
       "Bootstrap",
       "Tailwind CSS",
       "TypeScript",
-      "Next.js",
+      "Next JS",
       "NUXT",
       "Express",
       "Symfony",
@@ -578,7 +639,7 @@
       "POO",
       "React",
       "Bootstrap",
-      "Node.js",
+      "NodeJS",
       "TypeScript",
       "Docker",
       "PostgreSQL",
@@ -597,10 +658,10 @@
       "Ethers.js",
       "Openzepplin",
       "Bitcoin",
-      "Node.js",
+      "NodeJS",
       "JavaScript",
       "React",
-      "Next.js",
+      "Next JS",
       "Rust",
       "Go",
       "TypeScript"
@@ -614,7 +675,7 @@
       "PyTorch",
       "Machine Learning",
       "Deep Learning",
-      "NLP",
+      "NLP (Natural language processing)",
       "Keras",
       "Scikit-learn",
       "Intelligence Artificielle",
@@ -772,7 +833,7 @@
       "PyTorch",
       "Machine Learning",
       "Deep Learning",
-      "NLP",
+      "NLP (Natural language processing)",
       "Keras",
       "Scikit-learn",
       "Intelligence Artificielle",
@@ -900,7 +961,7 @@
       "Jira",
       "Confluence",
       "TypeScript",
-      "Node.js",
+      "NodeJS",
       "Python",
       "Java",
       "C#",
@@ -942,6 +1003,111 @@
       "Notion",
       "Jira",
       "Confluence"
+    ]
+  },
+  {
+    "profession": "Talent Acquisition",
+    "technologies": [
+      "LinkedIn",
+      "Recrutement",
+      "Microsoft Office",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams",
+      "Notion",
+      "Jira",
+      "Confluence"
+    ]
+  },
+  {
+    "profession": "Chargé·e RH",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams",
+      "LinkedIn"
+    ]
+  },
+  {
+    "profession": "Responsable RH",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams",
+      "LinkedIn",
+      "Recrutement"
+    ]
+  },
+  {
+    "profession": "People Ops",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams",
+      "LinkedIn",
+      "Recrutement"
+    ]
+  },
+  {
+    "profession": "Assistant·e de direction",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams"
+    ]
+  },
+  {
+    "profession": "Assistant·e administratif·ve",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams"
+    ]
+  },
+  {
+    "profession": "Office Manager",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams",
+      "Trello",
+      "Asana"
+    ]
+  },
+  {
+    "profession": "Juriste / Legal",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack"
+    ]
+  },
+  {
+    "profession": "Finance / Comptable",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Excel"
     ]
   },
   {
@@ -1009,10 +1175,10 @@
       "C#",
       "JavaScript",
       "TypeScript",
-      "Node.js",
+      "NodeJS",
       "React",
       "Angular",
-      "Vue.js",
+      "vueJS",
       "Agile",
       "SCRUM"
     ]
