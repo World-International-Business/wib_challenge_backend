@@ -3,7 +3,7 @@ from functools import lru_cache
 from django.db.models import Count
 from rest_framework import serializers
 
-from core.models import Profession, Technology
+from core.models import Profession, Technology, Domain
 
 
 class _QuestionStatsSerializerMixin(serializers.ModelSerializer):
@@ -18,6 +18,12 @@ class _QuestionStatsSerializerMixin(serializers.ModelSerializer):
         return obj.questions.count()
 
 
+class DomainSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Domain
+        fields = '__all__'
+
+
 class TechnologySerializer(_QuestionStatsSerializerMixin):
     class Meta:
         model = Technology
@@ -25,6 +31,8 @@ class TechnologySerializer(_QuestionStatsSerializerMixin):
 
 
 class ProfessionSerializer(_QuestionStatsSerializerMixin):
+    domain_name = serializers.CharField(source='domain.name', read_only=True)
+
     class Meta:
         model = Profession
         exclude = ('technologies',)
@@ -32,6 +40,7 @@ class ProfessionSerializer(_QuestionStatsSerializerMixin):
 
 class ProfessionDetailSerializer(ProfessionSerializer):
     technologies = TechnologySerializer(many=True, read_only=True)
+    domain = DomainSerializer(read_only=True)
 
     class Meta:
         model = Profession

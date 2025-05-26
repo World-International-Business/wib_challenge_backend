@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from core.models import Technology, Profession
+from core.models import Technology, Profession, Domain
 
 
 class TechnologyInline(admin.TabularInline):
@@ -11,6 +11,39 @@ class TechnologyInline(admin.TabularInline):
     verbose_name = _("Technologie associée")
     verbose_name_plural = _("Technologies associées")
     autocomplete_fields = ['technology']
+
+
+@admin.register(Domain)
+class DomainAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'description', 'professions_count', 'created_at', 'updated_at']
+    search_fields = ['name', 'description']
+    readonly_fields = ['created_at', 'updated_at', 'professions_list']
+    
+    fieldsets = (
+        (_('Informations générales'), {
+            'fields': ('name', 'description')
+        }),
+        (_('Professions associées'), {
+            'fields': ('professions_list',),
+            'classes': ('collapse',),
+        }),
+        (_('Métadonnées'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
+    
+    @admin.display(description=_("Nombre de professions"))
+    def professions_count(self, obj):
+        return obj.professions.count()
+    
+    @admin.display(description=_("Professions"))
+    def professions_list(self, obj):
+        professions = obj.professions.all()
+        if professions:
+            return format_html(
+                ", ".join([f'<a href="/admin/core/profession/{p.id}/change/">{p.title}</a>' for p in professions]))
+        return _("Aucune profession associée")
 
 
 @admin.register(Technology)
@@ -59,14 +92,15 @@ class TechnologyAdmin(admin.ModelAdmin):
 
 @admin.register(Profession)
 class ProfessionAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'technologies_count', 'created_at', 'updated_at']
+    list_display = ['id', 'title', 'domain', 'technologies_count', 'created_at', 'updated_at']
     search_fields = ['title']
+    list_filter = ['domain']
     readonly_fields = ['created_at', 'updated_at', 'technologies_preview']
     filter_horizontal = ['technologies']
 
     fieldsets = (
         (_('Informations générales'), {
-            'fields': ('title',)
+            'fields': ('title', 'domain')
         }),
         (_('Technologies associées'), {
             'fields': ('technologies', 'technologies_preview'),

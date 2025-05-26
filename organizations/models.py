@@ -27,6 +27,9 @@ class Organization(models.Model):
     description = models.TextField(_('Description'), blank=True, null=True)
     account = models.OneToOneField(User, on_delete=models.CASCADE, related_name='organization',
                                    verbose_name=_('Compte'))
+    
+    def __str__(self):
+        return self.name
 
 
 class Candidate(models.Model):
@@ -188,6 +191,8 @@ class OrgAnswer(BaseModel):
         unique_together = ('attempt', 'question')
         indexes = [models.Index(fields=['status']), models.Index(fields=['is_correct'])]
 
+    def __str__(self):
+        return f'{self.attempt} - {self.question} - {self.answered_at} - {"Correct" if self.is_correct else "Incorrect"}'
 
 class EvaluationInvitation(BaseModel):
     class Status(models.TextChoices):
@@ -217,4 +222,7 @@ class EvaluationInvitation(BaseModel):
     @property
     def is_valid(self):
         """Vérifie si l'invitation est valide"""
-        return self.status == self.Status.PENDING and timezone.now() < self.expires_at
+        return self.status not in [self.Status.EXPIRED, self.Status.DECLINED] and self.expires_at > timezone.now()
+    
+    def __str__(self):
+        return f'Invitation {self.token} - {self.evaluation.title} - {self.candidate.full_name} - {self.status}'
