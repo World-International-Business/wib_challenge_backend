@@ -77,6 +77,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.SUCCESS(
                         f'Updating {tech["name"]}'))
                     file, content = self.download_image(tech['url'])
+                    technology.image.delete(save=False)
                     technology.image.save(file, ContentFile(content))
                 else:
                     self.stdout.write(self.style.WARNING(
