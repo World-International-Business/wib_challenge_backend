@@ -289,7 +289,7 @@ def submit_evaluation_view(request):
         submission.is_passed = True
     submission.save()
     mail_managers(
-        subject=f'Nouvelle soumission pour le {'challenge' if is_challenge else 'personality_challenge'} {challenge.title}',
+        subject=f"Nouvelle soumission pour le {'challenge' if is_challenge else 'personality_challenge'} {challenge.title}",
         message=f'Une nouvelle soumission a été faite pour le challenge {challenge.title} '
                 f'par le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
                 f' Soumission ID: {submission.id}.'
