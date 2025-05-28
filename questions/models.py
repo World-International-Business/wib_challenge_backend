@@ -16,33 +16,35 @@ class Domain(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField('Nom', max_length=255, unique=True)
+    name = models.CharField('Nom', max_length=255)
     domain = models.ForeignKey(Domain, on_delete=models.CASCADE, verbose_name='Domaine', related_name='categories')
 
     class Meta:
         verbose_name = 'Catégorie'
         verbose_name_plural = 'Catégories'
         ordering = ['name']
+        unique_together = [['name', 'domain']]
 
     def __str__(self):
         return self.name
 
 
 class Criteria(models.Model):
-    name = models.CharField('Nom', max_length=255, unique=True)
+    name = models.CharField('Nom', max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Catégorie', related_name='criteria')
 
     class Meta:
         verbose_name = 'Critère'
         verbose_name_plural = 'Critères'
         ordering = ['name']
+        unique_together = [['name', 'category']]
 
     def __str__(self):
         return self.name
 
 
 class Tag(models.Model):
-    name = models.CharField('Nom', max_length=255, unique=True)
+    name = models.CharField('Nom', max_length=255)
     criteria = models.ForeignKey(Criteria, on_delete=models.CASCADE, verbose_name='Catégorie',
                                  related_name='tags')
 
@@ -50,6 +52,9 @@ class Tag(models.Model):
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
         ordering = ['name']
+        constraints = [
+            models.UniqueConstraint(fields=['name', 'criteria'], name='unique_tag_per_criteria')
+        ]
 
     def __str__(self):
         return self.criteria.category.domain.name + ' - ' + self.name

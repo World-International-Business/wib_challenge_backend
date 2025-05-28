@@ -112,7 +112,7 @@ class CriteriaAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ['name', 'criteria', 'category_name', 'domain_name', 'questions_count']
+    list_display = ['name', 'domain_name', 'criteria', 'category_name', 'questions_count']
     list_filter = ['criteria__category__domain', 'criteria__category', 'criteria']
     search_fields = ['name', 'criteria__name', 'criteria__category__name', 'criteria__category__domain__name']
     ordering = ['criteria__name', 'name']

@@ -39,7 +39,7 @@ class Command(BaseCommand):
 
             tags_dict = {}
             for tag in data.get('tags', []):
-                obj, _ = self.get_or_create_model(Tag, criteria__category__domain=domain, name=tag,
+                obj, _ = self.get_or_create_model(Tag, name=tag, criteria__category__domain=domain,
                                                   defaults={'criteria': criteria})
                 tags_dict[tag] = obj
 
@@ -67,9 +67,3 @@ class Command(BaseCommand):
                                               is_correct=choice_data['is_correct'])
                         choices.append(choice)
                     Choice.objects.bulk_create(choices)
-                        # self.get_or_create_model(
-                        #     Choice,
-                        #     defaults={'question': question},
-                        #     text=choice_data['text'],
-                        #     is_correct=choice_data['is_correct']
-                        # )
