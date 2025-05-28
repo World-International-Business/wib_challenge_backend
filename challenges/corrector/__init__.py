@@ -3,8 +3,8 @@ from datetime import date
 
 from django.db import transaction
 
-from challenges.models import Submission, APIUsage, PersonalityChallenge
-from .utils import *
+from challenges.models import Submission, APIUsage, PersonalityChallenge, Answer
+from challenges.corrector.utils import get_genai_client, CorrectorResponse, GEMINI_MODEL, GENIMI_CONFIG, PERSONALITY_CONFIG, make_final_prompt, make_personality_prompt, split_batches, split_choices_and_open_answers
 
 
 def correct_answers(answers: list[Answer]):
@@ -38,6 +38,7 @@ def correct_answer_choice(answer: Answer):
             correct=correct,
         )
 
+
 @transaction.atomic
 def correct_submission(submission: Submission):
     client = get_genai_client()
@@ -51,7 +52,8 @@ def correct_submission(submission: Submission):
 
     if len(open_answers) != 0:
         usage, _ = APIUsage.objects.get_or_create(date=date.today())
-        max_tokens = client.models.get(model=f"models/{GEMINI_MODEL}").input_token_limit - 50000
+        max_tokens = client.models.get(
+            model=f"models/{GEMINI_MODEL}").input_token_limit - 50000
         batches = split_batches(open_answers, max_tokens)
 
         for batch in batches:
@@ -65,7 +67,8 @@ def correct_submission(submission: Submission):
     if len(answers) == 0:
         submission.result = 0
     else:
-        submission.result = sum(answer.average_score for answer in answers) / submission.challenge.questions.count()
+        submission.result = sum(
+            answer.average_score for answer in answers) / submission.challenge.questions.count()
     submission.status = Submission.CorrectionStatus.CORRECTED
     submission.save()
     return answers

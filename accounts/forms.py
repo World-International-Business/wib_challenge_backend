@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import inlineformset_factory
+from django.db.models import Q
 
 from questions.models import Domain, Tag
 from wib_challenge.enums import ExperienceLevel
@@ -27,10 +28,13 @@ class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(required=True, label="Adresse Email")
     first_name = forms.CharField(max_length=30, required=True, label="Prénom")
     last_name = forms.CharField(max_length=30, required=True, label="Nom")
-    experience_level = forms.ChoiceField(choices=ExperienceLevel.choices, required=False, label="Niveau d'expérience")
-    experience = forms.IntegerField(min_value=0, required=False, label="Années d'expérience")
+    experience_level = forms.ChoiceField(
+        choices=ExperienceLevel.choices, required=False, label="Niveau d'expérience")
+    experience = forms.IntegerField(
+        min_value=0, required=False, label="Années d'expérience")
     domain = forms.ModelChoiceField(
-        queryset=Domain.objects.exclude(challenges__is_logical=True),  # Récupère tous les domaines de la BD
+        # Récupère tous les domaines de la BD
+        queryset=Domain.objects.exclude(challenges__is_logical=True),
         required=False,
         empty_label="Sélectionner un domaine",
         label="Domaine"
@@ -38,7 +42,8 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'experience_level', 'experience', 'domain']
+        fields = ['first_name', 'last_name', 'email',
+                  'experience_level', 'experience', 'domain']
 
     def __init__(self, *args, **kwargs):
         super(UserUpdateForm, self).__init__(*args, **kwargs)
@@ -51,13 +56,16 @@ class UserUpdateForm(forms.ModelForm):
             raise forms.ValidationError("Veuillez sélectionner un domaine.")
         return domain
 
+
 class UserSkillForm(forms.ModelForm):
     skill = forms.ModelChoiceField(
-        queryset=Tag.objects.exclude(questions__personality_challenges__isnull=False, questions__challenges__is_logical=False),
-        required=True,
+        queryset=Tag.objects.exclude(
+            Q(Q(name__icontains='test de personnalité') | Q(name__icontains='test logique'), _connector=Q.OR, questions__personality_challenges__isnull=False, questions__challenges__is_logical=False)),
+        required=True,  # TODO add a way to distinguish between personality and logical challenges
         empty_label="Sélectionner une compétence",
         label="Compétence"
     )
+
     class Meta:
         model = UserSkill
         fields = ['skill', 'experience_level']
@@ -71,4 +79,5 @@ class UserSkillForm(forms.ModelForm):
         }
 
 
-UserSkillFormSet = inlineformset_factory(User, UserSkill, form=UserSkillForm, extra=1, fk_name='user')
+UserSkillFormSet = inlineformset_factory(
+    User, UserSkill, form=UserSkillForm, extra=1, fk_name='user')

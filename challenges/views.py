@@ -289,7 +289,7 @@ def submit_evaluation_view(request):
         submission.is_passed = True
     submission.save()
     mail_managers(
-        subject=f'Nouvelle soumission pour le challenge {challenge.title}',
+        subject=f'Nouvelle soumission pour le {'challenge' if is_challenge else 'personality_challenge'} {challenge.title}',
         message=f'Une nouvelle soumission a été faite pour le challenge {challenge.title} '
                 f'par le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
                 f' Soumission ID: {submission.id}.'
@@ -315,7 +315,7 @@ def submit_evaluation_view(request):
             subject=f'Erreur lors de la correction de la soumission {submission.id}',
             message=f'Une erreur est survenue lors de la correction de la soumission {submission.id} '
                     f'pour le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
-                    f' Challenge: {submission.challenge.title}.'
+                    f' Challenge: {submission.challenge.title if is_challenge else submission.title}.'
                     f'Voir dans admin: {url}',
             fail_silently=False,
         )
