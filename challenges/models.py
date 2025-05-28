@@ -122,7 +122,7 @@ class Submission(models.Model):
 
     @property
     def result_percent(self):
-        return 100 * self.result
+        return 100 * (self.result if self.result is not None else 0)
 
     @property
     def correct_count(self):

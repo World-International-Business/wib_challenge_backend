@@ -13,16 +13,20 @@
                         <div class="list-group">
                             {% for submission in submissions %}
                                 <a class="text-decoration-none mb-2"
-                                   href="
-
-
-                                           {% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}{% if add_id %}?user_id={{ submission.candidate.id }}{% endif %}">
+                                   href="{% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}{% if add_id %}?user_id={{ submission.candidate.id }}{% endif %}">
                                     <div class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
                                         <div class="w-50 nowrap text-truncate">{{ submission.challenge.title }}</div>
                                         <div class="text-end me-5 w-25">{{ submission.submitted_at }}</div>
                                         <div class="flex-grow-1 text-center">
-                                            <span class=" badge bg-primary text-white">
-                                            {{ submission.result_percent|floatformat:'2' }}%</span>
+                                            {% if submission.result is not None %}
+                                                <span class="badge bg-primary text-white">
+                                                    {{ submission.result_percent|floatformat:'2' }}%
+                                                </span>
+                                            {% else %}
+                                                <span class="badge bg-secondary text-white">
+                                                    Non corrigé
+                                                </span>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </a>
