@@ -13,7 +13,7 @@ class TagFilter(admin.SimpleListFilter):
     parameter_name = 'tag'
 
     def lookups(self, request, model_admin):
-        tags = Tag.objects.annotate(num_challenges=Count('challenges')).filter(num_challenges__gt=0).order_by('name')
+        tags = Tag.objects.annotate(num_challenges=Count('questions__challenges')).filter(num_challenges__gt=0).order_by('name')
         return [(tag.id, tag.name) for tag in tags]
 
     def queryset(self, request, queryset):
