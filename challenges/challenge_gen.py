@@ -6,12 +6,12 @@ from django.db.models import Case, When, IntegerField
 
 from accounts.models import User
 from challenges.models import Challenge, Settings, PersonalityChallenge
-from questions.models import Question, Tag
+from questions.models import Question, Tag, Domain
 from wib_challenge.enums import ExperienceLevel
 
 
 def select_questions(skills: list[Tag] | None = None):
-    QUESTION_QUOTAS = {
+    question_quotas = {
         Question.QuestionType.MULTIPLE_CHOICE: 14,
         Question.QuestionType.OPEN_ANSWER: 6,
         # Question.QuestionType.UNIQUE_CHOICE: 5,
@@ -21,8 +21,8 @@ def select_questions(skills: list[Tag] | None = None):
         skill_questions = skill.questions.all()  # (level__lte=F('tags__user_skills__experience_level'))
         queryset = skill_questions.annotate(
             type_priority=Case(
-                *[When(question_type=qt, then=idx) for idx, qt in enumerate(QUESTION_QUOTAS.keys())],
-                default=len(QUESTION_QUOTAS),
+                *[When(question_type=qt, then=idx) for idx, qt in enumerate(question_quotas.keys())],
+                default=len(question_quotas),
                 output_field=IntegerField()
             )
         ).order_by('type_priority')
@@ -32,9 +32,9 @@ def select_questions(skills: list[Tag] | None = None):
             questions_by_type[question.question_type].append(question)
 
         selected_questions = []
-        remaining_needed = sum(QUESTION_QUOTAS.values())
+        remaining_needed = sum(question_quotas.values())
 
-        for q_type, count in QUESTION_QUOTAS.items():
+        for q_type, count in question_quotas.items():
             selected = questions_by_type[q_type][:count]
             selected_questions.extend(selected)
             remaining_needed -= len(selected)
@@ -77,13 +77,13 @@ def generate_challenge_for_user(user: User, skills: list[Tag] | None = None):
 
 
 @transaction.atomic
-def generate_personality_challenge_for_user(user: User):
+def generate_personality_challenge_for_user(user: User, domain: Domain):
     challenge = PersonalityChallenge.objects.create(
         title=f'Test de Personnalité pour {user.get_full_name()}',
         description="Ce test nous permet de mieux vous connaitre",
         candidate=user
     )
-    selected_questions = select_questions([Tag.objects.filter(name__icontains='Test de personnalité').first()])
+    selected_questions = select_questions([Tag.objects.filter(name__icontains='Test de personnalité', criteria__category__domain=domain).first()])
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.save()

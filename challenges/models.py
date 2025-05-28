@@ -5,7 +5,6 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.timezone import now
 
-from accounts.models import User
 from questions.models import Question, Choice, Domain
 
 

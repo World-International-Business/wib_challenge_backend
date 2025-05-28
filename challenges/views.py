@@ -159,7 +159,11 @@ def personality_evaluation_view(request):
     if request.user.personality_challenges.exists():
         challenge = request.user.personality_challenges.first()
     else:
-        challenge = generate_personality_challenge_for_user(request.user)
+        if request.user.domain:
+            challenge = generate_personality_challenge_for_user(request.user, request.user.domain)
+        else:
+            messages.info(request, 'Veuillez sélectionner un domaine avant de continuer.')
+            return redirect('update_profile')
 
     if challenge.corrected or challenge.is_passed:
         messages.info(request, 'Vous avez déjà passé cette évaluation.')
@@ -171,7 +175,6 @@ def personality_evaluation_view(request):
         'choices_questions': challenge.questions.exclude(question_type=Question.QuestionType.OPEN_ANSWER),
     }
     return render(request, 'challenges/personallity_evaluation.html', context)
-
 
 
 @transaction.atomic
@@ -187,6 +190,8 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         challenges = User.objects.get(id=request.user.id).challenges.exclude(submissions__candidate_id=request.user.id)
         if challenges.count() == 0:
             challenges = Challenge.objects.filter(attempts__candidate=request.user, attempts__ended_at__isnull=True)
+
+        challenges = challenges.order_by('title')
 
         page = request.GET.get('page', 1)
         paginator = Paginator(challenges, 20)
@@ -326,7 +331,7 @@ def generate_challenge(request):
         logical_challenge = generate_logical_challenge_for_user(request.user)
         request.user.challenges.add(logical_challenge)
     if request.user.personality_challenges.count() == 0:
-        generate_personality_challenge_for_user(request.user)
+        generate_personality_challenge_for_user(request.user, request.user.domain)
     return HttpResponse()
 
 
@@ -338,7 +343,7 @@ def generate_personality_challenge(request):
         messages.info(request, 'Vous avez déjà un test de personnalité disponible.')
         return HttpResponse()
 
-    challenge = generate_personality_challenge_for_user(request.user)
+    challenge = generate_personality_challenge_for_user(request.user, request.user.domain)
     request.user.personality_challenges.add(challenge)
     return HttpResponse()
 

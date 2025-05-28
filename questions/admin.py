@@ -53,7 +53,7 @@ class ChoiceInline(admin.TabularInline):
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ['title', 'question_type', 'level', 'created_at', 'category__domain']
-    search_fields = ['title']
+    search_fields = ['title', 'category__domain__name', 'tags__name', 'category__domain__name']
     list_filter = ['level', 'question_type', 'category__domain', 'tags']
     ordering = ['title']
     inlines = [ChoiceInline]
@@ -84,7 +84,7 @@ class QuestionAdmin(admin.ModelAdmin):
         #             raise ValidationError(
         #                 'Une question de type "Choix multiple" ou "Choix unique" doit avoir au moins un choix correct')
 
-        super().save_formset(request, form, formset, change)
+        # super().save_formset(request, form, formset, change)
 
     # def save_model(self, request, obj, form, change):
     # if change and obj.domain != form.initial['domain'] and obj.challenges.count() > 0:

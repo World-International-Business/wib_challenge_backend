@@ -52,23 +52,27 @@ Check the correctness of all answers and respond with JSON in the following form
 
 _personality_answer_prompt = """
 Question: {question}
+Description: {description}
 {extras}
 Réponse: {answer}
 """
 
 _personality_prompt = """
 Tu es un psychologue expert en analyse comportementale. Analyse les réponses du candidat à ce test de personnalité.
+Pour le Poste de {domain} dans une startup IT
 
 Voici ses réponses:
 
 {answers}
 
 Sur la base de ces réponses, fournis une analyse complète de la personnalité du candidat, comprenant:
-1. Traits de personnalité dominants
-2. Forces et qualités
-3. Points d'amélioration potentiels
-4. Style de travail et de communication
-5. Compatibilité avec différents environnements professionnels
+Introduction
+Traits de personnalité dominants
+Forces et qualités
+Points d'amélioration potentiels
+Style de travail et de communication
+Compatibilité avec différents environnements professionnels
+Conclusion
 
 Reste objectif et factuel dans ton analyse. Limite ta réponse à environ 600 mots.
 """
@@ -101,6 +105,7 @@ def make_personality_answer_prompt(answer: PersonalityAnswer):
 
     return _personality_answer_prompt.format(
         question=answer.question.title,
+        description=answer.question.description,
         answer=answer_text,
         extras=f'Choix proposés: {extras}'
     )
@@ -112,7 +117,8 @@ def make_personality_prompt(answers: list[PersonalityAnswer]):
         answers_text += make_personality_answer_prompt(answer)
 
     return _personality_prompt.format(
-        answers=answers_text
+        answers=answers_text,
+        domain=answers[0].question.category.domain.name
     )
 
 
