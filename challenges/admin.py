@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils.html import format_html
 
 from challenges.models import (Settings, Challenge, SubmissionAttempt, Submission, Answer, APIUsage,
@@ -274,7 +274,7 @@ class SubmissionAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('candidate', 'challenge', 'attempt').prefetch_related(
             'answers', 'challenge__questions', 'challenge__questions__tags').annotate(answer_count=Count('answers'),
-            correct_answer_count=Count('answers', filter={'answers__is_correct': True}))
+            correct_answer_count=Count('answers', filter=Q(answers__is_correct=True)))
 
     @admin.display(description='Candidat', ordering='candidate__email')
     def candidate_display(self, obj):
