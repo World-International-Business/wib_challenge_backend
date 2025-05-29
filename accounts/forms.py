@@ -34,7 +34,7 @@ class UserUpdateForm(forms.ModelForm):
         min_value=0, required=False, label="Années d'expérience")
     domain = forms.ModelChoiceField(
         # Récupère tous les domaines de la BD
-        queryset=Domain.objects.exclude(challenges__is_logical=True),
+        queryset=Domain.objects.exclude(Q(challenges__is_logical=True)| Q(name__icontains='Test Psychotechnique') ),
         required=False,
         empty_label="Sélectionner un domaine",
         label="Domaine"

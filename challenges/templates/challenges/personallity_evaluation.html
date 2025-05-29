@@ -27,6 +27,8 @@
                                 {{ question.description }}<br>
                                 {% if question.is_multiple_choice %}
                                     <small class="text-muted">Sélectionnez toutes les réponses correctes</small>
+                                {% else %}
+                                    <small class="text-muted">Sélectionnez au moins une réponse</small>
                                 {% endif %}
                             </div>
                             <div class="card-body">
@@ -37,11 +39,12 @@
                                                 <label class="form-check-label"
                                                        for="choice_{{ question.id }}_{{ forloop.counter }}">
                                                     <li class="list-group-item list-group-item-action rounded-2 mb-2">
-                                                        <input class="form-check-input "
-                                                               type="checkbox"
+                                                        <input class="form-check-input question-{{ question.id }}"
+                                                               type="{% if question.is_multiple_choice %}checkbox{% else %}radio{% endif %}"
                                                                name="answer_{{ question.id }}"
                                                                id="choice_{{ question.id }}_{{ forloop.counter }}"
-                                                               value="{{ choice.id }}" required
+                                                               value="{{ choice.id }}"
+                                                               required
                                                         />
                                                         {{ choice.text }}
                                                     </li>
@@ -93,5 +96,27 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('evaluationForm');
+            
+            form.addEventListener('submit', function(event) {
+                let isValid = true;
+                
+                {% for question in choices_questions %}
+                const checkboxes{{ question.id }} = document.querySelectorAll('.question-{{ question.id }}:checked');
+                if (checkboxes{{ question.id }}.length === 0) {
+                    isValid = false;
+                    alert('Veuillez sélectionner au moins une réponse pour la question "{{ question.title }}"');
+                }
+                {% endfor %}
+                
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
