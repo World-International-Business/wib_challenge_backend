@@ -203,6 +203,7 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
     filter_horizontal = ['tags']
     autocomplete_fields = ['category']
+    actions = ['mark_as_general_knowledge', 'mark_as_technical_question', 'mark_as_behavioral_question', 'mark_as_practical_case']
 
     fieldsets = (
         ('Informations de base', {
@@ -223,6 +224,21 @@ class QuestionAdmin(admin.ModelAdmin):
             choices_count=Count('choices', distinct=True),
             correct_choices_count=Count('choices', distinct=True, filter=Q(choices__is_correct=True))
         )
+        
+    @admin.action(description="Marquer comme 'Normal'")
+    def mark_as_general_knowledge(self, request, queryset):
+        queryset.update(question_category=Question.QuestionCategory.NORMAL)
+        self.message_user(request, f"{queryset.count()} question(s) marquée(s) comme 'Normal'")
+    
+    @admin.action(description="Marquer comme 'Test de personnalité'")
+    def mark_as_technical_question(self, request, queryset):
+        queryset.update(question_category=Question.QuestionCategory.PERSONALITY)
+        self.message_user(request, f"{queryset.count()} question(s) marquée(s) comme 'Test de personnalité'")
+    
+    @admin.action(description="Marquer comme 'Test logique'")
+    def mark_as_behavioral_question(self, request, queryset):
+        queryset.update(question_category=Question.QuestionCategory.LOGICAL)
+        self.message_user(request, f"{queryset.count()} question(s) marquée(s) comme 'Test logique'")
 
     @admin.display(description='Domaine', ordering='category__domain__name')
     def domain_name(self, obj):
