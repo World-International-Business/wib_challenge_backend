@@ -47,7 +47,7 @@ class Tag(models.Model):
     name = models.CharField('Nom', max_length=255)
     criteria = models.ForeignKey(Criteria, on_delete=models.CASCADE, verbose_name='Catégorie',
                                  related_name='tags')
-
+    
     class Meta:
         verbose_name = 'Tag'
         verbose_name_plural = 'Tags'
@@ -65,6 +65,11 @@ class Question(models.Model):
         MULTIPLE_CHOICE = 'MCQ', 'Choix multiple'
         UNIQUE_CHOICE = 'UCQ', 'Choix unique'
         OPEN_ANSWER = 'OA', 'Réponse ouverte'
+    
+    class QuestionCategory(models.TextChoices):
+        NORMAL = 'NORMAL', 'Normal'
+        PERSONALITY = 'PERSONALITY', 'Test de personnalité'
+        LOGICAL = 'LOGICAL', 'Test logique'
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Catégorie', related_name='questions')
     tags = models.ManyToManyField(Tag, verbose_name='Tags', related_name='questions', blank=True)
@@ -73,6 +78,8 @@ class Question(models.Model):
     level = models.IntegerField('Niveau', choices=ExperienceLevel.choices, default=ExperienceLevel.BEGINNER, blank=True)
     question_type = models.CharField('Type de question', choices=QuestionType.choices,
                                      default=QuestionType.OPEN_ANSWER, max_length=3)
+    question_category = models.CharField('Catégorie de question', choices=QuestionCategory.choices,
+                                     default=QuestionCategory.NORMAL, max_length=20)
     created_at = models.DateTimeField('Créée le', auto_now_add=True)
 
     class Meta:

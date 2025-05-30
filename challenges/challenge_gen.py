@@ -10,7 +10,7 @@ from questions.models import Question, Tag, Domain
 from wib_challenge.enums import ExperienceLevel
 
 
-def select_questions(skills: list[Tag] | None = None):
+def select_questions(skills: list[Tag] | None = None, question_category: str = Question.QuestionCategory.NORMAL):
     question_quotas = {
         Question.QuestionType.MULTIPLE_CHOICE: 14,
         Question.QuestionType.OPEN_ANSWER: 6,
@@ -18,10 +18,12 @@ def select_questions(skills: list[Tag] | None = None):
     }
     questions = []
     for skill in skills:
-        skill_questions = skill.questions.all()  # (level__lte=F('tags__user_skills__experience_level'))
+        skill_questions = skill.questions.filter(
+            question_category=question_category)  # Filtrer par catégorie de question
         queryset = skill_questions.annotate(
             type_priority=Case(
-                *[When(question_type=qt, then=idx) for idx, qt in enumerate(question_quotas.keys())],
+                *[When(question_type=qt, then=idx)
+                  for idx, qt in enumerate(question_quotas.keys())],
                 default=len(question_quotas),
                 output_field=IntegerField()
             )
@@ -83,7 +85,8 @@ def generate_personality_challenge_for_user(user: User, domain: Domain):
         description="Ce test nous permet de mieux vous connaitre",
         candidate=user
     )
-    selected_questions = select_questions([Tag.objects.filter(name__icontains='Test de personnalité', criteria__category__domain=domain).first()])
+    selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.PERSONALITY,
+                                                                  criteria__category__domain=domain).distinct()), question_category=Question.QuestionCategory.PERSONALITY)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.save()
@@ -98,7 +101,8 @@ def generate_logical_challenge_for_user(user: User):
         description='Test de logique',
         duration=Settings.objects.first().default_challenge_duration
     )
-    selected_questions = select_questions([Tag.objects.filter(name__icontains='Test logique').first()])
+    selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.LOGICAL).distinct()),
+                                          question_category=Question.QuestionCategory.LOGICAL)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.is_logical = True

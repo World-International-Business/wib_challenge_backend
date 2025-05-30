@@ -65,6 +65,23 @@ class ExperienceLevelFilter(admin.SimpleListFilter):
         return queryset
 
 
+class QuestionCategoryFilter(admin.SimpleListFilter):
+    title = 'Catégorie de question'
+    parameter_name = 'question_category'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('NORMAL', 'Normal'),
+            ('PERSONALITY', 'Test de personnalité'),
+            ('LOGICAL', 'Test logique'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(questions__question_category=self.value()).distinct()
+        return queryset
+
+
 @admin.register(Settings)
 class SettingsAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'default_challenge_duration', 'is_database_already_populated']
@@ -94,10 +111,10 @@ class ChallengeQuestionInline(admin.TabularInline):
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
     list_display = ['title', 'domain', 'duration_display', 'question_count', 'get_tags', 'submissions_count',
-                    'is_logical', 'is_active']
+                    'is_logical', 'is_active', 'get_question_categories']
     search_fields = ['title', 'description', 'domain__name', 'questions__tags__name']
-    list_filter = ['domain', 'is_active', 'is_logical', QuestionStatusFilter, ExperienceLevelFilter]
-    readonly_fields = ['slug', 'submissions_count', 'success_rate']
+    list_filter = ['domain', 'is_active', 'is_logical', QuestionStatusFilter, ExperienceLevelFilter, QuestionCategoryFilter]
+    readonly_fields = ['slug', 'submissions_count', 'success_rate', 'get_question_categories']
     autocomplete_fields = ['domain']
     filter_horizontal = ['questions']
     inlines = [ChallengeQuestionInline]
@@ -105,7 +122,7 @@ class ChallengeAdmin(admin.ModelAdmin):
     fieldsets = (('Informations de base', {'fields': ('title', 'description', 'domain', 'duration')}),
                  ('Configuration', {'fields': ('is_logical', 'is_active'), }), ('Questions', {'fields': ('questions',),
             'description': 'Sélectionnez les questions à inclure dans ce challenge', }),
-                 ('Statistiques', {'fields': ('submissions_count', 'success_rate'), 'classes': ('collapse',), }),
+                 ('Statistiques', {'fields': ('submissions_count', 'success_rate', 'get_question_categories'), 'classes': ('collapse',), }),
                  ('Extras', {'fields': ('slug',), 'classes': ('collapse',), }),)
 
     def get_queryset(self, request):
@@ -150,6 +167,13 @@ class ChallengeAdmin(admin.ModelAdmin):
         if 'questions' in form.cleaned_data and not form.cleaned_data['questions'].exists():
             raise ValidationError('Un challenge doit avoir au moins une question')
         return super().save_form(request, form, change)
+
+    @admin.display(description='Catégories de questions')
+    def get_question_categories(self, obj):
+        categories = set()
+        for question in obj.questions.all():
+            categories.add(question.get_question_category_display())
+        return ", ".join(sorted(categories)) if categories else "-"
 
 
 @admin.register(SubmissionAttempt)

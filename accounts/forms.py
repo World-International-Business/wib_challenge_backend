@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import inlineformset_factory
-from django.db.models import Q
 
-from questions.models import Domain, Tag
+from questions.models import Domain, Question, Tag
 from wib_challenge.enums import ExperienceLevel
 from .models import User, UserSkill
 
@@ -34,7 +33,8 @@ class UserUpdateForm(forms.ModelForm):
         min_value=0, required=False, label="Années d'expérience")
     domain = forms.ModelChoiceField(
         # Récupère tous les domaines de la BD
-        queryset=Domain.objects.exclude(Q(challenges__is_logical=True)| Q(name__icontains='Test Psychotechnique') ),
+        queryset=Domain.objects.filter(categories__questions__question_category=Question.QuestionCategory.NORMAL).exclude(categories__questions__isnull=True,
+                                                                                                                          ).distinct(),
         required=False,
         empty_label="Sélectionner un domaine",
         label="Domaine"
@@ -59,8 +59,8 @@ class UserUpdateForm(forms.ModelForm):
 
 class UserSkillForm(forms.ModelForm):
     skill = forms.ModelChoiceField(
-        queryset=Tag.objects.exclude(
-            Q(Q(name__icontains='test de personnalité') | Q(name__icontains='test logique'), _connector=Q.OR, questions__personality_challenges__isnull=False, questions__challenges__is_logical=False)),
+        queryset=Tag.objects.filter(
+            questions__question_category=Question.QuestionCategory.NORMAL).distinct(),
         required=True,  # TODO add a way to distinguish between personality and logical challenges
         empty_label="Sélectionner une compétence",
         label="Compétence"

@@ -195,10 +195,10 @@ class ChoiceAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'domain_name', 'question_type', 'level', 'created_at', 'choices_count',
+    list_display = ['title', 'category', 'domain_name', 'question_type', 'question_category_display', 'level', 'created_at', 'choices_count',
                     'correct_choices_count', 'tags_display']
     search_fields = ['title', 'description', 'category__name', 'category__domain__name', 'tags__name']
-    list_filter = ['level', 'question_type', 'category__domain', 'category', 'tags']
+    list_filter = ['level', 'question_type', 'question_category', 'category__domain', 'category', 'tags']
     ordering = ['-created_at', 'title']
     inlines = [ChoiceInline]
     filter_horizontal = ['tags']
@@ -209,7 +209,7 @@ class QuestionAdmin(admin.ModelAdmin):
             'fields': ['title', 'description', 'category']
         }),
         ('Classification', {
-            'fields': ['tags', 'level', 'question_type'],
+            'fields': ['tags', 'level', 'question_type', 'question_category'],
             'classes': ('collapse',),
         }),
     )
@@ -227,6 +227,10 @@ class QuestionAdmin(admin.ModelAdmin):
     @admin.display(description='Domaine', ordering='category__domain__name')
     def domain_name(self, obj):
         return obj.category.domain.name
+        
+    @admin.display(description='Catégorie de question')
+    def question_category_display(self, obj):
+        return obj.get_question_category_display()
 
     @admin.display(description='Nombre de choix', ordering='choices_count')
     def choices_count(self, obj):
