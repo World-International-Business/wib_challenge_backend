@@ -33,6 +33,8 @@
                                     <a href="{% url 'personality_details' user.id %}" class="btn btn-primary btn-sm">
                                         Voir les détails
                                     </a>
+                                {% elif not user.has_passed_challenge %}
+                                    <button class="btn btn-secondary btn-sm" disabled>Pas encore passé</button>
                                 {% else %}
                                     <button class="btn btn-secondary btn-sm" disabled>En attente de correction</button>
                                 {% endif %}

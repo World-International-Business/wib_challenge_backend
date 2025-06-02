@@ -391,6 +391,7 @@ def personality_details_view(request, user_id=None):
     for user in users_with_challenges:
         challenges = PersonalityChallenge.objects.filter(candidate=user)
         user.has_corrected_challenge = challenges.filter(corrected=True).exists()
+        user.has_passed_challenge = challenges.filter(is_passed=True).exists()
         user.total_challenges = challenges.count()
         user.corrected_challenges = challenges.filter(corrected=True).count()
 
