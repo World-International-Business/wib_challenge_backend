@@ -12,6 +12,7 @@ from questions.serializers import QuestionSerializer
 class EvaluationSerializer(serializers.ModelSerializer):
     estimated_time = serializers.SerializerMethodField()
     is_under_construction = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
     publisher = PublisherSerializer(read_only=True)
     technology = TechnologySerializer(read_only=True)
     profession = ProfessionSerializer(read_only=True)
@@ -38,6 +39,16 @@ class EvaluationSerializer(serializers.ModelSerializer):
     def get_questions_count(self, obj: Evaluation) -> int:
         """Retourne le nombre de questions publiées"""
         return obj.questions.count()
+
+    def get_image(self, obj: Evaluation) -> str | None:
+        request = self.context.get('request', None)
+        image = obj.image or (obj.technology.image if obj.technology else None)
+
+        if image and request:
+            return request.build_absolute_uri(image.url)
+        elif image:
+            return image.url
+        return None
 
 
 class AnswerSerializer(WritableNestedModelSerializer):

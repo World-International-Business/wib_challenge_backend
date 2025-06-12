@@ -22,15 +22,16 @@ class Command(BaseCommand):
     @transaction.atomic
     def handle(self, *args, **options):
         data_dir = Path(__file__).resolve().parent / 'data'
+        force = options.get('force', False)
 
         call_command('create_default_admin')
 
         admin_user = User.objects.get(pk=1)
 
         for file in data_dir.glob('*.json'):
-            self.import_from_json(file, admin_user)
+            self.import_from_json(file, admin_user, force)
 
-    def import_from_json(self, data_file: Path, admin_user: User):
+    def import_from_json(self, data_file: Path, admin_user: User, force=False):
 
         with data_file.open(encoding='utf-8') as f:
             data = json.load(f)
@@ -54,9 +55,22 @@ class Command(BaseCommand):
             )
 
             if not created:
-                self.stdout.write(self.style.WARNING(
-                    f'Évaluation "{evaluation.title}" already exists. Skipping file {data_file.name}.'))
-                return
+                if force:
+                    # Mise à jour de l'évaluation existante
+                    for key, value in data.items():
+                        setattr(evaluation, key, value)
+                    evaluation.image = tech.image
+                    evaluation.save()
+                    
+                    # Suppression des anciennes questions pour recréer toutes les nouvelles
+                    Question.objects.filter(evaluation=evaluation).delete()
+                    
+                    self.stdout.write(self.style.WARNING(
+                        f'Évaluation "{evaluation.title}" mise à jour avec succès.'))
+                else:
+                    self.stdout.write(self.style.WARNING(
+                        f'Évaluation "{evaluation.title}" already exists. Skipping file {data_file.name}.'))
+                    return
 
             questions_obj = []
             choices_data = []
@@ -85,5 +99,6 @@ class Command(BaseCommand):
                     choices_obj.append(choice)
             Choice.objects.bulk_create(choices_obj)
 
+            action = "mise à jour" if not created else "créée"
             self.stdout.write(self.style.SUCCESS(
-                f'Évaluation "{evaluation.title}" créée avec succès avec {len(questions)} questions.'))
+                f'Évaluation "{evaluation.title}" {action} avec succès avec {len(questions)} questions.'))
