@@ -16,6 +16,7 @@
             {% csrf_token %}
             <input type="hidden" name="challenge_id" value="{{ challenge.id }}">
             <input type="hidden" name="personality" value="true">
+
             <!-- Questions QCM -->
             {% if choices_questions %}
                 <div class="container">
@@ -44,13 +45,16 @@
                                                                name="answer_{{ question.id }}"
                                                                id="choice_{{ question.id }}_{{ forloop.counter }}"
                                                                value="{{ choice.id }}"
-                                                               required
                                                         />
                                                         {{ choice.text }}
                                                     </li>
                                                 </label>
                                             {% endfor %}
                                         </ul>
+                                        <div class="error-message text-danger mt-2" id="error-{{ question.id }}"
+                                             style="display: none;">
+                                            Veuillez sélectionner au moins une réponse pour cette question.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -74,12 +78,12 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-floating">
-                                            <textarea class="form-control"
-                                                      name="answer_{{ question.id }}"
-                                                      id="answer_{{ question.id }}"
-                                                      placeholder="Réponse"
-                                                      style="height: 100px" required
-                                            ></textarea>
+                                                            <textarea class="form-control"
+                                                                      name="answer_{{ question.id }}"
+                                                                      id="answer_{{ question.id }}"
+                                                                      placeholder="Réponse"
+                                                                      style="height: 100px" required
+                                                            ></textarea>
                                                 <label for="answer_{{ question.id }}">Réponse</label>
                                             </div>
                                         </div>
@@ -98,25 +102,40 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('evaluationForm');
-            
-            form.addEventListener('submit', function(event) {
+
+            form.addEventListener('submit', function (event) {
                 let isValid = true;
-                
+                let firstErrorElement = null;
+
+                // Masquer tous les messages d'erreur
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.style.display = 'none';
+                });
+
                 {% for question in choices_questions %}
-                const checkboxes{{ question.id }} = document.querySelectorAll('.question-{{ question.id }}:checked');
-                if (checkboxes{{ question.id }}.length === 0) {
-                    isValid = false;
-                    alert('Veuillez sélectionner au moins une réponse pour la question "{{ question.title }}"');
-                }
+                    const checkboxes{{ question.id }} = document.querySelectorAll('.question-{{ question.id }}:checked');
+                    if (checkboxes{{ question.id }}.length === 0) {
+                        isValid = false;
+                        const errorElement = document.getElementById('error-{{ question.id }}');
+                        errorElement.style.display = 'block';
+
+                        if (!firstErrorElement) {
+                            firstErrorElement = errorElement;
+                        }
+                    }
                 {% endfor %}
-                
+
                 if (!isValid) {
                     event.preventDefault();
+
+                    // Scroll jusqu'à la première erreur
+                    if (firstErrorElement) {
+                        firstErrorElement.scrollIntoView({behavior: 'smooth', block: 'center'});
+                    }
                 }
             });
         });
     </script>
 {% endblock %}
-
