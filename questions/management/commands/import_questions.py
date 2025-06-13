@@ -80,7 +80,7 @@ class Command(BaseCommand):
                 old_data['questions'][old_question_index] = self.merge_question(
                     old_data['questions'][old_question_index], question
                 )
-                self.stdout.write(self.style.SUCCESS(f'Merging Question {question['title']}'))
+                self.stdout.write(self.style.SUCCESS(f"Merging Question {question['title']}"))
             else:
                 old_data['questions'].append(question)
         return old_data
