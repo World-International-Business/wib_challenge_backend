@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 import dotenv
@@ -182,7 +183,7 @@ JAZZMIN_SETTINGS = {
     # "site_logo_classes": "img-circle w-100 h-100",
     "copyright": "WIB Challenge",
     "search_model": "accounts.User",
-    "show_ui_builder": DEBUG,  # Show UI builder only in debug mode
+    "show_ui_builder": os.getenv('DEBUG', 'False').lower()  == 'false',  # Show UI builder only in debug mode
     "related_modal_active": True,
     "topmenu_links": [
         {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
