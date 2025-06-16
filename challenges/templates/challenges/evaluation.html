@@ -136,6 +136,13 @@
             let timerInterval = setInterval(updateTimer, 1000);
             updateTimer(); // Initial update
 
+            document.getElementById('evaluationForm').addEventListener('submit', function (event) {
+                clearInterval(timerInterval);
+                if(!confirm("Êtes-vous sûr de vouloir soumettre l'évaluation ?")) {
+                    event.preventDefault();
+                }
+            });
+
         });
 
 
