@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -170,3 +171,60 @@ LOGOUT_REDIRECT_URL = '/'
 # ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False,
 #
 # SITE_ID = 1
+
+# Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "WIB Challenge Admin",
+    "site_header": "WIB Challenge Administration",
+    "welcome_sign": "Bienvenue sur le panneau d'administration du WIB Challenge",
+    "site_icon": "images/favicon.png",
+    # "site_logo": "images/favicon.png",
+    # "site_logo_classes": "img-circle w-100 h-100",
+    "copyright": "WIB Challenge",
+    "search_model": "accounts.User",
+    "show_ui_builder": DEBUG,  # Show UI builder only in debug mode
+    "related_modal_active": True,
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"model": "auth.user"},
+        {"app": "accounts"},
+        {"app": "questions"},
+        {"app": "challenges"},
+    ],
+    "order_with_respect_to": [
+        "challenges","accounts", "questions", "challenges.submission", "challenges.personalitychallenge", "accounts.user", "questions.question",
+    ],
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": True,
+    "brand_small_text": False,
+    "brand_colour": False,
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": True,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": False,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "cerulean",
+    # "dark_mode_theme": "slate",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    "actions_sticky_top": False
+}
