@@ -97,8 +97,8 @@ def generate_personality_challenge_for_user(user: User, domain: Domain):
 def generate_logical_challenge_for_user(user: User):
     challenge = Challenge.objects.create(
         domain=user.domain,
-        title=f'Test de Logique pour {user.get_full_name()}',
-        description='Test de logique',
+        title=f'Test Psychotechnique pour {user.get_full_name()}',
+        description='Test Psychotechnique',
         duration=Settings.objects.first().default_challenge_duration
     )
     selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.LOGICAL).distinct()),
