@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
 from django.forms import inlineformset_factory
 
 from questions.models import Domain, Question, Tag
@@ -77,6 +77,36 @@ class UserSkillForm(forms.ModelForm):
             'skill': forms.Select(attrs={'class': 'form-control'}),
             'experience_level': forms.Select(attrs={'class': 'form-control'}),
         }
+
+
+class WIBPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        required=True,
+        label="Adresse Email",
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Entrez votre adresse email'
+        })
+    )
+
+
+class WIBSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label="Nouveau mot de passe",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Entrez votre nouveau mot de passe'
+        }),
+        strip=False,
+    )
+    new_password2 = forms.CharField(
+        label="Confirmer le nouveau mot de passe",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Confirmez votre nouveau mot de passe'
+        }),
+        strip=False,
+    )
 
 
 UserSkillFormSet = inlineformset_factory(

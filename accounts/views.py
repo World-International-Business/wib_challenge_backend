@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.db import transaction
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
-from .forms import UserRegisterForm, UserUpdateForm, UserSkillFormSet
+from .forms import UserRegisterForm, UserUpdateForm, UserSkillFormSet, WIBPasswordResetForm, WIBSetPasswordForm
 
 User = get_user_model()
 
@@ -64,3 +66,27 @@ def update_profile(request):
         'user_form': user_form,
         'skill_formset': skill_formset,
     })
+
+
+# Vues pour la réinitialisation de mot de passe
+class WIBPasswordResetView(PasswordResetView):
+    template_name = 'accounts/password_reset.html'
+    form_class = WIBPasswordResetForm
+    email_template_name = 'accounts/password_reset_email.txt'
+    html_email_template_name = 'accounts/password_reset_email.html'
+    subject_template_name = 'accounts/password_reset_subject.txt'
+    success_url = reverse_lazy('password_reset_done')
+
+
+class WIBPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'accounts/password_reset_done.html'
+
+
+class WIBPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'accounts/password_reset_confirm.html'
+    form_class = WIBSetPasswordForm
+    success_url = reverse_lazy('password_reset_complete')
+
+
+class WIBPasswordResetCompleteView(PasswordResetCompleteView):
+    template_name = 'accounts/password_reset_complete.html'

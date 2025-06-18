@@ -19,7 +19,9 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from django.contrib import admin
 from django.urls import path
 
-from accounts.views import login_view, register_view, logout_view, update_profile
+from accounts.views import (login_view, register_view, logout_view, update_profile,
+                           WIBPasswordResetView, WIBPasswordResetDoneView,
+                           WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
 from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
     generate_challenge, generate_logical_challenge, generate_personality_challenge, personality_details_view, \
     personality_evaluation_view
@@ -59,5 +61,11 @@ urlpatterns = [
          name='personality_candidates'),
     path('personalities/<int:user_id>/',
          personality_details_view, name='personality_details'),
+
+    # URLs pour la réinitialisation de mot de passe
+    path('password-reset/', WIBPasswordResetView.as_view(), name='password_reset'),
+    path('password-reset/done/', WIBPasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('password-reset/confirm/<uidb64>/<token>/', WIBPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('password-reset/complete/', WIBPasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
 urlpatterns += debug_toolbar_urls()
