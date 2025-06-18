@@ -9,7 +9,7 @@ from drf_spectacular.utils import extend_schema, OpenApiExample
 from rest_framework import generics, viewsets, status, mixins
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404, GenericAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 

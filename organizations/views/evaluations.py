@@ -43,15 +43,16 @@ QUESTIONS_PER_TECH = {
 }
 
 
-class OrgEvaluationViewSet(viewsets.ReadOnlyModelViewSet):
+class OrgEvaluationViewSet(viewsets.ModelViewSet):
     serializer_class = EvaluationResponseSerializer
     permission_classes = [IsAuthenticated, IsOrganization | ReadOnly]
+    queryset = OrgEvaluation.objects.all()
 
     def get_queryset(self):
         if hasattr(self.request.user, 'organization'):
-            return OrgEvaluation.objects.filter(organization=self.request.user.organization)
+            return super().get_queryset().filter(organization=self.request.user.organization)
         elif self.request.user.is_superuser:
-            return OrgEvaluation.objects.all()
+            return super().get_queryset()
         return OrgEvaluation.objects.none()
 
     def perform_create(self, serializer):
@@ -115,6 +116,8 @@ class OrgEvaluationViewSet(viewsets.ReadOnlyModelViewSet):
 
         if replace_existing:
             evaluation.questions.all().delete()
+        else:
+            evaluation.questions.filter(technology__isnull=False).delete()
 
         for prop in proportions:
             technology = prop['technology']

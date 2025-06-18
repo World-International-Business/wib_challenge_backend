@@ -81,16 +81,15 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrgEvaluation
         fields = '__all__'
-        read_only_fields = [f.name for f in model._meta.fields]
+        read_only_fields = ['organization', 'slug']
 
-    
     def get_candidates_count(self, obj: OrgEvaluation) -> int:
         """Retourne le nombre de candidats ayant été invités à l'évaluation"""
         return obj.invitations.count()
 
     @extend_schema_field(
         inline_serializer(
-            'EvaluationQuestionStats',
+            'EvaluationQuestionStatsPerTech',
             many=True,
             fields={
                 'id': serializers.IntegerField(),
@@ -104,7 +103,8 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
         )
     )
     def get_questions(self, obj):
-        technologies = Technology.objects.filter(org_questions__evaluation=obj).distinct()
+        technologies = Technology.objects.filter(
+            org_questions__evaluation=obj).distinct()
 
         result = []
         for tech in technologies:
@@ -114,26 +114,24 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
             proportions = {
                 Question.Difficulty.EASY: questions_in_eval.filter(difficulty=Question.Difficulty.EASY).count(),
                 Question.Difficulty.MEDIUM: questions_in_eval.filter(difficulty=Question.Difficulty.MEDIUM).count(),
-                Question.Difficulty.HARD: questions_in_eval.filter(difficulty=Question.Difficulty.HARD).count()
+                Question.Difficulty.HARD: questions_in_eval.filter(
+                    difficulty=Question.Difficulty.HARD).count()
             }
-
-            used_original_questions = obj.questions.filter(
-                technology=tech,
-                original_question__isnull=False
-            ).values_list('original_question_id', flat=True)
 
             available_questions = Question.objects.filter(
                 technology=tech,
                 status=Question.Status.PUBLISHED
-            ).exclude(id__in=used_original_questions)
+            )
 
             available = {
                 Question.Difficulty.EASY: available_questions.filter(difficulty=Question.Difficulty.EASY).count(),
                 Question.Difficulty.MEDIUM: available_questions.filter(difficulty=Question.Difficulty.MEDIUM).count(),
-                Question.Difficulty.HARD: available_questions.filter(difficulty=Question.Difficulty.HARD).count()
+                Question.Difficulty.HARD: available_questions.filter(
+                    difficulty=Question.Difficulty.HARD).count()
             }
 
-            estimated_time = questions_in_eval.aggregate(total_duration=Sum('duration'))['total_duration'] or 0
+            estimated_time = questions_in_eval.aggregate(total_duration=Sum('duration'))[
+                'total_duration'] or 0
 
             result.append({
                 'id': tech.id,
@@ -149,3 +147,15 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
 
     def get_others_count(self, obj: OrgEvaluation) -> int:
         return obj.questions.filter(technology=None).count()
+
+
+TechnologyStats = inline_serializer(
+    'TechnologyStats',
+    fields={
+        'id': serializers.IntegerField(),
+        'name': serializers.CharField(),
+        'url': serializers.URLField(),
+        'question_count': serializers.IntegerField(),
+        'available': EvaluationQuestionProportions
+    }
+)
