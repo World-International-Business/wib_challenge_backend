@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.db import transaction
 from django.db.models import QuerySet
 from django.utils.translation import gettext_lazy as _
@@ -11,7 +10,7 @@ from rest_framework.response import Response
 
 from organizations.models import OrgEvaluation, ExperienceLevel, OrgQuestion, OrgChoice, EvaluationInvitation
 from organizations.permissions import IsOrganization
-from organizations.serializers import EvaluationInvitationSerializer, InviteCandidateSerializer, OrgQuestionSerializer
+from organizations.serializers import EvaluationInvitationSerializer, InviteCandidateSerializer, OrgQuestionSerializer, OrgSubmissionAttemptDetailSerializer
 from organizations.serializers.evaluations import EvaluationResponseSerializer, AutomaticEvaluationSerializer, \
     ProportionEvaluationSerializer
 from organizations.serializers.results import CandidateResultSerializer
@@ -62,6 +61,13 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
             raise ValidationError(
                 _("Only organizations can create evaluations."))
 
+    def check_can_update(self, evaluation: OrgEvaluation):
+        if OrgEvaluation.objects.filter(
+            id=evaluation.id, attempts__started_at__isnull=False,
+        ).exists():
+            raise ValidationError(
+                _("Cette évaluation ne peut pas être modifiée."))
+
     @extend_schema(
         request=InviteCandidateSerializer
     )
@@ -107,6 +113,8 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
         }
         """
         evaluation = self.get_object()
+        self.check_can_update(evaluation)
+
         serializer = ProportionEvaluationSerializer(data=request.data)
 
         serializer.is_valid(raise_exception=True)
@@ -170,6 +178,7 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
         - Soit en ajoutant des questions existantes
         """
         evaluation = self.get_object()
+        self.check_can_update(evaluation)
         serializer = OrgQuestionSerializer(data=request.data)
 
         serializer.is_valid(raise_exception=True)
@@ -209,6 +218,34 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
             q for q in questions if q.id not in existing_original_ids]
 
         bulk_create_org_question(new_questions, evaluation)
+
+    @extend_schema(
+        responses={200: OrgSubmissionAttemptDetailSerializer}
+    )
+    @action(detail=True, methods=['get'], url_path='results/(?P<invitation_pk>[0-9]+)')
+    def candidate_results(self, request, pk=None, invitation_pk=None, organization_pk=None):
+        """
+        Récupère les résultats d'une évaluation pour un candidat spécifique
+        """
+        evaluation = self.get_object()
+
+        try:
+            invitation = EvaluationInvitation.objects.get(
+                pk=invitation_pk, evaluation=evaluation)
+            candidate = invitation.candidate
+        except EvaluationInvitation.DoesNotExist:
+            return Response({"detail": _("Invitation non trouvée.")}, status=status.HTTP_404_NOT_FOUND)
+
+        if not candidate:
+            return Response({"detail": _("Candidat non trouvé.")}, status=status.HTTP_404_NOT_FOUND)
+
+        attempt = evaluation.attempts.filter(candidate=candidate).first()
+        if not attempt or not attempt.is_completed:
+            return Response({"detail": _("Aucune tentative trouvée pour ce candidat.")}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = OrgSubmissionAttemptDetailSerializer(
+            attempt, context={'request': request})
+        return Response(serializer.data)
 
 
 @extend_schema(

@@ -40,6 +40,7 @@ class OrgQuestionSerializer(serializers.ModelSerializer):
         write_only=True, queryset=Question.objects.filter(status=Question.Status.PUBLISHED), required=False
     )
     technology = TechnologySerializer(read_only=True)
+    weight = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = OrgQuestion
@@ -146,21 +147,35 @@ class OrgSubmissionAttemptSerializer(serializers.ModelSerializer):
 class OrgAnswerSerializer(serializers.ModelSerializer):
     selected_choices = serializers.PrimaryKeyRelatedField(
         many=True, queryset=OrgChoice.objects.all())
+    question = OrgQuestionSerializer(read_only=True)
 
     class Meta:
         model = OrgAnswer
-        fields = ['id', 'question', 'selected_choices', 'delta_time', 'status']
-        read_only_fields = ['id']
+        fields = '__all__'
+        read_only_fields = ['attempt', 'is_correct', 'answered_at', 'score']
 
 
 class OrgSubmissionSerializer(serializers.ModelSerializer):
     answers = OrgAnswerSerializer(
         source='attempt.answers', many=True, read_only=True)
+    max_score = serializers.FloatField(
+        source='attempt.evaluation.max_score', read_only=True)
 
     class Meta:
         model = OrgSubmission
-        fields = ['id', 'score', 'submitted_at', 'answers']
+        fields = ['id', 'score', 'submitted_at', 'answers', 'max_score']
         read_only_fields = ['id', 'score', 'submitted_at']
+
+
+class OrgSubmissionAttemptDetailSerializer(serializers.ModelSerializer):
+
+    candidate = CandidateSerializer(read_only=True)
+    submission = OrgSubmissionSerializer(read_only=True)
+
+    class Meta:
+        model = OrgSubmissionAttempt
+        exclude = ['questions']
+        read_only_fields = [f.name for f in OrgSubmissionAttempt._meta.fields]
 
 
 InviteCandidateSerializer = inline_serializer(
@@ -200,16 +215,6 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
             organization=organization,
             full_name=full_name
         )
-
-        existing_invitation = EvaluationInvitation.objects.filter(
-            candidate=candidate,
-            evaluation=evaluation,
-            status=EvaluationInvitation.Status.PENDING,
-            expires_at__gt=timezone.now()
-        ).first()
-
-        if existing_invitation:
-            return existing_invitation
 
         invitation = EvaluationInvitation.objects.create(
             candidate=candidate,

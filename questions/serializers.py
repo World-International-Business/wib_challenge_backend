@@ -22,6 +22,7 @@ class QuestionSerializer(WritableNestedModelSerializer):
     profession = serializers.SlugRelatedField(
         slug_field='title', read_only=True, source='evaluation.profession')
     technology = TechnologySerializer(read_only=True)
+    weight = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Question

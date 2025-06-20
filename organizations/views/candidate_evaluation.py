@@ -103,6 +103,9 @@ class CandidateEvaluationView(viewsets.GenericViewSet):
             candidate=invitation.candidate,
         )
 
+        invitation.status = EvaluationInvitation.Status.ACCEPTED
+        invitation.save()
+
         if not created and attempt.is_completed:
             return Response(data={'message': _('Vous avez déjà passé cette évaluation')},
                             status=status.HTTP_406_NOT_ACCEPTABLE)

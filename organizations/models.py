@@ -27,7 +27,7 @@ class Organization(models.Model):
     description = models.TextField(_('Description'), blank=True, null=True)
     account = models.OneToOneField(User, on_delete=models.CASCADE, related_name='organization',
                                    verbose_name=_('Compte'))
-    
+
     def __str__(self):
         return self.name
 
@@ -39,7 +39,8 @@ class Candidate(models.Model):
         verbose_name = _('Candidat')
         verbose_name_plural = _('Candidats')
 
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='candidates')
+    organization = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, related_name='candidates')
     email = models.EmailField(_('Email'))
     full_name = models.CharField(_('Nom complet'), max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -83,6 +84,12 @@ class OrgEvaluation(BaseModel):
         """Une évaluation est prête si elle a au moins 5 questions"""
         return self.questions.count() >= 5
 
+    @property
+    def max_score(self):
+        """Retourne le score maximum possible pour cette évaluation"""
+        return sum(q.weight for q in self.questions.all())
+        
+
 
 class OrgQuestion(BaseModel):
     """Question créée ou copiée par une organisation"""
@@ -101,7 +108,8 @@ class OrgQuestion(BaseModel):
     original_question = models.ForeignKey(Question, on_delete=models.SET_NULL, related_name='org_copies', null=True,
                                           blank=True, verbose_name=_('Question originale'))
     text = models.TextField(_('Titre'))
-    explanation = models.TextField(_('Explication'), help_text=_('Explication de la réponse'))
+    explanation = models.TextField(
+        _('Explication'), help_text=_('Explication de la réponse'))
     difficulty = models.CharField(max_length=10, choices=Question.Difficulty.choices, verbose_name=_('Difficulté'),
                                   default=Question.Difficulty.MEDIUM)
     duration = models.IntegerField(_('Durée'), default=100, help_text=_('Durée en secondes'),
@@ -109,7 +117,7 @@ class OrgQuestion(BaseModel):
 
     def __str__(self):
         return self.text[:50]
-    
+
     @property
     def weight(self):
         return Question.DIFFICULTY_WEIGHTS.get(self.difficulty, 0)
@@ -123,7 +131,8 @@ class OrgChoice(BaseModel):
         verbose_name_plural = _('Choix d\'organisation')
         indexes = [models.Index(fields=['question', 'is_correct']), ]
 
-    question = models.ForeignKey(OrgQuestion, on_delete=models.CASCADE, related_name='choices')
+    question = models.ForeignKey(
+        OrgQuestion, on_delete=models.CASCADE, related_name='choices')
     text = models.TextField(_('Texte'))
     is_correct = models.BooleanField(_('Est correct'), default=False)
 
@@ -148,7 +157,8 @@ class OrgSubmissionAttempt(BaseModel):
                                       related_name='attempt', blank=True, null=True)
     started_at = models.DateTimeField(_('Commencé le'), auto_now_add=True)
     ended_at = models.DateTimeField(_('Terminé le'), blank=True, null=True)
-    questions = models.ManyToManyField(OrgQuestion, verbose_name=_('Questions'), blank=True, related_name='attempts')
+    questions = models.ManyToManyField(OrgQuestion, verbose_name=_(
+        'Questions'), blank=True, related_name='attempts')
     is_completed = models.BooleanField(_('Complété'), default=False)
 
     def __str__(self):
@@ -182,17 +192,20 @@ class OrgAnswer(BaseModel):
     is_correct = models.BooleanField(_('Correcte'), blank=True, null=True)
     answered_at = models.DateTimeField(_('Répondu le'), auto_now_add=True)
     delta_time = models.PositiveSmallIntegerField(_('Durée'))
-    status = models.CharField(_('Statut'), choices=Answer.Status.choices, default=Answer.Status.PENDING, max_length=20)
+    status = models.CharField(_('Statut'), choices=Answer.Status.choices,
+                              default=Answer.Status.PENDING, max_length=20)
     score = models.IntegerField(_('Résultat'), default=0)
 
     class Meta:
         verbose_name = _('Réponse d\'organisation')
         verbose_name_plural = _('Réponses d\'organisation')
         unique_together = ('attempt', 'question')
-        indexes = [models.Index(fields=['status']), models.Index(fields=['is_correct'])]
+        indexes = [models.Index(fields=['status']),
+                   models.Index(fields=['is_correct'])]
 
     def __str__(self):
         return f'{self.attempt} - {self.question} - {self.answered_at} - {"Correct" if self.is_correct else "Incorrect"}'
+
 
 class EvaluationInvitation(BaseModel):
     class Status(models.TextChoices):
@@ -203,16 +216,20 @@ class EvaluationInvitation(BaseModel):
 
     evaluation = models.ForeignKey(OrgEvaluation, on_delete=models.CASCADE, verbose_name=_('Évaluation'),
                                    related_name='invitations')
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, verbose_name=_('Candidat'),
-                                  related_name='invitations')
-    token = models.CharField(_('Token d\'invitation'), max_length=64, unique=True)
+    candidate = models.OneToOneField(Candidate, on_delete=models.CASCADE, verbose_name=_('Candidat'),
+                                     related_name='invitation')
+    token = models.CharField(_('Token d\'invitation'),
+                             max_length=64, unique=True)
     invited_at = models.DateTimeField(_('Invité le'), auto_now_add=True)
     expires_at = models.DateTimeField(_('Expire le'))
-    status = models.CharField(_('Statut'), choices=Status.choices, default=Status.PENDING, max_length=20)
+    status = models.CharField(
+        _('Statut'), choices=Status.choices, default=Status.PENDING, max_length=20)
 
     class Meta:
         unique_together = ('evaluation', 'candidate')
-        indexes = [models.Index(fields=['token']), models.Index(fields=['status'])]
+        indexes = [models.Index(fields=['token']),
+                   models.Index(fields=['status'])]
+        ordering = ['-invited_at']
 
     def save(self, *args, **kwargs):
         if not self.token:
@@ -223,6 +240,6 @@ class EvaluationInvitation(BaseModel):
     def is_valid(self):
         """Vérifie si l'invitation est valide"""
         return self.status not in [self.Status.EXPIRED, self.Status.DECLINED] and self.expires_at > timezone.now()
-    
+
     def __str__(self):
         return f'Invitation {self.token} - {self.evaluation.title} - {self.candidate.full_name} - {self.status}'

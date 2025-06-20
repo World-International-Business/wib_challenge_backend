@@ -14,6 +14,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 COPY requirements.txt .
+RUN echo >> requirements.txt && echo 'ipython' >> requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN adduser --disabled-password --gecos "" django

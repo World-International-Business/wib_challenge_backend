@@ -76,7 +76,8 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
     questions = serializers.SerializerMethodField()
     candidates_count = serializers.SerializerMethodField()
     others_count = serializers.SerializerMethodField()
-    score = serializers.FloatField(source='submission.score', read_only=True)
+    max_score = serializers.FloatField(read_only=True)
+    is_editable = serializers.SerializerMethodField()
 
     class Meta:
         model = OrgEvaluation
@@ -147,6 +148,11 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
 
     def get_others_count(self, obj: OrgEvaluation) -> int:
         return obj.questions.filter(technology=None).count()
+
+    def get_is_editable(self, obj: OrgEvaluation) -> bool:
+        return not OrgEvaluation.objects.filter(
+            id=obj.id, attempts__started_at__isnull=False,
+        ).exists()
 
 
 TechnologyStats = inline_serializer(
