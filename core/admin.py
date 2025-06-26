@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
@@ -18,7 +19,7 @@ class DomainAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description', 'professions_count', 'created_at', 'updated_at']
     search_fields = ['name', 'description']
     readonly_fields = ['created_at', 'updated_at', 'professions_list']
-    
+
     fieldsets = (
         (_('Informations générales'), {
             'fields': ('name', 'description')
@@ -32,17 +33,19 @@ class DomainAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
         }),
     )
-    
+
     @admin.display(description=_("Nombre de professions"))
     def professions_count(self, obj):
         return obj.professions.count()
-    
+
     @admin.display(description=_("Professions"))
     def professions_list(self, obj):
         professions = obj.professions.all()
         if professions:
             return format_html(
-                ", ".join([f'<a href="/admin/core/profession/{p.id}/change/">{p.title}</a>' for p in professions]))
+                ", ".join(
+                    [f'<a href="{reverse("admin:core_profession_change", args=[p.id])}">{p.title}</a>' for p
+                     in professions]))
         return _("Aucune profession associée")
 
 
@@ -86,7 +89,9 @@ class TechnologyAdmin(admin.ModelAdmin):
         professions = obj.professions.all()
         if professions:
             return format_html(
-                ", ".join([f'<a href="/admin/core/profession/{p.id}/change/">{p.title}</a>' for p in professions]))
+                ", ".join(
+                    [f'<a href="{reverse("admin:core_profession_change", args=[p.id])}">{p.title}</a>' for p
+                     in professions]))
         return _("Aucune profession associée")
 
 

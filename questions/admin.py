@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
@@ -61,8 +62,8 @@ class QuestionAdmin(admin.ModelAdmin):
     def publisher_info(self, obj):
         """Affiche des informations sur l'éditeur de la question"""
         if obj.publisher:
-            return format_html('<a href="/admin/accounts/user/{}/change/">{}</a> ({})',
-                               obj.publisher.id,
+            return format_html('<a href="{}">{}</a> ({})',
+                               reverse('admin:accounts_user_change', args=[obj.publisher.id]),
                                obj.publisher.username,
                                obj.publisher.email)
         return _("Inconnu")
@@ -143,7 +144,7 @@ class ChoiceAdmin(admin.ModelAdmin):
     def question_text(self, obj):
         """Affiche le début du texte de la question associée"""
         if obj.question:
-            return format_html('<a href="/admin/questions/question/{}/change/">{}</a>',
-                               obj.question.id,
+            return format_html('<a href="{}">{}</a>',
+                               reverse('admin:questions_question_change', args=[obj.question.id]),
                                obj.question.text[:50] + ('...' if len(obj.question.text) > 50 else ''))
         return _("Inconnue")
