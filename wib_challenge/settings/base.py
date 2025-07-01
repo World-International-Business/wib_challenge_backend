@@ -62,6 +62,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'djangorestframework_camel_case.middleware.CamelCaseMiddleWare',
+    'core.middleware.ErrorLoggingMiddleware',
+    'core.middleware.SecurityLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'wib_challenge.urls'
@@ -163,10 +165,6 @@ LOGGING = {
         },
         'simple': {
             'format': '{levelname} {message}',
-            'style': '{',
-        },
-        'json': {
-            'format': '{"level": "{levelname}", "time": "{asctime}", "module": "{module}", "message": "{message}"}',
             'style': '{',
         },
     },
