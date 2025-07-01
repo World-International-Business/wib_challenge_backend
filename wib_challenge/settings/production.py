@@ -32,14 +32,14 @@ if SSL_ENABLED:
     SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=31536000, cast=int)  # 1 an par défaut
     SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=True, cast=bool)
     SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', default=True, cast=bool)
-    
+
     # Si Dokploy/Traefik gère la redirection HTTPS, on peut désactiver celle de Django
     SECURE_SSL_REDIRECT = False if IS_TRAEFIK else config('SECURE_SSL_REDIRECT', default=True, cast=bool)
-    
+
     # Sécurisation des cookies
     SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
     CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
-    
+
     # Protection additionnelle
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -61,6 +61,25 @@ if IS_TRAEFIK:
 else:
     CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
 
+# Add security logging
+LOGGING['handlers']['security_file'] = {
+    'level': 'WARNING',
+    'class': 'logging.handlers.RotatingFileHandler',
+    'filename': '/app/logs/security.log',
+    'maxBytes': 1024 * 1024 * 5,  # 5 MB
+    'backupCount': 5,
+    'formatter': 'verbose',
+}
+
+LOGGING['loggers']['django.security']['handlers'].append('security_file')
+LOGGING['loggers']['wib_challenge']['handlers'].append('json_file')
+
+# Performance logging
+LOGGING['loggers']['django.db.backends'] = {
+    'handlers': ['file'],
+    'level': 'WARNING',
+    'propagate': False,
+}
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

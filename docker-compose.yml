@@ -5,13 +5,14 @@ services:
     build: .
     restart: always
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
       interval: 30s
       timeout: 10s
       retries: 5
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
+      - logs_volume:/app/logs
     expose:
       - 8000
     networks:
@@ -21,7 +22,7 @@ services:
     image: nginx:alpine
     restart: always
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost/health" ]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -31,6 +32,7 @@ services:
       - static_volume:/usr/share/nginx/html/static
       - media_volume:/usr/share/nginx/html/media
       - ./nginx:/etc/nginx/conf.d
+      - nginx_logs:/var/log/nginx
     depends_on:
       - web
     networks:
@@ -43,3 +45,5 @@ networks:
 volumes:
   static_volume:
   media_volume:
+  logs_volume:
+  nginx_logs:

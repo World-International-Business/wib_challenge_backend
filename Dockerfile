@@ -14,11 +14,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 COPY requirements.txt .
-RUN echo >> requirements.txt && echo 'ipython' >> requirements.txt
+RUN echo >> requirements.txt && echo 'ipython' >> requirements.txt && echo 'psutil' >> requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN adduser --disabled-password --gecos "" django
-RUN chown -R django:django /app
+RUN mkdir -p /app/logs && chown -R django:django /app
 USER django
 
 COPY --chown=django:django . .
