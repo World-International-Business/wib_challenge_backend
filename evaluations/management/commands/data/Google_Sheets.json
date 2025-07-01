@@ -1,0 +1,945 @@
+{
+  "technology": "Google Sheets",
+  "title": "Évaluation Google Sheets Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Google Sheets, incluant les formules, la collaboration en temps réel, les graphiques, l'importation de données, et les fonctions avancées de tableur en ligne.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Comment partager une feuille Google Sheets avec quelqu'un?",
+      "explanation": "Pour partager une feuille, cliquer sur le bouton 'Partager' en haut à droite et ajouter les adresses email des personnes avec qui partager.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Partager' en haut à droite",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Partager",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Collaboration",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Inviter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet d'additionner une plage de cellules dans Google Sheets?",
+      "explanation": "La fonction SUM permet d'additionner une plage de cellules. La syntaxe est =SUM(A1:A10) par exemple.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "=SUM(A1:A10)",
+          "is_correct": true
+        },
+        {
+          "text": "=ADD(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=TOTAL(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=SOMME(A1:A10)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment figer la première ligne dans Google Sheets?",
+      "explanation": "Pour figer des lignes ou colonnes, aller dans Affichage > Figer et choisir '1 ligne' pour figer la première ligne.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Affichage > Figer > 1 ligne",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Figer ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Verrouiller",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Ligne fixe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre une référence relative et absolue?",
+      "explanation": "Une référence relative (A1) change quand la formule est copiée, tandis qu'une référence absolue ($A$1) reste fixe.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Relative change lors de la copie, absolue reste fixe",
+          "is_correct": true
+        },
+        {
+          "text": "Absolue change lors de la copie, relative reste fixe",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence dans Google Sheets",
+          "is_correct": false
+        },
+        {
+          "text": "Relative pour les nombres, absolue pour le texte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un graphique dans Google Sheets?",
+      "explanation": "Pour créer un graphique, sélectionner les données puis aller dans Insertion > Graphique.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner les données > Insertion > Graphique",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Créer graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Diagramme",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment importer des données depuis un fichier CSV?",
+      "explanation": "Pour importer un CSV, aller dans Fichier > Importer et sélectionner le fichier CSV à importer.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Fichier > Importer > Sélectionner le fichier CSV",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Importer CSV",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Fichier externe",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Charger données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de compter les cellules non vides?",
+      "explanation": "La fonction COUNTA compte le nombre de cellules non vides dans une plage.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "COUNTA",
+          "is_correct": true
+        },
+        {
+          "text": "COUNT",
+          "is_correct": false
+        },
+        {
+          "text": "COUNTIF",
+          "is_correct": false
+        },
+        {
+          "text": "COUNTNULL",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer une mise en forme conditionnelle?",
+      "explanation": "La mise en forme conditionnelle se trouve dans Format > Mise en forme conditionnelle.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Format > Mise en forme conditionnelle",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Format conditionnel",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Formatage automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Conditions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment trier des données par ordre croissant?",
+      "explanation": "Pour trier, sélectionner les données puis aller dans Données > Trier la plage.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner les données > Données > Trier la plage",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Trier",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Organisation",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Ordonner",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de rechercher une valeur dans un tableau?",
+      "explanation": "VLOOKUP permet de rechercher une valeur dans la première colonne d'une plage et retourner une valeur de la même ligne.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "VLOOKUP",
+          "is_correct": true
+        },
+        {
+          "text": "LOOKUP",
+          "is_correct": false
+        },
+        {
+          "text": "SEARCH",
+          "is_correct": false
+        },
+        {
+          "text": "FIND",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment collaborer en temps réel avec d'autres utilisateurs?",
+      "explanation": "Google Sheets permet la collaboration en temps réel automatiquement dès qu'une feuille est partagée. Les modifications apparaissent instantanément.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "La collaboration est automatique une fois la feuille partagée",
+          "is_correct": true
+        },
+        {
+          "text": "Activer le mode collaboration dans Outils",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser le menu Fichier > Mode équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Installer une extension de collaboration",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter des commentaires à une cellule?",
+      "explanation": "Pour ajouter un commentaire, clic droit sur la cellule et sélectionner 'Insérer un commentaire' ou utiliser Ctrl+Alt+M.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Clic droit > Insérer un commentaire ou Ctrl+Alt+M",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Commentaire",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Note",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Annotation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de calculer la moyenne d'une plage?",
+      "explanation": "La fonction AVERAGE calcule la moyenne arithmétique des valeurs dans une plage.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "AVERAGE",
+          "is_correct": true
+        },
+        {
+          "text": "MEAN",
+          "is_correct": false
+        },
+        {
+          "text": "AVG",
+          "is_correct": false
+        },
+        {
+          "text": "MOYENNE",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment protéger des cellules contre la modification?",
+      "explanation": "Pour protéger des cellules, aller dans Données > Protéger les feuilles et plages.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Données > Protéger les feuilles et plages",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Verrouiller cellules",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Protection",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Sécurité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une liste déroulante dans une cellule?",
+      "explanation": "Pour créer une liste déroulante, sélectionner la cellule puis aller dans Données > Validation des données.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Sélectionner la cellule > Données > Validation des données",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Liste déroulante",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Menu",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Sélection",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de joindre du texte de plusieurs cellules?",
+      "explanation": "La fonction CONCATENATE ou l'opérateur & permettent de joindre du texte. La fonction JOIN est aussi disponible.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "CONCATENATE ou & ou JOIN",
+          "is_correct": true
+        },
+        {
+          "text": "COMBINE",
+          "is_correct": false
+        },
+        {
+          "text": "MERGE",
+          "is_correct": false
+        },
+        {
+          "text": "APPEND",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer un filtre aux données?",
+      "explanation": "Pour appliquer un filtre, sélectionner les données puis aller dans Données > Créer un filtre.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner les données > Données > Créer un filtre",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Filtre",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Filtrage",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Activer filtres",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction SI (IF) dans Google Sheets?",
+      "explanation": "La fonction IF teste une condition et retourne une valeur si vraie, une autre si fausse. Syntaxe: =IF(condition; valeur_si_vrai; valeur_si_faux)",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "=IF(condition; valeur_si_vrai; valeur_si_faux)",
+          "is_correct": true
+        },
+        {
+          "text": "=SI(condition; valeur_si_vrai; valeur_si_faux)",
+          "is_correct": false
+        },
+        {
+          "text": "=IF[condition, vrai, faux]",
+          "is_correct": false
+        },
+        {
+          "text": "=CONDITION(test; vrai; faux)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder à l'historique des versions d'une feuille?",
+      "explanation": "L'historique des versions est accessible via Fichier > Historique des versions > Voir l'historique des versions.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Fichier > Historique des versions > Voir l'historique",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Versions",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Historique",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Révisions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction retourne la date d'aujourd'hui?",
+      "explanation": "La fonction TODAY() retourne la date actuelle et se met à jour automatiquement.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "TODAY()",
+          "is_correct": true
+        },
+        {
+          "text": "DATE()",
+          "is_correct": false
+        },
+        {
+          "text": "NOW()",
+          "is_correct": false
+        },
+        {
+          "text": "CURRENT_DATE()",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une nouvelle ligne ou colonne?",
+      "explanation": "Pour insérer une ligne/colonne, clic droit sur le numéro de ligne ou lettre de colonne et sélectionner 'Insérer'.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Clic droit sur ligne/colonne > Insérer",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Ligne/Colonne",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Ajouter",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Nouvelle ligne",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser SUMIF pour sommer selon un critère?",
+      "explanation": "SUMIF permet de sommer les cellules qui répondent à un critère. Syntaxe: =SUMIF(plage; critère; somme_plage)",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "=SUMIF(plage; critère; somme_plage)",
+          "is_correct": true
+        },
+        {
+          "text": "=SUM_IF(plage, critère, somme)",
+          "is_correct": false
+        },
+        {
+          "text": "=CONDITIONAL_SUM(plage; critère)",
+          "is_correct": false
+        },
+        {
+          "text": "=SUM(IF(plage=critère))",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment copier une formule vers d'autres cellules?",
+      "explanation": "Pour copier une formule, sélectionner la cellule et faire glisser la poignée de recopie (petit carré) vers les cellules cibles.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Faire glisser la poignée de recopie (petit carré)",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+C puis Ctrl+V",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Copier formule",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Dupliquer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un tableau croisé dynamique?",
+      "explanation": "Pour créer un tableau croisé dynamique, sélectionner les données puis aller dans Insertion > Tableau croisé dynamique.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Sélectionner données > Insertion > Tableau croisé dynamique",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Tableau pivot",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Tableau dynamique",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Analyse croisée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de compter les cellules selon un critère?",
+      "explanation": "La fonction COUNTIF compte les cellules qui répondent à un critère spécifique.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "COUNTIF",
+          "is_correct": true
+        },
+        {
+          "text": "COUNT_CONDITION",
+          "is_correct": false
+        },
+        {
+          "text": "CONDITIONAL_COUNT",
+          "is_correct": false
+        },
+        {
+          "text": "COUNT_CRITERIA",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction IMPORTRANGE pour importer des données d'une autre feuille?",
+      "explanation": "IMPORTRANGE permet d'importer une plage d'une autre feuille Google Sheets. Syntaxe: =IMPORTRANGE(\"URL_feuille\"; \"Feuille!Plage\")",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "=IMPORTRANGE(\"URL_feuille\"; \"Feuille!Plage\")",
+          "is_correct": true
+        },
+        {
+          "text": "=IMPORT(\"URL\", \"Plage\")",
+          "is_correct": false
+        },
+        {
+          "text": "=LINK_DATA(\"Feuille\", \"Cellules\")",
+          "is_correct": false
+        },
+        {
+          "text": "=EXTERNAL_RANGE(\"URL\", \"Zone\")",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment travailler hors ligne avec Google Sheets?",
+      "explanation": "Pour travailler hors ligne, activer le mode hors ligne dans les paramètres Google Drive ou via l'extension Chrome 'Google Docs hors connexion'.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Activer le mode hors ligne dans Google Drive ou installer l'extension Chrome",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Mode hors ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Synchronisation",
+          "is_correct": false
+        },
+        {
+          "text": "Télécharger automatiquement à l'ouverture",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les scripts Google Apps Script?",
+      "explanation": "Pour utiliser Apps Script, aller dans Extensions > Apps Script pour créer des scripts personnalisés et automatiser des tâches.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Extensions > Apps Script",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Scripts",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Automatisation",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Macros",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment publier une feuille sur le web?",
+      "explanation": "Pour publier sur le web, aller dans Fichier > Partager > Publier sur le Web et choisir les options de publication.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Fichier > Partager > Publier sur le Web",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Publication",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Web",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Export web",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner un nombre aléatoire?",
+      "explanation": "La fonction RAND() retourne un nombre aléatoire entre 0 et 1. RANDBETWEEN() permet de spécifier une plage.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "RAND() ou RANDBETWEEN()",
+          "is_correct": true
+        },
+        {
+          "text": "RANDOM()",
+          "is_correct": false
+        },
+        {
+          "text": "ALEATORY()",
+          "is_correct": false
+        },
+        {
+          "text": "RANDOMIZE()",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction QUERY pour interroger des données?",
+      "explanation": "La fonction QUERY utilise un langage similaire à SQL pour interroger des données. Syntaxe: =QUERY(données; \"SELECT ...\"; en-têtes)",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "=QUERY(données; \"SELECT ...\"; en-têtes)",
+          "is_correct": true
+        },
+        {
+          "text": "=SQL(données, \"SELECT ...\")",
+          "is_correct": false
+        },
+        {
+          "text": "=SEARCH_DATA(plage, critères)",
+          "is_correct": false
+        },
+        {
+          "text": "=DATABASE_QUERY(source, requête)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des graphiques sparkline dans une cellule?",
+      "explanation": "La fonction SPARKLINE crée des mini-graphiques dans une cellule. Syntaxe: =SPARKLINE(données; {\"charttype\",\"type\"})",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "=SPARKLINE(données; {\"charttype\",\"type\"})",
+          "is_correct": true
+        },
+        {
+          "text": "=MINIGRAPH(données)",
+          "is_correct": false
+        },
+        {
+          "text": "=CHART_CELL(plage)",
+          "is_correct": false
+        },
+        {
+          "text": "=INLINE_CHART(données, type)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser l'exploration de données (Explore)?",
+      "explanation": "L'exploration de données se trouve en bas à droite (icône étoile) et propose automatiquement des graphiques et analyses basés sur vos données.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Cliquer sur l'icône étoile en bas à droite",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Exploration",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Analyser",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Suggestions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des macros pour automatiser des tâches?",
+      "explanation": "Les macros se créent via Extensions > Macros > Enregistrer une macro, ou directement dans Apps Script pour plus de contrôle.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Extensions > Macros > Enregistrer une macro",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Automatisation",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Enregistrer actions",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Répéter tâches",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment synchroniser Google Sheets avec d'autres applications?",
+      "explanation": "Google Sheets peut se synchroniser via l'API, Zapier, IFTTT, ou des fonctions comme IMPORTDATA, IMPORTXML pour récupérer des données externes.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Via API, Zapier, IFTTT, ou fonctions IMPORT*",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Synchronisation",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Connexions externes",
+          "is_correct": false
+        },
+        {
+          "text": "Extensions > Intégrations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser les performances d'une grande feuille de calcul?",
+      "explanation": "Pour optimiser : limiter les formules volatiles, utiliser des plages nommées, éviter les références circulaires, et utiliser ARRAYFORMULA pour les formules répétitives.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Limiter formules volatiles, utiliser plages nommées, ARRAYFORMULA",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Optimisation",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Performance",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Accélération",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction ARRAYFORMULA?",
+      "explanation": "ARRAYFORMULA applique une formule à une plage entière plutôt qu'à une cellule. Syntaxe: =ARRAYFORMULA(formule(plage))",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "=ARRAYFORMULA(formule(plage)) pour appliquer à toute une plage",
+          "is_correct": true
+        },
+        {
+          "text": "=ARRAY(formule, plage)",
+          "is_correct": false
+        },
+        {
+          "text": "=RANGE_FORMULA(plage, formule)",
+          "is_correct": false
+        },
+        {
+          "text": "=BULK_APPLY(formule, données)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les droits d'accès granulaires sur une feuille?",
+      "explanation": "Les droits se gèrent via le bouton Partager : Propriétaire, Éditeur, Commentateur, ou Lecteur. On peut aussi protéger des plages spécifiques.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Bouton Partager > Choisir niveau d'accès + protéger plages spécifiques",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Permissions",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Droits utilisateur",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Sécurité avancée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les fonctions de date et heure avancées?",
+      "explanation": "Google Sheets offre NOW(), TODAY(), DATE(), TIME(), WEEKDAY(), MONTH(), YEAR(), DATEDIF() pour manipuler dates et heures.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "NOW(), TODAY(), DATE(), TIME(), WEEKDAY(), MONTH(), YEAR(), DATEDIF()",
+          "is_correct": true
+        },
+        {
+          "text": "DATETIME(), CALENDAR(), TIMESTAMP()",
+          "is_correct": false
+        },
+        {
+          "text": "CURRENT(), ACTUAL(), PRESENT()",
+          "is_correct": false
+        },
+        {
+          "text": "TIME_NOW(), DATE_TODAY(), MOMENT()",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

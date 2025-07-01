@@ -1,0 +1,1017 @@
+{
+  "technology": "Microsoft Excel",
+  "title": "Évaluation Microsoft Excel Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft Excel, incluant les formules, les graphiques, l'analyse de données, les tableaux croisés dynamiques et les fonctions avancées.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Quelle est la combinaison de touches pour sauvegarder un fichier Excel?",
+      "explanation": "Ctrl+S est le raccourci clavier universel pour sauvegarder un document dans la plupart des applications Microsoft.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Ctrl+S",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+Z",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+S",
+          "is_correct": false
+        },
+        {
+          "text": "Shift+S",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment sélectionner une colonne entière dans Excel?",
+      "explanation": "Pour sélectionner une colonne entière, il suffit de cliquer sur l'en-tête de la colonne (lettre A, B, C, etc.).",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Cliquer sur l'en-tête de la colonne",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+Clic sur une cellule",
+          "is_correct": false
+        },
+        {
+          "text": "Double-cliquer sur une cellule",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+Clic sur l'en-tête",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle formule permet d'additionner les cellules A1 à A10?",
+      "explanation": "La fonction SOMME (SUM en anglais) permet d'additionner une plage de cellules. La syntaxe est =SOMME(A1:A10).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "=SOMME(A1:A10)",
+          "is_correct": true
+        },
+        {
+          "text": "=ADD(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=TOTAL(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=SUM(A1+A10)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment figer la première ligne d'un tableau Excel?",
+      "explanation": "Pour figer des volets, il faut aller dans l'onglet Affichage et cliquer sur 'Figer les volets'. Pour figer la première ligne, sélectionner la ligne 2 puis 'Figer les volets'.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Affichage > Figer les volets > Figer la ligne supérieure",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Figer la ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Figer",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Figer ligne",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de calculer la moyenne d'une plage de cellules?",
+      "explanation": "La fonction MOYENNE calcule la moyenne arithmétique des valeurs dans une plage de cellules.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "=MOYENNE(A1:A10)",
+          "is_correct": true
+        },
+        {
+          "text": "=MOY(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=MEAN(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=AVG(A1:A10)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une nouvelle ligne dans Excel?",
+      "explanation": "Pour insérer une ligne, faire un clic droit sur le numéro de ligne et sélectionner 'Insérer' dans le menu contextuel.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Clic droit sur le numéro de ligne > Insérer",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+I",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+Inser",
+          "is_correct": false
+        },
+        {
+          "text": "Double-clic sur le numéro de ligne",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre une référence relative et absolue?",
+      "explanation": "Une référence relative (A1) change quand la formule est copiée, tandis qu'une référence absolue ($A$1) reste fixe.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Relative change lors de la copie, absolue reste fixe",
+          "is_correct": true
+        },
+        {
+          "text": "Absolue change lors de la copie, relative reste fixe",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence pratique",
+          "is_correct": false
+        },
+        {
+          "text": "Relative utilise des lettres, absolue des chiffres",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un graphique dans Excel?",
+      "explanation": "Pour créer un graphique, sélectionner les données puis aller dans l'onglet Insertion et choisir le type de graphique souhaité.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélectionner les données > Insertion > Graphique",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Créer graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Nouveau graphique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de rechercher une valeur dans un tableau?",
+      "explanation": "RECHERCHEV (VLOOKUP en anglais) permet de rechercher une valeur dans la première colonne d'un tableau et retourner une valeur de la même ligne.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "RECHERCHEV",
+          "is_correct": true
+        },
+        {
+          "text": "RECHERCHE",
+          "is_correct": false
+        },
+        {
+          "text": "TROUVER",
+          "is_correct": false
+        },
+        {
+          "text": "LOOKUP",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer un format conditionnel dans Excel?",
+      "explanation": "Le format conditionnel se trouve dans l'onglet Accueil. Il permet de formater automatiquement les cellules selon des critères définis.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Accueil > Mise en forme conditionnelle",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Conditionnel",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Format auto",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Format conditionnel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle combinaison de touches permet de copier une cellule?",
+      "explanation": "Ctrl+C est le raccourci standard pour copier dans toutes les applications Windows.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Ctrl+C",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+X",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+V",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+C",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un tableau croisé dynamique?",
+      "explanation": "Un tableau croisé dynamique se crée via l'onglet Insertion > Tableau croisé dynamique après avoir sélectionné les données source.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Insertion > Tableau croisé dynamique",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Tableau dynamique",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Tableau croisé",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Tableau pivot",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de compter le nombre de cellules non vides?",
+      "explanation": "La fonction NBVAL compte le nombre de cellules qui contiennent des données (non vides) dans une plage.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "NBVAL",
+          "is_correct": true
+        },
+        {
+          "text": "NB",
+          "is_correct": false
+        },
+        {
+          "text": "COMPTE",
+          "is_correct": false
+        },
+        {
+          "text": "COMPTER",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment trier des données par ordre croissant?",
+      "explanation": "Pour trier des données, sélectionner la plage puis aller dans Données > Trier ou utiliser les boutons de tri rapide.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner les données > Données > Trier",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Trier",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Organiser",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Tri",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la syntaxe correcte pour une fonction SI?",
+      "explanation": "La fonction SI teste une condition et retourne une valeur si elle est vraie, une autre si elle est fausse. Syntaxe: =SI(test_logique; valeur_si_vrai; valeur_si_faux)",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "=SI(test; vrai; faux)",
+          "is_correct": true
+        },
+        {
+          "text": "=IF(test, vrai, faux)",
+          "is_correct": false
+        },
+        {
+          "text": "=SI[test; vrai; faux]",
+          "is_correct": false
+        },
+        {
+          "text": "=CONDITION(test; vrai; faux)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment protéger une feuille de calcul?",
+      "explanation": "Pour protéger une feuille, aller dans l'onglet Révision > Protéger la feuille et définir un mot de passe si souhaité.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Révision > Protéger la feuille",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Protection",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Verrouiller",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Protéger",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner la valeur maximale d'une plage?",
+      "explanation": "La fonction MAX retourne la plus grande valeur numérique dans une plage de cellules.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "=MAX(A1:A10)",
+          "is_correct": true
+        },
+        {
+          "text": "=MAXIMUM(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=PLUS_GRAND(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=MAXI(A1:A10)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment fusionner des cellules dans Excel?",
+      "explanation": "Pour fusionner des cellules, les sélectionner puis aller dans Accueil > Fusionner et centrer.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner les cellules > Accueil > Fusionner et centrer",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Fusionner",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Fusion",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Combiner",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre SOMME.SI et SOMME.SI.ENS?",
+      "explanation": "SOMME.SI permet de sommer selon un seul critère, tandis que SOMME.SI.ENS permet de sommer selon plusieurs critères.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "SOMME.SI utilise un critère, SOMME.SI.ENS plusieurs critères",
+          "is_correct": true
+        },
+        {
+          "text": "SOMME.SI.ENS utilise un critère, SOMME.SI plusieurs critères",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence, ce sont des synonymes",
+          "is_correct": false
+        },
+        {
+          "text": "SOMME.SI pour les textes, SOMME.SI.ENS pour les nombres",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une formule dans une cellule?",
+      "explanation": "Toute formule dans Excel doit commencer par le signe égal (=) suivi de la fonction ou du calcul.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Commencer par le signe =",
+          "is_correct": true
+        },
+        {
+          "text": "Commencer par le signe +",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser le menu Formules",
+          "is_correct": false
+        },
+        {
+          "text": "Double-cliquer sur la cellule",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de concaténer du texte?",
+      "explanation": "La fonction CONCATENER ou l'opérateur & permettent de joindre plusieurs chaînes de texte.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "CONCATENER ou &",
+          "is_correct": true
+        },
+        {
+          "text": "JOINDRE",
+          "is_correct": false
+        },
+        {
+          "text": "COMBINER",
+          "is_correct": false
+        },
+        {
+          "text": "ASSEMBLER",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer un filtre automatique?",
+      "explanation": "Pour appliquer un filtre automatique, sélectionner les données puis aller dans Données > Filtre.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélectionner les données > Données > Filtre",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Filtre automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Activer filtres",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Filtre",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle combinaison de touches permet d'annuler une action?",
+      "explanation": "Ctrl+Z est le raccourci universel pour annuler la dernière action dans la plupart des applications.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Ctrl+Z",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+Y",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+Z",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+U",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une liste déroulante dans une cellule?",
+      "explanation": "Pour créer une liste déroulante, utiliser la validation des données dans l'onglet Données et choisir 'Liste'.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Données > Validation des données > Liste",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Liste déroulante",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Menu déroulant",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Créer liste",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner la position d'un caractère dans un texte?",
+      "explanation": "La fonction TROUVE retourne la position du premier caractère d'une chaîne de texte dans une autre chaîne.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "TROUVE",
+          "is_correct": true
+        },
+        {
+          "text": "POSITION",
+          "is_correct": false
+        },
+        {
+          "text": "CHERCHER",
+          "is_correct": false
+        },
+        {
+          "text": "LOCALISER",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment masquer une colonne dans Excel?",
+      "explanation": "Pour masquer une colonne, faire un clic droit sur l'en-tête de la colonne et sélectionner 'Masquer'.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Clic droit sur l'en-tête > Masquer",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Masquer colonne",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Cacher",
+          "is_correct": false
+        },
+        {
+          "text": "Double-clic sur l'en-tête",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre Copier et Couper?",
+      "explanation": "Copier (Ctrl+C) duplique l'élément, Couper (Ctrl+X) le déplace d'un endroit à un autre.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Copier duplique, Couper déplace",
+          "is_correct": true
+        },
+        {
+          "text": "Couper duplique, Copier déplace",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence pratique",
+          "is_correct": false
+        },
+        {
+          "text": "Copier est temporaire, Couper permanent",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment changer le format d'une cellule en pourcentage?",
+      "explanation": "Pour formater en pourcentage, sélectionner les cellules puis utiliser le bouton % dans l'onglet Accueil ou Ctrl+Shift+%.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Sélectionner les cellules > Accueil > %",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Pourcentage",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Format pourcentage",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Symbole %",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner la date actuelle?",
+      "explanation": "La fonction AUJOURD'HUI() retourne la date actuelle et se met à jour automatiquement chaque jour.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "AUJOURD'HUI()",
+          "is_correct": true
+        },
+        {
+          "text": "DATE_ACTUELLE()",
+          "is_correct": false
+        },
+        {
+          "text": "MAINTENANT()",
+          "is_correct": false
+        },
+        {
+          "text": "DATE()",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment répéter une formule sur plusieurs cellules?",
+      "explanation": "Pour répéter une formule, sélectionner la cellule contenant la formule et faire glisser la poignée de recopie ou utiliser Ctrl+D pour copier vers le bas.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Faire glisser la poignée de recopie",
+          "is_correct": true
+        },
+        {
+          "text": "Copier et coller manuellement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser la fonction RÉPÉTER",
+          "is_correct": false
+        },
+        {
+          "text": "Aller dans Formules > Dupliquer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de compter les cellules qui répondent à un critère?",
+      "explanation": "La fonction NB.SI compte le nombre de cellules qui répondent à un critère spécifique dans une plage.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "NB.SI",
+          "is_correct": true
+        },
+        {
+          "text": "COMPTER.SI",
+          "is_correct": false
+        },
+        {
+          "text": "NOMBRE.SI",
+          "is_correct": false
+        },
+        {
+          "text": "CALC.SI",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment grouper des lignes ou colonnes?",
+      "explanation": "Pour grouper des lignes ou colonnes, les sélectionner puis aller dans Données > Grouper.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Sélectionner puis Données > Grouper",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Groupe",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Créer groupe",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Groupement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction pour retourner la valeur minimale?",
+      "explanation": "La fonction MIN retourne la plus petite valeur numérique dans une plage de cellules.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "=MIN(A1:A10)",
+          "is_correct": true
+        },
+        {
+          "text": "=MINIMUM(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=PLUS_PETIT(A1:A10)",
+          "is_correct": false
+        },
+        {
+          "text": "=MINI(A1:A10)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment imprimer seulement une sélection de cellules?",
+      "explanation": "Pour imprimer une sélection, sélectionner les cellules puis aller dans Fichier > Imprimer > Zone d'impression > Sélection.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Sélectionner les cellules > Fichier > Imprimer > Sélection",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Zone d'impression",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Aperçu sélection",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Imprimer zone",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner un nombre aléatoire?",
+      "explanation": "La fonction ALÉA() retourne un nombre aléatoire entre 0 et 1. ALÉA.ENTRE.BORNES() permet de spécifier une plage.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "ALÉA()",
+          "is_correct": true
+        },
+        {
+          "text": "RANDOM()",
+          "is_correct": false
+        },
+        {
+          "text": "HASARD()",
+          "is_correct": false
+        },
+        {
+          "text": "NOMBRE_ALÉATOIRE()",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment supprimer les doublons dans Excel?",
+      "explanation": "Pour supprimer les doublons, sélectionner les données puis aller dans Données > Supprimer les doublons.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Données > Supprimer les doublons",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Éliminer doublons",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Masquer doublons",
+          "is_correct": false
+        },
+        {
+          "text": "Révision > Nettoyer doublons",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner le nombre de jours entre deux dates?",
+      "explanation": "On peut soustraire directement deux dates (=Date2-Date1) ou utiliser la fonction DATEDIF pour plus d'options.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "=Date2-Date1",
+          "is_correct": true
+        },
+        {
+          "text": "JOURS_ENTRE()",
+          "is_correct": false
+        },
+        {
+          "text": "DIFFÉRENCE_DATE()",
+          "is_correct": false
+        },
+        {
+          "text": "CALC_JOURS()",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un graphique en secteurs (camembert)?",
+      "explanation": "Sélectionner les données, aller dans Insertion > Graphiques et choisir le type 'Secteurs'.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner données > Insertion > Graphiques > Secteurs",
+          "is_correct": true
+        },
+        {
+          "text": "Données > Graphique camembert",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Graphique circulaire",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Diagramme secteurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est l'extension de fichier par défaut d'Excel 2019?",
+      "explanation": "Depuis Excel 2007, l'extension par défaut est .xlsx pour les fichiers Excel modernes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": ".xlsx",
+          "is_correct": true
+        },
+        {
+          "text": ".xls",
+          "is_correct": false
+        },
+        {
+          "text": ".excel",
+          "is_correct": false
+        },
+        {
+          "text": ".xl",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ancrer une référence de cellule ($A$1)?",
+      "explanation": "Pour ancrer une référence, utiliser le symbole $ devant la lettre de colonne et le numéro de ligne, ou appuyer sur F4 après avoir tapé la référence.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Utiliser $ devant la colonne et la ligne ou appuyer sur F4",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser # devant la référence",
+          "is_correct": false
+        },
+        {
+          "text": "Mettre la référence entre parenthèses",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser le symbole & avant la référence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle fonction permet de retourner l'heure actuelle?",
+      "explanation": "La fonction MAINTENANT() retourne la date et l'heure actuelles. TEMPS() permet de créer une heure spécifique.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "MAINTENANT()",
+          "is_correct": true
+        },
+        {
+          "text": "HEURE_ACTUELLE()",
+          "is_correct": false
+        },
+        {
+          "text": "TEMPS_RÉEL()",
+          "is_correct": false
+        },
+        {
+          "text": "CLOCK()",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment changer l'orientation d'une feuille de calcul pour l'impression?",
+      "explanation": "Pour changer l'orientation, aller dans Mise en page > Orientation et choisir Portrait ou Paysage.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Mise en page > Orientation",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Propriétés page",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Orientation feuille",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Mode paysage",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

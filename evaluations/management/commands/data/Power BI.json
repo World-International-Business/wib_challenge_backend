@@ -1,0 +1,945 @@
+{
+  "technology": "Power BI",
+  "title": "Évaluation Power BI - Business Intelligence et Visualisation",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft Power BI pour l'analyse de données, la création de rapports interactifs, les tableaux de bord et la business intelligence.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Microsoft Power BI ?",
+      "explanation": "Power BI est une suite d'outils de business intelligence de Microsoft qui permet d'analyser des données et de créer des visualisations interactives et des rapports.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Une suite d'outils de business intelligence pour analyser et visualiser des données",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de comptabilité",
+          "is_correct": false
+        },
+        {
+          "text": "Une base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un tableur avancé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quels sont les **composants principaux** de Power BI ?",
+      "explanation": "Power BI se compose de Power BI Desktop (création), Power BI Service (cloud), Power BI Mobile (consultation mobile) et Power BI Gateway (connexions on-premise).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Power BI Desktop, Service, Mobile et Gateway",
+          "is_correct": true
+        },
+        {
+          "text": "Seulement Power BI Desktop",
+          "is_correct": false
+        },
+        {
+          "text": "Excel et PowerPoint",
+          "is_correct": false
+        },
+        {
+          "text": "Word et Outlook",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **importer des données** dans Power BI ?",
+      "explanation": "Les données s'importent via 'Obtenir des données' qui propose de nombreuses sources : Excel, SQL Server, web, SharePoint, APIs, fichiers CSV, etc.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Via 'Obtenir des données' avec de nombreuses sources disponibles",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Import automatique depuis Outlook",
+          "is_correct": false
+        },
+        {
+          "text": "Saisie manuelle uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power Query** ?",
+      "explanation": "Power Query est l'outil ETL (Extract, Transform, Load) intégré à Power BI qui permet de nettoyer, transformer et combiner les données avant analyse.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outil ETL pour nettoyer, transformer et combiner les données",
+          "is_correct": true
+        },
+        {
+          "text": "Un moteur de base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un outil de visualisation",
+          "is_correct": false
+        },
+        {
+          "text": "Un service cloud",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **relation** entre deux tables ?",
+      "explanation": "Les relations se créent dans la vue Modèle en glissant un champ d'une table vers le champ correspondant d'une autre table, ou via 'Gérer les relations'.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Vue Modèle en glissant les champs ou 'Gérer les relations'",
+          "is_correct": true
+        },
+        {
+          "text": "Automatiquement par Power BI",
+          "is_correct": false
+        },
+        {
+          "text": "Via des formules Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de créer des relations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **mesure** dans Power BI ?",
+      "explanation": "Une mesure est un calcul dynamique écrit en DAX qui s'évalue en fonction du contexte de filtre (ex: somme des ventes par région).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Un calcul dynamique en DAX qui s'évalue selon le contexte",
+          "is_correct": true
+        },
+        {
+          "text": "Une colonne de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un graphique spécifique",
+          "is_correct": false
+        },
+        {
+          "text": "Un filtre automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **DAX** ?",
+      "explanation": "DAX (Data Analysis Expressions) est le langage de formules de Power BI pour créer des mesures, colonnes calculées et tables calculées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Data Analysis Expressions - langage de formules de Power BI",
+          "is_correct": true
+        },
+        {
+          "text": "Un type de graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Une source de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un format de fichier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **graphique** dans Power BI ?",
+      "explanation": "Les graphiques se créent en sélectionnant une visualisation dans le panneau Visualisations puis en glissant les champs appropriés dans les zones de données.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner une visualisation puis glisser les champs",
+          "is_correct": true
+        },
+        {
+          "text": "Import depuis Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Génération automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Code HTML manuel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **filtre** dans Power BI ?",
+      "explanation": "Un filtre permet de limiter les données affichées selon des critères spécifiques. Il peut être appliqué au niveau visuel, page ou rapport.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Limite les données selon des critères (visuel, page ou rapport)",
+          "is_correct": true
+        },
+        {
+          "text": "Un type de graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Une source de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un calcul mathématique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **publier** un rapport sur Power BI Service ?",
+      "explanation": "La publication se fait depuis Power BI Desktop via le bouton 'Publier' qui upload le rapport vers l'espace de travail choisi dans Power BI Service.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Bouton 'Publier' depuis Power BI Desktop",
+          "is_correct": true
+        },
+        {
+          "text": "Export vers SharePoint",
+          "is_correct": false
+        },
+        {
+          "text": "Email du fichier .pbix",
+          "is_correct": false
+        },
+        {
+          "text": "Upload FTP",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **tableau de bord** (Dashboard) ?",
+      "explanation": "Un tableau de bord est une vue d'ensemble qui combine des éléments visuels de différents rapports en une seule page pour un aperçu rapide des KPI.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Vue d'ensemble combinant des visuels de différents rapports",
+          "is_correct": true
+        },
+        {
+          "text": "Un rapport avec plusieurs pages",
+          "is_correct": false
+        },
+        {
+          "text": "Une base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un filtre avancé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **actualiser** les données ?",
+      "explanation": "L'actualisation se fait manuellement avec le bouton Actualiser, ou automatiquement via une planification dans Power BI Service (nécessite une gateway pour sources on-premise).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Manuellement ou planification automatique (avec gateway si nécessaire)",
+          "is_correct": true
+        },
+        {
+          "text": "Automatique en temps réel toujours",
+          "is_correct": false
+        },
+        {
+          "text": "Seulement manuellement",
+          "is_correct": false
+        },
+        {
+          "text": "Une fois par mois maximum",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **colonne calculée** ?",
+      "explanation": "Une colonne calculée est une nouvelle colonne créée avec une formule DAX qui s'évalue ligne par ligne et est stockée dans le modèle de données.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Nouvelle colonne avec formule DAX évaluée ligne par ligne",
+          "is_correct": true
+        },
+        {
+          "text": "Une colonne automatiquement générée",
+          "is_correct": false
+        },
+        {
+          "text": "Une colonne de totaux",
+          "is_correct": false
+        },
+        {
+          "text": "Une colonne cachée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **KPI** (indicateur clé) ?",
+      "explanation": "Un KPI se crée avec la visualisation 'Carte' pour une valeur simple, ou 'Jauge' pour comparer à un objectif, en utilisant des mesures DAX appropriées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Visualisation 'Carte' ou 'Jauge' avec mesures DAX",
+          "is_correct": true
+        },
+        {
+          "text": "Import depuis Excel automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Template KPI prédéfini",
+          "is_correct": false
+        },
+        {
+          "text": "Calcul manuel seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **drill-down** ?",
+      "explanation": "Le drill-down permet de naviguer dans les niveaux de détail d'une hiérarchie (ex: Année > Trimestre > Mois) pour explorer les données en profondeur.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Navigation dans les niveaux de détail d'une hiérarchie",
+          "is_correct": true
+        },
+        {
+          "text": "Forage de données externes",
+          "is_correct": false
+        },
+        {
+          "text": "Suppression de données",
+          "is_correct": false
+        },
+        {
+          "text": "Export vers Excel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **partager** un rapport ?",
+      "explanation": "Le partage se fait dans Power BI Service via le bouton 'Partager' qui permet d'inviter des utilisateurs avec différents niveaux de permissions.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Bouton 'Partager' dans Power BI Service avec permissions",
+          "is_correct": true
+        },
+        {
+          "text": "Email du fichier .pbix",
+          "is_correct": false
+        },
+        {
+          "text": "Publication publique seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Impression papier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **espace de travail** ?",
+      "explanation": "Un espace de travail est un conteneur collaboratif où les équipes peuvent créer, modifier et partager des rapports, tableaux de bord et jeux de données.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Conteneur collaboratif pour créer et partager du contenu",
+          "is_correct": true
+        },
+        {
+          "text": "Un dossier sur le disque dur",
+          "is_correct": false
+        },
+        {
+          "text": "Une base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un serveur dédié",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **table de faits** et des **tables de dimensions** ?",
+      "explanation": "Dans Power BI, on structure les données selon le modèle en étoile : table de faits centrale (transactions) liée à des tables de dimensions (clients, produits, temps).",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Modèle en étoile : table de faits centrale liée aux dimensions",
+          "is_correct": true
+        },
+        {
+          "text": "Toutes les tables au même niveau",
+          "is_correct": false
+        },
+        {
+          "text": "Une seule table plate",
+          "is_correct": false
+        },
+        {
+          "text": "Tables séparées sans relations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **DirectQuery** ?",
+      "explanation": "DirectQuery permet de se connecter directement à la source de données sans importer, gardant les données à jour mais avec des performances potentiellement moindres.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Connexion directe à la source sans import, données toujours à jour",
+          "is_correct": true
+        },
+        {
+          "text": "Import rapide des données",
+          "is_correct": false
+        },
+        {
+          "text": "Requête automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Cache local optimisé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser les **performances** d'un rapport ?",
+      "explanation": "L'optimisation passe par la réduction des colonnes inutiles, l'utilisation de mesures au lieu de colonnes calculées, l'optimisation DAX et la compression des données.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Réduire colonnes, utiliser mesures, optimiser DAX, compresser",
+          "is_correct": true
+        },
+        {
+          "text": "Ajouter plus de visuels",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser seulement DirectQuery",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter la RAM seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power BI Premium** ?",
+      "explanation": "Power BI Premium offre une capacité dédiée avec des fonctionnalités avancées : actualisation plus fréquente, partage étendu, et IA intégrée.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Capacité dédiée avec fonctionnalités avancées et IA",
+          "is_correct": true
+        },
+        {
+          "text": "Version gratuite améliorée",
+          "is_correct": false
+        },
+        {
+          "text": "Application mobile premium",
+          "is_correct": false
+        },
+        {
+          "text": "Support technique inclus",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **rapport paginé** ?",
+      "explanation": "Les rapports paginés se créent avec Power BI Report Builder, optimisés pour l'impression avec mise en page fixe et export vers PDF/Excel.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Power BI Report Builder pour rapports optimisés impression",
+          "is_correct": true
+        },
+        {
+          "text": "Power BI Desktop standard",
+          "is_correct": false
+        },
+        {
+          "text": "Excel avec Power Query",
+          "is_correct": false
+        },
+        {
+          "text": "Word avec tableaux",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **sécurité au niveau ligne** (RLS) ?",
+      "explanation": "La RLS (Row Level Security) permet de filtrer automatiquement les données selon l'utilisateur connecté, garantissant que chacun ne voit que ses données autorisées.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Filtrage automatique des données selon l'utilisateur connecté",
+          "is_correct": true
+        },
+        {
+          "text": "Chiffrement des données",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde sécurisée",
+          "is_correct": false
+        },
+        {
+          "text": "Connexion HTTPS",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser des **paramètres** dans Power BI ?",
+      "explanation": "Les paramètres se créent dans Power Query Editor pour rendre les requêtes dynamiques (ex: période de dates, serveur de base) et peuvent être modifiés sans refaire le rapport.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Power Query Editor pour requêtes dynamiques modifiables",
+          "is_correct": true
+        },
+        {
+          "text": "Variables DAX seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Filtres de rapport",
+          "is_correct": false
+        },
+        {
+          "text": "Configuration dans Service",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power BI Embedded** ?",
+      "explanation": "Power BI Embedded permet d'intégrer des rapports et tableaux de bord Power BI dans des applications tierces ou sites web personnalisés.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Intégration de rapports Power BI dans applications tierces",
+          "is_correct": true
+        },
+        {
+          "text": "Version intégrée d'Office",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données embarquée",
+          "is_correct": false
+        },
+        {
+          "text": "Application mobile native",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **alertes** sur les données ?",
+      "explanation": "Les alertes se configurent dans Power BI Service sur des cartes et jauges pour recevoir des notifications quand les valeurs dépassent des seuils définis.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Configuration dans Service sur cartes/jauges avec seuils",
+          "is_correct": true
+        },
+        {
+          "text": "Automatique sur tous les visuels",
+          "is_correct": false
+        },
+        {
+          "text": "Via email externe seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Surveillance manuelle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power BI Goals** ?",
+      "explanation": "Power BI Goals permet de définir et suivre des objectifs métier avec des métriques clés, facilitant l'alignement sur les KPI organisationnels.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Définition et suivi d'objectifs métier avec métriques clés",
+          "is_correct": true
+        },
+        {
+          "text": "Jeux de données goals",
+          "is_correct": false
+        },
+        {
+          "text": "Objectifs de performance technique",
+          "is_correct": false
+        },
+        {
+          "text": "Buts de formation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser l'**IA** dans Power BI ?",
+      "explanation": "Power BI intègre plusieurs fonctions IA : Q&A (questions en langage naturel), Quick Insights (insights automatiques), et AI Visuals (décomposition, influenceurs clés).",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Q&A, Quick Insights, AI Visuals (décomposition, influenceurs)",
+          "is_correct": true
+        },
+        {
+          "text": "Machine Learning externe seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Intelligence artificielle limitée",
+          "is_correct": false
+        },
+        {
+          "text": "Pas d'IA disponible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **certification de jeu de données** ?",
+      "explanation": "La certification marque un jeu de données comme source de vérité approuvée par l'organisation, garantissant sa fiabilité pour les rapports critiques.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Marque un jeu de données comme source de vérité approuvée",
+          "is_correct": true
+        },
+        {
+          "text": "Validation technique automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Certification utilisateur",
+          "is_correct": false
+        },
+        {
+          "text": "Test de performance",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **rapport mobile-friendly** ?",
+      "explanation": "Un rapport mobile-friendly utilise la vue mobile de Power BI Desktop pour optimiser la disposition des visuels sur petit écran avec navigation tactile.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Vue mobile dans Desktop pour optimiser la disposition petit écran",
+          "is_correct": true
+        },
+        {
+          "text": "Responsive design automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Application séparée",
+          "is_correct": false
+        },
+        {
+          "text": "Export vers app mobile",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power Automate** avec Power BI ?",
+      "explanation": "Power Automate permet d'automatiser des workflows déclenchés par des événements Power BI (actualisation, seuils atteints) vers d'autres systèmes.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Automatisation de workflows déclenchés par événements Power BI",
+          "is_correct": true
+        },
+        {
+          "text": "Actualisation automatique seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Interface utilisateur automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Import de données automatisé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **gérer les versions** d'un rapport ?",
+      "explanation": "Power BI Service maintient un historique des versions, permettant de restaurer des versions antérieures et de voir les modifications avec horodatage.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Historique automatique dans Service avec possibilité de restauration",
+          "is_correct": true
+        },
+        {
+          "text": "Gestion manuelle des fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Git intégré",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de gestion de versions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power BI Dataflows** ?",
+      "explanation": "Les Dataflows permettent de préparer et stocker des données transformées dans le cloud, créant une couche de données réutilisable pour plusieurs rapports.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Préparation et stockage cloud de données transformées réutilisables",
+          "is_correct": true
+        },
+        {
+          "text": "Flux de données temps réel",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Synchronisation de fichiers",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **exporter** des données depuis Power BI ?",
+      "explanation": "L'export se fait via les options du visuel (données sous-jacentes, données résumées) vers Excel, CSV, ou PDF pour l'ensemble du rapport.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Options d'export : données sous-jacentes/résumées vers Excel, CSV, PDF",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Screenshot obligatoire",
+          "is_correct": false
+        },
+        {
+          "text": "Export impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gouvernance** des données dans Power BI ?",
+      "explanation": "La gouvernance inclut la gestion des accès, la certification des données, les politiques de partage, et le monitoring de l'utilisation via le portail d'administration.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Gestion accès, certification, politiques, monitoring via portail admin",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde des données seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Formation utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Support technique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **calculs de table temporelle** ?",
+      "explanation": "Les calculs temporels utilisent les fonctions DAX TIME Intelligence (DATEADD, SAMEPERIODLASTYEAR, YTD) pour comparer des périodes et créer des analyses temporelles.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Fonctions DAX TIME Intelligence (DATEADD, SAMEPERIODLASTYEAR, YTD)",
+          "is_correct": true
+        },
+        {
+          "text": "Filtres de date simples",
+          "is_correct": false
+        },
+        {
+          "text": "Calculs Excel importés",
+          "is_correct": false
+        },
+        {
+          "text": "Paramètres de temps",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **troubleshooter** un rapport lent ?",
+      "explanation": "Le diagnostic utilise Performance Analyzer dans Desktop, vérifie les relations, optimise les requêtes DAX, et examine les sources de données avec Query Diagnostics.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Performance Analyzer, vérification relations, optimisation DAX, Query Diagnostics",
+          "is_correct": true
+        },
+        {
+          "text": "Redémarrage de Power BI seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Ajout de plus de RAM",
+          "is_correct": false
+        },
+        {
+          "text": "Suppression de visuels",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Power BI REST APIs** ?",
+      "explanation": "Les REST APIs permettent d'intégrer Power BI programmatiquement : gestion des rapports, actualisation des données, embedding et administration via code.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Intégration programmatique : gestion rapports, actualisation, embedding",
+          "is_correct": true
+        },
+        {
+          "text": "Interface graphique avancée",
+          "is_correct": false
+        },
+        {
+          "text": "Connexion réseau",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment implémenter une **stratégie de déploiement** Power BI ?",
+      "explanation": "La stratégie inclut des environnements séparés (Dev/Test/Prod), pipelines de déploiement, gestion des sources de données et formation des utilisateurs finaux.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Environnements séparés, pipelines déploiement, gestion sources, formation",
+          "is_correct": true
+        },
+        {
+          "text": "Production directe seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Déploiement manuel ad-hoc",
+          "is_correct": false
+        },
+        {
+          "text": "Copie de fichiers simple",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

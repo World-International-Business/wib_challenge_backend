@@ -1,0 +1,993 @@
+{
+  "technology": "Photoshop",
+  "title": "Évaluation Adobe Photoshop Complète",
+  "description": "Cette évaluation couvre les concepts fondamentaux d'Adobe Photoshop, incluant l'interface, les outils de base, les calques, les filtres, la retouche photo, et les techniques avancées de création graphique professionnelle.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce qu'Adobe Photoshop ?",
+      "explanation": "Adobe Photoshop est un logiciel de retouche d'images bitmap et de création graphique développé par Adobe Systems. Il est l'outil de référence pour les professionnels de l'image et du design graphique.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Un logiciel de retouche d'images et de création graphique",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de montage vidéo",
+          "is_correct": false
+        },
+        {
+          "text": "Un navigateur web",
+          "is_correct": false
+        },
+        {
+          "text": "Un système d'exploitation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le format de fichier natif de Photoshop ?",
+      "explanation": "Le format PSD (Photoshop Document) est le format natif de Photoshop qui préserve toutes les informations du projet : calques, masques, effets, etc.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "PSD",
+          "is_correct": true
+        },
+        {
+          "text": "JPG",
+          "is_correct": false
+        },
+        {
+          "text": "PNG",
+          "is_correct": false
+        },
+        {
+          "text": "PDF",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci clavier permet de créer un nouveau document ?",
+      "explanation": "Ctrl+N (Cmd+N sur Mac) est le raccourci universel pour créer un nouveau document dans Photoshop.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Ctrl+N",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+O",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+S",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+D",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction principale de l'outil **Baguette magique** ?",
+      "explanation": "L'outil Baguette magique permet de sélectionner automatiquement des zones de couleurs similaires en fonction d'un seuil de tolérance défini.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner des zones de couleurs similaires",
+          "is_correct": true
+        },
+        {
+          "text": "Dessiner des formes magiques",
+          "is_correct": false
+        },
+        {
+          "text": "Appliquer des effets spéciaux",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des animations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accède-t-on au panneau des calques ?",
+      "explanation": "Le panneau des calques peut être ouvert via le menu Fenêtre > Calques ou avec le raccourci F7.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Fenêtre > Calques",
+          "is_correct": true
+        },
+        {
+          "text": "Édition > Calques",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Calques",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Calques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel mode de fusion permet de **multiplier** les couleurs ?",
+      "explanation": "Le mode de fusion 'Produit' (Multiply) multiplie les couleurs des calques, créant généralement des tons plus sombres.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Produit (Multiply)",
+          "is_correct": true
+        },
+        {
+          "text": "Éclaircir",
+          "is_correct": false
+        },
+        {
+          "text": "Superposition",
+          "is_correct": false
+        },
+        {
+          "text": "Normal",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle résolution est recommandée pour l'impression ?",
+      "explanation": "Pour l'impression, une résolution de 300 DPI (dots per inch) est recommandée pour obtenir une qualité professionnelle.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "300 DPI",
+          "is_correct": true
+        },
+        {
+          "text": "72 DPI",
+          "is_correct": false
+        },
+        {
+          "text": "150 DPI",
+          "is_correct": false
+        },
+        {
+          "text": "600 DPI",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel outil permet de **cloner** une partie d'une image ?",
+      "explanation": "L'outil Tampon de duplication permet de copier une zone d'une image vers une autre en prélevant des pixels d'une zone source.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Tampon de duplication",
+          "is_correct": true
+        },
+        {
+          "text": "Pinceau",
+          "is_correct": false
+        },
+        {
+          "text": "Gomme",
+          "is_correct": false
+        },
+        {
+          "text": "Sélection",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un masque de calque ?",
+      "explanation": "Un masque de calque peut être créé en cliquant sur l'icône de masque au bas du panneau des calques ou via le menu Calque > Masque de fusion.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Cliquer sur l'icône de masque dans le panneau des calques",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser l'outil Masque",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Édition > Masque",
+          "is_correct": false
+        },
+        {
+          "text": "Raccourci Ctrl+M",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel format d'image **préserve la transparence** ?",
+      "explanation": "Le format PNG préserve la transparence, contrairement au JPEG qui ne supporte pas les canaux alpha.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "PNG",
+          "is_correct": true
+        },
+        {
+          "text": "JPEG",
+          "is_correct": false
+        },
+        {
+          "text": "BMP",
+          "is_correct": false
+        },
+        {
+          "text": "TIFF",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre **pixels** et **vecteurs** ?",
+      "explanation": "Les images pixels (bitmap) sont composées de points colorés et peuvent perdre en qualité lors du redimensionnement. Les vecteurs sont basés sur des formules mathématiques et restent nets à toutes les tailles.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Les pixels sont des points colorés, les vecteurs sont basés sur des formules mathématiques",
+          "is_correct": true
+        },
+        {
+          "text": "Les vecteurs sont des points colorés, les pixels sont des formules",
+          "is_correct": false
+        },
+        {
+          "text": "Il n'y a pas de différence",
+          "is_correct": false
+        },
+        {
+          "text": "Les pixels sont plus précis que les vecteurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci permet d'**annuler** la dernière action ?",
+      "explanation": "Ctrl+Z (Cmd+Z sur Mac) permet d'annuler la dernière action effectuée dans Photoshop.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Ctrl+Z",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+Y",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+A",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+Z",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **calque de réglage** ?",
+      "explanation": "Un calque de réglage permet d'appliquer des corrections de couleur, luminosité, contraste etc. de manière non destructive, sans modifier les pixels de l'image originale.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Un calque qui applique des corrections de manière non destructive",
+          "is_correct": true
+        },
+        {
+          "text": "Un calque pour dessiner",
+          "is_correct": false
+        },
+        {
+          "text": "Un calque qui contient du texte",
+          "is_correct": false
+        },
+        {
+          "text": "Un calque de fond",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel outil permet de **corriger les yeux rouges** ?",
+      "explanation": "L'outil Œil rouge est spécialement conçu pour corriger l'effet yeux rouges causé par le flash des appareils photo.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Outil Œil rouge",
+          "is_correct": true
+        },
+        {
+          "text": "Pinceau correcteur",
+          "is_correct": false
+        },
+        {
+          "text": "Tampon de duplication",
+          "is_correct": false
+        },
+        {
+          "text": "Densité +",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction du **filtre Flou gaussien** ?",
+      "explanation": "Le filtre Flou gaussien applique un flou uniforme à l'image ou à la sélection, souvent utilisé pour créer des effets de profondeur de champ ou adoucir des détails.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Appliquer un flou uniforme à l'image",
+          "is_correct": true
+        },
+        {
+          "text": "Augmenter la netteté",
+          "is_correct": false
+        },
+        {
+          "text": "Créer du bruit",
+          "is_correct": false
+        },
+        {
+          "text": "Changer les couleurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **redimensionner** une image sans perdre les proportions ?",
+      "explanation": "Pour redimensionner une image en gardant les proportions, il faut maintenir la touche Maj enfoncée lors du redimensionnement ou cocher l'option 'Conserver les proportions'.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Maintenir la touche Maj enfoncée",
+          "is_correct": true
+        },
+        {
+          "text": "Maintenir la touche Ctrl enfoncée",
+          "is_correct": false
+        },
+        {
+          "text": "Maintenir la touche Alt enfoncée",
+          "is_correct": false
+        },
+        {
+          "text": "Cliquer deux fois",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel mode colorimétrique est recommandé pour le **web** ?",
+      "explanation": "Le mode RVB (Rouge, Vert, Bleu) est recommandé pour les images destinées au web et aux écrans, car c'est le mode de couleur natif des moniteurs.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "RVB",
+          "is_correct": true
+        },
+        {
+          "text": "CMJN",
+          "is_correct": false
+        },
+        {
+          "text": "LAB",
+          "is_correct": false
+        },
+        {
+          "text": "Niveaux de gris",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**anti-aliasing** ?",
+      "explanation": "L'anti-aliasing est une technique qui lisse les contours en créant des pixels intermédiaires, réduisant ainsi l'effet d'escalier sur les bords des formes.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Une technique pour lisser les contours",
+          "is_correct": true
+        },
+        {
+          "text": "Un effet de transparence",
+          "is_correct": false
+        },
+        {
+          "text": "Un mode de fusion",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de calque",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci permet de **dupliquer** un calque ?",
+      "explanation": "Ctrl+J (Cmd+J sur Mac) permet de dupliquer rapidement le calque sélectionné dans Photoshop.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Ctrl+J",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+D",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+C",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+L",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction de l'outil **Densité +** ?",
+      "explanation": "L'outil Densité + (ou Assombrir) permet d'assombrir localement des zones de l'image en les peignant, simulant la technique photographique traditionnelle.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Assombrir des zones de l'image",
+          "is_correct": true
+        },
+        {
+          "text": "Éclaircir des zones de l'image",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter la saturation",
+          "is_correct": false
+        },
+        {
+          "text": "Créer de la transparence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **dégradé** dans Photoshop ?",
+      "explanation": "L'outil Dégradé permet de créer des transitions de couleurs en tirant une ligne entre deux points. Les options de dégradé peuvent être personnalisées dans la barre d'options.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Utiliser l'outil Dégradé et tirer une ligne",
+          "is_correct": true
+        },
+        {
+          "text": "Menu Filtres > Dégradé",
+          "is_correct": false
+        },
+        {
+          "text": "Calque > Dégradé",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser l'outil Pinceau avec des couleurs différentes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **courbe de Bézier** ?",
+      "explanation": "Une courbe de Bézier est une courbe paramétrique définie par des points de contrôle, utilisée dans Photoshop pour créer des tracés précis avec l'outil Plume.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Une courbe définie par des points de contrôle",
+          "is_correct": true
+        },
+        {
+          "text": "Un type de filtre",
+          "is_correct": false
+        },
+        {
+          "text": "Un mode de fusion",
+          "is_correct": false
+        },
+        {
+          "text": "Un format d'image",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est l'avantage des **objets dynamiques** ?",
+      "explanation": "Les objets dynamiques préservent les données originales de l'image, permettant des transformations non destructives et la possibilité de revenir aux données sources.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Ils permettent des transformations non destructives",
+          "is_correct": true
+        },
+        {
+          "text": "Ils rendent l'image plus petite",
+          "is_correct": false
+        },
+        {
+          "text": "Ils changent automatiquement de couleur",
+          "is_correct": false
+        },
+        {
+          "text": "Ils s'animent automatiquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **sauvegarder pour le web** ?",
+      "explanation": "La fonction 'Exporter > Enregistrer pour le web (hérité)' ou 'Exporter > Exporter sous' permet d'optimiser les images pour le web avec différents formats et options de compression.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Fichier > Exporter > Enregistrer pour le web",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Enregistrer",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Exporter",
+          "is_correct": false
+        },
+        {
+          "text": "Image > Exporter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **masque d'écrêtage** ?",
+      "explanation": "Un masque d'écrêtage utilise la forme et la transparence du calque inférieur pour déterminer la visibilité du calque supérieur.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Un masque basé sur la forme du calque inférieur",
+          "is_correct": true
+        },
+        {
+          "text": "Un masque pour couper les images",
+          "is_correct": false
+        },
+        {
+          "text": "Un masque de couleur",
+          "is_correct": false
+        },
+        {
+          "text": "Un masque temporaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel format préserve le **maximum de qualité** ?",
+      "explanation": "Le format TIFF non compressé préserve le maximum de qualité d'image, contrairement aux formats avec compression comme JPEG.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "TIFF",
+          "is_correct": true
+        },
+        {
+          "text": "JPEG",
+          "is_correct": false
+        },
+        {
+          "text": "GIF",
+          "is_correct": false
+        },
+        {
+          "text": "WebP",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **corriger la perspective** d'une image ?",
+      "explanation": "L'outil Correction de perspective ou le filtre Correction de l'objectif permettent de corriger la distorsion perspective des images.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Filtre > Correction de l'objectif",
+          "is_correct": true
+        },
+        {
+          "text": "Édition > Transformation > Perspective",
+          "is_correct": true
+        },
+        {
+          "text": "Image > Rotation",
+          "is_correct": false
+        },
+        {
+          "text": "Calque > Perspective",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**espace colorimétrique** ?",
+      "explanation": "L'espace colorimétrique définit la gamme de couleurs qu'un périphérique peut reproduire ou afficher. Adobe RVB, sRVB, ProPhoto RVB sont des exemples d'espaces colorimétriques.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "La gamme de couleurs qu'un périphérique peut reproduire",
+          "is_correct": true
+        },
+        {
+          "text": "L'espace disque utilisé par l'image",
+          "is_correct": false
+        },
+        {
+          "text": "Le nombre de couleurs dans l'image",
+          "is_correct": false
+        },
+        {
+          "text": "La taille de l'image en pixels",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel outil permet de **sélectionner par plage de couleurs** ?",
+      "explanation": "L'outil 'Sélection > Plage de couleurs' permet de sélectionner des pixels basés sur des couleurs similaires dans toute l'image.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélection > Plage de couleurs",
+          "is_correct": true
+        },
+        {
+          "text": "Baguette magique",
+          "is_correct": false
+        },
+        {
+          "text": "Lasso",
+          "is_correct": false
+        },
+        {
+          "text": "Sélection rapide",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **action** dans Photoshop ?",
+      "explanation": "Une action peut être créée via le panneau Actions en cliquant sur 'Créer une action' puis en enregistrant les étapes à automatiser.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Panneau Actions > Créer une action",
+          "is_correct": true
+        },
+        {
+          "text": "Menu Édition > Action",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Automatisation",
+          "is_correct": false
+        },
+        {
+          "text": "Calque > Nouvelle action",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre **Résolution** et **Taille d'image** ?",
+      "explanation": "La résolution détermine la densité de pixels (DPI/PPI) tandis que la taille d'image détermine les dimensions en pixels. Une même image peut avoir différentes résolutions selon son usage.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "La résolution est la densité de pixels, la taille est les dimensions",
+          "is_correct": true
+        },
+        {
+          "text": "La résolution et la taille sont identiques",
+          "is_correct": false
+        },
+        {
+          "text": "La résolution est en pixels, la taille en pouces",
+          "is_correct": false
+        },
+        {
+          "text": "La taille détermine la qualité, pas la résolution",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **supprimer un objet** d'une photo ?",
+      "explanation": "L'outil Correcteur localisé, le Tampon de duplication, ou la fonction 'Remplir d'après le contenu' permettent de supprimer des objets en reconstruisant l'arrière-plan.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outil Correcteur localisé ou Remplir d'après le contenu",
+          "is_correct": true
+        },
+        {
+          "text": "Gomme",
+          "is_correct": false
+        },
+        {
+          "text": "Filtre > Supprimer",
+          "is_correct": false
+        },
+        {
+          "text": "Sélectionner et supprimer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **profondeur de couleur** ?",
+      "explanation": "La profondeur de couleur détermine le nombre de bits utilisés pour représenter chaque pixel, affectant la gamme de couleurs et de tons disponibles (8 bits, 16 bits, 32 bits).",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Le nombre de bits par pixel pour représenter les couleurs",
+          "is_correct": true
+        },
+        {
+          "text": "Le nombre de couleurs dans l'image",
+          "is_correct": false
+        },
+        {
+          "text": "La saturation des couleurs",
+          "is_correct": false
+        },
+        {
+          "text": "La luminosité de l'image",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **effet de texte 3D** ?",
+      "explanation": "Les effets de texte 3D peuvent être créés via le menu 3D > Nouvelle extrusion 3D à partir du calque sélectionné, ou en utilisant les styles de calque avec des ombres et biseaux.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Menu 3D > Nouvelle extrusion 3D",
+          "is_correct": true
+        },
+        {
+          "text": "Styles de calque avec biseaux et ombres",
+          "is_correct": true
+        },
+        {
+          "text": "Filtre > Rendu > Texte 3D",
+          "is_correct": false
+        },
+        {
+          "text": "Outil Texte > Mode 3D",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction du **filtre Accentuation** ?",
+      "explanation": "Le filtre Accentuation augmente le contraste des contours pour donner une impression de netteté accrue à l'image, souvent utilisé après un redimensionnement.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Augmenter la netteté de l'image",
+          "is_correct": true
+        },
+        {
+          "text": "Réduire le bruit",
+          "is_correct": false
+        },
+        {
+          "text": "Ajuster les couleurs",
+          "is_correct": false
+        },
+        {
+          "text": "Créer un flou artistique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **automatiser un traitement** sur plusieurs images ?",
+      "explanation": "La fonction 'Traitement par lot' permet d'appliquer automatiquement une action à un dossier d'images, accessible via Fichier > Automatisation > Traitement par lot.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Fichier > Automatisation > Traitement par lot",
+          "is_correct": true
+        },
+        {
+          "text": "Actions > Appliquer à tous",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Calque > Traitement multiple",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **profil ICC** ?",
+      "explanation": "Un profil ICC décrit les caractéristiques colorimétriques d'un périphérique (écran, imprimante, appareil photo) pour assurer une reproduction fidèle des couleurs.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Un fichier décrivant les caractéristiques colorimétriques d'un périphérique",
+          "is_correct": true
+        },
+        {
+          "text": "Un format d'image compressé",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de calque spécial",
+          "is_correct": false
+        },
+        {
+          "text": "Un mode de fusion avancé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **motif répétitif** (pattern) ?",
+      "explanation": "Un motif peut être créé en définissant une zone comme motif via Édition > Utiliser comme motif, puis appliqué avec l'outil Pot de peinture ou comme style de calque.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Édition > Utiliser comme motif",
+          "is_correct": true
+        },
+        {
+          "text": "Filtre > Motif",
+          "is_correct": false
+        },
+        {
+          "text": "Calque > Motif répétitif",
+          "is_correct": false
+        },
+        {
+          "text": "Image > Créer motif",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre **Luminosité/Contraste** et **Niveaux** ?",
+      "explanation": "Luminosité/Contraste ajuste globalement l'image de manière linéaire, tandis que Niveaux permet un contrôle plus précis des tons sombres, moyens et clairs séparément.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Niveaux offre un contrôle plus précis des tons",
+          "is_correct": true
+        },
+        {
+          "text": "Luminosité/Contraste est plus précis",
+          "is_correct": false
+        },
+        {
+          "text": "Il n'y a pas de différence",
+          "is_correct": false
+        },
+        {
+          "text": "Niveaux ne fonctionne qu'en noir et blanc",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **aligner plusieurs calques** ?",
+      "explanation": "Pour aligner plusieurs calques, il faut les sélectionner puis utiliser les outils d'alignement dans la barre d'options ou le menu Calque > Aligner.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélectionner les calques puis utiliser les outils d'alignement",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser-déposer manuellement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser la grille automatiquement",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Édition > Aligner",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **mode Lab** ?",
+      "explanation": "Le mode Lab sépare la luminosité (L) des informations de couleur (a et b), permettant des ajustements de couleur plus précis sans affecter la luminosité.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Un mode qui sépare luminosité et couleur",
+          "is_correct": true
+        },
+        {
+          "text": "Un mode pour les laboratoires",
+          "is_correct": false
+        },
+        {
+          "text": "Un mode de fusion spécial",
+          "is_correct": false
+        },
+        {
+          "text": "Un format d'export",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

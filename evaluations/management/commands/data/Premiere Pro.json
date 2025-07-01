@@ -1,0 +1,945 @@
+{
+  "technology": "Premiere Pro",
+  "title": "Évaluation Adobe Premiere Pro - Montage Vidéo",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles d'Adobe Premiere Pro pour le montage vidéo professionnel, incluant l'interface, le timeline, les effets, la correction colorimétrique, l'audio et l'export.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce qu'Adobe Premiere Pro ?",
+      "explanation": "Adobe Premiere Pro est un logiciel de montage vidéo professionnel qui fait partie de la suite Adobe Creative Cloud, utilisé pour créer des vidéos, films et contenus audiovisuels.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Un logiciel de montage vidéo professionnel",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de retouche photo",
+          "is_correct": false
+        },
+        {
+          "text": "Un lecteur multimédia",
+          "is_correct": false
+        },
+        {
+          "text": "Un convertisseur de formats",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le **panneau principal** pour organiser les rushes ?",
+      "explanation": "Le panneau Projet (Project) permet d'importer, organiser et gérer tous les médias (vidéos, audios, images) utilisés dans le montage.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Panneau Projet (Project)",
+          "is_correct": true
+        },
+        {
+          "text": "Timeline",
+          "is_correct": false
+        },
+        {
+          "text": "Moniteur source",
+          "is_correct": false
+        },
+        {
+          "text": "Effets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment importer des médias dans Premiere Pro ?",
+      "explanation": "Les médias peuvent être importés via Fichier > Importer, en glissant-déposant dans le panneau Projet, ou avec le raccourci Ctrl+I (Cmd+I sur Mac).",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Fichier > Importer ou glisser-déposer",
+          "is_correct": true
+        },
+        {
+          "text": "Clic droit > Ajouter",
+          "is_correct": false
+        },
+        {
+          "text": "Timeline > Importer",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Médias",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **Timeline** ?",
+      "explanation": "La Timeline est l'espace de travail principal où l'on assemble les clips vidéo et audio dans l'ordre chronologique pour créer le montage final.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "L'espace où l'on assemble les clips chronologiquement",
+          "is_correct": true
+        },
+        {
+          "text": "Un panneau d'effets",
+          "is_correct": false
+        },
+        {
+          "text": "Un moniteur de prévisualisation",
+          "is_correct": false
+        },
+        {
+          "text": "Un outil de mesure du temps",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci permet de **couper** un clip ?",
+      "explanation": "La touche C active l'outil Cutter (Razor) qui permet de couper les clips à l'endroit désiré sur la timeline.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "C (outil Cutter/Razor)",
+          "is_correct": true
+        },
+        {
+          "text": "X",
+          "is_correct": false
+        },
+        {
+          "text": "V",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+X",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **synchroniser** l'audio et la vidéo ?",
+      "explanation": "La synchronisation peut se faire automatiquement avec la fonction 'Synchroniser' en analysant les formes d'onde audio, ou manuellement en alignant les timecodes.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Clic droit > Synchroniser ou analyser les formes d'onde",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser manuellement seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser un plugin externe",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Premiere Pro",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **séquence** ?",
+      "explanation": "Une séquence est un conteneur qui définit les paramètres du projet (résolution, fréquence d'images, format) et contient l'assemblage des clips sur la timeline.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Un conteneur avec les paramètres du projet et l'assemblage des clips",
+          "is_correct": true
+        },
+        {
+          "text": "Un effet spécial",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de transition",
+          "is_correct": false
+        },
+        {
+          "text": "Un format d'export",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **nouvelle séquence** ?",
+      "explanation": "Une nouvelle séquence se crée via Fichier > Nouveau > Séquence, ou en glissant un clip du panneau Projet vers un espace vide de la timeline.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Fichier > Nouveau > Séquence",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser un clip vers la timeline vide",
+          "is_correct": true
+        },
+        {
+          "text": "Timeline > Créer",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+N seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **point d'entrée** et un **point de sortie** ?",
+      "explanation": "Les points d'entrée (In) et de sortie (Out) définissent la portion d'un clip qui sera utilisée dans le montage, permettant de sélectionner seulement les parties désirées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Ils définissent la portion d'un clip à utiliser",
+          "is_correct": true
+        },
+        {
+          "text": "Ils marquent le début et la fin de la timeline",
+          "is_correct": false
+        },
+        {
+          "text": "Ils indiquent les transitions",
+          "is_correct": false
+        },
+        {
+          "text": "Ils marquent les effets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci définit un **point d'entrée** ?",
+      "explanation": "La touche I définit un point d'entrée (In point) sur le clip ou la timeline à la position de la tête de lecture.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "I",
+          "is_correct": true
+        },
+        {
+          "text": "O",
+          "is_correct": false
+        },
+        {
+          "text": "E",
+          "is_correct": false
+        },
+        {
+          "text": "S",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **ajuster la vitesse** d'un clip ?",
+      "explanation": "La vitesse d'un clip peut être ajustée via clic droit > Vitesse/Durée, ou en utilisant l'outil Allongement de débit (Rate Stretch Tool).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Clic droit > Vitesse/Durée",
+          "is_correct": true
+        },
+        {
+          "text": "Outil Allongement de débit",
+          "is_correct": true
+        },
+        {
+          "text": "Panneau Effets seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de changer la vitesse",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **transition** ?",
+      "explanation": "Une transition est un effet qui lie deux clips adjacents, créant un passage fluide entre eux (fondu, volet, morphing, etc.).",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Un effet qui lie deux clips adjacents",
+          "is_correct": true
+        },
+        {
+          "text": "Un changement de séquence",
+          "is_correct": false
+        },
+        {
+          "text": "Un effet audio",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de titre",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer une **transition** ?",
+      "explanation": "Les transitions peuvent être appliquées en les glissant depuis le panneau Effets vers la jonction entre deux clips, ou via le raccourci Ctrl+D pour une transition par défaut.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Glisser depuis le panneau Effets vers la jonction",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+D pour une transition par défaut",
+          "is_correct": true
+        },
+        {
+          "text": "Double-cliquer sur le clip",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Transition > Appliquer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **panneau Lumetri** ?",
+      "explanation": "Le panneau Lumetri Color est l'outil principal de correction et d'étalonnage colorimétrique dans Premiere Pro, permettant d'ajuster les couleurs, l'exposition, et créer des looks.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "L'outil de correction et d'étalonnage colorimétrique",
+          "is_correct": true
+        },
+        {
+          "text": "Un panneau d'effets audio",
+          "is_correct": false
+        },
+        {
+          "text": "Un outil de mesure",
+          "is_correct": false
+        },
+        {
+          "text": "Un panneau de titres",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **équilibrer les couleurs** d'un clip ?",
+      "explanation": "L'équilibrage des couleurs se fait dans le panneau Lumetri Color avec les roues chromatiques, les curseurs de balance des blancs, ou l'outil de correction automatique.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Panneau Lumetri Color avec les roues chromatiques",
+          "is_correct": true
+        },
+        {
+          "text": "Curseurs de balance des blancs",
+          "is_correct": true
+        },
+        {
+          "text": "Filtre > Couleur",
+          "is_correct": false
+        },
+        {
+          "text": "Effets > Balance",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **LUT** ?",
+      "explanation": "Un LUT (Look-Up Table) est une table de correspondance qui transforme mathématiquement les couleurs d'une image pour créer un look spécifique ou corriger la colorimétrie.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Une table de correspondance pour transformer les couleurs",
+          "is_correct": true
+        },
+        {
+          "text": "Un type de codec",
+          "is_correct": false
+        },
+        {
+          "text": "Un format d'image",
+          "is_correct": false
+        },
+        {
+          "text": "Un effet de transition",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **créer un titre** dans Premiere Pro ?",
+      "explanation": "Les titres peuvent être créés via Graphiques > Nouveau calque > Texte dans le panneau Graphiques essentiels, ou en important des modèles After Effects.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Panneau Graphiques essentiels > Nouveau calque > Texte",
+          "is_correct": true
+        },
+        {
+          "text": "Importer des modèles After Effects",
+          "is_correct": true
+        },
+        {
+          "text": "Titre > Nouveau titre",
+          "is_correct": false
+        },
+        {
+          "text": "Effets > Texte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**étalonnage** ?",
+      "explanation": "L'étalonnage (color grading) est le processus artistique d'ajustement des couleurs pour créer une ambiance, un style visuel ou corriger les différences entre les plans.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Le processus artistique d'ajustement des couleurs",
+          "is_correct": true
+        },
+        {
+          "text": "La mesure de la luminosité",
+          "is_correct": false
+        },
+        {
+          "text": "La synchronisation audio",
+          "is_correct": false
+        },
+        {
+          "text": "Le réglage de la vitesse",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **exporter** une vidéo ?",
+      "explanation": "L'export se fait via Fichier > Exporter > Média (Ctrl+M), où l'on peut choisir le format, la qualité et les paramètres de compression.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Fichier > Exporter > Média",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+M",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Enregistrer",
+          "is_correct": false
+        },
+        {
+          "text": "Timeline > Exporter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **proxy** ?",
+      "explanation": "Les fichiers proxy sont des versions allégées et basse résolution des médias originaux, utilisées pour fluidifier le montage sur des machines moins puissantes.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Des fichiers allégés pour fluidifier le montage",
+          "is_correct": true
+        },
+        {
+          "text": "Des effets de transition",
+          "is_correct": false
+        },
+        {
+          "text": "Des serveurs de rendu",
+          "is_correct": false
+        },
+        {
+          "text": "Des fichiers de sauvegarde",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **stabiliser** une vidéo tremblante ?",
+      "explanation": "La stabilisation se fait avec l'effet 'Stabilisateur de déformation' qui analyse le mouvement de l'image et compense automatiquement les tremblements.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Effet 'Stabilisateur de déformation'",
+          "is_correct": true
+        },
+        {
+          "text": "Filtre anti-tremblement",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de lissage",
+          "is_correct": false
+        },
+        {
+          "text": "Correction manuelle image par image",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **fréquence d'images** (framerate) ?",
+      "explanation": "La fréquence d'images détermine le nombre d'images par seconde (fps) d'une vidéo. Les standards courants sont 24fps (cinéma), 25fps (Europe), 30fps (US), 60fps (sport).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Le nombre d'images par seconde",
+          "is_correct": true
+        },
+        {
+          "text": "La résolution de l'image",
+          "is_correct": false
+        },
+        {
+          "text": "La qualité de compression",
+          "is_correct": false
+        },
+        {
+          "text": "La taille du fichier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **ajuster l'audio** d'un clip ?",
+      "explanation": "L'audio peut être ajusté via le panneau Audio essentiel, en modifiant le gain dans les propriétés du clip, ou avec des effets audio comme l'égaliseur.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Panneau Audio essentiel ou propriétés du clip",
+          "is_correct": true
+        },
+        {
+          "text": "Effets audio comme l'égaliseur",
+          "is_correct": true
+        },
+        {
+          "text": "Seulement en post-production",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Premiere Pro",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **keyframe** ?",
+      "explanation": "Un keyframe (image clé) marque un point dans le temps où une propriété (position, opacité, volume) a une valeur spécifique, permettant de créer des animations.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Un point qui marque une valeur spécifique pour créer des animations",
+          "is_correct": true
+        },
+        {
+          "text": "Une image de référence",
+          "is_correct": false
+        },
+        {
+          "text": "Un raccourci clavier",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de transition",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **effet de ralenti** ?",
+      "explanation": "Le ralenti peut être créé en réduisant la vitesse du clip (ex: 50% pour diviser par 2), ou en utilisant l'effet 'Remappage temporel' pour plus de contrôle.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Réduire la vitesse du clip ou utiliser le Remappage temporel",
+          "is_correct": true
+        },
+        {
+          "text": "Augmenter la fréquence d'images",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser l'effet Flou de mouvement",
+          "is_correct": false
+        },
+        {
+          "text": "Dupliquer les images",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **multicam** ?",
+      "explanation": "Le montage multicaméra permet de synchroniser et basculer entre plusieurs angles de caméra d'un même événement, facilitant le montage d'interviews ou concerts.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Synchronisation et basculement entre plusieurs angles de caméra",
+          "is_correct": true
+        },
+        {
+          "text": "Utilisation de plusieurs écrans",
+          "is_correct": false
+        },
+        {
+          "text": "Un mode d'affichage",
+          "is_correct": false
+        },
+        {
+          "text": "Un type d'export",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **supprimer le bruit audio** ?",
+      "explanation": "Le bruit audio peut être réduit avec l'effet 'Réduction du bruit adaptatif' ou 'DeNoise' dans le panneau Audio essentiel.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Effet 'Réduction du bruit adaptatif' ou 'DeNoise'",
+          "is_correct": true
+        },
+        {
+          "text": "Baisser le volume",
+          "is_correct": false
+        },
+        {
+          "text": "Égaliseur seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Premiere Pro",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **rendering** ?",
+      "explanation": "Le rendering est le processus de calcul qui génère les aperçus ou les fichiers finaux en appliquant tous les effets, transitions et corrections à la vidéo.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Le processus de calcul qui génère les aperçus ou fichiers finaux",
+          "is_correct": true
+        },
+        {
+          "text": "L'affichage en temps réel",
+          "is_correct": false
+        },
+        {
+          "text": "La sauvegarde du projet",
+          "is_correct": false
+        },
+        {
+          "text": "L'importation des médias",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **effet de zoom** ?",
+      "explanation": "L'effet de zoom se crée en animant la propriété 'Échelle' du clip avec des keyframes, ou en utilisant l'effet 'Transformation'.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Animer la propriété 'Échelle' avec des keyframes",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser l'effet 'Transformation'",
+          "is_correct": true
+        },
+        {
+          "text": "Recadrer l'image",
+          "is_correct": false
+        },
+        {
+          "text": "Changer la résolution",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**espace colorimétrique** Rec.709 ?",
+      "explanation": "Rec.709 est l'espace colorimétrique standard pour la télévision HD et le web, définissant la gamme de couleurs que les écrans peuvent afficher.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "L'espace colorimétrique standard pour la télévision HD",
+          "is_correct": true
+        },
+        {
+          "text": "Un codec de compression",
+          "is_correct": false
+        },
+        {
+          "text": "Une résolution d'image",
+          "is_correct": false
+        },
+        {
+          "text": "Un format audio",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **créer un masque** ?",
+      "explanation": "Les masques peuvent être créés avec l'outil Plume ou Ellipse dans le panneau Contrôle des effets, permettant de cacher ou révéler des parties de l'image.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outil Plume ou Ellipse dans le Contrôle des effets",
+          "is_correct": true
+        },
+        {
+          "text": "Effets > Masque",
+          "is_correct": false
+        },
+        {
+          "text": "Calque > Masquer",
+          "is_correct": false
+        },
+        {
+          "text": "Filtre > Opacité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **timecode** ?",
+      "explanation": "Le timecode est un système de référence temporelle qui indique la position exacte dans la vidéo (heures:minutes:secondes:images).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Un système de référence temporelle (heures:minutes:secondes:images)",
+          "is_correct": true
+        },
+        {
+          "text": "La durée totale de la vidéo",
+          "is_correct": false
+        },
+        {
+          "text": "Le code de compression",
+          "is_correct": false
+        },
+        {
+          "text": "L'identifiant du fichier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **optimiser les performances** de Premiere Pro ?",
+      "explanation": "Les performances peuvent être optimisées en utilisant des proxies, en ajustant la qualité de lecture, en vidant le cache, et en allouant plus de RAM dans les préférences.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Utiliser des proxies et ajuster la qualité de lecture",
+          "is_correct": true
+        },
+        {
+          "text": "Vider le cache et allouer plus de RAM",
+          "is_correct": true
+        },
+        {
+          "text": "Fermer d'autres logiciels seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Réduire la résolution définitivement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**Audio Units** (AU) ?",
+      "explanation": "Audio Units est un format de plugin audio sur macOS qui permet d'ajouter des effets audio tiers dans Premiere Pro.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Un format de plugin audio sur macOS",
+          "is_correct": true
+        },
+        {
+          "text": "Une unité de mesure audio",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de piste audio",
+          "is_correct": false
+        },
+        {
+          "text": "Un codec audio",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **créer une séquence imbriquée** ?",
+      "explanation": "Une séquence imbriquée se crée en glissant une séquence depuis le panneau Projet vers une autre séquence, permettant de traiter plusieurs clips comme un seul élément.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Glisser une séquence vers une autre séquence",
+          "is_correct": true
+        },
+        {
+          "text": "Clic droit > Imbriquer",
+          "is_correct": false
+        },
+        {
+          "text": "Séquence > Nouvelle > Imbriquée",
+          "is_correct": false
+        },
+        {
+          "text": "Grouper les clips",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Dynamic Link** ?",
+      "explanation": "Dynamic Link permet de lier dynamiquement des compositions After Effects dans Premiere Pro sans avoir à les exporter, facilitant les échanges entre les logiciels Adobe.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Liaison dynamique avec After Effects sans export",
+          "is_correct": true
+        },
+        {
+          "text": "Un type de transition",
+          "is_correct": false
+        },
+        {
+          "text": "Une fonction d'auto-synchronisation",
+          "is_correct": false
+        },
+        {
+          "text": "Un codec de liaison",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **créer un generique de fin** qui défile ?",
+      "explanation": "Un générique qui défile se crée avec l'effet 'Défilement' dans le panneau Graphiques essentiels, ou en animant la position Y du texte avec des keyframes.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Effet 'Défilement' dans Graphiques essentiels",
+          "is_correct": true
+        },
+        {
+          "text": "Animer la position Y avec des keyframes",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser une transition spéciale",
+          "is_correct": false
+        },
+        {
+          "text": "Importer un template seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **profondeur de couleur** 10-bit ?",
+      "explanation": "La profondeur 10-bit offre 1024 nuances par canal couleur (vs 256 en 8-bit), permettant des dégradés plus fluides et une meilleure qualité pour l'étalonnage.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "1024 nuances par canal pour des dégradés plus fluides",
+          "is_correct": true
+        },
+        {
+          "text": "Le double de qualité par rapport au 8-bit",
+          "is_correct": false
+        },
+        {
+          "text": "Une résolution plus élevée",
+          "is_correct": false
+        },
+        {
+          "text": "Un format de compression",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **synchroniser** avec un enregistrement audio externe ?",
+      "explanation": "La synchronisation se fait en sélectionnant la vidéo et l'audio externe, puis clic droit > Synchroniser, en choisissant le timecode ou l'analyse audio comme référence.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Sélectionner les éléments puis clic droit > Synchroniser",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser le timecode ou l'analyse audio comme référence",
+          "is_correct": true
+        },
+        {
+          "text": "Aligner manuellement seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible avec un audio externe",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

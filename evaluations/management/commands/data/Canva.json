@@ -1,0 +1,945 @@
+{
+  "technology": "Canva",
+  "title": "Évaluation Canva - Design Graphique Accessible",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Canva pour la création graphique accessible, incluant l'interface, les templates, les éléments de design, la collaboration et l'export pour différents supports.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Canva ?",
+      "explanation": "Canva est une plateforme de design graphique en ligne qui permet de créer facilement des visuels professionnels avec des templates prédéfinis, accessible aux non-designers.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Une plateforme de design graphique en ligne accessible à tous",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de retouche photo professionnel",
+          "is_correct": false
+        },
+        {
+          "text": "Un réseau social pour designers",
+          "is_correct": false
+        },
+        {
+          "text": "Un site de vente d'images",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est l'avantage principal de Canva par rapport aux logiciels traditionnels ?",
+      "explanation": "Canva se distingue par sa simplicité d'utilisation, ses templates prêts à l'emploi et son accessibilité aux non-professionnels du design.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Simplicité d'utilisation et templates prêts à l'emploi",
+          "is_correct": true
+        },
+        {
+          "text": "Plus d'outils professionnels",
+          "is_correct": false
+        },
+        {
+          "text": "Meilleure qualité d'impression",
+          "is_correct": false
+        },
+        {
+          "text": "Interface plus complexe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un nouveau design dans Canva ?",
+      "explanation": "Pour créer un nouveau design, on clique sur 'Créer un design' puis on choisit un format ou on recherche un type de document spécifique.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Créer un design' et choisir un format",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Nouveau",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+N",
+          "is_correct": false
+        },
+        {
+          "text": "Double-cliquer dans l'interface",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **template** dans Canva ?",
+      "explanation": "Un template est un modèle de design prédéfini que l'on peut personnaliser en changeant les textes, couleurs, images selon ses besoins.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Un modèle de design prédéfini personnalisable",
+          "is_correct": true
+        },
+        {
+          "text": "Un format d'export",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de police",
+          "is_correct": false
+        },
+        {
+          "text": "Un effet spécial",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **rechercher** un template spécifique ?",
+      "explanation": "La recherche de templates se fait via la barre de recherche en tapant des mots-clés comme 'poster', 'logo', 'invitation', etc.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Utiliser la barre de recherche avec des mots-clés",
+          "is_correct": true
+        },
+        {
+          "text": "Parcourir toutes les catégories manuellement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des filtres de couleur seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Demander à la communauté",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **ajouter du texte** à un design ?",
+      "explanation": "Le texte s'ajoute via l'onglet 'Texte' dans la barre latérale, où l'on peut choisir des styles prédéfinis ou ajouter un texte simple.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Onglet 'Texte' dans la barre latérale",
+          "is_correct": true
+        },
+        {
+          "text": "Cliquer deux fois sur le canevas",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Insertion > Texte",
+          "is_correct": false
+        },
+        {
+          "text": "Raccourci T",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **modifier les couleurs** d'un élément ?",
+      "explanation": "Les couleurs se modifient en sélectionnant l'élément puis en cliquant sur l'icône de couleur pour accéder à la palette ou saisir un code couleur.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner l'élément puis cliquer sur l'icône de couleur",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser une couleur depuis la palette",
+          "is_correct": false
+        },
+        {
+          "text": "Clic droit > Changer couleur",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser l'outil pipette",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **importer ses propres images** ?",
+      "explanation": "Les images personnelles s'importent via l'onglet 'Imports' ou en glissant-déposant directement sur le canevas depuis l'ordinateur.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Onglet 'Imports' ou glisser-déposer sur le canevas",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Importer",
+          "is_correct": false
+        },
+        {
+          "text": "Copier-coller seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Via un lien URL seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Canva Pro** ?",
+      "explanation": "Canva Pro est la version payante qui offre plus de templates, d'images premium, des outils avancés comme le redimensionnement magique et le stockage cloud.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Version payante avec plus de templates et d'outils avancés",
+          "is_correct": true
+        },
+        {
+          "text": "Version pour les professionnels seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Version mobile de Canva",
+          "is_correct": false
+        },
+        {
+          "text": "Version beta de Canva",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **redimensionner** un design pour différents formats ?",
+      "explanation": "Le redimensionnement se fait avec la fonction 'Redimensionner' (Canva Pro) qui adapte automatiquement le design aux nouvelles dimensions, ou en créant un nouveau design.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Fonction 'Redimensionner' (Canva Pro) ou créer un nouveau design",
+          "is_correct": true
+        },
+        {
+          "text": "Étirer manuellement les éléments",
+          "is_correct": false
+        },
+        {
+          "text": "Changer la résolution",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de redimensionner",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **collaborer** sur un design Canva ?",
+      "explanation": "La collaboration se fait en partageant le design avec d'autres utilisateurs via le bouton 'Partager', en définissant les permissions (visualisation ou modification).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Bouton 'Partager' avec définition des permissions",
+          "is_correct": true
+        },
+        {
+          "text": "Envoyer le fichier par email",
+          "is_correct": false
+        },
+        {
+          "text": "Copier le lien du design public",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de collaborer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quels **formats d'export** propose Canva ?",
+      "explanation": "Canva propose l'export en PNG, JPG, PDF, MP4 (pour les vidéos), GIF (pour les animations), et parfois SVG selon le type de design.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "PNG, JPG, PDF, MP4, GIF",
+          "is_correct": true
+        },
+        {
+          "text": "SVG (selon le design)",
+          "is_correct": true
+        },
+        {
+          "text": "Seulement PNG et JPG",
+          "is_correct": false
+        },
+        {
+          "text": "Tous les formats Adobe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **logo** dans Canva ?",
+      "explanation": "Un logo se crée en choisissant le format 'Logo' puis en utilisant des éléments graphiques, du texte, et des formes pour composer un design unique.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Choisir le format 'Logo' puis composer avec éléments et texte",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser seulement du texte",
+          "is_correct": false
+        },
+        {
+          "text": "Importer une image existante",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser l'outil logo automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **Brand Kit** dans Canva ?",
+      "explanation": "La Brand Kit permet de sauvegarder les couleurs, polices et logos de sa marque pour maintenir une cohérence visuelle dans tous les designs.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Outil pour sauvegarder couleurs, polices et logos de marque",
+          "is_correct": true
+        },
+        {
+          "text": "Collection de templates",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de mesure",
+          "is_correct": false
+        },
+        {
+          "text": "Kit de démarrage pour débutants",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **aligner** des éléments dans Canva ?",
+      "explanation": "L'alignement se fait en sélectionnant plusieurs éléments puis en utilisant les outils d'alignement qui apparaissent dans la barre d'outils.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner plusieurs éléments puis utiliser les outils d'alignement",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser manuellement seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser la grille automatiquement",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Alignement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **animations** dans Canva ?",
+      "explanation": "Les animations se créent en ajoutant des effets d'animation aux éléments via le menu 'Animer', avec différents types d'entrée, sortie et boucles.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Menu 'Animer' avec effets d'entrée, sortie et boucles",
+          "is_correct": true
+        },
+        {
+          "text": "Timeline d'animation",
+          "is_correct": false
+        },
+        {
+          "text": "Keyframes manuels",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Canva",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Canva for Teams** ?",
+      "explanation": "Canva for Teams est la version entreprise qui permet la collaboration d'équipe, la gestion centralisée des marques et des templates approuvés.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Version entreprise pour collaboration d'équipe et gestion de marque",
+          "is_correct": true
+        },
+        {
+          "text": "Version gratuite pour équipes",
+          "is_correct": false
+        },
+        {
+          "text": "Application mobile spéciale",
+          "is_correct": false
+        },
+        {
+          "text": "Plugin pour autres logiciels",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **post Instagram** optimisé ?",
+      "explanation": "Un post Instagram se crée en choisissant le format 'Publication Instagram' qui respecte automatiquement les dimensions recommandées (1080x1080px).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Choisir le format 'Publication Instagram' (1080x1080px)",
+          "is_correct": true
+        },
+        {
+          "text": "Format carré personnalisé",
+          "is_correct": false
+        },
+        {
+          "text": "Format story adapté",
+          "is_correct": false
+        },
+        {
+          "text": "N'importe quel format",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **supprimer l'arrière-plan** d'une image ?",
+      "explanation": "La suppression d'arrière-plan se fait avec l'outil 'Effaceur d'arrière-plan' (Canva Pro) qui détecte automatiquement le sujet principal.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Outil 'Effaceur d'arrière-plan' (Canva Pro)",
+          "is_correct": true
+        },
+        {
+          "text": "Outil gomme manuel",
+          "is_correct": false
+        },
+        {
+          "text": "Masque de calque",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Canva",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **présentation** dans Canva ?",
+      "explanation": "Une présentation se crée en choisissant le format 'Présentation' puis en ajoutant des slides avec différents layouts et contenus.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Choisir le format 'Présentation' puis ajouter des slides",
+          "is_correct": true
+        },
+        {
+          "text": "Créer plusieurs designs séparés",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser le format A4",
+          "is_correct": false
+        },
+        {
+          "text": "Importer un PowerPoint",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Magic Resize** ?",
+      "explanation": "Magic Resize est une fonctionnalité Pro qui redimensionne automatiquement un design vers différents formats en adaptant intelligemment les éléments.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Redimensionnement automatique intelligent vers différents formats",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de recadrage automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Optimisation de la qualité d'image",
+          "is_correct": false
+        },
+        {
+          "text": "Correction automatique des proportions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **organiser** ses designs dans Canva ?",
+      "explanation": "Les designs s'organisent en créant des dossiers, en utilisant les favoris, et en renommant les projets pour faciliter la recherche.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Créer des dossiers, utiliser les favoris, renommer les projets",
+          "is_correct": true
+        },
+        {
+          "text": "Trier par date seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des tags couleur",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible d'organiser",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **QR code** dans Canva ?",
+      "explanation": "Un QR code se crée via l'onglet 'Applications' en recherchant 'QR code', puis en saisissant l'URL ou le texte à encoder.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Onglet 'Applications' > QR code puis saisir l'URL",
+          "is_correct": true
+        },
+        {
+          "text": "Éléments > Formes > QR",
+          "is_correct": false
+        },
+        {
+          "text": "Importer une image QR",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Canva",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Canva Print** ?",
+      "explanation": "Canva Print est le service d'impression de Canva qui permet de commander l'impression physique de ses designs (cartes, posters, etc.).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Service d'impression physique de Canva",
+          "is_correct": true
+        },
+        {
+          "text": "Format d'export pour impression",
+          "is_correct": false
+        },
+        {
+          "text": "Paramètres d'impression",
+          "is_correct": false
+        },
+        {
+          "text": "Application mobile pour imprimer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **design accessible** ?",
+      "explanation": "Un design accessible utilise des contrastes suffisants, des polices lisibles, des tailles de texte appropriées et évite les combinaisons de couleurs problématiques.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Contrastes suffisants, polices lisibles, tailles appropriées",
+          "is_correct": true
+        },
+        {
+          "text": "Éviter les combinaisons de couleurs problématiques",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser seulement des couleurs vives",
+          "is_correct": false
+        },
+        {
+          "text": "Ajouter plus d'effets visuels",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **dupliquer** un design ?",
+      "explanation": "Un design se duplique via le menu '...' du design puis 'Dupliquer', ou en utilisant 'Enregistrer sous' pour créer une copie modifiable.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Menu '...' puis 'Dupliquer' ou 'Enregistrer sous'",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+D",
+          "is_correct": false
+        },
+        {
+          "text": "Clic droit > Copier",
+          "is_correct": false
+        },
+        {
+          "text": "Glisser vers un nouveau projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter des **effets** aux éléments ?",
+      "explanation": "Les effets s'ajoutent en sélectionnant un élément puis en cliquant sur 'Effets' pour accéder aux ombres, flous, reliefs, etc.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner l'élément puis cliquer sur 'Effets'",
+          "is_correct": true
+        },
+        {
+          "text": "Menu Filtre > Effets",
+          "is_correct": false
+        },
+        {
+          "text": "Onglet Effets dans la barre latérale",
+          "is_correct": false
+        },
+        {
+          "text": "Double-cliquer sur l'élément",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Content Planner** ?",
+      "explanation": "Le Content Planner est un outil de planification de contenu qui permet de programmer et organiser ses publications sur les réseaux sociaux.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Outil de planification et programmation de contenu social media",
+          "is_correct": true
+        },
+        {
+          "text": "Générateur de contenu automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de planification d'impression",
+          "is_correct": false
+        },
+        {
+          "text": "Calendrier de création",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **mockup** dans Canva ?",
+      "explanation": "Les mockups se créent en utilisant des templates de produits (téléphones, t-shirts, etc.) et en y appliquant ses designs via l'outil 'Remplacer l'image'.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Utiliser des templates de produits et 'Remplacer l'image'",
+          "is_correct": true
+        },
+        {
+          "text": "Créer le mockup depuis zéro",
+          "is_correct": false
+        },
+        {
+          "text": "Importer un fichier 3D",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser l'outil perspective",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **optimiser** un design pour le web ?",
+      "explanation": "L'optimisation web nécessite d'utiliser des formats légers (PNG/JPG), des dimensions appropriées, et de compresser les images avant export.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Formats légers, dimensions appropriées, compression d'images",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser seulement du PNG",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter la résolution",
+          "is_correct": false
+        },
+        {
+          "text": "Ajouter plus d'effets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Canva Docs** ?",
+      "explanation": "Canva Docs est un outil de création de documents qui combine texte et éléments visuels, permettant de créer des rapports, propositions et documents enrichis.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Outil de création de documents enrichis alliant texte et visuels",
+          "is_correct": true
+        },
+        {
+          "text": "Stockage de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Documentation d'aide",
+          "is_correct": false
+        },
+        {
+          "text": "Templates de documentation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **infographie** efficace ?",
+      "explanation": "Une infographie efficace structure l'information hiérarchiquement, utilise des couleurs cohérentes, des icônes claires et limite le texte au minimum.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Structure hiérarchique, couleurs cohérentes, icônes claires",
+          "is_correct": true
+        },
+        {
+          "text": "Limiter le texte au minimum",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser beaucoup de texte",
+          "is_correct": false
+        },
+        {
+          "text": "Mélanger tous les styles visuels",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **sauvegarder** automatiquement dans Canva ?",
+      "explanation": "Canva sauvegarde automatiquement tous les changements en temps réel. Il n'y a pas besoin de sauvegarder manuellement, tout est stocké dans le cloud.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Sauvegarde automatique en temps réel dans le cloud",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+S pour sauvegarder",
+          "is_correct": false
+        },
+        {
+          "text": "Bouton Sauvegarder obligatoire",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde uniquement à la fermeture",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer du **contenu de marque** cohérent ?",
+      "explanation": "La cohérence de marque s'obtient en utilisant la Brand Kit, en respectant les couleurs et polices définies, et en créant des templates personnalisés.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Utiliser la Brand Kit et respecter couleurs/polices définies",
+          "is_correct": true
+        },
+        {
+          "text": "Créer des templates personnalisés",
+          "is_correct": true
+        },
+        {
+          "text": "Changer de style à chaque design",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des templates gratuits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **mesurer les performances** d'un design ?",
+      "explanation": "Dans Canva, on peut analyser les performances via les statistiques de vues, téléchargements, et l'engagement si le contenu est publié sur les réseaux sociaux.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Statistiques de vues, téléchargements et engagement social",
+          "is_correct": true
+        },
+        {
+          "text": "Outils d'analyse intégrés seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Commentaires des utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de mesurer dans Canva",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **exporter en haute qualité** ?",
+      "explanation": "L'export haute qualité se fait en choisissant le format PDF ou PNG, en activant l'option 'Haute qualité' dans les paramètres d'export.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Format PDF ou PNG avec option 'Haute qualité'",
+          "is_correct": true
+        },
+        {
+          "text": "Seulement en format SVG",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter la résolution du design",
+          "is_correct": false
+        },
+        {
+          "text": "Exporter plusieurs fois",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Canva Magic Studio** ?",
+      "explanation": "Magic Studio regroupe les outils alimentés par l'IA de Canva comme Magic Write, Magic Eraser, Magic Edit pour automatiser certaines tâches créatives.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Suite d'outils IA (Magic Write, Magic Eraser, Magic Edit)",
+          "is_correct": true
+        },
+        {
+          "text": "Studio de création avancé",
+          "is_correct": false
+        },
+        {
+          "text": "Version premium de Canva",
+          "is_correct": false
+        },
+        {
+          "text": "Application mobile séparée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **design responsive** ?",
+      "explanation": "Le design responsive dans Canva se fait en créant plusieurs versions du même design pour différents formats (desktop, mobile, tablette) avec Magic Resize.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Créer plusieurs versions avec Magic Resize pour différents formats",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser des éléments flexibles seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Un seul design s'adapte automatiquement",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible dans Canva",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **protéger** ses designs dans Canva ?",
+      "explanation": "Les designs se protègent en gardant les projets privés, en utilisant des dossiers d'équipe avec permissions, et en évitant de partager publiquement.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Projets privés, dossiers d'équipe avec permissions",
+          "is_correct": true
+        },
+        {
+          "text": "Éviter le partage public",
+          "is_correct": true
+        },
+        {
+          "text": "Chiffrement automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Watermark obligatoire",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

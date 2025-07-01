@@ -1,0 +1,969 @@
+{
+  "technology": "HTML5",
+  "title": "Évaluation HTML5 Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de HTML5, incluant la structure sémantique, les nouvelles balises, les formulaires améliorés, les API multimédias, et les bonnes pratiques de développement web moderne.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Quelle est la déclaration DOCTYPE correcte pour HTML5?",
+      "explanation": "HTML5 utilise une déclaration DOCTYPE simplifiée qui indique simplement que le document utilise HTML.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`<!DOCTYPE html>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<!DOCTYPE html5>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<html version=\"5\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 est utilisée pour définir le contenu principal d'un document?",
+      "explanation": "La balise `<main>` représente le contenu principal du body d'un document. Il ne doit y avoir qu'un seul élément main par page.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<main>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<content>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<primary>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<body>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 est sémantiquement correcte pour un menu de navigation?",
+      "explanation": "La balise `<nav>` est spécifiquement conçue pour contenir les liens de navigation principaux d'un site web.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<nav>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<menu>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<navigation>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<ul class=\"navigation\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un champ de saisie pour une adresse email en HTML5?",
+      "explanation": "Le type 'email' d'un input HTML5 fournit une validation automatique de l'adresse email et peut afficher un clavier adapté sur mobile.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<input type=\"email\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<input type=\"text\" pattern=\"email\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<email>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input class=\"email\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet d'intégrer une vidéo dans une page web?",
+      "explanation": "La balise `<video>` permet d'intégrer directement du contenu vidéo dans une page web sans plugin externe.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<video>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<movie>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<media>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<embed type=\"video\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre `<section>` et `<div>` en HTML5?",
+      "explanation": "`<section>` est une balise sémantique qui représente une section thématique du contenu, tandis que `<div>` est une balise générique sans signification sémantique.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "`<section>` a une valeur sémantique, `<div>` est générique",
+          "is_correct": true
+        },
+        {
+          "text": "`<div>` a une valeur sémantique, `<section>` est générique",
+          "is_correct": false
+        },
+        {
+          "text": "Il n'y a aucune différence, ce sont des synonymes",
+          "is_correct": false
+        },
+        {
+          "text": "`<section>` ne peut contenir que du texte, `<div>` peut contenir d'autres éléments",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment rendre un champ de formulaire obligatoire en HTML5?",
+      "explanation": "L'attribut `required` en HTML5 rend un champ obligatoire et empêche la soumission du formulaire si le champ est vide.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<input type=\"text\" required>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<input type=\"text\" mandatory>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"text\" obligatory>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"text\" validate=\"required\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 est utilisée pour définir un pied de page?",
+      "explanation": "La balise `<footer>` représente le pied de page d'une section ou de la page entière.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`<footer>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<bottom>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<pagefoot>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<end>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un slider/range en HTML5?",
+      "explanation": "Le type 'range' crée un contrôle slider que l'utilisateur peut faire glisser pour sélectionner une valeur numérique.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<input type=\"range\" min=\"0\" max=\"100\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<slider min=\"0\" max=\"100\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"slider\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<range></range>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet d'afficher un contenu alternatif si le navigateur ne supporte pas certaines fonctionnalités?",
+      "explanation": "Il n'y a pas de balise spécifique pour cela. On utilise généralement du contenu entre les balises (comme dans `<video>`) ou des techniques JavaScript avec Modernizr.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Il n'y a pas de balise spécifique, on utilise du contenu de fallback",
+          "is_correct": true
+        },
+        {
+          "text": "`<fallback>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<noscript>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<alternative>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment intégrer un fichier audio en HTML5?",
+      "explanation": "La balise `<audio>` permet d'intégrer du contenu audio dans une page web avec des contrôles natifs du navigateur.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<audio controls><source src=\"audio.mp3\" type=\"audio/mpeg\"></audio>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<sound src=\"audio.mp3\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<music controls src=\"audio.mp3\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<embed type=\"audio/mp3\" src=\"audio.mp3\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la balise HTML5 correcte pour définir un article?",
+      "explanation": "La balise `<article>` représente un contenu autonome et réutilisable, comme un article de blog, un commentaire, ou un post.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<article>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<post>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<content>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<blog>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un champ de saisie de date en HTML5?",
+      "explanation": "Le type 'date' fournit un sélecteur de date natif dans les navigateurs compatibles.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<input type=\"date\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<date>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"calendar\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<datepicker>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de grouper des options dans un élément select?",
+      "explanation": "La balise `<optgroup>` permet de regrouper des options dans un menu déroulant pour une meilleure organisation.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<optgroup>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<optiongroup>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<group>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<selectgroup>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir un texte d'aide (placeholder) dans un champ de saisie?",
+      "explanation": "L'attribut `placeholder` affiche un texte d'aide dans le champ qui disparaît quand l'utilisateur commence à taper.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<input type=\"text\" placeholder=\"Entrez votre nom\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<input type=\"text\" hint=\"Entrez votre nom\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"text\" help=\"Entrez votre nom\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"text\" title=\"Entrez votre nom\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 est utilisée pour les informations complémentaires ou les barres latérales?",
+      "explanation": "La balise `<aside>` représente du contenu tangentiellement lié au contenu principal, comme une barre latérale ou des informations complémentaires.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<aside>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<sidebar>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<complement>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<secondary>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un champ de recherche en HTML5?",
+      "explanation": "Le type 'search' crée un champ de recherche avec des comportements spécifiques selon le navigateur (comme un bouton de suppression).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<input type=\"search\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<search>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"text\" role=\"search\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<searchbox>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la syntaxe correcte pour définir un élément canvas en HTML5?",
+      "explanation": "La balise `<canvas>` crée une zone de dessin qui peut être manipulée via JavaScript pour créer des graphiques dynamiques.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<canvas id=\"myCanvas\" width=\"400\" height=\"300\"></canvas>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<canvas size=\"400x300\"></canvas>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<draw width=\"400\" height=\"300\"></draw>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<graphics width=\"400\" height=\"300\"></graphics>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment spécifier qu'un lien doit s'ouvrir dans un nouvel onglet?",
+      "explanation": "L'attribut `target=\"_blank\"` indique que le lien doit s'ouvrir dans un nouvel onglet ou une nouvelle fenêtre.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<a href=\"...\" target=\"_blank\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<a href=\"...\" newtab>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<a href=\"...\" window=\"new\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<a href=\"...\" open=\"blank\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de définir une liste de données pour un champ input?",
+      "explanation": "L'élément `<datalist>` fournit une liste d'options prédéfinies pour un champ input, créant une fonction d'autocomplétion.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "`<datalist>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<options>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<suggestions>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<autocomplete>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un champ de saisie pour un numéro de téléphone en HTML5?",
+      "explanation": "Le type 'tel' est spécifiquement conçu pour les numéros de téléphone et peut afficher un clavier numérique sur mobile.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<input type=\"tel\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<input type=\"phone\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"number\" phone>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<telephone>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de définir les détails d'un élément avec possibilité de les masquer/afficher?",
+      "explanation": "La balise `<details>` crée un widget interactif que l'utilisateur peut ouvrir/fermer pour voir des informations supplémentaires.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "`<details>` avec `<summary>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<collapsible>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<accordion>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<expandable>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une image responsive en HTML5?",
+      "explanation": "L'attribut `srcset` permet de définir plusieurs sources d'images selon la résolution de l'écran, rendant l'image responsive.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "`<img src=\"small.jpg\" srcset=\"medium.jpg 768w, large.jpg 1200w\" sizes=\"(max-width: 768px) 100vw, 50vw\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<img src=\"image.jpg\" responsive>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<responsive-img src=\"image.jpg\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<img src=\"image.jpg\" style=\"width: 100%\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de marquer du texte comme important sans le mettre en gras?",
+      "explanation": "La balise `<mark>` met en surbrillance du texte pour indiquer son importance ou sa pertinence, sans le mettre en gras.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<mark>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<highlight>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<important>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<emphasis>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir des métadonnées pour les réseaux sociaux (Open Graph)?",
+      "explanation": "Les métadonnées Open Graph se définissent avec des balises meta dans la section head, permettant de contrôler l'apparence des liens partagés.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "`<meta property=\"og:title\" content=\"Titre de la page\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<opengraph title=\"Titre de la page\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<social title=\"Titre de la page\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<meta name=\"facebook:title\" content=\"Titre de la page\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet d'afficher la progression d'une tâche?",
+      "explanation": "La balise `<progress>` affiche l'avancement d'une tâche, comme un téléchargement ou un formulaire en cours de soumission.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "`<progress value=\"32\" max=\"100\">32%</progress>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<progressbar value=\"32\" max=\"100\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<loading percent=\"32\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<meter value=\"32\" max=\"100\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un champ de saisie de couleur en HTML5?",
+      "explanation": "Le type 'color' affiche un sélecteur de couleur natif permettant à l'utilisateur de choisir une couleur.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<input type=\"color\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<colorpicker>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<input type=\"rgb\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<color>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de définir une citation courte en ligne?",
+      "explanation": "La balise `<q>` est utilisée pour les citations courtes en ligne, tandis que `<blockquote>` est pour les citations plus longues en bloc.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<q>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<quote>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<cite>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<citation>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment spécifier l'encodage des caractères d'un document HTML5?",
+      "explanation": "La balise meta avec charset UTF-8 doit être placée dans les premiers 1024 octets du document pour être effective.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<meta charset=\"UTF-8\">`",
+          "is_correct": true
+        },
+        {
+          "text": "`<charset>UTF-8</charset>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<encoding type=\"UTF-8\">`",
+          "is_correct": false
+        },
+        {
+          "text": "`<meta encoding=\"UTF-8\">`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de regrouper des contrôles de formulaire?",
+      "explanation": "La balise `<fieldset>` regroupe logiquement des contrôles de formulaire, souvent avec une légende définie par `<legend>`.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<fieldset>` avec `<legend>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<formgroup>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<inputgroup>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<controlset>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un lien vers une section spécifique de la même page?",
+      "explanation": "Les liens d'ancrage utilisent l'attribut href avec un # suivi de l'id de l'élément cible sur la même page.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`<a href=\"#section1\">Aller à la section 1</a>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<a href=\"section1\">Aller à la section 1</a>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<a anchor=\"section1\">Aller à la section 1</a>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<link to=\"#section1\">Aller à la section 1</link>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de définir du contenu pré-formaté?",
+      "explanation": "La balise `<pre>` préserve les espaces et les retours à la ligne du texte, utile pour afficher du code ou du texte formaté.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`<pre>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<formatted>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<preformat>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<code>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser le référencement SEO d'une page HTML5?",
+      "explanation": "Le SEO en HTML5 implique l'utilisation de balises sémantiques appropriées, de métadonnées, de structure hiérarchique des titres, et d'attributs alt pour les images.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Utiliser des balises sémantiques, métadonnées, structure de titres logique, attributs alt",
+          "is_correct": true
+        },
+        {
+          "text": "Ajouter beaucoup de mots-clés dans les balises meta",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des balises div avec des classes SEO",
+          "is_correct": false
+        },
+        {
+          "text": "Répéter les mots-clés dans le contenu le plus possible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment rendre un site web accessible aux personnes handicapées?",
+      "explanation": "L'accessibilité web implique l'utilisation d'attributs ARIA, de textes alternatifs, de contrastes suffisants, de navigation au clavier, et de structure sémantique.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Utiliser les attributs ARIA, textes alternatifs, contrastes suffisants, navigation clavier",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des couleurs vives",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter toute interaction JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement du texte sans images",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de définir un en-tête de section?",
+      "explanation": "La balise `<header>` représente un en-tête pour son parent le plus proche (section, article, ou body).",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`<header>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<top>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<head>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<title>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un tableau responsive en HTML5?",
+      "explanation": "Pour rendre un tableau responsive, on peut utiliser CSS avec overflow-x: auto, ou des techniques de transformation du tableau en liste sur mobile.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Utiliser CSS avec overflow-x: auto ou transformer en liste sur mobile",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser l'attribut responsive sur la balise table",
+          "is_correct": false
+        },
+        {
+          "text": "Remplacer table par div avec display: table",
+          "is_correct": false
+        },
+        {
+          "text": "Les tableaux HTML5 sont automatiquement responsives",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la meilleure pratique pour inclure du CSS dans un document HTML5?",
+      "explanation": "Il est recommandé de placer les liens CSS dans la section head pour éviter le FOUC (Flash of Unstyled Content) et améliorer les performances.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Inclure les liens CSS dans la section `<head>`",
+          "is_correct": true
+        },
+        {
+          "text": "Inclure les liens CSS à la fin du body",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement du CSS inline",
+          "is_correct": false
+        },
+        {
+          "text": "Placer le CSS n'importe où dans le document",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un formulaire de contact basique en HTML5?",
+      "explanation": "Un formulaire de contact basique utilise la balise form avec différents types d'input et un bouton de soumission.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "`<form><input type=\"text\" required><input type=\"email\" required><textarea required></textarea><button type=\"submit\">Envoyer</button></form>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<contact><name><email><message><send></contact>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<form><textfield><emailfield><messagefield><submit></form>`",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement du JavaScript sans balise form",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise HTML5 permet de définir une abréviation?",
+      "explanation": "La balise `<abbr>` marque une abréviation et peut inclure un attribut title avec la forme développée.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`<abbr title=\"HyperText Markup Language\">HTML</abbr>`",
+          "is_correct": true
+        },
+        {
+          "text": "`<abbreviation>HTML</abbreviation>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<short>HTML</short>`",
+          "is_correct": false
+        },
+        {
+          "text": "`<acronym>HTML</acronym>`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser le chargement des images en HTML5?",
+      "explanation": "L'optimisation des images peut se faire avec l'attribut loading='lazy' pour le lazy loading, srcset pour les images responsives, et des formats modernes comme WebP.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Utiliser loading='lazy', srcset pour responsive, formats WebP",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des images de petite taille",
+          "is_correct": false
+        },
+        {
+          "text": "Charger toutes les images en JavaScript",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter complètement les images",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

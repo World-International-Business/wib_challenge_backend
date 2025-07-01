@@ -1,0 +1,921 @@
+{
+  "technology": "Notion",
+  "title": "Évaluation Notion - Organisation et Gestion de Projets",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Notion pour l'organisation du travail, la gestion de projets, la documentation, la collaboration d'équipe et la productivité administrative.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Notion ?",
+      "explanation": "Notion est un outil de productivité tout-en-un qui combine prise de notes, gestion de tâches, bases de données, wikis et collaboration d'équipe dans un seul espace de travail.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Un outil de productivité tout-en-un pour organisation et collaboration",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de comptabilité",
+          "is_correct": false
+        },
+        {
+          "text": "Une application de messagerie",
+          "is_correct": false
+        },
+        {
+          "text": "Un éditeur de photos",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **nouvelle page** dans Notion ?",
+      "explanation": "Une nouvelle page se crée en cliquant sur '+ Nouvelle page' dans la barre latérale ou en tapant '/' dans une page existante puis 'Page'.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Cliquer sur '+ Nouvelle page' ou taper '/Page'",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+N",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Nouveau",
+          "is_correct": false
+        },
+        {
+          "text": "Bouton droit > Créer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **bloc** dans Notion ?",
+      "explanation": "Un bloc est l'unité de base de contenu dans Notion : texte, titre, image, base de données, etc. Chaque élément de la page est un bloc modifiable.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "L'unité de base de contenu (texte, titre, image, etc.)",
+          "is_correct": true
+        },
+        {
+          "text": "Un dossier de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Un utilisateur de l'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Un modèle prédéfini",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **formater du texte** dans Notion ?",
+      "explanation": "Le formatage se fait avec des raccourcis Markdown (** pour gras, * pour italique) ou via le menu de formatage qui apparaît lors de la sélection de texte.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Raccourcis Markdown ou menu de formatage à la sélection",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+B pour gras seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Barre d'outils fixe",
+          "is_correct": false
+        },
+        {
+          "text": "Formatage impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **base de données** dans Notion ?",
+      "explanation": "Une base de données est un ensemble structuré d'informations organisées en propriétés (colonnes) et éléments (lignes), permettant de gérer des projets, tâches, contacts, etc.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Ensemble structuré avec propriétés et éléments pour organiser l'information",
+          "is_correct": true
+        },
+        {
+          "text": "Un fichier Excel importé",
+          "is_correct": false
+        },
+        {
+          "text": "Une liste simple",
+          "is_correct": false
+        },
+        {
+          "text": "Un calendrier uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **liste de tâches** ?",
+      "explanation": "Une liste de tâches se crée en tapant '/to-do' ou en utilisant une base de données avec une propriété Checkbox et des propriétés pour priorité, échéance, etc.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Taper '/to-do' ou base de données avec propriété Checkbox",
+          "is_correct": true
+        },
+        {
+          "text": "Import depuis Outlook",
+          "is_correct": false
+        },
+        {
+          "text": "Template prédéfini seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Application externe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **template** dans Notion ?",
+      "explanation": "Un template est un modèle prédéfini qui peut être réutilisé pour créer rapidement des pages avec une structure cohérente (réunions, projets, etc.).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Modèle prédéfini réutilisable pour créer des pages structurées",
+          "is_correct": true
+        },
+        {
+          "text": "Un thème visuel",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un format d'export",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **partager** une page Notion ?",
+      "explanation": "Le partage se fait via le bouton 'Partager' en haut à droite, permettant d'inviter des personnes avec différents niveaux d'accès ou de créer un lien public.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Bouton 'Partager' avec invitations ou lien public",
+          "is_correct": true
+        },
+        {
+          "text": "Email direct du contenu",
+          "is_correct": false
+        },
+        {
+          "text": "Export PDF seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Copier-coller le texte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **propriété** dans une base de données ?",
+      "explanation": "Une propriété définit le type d'information stockée dans une colonne : texte, nombre, date, personne, formule, relation, etc.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Type d'information dans une colonne (texte, nombre, date, etc.)",
+          "is_correct": true
+        },
+        {
+          "text": "Une caractéristique de la page",
+          "is_correct": false
+        },
+        {
+          "text": "Un droit d'accès",
+          "is_correct": false
+        },
+        {
+          "text": "Un style de formatage",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **calendrier** dans Notion ?",
+      "explanation": "Un calendrier se crée en ajoutant une vue Calendrier à une base de données contenant une propriété Date, permettant de visualiser les échéances et événements.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Vue Calendrier d'une base de données avec propriété Date",
+          "is_correct": true
+        },
+        {
+          "text": "Import depuis Google Calendar",
+          "is_correct": false
+        },
+        {
+          "text": "Widget calendrier intégré",
+          "is_correct": false
+        },
+        {
+          "text": "Application externe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **vue** dans une base de données ?",
+      "explanation": "Une vue est une façon d'afficher et organiser les données d'une base : tableau, kanban, calendrier, galerie, chronologie, avec filtres et tris spécifiques.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Façon d'afficher les données (tableau, kanban, calendrier, etc.)",
+          "is_correct": true
+        },
+        {
+          "text": "Une page de la base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un filtre permanent",
+          "is_correct": false
+        },
+        {
+          "text": "Un mode d'édition",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **organiser** l'espace de travail ?",
+      "explanation": "L'organisation se fait avec des pages principales, sous-pages, dossiers logiques, et la barre latérale personnalisable pour un accès rapide aux contenus importants.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Pages principales, sous-pages, dossiers et barre latérale personnalisable",
+          "is_correct": true
+        },
+        {
+          "text": "Ordre alphabétique automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Tags colorés seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Organisation impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **insérer des médias** dans Notion ?",
+      "explanation": "Les médias s'insèrent en tapant '/' puis le type (image, vidéo, audio, fichier) ou en glissant-déposant directement dans la page.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Taper '/image' ou glisser-déposer dans la page",
+          "is_correct": true
+        },
+        {
+          "text": "Menu Insertion > Média",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+I",
+          "is_correct": false
+        },
+        {
+          "text": "Upload FTP seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **relation** entre bases de données ?",
+      "explanation": "Une relation lie des éléments de différentes bases de données, permettant de connecter des projets avec des tâches, des contacts avec des entreprises, etc.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Lien entre éléments de différentes bases de données",
+          "is_correct": true
+        },
+        {
+          "text": "Connexion internet",
+          "is_correct": false
+        },
+        {
+          "text": "Partage de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Hiérarchie de pages",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **formules** dans Notion ?",
+      "explanation": "Les formules se créent avec la propriété 'Formule' utilisant des fonctions comme if(), concat(), formatDate() pour calculer automatiquement des valeurs.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Propriété 'Formule' avec fonctions if(), concat(), formatDate()",
+          "is_correct": true
+        },
+        {
+          "text": "Calculs Excel intégrés",
+          "is_correct": false
+        },
+        {
+          "text": "Macros automatiques",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de faire des calculs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **collaborer** efficacement en équipe ?",
+      "explanation": "La collaboration utilise les commentaires (@mention), l'attribution de tâches, le partage avec permissions, et la synchronisation temps réel des modifications.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Commentaires, @mentions, attribution tâches, sync temps réel",
+          "is_correct": true
+        },
+        {
+          "text": "Email pour chaque modification",
+          "is_correct": false
+        },
+        {
+          "text": "Réunions quotidiennes obligatoires",
+          "is_correct": false
+        },
+        {
+          "text": "Travail en silos",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **workspace** (espace de travail) ?",
+      "explanation": "Un workspace est un environnement complet avec ses membres, pages, bases de données et paramètres, séparé des autres espaces de travail.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Environnement complet avec membres et contenu séparé",
+          "is_correct": true
+        },
+        {
+          "text": "Une page principale",
+          "is_correct": false
+        },
+        {
+          "text": "Un dossier de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Un profil utilisateur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **rechercher** du contenu dans Notion ?",
+      "explanation": "La recherche se fait via Ctrl+P (cmd+P sur Mac) ou la barre de recherche, permettant de trouver pages, blocs de contenu et bases de données rapidement.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Ctrl+P ou barre de recherche pour pages et contenu",
+          "is_correct": true
+        },
+        {
+          "text": "F3 seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Recherche avancée",
+          "is_correct": false
+        },
+        {
+          "text": "Recherche impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **tableau de bord** de projet ?",
+      "explanation": "Un tableau de bord se crée en combinant plusieurs vues de bases de données, graphiques, KPIs et widgets sur une page principale pour suivre l'avancement.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Combiner vues de bases, graphiques, KPIs sur page principale",
+          "is_correct": true
+        },
+        {
+          "text": "Template automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Import depuis Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Application séparée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**automatisation** dans Notion ?",
+      "explanation": "L'automatisation inclut les templates de boutons, les formules automatiques, et l'intégration avec Zapier/Make pour déclencher des actions selon des conditions.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Templates boutons, formules automatiques, intégrations Zapier",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde automatique seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Synchronisation cloud",
+          "is_correct": false
+        },
+        {
+          "text": "Pas d'automatisation disponible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **filtrer et trier** les données ?",
+      "explanation": "Les filtres et tris s'appliquent dans chaque vue de base de données via les options 'Filtrer' et 'Trier', permettant de personnaliser l'affichage selon les critères.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Options 'Filtrer' et 'Trier' dans chaque vue de base",
+          "is_correct": true
+        },
+        {
+          "text": "Ordre alphabétique seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Filtres globaux permanents",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible de filtrer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **wiki d'équipe** ?",
+      "explanation": "Un wiki se structure avec des pages principales (départements, processus), sous-pages détaillées, liens internes et une navigation claire via la barre latérale.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Pages principales, sous-pages, liens internes, navigation claire",
+          "is_correct": true
+        },
+        {
+          "text": "Une seule page avec tout",
+          "is_correct": false
+        },
+        {
+          "text": "Documents Word liés",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données simple",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **template de page** ?",
+      "explanation": "Un template de page est un modèle personnalisable qui définit la structure, les blocs et propriétés par défaut pour créer rapidement des pages similaires.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Modèle avec structure et blocs par défaut pour pages similaires",
+          "is_correct": true
+        },
+        {
+          "text": "Thème de couleurs",
+          "is_correct": false
+        },
+        {
+          "text": "Format d'export",
+          "is_correct": false
+        },
+        {
+          "text": "Style de police",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **synchroniser** Notion avec d'autres outils ?",
+      "explanation": "La synchronisation se fait via l'API Notion, des intégrations natives (Google Calendar, Slack) et des services comme Zapier pour connecter différents outils.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "API Notion, intégrations natives, services comme Zapier",
+          "is_correct": true
+        },
+        {
+          "text": "Export/import manuel seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Synchronisation impossible",
+          "is_correct": false
+        },
+        {
+          "text": "Copier-coller uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **archiver** d'anciennes informations ?",
+      "explanation": "L'archivage se fait en déplaçant les pages vers une section 'Archives', en utilisant des statuts 'Archivé' dans les bases, ou en supprimant après export.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Section 'Archives', statuts 'Archivé', ou suppression après export",
+          "is_correct": true
+        },
+        {
+          "text": "Suppression automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Archivage cloud externe",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible d'archiver",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **vue Timeline** ?",
+      "explanation": "La vue Timeline affiche les éléments d'une base de données sur une chronologie selon leurs dates, idéale pour planifier des projets et visualiser les échéances.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Affichage chronologique des éléments selon leurs dates",
+          "is_correct": true
+        },
+        {
+          "text": "Historique des modifications",
+          "is_correct": false
+        },
+        {
+          "text": "Planning de l'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Horloge en temps réel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **notifications personnalisées** ?",
+      "explanation": "Les notifications se configurent via les paramètres de page/base, @mentions pour alerter des personnes, et rappels sur les propriétés Date.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Paramètres page/base, @mentions, rappels sur dates",
+          "is_correct": true
+        },
+        {
+          "text": "Email automatique quotidien",
+          "is_correct": false
+        },
+        {
+          "text": "SMS intégré",
+          "is_correct": false
+        },
+        {
+          "text": "Notifications impossibles",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **exporter** du contenu depuis Notion ?",
+      "explanation": "L'export se fait via le menu page (···) avec plusieurs formats : PDF, HTML, Markdown, CSV (pour bases), permettant de sauvegarder ou partager hors Notion.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Menu page (···) vers PDF, HTML, Markdown, CSV",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Impression papier uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Export impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **vue Kanban** ?",
+      "explanation": "La vue Kanban organise les éléments en colonnes selon une propriété Select/Multi-select, parfaite pour suivre l'avancement des tâches (À faire, En cours, Terminé).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Organisation en colonnes selon propriété Select pour suivi d'avancement",
+          "is_correct": true
+        },
+        {
+          "text": "Vue en grille simple",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage en liste",
+          "is_correct": false
+        },
+        {
+          "text": "Mode présentation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **gérer les permissions** d'accès ?",
+      "explanation": "Les permissions se gèrent au niveau page (Lecture, Commentaire, Édition, Accès complet) et workspace (Membre, Invité) pour contrôler qui peut voir/modifier quoi.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Niveau page (Lecture, Commentaire, Édition) et workspace (Membre, Invité)",
+          "is_correct": true
+        },
+        {
+          "text": "Accès libre pour tous",
+          "is_correct": false
+        },
+        {
+          "text": "Mot de passe unique",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de gestion des droits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **système de suivi des réunions** ?",
+      "explanation": "Un système de réunions combine template standardisé (ordre du jour, participants, actions), base de données pour historique, et liens vers documents associés.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Template standardisé + base historique + liens documents",
+          "is_correct": true
+        },
+        {
+          "text": "Pages séparées pour chaque réunion",
+          "is_correct": false
+        },
+        {
+          "text": "Calendar externe seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Email de compte-rendu",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Notion AI** ?",
+      "explanation": "Notion AI est l'assistant intelligent intégré qui aide à rédiger, résumer, traduire, brainstormer et améliorer le contenu directement dans les pages.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Assistant IA pour rédiger, résumer, traduire et améliorer le contenu",
+          "is_correct": true
+        },
+        {
+          "text": "Intelligence artificielle pour données",
+          "is_correct": false
+        },
+        {
+          "text": "Assistant vocal",
+          "is_correct": false
+        },
+        {
+          "text": "Pas d'IA dans Notion",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **optimiser les performances** de Notion ?",
+      "explanation": "L'optimisation passe par la limitation des gros blocs médias, l'archivage du contenu ancien, des vues simplifiées et l'évitement de trop de relations complexes.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Limiter médias lourds, archiver ancien contenu, simplifier vues",
+          "is_correct": true
+        },
+        {
+          "text": "Ajouter plus de contenu",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser seulement du texte",
+          "is_correct": false
+        },
+        {
+          "text": "Redémarrer l'application",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **processus de validation** ?",
+      "explanation": "Un processus de validation utilise des propriétés Select pour statuts, des @mentions pour notifications, des templates pour cohérence et des dates d'échéance.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Propriétés Select pour statuts + @mentions + templates + dates",
+          "is_correct": true
+        },
+        {
+          "text": "Email de validation externe",
+          "is_correct": false
+        },
+        {
+          "text": "Signature électronique",
+          "is_correct": false
+        },
+        {
+          "text": "Validation manuelle papier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **former** une équipe à Notion ?",
+      "explanation": "La formation combine démonstrations pratiques, création de templates d'équipe, documentation des processus et accompagnement progressif selon les besoins métier.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Démonstrations pratiques + templates équipe + documentation + accompagnement",
+          "is_correct": true
+        },
+        {
+          "text": "Lecture de la documentation seule",
+          "is_correct": false
+        },
+        {
+          "text": "Formation vidéo générique",
+          "is_correct": false
+        },
+        {
+          "text": "Auto-apprentissage sans support",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **sauvegarder** son travail Notion ?",
+      "explanation": "Notion sauvegarde automatiquement dans le cloud, mais on peut créer des exports réguliers (HTML/Markdown) et utiliser l'historique de versions intégré.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sauvegarde auto cloud + exports réguliers + historique versions",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+S manuel obligatoire",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde locale seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de sauvegarde automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **migrer** depuis d'autres outils vers Notion ?",
+      "explanation": "La migration utilise les imports natifs (Evernote, Trello, Asana), l'API pour transferts custom, et la restructuration progressive du contenu existant.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Imports natifs + API + restructuration progressive du contenu",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller manuel seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Restart complet sans historique",
+          "is_correct": false
+        },
+        {
+          "text": "Migration impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **mesurer l'adoption** de Notion en équipe ?",
+      "explanation": "L'adoption se mesure via l'activité des membres, l'utilisation des templates, la création de contenu, et les retours d'usage lors de points réguliers.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Activité membres + usage templates + création contenu + retours",
+          "is_correct": true
+        },
+        {
+          "text": "Nombre de pages créées seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Temps passé dans l'app",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de mesure possible",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

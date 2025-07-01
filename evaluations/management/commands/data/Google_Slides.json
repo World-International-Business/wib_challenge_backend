@@ -1,0 +1,945 @@
+{
+  "technology": "Google Slides",
+  "title": "Évaluation Google Slides Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Google Slides, incluant la création de présentations collaboratives, les animations, les transitions, les thèmes, et les techniques de présentation en ligne efficaces.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Comment partager une présentation Google Slides?",
+      "explanation": "Pour partager une présentation, cliquer sur le bouton 'Partager' en haut à droite et ajouter les adresses email des personnes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Partager' en haut à droite",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Partager",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Collaboration",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Inviter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter une nouvelle diapositive?",
+      "explanation": "Pour ajouter une nouvelle diapositive, utiliser Ctrl+M ou cliquer sur le bouton '+' dans la barre d'outils.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Ctrl+M ou cliquer sur le bouton '+'",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+N",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+M",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment démarrer une présentation en mode plein écran?",
+      "explanation": "Pour démarrer la présentation, cliquer sur 'Présenter' en haut à droite ou utiliser Ctrl+F5.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Présenter' ou Ctrl+F5",
+          "is_correct": true
+        },
+        {
+          "text": "F5",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Plein écran",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+P",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer un thème à la présentation?",
+      "explanation": "Pour appliquer un thème, cliquer sur 'Thème' dans la barre d'outils ou aller dans Diapositive > Modifier le thème.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Thème' dans la barre d'outils",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Thème",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Design",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Modèle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment dupliquer une diapositive?",
+      "explanation": "Pour dupliquer une diapositive, faire un clic droit sur la miniature puis sélectionner 'Dupliquer la diapositive' ou utiliser Ctrl+D.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Clic droit > Dupliquer la diapositive ou Ctrl+D",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+C puis Ctrl+V",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Copie",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Dupliquer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une image dans une diapositive?",
+      "explanation": "Pour insérer une image, cliquer sur l'icône image dans la barre d'outils ou aller dans Insertion > Image.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Icône image dans la barre d'outils ou Insertion > Image",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Image",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Média",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Importer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter une transition entre les diapositives?",
+      "explanation": "Pour ajouter une transition, sélectionner la diapositive puis cliquer sur 'Transition' dans la barre d'outils.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélectionner la diapositive > 'Transition' dans la barre d'outils",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Transition",
+          "is_correct": false
+        },
+        {
+          "text": "Animation > Entre diapositives",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Effets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment collaborer en temps réel sur une présentation?",
+      "explanation": "La collaboration en temps réel est automatique dans Google Slides dès qu'une présentation est partagée. Les modifications apparaissent instantanément.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "La collaboration est automatique une fois la présentation partagée",
+          "is_correct": true
+        },
+        {
+          "text": "Activer le mode collaboration dans Outils",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Mode équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Synchronisation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter des animations aux objets d'une diapositive?",
+      "explanation": "Pour ajouter des animations, sélectionner l'objet puis cliquer sur 'Animer' dans la barre d'outils ou aller dans Insertion > Animation.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner l'objet > 'Animer' dans la barre d'outils",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Animation",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Effets",
+          "is_correct": false
+        },
+        {
+          "text": "Transition > Animation objet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un graphique depuis Google Sheets?",
+      "explanation": "Pour insérer un graphique, aller dans Insertion > Graphique > À partir de Sheets et sélectionner la feuille de calcul.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Insertion > Graphique > À partir de Sheets",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Graphique externe",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Import données",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Lier Sheets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment modifier la disposition d'une diapositive?",
+      "explanation": "Pour modifier la disposition, sélectionner la diapositive puis cliquer sur 'Disposition' dans la barre d'outils.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner la diapositive > 'Disposition' dans la barre d'outils",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Mise en page",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Structure",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Modèle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter des notes du présentateur?",
+      "explanation": "Pour ajouter des notes, cliquer sur 'Notes du présentateur' en bas de l'écran ou utiliser la zone de notes visible sous la diapositive.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Notes du présentateur' en bas ou utiliser la zone de notes",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Notes",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Commentaires",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Annotations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une vidéo dans la présentation?",
+      "explanation": "Pour insérer une vidéo, aller dans Insertion > Vidéo et choisir la source (YouTube, Google Drive, etc.).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Insertion > Vidéo",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Multimédia",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Média",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Import vidéo",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment masquer une diapositive sans la supprimer?",
+      "explanation": "Pour masquer une diapositive, faire un clic droit sur sa miniature et sélectionner 'Ignorer la diapositive'.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Clic droit sur la miniature > Ignorer la diapositive",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Masquer",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Cacher",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Invisible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un lien vers une autre diapositive?",
+      "explanation": "Pour créer un lien interne, sélectionner le texte/objet, utiliser Ctrl+K puis choisir 'Diapositives de cette présentation'.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Sélectionner l'objet > Ctrl+K > Diapositives de cette présentation",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Lien interne",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Navigation",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Référence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment modifier le thème de couleur d'une présentation?",
+      "explanation": "Pour modifier les couleurs, cliquer sur 'Thème' puis sur 'Personnaliser' en bas pour ajuster les couleurs du thème.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Thème > Personnaliser > Ajuster les couleurs",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Couleurs",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Palette",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Coloris",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment importer des diapositives depuis une autre présentation?",
+      "explanation": "Pour importer des diapositives, aller dans Fichier > Importer des diapositives et sélectionner la présentation source.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Fichier > Importer des diapositives",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Diapositives externes",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Import",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Fusion",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le mode de suggestion pour les modifications?",
+      "explanation": "Le mode suggestion se trouve en haut à droite (icône crayon). Il permet de proposer des modifications sans modifier directement la présentation.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Cliquer sur l'icône crayon en haut à droite > Mode suggestion",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Suggestions",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Révision",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Propositions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment publier une présentation sur le web?",
+      "explanation": "Pour publier sur le web, aller dans Fichier > Partager > Publier sur le Web et configurer les options de publication.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Fichier > Partager > Publier sur le Web",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Publication",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Web",
+          "is_correct": false
+        },
+        {
+          "text": "Présenter > Mode public",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser l'orateur Q&R (Questions-Réponses)?",
+      "explanation": "Pour activer Q&R, démarrer la présentation puis cliquer sur l'icône 'Outils du présentateur' et activer 'Accepter les questions'.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Présenter > Outils du présentateur > Accepter les questions",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Questions",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Interaction",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Q&R",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment télécharger la présentation dans différents formats?",
+      "explanation": "Pour télécharger, aller dans Fichier > Télécharger et choisir le format souhaité (PowerPoint, PDF, etc.).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Fichier > Télécharger > Choisir le format",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Export",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Conversion",
+          "is_correct": false
+        },
+        {
+          "text": "Partager > Sauvegarder",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment grouper plusieurs objets ensemble?",
+      "explanation": "Pour grouper des objets, les sélectionner (Ctrl+clic) puis clic droit > Grouper ou utiliser Ctrl+G.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner les objets > Clic droit > Grouper ou Ctrl+G",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Groupe",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Groupement",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Assemblage",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment aligner plusieurs objets entre eux?",
+      "explanation": "Pour aligner des objets, les sélectionner puis utiliser Organiser > Aligner et choisir le type d'alignement.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner les objets > Organiser > Aligner",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Alignement",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Position",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Disposition",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un diaporama automatique?",
+      "explanation": "Pour créer un diaporama automatique, publier sur le web et cocher 'Avancer automatiquement les diapositives' avec l'intervalle souhaité.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Publier sur le web > Avancer automatiquement les diapositives",
+          "is_correct": true
+        },
+        {
+          "text": "Présenter > Mode automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Minutage",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Défilement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les modèles de présentation?",
+      "explanation": "Pour utiliser un modèle, aller sur slides.google.com et cliquer sur 'Galerie de modèles' ou créer une nouvelle présentation > Choisir un modèle.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "slides.google.com > Galerie de modèles ou nouvelle présentation > modèle",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Modèles",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Templates",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Gabarits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer des formes géométriques?",
+      "explanation": "Pour insérer des formes, cliquer sur l'icône formes dans la barre d'outils ou aller dans Insertion > Forme.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Icône formes dans la barre d'outils ou Insertion > Forme",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Géométrie",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Dessin",
+          "is_correct": false
+        },
+        {
+          "text": "Organiser > Formes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter du texte alternatif aux images?",
+      "explanation": "Pour ajouter du texte alternatif, sélectionner l'image, clic droit > Texte de remplacement et saisir la description.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Sélectionner l'image > Clic droit > Texte de remplacement",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Description",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Accessibilité",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Légende",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le pointeur laser pendant la présentation?",
+      "explanation": "Pendant la présentation, appuyer sur Ctrl puis cliquer et maintenir pour activer le pointeur laser.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Pendant la présentation : Ctrl + cliquer et maintenir",
+          "is_correct": true
+        },
+        {
+          "text": "Alt + clic",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Pointeur",
+          "is_correct": false
+        },
+        {
+          "text": "Bouton laser dans la barre de présentation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une présentation accessible aux malvoyants?",
+      "explanation": "Pour l'accessibilité : utiliser des couleurs contrastées, ajouter du texte alternatif aux images, utiliser des polices lisibles, et structurer avec des titres.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Couleurs contrastées, texte alternatif, polices lisibles, structure avec titres",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Mode accessibilité",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Version audio",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Aide visuelle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment configurer l'avancement automatique des diapositives?",
+      "explanation": "L'avancement automatique n'est disponible que lors de la publication sur le web via Fichier > Partager > Publier sur le Web > Options avancées.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Uniquement via publication web > Options avancées",
+          "is_correct": true
+        },
+        {
+          "text": "Présenter > Minutage",
+          "is_correct": false
+        },
+        {
+          "text": "Transition > Automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Programmation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser Google Slides hors ligne?",
+      "explanation": "Pour travailler hors ligne, activer le mode hors ligne dans Google Drive ou via l'extension Chrome 'Google Docs hors connexion'.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Activer le mode hors ligne dans Google Drive ou extension Chrome",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Mode hors ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Synchronisation",
+          "is_correct": false
+        },
+        {
+          "text": "Présenter > Mode déconnecté",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des animations personnalisées?",
+      "explanation": "Pour des animations personnalisées, sélectionner l'objet > Animer > Choisir l'effet > Options avancées pour ajuster vitesse, déclencheur, etc.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Objet > Animer > Effet > Options avancées pour personnaliser",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Animation personnalisée",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Effets avancés",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Animation complexe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment intégrer une présentation dans un site web?",
+      "explanation": "Pour intégrer dans un site web, publier la présentation puis copier le code d'intégration fourni dans les options de publication.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Publier sur le web > Copier le code d'intégration",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Code HTML",
+          "is_correct": false
+        },
+        {
+          "text": "Partager > Intégrer",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Embed",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les add-ons dans Google Slides?",
+      "explanation": "Pour utiliser les add-ons, aller dans Extensions > Modules complémentaires > Télécharger des modules complémentaires.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Extensions > Modules complémentaires > Télécharger",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Add-ons",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Extensions",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Plugins",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une présentation interactive avec des liens?",
+      "explanation": "Pour créer une présentation interactive, utiliser Ctrl+K pour ajouter des liens vers d'autres diapositives, sites web, ou documents Google.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Utiliser Ctrl+K pour ajouter des liens vers diapositives, web, ou documents",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Mode interactif",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Navigation",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Hyperliens",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser une présentation pour mobile?",
+      "explanation": "Google Slides s'adapte automatiquement aux mobiles. Pour optimiser : utiliser des polices lisibles, éviter trop de texte, privilégier les images de qualité.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Adaptation automatique, utiliser polices lisibles, peu de texte, images qualité",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Version mobile",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Responsive",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Mode smartphone",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les droits d'accès et permissions?",
+      "explanation": "Les droits se gèrent via le bouton Partager : Propriétaire, Éditeur, Commentateur, ou Lecteur. On peut aussi empêcher le téléchargement/copie/impression.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Bouton Partager > Choisir niveau d'accès + restrictions avancées",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Permissions",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Droits",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Sécurité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction d'exploration (Explore)?",
+      "explanation": "L'exploration se trouve en bas à droite (icône étoile) et propose automatiquement des designs et mises en page basés sur le contenu de votre présentation.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Cliquer sur l'icône étoile en bas à droite",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Exploration",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Suggestions",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Idées",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des présentations de marque cohérentes?",
+      "explanation": "Pour la cohérence de marque : créer un thème personnalisé avec couleurs/polices de l'entreprise, utiliser des modèles maîtres, et enregistrer comme modèle.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Créer thème personnalisé, modèles maîtres, enregistrer comme modèle",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Identité visuelle",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Charte graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Thème > Marque entreprise",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,945 @@
+{
+  "technology": "Google Docs",
+  "title": "Évaluation Google Docs Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Google Docs, incluant la rédaction collaborative, les styles, la mise en forme, les commentaires, et les fonctionnalités avancées de traitement de texte en ligne.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Comment partager un document Google Docs?",
+      "explanation": "Pour partager un document, cliquer sur le bouton 'Partager' en haut à droite et ajouter les adresses email des personnes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Cliquer sur 'Partager' en haut à droite",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Partager",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Collaboration",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Inviter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter un commentaire à un texte?",
+      "explanation": "Pour ajouter un commentaire, sélectionner le texte puis cliquer sur l'icône commentaire ou utiliser Ctrl+Alt+M.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner le texte > Icône commentaire ou Ctrl+Alt+M",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Commentaire",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Note",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Annotation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un titre automatique dans Google Docs?",
+      "explanation": "Pour créer un titre, sélectionner le texte puis aller dans Format > Styles de paragraphe > Titre 1, 2, 3, etc.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Format > Styles de paragraphe > Titre 1, 2, 3",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Titre",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > En-tête",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Structure",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une table des matières automatique?",
+      "explanation": "Pour insérer une table des matières, aller dans Insertion > Table des matières après avoir appliqué des styles de titre.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Insertion > Table des matières (après avoir appliqué des styles de titre)",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Sommaire",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Index",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Table des matières",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction de recherche et remplacement?",
+      "explanation": "Pour rechercher et remplacer, utiliser Ctrl+H ou aller dans Édition > Rechercher et remplacer.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Ctrl+H ou Édition > Rechercher et remplacer",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+F uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Remplacer",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Substitution",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une image dans le document?",
+      "explanation": "Pour insérer une image, aller dans Insertion > Image et choisir la source (ordinateur, web, Drive, etc.).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > Image",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Image",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Média",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Importer image",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment collaborer en temps réel sur un document?",
+      "explanation": "La collaboration en temps réel est automatique dans Google Docs dès qu'un document est partagé. Les modifications apparaissent instantanément.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "La collaboration est automatique une fois le document partagé",
+          "is_correct": true
+        },
+        {
+          "text": "Activer le mode collaboration dans Outils",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Mode équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Synchronisation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une liste à puces ou numérotée?",
+      "explanation": "Pour créer une liste, utiliser les boutons de la barre d'outils ou Format > Listes à puces et listes numérotées.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Boutons barre d'outils ou Format > Listes à puces et numérotées",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Liste",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Numérotation",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Énumération",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder à l'historique des versions?",
+      "explanation": "L'historique des versions est accessible via Fichier > Historique des versions > Voir l'historique des versions.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Fichier > Historique des versions > Voir l'historique",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Versions",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Révisions",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Historique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un tableau dans Google Docs?",
+      "explanation": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir la taille souhaitée.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > Tableau",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Grille",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Tableau",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le mode de suggestion pour les modifications?",
+      "explanation": "Le mode suggestion se trouve en haut à droite (icône crayon). Il permet de proposer des modifications sans modifier directement le texte.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Cliquer sur l'icône crayon en haut à droite > Mode suggestion",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Suggestions",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Mode révision",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Propositions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un lien hypertexte?",
+      "explanation": "Pour insérer un lien, sélectionner le texte puis utiliser Ctrl+K ou Insertion > Lien.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Ctrl+K ou Insertion > Lien",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Hyperlien",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Lien",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Référence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment modifier les marges du document?",
+      "explanation": "Pour modifier les marges, aller dans Fichier > Mise en page et ajuster les marges dans la section correspondante.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Fichier > Mise en page > Marges",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Marges",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Page",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Bordures",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une note de bas de page?",
+      "explanation": "Pour insérer une note de bas de page, aller dans Insertion > Note de bas de page ou utiliser Ctrl+Alt+F.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Insertion > Note de bas de page ou Ctrl+Alt+F",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Note",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Référence",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Annotation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la reconnaissance vocale pour dicter du texte?",
+      "explanation": "Pour utiliser la saisie vocale, aller dans Outils > Saisie vocale ou utiliser Ctrl+Shift+S (Chrome uniquement).",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Outils > Saisie vocale ou Ctrl+Shift+S",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Dictée",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Audio",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Reconnaissance vocale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un signet dans le document?",
+      "explanation": "Pour créer un signet, positionner le curseur puis aller dans Insertion > Signet.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Insertion > Signet",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Marque-page",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Référence",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Ancrage",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment télécharger le document dans différents formats?",
+      "explanation": "Pour télécharger, aller dans Fichier > Télécharger et choisir le format souhaité (Word, PDF, etc.).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Fichier > Télécharger > Choisir le format",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Export",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Conversion",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Sauvegarder sous",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser l'explorateur pour rechercher des informations?",
+      "explanation": "L'explorateur se trouve en bas à droite (icône étoile) et permet de rechercher des informations pertinentes sans quitter le document.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Cliquer sur l'icône étoile en bas à droite",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Explorateur",
+          "is_correct": false
+        },
+        {
+          "text": "Recherche > Informations",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Recherche web",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment personnaliser les styles de paragraphe?",
+      "explanation": "Pour personnaliser les styles, aller dans Format > Styles de paragraphe > Options > Enregistrer comme style par défaut.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Format > Styles de paragraphe > Options > Enregistrer comme style par défaut",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Personnalisation",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Modèles",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Styles personnalisés",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer des caractères spéciaux?",
+      "explanation": "Pour insérer des caractères spéciaux, aller dans Insertion > Caractères spéciaux.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Insertion > Caractères spéciaux",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Symboles",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Caractères",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Symboles",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les modèles de document?",
+      "explanation": "Pour utiliser un modèle, aller sur docs.google.com et cliquer sur 'Galerie de modèles' ou créer un nouveau document > Choisir un modèle.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "docs.google.com > Galerie de modèles ou nouveau document > modèle",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Modèles",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Templates",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Gabarits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des colonnes dans le document?",
+      "explanation": "Pour créer des colonnes, aller dans Format > Colonnes et choisir le nombre de colonnes souhaité.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Format > Colonnes",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Colonnes",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Mise en page",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Colonnes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter des en-têtes et pieds de page?",
+      "explanation": "Pour ajouter en-têtes/pieds de page, aller dans Insertion > En-têtes et pieds de page.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > En-têtes et pieds de page",
+          "is_correct": true
+        },
+        {
+          "text": "Format > En-tête",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Page",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Bandeau",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction de traduction automatique?",
+      "explanation": "Pour traduire le document, aller dans Outils > Traduire le document et choisir la langue cible.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outils > Traduire le document",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Traduction",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Langue",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Convertir langue",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un questionnaire ou formulaire depuis Google Docs?",
+      "explanation": "Google Docs ne crée pas directement de formulaires. Il faut utiliser Google Forms via Insertion > Formulaire ou créer un nouveau Google Form.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Utiliser Google Forms via un nouveau formulaire ou Insertion > Formulaire",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Questionnaire",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Sondage",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Enquête",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir des raccourcis clavier personnalisés?",
+      "explanation": "Google Docs ne permet pas de personnaliser les raccourcis clavier. Les raccourcis sont prédéfinis et accessibles via Ctrl+/ pour les voir.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Les raccourcis ne sont pas personnalisables (Ctrl+/ pour les voir)",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Raccourcis",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Touches personnalisées",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Paramètres clavier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un graphique depuis Google Sheets?",
+      "explanation": "Pour insérer un graphique, aller dans Insertion > Graphique > À partir de Sheets et sélectionner la feuille de calcul.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Insertion > Graphique > À partir de Sheets",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Graphique externe",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Import graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Diagramme",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le correcteur orthographique et grammatical?",
+      "explanation": "Le correcteur est automatique et souligne les erreurs. On peut aussi aller dans Outils > Orthographe et grammaire pour une vérification complète.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Automatique ou Outils > Orthographe et grammaire",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Correction",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Vérifier",
+          "is_correct": false
+        },
+        {
+          "text": "Révision > Correcteur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment travailler hors ligne avec Google Docs?",
+      "explanation": "Pour travailler hors ligne, activer le mode hors ligne dans Google Drive ou via l'extension Chrome 'Google Docs hors connexion'.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Activer le mode hors ligne dans Google Drive ou extension Chrome",
+          "is_correct": true
+        },
+        {
+          "text": "Fichier > Mode hors ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Synchronisation",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Connexion",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer des équations mathématiques?",
+      "explanation": "Pour insérer des équations, aller dans Insertion > Équation et utiliser l'éditeur d'équations.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Insertion > Équation",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Formule",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Mathématiques",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Expression",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les droits d'accès au document?",
+      "explanation": "Les droits se gèrent via le bouton Partager : Propriétaire, Éditeur, Commentateur, ou Lecteur. On peut aussi limiter les actions (téléchargement, copie, impression).",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Bouton Partager > Choisir niveau d'accès + options avancées",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Permissions",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Droits",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Sécurité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les add-ons (modules complémentaires)?",
+      "explanation": "Pour utiliser les add-ons, aller dans Extensions > Modules complémentaires > Télécharger des modules complémentaires.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Extensions > Modules complémentaires > Télécharger",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Add-ons",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Extensions",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Plugins",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un document maître avec des sous-documents?",
+      "explanation": "Google Docs ne supporte pas nativement les documents maîtres. Il faut utiliser des liens entre documents ou des add-ons spécialisés.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Non supporté nativement, utiliser des liens ou add-ons",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Document maître",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Fusion documents",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Hiérarchie",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment importer un document Word existant?",
+      "explanation": "Pour importer un document Word, l'uploader sur Google Drive ou aller dans Fichier > Importer et sélectionner le fichier .docx.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Upload sur Google Drive ou Fichier > Importer",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Conversion Word",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Import document",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Ouvrir Word",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonctionnalité de comparaison de documents?",
+      "explanation": "Pour comparer des documents, aller dans Outils > Comparer les documents et sélectionner les deux versions à comparer.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Outils > Comparer les documents",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Différences",
+          "is_correct": false
+        },
+        {
+          "text": "Édition > Comparaison",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Versions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des styles personnalisés réutilisables?",
+      "explanation": "Pour créer des styles personnalisés, formater le texte puis Format > Styles de paragraphe > Texte normal > Mettre à jour pour correspondre.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Formater le texte > Format > Styles > Mettre à jour pour correspondre",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Créer style",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Nouveau style",
+          "is_correct": false
+        },
+        {
+          "text": "Structure > Style personnalisé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les variables et le publipostage?",
+      "explanation": "Google Docs ne supporte pas nativement le publipostage. Il faut utiliser des add-ons comme 'Yet Another Mail Merge' ou Google Apps Script.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Non supporté nativement, utiliser add-ons ou Apps Script",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Publipostage",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Variables",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Fusion",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser la performance d'un long document?",
+      "explanation": "Pour optimiser : éviter trop d'images haute résolution, utiliser des liens au lieu d'embedder, diviser en sections, et limiter l'historique des versions.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Éviter images haute résolution, utiliser liens, diviser en sections",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Optimisation",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Performance",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Accélération",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment intégrer Google Docs avec d'autres applications Google Workspace?",
+      "explanation": "Google Docs s'intègre naturellement avec Drive, Sheets (graphiques), Slides (import), Forms, et Gmail (pièces jointes). Utiliser les menus Insertion pour les liens.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Intégration native avec Drive, Sheets, Slides, Forms, Gmail via menus Insertion",
+          "is_correct": true
+        },
+        {
+          "text": "Outils > Intégrations",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Applications liées",
+          "is_correct": false
+        },
+        {
+          "text": "Extensions > Workspace",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

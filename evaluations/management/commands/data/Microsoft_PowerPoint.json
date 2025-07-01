@@ -1,0 +1,969 @@
+{
+  "technology": "Microsoft PowerPoint",
+  "title": "Évaluation Microsoft PowerPoint Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft PowerPoint, incluant la création de diapositives, les animations, les transitions, les modèles, et les techniques de présentation efficaces.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Quelle combinaison de touches permet de démarrer un diaporama depuis le début?",
+      "explanation": "F5 est le raccourci pour démarrer un diaporama depuis la première diapositive dans PowerPoint.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "F5",
+          "is_correct": true
+        },
+        {
+          "text": "F1",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+F5",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+F5",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter une nouvelle diapositive?",
+      "explanation": "Pour ajouter une nouvelle diapositive, utiliser Ctrl+M ou cliquer sur 'Nouvelle diapositive' dans l'onglet Accueil.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Ctrl+M ou Accueil > Nouvelle diapositive",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+N",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+M",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre une transition et une animation?",
+      "explanation": "Une transition s'applique entre les diapositives (passage d'une diapo à l'autre), tandis qu'une animation s'applique aux éléments à l'intérieur d'une diapositive.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Transition entre diapositives, animation pour les éléments dans une diapositive",
+          "is_correct": true
+        },
+        {
+          "text": "Animation entre diapositives, transition pour les éléments dans une diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence, ce sont des synonymes",
+          "is_correct": false
+        },
+        {
+          "text": "Transition pour le texte, animation pour les images",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment dupliquer une diapositive?",
+      "explanation": "Pour dupliquer une diapositive, faire un clic droit sur la miniature puis sélectionner 'Dupliquer la diapositive' ou utiliser Ctrl+D.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Clic droit > Dupliquer la diapositive ou Ctrl+D",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+C puis Ctrl+V",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Copie de diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Dupliquer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Où trouve-t-on les modèles de diapositives dans PowerPoint?",
+      "explanation": "Les modèles de diapositives se trouvent dans l'onglet Création où l'on peut choisir différents thèmes et variantes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Onglet Création",
+          "is_correct": true
+        },
+        {
+          "text": "Onglet Insertion",
+          "is_correct": false
+        },
+        {
+          "text": "Onglet Format",
+          "is_correct": false
+        },
+        {
+          "text": "Onglet Affichage",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une image dans une diapositive?",
+      "explanation": "Pour insérer une image, aller dans Insertion > Images et choisir la source (fichier, en ligne, etc.).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > Images",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Image",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Insérer image",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Image",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle touche permet de démarrer le diaporama depuis la diapositive actuelle?",
+      "explanation": "Shift+F5 permet de démarrer le diaporama depuis la diapositive actuellement sélectionnée.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Shift+F5",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+F5",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+F5",
+          "is_correct": false
+        },
+        {
+          "text": "F6",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter des notes du présentateur?",
+      "explanation": "Les notes du présentateur s'ajoutent dans la zone de notes en bas de l'écran ou via l'onglet Affichage > Page de notes.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Dans la zone de notes en bas ou Affichage > Page de notes",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Notes",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Commentaires",
+          "is_correct": false
+        },
+        {
+          "text": "Révision > Notes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment changer la disposition d'une diapositive?",
+      "explanation": "Pour changer la disposition, aller dans Accueil > Disposition et choisir parmi les modèles disponibles.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Accueil > Disposition",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Disposition",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Mise en page",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Disposition",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la meilleure pratique pour le nombre de points par diapositive?",
+      "explanation": "Il est recommandé de limiter à 6-7 points maximum par diapositive pour maintenir la lisibilité et l'attention de l'audience.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Maximum 6-7 points par diapositive",
+          "is_correct": true
+        },
+        {
+          "text": "Autant de points que nécessaire",
+          "is_correct": false
+        },
+        {
+          "text": "Minimum 10 points pour être complet",
+          "is_correct": false
+        },
+        {
+          "text": "Un seul point par diapositive",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un graphique dans PowerPoint?",
+      "explanation": "Pour insérer un graphique, aller dans Insertion > Graphique et choisir le type souhaité.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > Graphique",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Diagramme",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Graphique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment masquer une diapositive sans la supprimer?",
+      "explanation": "Pour masquer une diapositive, faire un clic droit sur sa miniature et sélectionner 'Masquer la diapositive'.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Clic droit sur la miniature > Masquer la diapositive",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Masquer",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Cacher diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Ignorer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle taille de police minimum est recommandée pour une présentation?",
+      "explanation": "Une taille de police d'au moins 24 points est recommandée pour assurer la lisibilité depuis le fond de la salle.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "24 points minimum",
+          "is_correct": true
+        },
+        {
+          "text": "12 points",
+          "is_correct": false
+        },
+        {
+          "text": "18 points",
+          "is_correct": false
+        },
+        {
+          "text": "36 points minimum",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer une vidéo dans PowerPoint?",
+      "explanation": "Pour insérer une vidéo, aller dans Insertion > Vidéo et choisir la source (fichier, en ligne, etc.).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Insertion > Vidéo",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Multimédia",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Vidéo",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Insérer vidéo",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer une animation d'entrée à un objet?",
+      "explanation": "Pour appliquer une animation, sélectionner l'objet puis aller dans Animations > Effets d'animation d'entrée.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner l'objet > Animations > Effets d'entrée",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Animation",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Effets",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Animation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la règle des 6x6 en présentation?",
+      "explanation": "La règle des 6x6 recommande maximum 6 puces par diapositive avec maximum 6 mots par puce pour maintenir la clarté.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Maximum 6 puces par diapositive, 6 mots par puce",
+          "is_correct": true
+        },
+        {
+          "text": "6 diapositives maximum par présentation",
+          "is_correct": false
+        },
+        {
+          "text": "6 minutes maximum par diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "6 couleurs maximum par présentation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un lien hypertexte vers une autre diapositive?",
+      "explanation": "Sélectionner le texte/objet, faire Ctrl+K ou Insertion > Lien, puis choisir 'Emplacement dans ce document' et sélectionner la diapositive cible.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Ctrl+K > Emplacement dans ce document > Choisir la diapositive",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Lien interne",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Navigation",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Référence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment modifier le masque des diapositives?",
+      "explanation": "Pour modifier le masque, aller dans Affichage > Masque des diapositives où l'on peut personnaliser le design global.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Affichage > Masque des diapositives",
+          "is_correct": true
+        },
+        {
+          "text": "Création > Modifier masque",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Masque",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Template",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle combinaison de touches permet de terminer le diaporama?",
+      "explanation": "La touche Échap (Escape) permet de sortir du mode diaporama et revenir au mode édition.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Échap (Escape)",
+          "is_correct": true
+        },
+        {
+          "text": "Alt+F4",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+Q",
+          "is_correct": false
+        },
+        {
+          "text": "F1",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un tableau dans PowerPoint?",
+      "explanation": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir le nombre de lignes et colonnes.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > Tableau",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Grille",
+          "is_correct": false
+        },
+        {
+          "text": "Données > Tableau",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment programmer le minutage automatique des diapositives?",
+      "explanation": "Le minutage automatique se configure dans Diaporama > Enregistrer le diaporama ou via Transitions > Avancer la diapositive > Après.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Diaporama > Enregistrer le diaporama ou Transitions > Après",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Minutage",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Programmation",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Timer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la meilleure pratique pour les couleurs de fond?",
+      "explanation": "Il est recommandé d'utiliser des couleurs contrastées entre le fond et le texte, avec des fonds sombres pour le texte clair ou vice versa.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Utiliser des couleurs contrastées entre fond et texte",
+          "is_correct": true
+        },
+        {
+          "text": "Toujours utiliser un fond blanc",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser autant de couleurs que possible",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter toute couleur, rester en noir et blanc",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment grouper plusieurs objets ensemble?",
+      "explanation": "Pour grouper des objets, les sélectionner (Ctrl+clic) puis faire un clic droit > Grouper ou utiliser Ctrl+G.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner les objets > Clic droit > Grouper ou Ctrl+G",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Groupe",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Groupement",
+          "is_correct": false
+        },
+        {
+          "text": "Arrangement > Créer groupe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment exporter une présentation en PDF?",
+      "explanation": "Pour exporter en PDF, aller dans Fichier > Exporter > Créer PDF/XPS ou Fichier > Enregistrer sous > Type : PDF.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Fichier > Exporter > Créer PDF/XPS",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Convertir PDF",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Exporter PDF",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > PDF",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment aligner plusieurs objets entre eux?",
+      "explanation": "Pour aligner des objets, les sélectionner puis utiliser Format > Aligner et choisir le type d'alignement souhaité.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Sélectionner les objets > Format > Aligner",
+          "is_correct": true
+        },
+        {
+          "text": "Création > Alignement",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Aligner objets",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Positionnement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est l'extension de fichier par défaut de PowerPoint 2019?",
+      "explanation": "Depuis PowerPoint 2007, l'extension par défaut est .pptx pour les présentations modernes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": ".pptx",
+          "is_correct": true
+        },
+        {
+          "text": ".ppt",
+          "is_correct": false
+        },
+        {
+          "text": ".powerpoint",
+          "is_correct": false
+        },
+        {
+          "text": ".presentation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une présentation auto-exécutable?",
+      "explanation": "Pour créer une présentation auto-exécutable, l'enregistrer au format .ppsx via Fichier > Enregistrer sous > Type : Diaporama PowerPoint.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Enregistrer sous > Type : Diaporama PowerPoint (.ppsx)",
+          "is_correct": true
+        },
+        {
+          "text": "Diaporama > Mode automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Auto-exécution",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Créer exécutable",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer des formes géométriques?",
+      "explanation": "Pour insérer des formes, aller dans Insertion > Formes et choisir la forme désirée dans la galerie.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Insertion > Formes",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Formes",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Géométrie",
+          "is_correct": false
+        },
+        {
+          "text": "Dessin > Formes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment réorganiser l'ordre des diapositives?",
+      "explanation": "Pour réorganiser les diapositives, utiliser le mode Trieuse de diapositives (Affichage > Trieuse) ou faire glisser les miniatures dans le volet gauche.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Mode Trieuse de diapositives ou glisser-déposer les miniatures",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Réorganiser",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Ordre",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Séquence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter un effet de transition entre les diapositives?",
+      "explanation": "Pour ajouter une transition, sélectionner la diapositive puis aller dans Transitions et choisir l'effet souhaité.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Sélectionner la diapositive > Transitions > Choisir l'effet",
+          "is_correct": true
+        },
+        {
+          "text": "Animations > Transition",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Effets",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Transition",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment protéger une présentation avec un mot de passe?",
+      "explanation": "Pour protéger la présentation, aller dans Fichier > Informations > Protéger la présentation > Chiffrer avec mot de passe.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Fichier > Informations > Protéger la présentation > Chiffrer avec mot de passe",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Protection",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Sécurité",
+          "is_correct": false
+        },
+        {
+          "text": "Outils > Mot de passe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un organigramme dans PowerPoint?",
+      "explanation": "Pour créer un organigramme, aller dans Insertion > SmartArt > Hiérarchie et choisir le modèle d'organigramme souhaité.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Insertion > SmartArt > Hiérarchie",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Organigramme",
+          "is_correct": false
+        },
+        {
+          "text": "Création > Diagramme",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Graphique > Organigramme",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment imprimer plusieurs diapositives par page?",
+      "explanation": "Lors de l'impression, dans Fichier > Imprimer, choisir la disposition comme '2 diapositives par page', '4 par page', etc.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Fichier > Imprimer > Choisir la disposition (2, 4, 6 par page)",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Impression multiple",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Mode impression",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Impression",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment insérer un audio dans une présentation?",
+      "explanation": "Pour insérer un audio, aller dans Insertion > Audio et choisir la source (fichier audio, enregistrement, etc.).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Insertion > Audio",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Son",
+          "is_correct": false
+        },
+        {
+          "text": "Multimédia > Audio",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Bande sonore",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment personnaliser la barre d'outils Accès rapide?",
+      "explanation": "Pour personnaliser la barre d'accès rapide, cliquer sur la flèche à droite de la barre > Personnaliser la barre d'outils Accès rapide.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Cliquer sur la flèche de la barre > Personnaliser",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Barre d'outils",
+          "is_correct": false
+        },
+        {
+          "text": "Affichage > Personnaliser",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Options > Barre d'outils",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une animation personnalisée complexe?",
+      "explanation": "Pour créer des animations complexes, utiliser le volet Animation (Animations > Volet Animation) qui permet de gérer l'ordre, le minutage et les déclencheurs.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Animations > Volet Animation pour gérer ordre, minutage et déclencheurs",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Animation avancée",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Effet personnalisé",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Animation complexe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment collaborer en temps réel sur une présentation?",
+      "explanation": "Pour collaborer en temps réel, sauvegarder la présentation sur OneDrive ou SharePoint puis la partager via Fichier > Partager.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Sauvegarder sur OneDrive/SharePoint > Fichier > Partager",
+          "is_correct": true
+        },
+        {
+          "text": "Format > Collaboration",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Mode équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Insertion > Partage",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le mode Présentateur lors d'un diaporama?",
+      "explanation": "Le mode Présentateur s'active automatiquement avec deux écrans ou via Diaporama > Utiliser le mode Présentateur. Il affiche les notes et la diapositive suivante.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Automatique avec 2 écrans ou Diaporama > Mode Présentateur",
+          "is_correct": true
+        },
+        {
+          "text": "Affichage > Mode double écran",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Présentation",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Mode professionnel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un quiz interactif dans PowerPoint?",
+      "explanation": "Pour créer un quiz interactif, utiliser des liens hypertextes vers différentes diapositives selon les réponses, ou des déclencheurs d'animation.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Utiliser des liens hypertextes et déclencheurs d'animation",
+          "is_correct": true
+        },
+        {
+          "text": "Insertion > Quiz",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Mode interactif",
+          "is_correct": false
+        },
+        {
+          "text": "Diaporama > Créer quiz",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser une présentation pour la projection?",
+      "explanation": "Pour optimiser pour la projection : utiliser des polices sans-serif, des couleurs contrastées, une taille de police ≥24pt, et tester sur l'équipement de projection.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Polices sans-serif, couleurs contrastées, taille ≥24pt, tester sur l'équipement",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des couleurs vives",
+          "is_correct": false
+        },
+        {
+          "text": "Maximiser le nombre d'informations par diapositive",
+          "is_correct": false
+        },
+        {
+          "text": "Format > Mode projection",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

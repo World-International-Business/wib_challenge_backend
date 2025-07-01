@@ -1,0 +1,969 @@
+{
+  "technology": "Blender",
+  "title": "Évaluation Blender - Modélisation 3D et Animation",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Blender pour la modélisation 3D, l'animation, le rendu et les techniques avancées de création graphique tridimensionnelle.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Blender ?",
+      "explanation": "Blender est un logiciel libre et open-source de création 3D qui permet la modélisation, l'animation, le rendu, le compositing et le montage vidéo.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Un logiciel libre de création 3D complet",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de retouche photo",
+          "is_correct": false
+        },
+        {
+          "text": "Un moteur de jeu",
+          "is_correct": false
+        },
+        {
+          "text": "Un logiciel de CAO",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci permet de **sélectionner tout** dans Blender ?",
+      "explanation": "La touche 'A' permet de sélectionner tous les objets dans la scène, ou tous les éléments selon le mode actif.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "A",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+A",
+          "is_correct": false
+        },
+        {
+          "text": "S",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+A",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **déplacer** un objet dans Blender ?",
+      "explanation": "Pour déplacer un objet, on appuie sur 'G' (grab/move) puis on peut contraindre le mouvement avec X, Y ou Z pour les axes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "G puis X/Y/Z pour contraindre aux axes",
+          "is_correct": true
+        },
+        {
+          "text": "D puis direction",
+          "is_correct": false
+        },
+        {
+          "text": "M puis coordonnées",
+          "is_correct": false
+        },
+        {
+          "text": "Glisser avec la souris seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci permet de **faire une rotation** ?",
+      "explanation": "La touche 'R' active le mode rotation, suivi optionnellement de X, Y ou Z pour contraindre à un axe spécifique.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "R",
+          "is_correct": true
+        },
+        {
+          "text": "T",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+R",
+          "is_correct": false
+        },
+        {
+          "text": "O",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **redimensionner** un objet ?",
+      "explanation": "La touche 'S' (scale) permet de redimensionner un objet, suivi de X, Y ou Z pour contraindre à un axe, ou Shift+Z pour exclure un axe.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "S puis X/Y/Z pour les axes",
+          "is_correct": true
+        },
+        {
+          "text": "Shift+S",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+S",
+          "is_correct": false
+        },
+        {
+          "text": "Z puis taille",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **mode Edit** ?",
+      "explanation": "Le mode Edit (Tab) permet de modifier la géométrie interne d'un objet : vertices, arêtes, faces. C'est le mode principal de modélisation.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Mode pour modifier la géométrie interne (vertices, arêtes, faces)",
+          "is_correct": true
+        },
+        {
+          "text": "Mode pour éditer les textures",
+          "is_correct": false
+        },
+        {
+          "text": "Mode pour animer",
+          "is_correct": false
+        },
+        {
+          "text": "Mode pour le rendu",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **extruder** une face ?",
+      "explanation": "L'extrusion se fait avec la touche 'E' en mode Edit, permettant de créer de nouveaux polygones à partir d'une sélection.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "E en mode Edit",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+E",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+E",
+          "is_correct": false
+        },
+        {
+          "text": "Shift+E",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **Mesh** dans Blender ?",
+      "explanation": "Un Mesh est un objet 3D composé de vertices (points), d'arêtes (lignes) et de faces (polygones) qui forme la géométrie de base.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Un objet 3D composé de vertices, arêtes et faces",
+          "is_correct": true
+        },
+        {
+          "text": "Un matériau texturé",
+          "is_correct": false
+        },
+        {
+          "text": "Un système de particules",
+          "is_correct": false
+        },
+        {
+          "text": "Un type d'éclairage",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **ajouter un objet** à la scène ?",
+      "explanation": "Pour ajouter un objet, on utilise Shift+A qui ouvre le menu Add avec différentes catégories (Mesh, Light, Camera, etc.).",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Shift+A puis choisir dans le menu",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+N",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+A",
+          "is_correct": false
+        },
+        {
+          "text": "Insert",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Modifier** en Blender ?",
+      "explanation": "Les Modifiers sont des outils non-destructifs qui modifient automatiquement la géométrie d'un objet (subdivision, miroir, array, etc.).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outils non-destructifs qui modifient automatiquement la géométrie",
+          "is_correct": true
+        },
+        {
+          "text": "Outils pour modifier les textures",
+          "is_correct": false
+        },
+        {
+          "text": "Paramètres de rendu",
+          "is_correct": false
+        },
+        {
+          "text": "Effets de post-production",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **subdiviser** une surface ?",
+      "explanation": "La subdivision se fait avec le Subdivision Surface Modifier ou en mode Edit avec Ctrl+clic droit pour ajouter des loop cuts.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Subdivision Surface Modifier ou loop cuts",
+          "is_correct": true
+        },
+        {
+          "text": "S puis subdivision",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+S",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+Sub",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Viewport Shading** ?",
+      "explanation": "Le Viewport Shading contrôle comment les objets sont affichés dans la vue 3D : wireframe, solid, material preview, ou rendered.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Contrôle l'affichage des objets (wireframe, solid, material, rendered)",
+          "is_correct": true
+        },
+        {
+          "text": "Paramètres d'éclairage",
+          "is_correct": false
+        },
+        {
+          "text": "Qualité du rendu final",
+          "is_correct": false
+        },
+        {
+          "text": "Type de caméra",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **créer un matériau** ?",
+      "explanation": "Les matériaux se créent dans l'onglet Material Properties (icône sphère) en cliquant sur 'New' pour créer un nouveau matériau.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Onglet Material Properties > New",
+          "is_correct": true
+        },
+        {
+          "text": "Shift+M",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Material > Create",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+M",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Cycles** ?",
+      "explanation": "Cycles est le moteur de rendu physiquement réaliste de Blender qui simule le comportement réel de la lumière pour des rendus photoréalistes.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Moteur de rendu physiquement réaliste de Blender",
+          "is_correct": true
+        },
+        {
+          "text": "Outil d'animation cyclique",
+          "is_correct": false
+        },
+        {
+          "text": "Système de particules",
+          "is_correct": false
+        },
+        {
+          "text": "Mode de modélisation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **animer** un objet dans Blender ?",
+      "explanation": "L'animation se fait en définissant des keyframes (touche I) à différents moments sur la timeline pour enregistrer les positions/rotations/échelles.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Définir des keyframes avec la touche I sur la timeline",
+          "is_correct": true
+        },
+        {
+          "text": "Menu Animation > Create",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+A puis timeline",
+          "is_correct": false
+        },
+        {
+          "text": "Auto-animation activée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Dope Sheet** ?",
+      "explanation": "Le Dope Sheet est l'éditeur qui affiche et permet de manipuler les keyframes et l'animation dans le temps de manière globale.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Éditeur pour visualiser et manipuler les keyframes dans le temps",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de modélisation",
+          "is_correct": false
+        },
+        {
+          "text": "Panneau de propriétés",
+          "is_correct": false
+        },
+        {
+          "text": "Mode de rendu",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **créer une texture** ?",
+      "explanation": "Les textures se créent dans le Shader Editor en ajoutant des nodes de texture (Image Texture, Noise, etc.) connectés au matériau.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Shader Editor avec des nodes de texture",
+          "is_correct": true
+        },
+        {
+          "text": "UV Editor seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Import d'images uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Texture Paint mode",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**UV Mapping** ?",
+      "explanation": "L'UV Mapping est le processus de projection d'une texture 2D sur un objet 3D en 'dépliage' de la surface de l'objet.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Projection d'une texture 2D sur un objet 3D par dépliage",
+          "is_correct": true
+        },
+        {
+          "text": "Système de coordonnées 3D",
+          "is_correct": false
+        },
+        {
+          "text": "Type d'éclairage",
+          "is_correct": false
+        },
+        {
+          "text": "Mode de vue spécial",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **éclairer** une scène ?",
+      "explanation": "L'éclairage se fait en ajoutant des sources lumineuses (Sun, Point, Spot, Area) via Shift+A > Light, ou en utilisant un HDRI.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Ajouter des sources lumineuses (Sun, Point, Spot, Area) ou HDRI",
+          "is_correct": true
+        },
+        {
+          "text": "Modifier la couleur des matériaux seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter la luminosité du moniteur",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des objets brillants",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Node Editor** ?",
+      "explanation": "Le Node Editor (Shader Editor) permet de créer des matériaux complexes en connectant des nodes qui représentent différentes propriétés visuelles.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Éditeur pour créer des matériaux complexes avec des nodes connectés",
+          "is_correct": true
+        },
+        {
+          "text": "Éditeur de modélisation",
+          "is_correct": false
+        },
+        {
+          "text": "Panneau d'animation",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de rendu",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **faire un rendu** de l'image ?",
+      "explanation": "Le rendu se lance avec F12 pour une image ou Ctrl+F12 pour une animation, selon les paramètres définis dans Render Properties.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "F12 pour image, Ctrl+F12 pour animation",
+          "is_correct": true
+        },
+        {
+          "text": "Render > Start",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+R",
+          "is_correct": false
+        },
+        {
+          "text": "Space puis Render",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **Subsurface Scattering** ?",
+      "explanation": "La Subsurface Scattering simule la diffusion de la lumière sous la surface des matériaux translucides comme la peau, la cire ou le marbre.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Simulation de la diffusion lumineuse sous les surfaces translucides",
+          "is_correct": true
+        },
+        {
+          "text": "Effet de réflexion miroir",
+          "is_correct": false
+        },
+        {
+          "text": "Type d'animation",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de modélisation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **dupliquer** un objet ?",
+      "explanation": "La duplication se fait avec Shift+D pour dupliquer et déplacer, ou Alt+D pour une duplication liée (instance).",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Shift+D pour dupliquer, Alt+D pour instance liée",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+D",
+          "is_correct": false
+        },
+        {
+          "text": "D puis confirmer",
+          "is_correct": false
+        },
+        {
+          "text": "Copier-coller seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Mirror Modifier** ?",
+      "explanation": "Le Mirror Modifier crée automatiquement une symétrie de l'objet selon un ou plusieurs axes, utile pour modéliser des objets symétriques.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Crée automatiquement une symétrie selon des axes",
+          "is_correct": true
+        },
+        {
+          "text": "Effet de réflexion visuelle",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de texture miroir",
+          "is_correct": false
+        },
+        {
+          "text": "Mode de vue symétrique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **sélectionner des éléments** en mode Edit ?",
+      "explanation": "En mode Edit, on peut sélectionner des vertices (1), edges (2), ou faces (3), et utiliser Alt+clic pour sélectionner des loops complets.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "1 (vertices), 2 (edges), 3 (faces), Alt+clic pour loops",
+          "is_correct": true
+        },
+        {
+          "text": "Clic simple seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+clic pour tout",
+          "is_correct": false
+        },
+        {
+          "text": "Shift seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Bevel** ?",
+      "explanation": "Le Bevel (Ctrl+B) crée des chanfreins arrondis sur les arêtes sélectionnées, ajoutant du réalisme en évitant les angles parfaitement nets.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Crée des chanfreins arrondis sur les arêtes (Ctrl+B)",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de découpe",
+          "is_correct": false
+        },
+        {
+          "text": "Type de texture",
+          "is_correct": false
+        },
+        {
+          "text": "Effet d'ombre",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **organiser** la scène avec les Collections ?",
+      "explanation": "Les Collections permettent de grouper et organiser les objets dans l'Outliner, facilitant la gestion de scènes complexes et le contrôle de visibilité.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Grouper objets dans l'Outliner pour organisation et visibilité",
+          "is_correct": true
+        },
+        {
+          "text": "Créer des dossiers de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Trier par type d'objet automatiquement",
+          "is_correct": false
+        },
+        {
+          "text": "Système de tags seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Sculpting** dans Blender ?",
+      "explanation": "Le Sculpting permet de modéliser de manière organique en 'sculptant' directement sur la surface du mesh avec différents pinceaux et outils.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Modélisation organique en sculptant directement avec des pinceaux",
+          "is_correct": true
+        },
+        {
+          "text": "Mode de rendu artistique",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de texture",
+          "is_correct": false
+        },
+        {
+          "text": "Animation faciale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **contrôler la caméra** ?",
+      "explanation": "La caméra se contrôle en la sélectionnant et utilisant les outils de transformation, ou Ctrl+Alt+Numpad 0 pour passer en vue caméra.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélectionner et transformer, ou Ctrl+Alt+Numpad 0 pour vue caméra",
+          "is_correct": true
+        },
+        {
+          "text": "Numpad 0 puis déplacer",
+          "is_correct": false
+        },
+        {
+          "text": "C puis contrôles",
+          "is_correct": false
+        },
+        {
+          "text": "Vue > Caméra active",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Compositor** ?",
+      "explanation": "Le Compositor permet de faire de la post-production sur les rendus en combinant différents passes et effets avec un système de nodes.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Outil de post-production avec nodes pour combiner passes et effets",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de composition 3D",
+          "is_correct": false
+        },
+        {
+          "text": "Éditeur de musique",
+          "is_correct": false
+        },
+        {
+          "text": "Mode de rendu spécial",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **particules** ?",
+      "explanation": "Les systèmes de particules se créent dans les Properties > Particle Properties en ajoutant un nouveau système pour simuler cheveux, fumée, etc.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Properties > Particle Properties > Nouveau système",
+          "is_correct": true
+        },
+        {
+          "text": "Shift+P",
+          "is_correct": false
+        },
+        {
+          "text": "Add > Particle System",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Physics > Particles",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Rigging** ?",
+      "explanation": "Le Rigging consiste à créer un squelette (armature) avec des os pour animer des personnages ou objets de manière réaliste.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Création d'un squelette avec des os pour l'animation",
+          "is_correct": true
+        },
+        {
+          "text": "Installation de plugins",
+          "is_correct": false
+        },
+        {
+          "text": "Configuration du rendu",
+          "is_correct": false
+        },
+        {
+          "text": "Préparation de la géométrie",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le **Proportional Editing** ?",
+      "explanation": "Le Proportional Editing (O) permet d'influencer les vertices voisins lors d'une transformation, créant des déformations plus naturelles.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Touche O pour influencer les vertices voisins lors des transformations",
+          "is_correct": true
+        },
+        {
+          "text": "Mode de sélection proportionnelle",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de mesure",
+          "is_correct": false
+        },
+        {
+          "text": "Type de modifier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Eevee** ?",
+      "explanation": "Eevee est le moteur de rendu temps réel de Blender qui offre un aperçu rapide des matériaux et éclairages avec une qualité correcte.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Moteur de rendu temps réel pour aperçu rapide",
+          "is_correct": true
+        },
+        {
+          "text": "Outil d'animation",
+          "is_correct": false
+        },
+        {
+          "text": "Plugin externe",
+          "is_correct": false
+        },
+        {
+          "text": "Mode de modélisation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **optimiser** les performances de Blender ?",
+      "explanation": "L'optimisation passe par la simplification des meshes, l'utilisation de proxies, la limitation des subdivisions, et l'ajustement des paramètres de rendu.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Simplifier les meshes, utiliser des proxies, limiter subdivisions",
+          "is_correct": true
+        },
+        {
+          "text": "Ajuster les paramètres de rendu",
+          "is_correct": true
+        },
+        {
+          "text": "Augmenter tous les détails",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser seulement Cycles",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des **matériaux PBR** ?",
+      "explanation": "Les matériaux PBR se créent avec des nodes Principled BSDF en connectant des textures pour Albedo, Normal, Roughness, Metallic, etc.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Principled BSDF avec textures Albedo, Normal, Roughness, Metallic",
+          "is_correct": true
+        },
+        {
+          "text": "Modifier automatique PBR",
+          "is_correct": false
+        },
+        {
+          "text": "Import de matériaux externes seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Template PBR prédéfini",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Motion Blur** ?",
+      "explanation": "Le Motion Blur simule le flou de mouvement qui se produit naturellement quand des objets bougent rapidement devant la caméra.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Simulation du flou de mouvement des objets rapides",
+          "is_correct": true
+        },
+        {
+          "text": "Flou de profondeur de champ",
+          "is_correct": false
+        },
+        {
+          "text": "Effet de distorsion",
+          "is_correct": false
+        },
+        {
+          "text": "Animation de caméra",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **exporter** un modèle 3D ?",
+      "explanation": "L'export se fait via File > Export en choisissant le format approprié (FBX, OBJ, glTF, etc.) selon l'usage final.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "File > Export puis choisir le format (FBX, OBJ, glTF)",
+          "is_correct": true
+        },
+        {
+          "text": "Render > Export Model",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+E",
+          "is_correct": false
+        },
+        {
+          "text": "Export automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Freestyle** ?",
+      "explanation": "Freestyle est un système de rendu de lignes non-photoréalistes qui permet de créer des contours et effets de dessin artistique.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Système de rendu de lignes pour effets artistiques non-photoréalistes",
+          "is_correct": true
+        },
+        {
+          "text": "Mode de modélisation libre",
+          "is_correct": false
+        },
+        {
+          "text": "Animation libre",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de sculpture",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **animation cyclique** ?",
+      "explanation": "Une animation cyclique se crée en s'assurant que la première et dernière keyframe sont identiques, et en utilisant les modificateurs de courbe.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Première et dernière keyframe identiques avec modificateurs de courbe",
+          "is_correct": true
+        },
+        {
+          "text": "Mode Loop automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Copier-coller l'animation",
+          "is_correct": false
+        },
+        {
+          "text": "Paramètre Cycle dans Timeline",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

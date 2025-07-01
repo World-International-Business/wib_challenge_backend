@@ -1,0 +1,945 @@
+{
+  "technology": "Trello",
+  "title": "Évaluation Trello - Gestion de Projets Agile",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Trello pour la gestion de projets avec la méthode Kanban, incluant les tableaux, cartes, listes, collaboration d'équipe et automatisation.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Trello ?",
+      "explanation": "Trello est un outil de gestion de projets basé sur la méthode Kanban qui utilise des tableaux, listes et cartes pour organiser visuellement le travail d'équipe.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Un outil de gestion de projets basé sur la méthode Kanban",
+          "is_correct": true
+        },
+        {
+          "text": "Un logiciel de comptabilité",
+          "is_correct": false
+        },
+        {
+          "text": "Une application de messagerie",
+          "is_correct": false
+        },
+        {
+          "text": "Un éditeur de texte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quels sont les **trois éléments principaux** de Trello ?",
+      "explanation": "Trello s'organise autour de trois éléments : les Tableaux (projets), les Listes (étapes/statuts), et les Cartes (tâches individuelles).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Tableaux, Listes et Cartes",
+          "is_correct": true
+        },
+        {
+          "text": "Projets, Tâches et Utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Dossiers, Fichiers et Documents",
+          "is_correct": false
+        },
+        {
+          "text": "Groupes, Équipes et Membres",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **nouveau tableau** ?",
+      "explanation": "Un nouveau tableau se crée en cliquant sur le bouton '+ Créer' puis 'Créer un tableau', ou via le menu principal en sélectionnant 'Nouveau tableau'.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Bouton '+ Créer' puis 'Créer un tableau'",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+N",
+          "is_correct": false
+        },
+        {
+          "text": "Fichier > Nouveau",
+          "is_correct": false
+        },
+        {
+          "text": "Double-clic dans l'interface",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **liste** dans Trello ?",
+      "explanation": "Une liste représente une étape du processus ou un statut (ex: À faire, En cours, Terminé) et contient des cartes qui peuvent être déplacées entre les listes.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Une étape du processus ou statut contenant des cartes",
+          "is_correct": true
+        },
+        {
+          "text": "Un ensemble de tableaux",
+          "is_correct": false
+        },
+        {
+          "text": "Un groupe d'utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Une catégorie de projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **ajouter une carte** à une liste ?",
+      "explanation": "Une carte s'ajoute en cliquant sur '+ Ajouter une carte' au bas d'une liste, puis en saisissant le titre de la tâche.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Cliquer sur '+ Ajouter une carte' au bas de la liste",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser depuis une autre liste",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl+A",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Insérer > Carte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **déplacer une carte** entre les listes ?",
+      "explanation": "Les cartes se déplacent par glisser-déposer (drag & drop) d'une liste à une autre, permettant de faire évoluer le statut des tâches visuellement.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Glisser-déposer (drag & drop) entre les listes",
+          "is_correct": true
+        },
+        {
+          "text": "Couper-coller avec Ctrl+X/Ctrl+V",
+          "is_correct": false
+        },
+        {
+          "text": "Menu contextuel > Déplacer",
+          "is_correct": false
+        },
+        {
+          "text": "Double-clic sur la carte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **membre** dans Trello ?",
+      "explanation": "Un membre est une personne invitée à collaborer sur un tableau, qui peut voir, modifier et être assignée aux cartes selon ses permissions.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Une personne invitée à collaborer sur un tableau",
+          "is_correct": true
+        },
+        {
+          "text": "Un type de carte spécial",
+          "is_correct": false
+        },
+        {
+          "text": "Un élément du tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Un statut de tâche",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **assigner** une carte à un membre ?",
+      "explanation": "L'assignation se fait en ouvrant la carte, cliquant sur 'Membres' et sélectionnant la ou les personnes responsables de cette tâche.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Ouvrir la carte > Membres > sélectionner les personnes",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser la photo du membre sur la carte",
+          "is_correct": false
+        },
+        {
+          "text": "@mention dans le titre",
+          "is_correct": false
+        },
+        {
+          "text": "Email automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **étiquette** (label) ?",
+      "explanation": "Une étiquette est un marqueur coloré avec un nom qui permet de catégoriser les cartes (priorité, type de tâche, département, etc.).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Un marqueur coloré pour catégoriser les cartes",
+          "is_correct": true
+        },
+        {
+          "text": "Un nom de liste",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Une note adhésive",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter une **date d'échéance** ?",
+      "explanation": "La date d'échéance s'ajoute en ouvrant la carte, cliquant sur 'Dates' et sélectionnant la date limite pour la tâche.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Ouvrir la carte > Dates > sélectionner la date limite",
+          "is_correct": true
+        },
+        {
+          "text": "Taper la date dans le titre",
+          "is_correct": false
+        },
+        {
+          "text": "Calendrier externe",
+          "is_correct": false
+        },
+        {
+          "text": "Étiquette date",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **checklist** dans une carte ?",
+      "explanation": "Une checklist est une liste de sous-tâches à cocher dans une carte, permettant de décomposer une tâche complexe en étapes plus petites.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Liste de sous-tâches à cocher pour décomposer une tâche",
+          "is_correct": true
+        },
+        {
+          "text": "Liste des membres assignés",
+          "is_correct": false
+        },
+        {
+          "text": "Vérification de qualité",
+          "is_correct": false
+        },
+        {
+          "text": "Liste des fichiers joints",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **joindre des fichiers** à une carte ?",
+      "explanation": "Les fichiers se joignent en ouvrant la carte, cliquant sur 'Pièce jointe' et uploadant depuis l'ordinateur ou des services cloud (Google Drive, Dropbox, etc.).",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Ouvrir carte > Pièce jointe > upload ou services cloud",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser-déposer directement",
+          "is_correct": false
+        },
+        {
+          "text": "Email des fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Lien externe seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **commentaire** dans Trello ?",
+      "explanation": "Un commentaire permet d'ajouter des notes, questions ou mises à jour sur une carte, créant un historique de communication sur la tâche.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Notes et communications sur une carte avec historique",
+          "is_correct": true
+        },
+        {
+          "text": "Évaluation de la tâche",
+          "is_correct": false
+        },
+        {
+          "text": "Description technique",
+          "is_correct": false
+        },
+        {
+          "text": "Instruction de travail",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **notifier** quelqu'un dans un commentaire ?",
+      "explanation": "La notification se fait en tapant @ suivi du nom de la personne dans le commentaire, ce qui lui enverra une notification automatiquement.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Taper @ suivi du nom de la personne",
+          "is_correct": true
+        },
+        {
+          "text": "Envoyer un email séparé",
+          "is_correct": false
+        },
+        {
+          "text": "Cliquer sur notifier",
+          "is_correct": false
+        },
+        {
+          "text": "Assigner la carte",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **Power-Up** ?",
+      "explanation": "Un Power-Up est une extension qui ajoute des fonctionnalités au tableau : calendrier, diagramme de Gantt, intégrations avec d'autres outils, etc.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Extension ajoutant des fonctionnalités (calendrier, Gantt, intégrations)",
+          "is_correct": true
+        },
+        {
+          "text": "Augmentation de capacité",
+          "is_correct": false
+        },
+        {
+          "text": "Fonction premium",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde renforcée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **copier** ou **déplacer** une carte ?",
+      "explanation": "La copie/déplacement se fait via le menu de la carte (crayon), puis 'Copier' ou 'Déplacer' vers un autre tableau ou liste spécifique.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Menu carte > Copier ou Déplacer vers autre tableau/liste",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+C / Ctrl+V",
+          "is_correct": false
+        },
+        {
+          "text": "Glisser vers autre tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Dupliquer automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**activité** d'une carte ?",
+      "explanation": "L'activité affiche l'historique complet des actions sur une carte : qui l'a créée, modifiée, commentée, déplacée, avec horodatage.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Historique complet des actions avec horodatage",
+          "is_correct": true
+        },
+        {
+          "text": "Temps passé sur la tâche",
+          "is_correct": false
+        },
+        {
+          "text": "Niveau de priorité",
+          "is_correct": false
+        },
+        {
+          "text": "Statut d'avancement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **archiver** une carte ou liste ?",
+      "explanation": "L'archivage se fait via le menu de la carte/liste, permettant de la masquer sans la supprimer définitivement, avec possibilité de restauration.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Menu carte/liste > Archiver (masquer avec possibilité de restauration)",
+          "is_correct": true
+        },
+        {
+          "text": "Supprimer définitivement",
+          "is_correct": false
+        },
+        {
+          "text": "Déplacer vers tableau archive",
+          "is_correct": false
+        },
+        {
+          "text": "Export vers fichier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **modèle** (template) de tableau ?",
+      "explanation": "Un modèle est un tableau prédéfini avec listes et cartes types qui peut être réutilisé pour créer rapidement de nouveaux projets similaires.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Tableau prédéfini réutilisable pour créer de nouveaux projets",
+          "is_correct": true
+        },
+        {
+          "text": "Format d'export",
+          "is_correct": false
+        },
+        {
+          "text": "Style visuel",
+          "is_correct": false
+        },
+        {
+          "text": "Type de Power-Up",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **filtrer** les cartes d'un tableau ?",
+      "explanation": "Le filtrage se fait via le menu 'Filtrer' qui permet de n'afficher que les cartes correspondant aux critères : membres, étiquettes, dates, etc.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Menu 'Filtrer' avec critères (membres, étiquettes, dates)",
+          "is_correct": true
+        },
+        {
+          "text": "Recherche textuelle seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Tri alphabétique",
+          "is_correct": false
+        },
+        {
+          "text": "Masquage manuel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Butler** dans Trello ?",
+      "explanation": "Butler est l'outil d'automatisation intégré qui permet de créer des règles, boutons et commandes pour automatiser les tâches répétitives.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outil d'automatisation avec règles, boutons et commandes",
+          "is_correct": true
+        },
+        {
+          "text": "Assistant virtuel",
+          "is_correct": false
+        },
+        {
+          "text": "Gestionnaire de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de reporting",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **règle d'automatisation** ?",
+      "explanation": "Les règles se créent via Butler en définissant un déclencheur (quand) et une action (alors) : ex: 'Quand une carte est déplacée vers Terminé, alors archiver automatiquement'.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Butler > définir déclencheur (quand) et action (alors)",
+          "is_correct": true
+        },
+        {
+          "text": "Paramètres avancés du tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Power-Up spécialisé",
+          "is_correct": false
+        },
+        {
+          "text": "Code JavaScript",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **inviter** des membres à un tableau ?",
+      "explanation": "L'invitation se fait via le bouton 'Inviter' du tableau, en saisissant l'email ou nom d'utilisateur Trello de la personne à ajouter.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Bouton 'Inviter' > email ou nom d'utilisateur Trello",
+          "is_correct": true
+        },
+        {
+          "text": "Partager le lien du tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Ajouter via équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Email manuel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **équipe** (team) dans Trello ?",
+      "explanation": "Une équipe est un groupe d'utilisateurs qui partagent des tableaux, avec gestion centralisée des membres et permissions pour les projets collaboratifs.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Groupe d'utilisateurs partageant des tableaux avec gestion centralisée",
+          "is_correct": true
+        },
+        {
+          "text": "Liste de contacts",
+          "is_correct": false
+        },
+        {
+          "text": "Type de tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Catégorie de cartes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **rechercher** dans Trello ?",
+      "explanation": "La recherche se fait via la barre de recherche en haut, permettant de trouver des cartes, tableaux par mots-clés, membres, étiquettes, etc.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Barre de recherche en haut avec mots-clés, membres, étiquettes",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+F seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Filtres avancés",
+          "is_correct": false
+        },
+        {
+          "text": "Menu Recherche",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **exporter** les données d'un tableau ?",
+      "explanation": "L'export se fait via Menu tableau > Plus > Imprimer et exporter > JSON pour toutes les données ou Print pour une version imprimable.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Menu > Plus > Imprimer et exporter > JSON ou Print",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller manuel",
+          "is_correct": false
+        },
+        {
+          "text": "Screenshot du tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Export impossible",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Trello Gold** ?",
+      "explanation": "Trello Gold était l'ancien plan premium (maintenant Trello Standard/Premium) offrant des fonctionnalités avancées comme plus de Power-Ups et de grandes pièces jointes.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Ancien plan premium (maintenant Standard/Premium) avec fonctionnalités avancées",
+          "is_correct": true
+        },
+        {
+          "text": "Version de luxe",
+          "is_correct": false
+        },
+        {
+          "text": "Récompense pour utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Thème doré",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **tableau Kanban** efficace ?",
+      "explanation": "Un Kanban efficace utilise des listes claires (À faire, En cours, À réviser, Terminé), limite le travail en cours (WIP), et maintient un flux régulier.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Listes claires, limitation du WIP, maintien d'un flux régulier",
+          "is_correct": true
+        },
+        {
+          "text": "Maximum de listes possibles",
+          "is_correct": false
+        },
+        {
+          "text": "Toutes les tâches dans une liste",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de règles spécifiques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **dupliquer** un tableau ?",
+      "explanation": "La duplication se fait via Menu tableau > Plus > Copier le tableau, permettant de réutiliser la structure pour un nouveau projet.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Menu tableau > Plus > Copier le tableau",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+D",
+          "is_correct": false
+        },
+        {
+          "text": "Export puis import",
+          "is_correct": false
+        },
+        {
+          "text": "Création manuelle identique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **vue Calendrier** ?",
+      "explanation": "La vue Calendrier (Power-Up) affiche les cartes avec dates d'échéance sur un calendrier mensuel, facilitant la planification temporelle.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Power-Up affichant les cartes avec dates sur calendrier mensuel",
+          "is_correct": true
+        },
+        {
+          "text": "Planning d'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Agenda personnel",
+          "is_correct": false
+        },
+        {
+          "text": "Vue par défaut",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **gérer les permissions** d'un tableau ?",
+      "explanation": "Les permissions se gèrent via Paramètres du tableau : public, équipe, privé, avec contrôle des droits d'ajout de membres et de commentaires.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Paramètres tableau : public/équipe/privé avec contrôle des droits",
+          "is_correct": true
+        },
+        {
+          "text": "Automatique selon l'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de gestion de permissions",
+          "is_correct": false
+        },
+        {
+          "text": "Mot de passe unique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser Trello pour un **planning de contenu** ?",
+      "explanation": "Le planning de contenu utilise des listes par statut (Idées, En rédaction, À réviser, Publié), étiquettes par type/canal, et dates de publication.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Listes par statut, étiquettes par type/canal, dates de publication",
+          "is_correct": true
+        },
+        {
+          "text": "Une carte par mois",
+          "is_correct": false
+        },
+        {
+          "text": "Tableau par réseau social",
+          "is_correct": false
+        },
+        {
+          "text": "Pas adapté au contenu",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **vue Timeline** ?",
+      "explanation": "La vue Timeline (diagramme de Gantt) affiche les cartes sur une chronologie selon leurs dates, permettant de visualiser les dépendances et la planification.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Diagramme de Gantt chronologique avec dépendances et planification",
+          "is_correct": true
+        },
+        {
+          "text": "Historique des modifications",
+          "is_correct": false
+        },
+        {
+          "text": "Planning annuel",
+          "is_correct": false
+        },
+        {
+          "text": "Vue en temps réel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **intégrer** Trello avec d'autres outils ?",
+      "explanation": "L'intégration se fait via Power-Ups (Slack, Google Drive, GitHub), Zapier pour automatisations, ou l'API Trello pour développements custom.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Power-Ups, Zapier, ou API Trello pour intégrations custom",
+          "is_correct": true
+        },
+        {
+          "text": "Export/import manuel",
+          "is_correct": false
+        },
+        {
+          "text": "Email de synchronisation",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible d'intégrer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **mesurer la productivité** avec Trello ?",
+      "explanation": "La productivité se mesure via le nombre de cartes terminées, temps dans chaque liste, utilisation d'étiquettes priorité, et Power-Ups de reporting.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Cartes terminées, temps par liste, étiquettes priorité, Power-Ups reporting",
+          "is_correct": true
+        },
+        {
+          "text": "Nombre de tableaux créés",
+          "is_correct": false
+        },
+        {
+          "text": "Temps de connexion",
+          "is_correct": false
+        },
+        {
+          "text": "Quantité de commentaires",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **organiser** un tableau pour une équipe marketing ?",
+      "explanation": "Organisation marketing : listes par phase (Brief, Création, Révision, Approbation, Publication), étiquettes par canal/campagne, assignation par spécialité.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Listes par phase, étiquettes par canal/campagne, assignation par spécialité",
+          "is_correct": true
+        },
+        {
+          "text": "Une liste par personne",
+          "is_correct": false
+        },
+        {
+          "text": "Tableau par mois",
+          "is_correct": false
+        },
+        {
+          "text": "Cartes par budget",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **sauvegarder** un projet Trello ?",
+      "explanation": "Trello sauvegarde automatiquement dans le cloud, mais on peut exporter en JSON pour backup local et utiliser des outils tiers pour sauvegardes programmées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sauvegarde auto cloud + export JSON + outils tiers",
+          "is_correct": true
+        },
+        {
+          "text": "Ctrl+S manuel",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde locale seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Pas de sauvegarde",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **former** une équipe à Trello ?",
+      "explanation": "Formation Trello : démonstration des concepts Kanban, création de tableaux pilotes, définition des processus équipe, et accompagnement sur les bonnes pratiques.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Démonstration Kanban + tableaux pilotes + processus équipe + bonnes pratiques",
+          "is_correct": true
+        },
+        {
+          "text": "Lecture documentation seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Vidéo de formation générique",
+          "is_correct": false
+        },
+        {
+          "text": "Auto-apprentissage libre",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **migrer** depuis d'autres outils vers Trello ?",
+      "explanation": "Migration vers Trello : import depuis des formats standards (CSV), utilisation d'outils de migration spécialisés, ou recréation manuelle avec amélioration du processus.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Import CSV + outils migration + recréation avec amélioration processus",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller des données",
+          "is_correct": false
+        },
+        {
+          "text": "Export depuis ancien outil",
+          "is_correct": false
+        },
+        {
+          "text": "Restart complet",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+

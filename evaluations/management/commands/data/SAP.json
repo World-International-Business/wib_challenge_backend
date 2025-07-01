@@ -1,0 +1,921 @@
+{
+  "technology": "SAP",
+  "title": "Évaluation SAP - Système de Gestion Intégré",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de SAP pour la gestion d'entreprise, incluant la navigation, les modules financiers, la gestion des données, les transactions et les rapports.",
+  "difficulty": "beginner",
+  "questions": [
+    {
+      "text": "Que signifie **SAP** ?",
+      "explanation": "SAP signifie Systems, Applications & Products in Data Processing. C'est un système de gestion intégré (ERP) qui centralise les processus d'entreprise.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Systems, Applications & Products in Data Processing",
+          "is_correct": true
+        },
+        {
+          "text": "Software Application Platform",
+          "is_correct": false
+        },
+        {
+          "text": "System Analysis Program",
+          "is_correct": false
+        },
+        {
+          "text": "Strategic Application Planning",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **module SAP** ?",
+      "explanation": "Un module SAP est une unité fonctionnelle qui gère un domaine spécifique de l'entreprise comme la finance (FI), la comptabilité de gestion (CO), ou les ventes (SD).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Une unité fonctionnelle gérant un domaine spécifique de l'entreprise",
+          "is_correct": true
+        },
+        {
+          "text": "Un plugin externe",
+          "is_correct": false
+        },
+        {
+          "text": "Un composant matériel",
+          "is_correct": false
+        },
+        {
+          "text": "Une base de données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder à SAP ?",
+      "explanation": "L'accès à SAP se fait via SAP GUI (Graphical User Interface) en saisissant l'adresse du serveur, le client, l'utilisateur et le mot de passe.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Via SAP GUI avec serveur, client, utilisateur et mot de passe",
+          "is_correct": true
+        },
+        {
+          "text": "Navigateur web seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Application mobile uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Terminal de commande",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **transaction** dans SAP ?",
+      "explanation": "Une transaction est un code alphanumérique qui permet d'accéder directement à une fonction ou un écran spécifique dans SAP (ex: FB01 pour saisir une écriture).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Un code pour accéder directement à une fonction SAP",
+          "is_correct": true
+        },
+        {
+          "text": "Une opération financière",
+          "is_correct": false
+        },
+        {
+          "text": "Un transfert de données",
+          "is_correct": false
+        },
+        {
+          "text": "Une sauvegarde système",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment naviguer dans SAP sans connaître le code de transaction ?",
+      "explanation": "La navigation se fait via le menu principal (arbre de navigation) ou en utilisant la barre de menu avec les différentes catégories fonctionnelles.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Via le menu principal ou l'arbre de navigation",
+          "is_correct": true
+        },
+        {
+          "text": "Recherche Google",
+          "is_correct": false
+        },
+        {
+          "text": "Aide en ligne seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Impossible sans code transaction",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le module **FI** ?",
+      "explanation": "Le module FI (Financial Accounting) gère la comptabilité financière : grand livre, comptes clients, comptes fournisseurs, immobilisations.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Financial Accounting - comptabilité financière",
+          "is_correct": true
+        },
+        {
+          "text": "Fixed Income - revenus fixes",
+          "is_correct": false
+        },
+        {
+          "text": "Financial Investment - investissements",
+          "is_correct": false
+        },
+        {
+          "text": "Fiscal Information - informations fiscales",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **mandant** (client) dans SAP ?",
+      "explanation": "Un mandant est une entité organisationnelle autonome dans SAP avec ses propres données, utilisateurs et paramètres de configuration.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Une entité organisationnelle autonome avec ses propres données",
+          "is_correct": true
+        },
+        {
+          "text": "Un utilisateur final",
+          "is_correct": false
+        },
+        {
+          "text": "Un serveur de base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un poste de travail",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **sauvegarder** une saisie dans SAP ?",
+      "explanation": "La sauvegarde se fait généralement avec Ctrl+S ou en cliquant sur l'icône de sauvegarde, mais certaines transactions utilisent des boutons spécifiques.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Ctrl+S ou icône de sauvegarde",
+          "is_correct": true
+        },
+        {
+          "text": "Boutons spécifiques selon transaction",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde automatique seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Alt+S",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **société** dans SAP ?",
+      "explanation": "Une société est une entité légale indépendante dans SAP qui peut établir des bilans et comptes de résultat selon la législation locale.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Une entité légale indépendante pouvant établir des bilans",
+          "is_correct": true
+        },
+        {
+          "text": "Un groupe d'utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Un département",
+          "is_correct": false
+        },
+        {
+          "text": "Une application",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **rechercher** des données dans SAP ?",
+      "explanation": "La recherche se fait via des variantes de sélection, en utilisant des critères de recherche, des jokers (* et +), et des plages de valeurs.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Variantes de sélection avec critères et jokers (* et +)",
+          "is_correct": true
+        },
+        {
+          "text": "Recherche textuelle libre seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données externe",
+          "is_correct": false
+        },
+        {
+          "text": "Index automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Grand Livre** (GL) ?",
+      "explanation": "Le Grand Livre est le livre comptable principal qui contient tous les comptes et écritures comptables de l'entreprise dans SAP FI.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Le livre comptable principal avec tous les comptes et écritures",
+          "is_correct": true
+        },
+        {
+          "text": "Un livre de recettes",
+          "is_correct": false
+        },
+        {
+          "text": "Un registre client",
+          "is_correct": false
+        },
+        {
+          "text": "Un catalogue produit",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **compte général** ?",
+      "explanation": "Un compte général se crée via la transaction FS00 (ou GL01) en définissant le numéro de compte, la désignation et les paramètres de contrôle.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Transaction FS00 avec numéro, désignation et paramètres",
+          "is_correct": true
+        },
+        {
+          "text": "Automatiquement par SAP",
+          "is_correct": false
+        },
+        {
+          "text": "Import Excel seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Via le module HR",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **centre de coûts** ?",
+      "explanation": "Un centre de coûts est une unité organisationnelle où les coûts sont collectés et analysés pour le contrôle de gestion (module CO).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Unité organisationnelle pour collecter et analyser les coûts",
+          "is_correct": true
+        },
+        {
+          "text": "Lieu de stockage",
+          "is_correct": false
+        },
+        {
+          "text": "Point de vente",
+          "is_correct": false
+        },
+        {
+          "text": "Centre de données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **saisir une facture fournisseur** ?",
+      "explanation": "La saisie d'une facture fournisseur se fait via la transaction FB60 (ou MIRO pour factures avec référence commande) en saisissant les données d'en-tête et de poste.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Transaction FB60 ou MIRO avec données d'en-tête et postes",
+          "is_correct": true
+        },
+        {
+          "text": "Email au service comptable",
+          "is_correct": false
+        },
+        {
+          "text": "Scan automatique seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Import bancaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **devise de société** ?",
+      "explanation": "La devise de société est la monnaie principale dans laquelle la société tient sa comptabilité et établit ses états financiers.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "La monnaie principale pour la comptabilité et états financiers",
+          "is_correct": true
+        },
+        {
+          "text": "Une devise étrangère",
+          "is_correct": false
+        },
+        {
+          "text": "Une crypto-monnaie",
+          "is_correct": false
+        },
+        {
+          "text": "Une unité de mesure",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **consulter un solde de compte** ?",
+      "explanation": "Le solde d'un compte se consulte via les transactions FBL3N (ligne de poste), FBL1N (client), FBL5N (fournisseur) ou FS10N (soldes).",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Transactions FBL3N, FBL1N, FBL5N ou FS10N",
+          "is_correct": true
+        },
+        {
+          "text": "Rapport automatique quotidien",
+          "is_correct": false
+        },
+        {
+          "text": "Consultation bancaire",
+          "is_correct": false
+        },
+        {
+          "text": "Email de notification",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **exercice comptable** dans SAP ?",
+      "explanation": "Un exercice comptable définit la période sur laquelle l'entreprise établit ses comptes annuels, généralement 12 mois mais configurable.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Période pour les comptes annuels, généralement 12 mois",
+          "is_correct": true
+        },
+        {
+          "text": "Une simulation comptable",
+          "is_correct": false
+        },
+        {
+          "text": "Un test de performance",
+          "is_correct": false
+        },
+        {
+          "text": "Une formation utilisateur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **lettrer des écritures** ?",
+      "explanation": "Le lettrage se fait via F-03 pour le lettrage manuel ou F-32 pour l'automatique, permettant d'associer des écritures qui s'équilibrent.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Transactions F-03 (manuel) ou F-32 (automatique)",
+          "is_correct": true
+        },
+        {
+          "text": "Automatique par date",
+          "is_correct": false
+        },
+        {
+          "text": "Rapprochement bancaire seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Validation manuelle une par une",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **pièce comptable** ?",
+      "explanation": "Une pièce comptable est un document SAP qui regroupe une ou plusieurs écritures comptables équilibrées (débit = crédit).",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Document regroupant des écritures équilibrées (débit = crédit)",
+          "is_correct": true
+        },
+        {
+          "text": "Une facture physique",
+          "is_correct": false
+        },
+        {
+          "text": "Un reçu de paiement",
+          "is_correct": false
+        },
+        {
+          "text": "Un document Word",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **configurer un utilisateur** SAP ?",
+      "explanation": "La configuration d'utilisateur se fait via SU01 en définissant les données personnelles, les rôles/profils d'autorisation et les paramètres système.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Transaction SU01 avec données, rôles et paramètres",
+          "is_correct": true
+        },
+        {
+          "text": "Formulaire papier",
+          "is_correct": false
+        },
+        {
+          "text": "Email à l'administrateur",
+          "is_correct": false
+        },
+        {
+          "text": "Active Directory seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **SAP HANA** ?",
+      "explanation": "SAP HANA est une plateforme de base de données en mémoire qui permet des analyses en temps réel et améliore les performances de SAP.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Plateforme de base de données en mémoire pour analyses temps réel",
+          "is_correct": true
+        },
+        {
+          "text": "Interface utilisateur moderne",
+          "is_correct": false
+        },
+        {
+          "text": "Module de formation",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de reporting",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **générer un rapport** dans SAP ?",
+      "explanation": "Les rapports se génèrent via des transactions spécifiques (ex: S_ALR_87012172 pour balance), en définissant les critères de sélection et variantes.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Transactions spécifiques avec critères de sélection et variantes",
+          "is_correct": true
+        },
+        {
+          "text": "Export Excel automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Email quotidien",
+          "is_correct": false
+        },
+        {
+          "text": "Impression directe seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **rapprochement bancaire** ?",
+      "explanation": "Le rapprochement bancaire consiste à faire correspondre les écritures comptables avec les relevés bancaires via la transaction FF67.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Correspondance entre écritures comptables et relevés bancaires",
+          "is_correct": true
+        },
+        {
+          "text": "Vérification des soldes clients",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle des stocks",
+          "is_correct": false
+        },
+        {
+          "text": "Audit des immobilisations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **bloquer un compte** temporairement ?",
+      "explanation": "Le blocage d'un compte se fait via FS05 en cochant les indicateurs de blocage appropriés (débit, crédit, validation).",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Transaction FS05 avec indicateurs de blocage",
+          "is_correct": true
+        },
+        {
+          "text": "Suppression du compte",
+          "is_correct": false
+        },
+        {
+          "text": "Changement de mot de passe",
+          "is_correct": false
+        },
+        {
+          "text": "Archive automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **immobilisation** dans SAP ?",
+      "explanation": "Une immobilisation est un bien durable de l'entreprise géré dans le module FI-AA (Asset Accounting) avec calcul automatique des amortissements.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Bien durable géré en FI-AA avec amortissements automatiques",
+          "is_correct": true
+        },
+        {
+          "text": "Stock de produits",
+          "is_correct": false
+        },
+        {
+          "text": "Créance client",
+          "is_correct": false
+        },
+        {
+          "text": "Dette fournisseur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **valider les autorisations** d'un utilisateur ?",
+      "explanation": "Les autorisations se valident via SU53 (dernière vérification d'autorisation) ou SU56 (buffer d'autorisation) pour diagnostiquer les problèmes d'accès.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Transactions SU53 ou SU56 pour diagnostic",
+          "is_correct": true
+        },
+        {
+          "text": "Test de connexion",
+          "is_correct": false
+        },
+        {
+          "text": "Vérification manuelle",
+          "is_correct": false
+        },
+        {
+          "text": "Log des erreurs seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **SAP Fiori** ?",
+      "explanation": "SAP Fiori est une interface utilisateur moderne et intuitive qui simplifie l'expérience utilisateur avec des applications basées sur des rôles.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Interface utilisateur moderne et intuitive basée sur des rôles",
+          "is_correct": true
+        },
+        {
+          "text": "Module de formation",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de migration",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **archiver** des données anciennes ?",
+      "explanation": "L'archivage se fait via des objets d'archivage spécifiques (ex: FI_DOCUMNT pour les pièces comptables) selon des critères de rétention définis.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Objets d'archivage spécifiques selon critères de rétention",
+          "is_correct": true
+        },
+        {
+          "text": "Suppression automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde externe",
+          "is_correct": false
+        },
+        {
+          "text": "Compression de fichiers",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **clôture de période** ?",
+      "explanation": "La clôture de période consiste à bloquer la saisie d'écritures pour une période donnée via les variantes de période (transaction OB52).",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Blocage de saisie pour une période via variantes OB52",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde mensuelle",
+          "is_correct": false
+        },
+        {
+          "text": "Rapport de fin de mois",
+          "is_correct": false
+        },
+        {
+          "text": "Arrêt du système",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **transporter** des configurations** entre environnements ?",
+      "explanation": "Le transport se fait via le système de transport SAP (SE09/SE10) en créant des ordres de transport qui migrent les objets entre DEV, QAS et PRD.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Système de transport SE09/SE10 avec ordres entre environnements",
+          "is_correct": true
+        },
+        {
+          "text": "Copie manuelle de fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Export/Import Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Email des paramètres",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **workflow** SAP ?",
+      "explanation": "Un workflow est un processus automatisé qui route des tâches entre utilisateurs selon des règles prédéfinies (approbations, validations).",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Processus automatisé routant des tâches selon des règles",
+          "is_correct": true
+        },
+        {
+          "text": "Flux de données",
+          "is_correct": false
+        },
+        {
+          "text": "Interface graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Planning de travail",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **contrôler la qualité** des données ?",
+      "explanation": "Le contrôle qualité se fait via les substitutions, validations (transaction GGB0/GGB1), contrôles de cohérence et rapports d'anomalies.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Substitutions, validations GGB0/GGB1, contrôles de cohérence",
+          "is_correct": true
+        },
+        {
+          "text": "Vérification manuelle seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle externe",
+          "is_correct": false
+        },
+        {
+          "text": "Audit annuel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **SAP S/4HANA** ?",
+      "explanation": "SAP S/4HANA est la suite ERP nouvelle génération de SAP, conçue pour la base de données HANA avec une interface Fiori simplifiée.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Suite ERP nouvelle génération sur base HANA avec interface Fiori",
+          "is_correct": true
+        },
+        {
+          "text": "Version mobile de SAP",
+          "is_correct": false
+        },
+        {
+          "text": "Module de formation",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de sauvegarde",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **optimiser les performances** SAP ?",
+      "explanation": "L'optimisation passe par l'analyse des traces ST05, l'indexation des tables, la gestion de la mémoire et l'archivage des données anciennes.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Traces ST05, indexation, gestion mémoire, archivage",
+          "is_correct": true
+        },
+        {
+          "text": "Redémarrage quotidien",
+          "is_correct": false
+        },
+        {
+          "text": "Augmentation RAM seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Suppression utilisateurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**intégration** entre modules SAP ?",
+      "explanation": "L'intégration permet aux modules de partager automatiquement les données (ex: une facture MM met à jour FI) via des interfaces standardisées.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Partage automatique de données entre modules via interfaces",
+          "is_correct": true
+        },
+        {
+          "text": "Copie manuelle d'informations",
+          "is_correct": false
+        },
+        {
+          "text": "Synchronisation externe",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde centralisée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **former** les utilisateurs SAP ?",
+      "explanation": "La formation se fait via des environnements de formation, documentation personnalisée, sessions hands-on et certification sur les processus métier.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Environnements de formation, documentation, sessions pratiques",
+          "is_correct": true
+        },
+        {
+          "text": "Lecture de manuels seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Formation en ligne générique",
+          "is_correct": false
+        },
+        {
+          "text": "Auto-apprentissage en production",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **sécurité** dans SAP ?",
+      "explanation": "La sécurité SAP comprend les autorisations par rôles, l'authentification, la traçabilité des actions, et la ségrégation des tâches (SoD).",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Autorisations par rôles, authentification, traçabilité, SoD",
+          "is_correct": true
+        },
+        {
+          "text": "Mot de passe fort seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Antivirus sur serveur",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde quotidienne",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **gérer les erreurs** dans SAP ?",
+      "explanation": "La gestion d'erreurs utilise les logs système (SM21), traces utilisateur, messages d'erreur détaillés et outils de diagnostic comme ST22 pour les dumps.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Logs SM21, traces utilisateur, messages détaillés, ST22 pour dumps",
+          "is_correct": true
+        },
+        {
+          "text": "Redémarrage système",
+          "is_correct": false
+        },
+        {
+          "text": "Contact support seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Ignore les erreurs",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+
