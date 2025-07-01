@@ -1307,5 +1307,75 @@
   {
     "profession": "Autre",
     "technologies": []
+  },
+  {
+    "profession": "Infographe modélisation 2d/3d",
+    "technologies": [
+      "Blender",
+      "Photoshop",
+      "Illustrator",
+      "Unity",
+      "Unreal Engine",
+      "Sketchup",
+      "AutoCAD",
+      "Maya",
+      "ZBrush",
+      "Cinema 4D",
+      "Substance Painter",
+      "3ds Max"
+    ]
+  },
+  {
+    "profession": "Créateur de contenu (graphiste vidéaste)",
+    "technologies": [
+      "After Effects",
+      "Premiere Pro",
+      "Photoshop",
+      "Illustrator",
+      "DaVinci Resolve",
+      "Final Cut Pro",
+      "Audition",
+      "Cinema 4D",
+      "Canva",
+      "OBS Studio",
+      "Motion Graphics",
+      "GSAP"
+    ]
+  },
+  {
+    "profession": "Secrétaire de direction",
+    "technologies": [
+      "Microsoft Office",
+      "Notion",
+      "Slack",
+      "Zoom",
+      "Google Meet",
+      "Microsoft Teams",
+      "Trello",
+      "Asana",
+      "Excel",
+      "PowerPoint"
+    ]
+  },
+  {
+    "profession": "Ingénieur financier et analyste",
+    "technologies": [
+      "Excel",
+      "Python",
+      "R",
+      "Tableau Software",
+      "Power BI",
+      "SQL",
+      "SAS",
+      "MATLAB",
+      "Bloomberg Terminal",
+      "VBA",
+      "SPSS",
+      "Pandas",
+      "NumPy",
+      "Jupyter",
+      "Snowflake",
+      "Looker"
+    ]
   }
 ]

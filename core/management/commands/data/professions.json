@@ -1,250 +1,266 @@
 [
-    {
-        "title": "Administrateur·ice de base de données",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Administrateur·ice Système",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Architecte Cloud",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Architecte IT",
-        "domain": "Gestion / Encadrement"
-    },
-    {
-        "title": "Autre",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Chef·fe de projet IT",
-        "domain": "Gestion de projet"
-    },
-    {
-        "title": "Chef·fe de projet Logiciel",
-        "domain": "Gestion de projet"
-    },
-    {
-        "title": "Chef·fe de projet technique",
-        "domain": "Gestion de projet"
-    },
-    {
-        "title": "Chef·fe de projet digital",
-        "domain": "Gestion de projet"
-    },
-    {
-        "title": "PMO (Project Management Officer)",
-        "domain": "Gestion de projet"
-    },
-    {
-        "title": "Chief data officer",
-        "domain": "Data"
-    },
-    {
-        "title": "Consultant·e MOA",
-        "domain": "Produit"
-    },
-    {
-        "title": "CRM Campaign manager",
-        "domain": "Produit"
-    },
-    {
-        "title": "CTO",
-        "domain": "Gestion / Encadrement"
-    },
-    {
-        "title": "Data Analyst",
-        "domain": "Data"
-    },
-    {
-        "title": "Data Scientist",
-        "domain": "Data"
-    },
-    {
-        "title": "Développeur.euse Full stack",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse applicatif",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse Back-end",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse Front-end",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse Jeux-vidéo",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse Mainframe",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse Mobile",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Développeur·euse No Code",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Développeur·euse Web",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "DevOps",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Engineering Manager",
-        "domain": "Gestion / Encadrement"
-    },
-    {
-        "title": "Étudiant·e",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Expert·e Blockchain",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Expert·e Intelligence Artificielle",
-        "domain": "Intelligence Artificielle / Machine Learning"
-    },
-    {
-        "title": "Expert·e poste de travail",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Expert·e Sécurité",
-        "domain": "Sécurité"
-    },
-    {
-        "title": "Ingénieur en Automatisme·",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Ingénieur·e Cloud",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Ingénieur·e Cybersecurité",
-        "domain": "Sécurité"
-    },
-    {
-        "title": "Ingénieur·e Data",
-        "domain": "Data"
-    },
-    {
-        "title": "Ingénieur·e IA",
-        "domain": "Intelligence Artificielle / Machine Learning"
-    },
-    {
-        "title": "Ingénieur·e ML",
-        "domain": "Intelligence Artificielle / Machine Learning"
-    },
-    {
-        "title": "Ingénieur·e Réseau et Infrastructures",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Ingénieur·euse systèmes embarqués",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Intégrateur·ice Web",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Lead developer",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Product Owner",
-        "domain": "Produit"
-    },
-    {
-        "title": "Recruteur·ice",
-        "domain": "Ressources Humaines"
-    },
-    {
-        "title": "Secrétaire",
-        "domain": "Direction & Support administratif"
-    },
-    {
-        "title": "Talent Acquisition",
-        "domain": "Ressources Humaines"
-    },
-    {
-        "title": "Chargé·e RH",
-        "domain": "Ressources Humaines"
-    },
-    {
-        "title": "Responsable RH",
-        "domain": "Ressources Humaines"
-    },
-    {
-        "title": "People Ops",
-        "domain": "Ressources Humaines"
-    },
-    {
-        "title": "Assistant·e de direction",
-        "domain": "Direction & Support administratif"
-    },
-    {
-        "title": "Assistant·e administratif·ve",
-        "domain": "Direction & Support administratif"
-    },
-    {
-        "title": "Office Manager",
-        "domain": "Autres rôles connexes"
-    },
-    {
-        "title": "Juriste / Legal",
-        "domain": "Autres rôles connexes"
-    },
-    {
-        "title": "Finance / Comptable",
-        "domain": "Autres rôles connexes"
-    },
-    {
-        "title": "Scrum Master",
-        "domain": "Gestion de projet"
-    },
-    {
-        "title": "Site Reliability Engineer (SRE)",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "Tech Lead",
-        "domain": "Gestion / Encadrement"
-    },
-    {
-        "title": "Technicien·ne support",
-        "domain": "Autres rôles techniques"
-    },
-    {
-        "title": "Testeur·euse logiciel (QA)",
-        "domain": "Développement logiciel"
-    },
-    {
-        "title": "UI Designer",
-        "domain": "Design & UX"
-    },
-    {
-        "title": "UX Designer",
-        "domain": "Design & UX"
-    },
-    {
-        "title": "Web designer",
-        "domain": "Design & UX"
-    }
+  {
+    "title": "Administrateur·ice de base de données",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Administrateur·ice Système",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Architecte Cloud",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Architecte IT",
+    "domain": "Gestion / Encadrement"
+  },
+  {
+    "title": "Autre",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Chef·fe de projet IT",
+    "domain": "Gestion de projet"
+  },
+  {
+    "title": "Chef·fe de projet Logiciel",
+    "domain": "Gestion de projet"
+  },
+  {
+    "title": "Chef·fe de projet technique",
+    "domain": "Gestion de projet"
+  },
+  {
+    "title": "Chef·fe de projet digital",
+    "domain": "Gestion de projet"
+  },
+  {
+    "title": "PMO (Project Management Officer)",
+    "domain": "Gestion de projet"
+  },
+  {
+    "title": "Chief data officer",
+    "domain": "Data"
+  },
+  {
+    "title": "Consultant·e MOA",
+    "domain": "Produit"
+  },
+  {
+    "title": "CRM Campaign manager",
+    "domain": "Produit"
+  },
+  {
+    "title": "CTO",
+    "domain": "Gestion / Encadrement"
+  },
+  {
+    "title": "Data Analyst",
+    "domain": "Data"
+  },
+  {
+    "title": "Data Scientist",
+    "domain": "Data"
+  },
+  {
+    "title": "Développeur.euse Full stack",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse applicatif",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse Back-end",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse Front-end",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse Jeux-vidéo",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse Mainframe",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse Mobile",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Développeur·euse No Code",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Développeur·euse Web",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "DevOps",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Engineering Manager",
+    "domain": "Gestion / Encadrement"
+  },
+  {
+    "title": "Étudiant·e",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Expert·e Blockchain",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Expert·e Intelligence Artificielle",
+    "domain": "Intelligence Artificielle / Machine Learning"
+  },
+  {
+    "title": "Expert·e poste de travail",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Expert·e Sécurité",
+    "domain": "Sécurité"
+  },
+  {
+    "title": "Ingénieur en Automatisme·",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Ingénieur·e Cloud",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Ingénieur·e Cybersecurité",
+    "domain": "Sécurité"
+  },
+  {
+    "title": "Ingénieur·e Data",
+    "domain": "Data"
+  },
+  {
+    "title": "Ingénieur·e IA",
+    "domain": "Intelligence Artificielle / Machine Learning"
+  },
+  {
+    "title": "Ingénieur·e ML",
+    "domain": "Intelligence Artificielle / Machine Learning"
+  },
+  {
+    "title": "Ingénieur·e Réseau et Infrastructures",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Ingénieur·euse systèmes embarqués",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Intégrateur·ice Web",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Lead developer",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Product Owner",
+    "domain": "Produit"
+  },
+  {
+    "title": "Recruteur·ice",
+    "domain": "Ressources Humaines"
+  },
+  {
+    "title": "Secrétaire",
+    "domain": "Direction & Support administratif"
+  },
+  {
+    "title": "Talent Acquisition",
+    "domain": "Ressources Humaines"
+  },
+  {
+    "title": "Chargé·e RH",
+    "domain": "Ressources Humaines"
+  },
+  {
+    "title": "Responsable RH",
+    "domain": "Ressources Humaines"
+  },
+  {
+    "title": "People Ops",
+    "domain": "Ressources Humaines"
+  },
+  {
+    "title": "Assistant·e de direction",
+    "domain": "Direction & Support administratif"
+  },
+  {
+    "title": "Assistant·e administratif·ve",
+    "domain": "Direction & Support administratif"
+  },
+  {
+    "title": "Office Manager",
+    "domain": "Autres rôles connexes"
+  },
+  {
+    "title": "Juriste / Legal",
+    "domain": "Autres rôles connexes"
+  },
+  {
+    "title": "Finance / Comptable",
+    "domain": "Autres rôles connexes"
+  },
+  {
+    "title": "Scrum Master",
+    "domain": "Gestion de projet"
+  },
+  {
+    "title": "Site Reliability Engineer (SRE)",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "Tech Lead",
+    "domain": "Gestion / Encadrement"
+  },
+  {
+    "title": "Technicien·ne support",
+    "domain": "Autres rôles techniques"
+  },
+  {
+    "title": "Testeur·euse logiciel (QA)",
+    "domain": "Développement logiciel"
+  },
+  {
+    "title": "UI Designer",
+    "domain": "Design & UX"
+  },
+  {
+    "title": "UX Designer",
+    "domain": "Design & UX"
+  },
+  {
+    "title": "Web designer",
+    "domain": "Design & UX"
+  },
+  {
+    "title": "Infographe modélisation 2d/3d",
+    "domain": "Design & UX"
+  },
+  {
+    "title": "Créateur de contenu (graphiste vidéaste)",
+    "domain": "Design & UX"
+  },
+  {
+    "title": "Secrétaire de direction",
+    "domain": "Direction & Support administratif"
+  },
+  {
+    "title": "Ingénieur financier et analyste",
+    "domain": "Data"
+  }
 ]
