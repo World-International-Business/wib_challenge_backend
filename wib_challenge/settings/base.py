@@ -62,8 +62,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'djangorestframework_camel_case.middleware.CamelCaseMiddleWare',
-    'core.middleware.ErrorLoggingMiddleware',
-    'core.middleware.SecurityLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'wib_challenge.urls'
@@ -201,7 +199,6 @@ LOGGING = {
         },
         'mail_admins': {
             'level': 'ERROR',
-            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler',
             'formatter': 'verbose',
         },
@@ -219,16 +216,11 @@ LOGGING = {
         'django.request': {
             'handlers': ['error_file', 'mail_admins'],
             'level': 'ERROR',
-            'propagate': False,
+            'propagate': True,
         },
         'django.security': {
             'handlers': ['error_file', 'mail_admins'],
             'level': 'ERROR',
-            'propagate': False,
-        },
-        'wib_challenge': {
-            'handlers': ['console', 'file', 'error_file'],
-            'level': 'INFO',
             'propagate': False,
         },
     },

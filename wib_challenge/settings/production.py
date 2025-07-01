@@ -1,4 +1,5 @@
 import os
+
 import dj_database_url
 from decouple import config
 
@@ -60,11 +61,6 @@ if IS_TRAEFIK:
     ]
 else:
     CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
-
-# Logging configuration for production
-LOGGING['handlers']['console']['level'] = 'WARNING'
-LOGGING['handlers']['file']['filename'] = '/app/logs/django.log'
-LOGGING['handlers']['error_file']['filename'] = '/app/logs/django_errors.log'
 
 # Add security logging
 LOGGING['handlers']['security_file'] = {
