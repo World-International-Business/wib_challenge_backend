@@ -33,6 +33,7 @@ services:
       - media_volume:/usr/share/nginx/html/media
       - ./nginx:/etc/nginx/conf.d
       - nginx_logs:/var/log/nginx
+      - logs_volume:/var/log/nginx
     depends_on:
       - web
     networks:
