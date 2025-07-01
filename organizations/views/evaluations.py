@@ -10,7 +10,8 @@ from rest_framework.response import Response
 
 from organizations.models import OrgEvaluation, ExperienceLevel, OrgQuestion, OrgChoice, EvaluationInvitation
 from organizations.permissions import IsOrganization
-from organizations.serializers import EvaluationInvitationSerializer, InviteCandidateSerializer, OrgQuestionSerializer, OrgSubmissionAttemptDetailSerializer
+from organizations.serializers import EvaluationInvitationSerializer, InviteCandidateSerializer, OrgQuestionSerializer, \
+    OrgSubmissionAttemptDetailSerializer
 from organizations.serializers.evaluations import EvaluationResponseSerializer, AutomaticEvaluationSerializer, \
     ProportionEvaluationSerializer
 from organizations.serializers.results import CandidateResultSerializer
@@ -63,7 +64,7 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
 
     def check_can_update(self, evaluation: OrgEvaluation):
         if OrgEvaluation.objects.filter(
-            id=evaluation.id, attempts__started_at__isnull=False,
+                id=evaluation.id, attempts__started_at__isnull=False,
         ).exists():
             raise ValidationError(
                 _("Cette évaluation ne peut pas être modifiée."))
@@ -208,14 +209,15 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
     def _add_questions_to_evaluation(evaluation: OrgEvaluation, questions: QuerySet[Question]):
         """Helper pour ajouter des questions à l'évaluation"""
         questions = questions.prefetch_related('choices')
+        question_ids = list(questions.values_list('id', flat=True))
+
         existing_original_ids = set(
-            evaluation.questions.filter(original_question__in=questions.values_list('id', flat=True)).values_list(
-                'original_question_id',
-                flat=True
+            evaluation.questions.filter(original_question__in=question_ids).values_list(
+                'original_question_id', flat=True
             )
         )
-        new_questions = [
-            q for q in questions if q.id not in existing_original_ids]
+
+        new_questions = [q for q in questions if q.id not in existing_original_ids]
 
         bulk_create_org_question(new_questions, evaluation)
 
@@ -241,7 +243,8 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
 
         attempt = evaluation.attempts.filter(candidate=candidate).first()
         if not attempt or not attempt.is_completed:
-            return Response({"detail": _("Aucune tentative trouvée pour ce candidat.")}, status=status.HTTP_404_NOT_FOUND)
+            return Response({"detail": _("Aucune tentative trouvée pour ce candidat.")},
+                            status=status.HTTP_404_NOT_FOUND)
 
         serializer = OrgSubmissionAttemptDetailSerializer(
             attempt, context={'request': request})
