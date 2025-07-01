@@ -1,0 +1,945 @@
+{
+  "technology": "Maya",
+  "title": "Évaluation Maya Complète",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Maya, incluant la modélisation 3D avancée, l'animation de personnages, le rigging, les effets spéciaux, et les techniques de production professionnelle en 3D.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Quelle est la vue par défaut lors de l'ouverture de Maya?",
+      "explanation": "Par défaut, Maya s'ouvre avec la vue Perspective qui offre une vue 3D en perspective de la scène. C'est la vue principale pour naviguer et travailler dans l'espace 3D.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Vue Perspective",
+          "is_correct": true
+        },
+        {
+          "text": "Vue Front",
+          "is_correct": false
+        },
+        {
+          "text": "Vue Top",
+          "is_correct": false
+        },
+        {
+          "text": "Vue Side",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une sphère primitive dans Maya?",
+      "explanation": "Pour créer une sphère, on va dans Create > Polygon Primitives > Sphere ou on peut utiliser le shelf des polygones.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Create > Polygon Primitives > Sphere",
+          "is_correct": true
+        },
+        {
+          "text": "Insert > Sphere",
+          "is_correct": false
+        },
+        {
+          "text": "Add > Geometry > Sphere",
+          "is_correct": false
+        },
+        {
+          "text": "Tools > Create Sphere",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci clavier permet de passer en mode de sélection des faces?",
+      "explanation": "La touche F11 permet de basculer en mode de sélection des faces (Face mode) dans Maya.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "F11",
+          "is_correct": true
+        },
+        {
+          "text": "F9",
+          "is_correct": false
+        },
+        {
+          "text": "F10",
+          "is_correct": false
+        },
+        {
+          "text": "F12",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder au mode Component dans Maya?",
+      "explanation": "Le mode Component permet d'éditer les éléments individuels (vertices, edges, faces) d'un objet. On y accède en cliquant droit sur l'objet et en sélectionnant le type de composant souhaité.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Clic droit sur l'objet > sélectionner le type de composant",
+          "is_correct": true
+        },
+        {
+          "text": "Double-clic sur l'objet",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl + clic sur l'objet",
+          "is_correct": false
+        },
+        {
+          "text": "Alt + clic sur l'objet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel outil est utilisé pour déplacer des objets dans Maya?",
+      "explanation": "L'outil Move (W) permet de translater des objets dans l'espace 3D selon les axes X, Y et Z.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Move Tool (W)",
+          "is_correct": true
+        },
+        {
+          "text": "Scale Tool",
+          "is_correct": false
+        },
+        {
+          "text": "Rotate Tool",
+          "is_correct": false
+        },
+        {
+          "text": "Select Tool",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment appliquer un matériau à un objet dans Maya?",
+      "explanation": "Pour appliquer un matériau, on sélectionne l'objet puis on fait un clic droit sur le matériau dans l'Hypershade et on choisit 'Assign Material to Selection'.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Sélectionner l'objet > clic droit sur le matériau > Assign Material to Selection",
+          "is_correct": true
+        },
+        {
+          "text": "Glisser-déposer le matériau sur l'objet",
+          "is_correct": true
+        },
+        {
+          "text": "Edit > Apply Material",
+          "is_correct": false
+        },
+        {
+          "text": "Material > Assign to Object",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre NURBS et Polygons dans Maya?",
+      "explanation": "NURBS (Non-Uniform Rational B-Splines) créent des surfaces lisses basées sur des courbes mathématiques, idéales pour des surfaces organiques. Les Polygons sont composés de faces planes, plus adaptés pour le hard surface et les jeux vidéo.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "NURBS pour surfaces lisses organiques, Polygons pour hard surface et jeux",
+          "is_correct": true
+        },
+        {
+          "text": "Polygons pour surfaces lisses, NURBS pour hard surface",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence, ce sont deux termes pour la même chose",
+          "is_correct": false
+        },
+        {
+          "text": "NURBS pour l'animation, Polygons pour la modélisation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une animation de keyframes dans Maya?",
+      "explanation": "Pour créer une animation, on positionne l'objet, on met une keyframe (S), on change de frame, on repositionne l'objet et on met une nouvelle keyframe. Maya interpole automatiquement entre les keyframes.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Positionner l'objet > keyframe (S) > changer de frame > repositionner > keyframe",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser l'outil Animation et tracer le mouvement",
+          "is_correct": false
+        },
+        {
+          "text": "Créer un Motion Path automatiquement",
+          "is_correct": false
+        },
+        {
+          "text": "Enregistrer en temps réel le mouvement de l'objet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel raccourci permet de jouer l'animation dans Maya?",
+      "explanation": "Alt + V est le raccourci pour jouer/arrêter l'animation dans la timeline de Maya.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Alt + V",
+          "is_correct": true
+        },
+        {
+          "text": "Espace",
+          "is_correct": false
+        },
+        {
+          "text": "Enter",
+          "is_correct": false
+        },
+        {
+          "text": "Ctrl + P",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un nouveau shader dans Maya?",
+      "explanation": "Dans l'Hypershade, on peut créer un nouveau shader en allant dans Create > Maya > Surface ou en utilisant les boutons de création de matériaux.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Hypershade > Create > Maya > Surface",
+          "is_correct": true
+        },
+        {
+          "text": "File > New Shader",
+          "is_correct": false
+        },
+        {
+          "text": "Create > Material > New",
+          "is_correct": false
+        },
+        {
+          "text": "Insert > Shader",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel moteur de rendu est intégré par défaut dans Maya?",
+      "explanation": "Maya inclut plusieurs moteurs de rendu : Maya Software, Maya Hardware, et plus récemment Arnold qui est devenu le moteur par défaut dans les versions récentes.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Maya Software, Maya Hardware, et Arnold",
+          "is_correct": true
+        },
+        {
+          "text": "V-Ray uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Mental Ray uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "RenderMan uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment subdiviser un objet polygonal pour plus de détails?",
+      "explanation": "On peut subdiviser un objet en utilisant Mesh > Smooth ou en appliquant différents niveaux de subdivision via les outils de subdivision.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Mesh > Smooth ou outils de subdivision",
+          "is_correct": true
+        },
+        {
+          "text": "Edit > Add Geometry",
+          "is_correct": false
+        },
+        {
+          "text": "Tools > Subdivide",
+          "is_correct": false
+        },
+        {
+          "text": "Modify > Increase Detail",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction de l'outil Extrude Face?",
+      "explanation": "L'outil Extrude Face permet d'étirer des faces sélectionnées perpendiculairement à leur surface, créant de nouveaux volumes et permettant de modéliser des détails complexes.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Étirer des faces perpendiculairement à leur surface",
+          "is_correct": true
+        },
+        {
+          "text": "Découper des faces en plusieurs parties",
+          "is_correct": false
+        },
+        {
+          "text": "Fusionner plusieurs faces ensemble",
+          "is_correct": false
+        },
+        {
+          "text": "Supprimer des faces de l'objet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment configurer une caméra dans Maya?",
+      "explanation": "Pour créer une caméra, on va dans Create > Cameras et on choisit le type de caméra. On peut ensuite la positionner et l'orienter dans la scène.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Create > Cameras > choisir le type et positionner",
+          "is_correct": true
+        },
+        {
+          "text": "View > Create Camera",
+          "is_correct": false
+        },
+        {
+          "text": "Render > Camera Setup",
+          "is_correct": false
+        },
+        {
+          "text": "Insert > Viewport Camera",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel type d'éclairage est couramment utilisé pour l'éclairage de personnage?",
+      "explanation": "Un setup d'éclairage trois points (key light, fill light, back light) est une technique classique pour l'éclairage de personnages, offrant un bon modelé et de la profondeur.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Éclairage trois points (key, fill, back light)",
+          "is_correct": true
+        },
+        {
+          "text": "Une seule lumière directionnelle",
+          "is_correct": false
+        },
+        {
+          "text": "Uniquement des lumières ambiantes",
+          "is_correct": false
+        },
+        {
+          "text": "Éclairage uniforme de tous les côtés",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un objet par révolution dans Maya?",
+      "explanation": "On peut créer un objet par révolution en utilisant Surfaces > Revolve après avoir créé une courbe profil, ou en utilisant les outils de révolution des polygones.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Créer une courbe profil > Surfaces > Revolve",
+          "is_correct": true
+        },
+        {
+          "text": "Tools > Revolution Object",
+          "is_correct": false
+        },
+        {
+          "text": "Create > Revolve > From Curve",
+          "is_correct": false
+        },
+        {
+          "text": "Modify > Spin Around Axis",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction de l'Outliner dans Maya?",
+      "explanation": "L'Outliner affiche la hiérarchie de tous les objets dans la scène, permettant de les organiser, de gérer leur visibilité et leurs relations parent-enfant.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Affiche la hiérarchie des objets et permet de les organiser",
+          "is_correct": true
+        },
+        {
+          "text": "Gère uniquement les matériaux de la scène",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle les paramètres de rendu",
+          "is_correct": false
+        },
+        {
+          "text": "Affiche les courbes d'animation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un rig basique pour l'animation de personnage?",
+      "explanation": "Un rig basique implique la création d'une hiérarchie de joints (squelette), l'application du skinning pour lier la géométrie aux joints, et la création de contrôleurs pour faciliter l'animation.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Créer des joints > appliquer le skinning > créer des contrôleurs",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des déformateurs lattice",
+          "is_correct": false
+        },
+        {
+          "text": "Animer directement les vertices",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des morphs pour chaque pose",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel outil permet de peindre les poids de skinning?",
+      "explanation": "L'outil Paint Skin Weights permet d'ajuster visuellement l'influence des joints sur la géométrie en peignant directement sur le modèle.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Paint Skin Weights Tool",
+          "is_correct": true
+        },
+        {
+          "text": "Weight Brush",
+          "is_correct": false
+        },
+        {
+          "text": "Skin Paint Tool",
+          "is_correct": false
+        },
+        {
+          "text": "Influence Painter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer des effets de particules dans Maya?",
+      "explanation": "Maya dispose de systèmes de particules accessibles via Effects ou nParticles. On peut créer des émetteurs et configurer les propriétés des particules pour différents effets.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Utiliser Effects > nParticles ou systèmes de particules classiques",
+          "is_correct": true
+        },
+        {
+          "text": "Dupliquer manuellement de nombreux objets",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement l'outil Instance",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des animations de clones",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre FK et IK dans l'animation?",
+      "explanation": "FK (Forward Kinematics) anime joint par joint de la racine vers l'extrémité, tandis qu'IK (Inverse Kinematics) permet de positionner l'extrémité et calcule automatiquement la position des joints intermédiaires.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "FK anime joint par joint, IK positionne l'extrémité et calcule le reste",
+          "is_correct": true
+        },
+        {
+          "text": "IK anime joint par joint, FK positionne l'extrémité",
+          "is_correct": false
+        },
+        {
+          "text": "FK pour les bras, IK pour les jambes uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence pratique dans l'animation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser l'outil Multi-Cut pour la modélisation?",
+      "explanation": "L'outil Multi-Cut permet de créer de nouvelles arêtes en traçant des lignes sur la surface de l'objet, divisant les faces existantes pour ajouter de la géométrie.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Tracer des lignes sur la surface pour créer de nouvelles arêtes",
+          "is_correct": true
+        },
+        {
+          "text": "Sélectionner plusieurs faces puis les découper",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des points de coupe prédéfinis",
+          "is_correct": false
+        },
+        {
+          "text": "Couper uniquement le long des arêtes existantes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction des UV Maps dans Maya?",
+      "explanation": "Les UV Maps définissent comment les textures 2D sont projetées sur la surface 3D des objets, créant une correspondance entre les coordonnées de texture et la géométrie.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Définissent la projection des textures 2D sur les surfaces 3D",
+          "is_correct": true
+        },
+        {
+          "text": "Contrôlent uniquement l'éclairage des objets",
+          "is_correct": false
+        },
+        {
+          "text": "Gèrent la transparence des matériaux",
+          "is_correct": false
+        },
+        {
+          "text": "Définissent les propriétés physiques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un matériau avec transparence dans Maya?",
+      "explanation": "Pour créer de la transparence, on ajuste l'attribut Transparency du shader ou on connecte une texture/valeur au canal transparency du matériau.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Ajuster l'attribut Transparency du shader",
+          "is_correct": true
+        },
+        {
+          "text": "Réduire l'opacité dans les propriétés d'objet",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des couleurs claires",
+          "is_correct": false
+        },
+        {
+          "text": "Appliquer un shader spécial de transparence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel outil est utilisé pour créer des cheveux et de la fourrure?",
+      "explanation": "Maya dispose du système XGen pour créer des cheveux, de la fourrure, et de la végétation. Il existe aussi nHair pour des cheveux dynamiques.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "XGen pour cheveux/fourrure statiques, nHair pour dynamiques",
+          "is_correct": true
+        },
+        {
+          "text": "Hair Generator Tool",
+          "is_correct": false
+        },
+        {
+          "text": "Fur Creator",
+          "is_correct": false
+        },
+        {
+          "text": "Strand Builder",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser les performances de Maya pour de gros projets?",
+      "explanation": "Pour optimiser : utiliser des références plutôt que des imports, gérer les niveaux de détail, utiliser des proxies, optimiser les textures, et désactiver l'évaluation des éléments non utilisés.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Utiliser des références, proxies, optimiser textures et gérer les LOD",
+          "is_correct": true
+        },
+        {
+          "text": "Charger tous les objets en haute résolution",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des objets NURBS",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter complètement les références",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction du Graph Editor?",
+      "explanation": "Le Graph Editor permet de visualiser et d'éditer les courbes d'animation (animation curves), d'ajuster l'interpolation, le timing, et les valeurs des keyframes.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Visualiser et éditer les courbes d'animation",
+          "is_correct": true
+        },
+        {
+          "text": "Gérer la hiérarchie des objets",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des graphiques de rendu",
+          "is_correct": false
+        },
+        {
+          "text": "Analyser les performances de la scène",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un système de contraintes dans Maya?",
+      "explanation": "Les contraintes se trouvent dans le menu Constrain et permettent de lier automatiquement les transformations d'objets (Point, Orient, Scale, Parent, Aim constraints).",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Menu Constrain > choisir le type de contrainte (Point, Orient, etc.)",
+          "is_correct": true
+        },
+        {
+          "text": "Connect > Object Relationships",
+          "is_correct": false
+        },
+        {
+          "text": "Animation > Link Objects",
+          "is_correct": false
+        },
+        {
+          "text": "Edit > Bind Objects",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel format de fichier est natif à Maya?",
+      "explanation": "Le format .ma (Maya ASCII) et .mb (Maya Binary) sont les formats natifs de Maya pour sauvegarder les scènes.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": ".ma (ASCII) et .mb (Binary)",
+          "is_correct": true
+        },
+        {
+          "text": ".max",
+          "is_correct": false
+        },
+        {
+          "text": ".blend",
+          "is_correct": false
+        },
+        {
+          "text": ".c4d",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le Motion Blur dans le rendu?",
+      "explanation": "Le Motion Blur simule le flou de mouvement. On l'active dans les Render Settings et on peut ajuster les paramètres comme le Motion Blur Factor et le Shutter Angle.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Activer dans Render Settings et ajuster Motion Blur Factor",
+          "is_correct": true
+        },
+        {
+          "text": "Appliquer un flou en post-production uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser des textures floues sur les objets",
+          "is_correct": false
+        },
+        {
+          "text": "Animer la caméra très rapidement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction des Blend Shapes?",
+      "explanation": "Les Blend Shapes permettent de créer des morphings entre différentes formes d'un même objet, très utilisés pour l'animation faciale et les déformations organiques.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Créer des morphings entre différentes formes d'un objet",
+          "is_correct": true
+        },
+        {
+          "text": "Mélanger plusieurs matériaux sur un objet",
+          "is_correct": false
+        },
+        {
+          "text": "Combiner plusieurs objets en un seul",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des dégradés de couleurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un rendu par passes (render layers)?",
+      "explanation": "Les Render Layers permettent de séparer différents éléments du rendu. On les crée via le Render Layer Editor et on peut assigner des objets spécifiques à chaque layer.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Utiliser le Render Layer Editor pour créer et gérer les passes",
+          "is_correct": true
+        },
+        {
+          "text": "Render > Separate Passes",
+          "is_correct": false
+        },
+        {
+          "text": "Create > Render Layers",
+          "is_correct": false
+        },
+        {
+          "text": "File > Export Layers",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les Clusters pour la déformation?",
+      "explanation": "Les Clusters permettent de grouper des composants (vertices, CV, etc.) et de les déformer ensemble. On sélectionne les composants puis on crée un cluster via Deform > Cluster.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Sélectionner des composants > Deform > Cluster",
+          "is_correct": true
+        },
+        {
+          "text": "Create > Deformers > Cluster",
+          "is_correct": false
+        },
+        {
+          "text": "Edit > Group Vertices",
+          "is_correct": false
+        },
+        {
+          "text": "Modify > Vertex Clusters",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre Arnold et Maya Software pour le rendu?",
+      "explanation": "Arnold est un moteur de rendu basé sur le ray tracing physiquement correct, offrant plus de réalisme et de qualité que Maya Software, mais nécessitant plus de temps de calcul.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Arnold offre un rendu physiquement correct plus réaliste mais plus lent",
+          "is_correct": true
+        },
+        {
+          "text": "Maya Software est plus réaliste qu'Arnold",
+          "is_correct": false
+        },
+        {
+          "text": "Arnold ne peut rendre que des objets polygonaux",
+          "is_correct": false
+        },
+        {
+          "text": "Aucune différence de qualité entre les deux",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un système de dynamics pour la simulation physique?",
+      "explanation": "Maya dispose de différents systèmes dynamics : nCloth pour les tissus, nParticles pour les particules, Bullet Physics pour les corps rigides, accessibles via le menu Effects.",
+      "difficulty": "hard",
+      "duration": 75,
+      "choices": [
+        {
+          "text": "Utiliser nCloth, nParticles, ou Bullet Physics via le menu Effects",
+          "is_correct": true
+        },
+        {
+          "text": "Create > Physics Objects",
+          "is_correct": false
+        },
+        {
+          "text": "Simulation > Dynamics Setup",
+          "is_correct": false
+        },
+        {
+          "text": "Animation > Physical Properties",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser les UV Maps pour une meilleure utilisation des textures?",
+      "explanation": "Pour optimiser les UVs : minimiser les coutures, utiliser efficacement l'espace UV, maintenir la proportionnalité, et organiser les îlots UV de manière logique pour faciliter la peinture de textures.",
+      "difficulty": "hard",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Minimiser les coutures, utiliser efficacement l'espace, maintenir les proportions",
+          "is_correct": true
+        },
+        {
+          "text": "Créer le maximum de coutures possibles",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser une projection automatique uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter complètement le dépliage manuel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le Time Editor pour l'animation?",
+      "explanation": "Le Time Editor permet de composer des animations en blocs non-destructifs, de créer des clips d'animation réutilisables, et de gérer des animations complexes avec des transitions et des mélanges.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Composer des animations en blocs avec clips réutilisables et transitions",
+          "is_correct": true
+        },
+        {
+          "text": "Éditer uniquement le timing des keyframes",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer la vitesse de lecture de l'animation",
+          "is_correct": false
+        },
+        {
+          "text": "Synchroniser l'audio avec l'animation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un setup de muscle system pour l'animation de personnage?",
+      "explanation": "Le muscle system de Maya permet de créer des muscles qui se déforment de manière réaliste. On crée des objets muscle, on les attache aux joints, et on configure leurs propriétés de déformation.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Créer des objets muscle, les attacher aux joints et configurer leurs déformations",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des blend shapes pour simuler les muscles",
+          "is_correct": false
+        },
+        {
+          "text": "Appliquer des textures de muscles sur la peau",
+          "is_correct": false
+        },
+        {
+          "text": "Créer manuellement chaque déformation musculaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer efficacement les références dans un pipeline de production?",
+      "explanation": "Les références permettent de lier des fichiers externes sans les importer, facilitant le travail d'équipe. On peut créer des références, les recharger, les remplacer, et gérer les versions.",
+      "difficulty": "hard",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Utiliser les références pour lier des fichiers externes, gérer les versions et faciliter la collaboration",
+          "is_correct": true
+        },
+        {
+          "text": "Importer tous les assets directement dans la scène",
+          "is_correct": false
+        },
+        {
+          "text": "Copier manuellement les objets entre les fichiers",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter complètement l'utilisation de fichiers externes",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
+
