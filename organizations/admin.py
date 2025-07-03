@@ -57,6 +57,7 @@ class InvitationInline(admin.TabularInline):
     fields = ('candidate', 'status', 'invited_at', 'expires_at')
     readonly_fields = ('invited_at',)
 
+
 class AttemptsInline(admin.TabularInline):
     model = OrgSubmissionAttempt
     extra = 0
@@ -68,7 +69,7 @@ class AttemptsInline(admin.TabularInline):
     def submission_link(self, obj):
         if obj.submission:
             url = reverse('admin:organizations_orgsubmission_change', args=[
-                          obj.submission.id])
+                obj.submission.id])
             return format_html('<a href="{}">{}</a>', url, _('Voir la soumission'))
         return _('Pas de soumission')
 
@@ -202,7 +203,7 @@ class OrgSubmissionAttemptAdmin(admin.ModelAdmin):
     def submission_link(self, obj):
         if obj.submission:
             url = reverse('admin:organizations_orgsubmission_change', args=[
-                          obj.submission.id])
+                obj.submission.id])
             return format_html('<a href="{}">{}</a>', url, str(obj.submission))
         return _('Pas de soumission')
 
@@ -262,7 +263,7 @@ class OrgSubmissionAdmin(admin.ModelAdmin):
         answers = obj.attempt.answers.all()
         total = answers.count()
         correct = answers.filter(is_correct=True).count()
-        
+
         if total == 0:
             return _('Aucune réponse')
 
@@ -360,6 +361,7 @@ class EvaluationInvitationAdmin(admin.ModelAdmin):
     list_filter = ('status', 'invited_at', 'expires_at')
     search_fields = ('candidate__full_name', 'candidate__email', 'evaluation__title')
     readonly_fields = ('invited_at', 'is_valid', 'token_link')
+    actions = ['send_reminder_email']
     fieldsets = (
         (_('Informations générales'), {
             'fields': ('evaluation', 'candidate', 'status')
@@ -368,12 +370,34 @@ class EvaluationInvitationAdmin(admin.ModelAdmin):
             'fields': ('invited_at', 'expires_at', 'is_valid')
         }),
     )
-    
+
     @admin.display(description=_('Lien d\'invitation'))
     def token_link(self, obj):
         if obj.token:
             # Exemple d'URL, à adapter selon votre configuration
             base_url = config('FRONTEND_INVITATION_URL', default='')
-            return format_html('<a href="{}{}" target="_blank">{}{}</a>', 
-                              base_url, obj.token, base_url, obj.token)
+            return format_html('<a href="{}{}" target="_blank">{}{}</a>',
+                               base_url, obj.token, base_url, obj.token)
         return _('Pas de token généré')
+
+    @admin.action(description=_('Envoyer un email de rappel'))
+    def send_reminder_email(self, request, queryset):
+        from organizations.utils import send_reminder_email
+
+        sent_count = 0
+        for invitation in queryset:
+            if invitation.status == EvaluationInvitation.Status.PENDING and invitation.is_valid:
+                try:
+                    send_reminder_email(request, invitation)
+                    sent_count += 1
+                except Exception as e:
+                    self.message_user(request,
+                                      f"Erreur lors de l'envoi du rappel pour {invitation.candidate.email}: {str(e)}",
+                                      level='ERROR')
+
+        if sent_count > 0:
+            self.message_user(request, f"{sent_count} email(s) de rappel envoyé(s) avec succès.")
+        else:
+            self.message_user(request,
+                              "Aucun email de rappel envoyé. Vérifiez que les invitations sont en attente et valides.",
+                              level='WARNING')
