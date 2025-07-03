@@ -149,6 +149,9 @@ class OrgAnswerSerializer(serializers.ModelSerializer):
         many=True, queryset=OrgChoice.objects.all())
     question = OrgQuestionSerializer(read_only=True)
 
+    question_id = serializers.PrimaryKeyRelatedField(
+        write_only=True, queryset=OrgQuestion.objects, source='question')
+
     class Meta:
         model = OrgAnswer
         fields = '__all__'
@@ -168,7 +171,6 @@ class OrgSubmissionSerializer(serializers.ModelSerializer):
 
 
 class OrgSubmissionAttemptDetailSerializer(serializers.ModelSerializer):
-
     candidate = CandidateSerializer(read_only=True)
     submission = OrgSubmissionSerializer(read_only=True)
 

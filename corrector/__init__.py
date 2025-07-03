@@ -8,7 +8,8 @@ from organizations.models import OrgSubmission, OrgSubmissionAttempt
 logger = logging.getLogger(__name__)
 
 
-def _calculate_scoring_factor(correct_count: int, incorrect_count: int, total_correct_choices: int) -> tuple[float, str, bool]:
+def _calculate_scoring_factor(correct_count: int, incorrect_count: int, total_correct_choices: int) -> tuple[
+    float, str, bool]:
     """
     Calcule le facteur de scoring et détermine le statut de la réponse
     
@@ -22,7 +23,7 @@ def _calculate_scoring_factor(correct_count: int, incorrect_count: int, total_co
     """
     if total_correct_choices == 0:
         return 0.0, Answer.Status.INCORRECT, False
-        
+
     if incorrect_count == 0 and correct_count == total_correct_choices:
         # Toutes les bonnes réponses sélectionnées, aucune mauvaise
         return 1.0, Answer.Status.CORRECT, True
@@ -61,9 +62,9 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
         # Validation des paramètres d'entrée
         if not submission or not attempt:
             raise ValueError("Les paramètres submission et attempt sont requis")
-            
+
         logger.info(f"Début de correction pour submission {submission.id}, attempt {attempt.id}")
-        
+
         # Préchargement optimisé des données
         answers = attempt.answers.prefetch_related(
             'selected_choices', 'question__choices').all()
@@ -77,7 +78,7 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
                 if not hasattr(answer, 'question') or not answer.question:
                     logger.warning(f"Réponse {answer.id} sans question associée")
                     continue
-                    
+
                 # Validation du poids de la question
                 weight = getattr(answer.question, 'weight', 0)
                 if weight < 0:
@@ -117,9 +118,10 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
                 answer.is_correct = is_correct
                 answer.score = int(weight * factor)
                 total_score += answer.score
-                
+                logger.info(
+                    f"Réponse {answer.id} évaluée: status={status}, is_correct={is_correct}, score={answer.score}")
                 answers_to_update.append(answer)
-                
+
             except Exception as e:
                 logger.error(f"Erreur lors de la correction de la réponse {answer.id}: {str(e)}")
                 # En cas d'erreur, marquer la réponse comme incorrecte
@@ -131,7 +133,7 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
         if save and answers_to_update:
             # Optimisation: mise à jour en lot
             Answer.objects.bulk_update(
-                answers_to_update, 
+                answers_to_update,
                 ['status', 'is_correct', 'score']
             )
 
@@ -140,10 +142,10 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
 
             attempt.ended_at = timezone.now()
             attempt.save()
-            
+
         logger.info(f"Correction terminée. Score total: {total_score}")
         return attempt
-        
+
     except Exception as e:
         logger.error(f"Erreur lors de la correction de la soumission {submission.id}: {str(e)}")
         raise
