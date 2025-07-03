@@ -1,6 +1,7 @@
+import logging
+
 from django.db import transaction
 from django.utils import timezone
-import logging
 
 from evaluations.models import Submission, SubmissionAttempt, Answer
 from organizations.models import OrgSubmission, OrgSubmissionAttempt
@@ -131,8 +132,8 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
                 answers_to_update.append(answer)
 
         if save and answers_to_update:
-            # Optimisation: mise à jour en lot
-            Answer.objects.bulk_update(
+            # Optimisation : mise à jour en lot
+            attempt.answers.model.objects.bulk_update(
                 answers_to_update,
                 ['status', 'is_correct', 'score']
             )
