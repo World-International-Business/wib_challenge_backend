@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'accounts',
     'questions',
     'evaluations',
-    'organizations'
+    'organizations',
+    'jobs',
 ]
 
 MIDDLEWARE = [
@@ -273,6 +274,11 @@ SPECTACULAR_SETTINGS = {
     'SCHEMA_COERCE_PATH_PK_SUFFIX': True,
     'TITLE': 'WIB Challenge API',
     'DESCRIPTION': 'API for WIB Challenge',
+    'ENUM_NAME_OVERRIDES': {
+        'jobs.JobOffer.Status': 'JobOfferStatus',
+        'evaluations.Evaluation.Difficulty': 'EvaluationDifficulty',
+        'questions.Question.Difficulty': 'QuestionDifficulty',
+    },
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
         "persistAuthorization": True,

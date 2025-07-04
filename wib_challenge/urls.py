@@ -26,13 +26,13 @@ from core.views import health_check
 urlpatterns = [
     path('administration/', admin.site.urls),
     path('api/', include(('core.urls', 'core'), namespace='core')),
+    path('api/jobs/', include(('jobs.urls', 'jobs'), namespace='jobs')),
     path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),
     path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
     path('api/', include(('organizations.urls', 'organizations'), namespace='organizations')),
     path('health/', health_check, name='health_check'),
-    # re_path(r'^(?!api/|assets/|media/).*$', index, name='index'),
 ]
 
 if settings.DEBUG:

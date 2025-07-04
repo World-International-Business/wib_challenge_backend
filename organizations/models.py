@@ -27,6 +27,13 @@ class Organization(models.Model):
     description = models.TextField(_('Description'), blank=True, null=True)
     account = models.OneToOneField(User, on_delete=models.CASCADE, related_name='organization',
                                    verbose_name=_('Compte'))
+    logo = models.ImageField(_('Logo'), upload_to='companies/logos/', blank=True, null=True)
+    website = models.URLField(_('Site web'), blank=True)
+    address = models.CharField(_('Adresse'), max_length=255, blank=True)
+    city = models.CharField(_('Ville'), max_length=100, blank=True)
+    country = models.CharField(_('Pays'), max_length=100, blank=True)
+    created_at = models.DateTimeField(_('Date de création'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Date de mise à jour'), auto_now=True)
 
     def __str__(self):
         return self.name
@@ -88,7 +95,6 @@ class OrgEvaluation(BaseModel):
     def max_score(self):
         """Retourne le score maximum possible pour cette évaluation"""
         return sum(q.weight for q in self.questions.all())
-        
 
 
 class OrgQuestion(BaseModel):

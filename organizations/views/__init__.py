@@ -1,9 +1,9 @@
-from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, mixins
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from core.models import Technology
 from organizations.models import (Organization, OrgEvaluation, OrgQuestion)
@@ -31,7 +31,9 @@ class OrganizationViewSet(viewsets.ModelViewSet):
 @extend_schema(
     parameters=[
         OpenApiParameter('evaluation_id', type=int,
-                         description='ID de l\'évaluation')
+                         description='ID de l\'évaluation'),
+        OpenApiParameter('organization_id', type=int,
+                         description='ID de la technologie', location=OpenApiParameter.PATH)
     ]
 )
 class OrgQuestionViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, viewsets.ReadOnlyModelViewSet):
