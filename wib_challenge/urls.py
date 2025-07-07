@@ -20,13 +20,13 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
-from wib_challenge.views import index
 from core.views import health_check
 
 urlpatterns = [
     path('administration/', admin.site.urls),
     path('api/', include(('core.urls', 'core'), namespace='core')),
     path('api/jobs/', include(('jobs.urls', 'jobs'), namespace='jobs')),
+    path('api/learnings/', include(('learning.urls', 'jobs'), namespace='learning')),
     path('api/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('api/', include(('questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'questions',
     'evaluations',
     'organizations',
+    'learning',
     'jobs',
 ]
 
