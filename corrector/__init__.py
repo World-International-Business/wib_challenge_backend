@@ -3,8 +3,9 @@ import logging
 from django.db import transaction
 from django.utils import timezone
 
+from corrector.utils import get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
 from evaluations.models import Submission, SubmissionAttempt, Answer
-from organizations.models import OrgSubmission, OrgSubmissionAttempt
+from organizations.models import OrgSubmission, OrgSubmissionAttempt, OrgEvaluation
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +66,9 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
             raise ValueError("Les paramètres submission et attempt sont requis")
 
         logger.info(f"Début de correction pour submission {submission.id}, attempt {attempt.id}")
+
+        if hasattr(attempt.evaluation, 'type') and attempt.evaluation.type == OrgEvaluation.EvaluationType.PERSONALITY:
+            return correct_personality_submission(submission, attempt)
 
         # Préchargement optimisé des données
         answers = attempt.answers.prefetch_related(
@@ -142,6 +146,7 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
             submission.save()
 
             attempt.ended_at = timezone.now()
+            attempt.corrected = True
             attempt.save()
 
         logger.info(f"Correction terminée. Score total: {total_score}")
@@ -150,3 +155,35 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
     except Exception as e:
         logger.error(f"Erreur lors de la correction de la soumission {submission.id}: {str(e)}")
         raise
+
+
+@transaction.atomic
+def correct_personality_submission(submission: OrgSubmission, attempt: OrgSubmissionAttempt,
+                                   save=True):
+    client = get_genai_client()
+
+    answers = attempt.answers.prefetch_related(
+        'selected_choices', 'question__choices').all()
+
+    if len(answers) == 0:
+        return None
+    # usage, _ = APIUsage.objects.get_or_create(date=date.today())
+
+    prompt = make_personality_prompt(list(answers))
+
+    response = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=[prompt],
+        config=PERSONALITY_CONFIG,
+    )
+
+    submission.personality_detail = response.text
+    attempt.corrected = True
+    if save and submission.personality_detail is not None:
+        submission.save()
+        attempt.save()
+
+    # usage.count += 1
+    # usage.save()
+
+    return attempt

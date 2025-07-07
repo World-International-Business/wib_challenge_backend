@@ -7,7 +7,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 from accounts.models import User
-from core.models import BaseModel
+from core.models import BaseModel, Profession
 from evaluations.models import Answer
 from questions.models import Question
 
@@ -62,14 +62,21 @@ class OrgEvaluation(BaseModel):
         ADDED = 2, _('Ordre d\'ajout')
         SKILL = 3, _('Par compétence')
 
+    class EvaluationType(models.TextChoices):
+        TECHNICAL = 'technical', _('Technique')
+        LOGICAL = 'logical', _('Logique')
+        PERSONALITY = 'personality', _('Personnalité')
+
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='evaluations',
                                      verbose_name=_('Organisation'))
     title = models.CharField(_('Titre'), max_length=255)
     description = models.TextField(_('Description'), blank=True, null=True)
+    profession = models.ForeignKey(Profession, on_delete=models.SET_NULL, blank=True, null=True,
+                                   verbose_name=_('Profession'))
     questions_order = models.IntegerField(_('Ordre des questions'), choices=QuestionOrder.choices,
                                           default=QuestionOrder.RANDOM)
     archived = models.BooleanField(_('Archivé'), default=False)
-
+    type = models.CharField(_('Type'), choices=EvaluationType.choices, default=EvaluationType.TECHNICAL, max_length=20)
     slug = models.SlugField(max_length=255, unique=True)
 
     class Meta:
@@ -166,6 +173,7 @@ class OrgSubmissionAttempt(BaseModel):
     questions = models.ManyToManyField(OrgQuestion, verbose_name=_(
         'Questions'), blank=True, related_name='attempts')
     is_completed = models.BooleanField(_('Complété'), default=False)
+    corrected = models.BooleanField(_('Corrigée'), default=False)
 
     def __str__(self):
         return f'{self.candidate} - {self.evaluation} - {self.started_at}'
@@ -174,6 +182,7 @@ class OrgSubmissionAttempt(BaseModel):
 class OrgSubmission(BaseModel):
     """Soumission d'une évaluation d'organisation"""
     score = models.FloatField(_('Résultat'), blank=True, null=True)
+    personality_detail = models.TextField(_('Personnalité'), blank=True, null=True)
     submitted_at = models.DateTimeField(_('Soumis le'), auto_now_add=True)
 
     class Meta:

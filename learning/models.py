@@ -178,6 +178,7 @@ class QuizQuestion(models.Model):
     )
     title = models.CharField(_('Question'), max_length=255)
     description = models.TextField(_('Description'), blank=True)
+    explanation = models.TextField(_('Explication'), blank=True)
 
     class Meta:
         verbose_name = _('Question de Quiz')

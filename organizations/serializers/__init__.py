@@ -98,9 +98,9 @@ class OrgEvaluationSerializer(WritableNestedModelSerializer):
         fields = [
             'id', 'title', 'description', 'questions_order', 'estimated_time',
             'slug', 'questions', 'questions_count',
-            'created_at', 'updated_at'
+            'created_at', 'updated_at', 'type', 'archived'
         ]
-        read_only_fields = ['id', 'slug', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'slug', 'created_at', 'updated_at', 'type']
 
     def get_questions_count(self, obj) -> int:
         return obj.questions.count()
@@ -166,8 +166,8 @@ class OrgSubmissionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrgSubmission
-        fields = ['id', 'score', 'submitted_at', 'answers', 'max_score']
-        read_only_fields = ['id', 'score', 'submitted_at']
+        fields = ['id', 'score', 'submitted_at', 'answers', 'max_score', 'personality_detail', 'updated_at']
+        read_only_fields = ['id', 'score', 'submitted_at', 'personality_detail', 'updated_at']
 
 
 class OrgSubmissionAttemptDetailSerializer(serializers.ModelSerializer):

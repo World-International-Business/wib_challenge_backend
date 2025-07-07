@@ -65,7 +65,7 @@ class QuizChoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QuizChoice
-        fields = ['id', 'text', 'is_correct']
+        fields = ['id', 'question', 'text', 'is_correct']
         read_only_fields = ['id']
 
 
@@ -84,7 +84,7 @@ class QuizQuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QuizQuestion
-        fields = ['id', 'title', 'description', 'choices']
+        fields = ['id', 'quiz', 'title', 'description', 'explanation', 'choices']
         read_only_fields = ['id']
 
 
@@ -133,7 +133,7 @@ class QuizAnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QuizAnswer
-        fields = ['id', 'question', 'selected_choices', 'is_correct']
+        fields = ['id', 'result', 'question', 'selected_choices', 'is_correct']
         read_only_fields = ['id']
 
 

@@ -22,8 +22,8 @@ class CandidateInline(admin.TabularInline):
 class EvaluationInline(admin.TabularInline):
     model = OrgEvaluation
     extra = 0
-    fields = ('title', 'questions_count', 'archived', 'created_at')
-    readonly_fields = ('questions_count', 'created_at')
+    fields = ('title', 'questions_count', 'archived', 'created_at', 'type')
+    readonly_fields = ('questions_count', 'created_at', 'type')
 
     @admin.display(description=_('Nombre de questions'))
     def questions_count(self, obj):
@@ -32,9 +32,27 @@ class EvaluationInline(admin.TabularInline):
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'account', 'candidates_count', 'evaluations_count')
-    search_fields = ('name', 'account__email')
+    list_display = ('name', 'account', 'website', 'city', 'country', 'candidates_count', 'evaluations_count',
+                    'created_at')
+    list_filter = ('country', 'city', 'created_at')
+    search_fields = ('name', 'account__email', 'city', 'country')
+    readonly_fields = ('created_at', 'updated_at')
     inlines = [CandidateInline, EvaluationInline]
+    fieldsets = (
+        (_('Informations générales'), {
+            'fields': ('name', 'description', 'account')
+        }),
+        (_('Localisation'), {
+            'fields': ('address', 'city', 'country')
+        }),
+        (_('Médias'), {
+            'fields': ('logo', 'website')
+        }),
+        (_('Métadonnées'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
+        }),
+    )
 
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
@@ -62,7 +80,7 @@ class AttemptsInline(admin.TabularInline):
     model = OrgSubmissionAttempt
     extra = 0
     fields = ('candidate', 'started_at', 'ended_at',
-              'is_completed', 'submission_link')
+              'is_completed', 'corrected', 'submission_link')
     readonly_fields = ('started_at', 'ended_at', 'submission_link')
 
     @admin.display(description=_('Soumission'))
@@ -107,18 +125,22 @@ class CandidateAdmin(admin.ModelAdmin):
 
 @admin.register(OrgEvaluation)
 class OrgEvaluationAdmin(admin.ModelAdmin):
-    list_display = ('title', 'organization', 'questions_count',
+    list_display = ('title', 'organization', 'type', 'profession', 'questions_count',
                     'attempts_count', 'is_ready', 'archived', 'created_at')
-    list_filter = ('organization', 'archived', 'created_at')
+    list_filter = ('organization', 'archived', 'created_at', 'type', 'profession')
     search_fields = ('title', 'description')
-    readonly_fields = ('created_at', 'updated_at', 'slug')
+    readonly_fields = ('created_at', 'updated_at', 'slug', 'is_ready', 'max_score')
     inlines = [OrgQuestionsInline, InvitationInline, AttemptsInline]
     fieldsets = (
         (_('Informations générales'), {
-            'fields': ('title', 'description', 'organization', 'slug')
+            'fields': ('title', 'description', 'type', 'organization', 'profession', 'slug')
         }),
         (_('Configuration'), {
             'fields': ('questions_order', 'archived')
+        }),
+        (_('Statistiques'), {
+            'fields': ('is_ready', 'max_score'),
+            'classes': ('collapse',),
         }),
         (_('Métadonnées'), {
             'fields': ('created_at', 'updated_at'),
@@ -144,17 +166,17 @@ class OrgEvaluationAdmin(admin.ModelAdmin):
 @admin.register(OrgQuestion)
 class OrgQuestionAdmin(admin.ModelAdmin):
     list_display = ('id', 'text_preview', 'evaluation',
-                    'technology', 'difficulty', 'duration', 'created_at')
+                    'technology', 'difficulty', 'duration', 'weight', 'created_at')
     list_filter = ('evaluation', 'technology', 'difficulty', 'created_at')
     search_fields = ('text', 'explanation')
     inlines = [OrgChoiceInline]
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at', 'weight')
     fieldsets = (
         (_('Informations générales'), {
             'fields': ('evaluation', 'technology', 'original_question')
         }),
         (_('Contenu'), {
-            'fields': ('text', 'explanation', 'difficulty', 'duration')
+            'fields': ('text', 'explanation', 'difficulty', 'duration', 'weight')
         }),
         (_('Métadonnées'), {
             'fields': ('created_at', 'updated_at'),
@@ -184,18 +206,26 @@ class OrgAnswerInline(admin.TabularInline):
 @admin.register(OrgSubmissionAttempt)
 class OrgSubmissionAttemptAdmin(admin.ModelAdmin):
     list_display = ('id', 'candidate', 'evaluation', 'started_at',
-                    'ended_at', 'is_completed', 'submission_link')
-    list_filter = ('evaluation', 'is_completed', 'started_at')
+                    'ended_at', 'is_completed', 'corrected', 'submission_link')
+    list_filter = ('evaluation', 'is_completed', 'corrected', 'started_at')
     search_fields = ('candidate__full_name',
                      'candidate__email', 'evaluation__title')
-    readonly_fields = ('started_at', 'ended_at', 'submission_link')
+    readonly_fields = ('started_at', 'ended_at', 'submission_link', 'created_at', 'updated_at')
     inlines = [OrgAnswerInline]
+    filter_horizontal = ('questions',)
     fieldsets = (
         (_('Informations générales'), {
-            'fields': ('candidate', 'evaluation', 'is_completed')
+            'fields': ('candidate', 'evaluation', 'is_completed', 'corrected')
+        }),
+        (_('Questions'), {
+            'fields': ('questions',)
         }),
         (_('Progrès'), {
             'fields': ('started_at', 'ended_at', 'submission_link')
+        }),
+        (_('Métadonnées'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
@@ -216,13 +246,17 @@ class OrgSubmissionAdmin(admin.ModelAdmin):
     search_fields = ('attempt__candidate__full_name',
                      'attempt__candidate__email', 'attempt__evaluation__title')
     readonly_fields = ('score', 'submitted_at', 'candidate_detail',
-                       'evaluation_detail', 'answers_summary')
+                       'evaluation_detail', 'answers_summary', 'created_at', 'updated_at')
     fieldsets = (
         (_('Informations générales'), {
             'fields': ('candidate_detail', 'evaluation_detail')
         }),
         (_('Résultats'), {
-            'fields': ('score', 'submitted_at', 'answers_summary')
+            'fields': ('score', 'personality_detail', 'submitted_at', 'answers_summary')
+        }),
+        (_('Métadonnées'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
@@ -292,7 +326,7 @@ class OrgAnswerAdmin(admin.ModelAdmin):
     search_fields = ('attempt__candidate__full_name',
                      'attempt__candidate__email', 'question__text')
     readonly_fields = ('is_correct', 'score', 'delta_time',
-                       'status', 'answered_at', 'selected_choices_display')
+                       'status', 'answered_at', 'selected_choices_display', 'created_at', 'updated_at')
     exclude = ('selected_choices',)
     fieldsets = (
         (_('Informations générales'), {
@@ -303,6 +337,10 @@ class OrgAnswerAdmin(admin.ModelAdmin):
         }),
         (_('Résultats'), {
             'fields': ('score', 'status', 'delta_time', 'answered_at')
+        }),
+        (_('Métadonnées'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 
@@ -360,14 +398,21 @@ class EvaluationInvitationAdmin(admin.ModelAdmin):
     list_display = ('candidate', 'evaluation', 'status', 'invited_at', 'expires_at', 'is_valid', 'token_link')
     list_filter = ('status', 'invited_at', 'expires_at')
     search_fields = ('candidate__full_name', 'candidate__email', 'evaluation__title')
-    readonly_fields = ('invited_at', 'is_valid', 'token_link')
+    readonly_fields = ('invited_at', 'is_valid', 'token_link', 'created_at', 'updated_at', 'token')
     actions = ['send_reminder_email']
     fieldsets = (
         (_('Informations générales'), {
             'fields': ('evaluation', 'candidate', 'status')
         }),
+        (_('Invitation'), {
+            'fields': ('token', 'token_link')
+        }),
         (_('Dates'), {
             'fields': ('invited_at', 'expires_at', 'is_valid')
+        }),
+        (_('Métadonnées'), {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',),
         }),
     )
 

@@ -353,6 +353,16 @@ class ModuleAdmin(admin.ModelAdmin):
     readonly_fields = ['contents_count', 'students_count', 'completion_rate']
     inlines = [ContentInline, QuizInline]
 
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['course', 'title', 'description']
+        }),
+        (_('Statistiques'), {
+            'fields': ['contents_count', 'students_count', 'completion_rate'],
+            'classes': ['collapse']
+        })
+    ]
+
     @admin.display(description=_('Cours'), ordering='course__title')
     def course_link(self, obj):
         url = reverse('admin:learning_course_change', args=[obj.course.pk])
@@ -424,7 +434,8 @@ class ContentAdmin(admin.ModelAdmin):
             'fields': ['module', 'title', 'type']
         }),
         (_('Contenu'), {
-            'fields': ['resource_file', 'resource_url', 'content']
+            'fields': ['resource_file', 'resource_url', 'content'],
+            'description': _('Selon le type de contenu, utilisez le champ approprié.')
         }),
         (_('Statistiques'), {
             'fields': ['progress_stats', 'completion_rate', 'content_analysis'],
@@ -536,7 +547,7 @@ class ContentAdmin(admin.ModelAdmin):
 class QuizQuestionInline(admin.TabularInline):
     model = QuizQuestion
     extra = 0
-    fields = ['title', 'choices_count', 'correct_answers']
+    fields = ['title', 'description', 'explanation', 'choices_count', 'correct_answers']
     readonly_fields = ['choices_count', 'correct_answers']
     show_change_link = True
 
@@ -666,18 +677,38 @@ class QuizChoiceInline(admin.TabularInline):
 
 @admin.register(QuizQuestion)
 class QuizQuestionAdmin(admin.ModelAdmin):
-    list_display = ['title', 'quiz_link', 'choices_count', 'correct_choices', 'success_rate']
+    list_display = ['title', 'quiz_link', 'description_preview', 'explanation_preview',
+                    'choices_count', 'correct_choices', 'success_rate']
     list_filter = ['quiz__module__course', 'quiz']
-    search_fields = ['title', 'description', 'quiz__title']
+    search_fields = ['title', 'description', 'explanation', 'quiz__title']
     inlines = [QuizChoiceInline]
 
-    @admin.display(description=_('Quiz'), ordering='quiz__title')
-    def quiz_link(self, obj):
-        url = reverse('admin:learning_quiz_change', args=[obj.quiz.pk])
-        return format_html(
-            '<a href="{}" style="color: #417690;">{}</a>',
-            url, obj.quiz.title
-        )
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['quiz', 'title']
+        }),
+        (_('Contenu'), {
+            'fields': ['description', 'explanation']
+        }),
+        (_('Statistiques'), {
+            'fields': ['choices_count', 'correct_choices'],
+            'classes': ['collapse']
+        })
+    ]
+
+    @admin.display(description=_('Description'))
+    def description_preview(self, obj):
+        if obj.description:
+            preview = obj.description[:50] + '...' if len(obj.description) > 50 else obj.description
+            return format_html('<small style="color: #6c757d;">{}</small>', preview)
+        return '-'
+
+    @admin.display(description=_('Explication'))
+    def explanation_preview(self, obj):
+        if obj.explanation:
+            preview = obj.explanation[:40] + '...' if len(obj.explanation) > 40 else obj.explanation
+            return format_html('<small style="color: #28a745;">{}</small>', preview)
+        return '-'
 
     @admin.display(description=_('Choix'))
     def choices_count(self, obj):
@@ -706,35 +737,42 @@ class QuizQuestionAdmin(admin.ModelAdmin):
 
 @admin.register(QuizChoice)
 class QuizChoiceAdmin(admin.ModelAdmin):
-    list_display = ['text', 'question_link', 'is_correct_badge', 'selection_rate']
+    list_display = ['text_preview', 'question_link', 'is_correct_badge', 'selection_rate']
     list_filter = ['is_correct', 'question__quiz__module__course']
     search_fields = ['text', 'question__title']
 
-    @admin.display(description=_('Question'), ordering='question__title')
-    def question_link(self, obj):
-        url = reverse('admin:learning_quizquestion_change', args=[obj.question.pk])
-        return format_html(
-            '<a href="{}" style="color: #417690;">{}</a>',
-            url, obj.question.title
-        )
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['question', 'text', 'is_correct']
+        }),
+        (_('Statistiques'), {
+            'fields': ['selection_rate'],
+            'classes': ['collapse']
+        })
+    ]
 
-    @admin.display(description=_('Correcte'), boolean=True)
-    def is_correct_badge(self, obj):
-        return obj.is_correct
+    @admin.display(description=_('Texte'))
+    def text_preview(self, obj):
+        preview = obj.text[:60] + '...' if len(obj.text) > 60 else obj.text
+        return preview
 
-    @admin.display(description=_('Taux de sélection'))
-    def selection_rate(self, obj):
-        total_answers = QuizAnswer.objects.filter(question=obj.question).count()
-        if total_answers == 0:
-            return "N/A"
 
-        selected_count = QuizAnswer.objects.filter(
-            question=obj.question,
-            selected_choices=obj
-        ).count()
+class QuizAnswerInline(admin.TabularInline):
+    model = QuizAnswer
+    extra = 0
+    fields = ['question', 'selected_choices_preview', 'is_correct']
+    readonly_fields = ['selected_choices_preview', 'is_correct']
+    can_delete = False
 
-        rate = (selected_count / total_answers) * 100
-        return f"{rate:.1f}%"
+    @admin.display(description=_('Choix sélectionnés'))
+    def selected_choices_preview(self, obj):
+        if obj.pk:
+            choices = obj.selected_choices.all()[:3]  # Limiter l'affichage
+            return ', '.join([choice.text[:20] for choice in choices])
+        return '-'
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(QuizResult)
@@ -747,6 +785,7 @@ class QuizResultAdmin(admin.ModelAdmin):
     search_fields = ['user__username', 'user__email', 'quiz__title']
     readonly_fields = ['score', 'submitted_at', 'answers_count', 'detailed_results']
     date_hierarchy = 'submitted_at'
+    inlines = [QuizAnswerInline]
 
     fieldsets = [
         (_('Informations générales'), {
@@ -805,6 +844,79 @@ class QuizResultAdmin(admin.ModelAdmin):
         return format_html(html)
 
 
+@admin.register(QuizAnswer)
+class QuizAnswerAdmin(admin.ModelAdmin):
+    list_display = ['result_link', 'question_link', 'selected_choices_display',
+                    'is_correct_badge', 'question_success_rate']
+    list_filter = ['is_correct', 'result__quiz__module__course', 'result__quiz']
+    search_fields = ['result__user__username', 'question__title']
+    readonly_fields = ['is_correct', 'selected_choices_display']
+    raw_id_fields = ['result', 'question']
+    filter_horizontal = ['selected_choices']
+
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['result', 'question']
+        }),
+        (_('Réponses'), {
+            'fields': ['selected_choices', 'selected_choices_display', 'is_correct']
+        })
+    ]
+
+    @admin.display(description=_('Résultat'))
+    def result_link(self, obj):
+        url = reverse('admin:learning_quizresult_change', args=[obj.result.pk])
+        return format_html(
+            '<a href="{}" style="color: #417690;">{} - {}</a>',
+            url, obj.result.user.username, obj.result.quiz.title
+        )
+
+    @admin.display(description=_('Question'))
+    def question_link(self, obj):
+        url = reverse('admin:learning_quizquestion_change', args=[obj.question.pk])
+        return format_html(
+            '<a href="{}" style="color: #417690;">{}</a>',
+            url, obj.question.title[:50]
+        )
+
+    @admin.display(description=_('Choix sélectionnés'))
+    def selected_choices_display(self, obj):
+        if obj.pk:
+            choices = obj.selected_choices.all()
+            if not choices:
+                return format_html('<em style="color: #dc3545;">Aucune réponse</em>')
+
+            html = '<ul style="margin: 0; padding-left: 20px;">'
+            for choice in choices:
+                style = 'color: #28a745; font-weight: bold;' if choice.is_correct else 'color: #dc3545;'
+                icon = '✅' if choice.is_correct else '❌'
+                html += f'<li style="{style}">{icon} {choice.text}</li>'
+            html += '</ul>'
+            return format_html(html)
+        return '-'
+
+    @admin.display(description=_('Correct'), boolean=True)
+    def is_correct_badge(self, obj):
+        return obj.is_correct
+
+    @admin.display(description=_('Taux de réussite'))
+    def question_success_rate(self, obj):
+        total_answers = QuizAnswer.objects.filter(question=obj.question).count()
+        if total_answers == 0:
+            return "N/A"
+
+        correct_answers = QuizAnswer.objects.filter(
+            question=obj.question, is_correct=True
+        ).count()
+        rate = (correct_answers / total_answers) * 100
+
+        color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 60 else '#dc3545'
+        return format_html(
+            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            color, rate
+        )
+
+
 @admin.register(Progress)
 class ProgressAdmin(admin.ModelAdmin):
     list_display = [
@@ -821,6 +933,15 @@ class ProgressAdmin(admin.ModelAdmin):
     ]
     readonly_fields = ['completed_at']
     date_hierarchy = 'completed_at'
+
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['user', 'content', 'is_completed']
+        }),
+        (_('Dates'), {
+            'fields': ['completed_at']
+        })
+    ]
 
     actions = ['mark_completed', 'mark_incomplete']
 
@@ -885,7 +1006,10 @@ class CertificateAdmin(admin.ModelAdmin):
 
     fieldsets = [
         (_('Informations générales'), {
-            'fields': ['user', 'course', 'issued_at', 'file']
+            'fields': ['user', 'course', 'issued_at']
+        }),
+        (_('Fichier'), {
+            'fields': ['file']
         }),
         (_('Statistiques'), {
             'fields': ['course_completion_stats', 'user_progress_summary'],

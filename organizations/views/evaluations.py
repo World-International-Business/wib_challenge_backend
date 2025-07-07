@@ -115,6 +115,9 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
         """
         evaluation = self.get_object()
         self.check_can_update(evaluation)
+        if evaluation.type == OrgEvaluation.EvaluationType.PERSONALITY:
+            raise ValidationError(
+                _("Cette évaluation ne peut pas avoir de questions technologiques/techniques."))
 
         serializer = ProportionEvaluationSerializer(data=request.data)
 
@@ -167,7 +170,7 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
 
     @extend_schema(
         request=OrgQuestionSerializer,
-        responses={201: OrgQuestionSerializer},
+        responses={200: EvaluationResponseSerializer},
         summary="Ajout manuel de questions",
         description="Ajoute une question soit en utilisant une question existante, soit en créant une nouvelle",
     )
