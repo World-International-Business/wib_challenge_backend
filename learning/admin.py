@@ -367,7 +367,7 @@ class ModuleAdmin(admin.ModelAdmin):
     def course_link(self, obj):
         url = reverse('admin:learning_course_change', args=[obj.course.pk])
         return format_html(
-            '<a href="{}" style="color: #417690; font-weight: bold;">{}</a>',
+            '<a href="{}" style="color: #417690;">{}</a>',
             url, obj.course.title
         )
 
@@ -572,7 +572,7 @@ class QuizAdmin(admin.ModelAdmin):
     ]
     list_filter = ['module__course', 'module']
     search_fields = ['title', 'description', 'module__title']
-    readonly_fields = ['questions_count', 'attempts_count', 'average_score', 'quiz_analytics']
+    readonly_fields = ['questions_count', 'attempts_count', 'average_score', 'success_rate', 'quiz_analytics']
     inlines = [QuizQuestionInline]
 
     fieldsets = [
@@ -580,7 +580,7 @@ class QuizAdmin(admin.ModelAdmin):
             'fields': ['module', 'title', 'description']
         }),
         (_('Statistiques'), {
-            'fields': ['questions_count', 'attempts_count', 'average_score'],
+            'fields': ['questions_count', 'attempts_count', 'average_score', 'success_rate'],
             'classes': ['collapse']
         }),
         (_('Analyse détaillée'), {
@@ -681,6 +681,7 @@ class QuizQuestionAdmin(admin.ModelAdmin):
                     'choices_count', 'correct_choices', 'success_rate']
     list_filter = ['quiz__module__course', 'quiz']
     search_fields = ['title', 'description', 'explanation', 'quiz__title']
+    readonly_fields = ['choices_count', 'correct_choices', 'success_rate']
     inlines = [QuizChoiceInline]
 
     fieldsets = [
@@ -691,10 +692,18 @@ class QuizQuestionAdmin(admin.ModelAdmin):
             'fields': ['description', 'explanation']
         }),
         (_('Statistiques'), {
-            'fields': ['choices_count', 'correct_choices'],
+            'fields': ['choices_count', 'correct_choices', 'success_rate'],
             'classes': ['collapse']
         })
     ]
+
+    @admin.display(description=_('Quiz'), ordering='quiz__title')
+    def quiz_link(self, obj):
+        url = reverse('admin:learning_quiz_change', args=[obj.quiz.pk])
+        return format_html(
+            '<a href="{}" style="color: #417690;">{}</a>',
+            url, obj.quiz.title
+        )
 
     @admin.display(description=_('Description'))
     def description_preview(self, obj):
@@ -740,6 +749,7 @@ class QuizChoiceAdmin(admin.ModelAdmin):
     list_display = ['text_preview', 'question_link', 'is_correct_badge', 'selection_rate']
     list_filter = ['is_correct', 'question__quiz__module__course']
     search_fields = ['text', 'question__title']
+    readonly_fields = ['selection_rate']
 
     fieldsets = [
         (_('Informations générales'), {
@@ -755,6 +765,42 @@ class QuizChoiceAdmin(admin.ModelAdmin):
     def text_preview(self, obj):
         preview = obj.text[:60] + '...' if len(obj.text) > 60 else obj.text
         return preview
+
+    @admin.display(description=_('Question'), ordering='question__title')
+    def question_link(self, obj):
+        url = reverse('admin:learning_quizquestion_change', args=[obj.question.pk])
+        return format_html(
+            '<a href="{}" style="color: #417690;">{}</a>',
+            url, obj.question.title[:50]
+        )
+
+    @admin.display(description=_('Correct'), boolean=True)
+    def is_correct_badge(self, obj):
+        return obj.is_correct
+
+    @admin.display(description=_('Taux de sélection'))
+    def selection_rate(self, obj):
+        total_answers = QuizAnswer.objects.filter(
+            selected_choices=obj
+        ).count()
+
+        if total_answers == 0:
+            return "N/A"
+
+        total_attempts = QuizAnswer.objects.filter(
+            question=obj.question
+        ).count()
+
+        if total_attempts == 0:
+            return "N/A"
+
+        rate = (total_answers / total_attempts) * 100
+        color = '#28a745' if obj.is_correct else '#dc3545'
+
+        return format_html(
+            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            color, rate
+        )
 
 
 class QuizAnswerInline(admin.TabularInline):
