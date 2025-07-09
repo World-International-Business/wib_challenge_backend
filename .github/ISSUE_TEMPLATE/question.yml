@@ -1,0 +1,73 @@
+name: Question
+description: Ask a question about the project
+title: "[Question]: "
+labels: ["question", "help wanted"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about the WIB Challenge platform? We're here to help!
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com
+    validations:
+      required: false
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Question Category
+      description: What type of question is this?
+      options:
+        - Setup & Installation
+        - API Usage
+        - Development
+        - Deployment
+        - Configuration
+        - Troubleshooting
+        - General Usage
+        - Other
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please describe your question in detail
+      placeholder: What would you like to know?
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any additional context that might help us understand your question better
+      placeholder: |
+        - What you've already tried
+        - Your environment details
+        - Any error messages
+        - Related documentation you've read
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What outcome are you trying to achieve?
+      description: Describe what you're ultimately trying to accomplish
+      placeholder: I'm trying to...
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
