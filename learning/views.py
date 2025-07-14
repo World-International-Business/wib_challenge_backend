@@ -264,7 +264,7 @@ class ContentViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ContentFilter
     search_fields = ['title']
-    ordering_fields = ['title', 'type']
+    ordering_fields = ['title', 'content_type']
     ordering = ['id']
 
     def get_serializer_class(self):

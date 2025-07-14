@@ -12,7 +12,7 @@ SECRET_KEY = config('SECRET_KEY')
 # Configuration de la base de données
 DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600, conn_health_checks=True)
 
-if not DATABASES['default']['ENGINE'] == 'django.db.backends.sqlite3':
+if DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
     DATABASES['default']['OPTIONS'] = {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         'charset': 'utf8mb4',

@@ -62,7 +62,7 @@ class Content(models.Model):
         verbose_name=_('Module')
     )
     title = models.CharField(_('Titre'), max_length=255)
-    type = models.CharField(_('Type'), max_length=10, choices=ContentType.choices)
+    content_type = models.CharField(_('Content Type'), max_length=15, choices=ContentType.choices)
     resource_file = models.FileField(_('Fichier'), null=True, blank=True)
     resource_url = models.URLField(_('URL'), null=True, blank=True)
     content = models.TextField(_('Contenu'), null=True, blank=True)
@@ -71,42 +71,21 @@ class Content(models.Model):
         verbose_name = _('Contenu')
         verbose_name_plural = _('Contenus')
         ordering = ['module', 'title']
-        constraints = [
-            models.CheckConstraint(
-                check=(
-                        models.Q(type='markdown', content__isnull=False, resource_file__isnull=True,
-                                 resource_url__isnull=True) |
-                        models.Q(type='pdf', content__isnull=True, resource_file__isnull=False,
-                                 resource_url__isnull=True) |
-                        models.Q(type='video', content__isnull=True, resource_file__isnull=False,
-                                 resource_url__isnull=True) |
-                        models.Q(type='video', content__isnull=True, resource_file__isnull=True,
-                                 resource_url__isnull=False) |
-                        models.Q(type='talk', content__isnull=True, resource_file__isnull=True,
-                                 resource_url__isnull=False) |
-                        models.Q(type='external', content__isnull=True, resource_file__isnull=True,
-                                 resource_url__isnull=False)
-                ),
-                name='content_type_fields_match'
-            )
-        ]
 
     def clean(self):
-        """Validation pour s'assurer qu'au moins un champ approprié est rempli selon le type
-        et que les champs non nécessaires soient vides"""
+        """Valide que les champs correspondent bien au type de contenu"""
         super().clean()
         errors = {}
 
-        if self.type == ContentType.VIDEO:
+        if self.content_type == ContentType.VIDEO:
             if not self.resource_file and not self.resource_url:
-                errors.update({
-                    'resource_file': _('Un fichier vidéo ou une URL est requis pour le type vidéo.'),
-                    'resource_url': _('Un fichier vidéo ou une URL est requis pour le type vidéo.')
-                })
+                msg = _('Un fichier ou une URL est requis pour le type vidéo.')
+                errors['resource_file'] = msg
+                errors['resource_url'] = msg
             if self.content:
                 errors['content'] = _('Le champ contenu doit être vide pour le type vidéo.')
 
-        elif self.type == ContentType.PDF:
+        elif self.content_type == ContentType.PDF:
             if not self.resource_file:
                 errors['resource_file'] = _('Un fichier PDF est requis pour le type PDF.')
             if self.resource_url:
@@ -114,7 +93,7 @@ class Content(models.Model):
             if self.content:
                 errors['content'] = _('Le champ contenu doit être vide pour le type PDF.')
 
-        elif self.type == ContentType.TALK:
+        elif self.content_type == ContentType.TALK:
             if not self.resource_url:
                 errors['resource_url'] = _('Une URL est requise pour le type conférence.')
             if self.resource_file:
@@ -122,7 +101,7 @@ class Content(models.Model):
             if self.content:
                 errors['content'] = _('Le champ contenu doit être vide pour le type conférence.')
 
-        elif self.type == ContentType.EXTERNAL_RESOURCE:
+        elif self.content_type == ContentType.EXTERNAL_RESOURCE:
             if not self.resource_url:
                 errors['resource_url'] = _('Une URL est requise pour le type ressource externe.')
             if self.resource_file:
@@ -130,7 +109,7 @@ class Content(models.Model):
             if self.content:
                 errors['content'] = _('Le champ contenu doit être vide pour le type ressource externe.')
 
-        elif self.type == ContentType.MARKDOWN:
+        elif self.content_type == ContentType.MARKDOWN:
             if not self.content:
                 errors['content'] = _('Le contenu markdown est requis pour le type markdown.')
             if self.resource_file:
@@ -142,12 +121,11 @@ class Content(models.Model):
             raise ValidationError(errors)
 
     def save(self, *args, **kwargs):
-        self.full_clean()
+        self.full_clean()  
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.module.title} - {self.title}"
-
 
 class Quiz(models.Model):
     module = models.OneToOneField(

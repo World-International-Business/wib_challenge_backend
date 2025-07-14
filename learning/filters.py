@@ -87,15 +87,15 @@ class ContentFilter(filters.FilterSet):
         help_text='Filtrer par titre (recherche partielle)'
     )
 
-    type = filters.ChoiceFilter(
+    content_type = filters.ChoiceFilter(
         choices=ContentType.choices,
-        field_name='type',
+        field_name='content_type',
         help_text='Filtrer par type de contenu'
     )
 
     class Meta:
         model = Content
-        fields = ['module', 'module_id', 'course', 'course_id', 'title', 'type']
+        fields = ['module', 'module_id', 'course', 'course_id', 'title', 'content_type']
 
 
 class QuizFilter(filters.FilterSet):

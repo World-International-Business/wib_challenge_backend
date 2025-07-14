@@ -131,7 +131,7 @@ class CourseAdmin(admin.ModelAdmin):
             color, label
         )
 
-    @admin.display(description=_('Type'), boolean=True)
+    @admin.display(description=_('Content Type'), boolean=True)
     def free_badge(self, obj):
         if obj.is_free:
             return format_html(
@@ -291,13 +291,13 @@ class CourseAdmin(admin.ModelAdmin):
 class ContentInline(admin.TabularInline):
     model = Content
     extra = 0
-    fields = ['title', 'type', 'content_preview', 'progress_count']
+    fields = ['title', 'content_type', 'content_preview', 'progress_count']
     readonly_fields = ['content_preview', 'progress_count']
     show_change_link = True
 
     @admin.display(description=_('Aperçu'))
     def content_preview(self, obj):
-        if obj.type == 'markdown' and obj.content:
+        if obj.content_type == 'markdown' and obj.content:
             preview = obj.content[:50] + '...' if len(obj.content) > 50 else obj.content
             return format_html('<em>{}</em>', preview)
         elif obj.resource_url:
@@ -422,16 +422,16 @@ class ModuleAdmin(admin.ModelAdmin):
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
     list_display = [
-        'title', 'module_link', 'type_badge', 'content_preview',
+        'title', 'module_link', 'content_type_badge', 'content_preview',
         'progress_stats', 'completion_rate'
     ]
-    list_filter = ['type', 'module__course', 'module']
+    list_filter = ['content_type', 'module__course', 'module']
     search_fields = ['title', 'module__title', 'module__course__title']
     readonly_fields = ['progress_stats', 'completion_rate', 'content_analysis']
 
     fieldsets = [
         (_('Informations générales'), {
-            'fields': ['module', 'title', 'type']
+            'fields': ['module', 'title', 'content_type']
         }),
         (_('Contenu'), {
             'fields': ['resource_file', 'resource_url', 'content'],
@@ -451,8 +451,8 @@ class ContentAdmin(admin.ModelAdmin):
             url, f"{obj.module.course.title} - {obj.module.title}"
         )
 
-    @admin.display(description=_('Type'), ordering='type')
-    def type_badge(self, obj):
+    @admin.display(description=_('Content Type'), ordering='content_type')
+    def content_type_badge(self, obj):
         colors = {
             'video': '#dc3545',
             'pdf': '#28a745',
@@ -468,17 +468,17 @@ class ContentAdmin(admin.ModelAdmin):
             'markdown': '📝'
         }
 
-        color = colors.get(obj.type, '#6c757d')
-        icon = icons.get(obj.type, '📄')
+        color = colors.get(obj.content_type, '#6c757d')
+        icon = icons.get(obj.content_type, '📄')
 
         return format_html(
             '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 12px; font-size: 11px;">{} {}</span>',
-            color, icon, obj.get_type_display()
+            color, icon, obj.get_content_type_display()
         )
 
     @admin.display(description=_('Aperçu'))
     def content_preview(self, obj):
-        if obj.type == 'markdown' and obj.content:
+        if obj.content_type == 'markdown' and obj.content:
             preview = obj.content[:30] + '...' if len(obj.content) > 30 else obj.content
             return format_html('<small style="color: #6c757d;"><em>{}</em></small>', preview)
         elif obj.resource_url:
@@ -971,7 +971,7 @@ class ProgressAdmin(admin.ModelAdmin):
     ]
     list_filter = [
         'is_completed', 'content__module__course', 'content__module',
-        'content__type', 'completed_at'
+        'content__content_type', 'completed_at'
     ]
     search_fields = [
         'user__username', 'user__email', 'content__title',
@@ -1005,7 +1005,7 @@ class ProgressAdmin(admin.ModelAdmin):
         return format_html(
             '<a href="{}" style="color: #417690;">{}</a><br>'
             '<small style="color: #6c757d;">{}</small>',
-            url, obj.content.title, obj.content.get_type_display()
+            url, obj.content.title, obj.content.get_content_type_display()
         )
 
     @admin.display(description=_('Statut'), boolean=True, ordering='is_completed')

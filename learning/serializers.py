@@ -174,7 +174,7 @@ class ContentDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Content
-        fields = ['id', 'module', 'title', 'type', 'resource_file', 'resource_url', 'content', 'content_url',
+        fields = ['id', 'module', 'title', 'content_type', 'resource_file', 'resource_url', 'content', 'content_url',
                   'user_progress']
         read_only_fields = ['id']
         extra_kwargs = {
@@ -214,7 +214,7 @@ class ContentListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Content
-        fields = ['id', 'module', 'title', 'type', 'user_progress']
+        fields = ['id', 'module', 'title', 'content_type', 'user_progress']
         read_only_fields = ['id']
 
     @extend_schema_field(ContentProgressInlineSerializer)
