@@ -3,7 +3,17 @@ from django.db.models import Avg, Count, Max, Min
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from evaluations.models import Evaluation, Submission, SubmissionAttempt, Answer
+from evaluations.models import Evaluation, Submission, SubmissionAttempt, Answer, Competition, EvaluationType
+
+
+class CompetitionInline(admin.StackedInline):
+    model = Competition
+    extra = 0
+    fields = ['started_at', 'ended_at']
+    can_delete = False
+
+    def has_add_permission(self, request, obj=None):
+        return obj and obj.evaluation_type == EvaluationType.COMPETITION
 
 
 class AnswerInline(admin.TabularInline):
@@ -20,19 +30,20 @@ class AnswerInline(admin.TabularInline):
 
 @admin.register(Evaluation)
 class EvaluationAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'technology_display', 'difficulty', 'questions_count', 'attempts_count',
-                    'average_score']
+    list_display = ['id', 'title', 'technology_display', 'difficulty', 'evaluation_type', 'competition_status',
+                    'questions_count', 'attempts_count', 'average_score']
     search_fields = ['title', 'description', 'technology__name']
-    list_filter = ['difficulty', 'technology', 'profession']
+    list_filter = ['difficulty', 'technology', 'profession', 'evaluation_type']
     readonly_fields = ['created_at', 'updated_at', 'statistics']
     prepopulated_fields = {'slug': ('title',)}
+    inlines = [CompetitionInline]
 
     fieldsets = (
         (_('Informations générales'), {
             'fields': ('title', 'slug', 'description', 'image')
         }),
         (_('Classification'), {
-            'fields': ('technology', 'profession', 'difficulty')
+            'fields': ('technology', 'profession', 'difficulty', 'evaluation_type')
         }),
         (_('Statistiques'), {
             'fields': ('statistics',)
@@ -49,6 +60,25 @@ class EvaluationAdmin(admin.ModelAdmin):
             return format_html('<img src="{}" style="height: 20px;"> {}',
                                obj.technology.image.url, obj.technology.name)
         return obj.technology.name if obj.technology else "-"
+
+    @admin.display(description=_("Statut compétition"))
+    def competition_status(self, obj):
+        if obj.evaluation_type != EvaluationType.COMPETITION:
+            return "-"
+
+        try:
+            competition = obj.competition
+            from django.utils import timezone
+            now = timezone.now()
+
+            if competition.started_at and competition.started_at > now:
+                return format_html('<span style="color: orange;">🕐 {}</span>', _("Pas encore commencée"))
+            elif competition.ended_at and competition.ended_at < now:
+                return format_html('<span style="color: red;">🏁 {}</span>', _("Terminée"))
+            else:
+                return format_html('<span style="color: green;">🟢 {}</span>', _("Active"))
+        except Competition.DoesNotExist:
+            return format_html('<span style="color: red;">❌ {}</span>', _("Configuration manquante"))
 
     @admin.display(description=_("Questions"))
     def questions_count(self, obj):
@@ -89,6 +119,36 @@ class EvaluationAdmin(admin.ModelAdmin):
         """, **stats)
 
 
+@admin.register(Competition)
+class CompetitionAdmin(admin.ModelAdmin):
+    list_display = ['id', 'evaluation', 'started_at', 'ended_at', 'is_active', 'participants_count']
+    search_fields = ['evaluation__title']
+    list_filter = ['started_at', 'ended_at']
+    readonly_fields = ['created_at', 'is_active', 'participants_count']
+
+    fieldsets = (
+        (_('Informations générales'), {
+            'fields': ('evaluation',)
+        }),
+        (_('Période'), {
+            'fields': ('started_at', 'ended_at')
+        }),
+        (_('Statistiques'), {
+            'fields': ('is_active', 'participants_count', 'created_at')
+        }),
+    )
+
+    @admin.display(description=_("Active"), boolean=True)
+    def is_active(self, obj):
+        from django.utils import timezone
+        now = timezone.now()
+        return (obj.started_at is None or obj.started_at <= now) and (obj.ended_at is None or obj.ended_at > now)
+
+    @admin.display(description=_("Participants"))
+    def participants_count(self, obj):
+        return obj.evaluation.attempts.values('candidate').distinct().count()
+
+
 class IsFinishedFilter(admin.SimpleListFilter):
     title = _('Tentative terminée')
     parameter_name = 'is_finished'
@@ -108,9 +168,10 @@ class IsFinishedFilter(admin.SimpleListFilter):
 
 @admin.register(SubmissionAttempt)
 class SubmissionAttemptAdmin(admin.ModelAdmin):
-    list_display = ['id', 'candidate_display', 'evaluation', 'started_at', 'ended_at', 'is_finished', 'score']
+    list_display = ['id', 'candidate_display', 'evaluation', 'evaluation_type', 'started_at', 'ended_at', 'is_finished',
+                    'score']
     search_fields = ['candidate__username', 'candidate__email', 'evaluation__title']
-    list_filter = [IsFinishedFilter, 'evaluation__difficulty', 'evaluation']
+    list_filter = [IsFinishedFilter, 'evaluation__difficulty', 'evaluation__evaluation_type', 'evaluation']
     readonly_fields = ['started_at', 'answers_preview']
     inlines = [AnswerInline]
 
@@ -125,6 +186,15 @@ class SubmissionAttemptAdmin(admin.ModelAdmin):
             'fields': ('submission', 'answers_preview')
         }),
     )
+
+    @admin.display(description=_("Type"))
+    def evaluation_type(self, obj):
+        type_icons = {
+            EvaluationType.NORMAL: '📝',
+            EvaluationType.COMPETITION: '🏆'
+        }
+        icon = type_icons.get(obj.evaluation.evaluation_type, '❓')
+        return format_html('{} {}', icon, obj.evaluation.get_evaluation_type_display())
 
     @admin.display(description=_("Réponses"))
     def answers_preview(self, obj):

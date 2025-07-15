@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import transaction, IntegrityError
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
@@ -13,7 +14,7 @@ from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 
 from corrector import correct_submission
-from evaluations.models import Evaluation, SubmissionAttempt, Submission, Answer
+from evaluations.models import Evaluation, SubmissionAttempt, Submission, Answer, EvaluationType
 from evaluations.permissions import RejectUnConstructedEvaluation
 from evaluations.serializers import EvaluationSerializer, AnswerSerializer, SubmissionAttemptSerializer, \
     SubmissionSerializer
@@ -28,22 +29,41 @@ class EvaluationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        """Retourne le queryset avec les jointures optimisées"""
-        return Evaluation.objects.prefetch_related('questions', 'questions__choices').select_related('technology',
-                                                                                                     'profession')
+        """Retourne le queryset avec les jointures optimisées, excluant les compétitions"""
+        queryset = Evaluation.objects.prefetch_related('questions', 'questions__choices').select_related('technology',
+                                                                                                         'profession')
+        if self.action == 'list':
+            queryset = queryset.filter(evaluation_type=EvaluationType.NORMAL)
+        return queryset
 
     @staticmethod
     def verify_attempt(request, session_pk: int, ended=False):
         """Vérifie si la tentative existe et appartient à l'utilisateur actuel"""
         attempt = get_object_or_404(SubmissionAttempt.objects.select_related('submission'), pk=session_pk)
 
-        # Vérification que l'utilisateur a les droits sur cette tentative
         if not request.user.is_staff and attempt.candidate != request.user:
             raise PermissionDenied(_("Vous n'avez pas accès à cette tentative"))
 
         if attempt.is_finished and not ended:
             raise ValidationError(_('Cette tentative est déjà terminée'))
         return attempt
+
+    @staticmethod
+    def verify_competition_active(evaluation):
+        """Vérifie si une compétition est active"""
+        if evaluation.evaluation_type == EvaluationType.COMPETITION:
+            try:
+                competition = evaluation.competition
+                now = timezone.now()
+
+                if competition.started_at and competition.started_at > now:
+                    raise ValidationError(_('Cette compétition n\'a pas encore commencé'))
+
+                if competition.ended_at and competition.ended_at < now:
+                    raise ValidationError(_('Cette compétition est terminée'))
+
+            except Evaluation.competition.RelatedObjectDoesNotExist:
+                raise ValidationError(_('Configuration de compétition manquante'))
 
     def get_permissions(self):
         """
@@ -60,7 +80,7 @@ class EvaluationViewSet(viewsets.ModelViewSet):
 
         return super().get_permissions()
 
-    @method_decorator(cache_page(60 * 5))  # Cache pendant 5 minutes
+    @method_decorator(cache_page(60 * 5))
     @action(detail=False, methods=['get'], url_path='slug/(?P<slug>[^/.]+)')
     def get_by_slug(self, request, slug: str):
         """Récupère une évaluation par son slug"""
@@ -74,12 +94,13 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         """Démarre une nouvelle session d'évaluation"""
         evaluation = self.get_object()
 
+        self.verify_competition_active(evaluation)
+
         existing_attempt = SubmissionAttempt.objects.filter(evaluation=evaluation, candidate=request.user,
                                                             submission__isnull=True).first()
 
         if existing_attempt:
             serializer = SubmissionAttemptSerializer(existing_attempt)
-            # TODO add logic to Submission serializer for excluding questions with answers
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         with transaction.atomic():
@@ -104,8 +125,10 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         """
         attempt = self.verify_attempt(request, session_pk)
 
+        self.verify_competition_active(attempt.evaluation)
+
         answers_to_create = []
-        
+
         excluded_question_ids = attempt.answers.values_list('question_id', flat=True)
 
         for answer_data in request.data:
@@ -137,6 +160,8 @@ class EvaluationViewSet(viewsets.ModelViewSet):
     def finalize_session(self, request, pk: int, session_pk: int):
         """Finalise une session et calcule le score"""
         attempt = self.verify_attempt(request, session_pk)
+
+        self.verify_competition_active(attempt.evaluation)
 
         questions_count = attempt.questions.count()
         answers_count = attempt.answers.count()
@@ -193,4 +218,41 @@ class EvaluationViewSet(viewsets.ModelViewSet):
             return self.get_paginated_response(serializer.data)
 
         serializer = SubmissionAttemptSerializer(queryset, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    @extend_schema(request=OpenApiRequest(), responses={200: ListSerializer(child=EvaluationSerializer())})
+    @action(detail=False, methods=['get'], url_path='competitions')
+    def competitions(self, request):
+        """Récupère toutes les compétitions"""
+        queryset = Evaluation.objects.filter(evaluation_type=EvaluationType.COMPETITION).prefetch_related(
+            'competition', 'questions', 'questions__choices'
+        ).select_related('technology', 'profession')
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @extend_schema(request=OpenApiRequest(), responses={200: ListSerializer(child=EvaluationSerializer())})
+    @action(detail=False, methods=['get'], url_path='competitions/active')
+    def active_competitions(self, request):
+        """Récupère les compétitions actives"""
+        now = timezone.now()
+        queryset = Evaluation.objects.filter(
+            evaluation_type=EvaluationType.COMPETITION,
+            competition__started_at__lte=now,
+            competition__ended_at__gte=now
+        ).prefetch_related(
+            'competition', 'questions', 'questions__choices'
+        ).select_related('technology', 'profession')
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)

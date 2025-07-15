@@ -15,6 +15,11 @@ def _upload_to(instance, filename):
     return f'evaluations/{slugify(instance.title)}/{filename}'
 
 
+class EvaluationType(models.TextChoices):
+    NORMAL = 'normal', _('Normal')
+    COMPETITION = 'competition', _('Competition')
+
+
 class Evaluation(BaseModel):
     class Difficulty(models.TextChoices):
         BEGINNER = 'beginner', _('Débutant 0- 2 ans d\'expérience')
@@ -35,6 +40,9 @@ class Evaluation(BaseModel):
                                   max_length=20, db_index=True)
     publisher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('Créateur'),
                                   related_name='evaluations', db_index=True)
+
+    evaluation_type = models.CharField(_('Type'), choices=EvaluationType.choices, default=EvaluationType.NORMAL,
+                                       max_length=20, db_index=True)
 
     class Meta:
         verbose_name = _('Evaluation')
@@ -137,6 +145,21 @@ class Answer(models.Model):
 
     def __str__(self):
         return f'{self.question}'
+
+
+class Competition(models.Model):
+    evaluation = models.OneToOneField(Evaluation, on_delete=models.CASCADE, verbose_name=_('Évaluation'),
+                                      limit_choices_to={'evaluation_type': EvaluationType.COMPETITION},
+                                      related_name='competition')
+
+    started_at = models.DateTimeField(_('Commencé le'), blank=True, null=True)
+    ended_at = models.DateTimeField(_('Terminé le'), blank=True, null=True)
+    created_at = models.DateTimeField(_('Créé le'), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _('Competition')
+        verbose_name_plural = _('Competitions')
+        ordering = ['-created_at']
 
 
 receiver([pre_save, pre_delete], sender=Evaluation)(delete_old_image)

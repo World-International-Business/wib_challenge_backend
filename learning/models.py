@@ -3,6 +3,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from core.models import BaseModel
+
 User = get_user_model()
 
 
@@ -12,7 +14,7 @@ class SkillLevel(models.TextChoices):
     ADVANCED = 'advanced', _('Avancé')
 
 
-class Course(models.Model):
+class Course(BaseModel):
     title = models.CharField(_('Titre'), max_length=255)
     description = models.TextField(_('Description'))
     level = models.CharField(_('Niveau'), max_length=20, choices=SkillLevel.choices)
@@ -30,7 +32,7 @@ class Course(models.Model):
 class Module(models.Model):
     course = models.ForeignKey(
         Course,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='modules',
         verbose_name=_('Cours')
     )
@@ -57,7 +59,7 @@ class ContentType(models.TextChoices):
 class Content(models.Model):
     module = models.ForeignKey(
         Module,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='contents',
         verbose_name=_('Module')
     )
@@ -121,17 +123,18 @@ class Content(models.Model):
             raise ValidationError(errors)
 
     def save(self, *args, **kwargs):
-        self.full_clean()  
+        self.full_clean()
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.module.title} - {self.title}"
 
+
 class Quiz(models.Model):
     module = models.OneToOneField(
         Module,
         null=True,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='quiz',
         verbose_name=_('Module')
     )

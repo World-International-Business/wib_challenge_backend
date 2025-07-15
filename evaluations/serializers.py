@@ -4,9 +4,23 @@ from rest_framework import serializers
 
 from accounts.serializers import PublisherSerializer
 from core.serializers import TechnologySerializer, ProfessionSerializer
-from evaluations.models import Evaluation, SubmissionAttempt, Answer, Submission
+from evaluations.models import Evaluation, SubmissionAttempt, Answer, Submission, Competition, EvaluationType
 from questions.models import Choice, Question
 from questions.serializers import QuestionSerializer
+
+
+class CompetitionSerializer(serializers.ModelSerializer):
+    is_active = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Competition
+        fields = '__all__'
+
+    def get_is_active(self, obj):
+        """Vérifie si la compétition est active"""
+        from django.utils import timezone
+        now = timezone.now()
+        return (obj.started_at is None or obj.started_at <= now) and (obj.ended_at is None or obj.ended_at > now)
 
 
 class EvaluationSerializer(serializers.ModelSerializer):
@@ -19,12 +33,39 @@ class EvaluationSerializer(serializers.ModelSerializer):
     technology_id = serializers.PrimaryKeyRelatedField(
         queryset=TechnologySerializer.Meta.model.objects.all(), source='technology', write_only=True
     )
+    profession_id = serializers.PrimaryKeyRelatedField(
+        queryset=ProfessionSerializer.Meta.model.objects.all(), source='profession', write_only=True
+    )
     questions_count = serializers.SerializerMethodField()
+    competition = CompetitionSerializer(required=False)
 
     class Meta:
         model = Evaluation
         fields = '__all__'
         read_only_fields = ['id', 'created_at', 'updated_at', 'slug']
+
+    def create(self, validated_data):
+        competition = validated_data.pop('competition', None)
+        evaluation = super().create(validated_data)
+        if competition:
+            evaluation.competition = Competition.objects.create(evaluation=evaluation, **competition)
+            evaluation.evaluation_type = EvaluationType.COMPETITION
+        else:
+            evaluation.evaluation_type = EvaluationType.NORMAL
+        evaluation.save()
+        return evaluation
+
+    def update(self, instance, validated_data):
+        competition = validated_data.pop('competition', None)
+        evaluation = super().update(instance, validated_data)
+        if competition:
+            evaluation.competition = Competition.objects.update_or_create(evaluation=evaluation, defaults=competition)[
+                0]
+            evaluation.evaluation_type = EvaluationType.COMPETITION
+        else:
+            evaluation.evaluation_type = EvaluationType.NORMAL
+        evaluation.save()
+        return evaluation
 
     def get_estimated_time(self, obj: Evaluation) -> float:
         """Retourne l'estimation du temps nécessaire pour compléter l'évaluation"""

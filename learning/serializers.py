@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema_field
 from rest_framework import serializers
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
@@ -11,7 +12,6 @@ from .models import (
 User = get_user_model()
 
 
-# Inline serializers pour les réponses générées à la volée
 class CourseProgressSerializer(serializers.Serializer):
     """Serializer pour le progrès d'un cours"""
     course_id = serializers.IntegerField()
@@ -78,9 +78,9 @@ class QuizChoicePublicSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 
-class QuizQuestionSerializer(serializers.ModelSerializer):
+class QuizQuestionSerializer(WritableNestedModelSerializer):
     """Serializer pour les questions de quiz"""
-    choices = QuizChoiceSerializer(many=True, read_only=True)
+    choices = QuizChoiceSerializer(many=True, required=False)
 
     class Meta:
         model = QuizQuestion
@@ -98,9 +98,9 @@ class QuizQuestionPublicSerializer(serializers.ModelSerializer):
         read_only_fields = ['id']
 
 
-class QuizSerializer(serializers.ModelSerializer):
+class QuizSerializer(WritableNestedModelSerializer):
     """Serializer pour les quiz"""
-    questions = QuizQuestionSerializer(many=True, read_only=True)
+    questions = QuizQuestionSerializer(many=True, required=False)
     question_count = serializers.SerializerMethodField()
 
     class Meta:
@@ -249,9 +249,9 @@ class ModuleSerializer(serializers.ModelSerializer):
         return hasattr(obj, 'quiz') and obj.quiz is not None
 
 
-class CourseSerializer(serializers.ModelSerializer):
+class CourseSerializer(WritableNestedModelSerializer):
     """Serializer détaillé pour les cours"""
-    modules = ModuleSerializer(many=True, read_only=True)
+    modules = ModuleSerializer(many=True, required=False)
     module_count = serializers.SerializerMethodField()
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
@@ -351,7 +351,6 @@ class CertificateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-# Serializers pour les soumissions de quiz
 class QuizSubmissionChoiceSerializer(serializers.Serializer):
     """Serializer pour les choix sélectionnés dans une soumission de quiz"""
     question_id = serializers.IntegerField()
