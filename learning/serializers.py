@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema_field
-from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework import serializers
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
@@ -42,6 +42,8 @@ class UserProgressInlineSerializer(serializers.Serializer):
     percentage = serializers.DecimalField(max_digits=5, decimal_places=2)
     completed_contents = serializers.IntegerField()
     total_contents = serializers.IntegerField()
+    completed_quizzes = serializers.IntegerField()
+    total_quizzes = serializers.IntegerField()
 
 
 class ContentProgressInlineSerializer(serializers.Serializer):
@@ -157,14 +159,29 @@ class QuizResultSerializer(serializers.ModelSerializer):
 class QuizListSerializer(serializers.ModelSerializer):
     """Serializer pour la liste des quiz"""
     question_count = serializers.SerializerMethodField()
+    is_attempted = serializers.SerializerMethodField()
+    is_passed = serializers.SerializerMethodField()
 
     class Meta:
         model = Quiz
-        fields = ['id', 'module', 'title', 'description', 'question_count']
+        fields = ['id', 'module', 'title', 'description', 'question_count', 'is_attempted', 'is_passed']
         read_only_fields = ['id']
 
     def get_question_count(self, obj: Quiz) -> int:
         return obj.questions.count()
+
+    def get_is_passed(self, obj: Quiz) -> bool:
+        return QuizResult.objects.filter(
+            user=self.context['request'].user,
+            quiz=obj,
+            score__gte=70,
+        ).exists()
+
+    def get_is_attempted(self, obj: Quiz) -> bool:
+        return QuizResult.objects.filter(
+            user=self.context['request'].user,
+            quiz=obj,
+        ).exists()
 
 
 class ContentDetailSerializer(serializers.ModelSerializer):
@@ -279,6 +296,7 @@ class CourseSerializer(WritableNestedModelSerializer):
         request = self.context.get('request')
         if request and request.user.is_authenticated:
             total_contents = Content.objects.filter(module__course=obj).count()
+            total_quizzes = Quiz.objects.filter(module__course=obj).count()
             if total_contents == 0:
                 return {'percentage': 0, 'completed_contents': 0, 'total_contents': 0}
 
@@ -288,11 +306,19 @@ class CourseSerializer(WritableNestedModelSerializer):
                 is_completed=True
             ).count()
 
-            percentage = (completed_contents / total_contents) * 100
+            completed_quizzes = QuizResult.objects.filter(
+                user=request.user,
+                quiz__module__course=obj,
+                score__gte=70,
+            ).count()
+
+            percentage = ((completed_contents + completed_quizzes) / (total_contents + total_quizzes)) * 100
             return {
                 'percentage': round(percentage, 2),
                 'completed_contents': completed_contents,
-                'total_contents': total_contents
+                'total_contents': total_contents,
+                'completed_quizzes': completed_quizzes,
+                'total_quizzes': total_quizzes
             }
         return None
 

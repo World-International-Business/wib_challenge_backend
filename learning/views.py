@@ -148,7 +148,6 @@ class CourseViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # Vérifier si le cours est terminé
         total_contents = Content.objects.filter(module__course=course).count()
         completed_contents = Progress.objects.filter(
             user=request.user,
@@ -162,7 +161,19 @@ class CourseViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Vérifier si le certificat existe déjà
+        total_quizzes = Quiz.objects.filter(module__course=course).count()
+        completed_quizzes = QuizResult.objects.filter(
+            user=request.user,
+            quiz__module__course=course,
+            score__gte=70,
+        ).count()
+
+        if total_quizzes == 0 or completed_quizzes < total_quizzes:
+            return Response(
+                {'detail': 'Vous devez terminer tous les quiz du cours pour obtenir un certificat'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         certificate, created = Certificate.objects.get_or_create(
             user=request.user,
             course=course
@@ -378,17 +389,15 @@ class QuizViewSet(viewsets.ModelViewSet):
         answers_data = serializer.validated_data['answers']
 
         with transaction.atomic():
-            # Créer le résultat de quiz
             quiz_result = QuizResult.objects.create(
                 user=request.user,
                 quiz=quiz,
-                score=0  # Sera calculé ci-dessous
+                score=0
             )
 
             total_questions = quiz.questions.count()
             correct_answers = 0
 
-            # Traiter chaque réponse
             for answer_data in answers_data:
                 question_id = answer_data['question_id']
                 choice_ids = answer_data['choice_ids']
@@ -401,14 +410,12 @@ class QuizViewSet(viewsets.ModelViewSet):
                         status=status.HTTP_400_BAD_REQUEST
                     )
 
-                # Créer la réponse
                 quiz_answer = QuizAnswer.objects.create(
                     result=quiz_result,
                     question=question,
-                    is_correct=False  # Sera mis à jour ci-dessous
+                    is_correct=False
                 )
 
-                # Ajouter les choix sélectionnés
                 selected_choices = QuizChoice.objects.filter(
                     id__in=choice_ids,
                     question=question
@@ -422,13 +429,10 @@ class QuizViewSet(viewsets.ModelViewSet):
 
                 quiz_answer.selected_choices.set(selected_choices)
 
-                # Vérifier si la réponse est correcte
                 correct_choices = question.choices.filter(is_correct=True)
                 selected_correct = selected_choices.filter(is_correct=True)
                 selected_incorrect = selected_choices.filter(is_correct=False)
 
-                # La réponse est correcte si tous les choix corrects sont sélectionnés
-                # et aucun choix incorrect n'est sélectionné
                 if (selected_correct.count() == correct_choices.count() and
                         selected_incorrect.count() == 0):
                     quiz_answer.is_correct = True
@@ -436,7 +440,6 @@ class QuizViewSet(viewsets.ModelViewSet):
 
                 quiz_answer.save()
 
-            # Calculer et sauvegarder le score
             score = (correct_answers / total_questions * 100) if total_questions > 0 else 0
             quiz_result.score = score
             quiz_result.save()
@@ -602,7 +605,6 @@ class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
         return Certificate.objects.filter(user=self.request.user)
 
 
-# ViewSets supplémentaires pour les questions et choix de quiz
 @extend_schema_view(
     list=extend_schema(
         summary="Liste des questions de quiz",
