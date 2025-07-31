@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from .models import JobCategory, JobOffer
+
 from organizations.models import Organization
+from .models import JobCategory, JobOffer, JobApplication
 
 
 class JobCategorySerializer(serializers.ModelSerializer):
@@ -71,3 +72,29 @@ class JobOfferCreateUpdateSerializer(serializers.ModelSerializer):
                     "Le salaire minimum ne peut pas être supérieur au salaire maximum"
                 )
         return data
+
+
+class GenerateJobOfferSerializer(serializers.ModelSerializer):
+    prompt = serializers.CharField(write_only=True)
+    analyze = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = JobOffer
+        fields = ['title', 'description', 'responsibilities', 'requirements', 'benefits', 'prompt', 'analyze']
+        extra_kwargs = {
+            'title': {'required': False},
+            'description': {'required': False},
+            'responsibilities': {'required': False},
+            'requirements': {'required': False},
+            'benefits': {'required': False},
+        }
+
+
+class JobApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobApplication
+        fields = '__all__'
+        extra_kwargs = {
+            'ai_analysis': {'read_only': True},
+            'ai_decision': {'read_only': True},
+        }

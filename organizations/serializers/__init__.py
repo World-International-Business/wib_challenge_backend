@@ -212,7 +212,7 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
         evaluation = validated_data.get('evaluation')
         organization = evaluation.organization
 
-        candidate = Candidate.objects.create(
+        candidate = Candidate.objects.get_or_create(
             email=email,
             organization=organization,
             full_name=full_name

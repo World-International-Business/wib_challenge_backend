@@ -92,16 +92,16 @@ class JobOfferAdmin(admin.ModelAdmin):
         'title', 'description', 'company__name', 'location', 'requirements'
     ]
     readonly_fields = [
-        'slug', 'created_at', 'updated_at', 'published_at',
+        'created_at', 'updated_at', 'published_at',
         'company_info', 'category_info', 'view_on_site_link'
     ]
-    prepopulated_fields = {'slug': ('title',)}
+    # prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'published_at'
     list_per_page = 20
 
     fieldsets = [
         (_('Informations générales'), {
-            'fields': ['title', 'slug', 'company', 'category', 'status', 'featured']
+            'fields': ['title', 'company', 'category', 'status', 'featured']
         }),
         (_('Détails du poste'), {
             'fields': ['description', 'responsibilities', 'requirements', 'benefits']
@@ -173,13 +173,12 @@ class JobOfferAdmin(admin.ModelAdmin):
             color, label
         )
 
-    @admin.display(description=_('Mise en avant'), boolean=True)
+    @admin.display(description=_('Mise en avant'))
     def featured_badge(self, obj):
-        if obj.featured:
-            return format_html(
-                '<span style="color: #ffc107; font-size: 16px;">⭐</span>'
-            )
-        return False
+        return format_html(
+            '<span style="color: #ffc107; font-size: 16px;">%s</span>'
+            '⭐' if obj.featured else '-'
+        )
 
     @admin.display(description=_('Salaire'), ordering='salary_min')
     def salary_display(self, obj):

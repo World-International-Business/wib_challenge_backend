@@ -8,7 +8,7 @@ from rest_framework.exceptions import ValidationError, NotFound, PermissionDenie
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
-from corrector import correct_submission
+from services.corrector import correct_submission
 from organizations.models import (
     EvaluationInvitation, OrgSubmissionAttempt, OrgAnswer, OrgSubmission
 )

@@ -2,6 +2,7 @@ redis==5.0.1
 Django==5.1.8
 pillow==11.1.0
 openpyxl==3.1.5
+pymupdf==1.26.3
 pydantic==2.11.7
 gunicorn==23.0.0
 whitenoise==6.9.0

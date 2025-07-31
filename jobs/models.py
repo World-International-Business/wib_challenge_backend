@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from core.models import BaseModel
 from organizations.models import Organization, ExperienceLevel
 
 
@@ -37,7 +38,8 @@ class JobOffer(models.Model):
     class JobType(models.TextChoices):
         FULL_TIME = 'full_time', _('Temps plein')
         PART_TIME = 'part_time', _('Temps partiel')
-        CONTRACT = 'contract', _('Contrat')
+        CDI = 'cdi', _('CDI')
+        CDD = 'cdd', _('CDD')
         INTERNSHIP = 'internship', _('Stage')
         REMOTE = 'remote', _('Télétravail')
         FREELANCE = 'freelance', _('Freelance')
@@ -75,3 +77,27 @@ class JobOffer(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class JobApplication(BaseModel):
+    """
+    Modèle pour les applications d'emploi.
+   """
+    job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name='applications',
+                                  verbose_name=_("Offre d'emploi"))
+
+    applicant_name = models.CharField(_("Nom du candidat"), max_length=255)
+    applicant_email = models.EmailField(_("Email du candidat"))
+    resume = models.FileField(_("CV"), upload_to='resumes/', blank=True, null=True)
+    cover_letter = models.TextField(_("Lettre de motivation"), blank=True)
+    ai_analysis = models.TextField(_("Analyse IA du CV"), blank=True)
+    ai_decision = models.BooleanField(_("Décision IA"), null=True, blank=True)
+    submitted_at = models.DateTimeField(_("Date de soumission"), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Candidature")
+        verbose_name_plural = _("Candidatures")
+        ordering = ['-submitted_at']
+
+    def __str__(self):
+        return f"{self.applicant_name} - {self.job_offer.title}"

@@ -1,6 +1,7 @@
 import os
 from functools import cache
 
+from decouple import config
 from google import genai
 
 from organizations.models import OrgAnswer as Answer
@@ -8,10 +9,11 @@ from organizations.models import OrgAnswer as Answer
 
 @cache
 def get_genai_client():
-    return genai.Client(api_key=os.getenv('GENAI_API_KEY'))
+    return genai.Client(api_key=config('GENAI_API_KEY'))
 
 
-GEMINI_MODEL = "gemini-1.5-flash"
+GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL_LITE = "gemini-2.0-flash-lite"
 
 PERSONALITY_CONFIG = {
     'temperature': 0.7,

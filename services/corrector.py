@@ -3,7 +3,7 @@ import logging
 from django.db import transaction
 from django.utils import timezone
 
-from corrector.utils import get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
+from services.utils import get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
 from evaluations.models import Submission, SubmissionAttempt, Answer
 from organizations.models import OrgSubmission, OrgSubmissionAttempt, OrgEvaluation
 
@@ -14,12 +14,12 @@ def _calculate_scoring_factor(correct_count: int, incorrect_count: int, total_co
     float, str, bool]:
     """
     Calcule le facteur de scoring et détermine le statut de la réponse
-    
+
     Args:
         correct_count: Nombre de choix corrects sélectionnés
-        incorrect_count: Nombre de choix incorrects sélectionnés  
+        incorrect_count: Nombre de choix incorrects sélectionnés
         total_correct_choices: Nombre total de choix corrects possibles
-        
+
     Returns:
         tuple: (facteur, statut, is_correct)
     """
@@ -47,15 +47,15 @@ def correct_submission(submission: Submission | OrgSubmission, attempt: Submissi
                        save=True):
     """
     Corrige une soumission en évaluant chaque réponse
-    
+
     Args :
         submission : L'objet Submission à corriger
         attempt : L'objet SubmissionAttempt associé
         save : Si True, sauvegarde les changements en base de données
-        
+
     Returns :
         SubmissionAttempt : La tentative mise à jour
-        
+
     Raises:
         ValueError: Si les données sont incohérentes
         Exception: Si une erreur inattendue survient
@@ -167,7 +167,6 @@ def correct_personality_submission(submission: OrgSubmission, attempt: OrgSubmis
 
     if len(answers) == 0:
         return None
-    # usage, _ = APIUsage.objects.get_or_create(date=date.today())
 
     prompt = make_personality_prompt(list(answers))
 

@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.serializers import ListSerializer
 
-from corrector import correct_submission
+from services.corrector import correct_submission
 from evaluations.models import Evaluation, SubmissionAttempt, Submission, Answer, EvaluationType
 from evaluations.permissions import RejectUnConstructedEvaluation
 from evaluations.serializers import EvaluationSerializer, AnswerSerializer, SubmissionAttemptSerializer, \
