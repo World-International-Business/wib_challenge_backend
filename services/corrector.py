@@ -3,9 +3,9 @@ import logging
 from django.db import transaction
 from django.utils import timezone
 
-from services.utils import get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
 from evaluations.models import Submission, SubmissionAttempt, Answer
 from organizations.models import OrgSubmission, OrgSubmissionAttempt, OrgEvaluation
+from services.utils import get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
 
 logger = logging.getLogger(__name__)
 
@@ -180,6 +180,7 @@ def correct_personality_submission(submission: OrgSubmission, attempt: OrgSubmis
     attempt.corrected = True
     if save and submission.personality_detail is not None:
         submission.save()
+        answers.update(status=Answer.Status.CORRECT)
         attempt.save()
 
     # usage.count += 1

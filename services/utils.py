@@ -1,4 +1,3 @@
-import os
 from functools import cache
 
 from decouple import config
@@ -31,20 +30,18 @@ _personality_prompt = """
 Tu es un psychologue expert en analyse comportementale. Analyse les réponses du candidat à ce test de personnalité.
 Pour le Poste de {domain} dans une startup IT
 
-Voici ses réponses:
+Voici le test de personnalité:
 
-{answers}
+{content}
 
-Sur la base de ces réponses, fournis une analyse complète de la personnalité du candidat, comprenant:
-Introduction
-Traits de personnalité dominants
-Forces et qualités
-Points d'amélioration potentiels
-Style de travail et de communication
-Compatibilité avec différents environnements professionnels
-Conclusion
+Sur la base de ces réponses, fournis une analyse complète de la personnalité du candidat en structurant automatiquement ton analyse selon les thématiques qui ressortent des questions posées. 
 
-Reste objectif et factuel dans ton analyse. Limite ta réponse à environ 600 mots.
+Organise ta réponse avec:
+- Introduction: Présentation générale du profil
+- Développement: Analyse détaillée par thématiques identifiées (traits de personnalité, compétences comportementales, aptitudes professionnelles, etc.) en te basant sur les domaines couverts par les questions
+- Conclusion: Synthèse et adéquation au poste
+
+Identifie et traite automatiquement les axes d'analyse pertinents selon les questions du test. Reste objectif et factuel dans ton analyse. Limite ta réponse à environ 600 mots.
 """
 
 
@@ -69,6 +66,6 @@ def make_personality_prompt(answers: list[Answer]):
         answers_text += make_personality_answer_prompt(answer)
 
     return _personality_prompt.format(
-        answers=answers_text,
+        content=answers_text,
         domain=answers[0].question.evaluation.profession.title
     )

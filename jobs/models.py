@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 from core.models import BaseModel
@@ -77,6 +78,14 @@ class JobOffer(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug or not self.pk:
+            super().save(*args, **kwargs)
+            self.slug = f"{self.id}-{slugify(self.title)}"
+            self.save(update_fields=['slug'])
+        else:
+            super().save(*args, **kwargs)
 
 
 class JobApplication(BaseModel):

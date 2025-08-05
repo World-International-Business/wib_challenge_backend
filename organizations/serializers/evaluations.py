@@ -25,6 +25,20 @@ class AutomaticEvaluationSerializer(serializers.Serializer):
     )
 
 
+class AutomaticPersonalityEvaluationSerializer(serializers.Serializer):
+    """Sérialiseur pour la création automatique d'évaluation basée sur le niveau d'expérience et les technologies"""
+    profession = serializers.SlugRelatedField(required=True, help_text="Profession cible (ex: 'Développeur Frontend')",
+                                              slug_field='title',
+                                              queryset=Profession.objects.all())
+    experience_level = serializers.ChoiceField(
+        choices=ExperienceLevel.choices,
+        default=ExperienceLevel.JUNIOR,
+        help_text="Niveau d'expérience du candidat"
+    )
+
+    description = serializers.CharField(help_text="Explication détaillée de l'évaluation", required=False, default="")
+
+
 class ProportionItemSerializer(serializers.Serializer):
     """Sérialiseur pour une proportion de technologie dans une évaluation"""
     technology = serializers.PrimaryKeyRelatedField(
@@ -132,7 +146,7 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
             }
 
             estimated_time = questions_in_eval.aggregate(total_duration=Sum('duration'))[
-                'total_duration'] or 0
+                                 'total_duration'] or 0
 
             result.append({
                 'id': tech.id,

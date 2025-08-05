@@ -13,33 +13,34 @@ from organizations.permissions import IsOrganization
 from organizations.serializers import EvaluationInvitationSerializer, InviteCandidateSerializer, OrgQuestionSerializer, \
     OrgSubmissionAttemptDetailSerializer
 from organizations.serializers.evaluations import EvaluationResponseSerializer, AutomaticEvaluationSerializer, \
-    ProportionEvaluationSerializer
+    ProportionEvaluationSerializer, AutomaticPersonalityEvaluationSerializer
 from organizations.serializers.results import CandidateResultSerializer
 from questions.models import Question
+from services.generate_evaluation import generate_evaluation
 from wib_challenge.permissions import ReadOnly
 
 EXPERIENCE_QUOTAS = {
     ExperienceLevel.JUNIOR: {
-        Question.Difficulty.EASY: 60,  # 60% facile
-        Question.Difficulty.MEDIUM: 30,  # 30% intermédiaire
-        Question.Difficulty.HARD: 10,  # 10% difficile
+        Question.Difficulty.EASY: 60,
+        Question.Difficulty.MEDIUM: 30,
+        Question.Difficulty.HARD: 10,
     },
     ExperienceLevel.INTERMEDIATE: {
-        Question.Difficulty.EASY: 30,  # 30% facile
-        Question.Difficulty.MEDIUM: 50,  # 50% intermédiaire
-        Question.Difficulty.HARD: 20,  # 20% difficile
+        Question.Difficulty.EASY: 30,
+        Question.Difficulty.MEDIUM: 50,
+        Question.Difficulty.HARD: 20,
     },
     ExperienceLevel.SENIOR: {
-        Question.Difficulty.EASY: 15,  # 15% facile
-        Question.Difficulty.MEDIUM: 35,  # 35% intermédiaire
-        Question.Difficulty.HARD: 50,  # 50% difficile
+        Question.Difficulty.EASY: 15,
+        Question.Difficulty.MEDIUM: 35,
+        Question.Difficulty.HARD: 50,
     }
 }
 
 QUESTIONS_PER_TECH = {
-    ExperienceLevel.JUNIOR: 10,  # 10 questions par technologie
-    ExperienceLevel.INTERMEDIATE: 15,  # 15 questions par technologie
-    ExperienceLevel.SENIOR: 20  # 20 questions par technologie
+    ExperienceLevel.JUNIOR: 10,
+    ExperienceLevel.INTERMEDIATE: 15,
+    ExperienceLevel.SENIOR: 20
 }
 
 
@@ -318,6 +319,71 @@ def generate_evaluation(request):
         for questions in questions_by_difficulty.values():
             all_questions.extend(questions)
         bulk_create_org_question(all_questions, evaluation)
+
+    response_data = EvaluationResponseSerializer(evaluation, context={
+        'request': request,
+    }).data
+    return Response(response_data, status=status.HTTP_201_CREATED)
+
+
+@extend_schema(
+    request=AutomaticPersonalityEvaluationSerializer,
+    summary="Création automatique d'évaluation de personnalité",
+    description="Génère une évaluation de personnalité basée sur une profession, un niveau d'expérience et d'une description",
+    responses={201: EvaluationResponseSerializer}
+)
+@permission_classes([IsAuthenticated, IsOrganization])
+@api_view(['POST'])
+@transaction.atomic
+def generate_personality_evaluation(request):
+    """
+    Création automatique d'une évaluation de personnalité basée sur :
+    * Profession (pour le titre)
+    * Niveau d'expérience (junior, intermediate, senior)
+    * Description du poste
+    """
+    serializer = AutomaticPersonalityEvaluationSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    profession = serializer.validated_data['profession']
+    experience_level = serializer.validated_data['experience_level']
+    description = serializer.validated_data['description']
+
+    try:
+        data = generate_evaluation(profession, experience_level, description)
+    except Exception as e:
+        return Response(
+            {"detail": f"Erreur lors de la génération des questions: {str(e)}"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    evaluation = OrgEvaluation.objects.create(
+        organization=request.user.organization,
+        title=f"Évaluation Personnalité {profession.title} - {experience_level.capitalize()}",
+        description=data.theme,
+        profession=profession,
+        type=OrgEvaluation.EvaluationType.PERSONALITY,
+        questions_order=OrgEvaluation.QuestionOrder.RANDOM
+    )
+
+    all_questions = [
+        OrgQuestion(
+            text=question.text,
+            evaluation=evaluation,
+            duration=60,
+            difficulty=Question.Difficulty.MEDIUM,
+        )
+        for question in data.questions
+    ]
+    OrgQuestion.objects.bulk_create(all_questions)
+    OrgChoice.objects.bulk_create([
+        OrgChoice(
+            question=question,
+            text=choice.text,
+            is_correct=choice.is_correct,
+        )
+        for i, question in enumerate(all_questions) for choice in data.questions[i].choices
+    ])
 
     response_data = EvaluationResponseSerializer(evaluation, context={
         'request': request,

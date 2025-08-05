@@ -80,7 +80,8 @@ class GenerateJobOfferSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JobOffer
-        fields = ['title', 'description', 'responsibilities', 'requirements', 'benefits', 'prompt', 'analyze']
+        fields = ['title', 'description', 'responsibilities',
+                  'requirements', 'benefits', 'prompt', 'analyze']
         extra_kwargs = {
             'title': {'required': False},
             'description': {'required': False},
@@ -97,4 +98,5 @@ class JobApplicationSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'ai_analysis': {'read_only': True},
             'ai_decision': {'read_only': True},
+            'job_offer': {'required': False}
         }

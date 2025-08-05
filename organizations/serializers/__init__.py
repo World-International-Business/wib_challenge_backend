@@ -216,7 +216,7 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
             email=email,
             organization=organization,
             full_name=full_name
-        )
+        )[0]
 
         invitation = EvaluationInvitation.objects.create(
             candidate=candidate,

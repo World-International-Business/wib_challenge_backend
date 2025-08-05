@@ -3,14 +3,15 @@ from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from rest_framework import generics, filters, status
+from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 from services.cv_analyzer import analyze_job_application
 from services.generate_offer import generate_offer
+from wib_challenge.permissions import ReadOnly
 from .filters import JobOfferFilter
 from .models import JobCategory, JobOffer
 from .permissions import IsCompanyOwnerOrReadOnly
@@ -21,7 +22,7 @@ from .serializers import (
 )
 
 
-class JobCategoryViewSet(ReadOnlyModelViewSet):
+class JobCategoryViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les catégories d'emploi (lecture seule)
     """
@@ -29,8 +30,7 @@ class JobCategoryViewSet(ReadOnlyModelViewSet):
         job_count=Count('job_offers', filter=Q(job_offers__status='published'))
     )
     serializer_class = JobCategorySerializer
-
-    # lookup_field = 'slug'
+    permission_classes = [IsAdminUser | ReadOnly]
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -38,7 +38,7 @@ class JobCategoryViewSet(ReadOnlyModelViewSet):
         return JobCategorySerializer
 
 
-class JobOfferViewSet(ModelViewSet):
+class JobOfferViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les offres d'emploi avec toutes les opérations CRUD
     """
@@ -62,7 +62,6 @@ class JobOfferViewSet(ModelViewSet):
         else:
             queryset = queryset.filter(status=JobOffer.Status.PUBLISHED)
 
-        print(queryset)
         return queryset
 
     def get_serializer_class(self):
@@ -161,7 +160,7 @@ class JobOfferViewSet(ModelViewSet):
         request=JobApplicationSerializer,
         responses={200: JobApplicationSerializer}
     )
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['post'], permission_classes=[])
     def apply(self, request, pk=None):
         """
         Permet à un candidat de postuler une offre d'emploi.
