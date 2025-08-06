@@ -41,12 +41,13 @@ class User(AbstractUser):
 
     class Roles(models.TextChoices):
         ADMIN = 'admin', _('Administrateur')
-        USER = 'dev', _('Développeur')
-        ORG = 'org', _('Organisation')
+        USER = 'developer', _('Développeur')
+        ORGANIZATION = 'organization', _('Organisation')
+        EVALUATOR = 'evaluator', _('Évaluateur')
 
     username = models.UUIDField(_('username'), unique=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(_("email address"), unique=True)
-    role = models.CharField(_('Rôle'), max_length=10, choices=Roles.choices, default=Roles.USER)
+    role = models.CharField(_('Rôle'), max_length=20, choices=Roles.choices, default=Roles.USER)
     picture = models.ImageField(_('Photo de profil'), upload_to=profile_pictures_upload, null=True, blank=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name']
@@ -68,8 +69,12 @@ class User(AbstractUser):
 
     @property
     def is_org(self):
-        return self.role == self.Roles.ORG
+        return self.role == self.Roles.ORGANIZATION
 
     @property
     def is_dev(self):
         return self.role == self.Roles.USER
+
+    @property
+    def is_evaluator(self):
+        return self.role == self.Roles.EVALUATOR

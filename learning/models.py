@@ -65,7 +65,7 @@ class Content(models.Model):
     )
     title = models.CharField(_('Titre'), max_length=255)
     content_type = models.CharField(_('Content Type'), max_length=15, choices=ContentType.choices)
-    resource_file = models.FileField(_('Fichier'), null=True, blank=True)
+    resource_file = models.FileField(_('Fichier'), null=True, blank=True, upload_to='learning/contents/')
     resource_url = models.URLField(_('URL'), null=True, blank=True)
     content = models.TextField(_('Contenu'), null=True, blank=True)
 
