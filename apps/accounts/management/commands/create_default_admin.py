@@ -7,7 +7,7 @@ class Command(BaseCommand):
     requires_migrations_checks = True
 
     def handle(self, *args, **options):
-        from accounts.models import User
+        from apps.accounts.models import User
 
         user, created = User.objects.get_or_create(email='admin@wibchallenge.com', first_name='Admin',
                                                    last_name='Admin')

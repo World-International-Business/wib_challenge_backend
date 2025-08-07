@@ -1,12 +1,6 @@
 import random
-import urllib.parse
 
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from allauth.socialaccount.providers.oauth2.client import OAuth2Client
-from decouple import config
-from dj_rest_auth.registration.views import SocialLoginView
 from django.contrib.auth.tokens import default_token_generator
-from django.http import HttpResponsePermanentRedirect
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -19,9 +13,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from accounts.models import User
-from accounts.serializers import UserSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, \
-    PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer
+from apps.accounts.models import User
+from apps.accounts.serializers import UserSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, \
+    PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer, GoogleLoginSerializer
 from wib_challenge.permissions import IsSelf, ReadOnly
 from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageResponseSerializer
 
@@ -131,14 +125,9 @@ class PasswordResetConfirmView(GenericAPIView):
         return Response({"message": _("Mot de passe changé")}, status=status.HTTP_200_OK)
 
 
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
-    callback_url = config('GOOGLE_OAUTH_CALLBACK_URL')
-    client_class = OAuth2Client
+class GoogleLoginView(GenericAPIView):
+    permission_classes = []
+    serializer_class = GoogleLoginSerializer
 
-
-def google_oauth2(request):
-    google_client_id = config('GOOGLE_OAUTH_CLIENT_ID')
-    google_callback_uri = urllib.parse.quote(config('GOOGLE_OAUTH_CALLBACK_URL'))
-    return HttpResponsePermanentRedirect(
-        f'https://accounts.google.com/o/oauth2/v2/auth?redirect_uri={google_callback_uri}&prompt=consent&response_type=code&client_id={google_client_id}&scope=openid%20email%20profile&access_type=offline')
+    def post(self):
+        pass

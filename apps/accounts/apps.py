@@ -4,5 +4,5 @@ from django.utils.translation import gettext_lazy as _
 
 class AccountsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'accounts'
+    name = 'apps.accounts'
     verbose_name = _('Comptes Utilisateurs')

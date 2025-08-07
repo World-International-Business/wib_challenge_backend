@@ -1,12 +1,22 @@
-from django.contrib.auth.tokens import default_token_generator
+import json
+import mimetypes
+import urllib.request
+import uuid
+
+from decouple import config
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import inline_serializer
+from google.auth.transport import requests as google_requests
+from google.oauth2 import id_token
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
-from accounts.models import User
+from apps.accounts.models import User
 
 
 class WithUserTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -18,7 +28,6 @@ class WithUserTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 
 class PublisherSerializer(serializers.ModelSerializer):
-
     full_name = serializers.CharField(source='get_full_name', read_only=True)
 
     class Meta:
@@ -130,6 +139,61 @@ class PasswordChangeSerializer(serializers.Serializer):
     @property
     def data(self):
         return {'message': _('Mot de passe changé')}
+
+
+class GoogleLoginSerializer(serializers.Serializer):
+    id_token = serializers.CharField(required=True)
+    role = serializers.ChoiceField(choices=User.Roles.choices, required=False)
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        id_token_str = attrs.get('id_token')
+        role = attrs.get('role', User.Roles.USER)
+
+        if role and role == User.Roles.ADMIN:
+            raise ValidationError("Vous ne pouvez pas créer un compte admin.")
+
+        try:
+            info = id_token.verify_oauth2_token(
+                id_token_str,
+                google_requests.Request(),
+                audience=config('GOOGLE_OAUTH_CLIENT_ID')
+            )
+
+            print(info, json.dumps(info, indent=2))
+
+            email = info.get('email')
+
+            if not email:
+                raise ValidationError("Email introuvable dans le token")
+
+            user, created = User.objects.get_or_create(email=email, defaults={
+                "username": uuid.UUID(int=int(info.get('sub')), version=4) if info.get('sub') else None,
+                "first_name": info.get('given_name', info.get('name', '')).capitalize(),
+                'last_name': info.get('family_name', '').capitalize(),
+                "role": role
+            })
+
+            picture: str = info.get('picture', None)
+            if picture is not None:
+                picture = (picture[:picture.rfind('=')] if '=' in picture else picture) + '=s1024-nu-c-d'
+                response = urllib.request.urlopen(picture)
+                ext = mimetypes.guess_extension(response.info().get_content_type())
+                if ext is None:
+                    ext = '.png'
+                file = info.get('sub') + ext
+                user.picture.save(name=file, content=response.read())
+
+            refresh = RefreshToken.for_user(user)
+
+            return {
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+            }
+        except ValueError:
+            raise ValidationError("Token invalide")
+        except Exception as e:
+            raise ValidationError(str(e))
 
 
 UserRegisterResponse = inline_serializer('UserRegisterResponse', fields={
