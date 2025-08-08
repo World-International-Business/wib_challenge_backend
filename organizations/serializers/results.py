@@ -4,8 +4,8 @@ from django.db.models import Sum
 from rest_framework import serializers
 from drf_spectacular.utils import extend_schema_field, inline_serializer
 
-from core.models import Technology
-from evaluations.models import Answer
+from apps.core.models import Technology
+from apps.evaluations.models import Answer
 from organizations.models import EvaluationInvitation, OrgSubmissionAttempt
 
 
@@ -86,7 +86,7 @@ class CandidateResultSerializer(serializers.ModelSerializer):
                 status=Answer.Status.DISCARDED).count()
 
             score = score = answers.aggregate(total_score=Sum('score'))[
-                'total_score'] or 0.0
+                                'total_score'] or 0.0
 
             stats.append({
                 'technology': tech.name,
@@ -135,7 +135,7 @@ class CandidateResultSerializer(serializers.ModelSerializer):
             status=Answer.Status.INCORRECT).count()
 
         score = answers.aggregate(total_score=Sum('score'))[
-            'total_score'] or 0.0
+                    'total_score'] or 0.0
 
         return {
             'score': round(score, 2),

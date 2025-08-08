@@ -5,13 +5,13 @@ from drf_spectacular.utils import inline_serializer, extend_schema_field
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
-from core.serializers import TechnologySerializer
+from apps.core.serializers import TechnologySerializer
 from organizations.models import (
     Organization, OrgEvaluation, OrgQuestion, OrgChoice,
     OrgSubmissionAttempt, OrgAnswer, OrgSubmission, Candidate, EvaluationInvitation
 )
 from organizations.utils import send_invitation_email
-from questions.models import Question
+from apps.questions.models import Question
 
 
 class OrganizationSerializer(serializers.ModelSerializer):

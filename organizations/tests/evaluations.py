@@ -2,11 +2,11 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from accounts.models import User
-from core.models import Technology, Profession
-from evaluations.models import Evaluation
+from apps.accounts.models import User
+from apps.core.models import Technology, Profession
+from apps.evaluations.models import Evaluation
 from organizations.models import Organization, OrgEvaluation, ExperienceLevel
-from questions.models import Question, Choice
+from apps.questions.models import Question, Choice
 
 
 class OrgEvaluationCreationTestCase(APITestCase):

@@ -2,7 +2,7 @@ from typing import List
 
 from pydantic import BaseModel, Field
 
-from core.models import Profession
+from apps.core.models import Profession
 from services.utils import get_genai_client, GEMINI_MODEL
 
 

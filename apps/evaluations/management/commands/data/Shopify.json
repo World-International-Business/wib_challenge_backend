@@ -1,0 +1,800 @@
+{
+  "technology": "Shopify",
+  "title": "Évaluation Shopify Complète",
+  "description": "Cette évaluation couvre les concepts fondamentaux et avancés de Shopify, incluant la création de boutique, la personnalisation de thèmes, le développement d'applications et l'optimisation e-commerce.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Qu'est-ce que Shopify?",
+      "explanation": "Shopify est une plateforme e-commerce complète qui permet aux entrepreneurs de créer et de gérer une boutique en ligne. Elle offre des services tels que la gestion des produits, la gestion des commandes, le paiement, l'hébergement et bien d'autres.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Une plateforme e-commerce complète",
+          "is_correct": true
+        },
+        {
+          "text": "Un CMS comme WordPress",
+          "is_correct": false
+        },
+        {
+          "text": "Un service d'hébergement web",
+          "is_correct": false
+        },
+        {
+          "text": "Un système de gestion de bases de données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel langage est utilisé pour personnaliser les thèmes Shopify?",
+      "explanation": "Liquid est un langage de modèle (templating language) créé par Shopify et écrit en Ruby. Il est utilisé pour charger du contenu dynamique dans les pages Shopify.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Liquid",
+          "is_correct": true
+        },
+        {
+          "text": "PHP",
+          "is_correct": false
+        },
+        {
+          "text": "Ruby",
+          "is_correct": false
+        },
+        {
+          "text": "Twig",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment peut-on ajouter une nouvelle section à un thème Shopify?",
+      "explanation": "Dans Shopify, les sections sont des composants modulaires qui peuvent être ajoutés à une page. Pour créer une nouvelle section, il faut ajouter un fichier .liquid dans le dossier 'sections' du thème avec le code HTML, Liquid et les paramètres nécessaires.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "En créant un fichier .liquid dans le dossier 'sections'",
+          "is_correct": true
+        },
+        {
+          "text": "En utilisant l'API Shopify",
+          "is_correct": false
+        },
+        {
+          "text": "En installant une application tierce",
+          "is_correct": false
+        },
+        {
+          "text": "En modifiant le fichier theme.js",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le principal avantage de Shopify Plus par rapport à Shopify standard?",
+      "explanation": "Shopify Plus est la version entreprise de Shopify qui offre des fonctionnalités avancées comme une plus grande personnalisation, un support dédié 24/7, la possibilité de gérer plusieurs boutiques avec un seul compte, et une meilleure gestion des pics de trafic.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Des fonctionnalités avancées pour les entreprises",
+          "is_correct": true
+        },
+        {
+          "text": "Un meilleur référencement SEO",
+          "is_correct": false
+        },
+        {
+          "text": "Des frais de transaction moins élevés",
+          "is_correct": false
+        },
+        {
+          "text": "Un accès à plus de thèmes gratuits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder aux données d'un produit dans un template Liquid?",
+      "explanation": "Dans Liquid, les données d'un produit peuvent être accessibles via l'objet 'product'. Par exemple, `{{ product.title }}` affiche le titre du produit et `{{ product.price }}` affiche son prix.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`{{ product.title }}`",
+          "is_correct": true
+        },
+        {
+          "text": "`{{ products['title'] }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{{ get_product_title() }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{% product.title %}`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que Shopify POS?",
+      "explanation": "Shopify POS (Point of Sale) est une application qui permet aux marchands Shopify de vendre leurs produits en personne, que ce soit dans une boutique physique, un marché, ou un événement. Elle synchronise l'inventaire et les commandes avec la boutique en ligne.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Un système de point de vente pour les boutiques physiques",
+          "is_correct": true
+        },
+        {
+          "text": "Un outil de traitement des paiements en ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Un système de gestion des stocks",
+          "is_correct": false
+        },
+        {
+          "text": "Une plateforme de marketing par courriel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment mettre en place des variations de produits (comme taille, couleur) dans Shopify?",
+      "explanation": "Dans Shopify, les variations de produits se gèrent via les options et variantes. Pour créer des variantes, vous ajoutez des options (ex: taille, couleur) au produit, puis Shopify génère automatiquement les combinaisons possibles.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "En ajoutant des options au produit et en créant des variantes",
+          "is_correct": true
+        },
+        {
+          "text": "En créant un produit distinct pour chaque variation",
+          "is_correct": false
+        },
+        {
+          "text": "En utilisant une application tierce de gestion d'inventaire",
+          "is_correct": false
+        },
+        {
+          "text": "En modifiant le code CSS du thème",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une application Shopify?",
+      "explanation": "Les applications Shopify sont des extensions qui ajoutent des fonctionnalités supplémentaires à une boutique Shopify. Elles peuvent être développées par Shopify ou par des développeurs tiers, et sont disponibles sur la Shopify App Store.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "Une extension qui ajoute des fonctionnalités à une boutique Shopify",
+          "is_correct": true
+        },
+        {
+          "text": "Le nom de l'application mobile de Shopify",
+          "is_correct": false
+        },
+        {
+          "text": "Un type spécial de boutique Shopify",
+          "is_correct": false
+        },
+        {
+          "text": "Un outil pour gérer plusieurs boutiques Shopify",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder à l'Admin API de Shopify?",
+      "explanation": "L'Admin API de Shopify permet aux développeurs d'accéder et de modifier les données d'une boutique Shopify. Pour y accéder, vous devez créer une application privée ou publique dans le panneau d'administration de Shopify et utiliser les clés d'API générées pour vous authentifier.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "En créant une application et en utilisant les clés d'API",
+          "is_correct": true
+        },
+        {
+          "text": "Via le thème Shopify en utilisant Liquid",
+          "is_correct": false
+        },
+        {
+          "text": "En modifiant directement la base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Via FTP en accédant aux fichiers du serveur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que permet de faire Shopify Payments?",
+      "explanation": "Shopify Payments est la solution de paiement intégrée de Shopify. Elle permet aux marchands d'accepter directement les paiements par carte de crédit sans avoir besoin d'une passerelle de paiement tierce, et offre une vue unifiée des paiements, des commandes et des finances.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Accepter directement les paiements par carte de crédit",
+          "is_correct": true
+        },
+        {
+          "text": "Offrir des options de financement aux clients",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer les taxes internationales",
+          "is_correct": false
+        },
+        {
+          "text": "Convertir les devises automatiquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment inclure un fichier snippet dans un template Liquid?",
+      "explanation": "Dans Liquid, vous pouvez inclure un snippet (fragment de code réutilisable) en utilisant la balise `{% include %}`. Les snippets sont stockés dans le dossier 'snippets' du thème.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`{% include 'nom-du-snippet' %}`",
+          "is_correct": true
+        },
+        {
+          "text": "`{{ import 'nom-du-snippet' }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{% require 'nom-du-snippet' %}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{{ snippet.nom-du-snippet }}`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le but de l'objet `cart` dans Liquid?",
+      "explanation": "L'objet `cart` dans Liquid permet d'accéder aux informations sur le panier d'achat du client, comme les articles qu'il contient, le total, les attributs personnalisés, etc.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Accéder aux informations sur le panier d'achat du client",
+          "is_correct": true
+        },
+        {
+          "text": "Créer un nouveau panier",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer les options de paiement",
+          "is_correct": false
+        },
+        {
+          "text": "Suivre les produits vus récemment",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment mettre en place une redirection personnalisée dans Shopify?",
+      "explanation": "Les redirections dans Shopify peuvent être configurées dans la section Navigation → Redirections URL du panneau d'administration. Cela permet de rediriger d'anciennes URL vers de nouvelles pour maintenir le SEO ou pour des URL personnalisées.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Via le tableau de bord dans Navigation → Redirections URL",
+          "is_correct": true
+        },
+        {
+          "text": "En modifiant le fichier .htaccess",
+          "is_correct": false
+        },
+        {
+          "text": "Via le fichier robots.txt",
+          "is_correct": false
+        },
+        {
+          "text": "En utilisant JavaScript pour rediriger le navigateur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle balise Liquid est utilisée pour les structures conditionnelles?",
+      "explanation": "La balise `{% if %}` en Liquid est utilisée pour créer des structures conditionnelles. Elle permet d'afficher du contenu différent selon que certaines conditions sont remplies ou non.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`{% if %}`",
+          "is_correct": true
+        },
+        {
+          "text": "`{{ when }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{% case %}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{{ if }}`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter une police personnalisée à un thème Shopify?",
+      "explanation": "Pour ajouter une police personnalisée à un thème Shopify, vous devez télécharger le fichier de police dans le dossier 'assets' du thème, puis l'importer via CSS en utilisant @font-face, et enfin l'appliquer aux éléments désirés avec la propriété font-family.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Ajouter le fichier de police dans le dossier assets et l'importer via CSS",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser Google Fonts dans l'éditeur de thème",
+          "is_correct": false
+        },
+        {
+          "text": "Installer une application de gestion de polices",
+          "is_correct": false
+        },
+        {
+          "text": "Modifier directement le code HTML pour inclure la police",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que Shopify Fulfillment Network?",
+      "explanation": "Shopify Fulfillment Network (SFN) est un réseau d'entrepôts et de centres logistiques gérés par Shopify qui aide les marchands à stocker, emballer et expédier leurs produits. Il permet aux vendeurs de proposer des livraisons rapides et fiables sans gérer eux-mêmes la logistique.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Un réseau d'entrepôts géré par Shopify pour le stockage et l'expédition des produits",
+          "is_correct": true
+        },
+        {
+          "text": "Un service d'expédition à l'international",
+          "is_correct": false
+        },
+        {
+          "text": "Une application pour suivre les commandes",
+          "is_correct": false
+        },
+        {
+          "text": "Un système pour gérer les retours de produits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment peut-on implémenter un système de remises dans Shopify?",
+      "explanation": "Shopify offre plusieurs façons de créer des remises : via la section Remises du panneau d'administration pour créer des codes de réduction, en créant des remises automatiques en fonction du panier, ou en utilisant des applications tierces pour des fonctionnalités plus avancées.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Via la section Remises du panneau d'administration",
+          "is_correct": true
+        },
+        {
+          "text": "En modifiant directement les prix des produits",
+          "is_correct": false
+        },
+        {
+          "text": "Uniquement via des applications tierces",
+          "is_correct": false
+        },
+        {
+          "text": "En personnalisant le code du processus de paiement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre une collection manuelle et une collection automatique dans Shopify?",
+      "explanation": "Dans Shopify, une collection manuelle nécessite que vous ajoutiez chaque produit individuellement, tandis qu'une collection automatique inclut automatiquement tous les produits qui correspondent à des conditions spécifiques que vous définissez (comme catégorie, prix, fournisseur, etc.).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Les collections manuelles requièrent l'ajout individuel des produits, les collections automatiques utilisent des conditions",
+          "is_correct": true
+        },
+        {
+          "text": "Les collections manuelles sont pour les petites boutiques, les collections automatiques pour les grandes",
+          "is_correct": false
+        },
+        {
+          "text": "Les collections manuelles permettent plus de personnalisation visuelle",
+          "is_correct": false
+        },
+        {
+          "text": "Les collections automatiques sont uniquement disponibles sur Shopify Plus",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un champ personnalisé pour un produit dans Shopify?",
+      "explanation": "Les champs personnalisés, appelés métachamps (metafields) dans Shopify, peuvent être ajoutés aux produits via des applications tierces, l'API Shopify, ou depuis la section Métachamps de l'administration Shopify. Ils permettent de stocker des informations supplémentaires sur les produits.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "En utilisant des métachamps (metafields)",
+          "is_correct": true
+        },
+        {
+          "text": "En modifiant la base de données des produits",
+          "is_correct": false
+        },
+        {
+          "text": "En ajoutant des attributs HTML au template du produit",
+          "is_correct": false
+        },
+        {
+          "text": "En créant une nouvelle propriété dans le fichier JSON du produit",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le tag Liquid pour itérer sur une collection d'objets?",
+      "explanation": "Le tag `{% for %}` en Liquid permet d'itérer sur une collection d'objets comme des produits, des articles de blog, ou des liens de menu.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`{% for %}`",
+          "is_correct": true
+        },
+        {
+          "text": "`{% loop %}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{{ each }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{% iterate %}`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment personnaliser le processus de paiement (checkout) dans Shopify?",
+      "explanation": "La personnalisation du processus de paiement dépend du plan Shopify. Avec Shopify standard, vous pouvez personnaliser des éléments de base comme le logo, les couleurs et les polices. Avec Shopify Plus, vous pouvez modifier en profondeur le code du processus de paiement.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Via les paramètres de processus de paiement et avec le checkout.liquid (Shopify Plus uniquement)",
+          "is_correct": true
+        },
+        {
+          "text": "En modifiant directement le code du thème",
+          "is_correct": false
+        },
+        {
+          "text": "En installant une application de personnalisation du panier",
+          "is_correct": false
+        },
+        {
+          "text": "En créant un système de paiement externe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le Dawn Theme dans Shopify?",
+      "explanation": "Dawn est le thème par défaut développé par Shopify depuis 2021. Il est conçu pour être rapide, responsive, accessible et hautement personnalisable. Il utilise les meilleures pratiques web modernes et est optimisé pour des expériences d'achat fluides sur mobile.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Le thème par défaut de Shopify optimisé pour la vitesse et le mobile",
+          "is_correct": true
+        },
+        {
+          "text": "Un thème premium payant conçu pour les grandes marques",
+          "is_correct": false
+        },
+        {
+          "text": "Un framework de développement pour créer des thèmes personnalisés",
+          "is_correct": false
+        },
+        {
+          "text": "Un thème spécialisé pour les boutiques de mode",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment peut-on ajouter du JavaScript personnalisé à un thème Shopify?",
+      "explanation": "Pour ajouter du JavaScript personnalisé à un thème Shopify, vous pouvez soit créer un fichier JS dans le dossier 'assets' et l'inclure dans le thème, soit ajouter du code directement dans la section JavaScript de l'éditeur de thème, ou utiliser le fichier theme.js existant.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "En ajoutant un fichier JS dans le dossier assets et en l'incluant dans le thème",
+          "is_correct": true
+        },
+        {
+          "text": "En modifiant le fichier package.json",
+          "is_correct": false
+        },
+        {
+          "text": "En utilisant uniquement des balises <script> dans le code HTML",
+          "is_correct": false
+        },
+        {
+          "text": "En installant une application d'extension de code",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le but du fichier theme.liquid?",
+      "explanation": "Le fichier theme.liquid est le template principal de tout thème Shopify. Il contient la structure HTML de base qui est commune à toutes les pages du site, comme l'en-tête, le pied de page, et les liens vers les fichiers CSS et JavaScript.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Contenir la structure HTML de base commune à toutes les pages",
+          "is_correct": true
+        },
+        {
+          "text": "Définir les styles CSS du thème",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer les paramètres de personnalisation du thème",
+          "is_correct": false
+        },
+        {
+          "text": "Configurer les redirections URL",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment implémenter le multi-devises dans une boutique Shopify?",
+      "explanation": "Le multi-devises dans Shopify peut être mis en place en activant la fonctionnalité de conversion de devise dans les paramètres de paiement (disponible sur certains plans), ou en utilisant des applications tierces de conversion de devises qui offrent plus de fonctionnalités et de contrôle.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "En activant la fonctionnalité dans les paramètres de paiement ou avec une application tierce",
+          "is_correct": true
+        },
+        {
+          "text": "En créant un site multilingue",
+          "is_correct": false
+        },
+        {
+          "text": "En configurant plusieurs comptes marchands dans différents pays",
+          "is_correct": false
+        },
+        {
+          "text": "En modifiant manuellement les prix pour chaque devise",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment peut-on optimiser le SEO d'une boutique Shopify?",
+      "explanation": "Pour optimiser le SEO d'une boutique Shopify, vous pouvez personnaliser les titres de page, méta descriptions, URLs, ajouter du contenu unique et pertinent, optimiser les images, améliorer la vitesse du site, créer un blog, et utiliser les balises de schéma pour le rich snippet.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "En optimisant les méta-titres, descriptions, URLs, et en ajoutant du contenu de qualité",
+          "is_correct": true
+        },
+        {
+          "text": "En achetant des backlinks vers votre site",
+          "is_correct": false
+        },
+        {
+          "text": "En répétant les mots-clés dans le contenu autant que possible",
+          "is_correct": false
+        },
+        {
+          "text": "En payant pour apparaître plus haut dans les résultats",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que Shopify Markets?",
+      "explanation": "Shopify Markets est une suite d'outils qui permet aux marchands de gérer facilement leur expansion internationale. Elle offre des fonctionnalités comme la conversion de devise, les prix spécifiques par marché, les domaines internationaux, la traduction, et la gestion des taxes et droits de douane.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Une suite d'outils pour gérer la vente internationale",
+          "is_correct": true
+        },
+        {
+          "text": "Une place de marché où les marchands Shopify peuvent vendre leurs produits",
+          "is_correct": false
+        },
+        {
+          "text": "Un système d'analyse des tendances du marché",
+          "is_correct": false
+        },
+        {
+          "text": "Un outil pour comparer les prix avec ceux des concurrents",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment configurer des notifications d'abandon de panier dans Shopify?",
+      "explanation": "Les notifications d'abandon de panier dans Shopify peuvent être configurées dans la section Marketing → Emails d'abandon de panier du panneau d'administration. Vous pouvez personnaliser le moment d'envoi, le contenu des emails, et ajouter des offres spéciales pour encourager les clients à finaliser leur achat.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Via la section Marketing → Emails d'abandon de panier",
+          "is_correct": true
+        },
+        {
+          "text": "En installant une application dédiée",
+          "is_correct": false
+        },
+        {
+          "text": "En configurant un système de relance automatique par SMS",
+          "is_correct": false
+        },
+        {
+          "text": "En modifiant le code du processus de paiement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la signification de l'erreur 'Liquid Error: Exceeded iterations limit' dans Shopify?",
+      "explanation": "Cette erreur apparaît lorsqu'une boucle dans le code Liquid dépasse la limite d'itérations autorisée par Shopify (généralement 50). Cela peut se produire si vous avez une boucle infinie ou si vous essayez de parcourir une très grande collection d'objets sans limitation.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Une boucle dans le code Liquid a dépassé la limite d'itérations permise",
+          "is_correct": true
+        },
+        {
+          "text": "Le serveur Shopify est temporairement indisponible",
+          "is_correct": false
+        },
+        {
+          "text": "Il y a une erreur de syntaxe dans le code Liquid",
+          "is_correct": false
+        },
+        {
+          "text": "La boutique a atteint sa limite de bande passante",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment générer un sitemap pour une boutique Shopify?",
+      "explanation": "Shopify génère automatiquement un sitemap pour votre boutique, accessible à l'URL votreboutique.com/sitemap.xml. Ce sitemap inclut toutes les pages principales de votre site pour aider les moteurs de recherche à indexer votre contenu.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Shopify génère automatiquement le sitemap",
+          "is_correct": true
+        },
+        {
+          "text": "En installant une application de SEO",
+          "is_correct": false
+        },
+        {
+          "text": "En créant manuellement un fichier sitemap.xml",
+          "is_correct": false
+        },
+        {
+          "text": "En utilisant Google Search Console pour générer le sitemap",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel code Liquid permettrait de n'afficher un bloc de contenu que si le produit est en stock?",
+      "explanation": "Le code Liquid utilise une condition `if product.available` pour vérifier si le produit est disponible (en stock). Si c'est le cas, le contenu à l'intérieur du bloc sera affiché.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "```liquid\n{% if product.available %}\n  <p>Ce produit est disponible!</p>\n{% endif %}\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```liquid\n{% if product.inventory > 0 %}\n  <p>Ce produit est disponible!</p>\n{% endif %}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```liquid\n{{ if product.in_stock }}\n  <p>Ce produit est disponible!</p>\n{{ endif }}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```liquid\n{% check_stock product %}\n  <p>Ce produit est disponible!</p>\n{% end_check %}\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les filtres dans Liquid? Donnez un exemple.",
+      "explanation": "Les filtres dans Liquid sont des méthodes qui modifient ou formatent la sortie d'une variable. Ils sont appliqués en utilisant un pipe (|) après la variable. Par exemple, `{{ product.price | money }}` formate le prix du produit en monnaie.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`{{ product.price | money }}`",
+          "is_correct": true
+        },
+        {
+          "text": "`{{ filter(product.price, 'money') }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{% apply money to product.price %}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{{ product.price.format('money') }}`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le but du fichier settings_schema.json dans un thème Shopify?",
+      "explanation": "Le fichier settings_schema.json définit les paramètres du thème qui peuvent être configurés dans l'éditeur de thème. Il permet de créer des options personnalisables comme les couleurs, les polices, les tailles, et d'autres réglages qui peuvent être modifiés sans toucher au code.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Définir les paramètres configurables du thème dans l'éditeur",
+          "is_correct": true
+        },
+        {
+          "text": "Configurer la structure de la base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer les traductions du thème",
+          "is_correct": false
+        },
+        {
+          "text": "Définir les styles CSS du thème",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

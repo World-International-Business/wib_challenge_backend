@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,14 +42,14 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     'corsheaders',
-    'core',
-    'candidates',
+    'apps.core',
+    'apps.candidates',
     'apps.accounts',
-    'questions',
-    'evaluations',
-    'organizations',
-    'learning',
-    'jobs',
+    'apps.questions',
+    'apps.evaluations',
+    # 'organizations',
+    # 'learning',
+    # 'jobs',
 ]
 
 MIDDLEWARE = [
@@ -277,8 +276,8 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'API for WIB Challenge',
     'ENUM_NAME_OVERRIDES': {
         'jobs.JobOffer.Status': 'JobOfferStatus',
-        'evaluations.Evaluation.Difficulty': 'EvaluationDifficulty',
-        'questions.Question.Difficulty': 'QuestionDifficulty',
+        'apps.evaluations.Evaluation.Difficulty': 'EvaluationDifficulty',
+        'apps.questions.Question.Difficulty': 'QuestionDifficulty',
     },
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
@@ -287,7 +286,7 @@ SPECTACULAR_SETTINGS = {
     },
     'CONTACT': {
         'name': 'WIB Challenge',
-        'url': 'wibchallenge.pythonanywhere.com',
+        'url': 'https://wibchallenge.pythonanywhere.com',
         'email': 'wibchallenge@gmail.com',
     },
     'VERSION': '0.1.0',

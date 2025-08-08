@@ -20,18 +20,18 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
-from core.views import health_check
+from apps.core.views import health_check
 
 urlpatterns = [
     path('administration/', admin.site.urls),
-    path('api/', include(('core.urls', 'core'), namespace='core')),
-    path('api/jobs/', include(('jobs.urls', 'jobs'), namespace='jobs')),
-    path('api/learnings/', include(('learning.urls', 'jobs'), namespace='learning')),
+    path('api/', include(('apps.core.urls', 'core'), namespace='core')),
+    # path('api/jobs/', include(('jobs.urls', 'jobs'), namespace='jobs')),
+    # path('api/learnings/', include(('learning.urls', 'jobs'), namespace='learning')),
     path('api/', include(('apps.accounts.urls', 'accounts'), namespace='accounts')),
-    path('api/', include(('questions.urls', 'questions'), namespace='questions')),
-    path('api/', include(('candidates.urls', 'candidates'), namespace='candidates')),
-    path('api/', include(('evaluations.urls', 'evaluations'), namespace='evaluations')),
-    path('api/', include(('organizations.urls', 'organizations'), namespace='organizations')),
+    path('api/', include(('apps.questions.urls', 'questions'), namespace='questions')),
+    path('api/', include(('apps.candidates.urls', 'candidates'), namespace='candidates')),
+    path('api/', include(('apps.evaluations.urls', 'evaluations'), namespace='evaluations')),
+    # path('api/', include(('organizations.urls', 'organizations'), namespace='organizations')),
     path('health/', health_check, name='health_check'),
 ]
 

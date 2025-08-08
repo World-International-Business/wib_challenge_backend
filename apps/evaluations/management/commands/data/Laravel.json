@@ -1,0 +1,776 @@
+{
+  "technology": "Laravel",
+  "title": "Évaluation Laravel Complète",
+  "description": "Cette évaluation couvre les concepts fondamentaux et avancés de Laravel, incluant le routing, les migrations, les modèles Eloquent, les contrôleurs, les vues Blade et les fonctionnalités avancées du framework.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Quelle commande Artisan permet de créer un nouveau contrôleur?",
+      "explanation": "La commande `php artisan make:controller` est utilisée pour créer un nouveau fichier de contrôleur dans le répertoire `app/Http/Controllers`. Vous pouvez spécifier différentes options comme `--resource` pour générer un contrôleur avec les méthodes CRUD.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`php artisan make:controller NomDuController`",
+          "is_correct": true
+        },
+        {
+          "text": "`php artisan controller:create NomDuController`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan new:controller NomDuController`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan generate:controller NomDuController`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une route GET dans Laravel?",
+      "explanation": "Dans Laravel, les routes sont définies dans le fichier `routes/web.php` ou `routes/api.php`. La méthode `Route::get()` est utilisée pour définir une route qui répond aux requêtes HTTP GET.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`Route::get('/chemin', [ControllerName::class, 'methodeName']);`",
+          "is_correct": true
+        },
+        {
+          "text": "`Route::get('/chemin', 'ControllerName@methodeName');`",
+          "is_correct": true
+        },
+        {
+          "text": "`Route::create('/chemin', 'ControllerName@methodeName');`",
+          "is_correct": false
+        },
+        {
+          "text": "`Route::path('/chemin', function() { return view('page'); });`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle commande permet de créer une migration dans Laravel?",
+      "explanation": "Les migrations sont comme un système de contrôle de version pour votre base de données. La commande `php artisan make:migration` permet de créer un nouveau fichier de migration qui définit les modifications à apporter à la structure de la base de données.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`php artisan make:migration create_users_table`",
+          "is_correct": true
+        },
+        {
+          "text": "`php artisan migration:create create_users_table`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan db:migration create_users_table`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan generate:migration create_users_table`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder aux paramètres d'une requête dans un contrôleur Laravel?",
+      "explanation": "Dans Laravel, l'objet Request contient toutes les données de la requête HTTP. Vous pouvez y accéder en injectant cet objet dans la méthode de votre contrôleur ou en utilisant la façade Request.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`$request->input('name')`",
+          "is_correct": true
+        },
+        {
+          "text": "`$request->get('name')`",
+          "is_correct": true
+        },
+        {
+          "text": "`$request->parameter('name')`",
+          "is_correct": false
+        },
+        {
+          "text": "`$_GET['name']`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle directive Blade est utilisée pour inclure un sous-template?",
+      "explanation": "La directive `@include` permet d'inclure une vue Blade dans une autre vue. C'est utile pour réutiliser des composants d'interface utilisateur ou organiser les vues en parties plus petites et plus gérables.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`@include('view.name')`",
+          "is_correct": true
+        },
+        {
+          "text": "`@extend('view.name')`",
+          "is_correct": false
+        },
+        {
+          "text": "`@import('view.name')`",
+          "is_correct": false
+        },
+        {
+          "text": "`@section('view.name')`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une relation 'un à plusieurs' dans un modèle Eloquent?",
+      "explanation": "Dans Eloquent, les relations entre modèles sont définies comme des méthodes. La méthode `hasMany()` est utilisée pour définir une relation 'un à plusieurs', où un modèle possède plusieurs instances d'un autre modèle.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "```php\npublic function posts() {\n    return $this->hasMany(Post::class);\n}\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\npublic function posts() {\n    return $this->oneToMany(Post::class);\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\npublic function posts() {\n    return $this->belongsToMany(Post::class);\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\npublic function posts() {\n    return $this->withMany(Post::class);\n}\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la commande pour exécuter les migrations?",
+      "explanation": "Pour appliquer les migrations à votre base de données, vous devez exécuter la commande `php artisan migrate`. Cela exécute toutes les migrations qui n'ont pas encore été appliquées.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`php artisan migrate`",
+          "is_correct": true
+        },
+        {
+          "text": "`php artisan db:migrate`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan migration:run`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan run:migrations`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment récupérer tous les enregistrements d'un modèle avec Eloquent?",
+      "explanation": "La méthode statique `all()` sur un modèle Eloquent permet de récupérer tous les enregistrements de la table associée au modèle.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`User::all()`",
+          "is_correct": true
+        },
+        {
+          "text": "`User::get()`",
+          "is_correct": false
+        },
+        {
+          "text": "`User::findAll()`",
+          "is_correct": false
+        },
+        {
+          "text": "`User::select('*')`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment valider les données d'une requête dans Laravel?",
+      "explanation": "Laravel fournit plusieurs façons de valider les données d'entrée. La méthode `validate()` sur l'objet Request est l'une des plus courantes. Elle vérifie les données selon les règles spécifiées et retourne les données validées si la validation réussit, ou lance une exception sinon.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "```php\n$validated = $request->validate([\n    'name' => 'required|max:255',\n    'email' => 'required|email',\n]);\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\n$validated = Validator::make($request->all(), [\n    'name' => 'required|max:255',\n    'email' => 'required|email',\n]);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n$validated = $request->check([\n    'name' => 'required|max:255',\n    'email' => 'required|email',\n]);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n$validator = new Validator;\n$validator->rules([\n    'name' => 'required|max:255',\n    'email' => 'required|email',\n]);\n$validated = $validator->validate($request->all());\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre `@yield` et `@section` dans Blade?",
+      "explanation": "Dans Blade, `@yield` définit un endroit dans un layout qui sera remplacé par le contenu d'une `@section` correspondante d'une vue enfant. `@section` est utilisé dans une vue enfant pour définir le contenu qui sera injecté à l'emplacement `@yield` du layout parent.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`@yield` définit un espace dans le layout parent, `@section` fournit le contenu dans une vue enfant",
+          "is_correct": true
+        },
+        {
+          "text": "`@yield` et `@section` sont interchangeables",
+          "is_correct": false
+        },
+        {
+          "text": "`@section` est uniquement utilisé dans les layouts, `@yield` dans les vues enfants",
+          "is_correct": false
+        },
+        {
+          "text": "`@yield` est déprécié, `@section` est la nouvelle syntaxe recommandée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un middleware dans Laravel?",
+      "explanation": "Les middlewares fournissent un mécanisme pratique pour filtrer les requêtes HTTP entrant dans votre application. La commande `php artisan make:middleware` crée un nouveau fichier de middleware dans le répertoire `app/Http/Middleware`.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`php artisan make:middleware CheckAge`",
+          "is_correct": true
+        },
+        {
+          "text": "`php artisan middleware:create CheckAge`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan create:middleware CheckAge`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan generate:middleware CheckAge`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une route POST dans Laravel?",
+      "explanation": "Dans Laravel, les routes POST sont définies à l'aide de la méthode `Route::post()`. Ces routes sont généralement utilisées pour traiter les formulaires ou les opérations de création de ressources.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`Route::post('/store', [PostController::class, 'store']);`",
+          "is_correct": true
+        },
+        {
+          "text": "`Route::post('/store', 'PostController@store');`",
+          "is_correct": true
+        },
+        {
+          "text": "`Route::method('POST', '/store', 'PostController@store');`",
+          "is_correct": false
+        },
+        {
+          "text": "`Route::create('/store', function() { /* ... */ });`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la commande pour créer un nouveau modèle Eloquent avec une migration?",
+      "explanation": "La commande `php artisan make:model` avec l'option `-m` ou `--migration` crée à la fois un modèle Eloquent dans `app/Models` et une migration correspondante pour créer la table dans la base de données.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`php artisan make:model Post -m`",
+          "is_correct": true
+        },
+        {
+          "text": "`php artisan model:create Post --migration`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan create:model Post --with-migration`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan generate:model Post --table`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une relation 'plusieurs à plusieurs' dans Eloquent?",
+      "explanation": "Dans Eloquent, une relation 'plusieurs à plusieurs' est définie à l'aide de la méthode `belongsToMany()`. Cette relation nécessite une table pivot qui stocke les associations entre les deux modèles.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "```php\npublic function roles() {\n    return $this->belongsToMany(Role::class);\n}\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\npublic function roles() {\n    return $this->manyToMany(Role::class);\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\npublic function roles() {\n    return $this->hasMany(Role::class);\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\npublic function roles() {\n    return $this->withPivot(Role::class);\n}\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les variables dans une vue Blade?",
+      "explanation": "Dans Blade, les variables sont accessibles directement en utilisant des doubles accolades `{{ }}`. Laravel échappe automatiquement le contenu affiché avec ces accolades pour éviter les attaques XSS.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`{{ $variable }}`",
+          "is_correct": true
+        },
+        {
+          "text": "`{{{ $variable }}}`",
+          "is_correct": false
+        },
+        {
+          "text": "`{!! $variable !!}`",
+          "is_correct": false
+        },
+        {
+          "text": "`@echo($variable)`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle directive Blade permet d'afficher du HTML brut sans échappement?",
+      "explanation": "La directive `{!! !!}` dans Blade permet d'afficher du contenu HTML brut sans l'échapper. Cela peut être utile pour afficher du contenu riche ou formaté, mais doit être utilisé avec précaution pour éviter les vulnérabilités XSS.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`{!! $html !!}`",
+          "is_correct": true
+        },
+        {
+          "text": "`@raw($html)`",
+          "is_correct": false
+        },
+        {
+          "text": "`{{ $html | raw }}`",
+          "is_correct": false
+        },
+        {
+          "text": "`@html($html)`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder aux variables d'environnement dans Laravel?",
+      "explanation": "Dans Laravel, les variables d'environnement sont généralement stockées dans le fichier `.env` à la racine de votre projet. Vous pouvez y accéder en utilisant la fonction `env()` ou la façade `Config` qui utilise également le fichier de configuration `config/app.php`.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`env('APP_NAME')`",
+          "is_correct": true
+        },
+        {
+          "text": "`config('app.name')`",
+          "is_correct": true
+        },
+        {
+          "text": "`App::environment('APP_NAME')`",
+          "is_correct": false
+        },
+        {
+          "text": "`$_ENV['APP_NAME']`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle commande Artisan permet de vider le cache de configuration?",
+      "explanation": "La commande `php artisan config:clear` supprime le fichier de cache de configuration. C'est utile lors du développement pour s'assurer que les modifications apportées aux fichiers de configuration sont immédiatement prises en compte.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`php artisan config:clear`",
+          "is_correct": true
+        },
+        {
+          "text": "`php artisan clear:config`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan cache:clear --config`",
+          "is_correct": false
+        },
+        {
+          "text": "`php artisan config:refresh`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir un middleware global dans Laravel?",
+      "explanation": "Pour appliquer un middleware à toutes les requêtes de votre application, vous devez l'ajouter à la propriété `$middleware` dans le fichier `app/Http/Kernel.php`. Ces middlewares sont exécutés dans l'ordre où ils sont listés.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "En l'ajoutant dans la propriété `$middleware` de `app/Http/Kernel.php`",
+          "is_correct": true
+        },
+        {
+          "text": "En l'ajoutant avec `Route::middleware('global')->group(function() { /* ... */ });`",
+          "is_correct": false
+        },
+        {
+          "text": "En utilisant `php artisan middleware:global NomDuMiddleware`",
+          "is_correct": false
+        },
+        {
+          "text": "En modifiant le fichier `config/middleware.php`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une clé étrangère dans une migration Laravel?",
+      "explanation": "Dans une migration Laravel, les clés étrangères sont définies à l'aide de la méthode `foreign()` suivie de `references()` et `on()`. Vous pouvez également spécifier les actions à effectuer lors de la suppression ou de la mise à jour avec `onDelete()` et `onUpdate()`.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "```php\n$table->foreign('user_id')\n      ->references('id')\n      ->on('users')\n      ->onDelete('cascade');\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\n$table->foreignKey('user_id')\n      ->referencesColumn('id')\n      ->onTable('users')\n      ->cascadeOnDelete();\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n$table->addForeign('user_id', 'users', 'id', [\n    'delete' => 'cascade'\n]);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n$table->constraint('fk_user')\n      ->foreign('user_id')\n      ->references('users', 'id')\n      ->on('delete', 'cascade');\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment exécuter une requête SQL brute dans Laravel?",
+      "explanation": "Laravel offre plusieurs méthodes pour exécuter des requêtes SQL brutes via la façade DB. Les méthodes principales sont `DB::select()`, `DB::insert()`, `DB::update()` et `DB::delete()`. Pour les requêtes complexes ou spécifiques, c'est parfois nécessaire d'utiliser du SQL brut.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`DB::select('SELECT * FROM users WHERE active = ?', [1])`",
+          "is_correct": true
+        },
+        {
+          "text": "`DB::raw('SELECT * FROM users WHERE active = 1')`",
+          "is_correct": false
+        },
+        {
+          "text": "`DB::query('SELECT * FROM users WHERE active = 1')`",
+          "is_correct": false
+        },
+        {
+          "text": "`DB::execute('SELECT * FROM users WHERE active = 1')`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre `whereNull()` et `whereIn()` dans Eloquent?",
+      "explanation": "Dans Eloquent, `whereNull()` sélectionne les enregistrements où la colonne spécifiée est NULL, tandis que `whereIn()` sélectionne les enregistrements où la valeur de la colonne se trouve dans un tableau de valeurs spécifié.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`whereNull()` cherche les valeurs NULL, `whereIn()` cherche les valeurs dans un tableau",
+          "is_correct": true
+        },
+        {
+          "text": "`whereNull()` et `whereIn()` font la même chose",
+          "is_correct": false
+        },
+        {
+          "text": "`whereNull()` est un alias de `where('column', null)`",
+          "is_correct": false
+        },
+        {
+          "text": "`whereIn()` vérifie si une colonne contient une sous-chaîne",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un événement et un listener dans Laravel?",
+      "explanation": "Laravel fournit un système d'événements simple mais puissant. La commande `php artisan make:event` crée un nouvel événement, tandis que `php artisan make:listener` crée un écouteur qui réagit à cet événement. Les associations entre événements et listeners sont définies dans `EventServiceProvider`.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "```bash\nphp artisan make:event UserRegistered\nphp artisan make:listener SendWelcomeEmail --event=UserRegistered\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```bash\nphp artisan event:create UserRegistered\nphp artisan listener:create SendWelcomeEmail --for=UserRegistered\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```bash\nphp artisan make:event UserRegistered\nphp artisan make:observer SendWelcomeEmail --for=UserRegistered\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```bash\nphp artisan generate:event UserRegistered\nphp artisan generate:listener SendWelcomeEmail --event=UserRegistered\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les requêtes préparées avec les Query Builder de Laravel?",
+      "explanation": "Le Query Builder de Laravel utilise automatiquement des requêtes préparées pour protéger votre application contre les injections SQL. En passant des paramètres via les méthodes du Query Builder ou en utilisant des tableaux associatifs, vous bénéficiez de cette protection.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`DB::table('users')->where('name', '=', $name)->get()`",
+          "is_correct": true
+        },
+        {
+          "text": "`DB::table('users')->where('name = ' . $name)->get()`",
+          "is_correct": false
+        },
+        {
+          "text": "`DB::prepare('SELECT * FROM users WHERE name = ?')->execute([$name])`",
+          "is_correct": false
+        },
+        {
+          "text": "`DB::table('users')->whereRaw('name = ' . DB::quote($name))->get()`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment implémenter l'authentification dans Laravel?",
+      "explanation": "Laravel offre plusieurs options pour mettre en place l'authentification. La plus simple est d'utiliser le package Laravel Breeze ou Jetstream qui fournit un point de départ avec des fonctionnalités d'authentification prêtes à l'emploi. Alternativement, vous pouvez utiliser les façades Auth et Gate pour une implémentation personnalisée.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "En installant Laravel Breeze ou Jetstream via Composer",
+          "is_correct": true
+        },
+        {
+          "text": "En utilisant `php artisan make:auth`",
+          "is_correct": false
+        },
+        {
+          "text": "En configurant manuellement les routes et contrôleurs d'authentification",
+          "is_correct": true
+        },
+        {
+          "text": "En activant le module Auth dans `config/app.php`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la fonction des factories dans Laravel?",
+      "explanation": "Les factories dans Laravel permettent de générer de fausses données pour vos tests ou pour peupler votre base de données. Elles utilisent la bibliothèque Faker pour générer des données réalistes et sont particulièrement utiles pour les tests automatisés et le développement local.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Générer des données fictives pour les tests et le développement",
+          "is_correct": true
+        },
+        {
+          "text": "Créer des contrôleurs et des modèles selon le pattern Factory",
+          "is_correct": false
+        },
+        {
+          "text": "Construire des requêtes complexes avec le Query Builder",
+          "is_correct": false
+        },
+        {
+          "text": "Optimiser les performances des requêtes Eloquent",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment ajouter une tâche planifiée dans Laravel?",
+      "explanation": "Laravel Schedule permet d'ajouter facilement des tâches planifiées (cron jobs) dans votre application. Vous définissez ces tâches dans la méthode `schedule` du fichier `app/Console/Kernel.php`, puis vous configurez votre serveur pour exécuter la commande `php artisan schedule:run` toutes les minutes.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "```php\n// Dans app/Console/Kernel.php\nprotected function schedule(Schedule $schedule) {\n    $schedule->command('emails:send')\n             ->daily()\n             ->at('13:00');\n}\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\n// Dans config/schedule.php\nreturn [\n    'emails:send' => [\n        'frequency' => 'daily',\n        'time' => '13:00'\n    ]\n];\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n// Dans routes/console.php\nRoute::schedule('emails:send', function () {\n    // Code to send emails\n})->daily()->at('13:00');\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n// Dans app/Jobs/SendEmails.php\npublic function schedule() {\n    return $this->daily()->at('13:00');\n}\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le système de mise en cache de Laravel?",
+      "explanation": "Laravel offre une API unifiée pour différents systèmes de cache comme Redis, Memcached ou le système de fichiers. La façade Cache permet de stocker et récupérer des données du cache avec différentes durées de vie.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`Cache::put('key', 'value', now()->addMinutes(10))`",
+          "is_correct": true
+        },
+        {
+          "text": "`Cache::store('key', 'value', 10)`",
+          "is_correct": false
+        },
+        {
+          "text": "`Cache::save('key', 'value', ['expires' => 10])`",
+          "is_correct": false
+        },
+        {
+          "text": "`Cache::set('key', 'value')->expireAfter(10)`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un job en file d'attente dans Laravel?",
+      "explanation": "Les jobs en file d'attente permettent de différer le traitement de tâches intensives pour améliorer les performances de votre application. Laravel offre une API unifiée pour différents systèmes de files d'attente comme Redis, Amazon SQS ou Beanstalkd.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "```php\nphp artisan make:job ProcessPodcast\n\n// Utilisation\nProcessPodcast::dispatch($podcast);\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\nphp artisan queue:job ProcessPodcast\n\n// Utilisation\nQueue::push(new ProcessPodcast($podcast));\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\nphp artisan create:job ProcessPodcast\n\n// Utilisation\nJob::create(ProcessPodcast::class, $podcast);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\nphp artisan make:task ProcessPodcast\n\n// Utilisation\nTask::queue(new ProcessPodcast($podcast));\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser le système de notifications de Laravel?",
+      "explanation": "Le système de notifications de Laravel fournit une façon simple d'envoyer des alertes via différents canaux comme l'email, SMS (via Nexmo/Vonage), Slack ou des notifications stockées dans la base de données. Vous pouvez créer une notification avec la commande Artisan et implémenter les canaux souhaités.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "```php\nphp artisan make:notification InvoicePaid\n\n// Envoi\n$user->notify(new InvoicePaid($invoice));\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\nphp artisan notification:create InvoicePaid\n\n// Envoi\nNotification::send($user, new InvoicePaid($invoice));\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\nphp artisan create:notification InvoicePaid\n\n// Envoi\n$user->sendNotification(InvoicePaid::class, $invoice);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\nphp artisan make:alert InvoicePaid\n\n// Envoi\nAlert::to($user)->send(new InvoicePaid($invoice));\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une relation polymorphique dans Eloquent?",
+      "explanation": "Les relations polymorphiques permettent à un modèle d'appartenir à plus d'un autre modèle sur une seule association. Par exemple, une image peut appartenir à un utilisateur ou à un produit. Les méthodes `morphTo()`, `morphMany()` et `morphToMany()` sont utilisées pour ces relations.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "```php\n// Dans le modèle Image\npublic function imageable() {\n    return $this->morphTo();\n}\n\n// Dans les modèles User et Product\npublic function images() {\n    return $this->morphMany(Image::class, 'imageable');\n}\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\n// Dans le modèle Image\npublic function owner() {\n    return $this->belongsToPolymorphic();\n}\n\n// Dans les modèles User et Product\npublic function images() {\n    return $this->hasPolymorphic(Image::class);\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n// Dans le modèle Image\npublic function parent() {\n    return $this->polymorphic();\n}\n\n// Dans les modèles User et Product\npublic function images() {\n    return $this->polymorphicMany(Image::class);\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\n// Dans le modèle Image\npublic function poly() {\n    return $this->dynamicOwner();\n}\n\n// Dans les modèles User et Product\npublic function images() {\n    return $this->ownPolymorphic(Image::class, 'poly');\n}\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser les observers de modèle dans Laravel?",
+      "explanation": "Les observers permettent de regrouper plusieurs écouteurs d'événements de modèle dans une seule classe. Au lieu d'enregistrer plusieurs fermetures pour différents événements de modèle, vous pouvez organiser ces écouteurs en une seule classe avec des méthodes qui reflètent les événements du cycle de vie Eloquent.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "```php\nphp artisan make:observer UserObserver --model=User\n\n// Dans un ServiceProvider\nUser::observe(UserObserver::class);\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```php\nphp artisan model:observer UserObserver --for=User\n\n// Dans un ServiceProvider\nModel::registerObserver(User::class, UserObserver::class);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\nphp artisan create:observer UserObserver User\n\n// Dans un ServiceProvider\nObserver::register(User::class, UserObserver::class);\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```php\nphp artisan make:listener UserObserver --model=User\n\n// Dans un ServiceProvider\nEvent::observe(User::class, UserObserver::class);\n```",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

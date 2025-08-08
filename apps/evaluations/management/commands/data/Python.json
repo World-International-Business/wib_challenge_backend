@@ -1,0 +1,824 @@
+{
+  "technology": "Python",
+  "title": "Évaluation Python Complète",
+  "description": "Cette évaluation couvre les concepts fondamentaux et avancés de Python, incluant la syntaxe de base, les structures de données, la programmation orientée objet et les bibliothèques standards.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Quelle est la façon correcte de créer une liste vide en Python?",
+      "explanation": "En Python, une liste vide peut être créée soit avec la notation littérale `[]`, soit avec le constructeur `list()`.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`[]`",
+          "is_correct": true
+        },
+        {
+          "text": "`list()`",
+          "is_correct": true
+        },
+        {
+          "text": "`{}`",
+          "is_correct": false
+        },
+        {
+          "text": "`new List()`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder au troisième élément d'une liste `my_list`?",
+      "explanation": "En Python, l'indexation commence à 0, donc le troisième élément a l'index 2.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`my_list[2]`",
+          "is_correct": true
+        },
+        {
+          "text": "`my_list[3]`",
+          "is_correct": false
+        },
+        {
+          "text": "`my_list(2)`",
+          "is_correct": false
+        },
+        {
+          "text": "`my_list.get(3)`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle sera la sortie du code suivant?\n```python\nx = 10\nif x > 5:\n    print('Plus grand que 5')\nelif x > 15:\n    print('Plus grand que 15')\nelse:\n    print('Autre cas')\n```",
+      "explanation": "Quand la première condition `x > 5` est vraie (car 10 > 5), le bloc correspondant est exécuté et les autres blocs sont ignorés.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`Plus grand que 5`",
+          "is_correct": true
+        },
+        {
+          "text": "`Plus grand que 15`",
+          "is_correct": false
+        },
+        {
+          "text": "`Autre cas`",
+          "is_correct": false
+        },
+        {
+          "text": "Le code produira une erreur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la façon correcte de créer un dictionnaire en Python?",
+      "explanation": "Un dictionnaire peut être créé en utilisant des accolades `{}` avec des paires clé-valeur séparées par des deux-points, ou en utilisant le constructeur `dict()`.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`{'key': 'value'}`",
+          "is_correct": true
+        },
+        {
+          "text": "`dict(key='value')`",
+          "is_correct": true
+        },
+        {
+          "text": "`['key': 'value']`",
+          "is_correct": false
+        },
+        {
+          "text": "`Dictionary('key', 'value')`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le \"duck typing\" en Python?",
+      "explanation": "Le duck typing est un concept où le type ou la classe d'un objet est moins important que les méthodes qu'il définit. Si un objet marche comme un canard et fait coin-coin comme un canard, alors c'est un canard (même s'il n'est pas de la classe Canard).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Un style de programmation où le type d'un objet est déterminé par ses attributs et méthodes plutôt que par sa classe",
+          "is_correct": true
+        },
+        {
+          "text": "Une méthode pour vérifier si un objet est une instance d'une classe particulière",
+          "is_correct": false
+        },
+        {
+          "text": "Un module Python pour la création de types personnalisés",
+          "is_correct": false
+        },
+        {
+          "text": "Une technique d'optimisation pour rendre le code plus rapide",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une fonction en Python?",
+      "explanation": "En Python, les fonctions sont définies en utilisant le mot-clé `def`, suivi du nom de la fonction, des parenthèses contenant les paramètres, et d'un bloc de code indenté.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "```python\ndef ma_fonction(parametre):\n    # corps de la fonction\n    return resultat\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\nfunction ma_fonction(parametre) {\n    # corps de la fonction\n    return resultat;\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\nma_fonction = (parametre) => {\n    # corps de la fonction\n    return resultat\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\nfunction ma_fonction(parametre):\n    # corps de la fonction\n    return resultat\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nprint(2 ** 3)\n```",
+      "explanation": "En Python, l'opérateur `**` est utilisé pour l'exponentiation. Donc `2 ** 3` calcule 2 à la puissance 3, ce qui donne 8.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`8`",
+          "is_correct": true
+        },
+        {
+          "text": "`6`",
+          "is_correct": false
+        },
+        {
+          "text": "`9`",
+          "is_correct": false
+        },
+        {
+          "text": "`5`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle méthode est utilisée pour ajouter un élément à la fin d'une liste?",
+      "explanation": "La méthode `append()` est utilisée pour ajouter un élément à la fin d'une liste en Python.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`append()`",
+          "is_correct": true
+        },
+        {
+          "text": "`add()`",
+          "is_correct": false
+        },
+        {
+          "text": "`insert()`",
+          "is_correct": false
+        },
+        {
+          "text": "`push()`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nmy_list = [1, 2, 3, 4, 5]\nprint(my_list[1:4])\n```",
+      "explanation": "Le slicing en Python inclut l'indice de début et exclut l'indice de fin. Donc `my_list[1:4]` retourne une nouvelle liste contenant les éléments d'indice 1, 2, et 3.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`[2, 3, 4]`",
+          "is_correct": true
+        },
+        {
+          "text": "`[1, 2, 3, 4]`",
+          "is_correct": false
+        },
+        {
+          "text": "`[2, 3, 4, 5]`",
+          "is_correct": false
+        },
+        {
+          "text": "`[1, 2, 3]`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une compréhension de liste pour obtenir une liste de nombres pairs de 0 à 10?",
+      "explanation": "La compréhension de liste permet de créer une liste en une seule ligne. Pour obtenir les nombres pairs de 0 à 10, on peut utiliser `[x for x in range(11) if x % 2 == 0]`.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "`[x for x in range(11) if x % 2 == 0]`",
+          "is_correct": true
+        },
+        {
+          "text": "`[x if x % 2 == 0 for x in range(11)]`",
+          "is_correct": false
+        },
+        {
+          "text": "`[for x in range(11) if x % 2 == 0]`",
+          "is_correct": false
+        },
+        {
+          "text": "`[x in range(11) if x % 2 == 0]`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle instruction est utilisée pour gérer les exceptions en Python?",
+      "explanation": "Le bloc `try-except` est utilisé pour attraper et gérer les exceptions en Python.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`try-except`",
+          "is_correct": true
+        },
+        {
+          "text": "`try-catch`",
+          "is_correct": false
+        },
+        {
+          "text": "`if-else`",
+          "is_correct": false
+        },
+        {
+          "text": "`for-in`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une classe en Python?",
+      "explanation": "En Python, les classes sont définies en utilisant le mot-clé `class` suivi du nom de la classe et d'un bloc de code indenté.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "```python\nclass MaClasse:\n    def __init__(self, param):\n        self.param = param\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\nclass MaClasse(object) {\n    def __init__(self, param):\n        self.param = param\n}\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\ndef class MaClasse:\n    def __init__(self, param):\n        self.param = param\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\nnew class MaClasse:\n    def __init__(self, param):\n        self.param = param\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nx = 'Python'\nprint(x[1:4])\n```",
+      "explanation": "Le slicing de chaînes en Python inclut l'indice de début et exclut l'indice de fin. Donc `x[1:4]` retourne une sous-chaîne contenant les caractères d'indice 1, 2, et 3.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`'yth'`",
+          "is_correct": true
+        },
+        {
+          "text": "`'Pyt'`",
+          "is_correct": false
+        },
+        {
+          "text": "`'ytho'`",
+          "is_correct": false
+        },
+        {
+          "text": "`'Pyth'`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment importer un module en Python?",
+      "explanation": "L'instruction `import` est utilisée pour importer un module en Python. Il est également possible d'importer des éléments spécifiques d'un module en utilisant `from module import element`.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`import module`",
+          "is_correct": true
+        },
+        {
+          "text": "`from module import *`",
+          "is_correct": true
+        },
+        {
+          "text": "`include module`",
+          "is_correct": false
+        },
+        {
+          "text": "`using module`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre `==` et `is` en Python?",
+      "explanation": "`==` compare les valeurs de deux objets, tandis que `is` vérifie si deux variables font référence au même objet en mémoire.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "`==` compare les valeurs, `is` compare les identités d'objets",
+          "is_correct": true
+        },
+        {
+          "text": "`is` compare les valeurs, `==` compare les identités d'objets",
+          "is_correct": false
+        },
+        {
+          "text": "`==` et `is` sont identiques et peuvent être utilisés de manière interchangeable",
+          "is_correct": false
+        },
+        {
+          "text": "Il n'y a pas de différence, ce sont deux syntaxes pour la même opération",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\ndef add(a, b=2):\n    return a + b\n\nprint(add(3))\n```",
+      "explanation": "Dans cette fonction, le paramètre `b` a une valeur par défaut de 2. Donc si on appelle `add(3)`, `a` vaut 3 et `b` prend sa valeur par défaut 2, donc le résultat est 3 + 2 = 5.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`5`",
+          "is_correct": true
+        },
+        {
+          "text": "`3`",
+          "is_correct": false
+        },
+        {
+          "text": "Erreur: paramètre manquant",
+          "is_correct": false
+        },
+        {
+          "text": "`None`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les fichiers en Python?",
+      "explanation": "La façon recommandée de gérer les fichiers en Python est d'utiliser un bloc `with`, qui garantit que les ressources sont correctement libérées après utilisation.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "```python\nwith open('fichier.txt', 'r') as f:\n    contenu = f.read()\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\nf = open('fichier.txt', 'r')\ncontenu = f.read()\nf.close()\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\nf = File('fichier.txt')\ncontenu = f.read()\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\nimport file\ncontenu = file.open('fichier.txt')\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)\n```",
+      "explanation": "En Python, les listes sont des objets mutables et les affectations de variables créent des références, pas des copies. Donc `y = x` ne crée pas une nouvelle liste, les deux variables référencent la même liste. Ainsi, lorsque vous modifiez `y`, vous modifiez également `x`.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "`[1, 2, 3, 4]`",
+          "is_correct": true
+        },
+        {
+          "text": "`[1, 2, 3]`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        },
+        {
+          "text": "`[1, 2, 3, [4]]`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une méthode statique dans une classe Python?",
+      "explanation": "En Python, une méthode statique est définie en utilisant le décorateur `@staticmethod`. Contrairement aux méthodes d'instance, elle n'a pas de premier paramètre implicite `self`.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "```python\nclass MaClasse:\n    @staticmethod\n    def methode_statique():\n        # code\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\nclass MaClasse:\n    def static methode_statique():\n        # code\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\nclass MaClasse:\n    static def methode_statique():\n        # code\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\nclass MaClasse:\n    def methode_statique() static:\n        # code\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle sera la sortie du code suivant?\n```python\nx = 10\ndef ma_fonction():\n    global x\n    x = 5\n\nma_fonction()\nprint(x)\n```",
+      "explanation": "Le mot-clé `global` indique que la variable `x` dans la fonction fait référence à la variable globale `x`. Donc la fonction modifie la variable globale, et la valeur imprimée est 5.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "`5`",
+          "is_correct": true
+        },
+        {
+          "text": "`10`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        },
+        {
+          "text": "`None`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un générateur en Python?",
+      "explanation": "Un générateur est une fonction spéciale qui utilise le mot-clé `yield` au lieu de `return`. Les générateurs sont utilisés pour créer des itérateurs de manière simple et efficace.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "```python\ndef mon_generateur():\n    for i in range(10):\n        yield i\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\ndef mon_generateur():\n    result = []\n    for i in range(10):\n        result.append(i)\n    return result\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\ndef mon_generateur():\n    return (i for i in range(10))\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\ngenerator mon_generateur():\n    for i in range(10):\n        yield i\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la différence entre une liste et un tuple en Python?",
+      "explanation": "Les listes sont mutables (elles peuvent être modifiées après leur création) tandis que les tuples sont immuables (une fois créés, ils ne peuvent pas être modifiés).",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Les listes sont mutables, les tuples sont immuables",
+          "is_correct": true
+        },
+        {
+          "text": "Les tuples sont mutables, les listes sont immuables",
+          "is_correct": false
+        },
+        {
+          "text": "Les listes peuvent contenir différents types de données, les tuples non",
+          "is_correct": false
+        },
+        {
+          "text": "Les tuples sont plus rapides à parcourir mais ne peuvent pas contenir de dictionnaires",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nprint('Hello' + ' ' + 'World')\n```",
+      "explanation": "En Python, l'opérateur `+` est utilisé pour concaténer des chaînes de caractères.",
+      "difficulty": "easy",
+      "duration": 20,
+      "choices": [
+        {
+          "text": "`Hello World`",
+          "is_correct": true
+        },
+        {
+          "text": "`HelloWorld`",
+          "is_correct": false
+        },
+        {
+          "text": "`Hello + World`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment accéder à un élément d'un dictionnaire en Python?",
+      "explanation": "On peut accéder à la valeur associée à une clé dans un dictionnaire soit en utilisant la notation entre crochets `dict[key]`, soit en utilisant la méthode `get()` qui permet de spécifier une valeur par défaut si la clé n'existe pas.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`mon_dict['clé']`",
+          "is_correct": true
+        },
+        {
+          "text": "`mon_dict.get('clé')`",
+          "is_correct": true
+        },
+        {
+          "text": "`mon_dict.clé`",
+          "is_correct": false
+        },
+        {
+          "text": "`mon_dict('clé')`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle sera la sortie du code suivant?\n```python\na = [1, 2, 3]\nb = a.copy()\nb.append(4)\nprint(a)\n```",
+      "explanation": "La méthode `copy()` crée une nouvelle liste avec une copie superficielle des éléments de la liste originale. Donc modifier `b` n'affecte pas `a`.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "`[1, 2, 3]`",
+          "is_correct": true
+        },
+        {
+          "text": "`[1, 2, 3, 4]`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        },
+        {
+          "text": "`[1, 2, 3, [4]]`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment convertir une chaîne en entier en Python?",
+      "explanation": "La fonction `int()` est utilisée pour convertir une valeur en entier. Si on lui passe une chaîne représentant un nombre, elle la convertit en entier.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`int('42')`",
+          "is_correct": true
+        },
+        {
+          "text": "`'42'.toInt()`",
+          "is_correct": false
+        },
+        {
+          "text": "`Integer('42')`",
+          "is_correct": false
+        },
+        {
+          "text": "`cast(int, '42')`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\na = 'hello'\nb = a\na = 'world'\nprint(b)\n```",
+      "explanation": "En Python, les chaînes sont immuables. Lorsque `b = a` est exécuté, `b` fait référence à la chaîne 'hello'. Quand on assigne ensuite 'world' à `a`, cela crée un nouvel objet chaîne et change la référence de `a`, mais `b` continue de référencer la chaîne originale 'hello'.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "`hello`",
+          "is_correct": true
+        },
+        {
+          "text": "`world`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        },
+        {
+          "text": "`None`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nprint(3 * 'abc')\n```",
+      "explanation": "En Python, l'opérateur `*` avec une chaîne de caractères répète cette chaîne le nombre de fois spécifié.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`abcabcabc`",
+          "is_correct": true
+        },
+        {
+          "text": "`abc3`",
+          "is_correct": false
+        },
+        {
+          "text": "`3abc`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment définir une fonction avec un nombre variable d'arguments?",
+      "explanation": "En Python, on peut définir une fonction avec un nombre variable d'arguments en utilisant `*args` pour les arguments positionnels et `**kwargs` pour les arguments nommés.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "```python\ndef ma_fonction(*args, **kwargs):\n    # code\n```",
+          "is_correct": true
+        },
+        {
+          "text": "```python\ndef ma_fonction(args[], kwargs{}):\n    # code\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\ndef ma_fonction(...):\n    # code\n```",
+          "is_correct": false
+        },
+        {
+          "text": "```python\ndef ma_fonction(args...):\n    # code\n```",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la sortie du code suivant?\n```python\nprint(list(filter(lambda x: x % 2 == 0, range(10))))\n```",
+      "explanation": "La fonction `filter()` applique une fonction de filtrage à chaque élément d'un itérable et retourne un itérateur avec les éléments pour lesquels la fonction retourne True. Ici, elle filtre les nombres pairs de 0 à 9.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "`[0, 2, 4, 6, 8]`",
+          "is_correct": true
+        },
+        {
+          "text": "`[1, 3, 5, 7, 9]`",
+          "is_correct": false
+        },
+        {
+          "text": "`[2, 4, 6, 8]`",
+          "is_correct": false
+        },
+        {
+          "text": "`[0, 2, 4, 6, 8, 10]`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle instruction est utilisée pour supprimer un élément d'une liste par son indice?",
+      "explanation": "L'instruction `del` est utilisée pour supprimer un élément d'une liste par son indice. On peut également utiliser la méthode `pop()` qui supprime l'élément et retourne sa valeur.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "`del ma_liste[index]`",
+          "is_correct": true
+        },
+        {
+          "text": "`ma_liste.pop(index)`",
+          "is_correct": true
+        },
+        {
+          "text": "`ma_liste.remove(index)`",
+          "is_correct": false
+        },
+        {
+          "text": "`ma_liste.delete(index)`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un environnement virtuel en Python?",
+      "explanation": "La commande `python -m venv` est utilisée pour créer un environnement virtuel en Python 3. Un environnement virtuel est un environnement Python isolé où l'on peut installer des packages sans affecter l'installation globale.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "`python -m venv mon_env`",
+          "is_correct": true
+        },
+        {
+          "text": "`pip install virtualenv`",
+          "is_correct": false
+        },
+        {
+          "text": "`create venv mon_env`",
+          "is_correct": false
+        },
+        {
+          "text": "`python make_env mon_env`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle sera la sortie du code suivant?\n```python\nprint(set([1, 2, 3, 2, 1]))\n```",
+      "explanation": "La fonction `set()` crée un ensemble à partir d'un itérable. Les ensembles ne contiennent pas de doublons, donc les valeurs en double sont automatiquement supprimées.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "`{1, 2, 3}`",
+          "is_correct": true
+        },
+        {
+          "text": "`[1, 2, 3, 2, 1]`",
+          "is_correct": false
+        },
+        {
+          "text": "`(1, 2, 3)`",
+          "is_correct": false
+        },
+        {
+          "text": "`{1: 2, 2: 1, 3: 1}`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le résultat de l'expression `bool(0)` en Python?",
+      "explanation": "En Python, les valeurs suivantes sont considérées comme fausses : `None`, `False`, zéro de tout type numérique (`0`, `0.0`, `0j`), et toute séquence vide (`''`, `()`, `[]`, `{}`, `set()`, `range(0)`).",
+      "difficulty": "medium",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`False`",
+          "is_correct": true
+        },
+        {
+          "text": "`True`",
+          "is_correct": false
+        },
+        {
+          "text": "`None`",
+          "is_correct": false
+        },
+        {
+          "text": "Une erreur sera levée",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

@@ -2,10 +2,10 @@ from django.db.models import Sum
 from drf_spectacular.utils import extend_schema_field, inline_serializer
 from rest_framework import serializers
 
-from core.models import Profession
-from core.models import Technology
+from apps.core.models import Profession
+from apps.core.models import Technology
 from organizations.models import OrgEvaluation, ExperienceLevel
-from questions.models import Question
+from apps.questions.models import Question
 
 
 class AutomaticEvaluationSerializer(serializers.Serializer):

@@ -1,6 +1,6 @@
 from rest_framework import permissions
 
-from accounts.models import User
+from apps.accounts.models import User
 
 
 class IsOrganization(permissions.BasePermission):

@@ -15,7 +15,7 @@ from organizations.serializers import EvaluationInvitationSerializer, InviteCand
 from organizations.serializers.evaluations import EvaluationResponseSerializer, AutomaticEvaluationSerializer, \
     ProportionEvaluationSerializer, AutomaticPersonalityEvaluationSerializer
 from organizations.serializers.results import CandidateResultSerializer
-from questions.models import Question
+from apps.questions.models import Question
 from services.generate_evaluation import generate_evaluation
 from wib_challenge.permissions import ReadOnly
 

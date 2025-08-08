@@ -3,7 +3,7 @@ from functools import cache
 from decouple import config
 from google import genai
 
-from organizations.models import OrgAnswer as Answer
+from apps.evaluations.models import Answer
 
 
 @cache
@@ -53,8 +53,8 @@ def make_personality_answer_prompt(answer: Answer):
         extras = ', '.join([choice.text for choice in answer.question.choices.all()])
 
     return _personality_answer_prompt.format(
-        question=answer.question.text,  # answer.question.title,
-        description='',  # answer.question.description,
+        question=answer.question.title,
+        description=answer.question.description,
         answer=answer_text,
         extras=f'Choix proposés: {extras}'
     )
@@ -67,5 +67,5 @@ def make_personality_prompt(answers: list[Answer]):
 
     return _personality_prompt.format(
         content=answers_text,
-        domain=answers[0].question.evaluation.profession.title
+        domain=answers[0].question.evaluations.profession.title
     )

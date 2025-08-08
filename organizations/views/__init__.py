@@ -5,13 +5,13 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from core.models import Technology
+from apps.core.models import Technology
 from organizations.models import (Organization, OrgEvaluation, OrgQuestion)
 from organizations.permissions import IsOrganization
 from organizations.serializers import (
     OrganizationSerializer, OrgQuestionSerializer)
 from organizations.serializers.evaluations import TechnologyStats
-from questions.models import Question
+from apps.questions.models import Question
 from wib_challenge.permissions import ReadOnly
 
 

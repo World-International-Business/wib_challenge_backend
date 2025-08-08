@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from accounts.models import User
 from core.models import BaseModel, Profession
-from evaluations.models import Answer
+from apps.evaluations.models import Answer
 from questions.models import Question
 
 

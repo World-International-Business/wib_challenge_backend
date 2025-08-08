@@ -6,6 +6,7 @@ import uuid
 from decouple import config
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.tokens import default_token_generator
+from django.core.files.base import ContentFile
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import inline_serializer
@@ -23,7 +24,7 @@ class WithUserTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     def validate(self, attrs):
         data = super().validate(attrs)
-        data['data'] = UserSerializer(self.user).data
+        data['data'] = UserSerializer(self.user, context=self.context).data
         return data
 
 
@@ -166,6 +167,8 @@ class GoogleLoginSerializer(serializers.Serializer):
 
             if not email:
                 raise ValidationError("Email introuvable dans le token")
+            elif not User.objects.filter(email=email).exists() and not role:
+                raise ValidationError("Vous devez choisir un rôle avant de vous connecter")
 
             user, created = User.objects.get_or_create(email=email, defaults={
                 "username": uuid.UUID(int=int(info.get('sub')), version=4) if info.get('sub') else None,
@@ -175,20 +178,21 @@ class GoogleLoginSerializer(serializers.Serializer):
             })
 
             picture: str = info.get('picture', None)
-            if picture is not None:
+            if created and picture is not None:
                 picture = (picture[:picture.rfind('=')] if '=' in picture else picture) + '=s1024-nu-c-d'
                 response = urllib.request.urlopen(picture)
                 ext = mimetypes.guess_extension(response.info().get_content_type())
                 if ext is None:
                     ext = '.png'
                 file = info.get('sub') + ext
-                user.picture.save(name=file, content=response.read())
+                user.picture.save(name=file, content=ContentFile(response.read()))
 
             refresh = RefreshToken.for_user(user)
 
             return {
                 "access": str(refresh.access_token),
                 "refresh": str(refresh),
+                "data": UserSerializer(user, context=self.context).data
             }
         except ValueError:
             raise ValidationError("Token invalide")
