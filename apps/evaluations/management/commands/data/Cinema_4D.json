@@ -5,8 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle est la vue par défaut lors de l'ouverture de Cinema 4D?",
-      "explanation": "Par défaut, Cinema 4D s'ouvre avec la vue Perspective qui permet de voir les objets en trois dimensions avec une projection perspective.",
+      "title": "Quelle est la vue par défaut lors de l'ouverture de Cinema 4D?",
+      "description": "Par défaut, Cinema 4D s'ouvre avec la **vue Perspective** qui permet de voir les objets en trois dimensions avec une projection perspective.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Comment créer un cube primitif dans Cinema 4D?",
-      "explanation": "Pour créer un cube, on va dans le menu Create > Object > Cube ou on utilise l'icône Cube dans la barre d'outils des primitives.",
+      "title": "Comment créer un cube primitif dans Cinema 4D?",
+      "description": "Pour créer un cube, on va dans le menu **Create > Object > Cube** ou on utilise l'icône Cube dans la barre d'outils des primitives.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Quelle touche permet de basculer entre les modes de vue (wireframe, shaded, etc.)?",
-      "explanation": "La touche N permet de basculer rapidement entre les différents modes d'affichage dans la vue 3D de Cinema 4D.",
+      "title": "Quelle touche permet de basculer entre les modes de vue (wireframe, shaded, etc.)?",
+      "description": "La touche N permet de basculer rapidement entre les différents modes d'affichage dans la vue 3D de Cinema 4D.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment accéder au mode d'édition des points d'un objet?",
-      "explanation": "Pour passer en mode d'édition des points, on sélectionne l'objet et on clique sur l'icône Points dans la barre d'outils ou on utilise le raccourci clavier approprié.",
+      "title": "Comment accéder au mode d'édition des points d'un objet?",
+      "description": "Pour passer en mode d'édition des points, on sélectionne l'objet et on clique sur l'icône Points dans la barre d'outils ou on utilise le raccourci clavier approprié.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Quel outil est utilisé pour déplacer des objets dans l'espace 3D?",
-      "explanation": "L'outil Move (déplacer) permet de translater des objets dans l'espace 3D selon les axes X, Y et Z.",
+      "title": "Quel outil est utilisé pour déplacer des objets dans l'espace 3D?",
+      "description": "L'outil Move (déplacer) permet de translater des objets dans l'espace 3D selon les axes X, Y et Z.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Comment appliquer un matériau à un objet?",
-      "explanation": "Pour appliquer un matériau, on peut le glisser-déposer depuis le Material Manager vers l'objet, ou sélectionner l'objet et double-cliquer sur le matériau.",
+      "title": "Comment appliquer un matériau à un objet?",
+      "description": "Pour appliquer un matériau, on peut le glisser-déposer depuis le Material Manager vers l'objet, ou sélectionner l'objet et double-cliquer sur le matériau.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre un objet paramétrique et un objet polygonal?",
-      "explanation": "Un objet paramétrique conserve ses paramètres éditables (comme le rayon d'une sphère), tandis qu'un objet polygonal est converti en maillage de polygones et ne peut plus être modifié paramétriquement.",
+      "title": "Quelle est la différence entre un objet paramétrique et un objet polygonal?",
+      "description": "Un objet paramétrique conserve ses paramètres éditables (comme le rayon d'une sphère), tandis qu'un objet polygonal est converti en maillage de polygones et ne peut plus être modifié paramétriquement.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Comment créer une animation de rotation d'un objet?",
-      "explanation": "Pour animer une rotation, on place des keyframes sur la propriété Rotation de l'objet à différents moments de la timeline, puis Cinema 4D interpole automatiquement entre ces valeurs.",
+      "title": "Comment créer une animation de rotation d'un objet?",
+      "description": "Pour animer une rotation, on place des keyframes sur la propriété Rotation de l'objet à différents moments de la timeline, puis Cinema 4D interpole automatiquement entre ces valeurs.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Quel raccourci clavier permet de jouer/arrêter l'animation?",
-      "explanation": "La touche F8 est le raccourci standard pour démarrer ou arrêter la lecture de l'animation dans Cinema 4D.",
+      "title": "Quel raccourci clavier permet de jouer/arrêter l'animation?",
+      "description": "La touche F8 est le raccourci standard pour démarrer ou arrêter la lecture de l'animation dans Cinema 4D.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment créer un nouveau matériau?",
-      "explanation": "On peut créer un nouveau matériau en faisant un double-clic dans une zone vide du Material Manager ou en utilisant Create > Material > New Material.",
+      "title": "Comment créer un nouveau matériau?",
+      "description": "On peut créer un nouveau matériau en faisant un double-clic dans une zone vide du Material Manager ou en utilisant Create > Material > New Material.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Quel moteur de rendu est intégré par défaut dans Cinema 4D?",
-      "explanation": "Cinema 4D inclut plusieurs moteurs de rendu, mais le Standard Renderer et Physical Renderer sont les principaux moteurs intégrés par défaut.",
+      "title": "Quel moteur de rendu est intégré par défaut dans Cinema 4D?",
+      "description": "Cinema 4D inclut plusieurs moteurs de rendu, mais le Standard Renderer et Physical Renderer sont les principaux moteurs intégrés par défaut.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Comment subdiviser un objet pour obtenir plus de géométrie?",
-      "explanation": "On peut subdiviser un objet en utilisant l'objet Subdivision Surface (HyperNURBS) ou en appliquant une subdivision directe au maillage polygonal.",
+      "title": "Comment subdiviser un objet pour obtenir plus de géométrie?",
+      "description": "On peut subdiviser un objet en utilisant l'objet Subdivision Surface (HyperNURBS) ou en appliquant une subdivision directe au maillage polygonal.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction de l'outil Extrude?",
-      "explanation": "L'outil Extrude permet d'étirer des faces, arêtes ou points sélectionnés perpendiculairement à leur surface, créant ainsi de nouveaux volumes ou détails.",
+      "title": "Quelle est la fonction de l'outil Extrude?",
+      "description": "L'outil Extrude permet d'étirer des faces, arêtes ou points sélectionnés perpendiculairement à leur surface, créant ainsi de nouveaux volumes ou détails.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Comment configurer une caméra pour le rendu?",
-      "explanation": "Pour configurer une caméra, on la crée via Create > Camera, puis on la positionne dans la scène. Elle apparaîtra dans les paramètres de rendu comme caméra disponible.",
+      "title": "Comment configurer une caméra pour le rendu?",
+      "description": "Pour configurer une caméra, on la crée via Create > Camera, puis on la positionne dans la scène. Elle apparaîtra dans les paramètres de rendu comme caméra disponible.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Quel type d'éclairage est recommandé pour un éclairage réaliste?",
-      "explanation": "Un setup d'éclairage trois points (key light, fill light, rim light) ou l'utilisation d'un Sky object avec HDRI sont des méthodes courantes pour un éclairage réaliste.",
+      "title": "Quel type d'éclairage est recommandé pour un éclairage réaliste?",
+      "description": "Un setup d'éclairage trois points (key light, fill light, rim light) ou l'utilisation d'un Sky object avec HDRI sont des méthodes courantes pour un éclairage réaliste.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Comment créer un objet par révolution (Lathe)?",
-      "explanation": "L'objet Lathe crée un objet 3D en faisant tourner un spline autour d'un axe. On crée d'abord un spline profil, puis on utilise Create > Generator > Lathe.",
+      "title": "Comment créer un objet par révolution (Lathe)?",
+      "description": "L'objet Lathe crée un objet 3D en faisant tourner un spline autour d'un axe. On crée d'abord un spline profil, puis on utilise Create > Generator > Lathe.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction de l'Object Manager?",
-      "explanation": "L'Object Manager affiche la hiérarchie des objets dans la scène, permet de les organiser, de modifier leur visibilité et de gérer les relations parent-enfant.",
+      "title": "Quelle est la fonction de l'Object Manager?",
+      "description": "L'Object Manager affiche la hiérarchie des objets dans la scène, permet de les organiser, de modifier leur visibilité et de gérer les relations parent-enfant.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Comment appliquer une texture à un matériau?",
-      "explanation": "Dans l'éditeur de matériau, on charge une image dans le canal Color ou d'autres canaux en cliquant sur le bouton de texture et en sélectionnant une image.",
+      "title": "Comment appliquer une texture à un matériau?",
+      "description": "Dans l'éditeur de matériau, on charge une image dans le canal Color ou d'autres canaux en cliquant sur le bouton de texture et en sélectionnant une image.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Quel outil permet de créer des déformations organiques?",
-      "explanation": "Les objets de déformation comme Bend, Twist, Taper, ou l'utilisation de Sculpting tools permettent de créer des déformations organiques sur les objets.",
+      "title": "Quel outil permet de créer des déformations organiques?",
+      "description": "Les objets de déformation comme Bend, Twist, Taper, ou l'utilisation de Sculpting tools permettent de créer des déformations organiques sur les objets.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment créer une animation le long d'un chemin (spline)?",
-      "explanation": "On utilise un tag Align to Spline appliqué à l'objet, en spécifiant le spline comme chemin. L'objet suivra alors le tracé du spline.",
+      "title": "Comment créer une animation le long d'un chemin (spline)?",
+      "description": "On utilise un tag Align to Spline appliqué à l'objet, en spécifiant le spline comme chemin. L'objet suivra alors le tracé du spline.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Global Illumination et sans GI?",
-      "explanation": "La Global Illumination calcule l'éclairage indirect (lumière qui rebondit), créant un rendu plus réaliste avec des ombres douces et une meilleure distribution de la lumière.",
+      "title": "Quelle est la différence entre Global Illumination et sans GI?",
+      "description": "La Global Illumination calcule l'éclairage indirect (lumière qui rebondit), créant un rendu plus réaliste avec des ombres douces et une meilleure distribution de la lumière.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Comment créer un effet de particules?",
-      "explanation": "On utilise l'objet Emitter pour créer des systèmes de particules, puis on configure les paramètres comme la forme, la vitesse, et le comportement des particules.",
+      "title": "Comment créer un effet de particules?",
+      "description": "On utilise l'objet Emitter pour créer des systèmes de particules, puis on configure les paramètres comme la forme, la vitesse, et le comportement des particules.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Quel format d'image est recommandé pour les textures haute qualité?",
-      "explanation": "Les formats non-compressés comme TIFF ou PNG sont recommandés pour les textures haute qualité. Les formats HDR comme .exr sont utilisés pour les environnements HDRI.",
+      "title": "Quel format d'image est recommandé pour les textures haute qualité?",
+      "description": "Les formats non-compressés comme TIFF ou PNG sont recommandés pour les textures haute qualité. Les formats HDR comme .exr sont utilisés pour les environnements HDRI.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment utiliser l'outil Knife pour découper un objet?",
-      "explanation": "L'outil Knife permet de tracer des lignes de coupe sur un objet en mode édition. On maintient le clic et on trace la ligne de coupe, puis on confirme pour diviser l'objet.",
+      "title": "Comment utiliser l'outil Knife pour découper un objet?",
+      "description": "L'outil Knife permet de tracer des lignes de coupe sur un objet en mode édition. On maintient le clic et on trace la ligne de coupe, puis on confirme pour diviser l'objet.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction du MoGraph dans Cinema 4D?",
-      "explanation": "MoGraph est un ensemble d'outils pour l'animation procédurale et les effets de motion graphics, permettant d'animer facilement de nombreux objets avec des cloners, effecteurs, et modificateurs.",
+      "title": "Quelle est la fonction du MoGraph dans Cinema 4D?",
+      "description": "MoGraph est un ensemble d'outils pour l'animation procédurale et les effets de motion graphics, permettant d'animer facilement de nombreux objets avec des cloners, effecteurs, et modificateurs.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Comment créer un matériau réfléchissant?",
-      "explanation": "Pour créer un matériau réfléchissant, on active le canal Reflection dans l'éditeur de matériau et on ajuste les paramètres de réflectivité et de netteté.",
+      "title": "Comment créer un matériau réfléchissant?",
+      "description": "Pour créer un matériau réfléchissant, on active le canal Reflection dans l'éditeur de matériau et on ajuste les paramètres de réflectivité et de netteté.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Quel est l'avantage du rendu en passes (render passes)?",
-      "explanation": "Le rendu en passes sépare les différents éléments (couleur, ombres, réflections, etc.) permettant un contrôle plus fin en post-production et des corrections sélectives.",
+      "title": "Quel est l'avantage du rendu en passes (render passes)?",
+      "description": "Le rendu en passes sépare les différents éléments (couleur, ombres, réflections, etc.) permettant un contrôle plus fin en post-production et des corrections sélectives.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment créer un biseautage (bevel) sur les arêtes d'un objet?",
-      "explanation": "L'outil Bevel permet d'arrondir les arêtes sélectionnées en créant des faces de transition. On sélectionne les arêtes puis on applique l'outil Bevel avec la distance souhaitée.",
+      "title": "Comment créer un biseautage (bevel) sur les arêtes d'un objet?",
+      "description": "L'outil Bevel permet d'arrondir les arêtes sélectionnées en créant des faces de transition. On sélectionne les arêtes puis on applique l'outil Bevel avec la distance souhaitée.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction des UV Maps?",
-      "explanation": "Les UV Maps définissent comment les textures 2D sont appliquées sur la surface 3D d'un objet, en créant une correspondance entre les coordonnées de texture et la géométrie.",
+      "title": "Quelle est la fonction des UV Maps?",
+      "description": "Les UV Maps définissent comment les textures 2D sont appliquées sur la surface 3D d'un objet, en créant une correspondance entre les coordonnées de texture et la géométrie.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Comment optimiser une scène pour un rendu plus rapide?",
-      "explanation": "Pour optimiser le rendu : réduire la complexité géométrique, utiliser des Level of Detail, optimiser l'éclairage, désactiver la GI si non nécessaire, et utiliser des proxies pour les objets distants.",
+      "title": "Comment optimiser une scène pour un rendu plus rapide?",
+      "description": "Pour optimiser le rendu : réduire la complexité géométrique, utiliser des Level of Detail, optimiser l'éclairage, désactiver la GI si non nécessaire, et utiliser des proxies pour les objets distants.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Comment créer une animation de caméra fluide?",
-      "explanation": "Pour une animation de caméra fluide : utiliser des splines comme chemins, appliquer des courbes d'interpolation douces, utiliser un Target object, et ajuster la vitesse avec des keyframes bien espacés.",
+      "title": "Comment créer une animation de caméra fluide?",
+      "description": "Pour une animation de caméra fluide : utiliser des splines comme chemins, appliquer des courbes d'interpolation douces, utiliser un Target object, et ajuster la vitesse avec des keyframes bien espacés.",
       "difficulty": "hard",
       "duration": 75,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Quel est le rôle des Effectors dans MoGraph?",
-      "explanation": "Les Effectors influencent les propriétés des clones (position, rotation, échelle, couleur) selon différents critères comme la distance, le temps, ou des patterns mathématiques.",
+      "title": "Quel est le rôle des Effectors dans MoGraph?",
+      "description": "Les Effectors influencent les propriétés des clones (position, rotation, échelle, couleur) selon différents critères comme la distance, le temps, ou des patterns mathématiques.",
       "difficulty": "hard",
       "duration": 65,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment créer un matériau subsurface scattering (SSS)?",
-      "explanation": "Pour créer un SSS, on active le canal Subsurface Scattering dans l'éditeur de matériau et on configure la couleur de diffusion et la distance de pénétration de la lumière.",
+      "title": "Comment créer un matériau subsurface scattering (SSS)?",
+      "description": "Pour créer un SSS, on active le canal Subsurface Scattering dans l'éditeur de matériau et on configure la couleur de diffusion et la distance de pénétration de la lumière.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -797,8 +797,8 @@
       ]
     },
     {
-      "text": "Comment utiliser les Instances pour optimiser les performances?",
-      "explanation": "Les Instances partagent la même géométrie en mémoire tout en permettant des transformations individuelles, réduisant l'utilisation mémoire et améliorant les performances pour les objets répétés.",
+      "title": "Comment utiliser les Instances pour optimiser les performances?",
+      "description": "Les Instances partagent la même géométrie en mémoire tout en permettant des transformations individuelles, réduisant l'utilisation mémoire et améliorant les performances pour les objets répétés.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -821,8 +821,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Linear et Standard workflow?",
-      "explanation": "Le Linear workflow préserve les valeurs de luminance correctes à travers le pipeline, donnant des résultats plus réalistes, tandis que Standard utilise les valeurs gamma des images directement.",
+      "title": "Quelle est la différence entre Linear et Standard workflow?",
+      "description": "Le Linear workflow préserve les valeurs de luminance correctes à travers le pipeline, donnant des résultats plus réalistes, tandis que Standard utilise les valeurs gamma des images directement.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -845,8 +845,8 @@
       ]
     },
     {
-      "text": "Comment créer un setup de rigging basique pour l'animation de personnage?",
-      "explanation": "Un rigging basique implique la création d'une hiérarchie de joints/bones, l'application de poids de skinning, et la configuration de contraintes et controllers pour faciliter l'animation.",
+      "title": "Comment créer un setup de rigging basique pour l'animation de personnage?",
+      "description": "Un rigging basique implique la création d'une hiérarchie de joints/bones, l'application de poids de skinning, et la configuration de contraintes et controllers pour faciliter l'animation.",
       "difficulty": "hard",
       "duration": 90,
       "choices": [
@@ -869,8 +869,8 @@
       ]
     },
     {
-      "text": "Comment optimiser les textures pour le rendu?",
-      "explanation": "Pour optimiser les textures : utiliser des résolutions appropriées, des formats compressés quand possible, des texture streaming, et organiser les UV maps efficacement pour minimiser les appels de texture.",
+      "title": "Comment optimiser les textures pour le rendu?",
+      "description": "Pour optimiser les textures : utiliser des résolutions appropriées, des formats compressés quand possible, des texture streaming, et organiser les UV maps efficacement pour minimiser les appels de texture.",
       "difficulty": "hard",
       "duration": 85,
       "choices": [
@@ -893,8 +893,8 @@
       ]
     },
     {
-      "text": "Comment créer un rendu de preview rapide pendant le travail?",
-      "explanation": "Pour un preview rapide : utiliser le viewport en mode Hardware OpenGL/DirectX, réduire la résolution, désactiver la GI et les effets complexes, ou utiliser le rendu Region.",
+      "title": "Comment créer un rendu de preview rapide pendant le travail?",
+      "description": "Pour un preview rapide : utiliser le viewport en mode Hardware OpenGL/DirectX, réduire la résolution, désactiver la GI et les effets complexes, ou utiliser le rendu Region.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -917,8 +917,8 @@
       ]
     },
     {
-      "text": "Comment gérer efficacement les versions et les sauvegardes de projet?",
-      "explanation": "Gérer les versions : utiliser la fonction de sauvegarde incrémentale, créer des sauvegardes régulières, organiser les assets externes, et documenter les changements importants.",
+      "title": "Comment gérer efficacement les versions et les sauvegardes de projet?",
+      "description": "Gérer les versions : utiliser la fonction de sauvegarde incrémentale, créer des sauvegardes régulières, organiser les assets externes, et documenter les changements importants.",
       "difficulty": "medium",
       "duration": 60,
       "choices": [
@@ -942,4 +942,3 @@
     }
   ]
 }
-

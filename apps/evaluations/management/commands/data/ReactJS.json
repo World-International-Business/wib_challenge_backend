@@ -5,8 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Qu'est-ce que React.js?",
-      "explanation": "React est une bibliothèque JavaScript frontale open-source développée par Facebook pour créer des interfaces utilisateur, particulièrement des applications à page unique où l'interface utilisateur doit être mise à jour dynamiquement.",
+      "title": "Qu'est-ce que React.js?",
+      "description": "React est une bibliothèque JavaScript frontale open-source développée par Facebook pour créer des interfaces utilisateur, particulièrement des applications à page unique où l'interface utilisateur doit être mise à jour dynamiquement.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Quel est l'élément de base dans React?",
-      "explanation": "Les composants sont les éléments de base dans React. Ils permettent de diviser l'interface utilisateur en éléments indépendants et réutilisables, et de considérer chaque élément de façon isolée.",
+      "title": "Quel est l'élément de base dans React?",
+      "description": "Les composants sont les éléments de base dans React. Ils permettent de diviser l'interface utilisateur en éléments indépendants et réutilisables, et de considérer chaque élément de façon isolée.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Comment créer un composant fonctionnel en React?",
-      "explanation": "Un composant fonctionnel en React est une simple fonction JavaScript qui accepte des props en argument et retourne un élément React (généralement décrit avec JSX).",
+      "title": "Comment créer un composant fonctionnel en React?",
+      "description": "Un composant fonctionnel en React est une simple fonction JavaScript qui accepte des props en argument et retourne un élément React (généralement décrit avec JSX).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment créer un composant à base de classe en React?",
-      "explanation": "Un composant à base de classe doit étendre React.Component et implémenter une méthode render() qui renvoie un élément React.",
+      "title": "Comment créer un composant à base de classe en React?",
+      "description": "Un composant à base de classe doit étendre React.Component et implémenter une méthode render() qui renvoie un élément React.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que JSX en React?",
-      "explanation": "JSX (JavaScript XML) est une extension de syntaxe pour JavaScript recommandée par React pour décrire à quoi l'interface utilisateur devrait ressembler. Il ressemble à HTML/XML mais a toute la puissance de JavaScript.",
+      "title": "Qu'est-ce que JSX en React?",
+      "description": "JSX (JavaScript XML) est une extension de syntaxe pour JavaScript recommandée par React pour décrire à quoi l'interface utilisateur devrait ressembler. Il ressemble à HTML/XML mais a toute la puissance de JavaScript.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Comment passer des données à un composant enfant en React?",
-      "explanation": "En React, on peut passer des données d'un composant parent à un composant enfant via les props (propriétés). Les props sont en lecture seule et ne peuvent pas être modifiées par le composant enfant.",
+      "title": "Comment passer des données à un composant enfant en React?",
+      "description": "En React, on peut passer des données d'un composant parent à un composant enfant via les props (propriétés). Les props sont en lecture seule et ne peuvent pas être modifiées par le composant enfant.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le 'state' dans un composant React?",
-      "explanation": "Le state est un objet qui contient des données ou des informations sur le composant. Son changement peut entraîner le re-rendu du composant.",
+      "title": "Qu'est-ce que le 'state' dans un composant React?",
+      "description": "Le state est un objet qui contient des données ou des informations sur le composant. Son changement peut entraîner le re-rendu du composant.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Comment gérer l'état (state) dans un composant fonctionnel?",
-      "explanation": "Depuis React 16.8, les hooks permettent d'utiliser l'état et d'autres fonctionnalités de React sans avoir à écrire une classe. Le hook useState permet de gérer l'état dans les composants fonctionnels.",
+      "title": "Comment gérer l'état (state) dans un composant fonctionnel?",
+      "description": "Depuis React 16.8, les hooks permettent d'utiliser l'état et d'autres fonctionnalités de React sans avoir à écrire une classe. Le hook useState permet de gérer l'état dans les composants fonctionnels.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Quelle méthode utilise-t-on pour mettre à jour l'état dans un composant à base de classe?",
-      "explanation": "Dans les composants à base de classe, on utilise la méthode `setState()` pour mettre à jour l'état. Elle fusionne le nouvel état avec l'état actuel et déclenche un re-rendu du composant.",
+      "title": "Quelle méthode utilise-t-on pour mettre à jour l'état dans un composant à base de classe?",
+      "description": "Dans les composants à base de classe, on utilise la méthode `setState()` pour mettre à jour l'état. Elle fusionne le nouvel état avec l'état actuel et déclenche un re-rendu du composant.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment écouter un événement de clic sur un bouton en React?",
-      "explanation": "En React, les événements sont nommés en camelCase et on passe une fonction comme gestionnaire d'événements, plutôt qu'une chaîne de caractères.",
+      "title": "Comment écouter un événement de clic sur un bouton en React?",
+      "description": "En React, les événements sont nommés en camelCase et on passe une fonction comme gestionnaire d'événements, plutôt qu'une chaîne de caractères.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le 'Virtual DOM' en React?",
-      "explanation": "Le Virtual DOM (DOM virtuel) est une représentation en mémoire du DOM réel. React crée un arbre virtuel du DOM dans la mémoire, effectue les modifications nécessaires sur cet arbre virtuel, puis synchronise efficacement ces changements avec le DOM réel.",
+      "title": "Qu'est-ce que le 'Virtual DOM' en React?",
+      "description": "Le Virtual DOM (DOM virtuel) est une représentation en mémoire du DOM réel. React crée un arbre virtuel du DOM dans la mémoire, effectue les modifications nécessaires sur cet arbre virtuel, puis synchronise efficacement ces changements avec le DOM réel.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Comment effectuer un rendu conditionnel en React?",
-      "explanation": "En React, on peut utiliser des conditions JavaScript standards comme les opérateurs if, ? : (ternaire) ou && (AND logique) pour rendre ou non certaines parties de l'interface utilisateur.",
+      "title": "Comment effectuer un rendu conditionnel en React?",
+      "description": "En React, on peut utiliser des conditions JavaScript standards comme les opérateurs if, ? : (ternaire) ou && (AND logique) pour rendre ou non certaines parties de l'interface utilisateur.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Quelle est la sortie de ce code?\n```jsx\nfunction Exemple() {\n  const [compteur, setCompteur] = useState(0);\n  return (\n    <div>\n      <p>Vous avez cliqué {compteur} fois</p>\n      <button onClick={() => setCompteur(compteur + 1)}>\n        Cliquer\n      </button>\n    </div>\n  );\n}\n```",
-      "explanation": "Ce code définit un composant fonctionnel qui utilise le hook useState pour gérer un état 'compteur'. Chaque fois qu'on clique sur le bouton, la valeur du compteur est incrémentée et affichée dans le paragraphe.",
+      "title": "Quelle est la sortie de ce code?\n```jsx\nfunction Exemple() {\n  const [compteur, setCompteur] = useState(0);\n  return (\n    <div>\n      <p>Vous avez cliqué {compteur} fois</p>\n      <button onClick={() => setCompteur(compteur + 1)}>\n        Cliquer\n      </button>\n    </div>\n  );\n}\n```",
+      "description": "Ce code définit un composant fonctionnel qui utilise le hook useState pour gérer un état 'compteur'. Chaque fois qu'on clique sur le bouton, la valeur du compteur est incrémentée et affichée dans le paragraphe.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le hook useEffect?",
-      "explanation": "useEffect permet d'exécuter des effets de bord dans les composants fonctionnels. Il est utilisé pour des opérations comme la récupération de données, les abonnements, ou la manipulation manuelle du DOM, qui sont généralement réalisées dans les méthodes de cycle de vie des composants de classe.",
+      "title": "Qu'est-ce que le hook useEffect?",
+      "description": "useEffect permet d'exécuter des effets de bord dans les composants fonctionnels. Il est utilisé pour des opérations comme la récupération de données, les abonnements, ou la manipulation manuelle du DOM, qui sont généralement réalisées dans les méthodes de cycle de vie des composants de classe.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment éviter que useEffect ne s'exécute à chaque rendu?",
-      "explanation": "En passant un tableau de dépendances comme second argument à useEffect, React n'exécutera l'effet que si les valeurs des dépendances ont changé. Un tableau vide signifie que l'effet ne s'exécute qu'une seule fois, après le premier rendu.",
+      "title": "Comment éviter que useEffect ne s'exécute à chaque rendu?",
+      "description": "En passant un tableau de dépendances comme second argument à useEffect, React n'exécutera l'effet que si les valeurs des dépendances ont changé. Un tableau vide signifie que l'effet ne s'exécute qu'une seule fois, après le premier rendu.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Quel est le but du hook useContext?",
-      "explanation": "useContext permet de consommer un contexte (créé avec React.createContext) directement dans un composant fonctionnel sans avoir à utiliser un Consumer. Il simplifie l'accès aux données globales dans l'arbre des composants.",
+      "title": "Quel est le but du hook useContext?",
+      "description": "useContext permet de consommer un contexte (créé avec React.createContext) directement dans un composant fonctionnel sans avoir à utiliser un Consumer. Il simplifie l'accès aux données globales dans l'arbre des composants.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment mapper une liste d'éléments en React?",
-      "explanation": "En React, on utilise généralement la méthode map() des tableaux pour créer un nouveau tableau d'éléments React à partir d'un tableau de données. Chaque élément doit avoir une propriété 'key' unique pour aider React à identifier quels éléments ont été modifiés, ajoutés ou supprimés.",
+      "title": "Comment mapper une liste d'éléments en React?",
+      "description": "En React, on utilise généralement la méthode map() des tableaux pour créer un nouveau tableau d'éléments React à partir d'un tableau de données. Chaque élément doit avoir une propriété 'key' unique pour aider React à identifier quels éléments ont été modifiés, ajoutés ou supprimés.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Pourquoi est-il important de fournir une clé (key) lors de la création d'une liste d'éléments?",
-      "explanation": "Les clés aident React à identifier quels éléments ont été modifiés, ajoutés ou supprimés. Elles doivent être uniques parmi les frères (au même niveau). Cela permet à React d'optimiser le rendu et d'éviter de recréer tous les éléments de la liste lors d'une mise à jour.",
+      "title": "Pourquoi est-il important de fournir une clé (key) lors de la création d'une liste d'éléments?",
+      "description": "Les clés aident React à identifier quels éléments ont été modifiés, ajoutés ou supprimés. Elles doivent être uniques parmi les frères (au même niveau). Cela permet à React d'optimiser le rendu et d'éviter de recréer tous les éléments de la liste lors d'une mise à jour.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre les props et le state?",
-      "explanation": "Les props sont des données passées d'un composant parent à un composant enfant et sont en lecture seule. Le state est géré à l'intérieur du composant et peut être modifié via setState ou les hooks.",
+      "title": "Quelle est la différence entre les props et le state?",
+      "description": "Les props sont des données passées d'un composant parent à un composant enfant et sont en lecture seule. Le state est géré à l'intérieur du composant et peut être modifié via setState ou les hooks.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment créer des références (refs) en React?",
-      "explanation": "Les refs fournissent un moyen d'accéder aux nœuds DOM ou aux éléments React créés dans la méthode de rendu. Dans les composants fonctionnels, on utilise le hook useRef, et dans les composants de classe, on peut utiliser React.createRef().",
+      "title": "Comment créer des références (refs) en React?",
+      "description": "Les refs fournissent un moyen d'accéder aux nœuds DOM ou aux éléments React créés dans la méthode de rendu. Dans les composants fonctionnels, on utilise le hook useRef, et dans les composants de classe, on peut utiliser React.createRef().",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Quel hook personnalisé permettrait de gérer un formulaire en React?",
-      "explanation": "Un hook personnalisé nommé useForm pourrait encapsuler la logique de gestion d'un formulaire, y compris la validation, la soumission et la gestion des valeurs des champs.",
+      "title": "Quel hook personnalisé permettrait de gérer un formulaire en React?",
+      "description": "Un hook personnalisé nommé useForm pourrait encapsuler la logique de gestion d'un formulaire, y compris la validation, la soumission et la gestion des valeurs des champs.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le Context API en React?",
-      "explanation": "L'API Context permet de partager des données entre des composants sans avoir à passer explicitement les props à travers chaque niveau de l'arbre de composants. C'est utile pour des données considérées comme \"globales\" comme un thème, un utilisateur connecté, ou des préférences linguistiques.",
+      "title": "Qu'est-ce que le Context API en React?",
+      "description": "L'API Context permet de partager des données entre des composants sans avoir à passer explicitement les props à travers chaque niveau de l'arbre de composants. C'est utile pour des données considérées comme \"globales\" comme un thème, un utilisateur connecté, ou des préférences linguistiques.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment optimiser les performances d'un composant React qui se rendrait fréquemment?",
-      "explanation": "React.memo est une fonction d'ordre supérieur qui mémoïse un composant fonctionnel, tandis que React.PureComponent et shouldComponentUpdate sont utilisés dans les composants de classe pour éviter les rendus inutiles.",
+      "title": "Comment optimiser les performances d'un composant React qui se rendrait fréquemment?",
+      "description": "React.memo est une fonction d'ordre supérieur qui mémoïse un composant fonctionnel, tandis que React.PureComponent et shouldComponentUpdate sont utilisés dans les composants de classe pour éviter les rendus inutiles.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que React Router?",
-      "explanation": "React Router est une bibliothèque de routage standard pour React qui permet de gérer la navigation entre différentes vues dans une application à page unique (SPA), tout en gardant l'interface utilisateur synchronisée avec l'URL.",
+      "title": "Qu'est-ce que React Router?",
+      "description": "React Router est une bibliothèque de routage standard pour React qui permet de gérer la navigation entre différentes vues dans une application à page unique (SPA), tout en gardant l'interface utilisateur synchronisée avec l'URL.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment définir une route avec des paramètres dans React Router?",
-      "explanation": "Dans React Router, on peut définir des routes paramétrées en utilisant la syntaxe `:paramName` dans le chemin de la route. Ces paramètres sont ensuite accessibles via le hook useParams() ou la propriété match.params.",
+      "title": "Comment définir une route avec des paramètres dans React Router?",
+      "description": "Dans React Router, on peut définir des routes paramétrées en utilisant la syntaxe `:paramName` dans le chemin de la route. Ces paramètres sont ensuite accessibles via le hook useParams() ou la propriété match.params.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que Redux et à quoi sert-il?",
-      "explanation": "Redux est une bibliothèque de gestion d'état prévisible pour applications JavaScript, souvent utilisée avec React pour gérer l'état global de l'application de manière centralisée et prévisible.",
+      "title": "Qu'est-ce que Redux et à quoi sert-il?",
+      "description": "Redux est une bibliothèque de gestion d'état prévisible pour applications JavaScript, souvent utilisée avec React pour gérer l'état global de l'application de manière centralisée et prévisible.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Quelle est la structure d'un projet créé avec Create React App?",
-      "explanation": "Create React App (CRA) est un outil officiellement soutenu par l'équipe React qui permet de créer des applications React sans configuration de build. Il génère une structure de projet standard avec des fichiers de base et une configuration préconfigurée.",
+      "title": "Quelle est la structure d'un projet créé avec Create React App?",
+      "description": "Create React App (CRA) est un outil officiellement soutenu par l'équipe React qui permet de créer des applications React sans configuration de build. Il génère une structure de projet standard avec des fichiers de base et une configuration préconfigurée.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment partager la logique entre composants React?",
-      "explanation": "Il existe plusieurs méthodes pour partager la logique entre composants en React : les hooks personnalisés permettent de réutiliser la logique de state, les HOC encapsulent des composants avec de la logique supplémentaire, et les render props partagent la logique via des fonctions passées comme props.",
+      "title": "Comment partager la logique entre composants React?",
+      "description": "Il existe plusieurs méthodes pour partager la logique entre composants en React : les hooks personnalisés permettent de réutiliser la logique de state, les HOC encapsulent des composants avec de la logique supplémentaire, et les render props partagent la logique via des fonctions passées comme props.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment appeler une API depuis un composant React?",
-      "explanation": "Pour appeler une API depuis un composant React, on utilise généralement le hook useEffect pour exécuter l'appel API une fois que le composant est monté, et on utilise useState pour stocker les données récupérées.",
+      "title": "Comment appeler une API depuis un composant React?",
+      "description": "Pour appeler une API depuis un composant React, on utilise généralement le hook useEffect pour exécuter l'appel API une fois que le composant est monté, et on utilise useState pour stocker les données récupérées.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Comment créer un portail en React?",
-      "explanation": "Les portails fournissent un moyen de rendre certains enfants dans un nœud DOM qui existe en dehors de la hiérarchie DOM du composant parent. Ils sont utiles pour les modales, les tooltips, etc.",
+      "title": "Comment créer un portail en React?",
+      "description": "Les portails fournissent un moyen de rendre certains enfants dans un nœud DOM qui existe en dehors de la hiérarchie DOM du composant parent. Ils sont utiles pour les modales, les tooltips, etc.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Quel est le cycle de vie d'un composant React (basé sur des classes)?",
-      "explanation": "Un composant React basé sur une classe a plusieurs méthodes de cycle de vie qui sont appelées dans un ordre spécifique : montage (constructor, render, componentDidMount), mise à jour (render, componentDidUpdate), démontage (componentWillUnmount).",
+      "title": "Quel est le cycle de vie d'un composant React (basé sur des classes)?",
+      "description": "Un composant React basé sur une classe a plusieurs méthodes de cycle de vie qui sont appelées dans un ordre spécifique : montage (constructor, render, componentDidMount), mise à jour (render, componentDidUpdate), démontage (componentWillUnmount).",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Comment React gère-t-il le rendu côté serveur (Server-Side Rendering)?",
-      "explanation": "Le rendu côté serveur avec React implique de rendre les composants React en HTML sur le serveur avant de les envoyer au client, ce qui peut améliorer les performances perçues et l'optimisation pour les moteurs de recherche.",
+      "title": "Comment React gère-t-il le rendu côté serveur (Server-Side Rendering)?",
+      "description": "Le rendu côté serveur avec React implique de rendre les composants React en HTML sur le serveur avant de les envoyer au client, ce qui peut améliorer les performances perçues et l'optimisation pour les moteurs de recherche.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment tester un composant React avec Jest et React Testing Library?",
-      "explanation": "Jest est un framework de test JavaScript et React Testing Library est une bibliothèque qui fournit des utilitaires pour tester les composants React d'une manière qui simule l'utilisation réelle par les utilisateurs.",
+      "title": "Comment tester un composant React avec Jest et React Testing Library?",
+      "description": "Jest est un framework de test JavaScript et React Testing Library est une bibliothèque qui fournit des utilitaires pour tester les composants React d'une manière qui simule l'utilisation réelle par les utilisateurs.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [

@@ -5,7 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "text": "Qu'est-ce que Blender ?",
+      "title": "Qu'est-ce que Blender ?",
       "explanation": "Blender est un logiciel libre et open-source de création 3D qui permet la modélisation, l'animation, le rendu, le compositing et le montage vidéo.",
       "difficulty": "easy",
       "duration": 20,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "text": "Quel raccourci permet de **sélectionner tout** dans Blender ?",
+      "title": "Quel raccourci permet de sélectionner tout dans Blender ?",
       "explanation": "La touche 'A' permet de sélectionner tous les objets dans la scène, ou tous les éléments selon le mode actif.",
       "difficulty": "easy",
       "duration": 20,
@@ -53,7 +53,8 @@
       ]
     },
     {
-      "text": "Comment **déplacer** un objet dans Blender ?",
+      "title": "Comment déplacer un objet dans Blender ?",
+      "description": "Utilisation de la touche **G** (grab/move) puis contrainte avec **X/Y/Z** pour les axes",
       "explanation": "Pour déplacer un objet, on appuie sur 'G' (grab/move) puis on peut contraindre le mouvement avec X, Y ou Z pour les axes.",
       "difficulty": "easy",
       "duration": 25,
@@ -77,7 +78,7 @@
       ]
     },
     {
-      "text": "Quel raccourci permet de **faire une rotation** ?",
+      "title": "Quel raccourci permet de faire une rotation ?",
       "explanation": "La touche 'R' active le mode rotation, suivi optionnellement de X, Y ou Z pour contraindre à un axe spécifique.",
       "difficulty": "easy",
       "duration": 20,
@@ -101,7 +102,8 @@
       ]
     },
     {
-      "text": "Comment **redimensionner** un objet ?",
+      "title": "Comment redimensionner un objet ?",
+      "description": "Utilisation de la touche **S** (scale) puis **X/Y/Z** pour les axes ou **Shift+Z** pour exclure un axe",
       "explanation": "La touche 'S' (scale) permet de redimensionner un objet, suivi de X, Y ou Z pour contraindre à un axe, ou Shift+Z pour exclure un axe.",
       "difficulty": "easy",
       "duration": 25,
@@ -125,7 +127,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **mode Edit** ?",
+      "title": "Qu'est-ce que le **mode Edit** ?",
       "explanation": "Le mode Edit (Tab) permet de modifier la géométrie interne d'un objet : vertices, arêtes, faces. C'est le mode principal de modélisation.",
       "difficulty": "medium",
       "duration": 30,
@@ -149,7 +151,7 @@
       ]
     },
     {
-      "text": "Comment **extruder** une face ?",
+      "title": "Comment **extruder** une face ?",
       "explanation": "L'extrusion se fait avec la touche 'E' en mode Edit, permettant de créer de nouveaux polygones à partir d'une sélection.",
       "difficulty": "medium",
       "duration": 30,
@@ -173,7 +175,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **Mesh** dans Blender ?",
+      "title": "Qu'est-ce qu'un **Mesh** dans Blender ?",
       "explanation": "Un Mesh est un objet 3D composé de vertices (points), d'arêtes (lignes) et de faces (polygones) qui forme la géométrie de base.",
       "difficulty": "medium",
       "duration": 35,
@@ -197,7 +199,7 @@
       ]
     },
     {
-      "text": "Comment **ajouter un objet** à la scène ?",
+      "title": "Comment **ajouter un objet** à la scène ?",
       "explanation": "Pour ajouter un objet, on utilise Shift+A qui ouvre le menu Add avec différentes catégories (Mesh, Light, Camera, etc.).",
       "difficulty": "easy",
       "duration": 25,
@@ -221,7 +223,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Modifier** en Blender ?",
+      "title": "Qu'est-ce que le **Modifier** en Blender ?",
       "explanation": "Les Modifiers sont des outils non-destructifs qui modifient automatiquement la géométrie d'un objet (subdivision, miroir, array, etc.).",
       "difficulty": "medium",
       "duration": 40,
@@ -245,7 +247,7 @@
       ]
     },
     {
-      "text": "Comment **subdiviser** une surface ?",
+      "title": "Comment **subdiviser** une surface ?",
       "explanation": "La subdivision se fait avec le Subdivision Surface Modifier ou en mode Edit avec Ctrl+clic droit pour ajouter des loop cuts.",
       "difficulty": "medium",
       "duration": 35,
@@ -269,7 +271,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Viewport Shading** ?",
+      "title": "Qu'est-ce que le **Viewport Shading** ?",
       "explanation": "Le Viewport Shading contrôle comment les objets sont affichés dans la vue 3D : wireframe, solid, material preview, ou rendered.",
       "difficulty": "medium",
       "duration": 35,
@@ -293,7 +295,7 @@
       ]
     },
     {
-      "text": "Comment **créer un matériau** ?",
+      "title": "Comment **créer un matériau** ?",
       "explanation": "Les matériaux se créent dans l'onglet Material Properties (icône sphère) en cliquant sur 'New' pour créer un nouveau matériau.",
       "difficulty": "medium",
       "duration": 30,
@@ -317,7 +319,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **Cycles** ?",
+      "title": "Qu'est-ce que **Cycles** ?",
       "explanation": "Cycles est le moteur de rendu physiquement réaliste de Blender qui simule le comportement réel de la lumière pour des rendus photoréalistes.",
       "difficulty": "medium",
       "duration": 40,
@@ -341,7 +343,7 @@
       ]
     },
     {
-      "text": "Comment **animer** un objet dans Blender ?",
+      "title": "Comment **animer** un objet dans Blender ?",
       "explanation": "L'animation se fait en définissant des keyframes (touche I) à différents moments sur la timeline pour enregistrer les positions/rotations/échelles.",
       "difficulty": "medium",
       "duration": 40,
@@ -365,7 +367,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Dope Sheet** ?",
+      "title": "Qu'est-ce que le **Dope Sheet** ?",
       "explanation": "Le Dope Sheet est l'éditeur qui affiche et permet de manipuler les keyframes et l'animation dans le temps de manière globale.",
       "difficulty": "hard",
       "duration": 40,
@@ -389,7 +391,7 @@
       ]
     },
     {
-      "text": "Comment **créer une texture** ?",
+      "title": "Comment **créer une texture** ?",
       "explanation": "Les textures se créent dans le Shader Editor en ajoutant des nodes de texture (Image Texture, Noise, etc.) connectés au matériau.",
       "difficulty": "hard",
       "duration": 45,
@@ -413,7 +415,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**UV Mapping** ?",
+      "title": "Qu'est-ce que l'**UV Mapping** ?",
       "explanation": "L'UV Mapping est le processus de projection d'une texture 2D sur un objet 3D en 'dépliage' de la surface de l'objet.",
       "difficulty": "hard",
       "duration": 45,
@@ -437,7 +439,7 @@
       ]
     },
     {
-      "text": "Comment **éclairer** une scène ?",
+      "title": "Comment **éclairer** une scène ?",
       "explanation": "L'éclairage se fait en ajoutant des sources lumineuses (Sun, Point, Spot, Area) via Shift+A > Light, ou en utilisant un HDRI.",
       "difficulty": "medium",
       "duration": 35,
@@ -461,7 +463,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Node Editor** ?",
+      "title": "Qu'est-ce que le **Node Editor** ?",
       "explanation": "Le Node Editor (Shader Editor) permet de créer des matériaux complexes en connectant des nodes qui représentent différentes propriétés visuelles.",
       "difficulty": "hard",
       "duration": 40,
@@ -485,7 +487,7 @@
       ]
     },
     {
-      "text": "Comment **faire un rendu** de l'image ?",
+      "title": "Comment **faire un rendu** de l'image ?",
       "explanation": "Le rendu se lance avec F12 pour une image ou Ctrl+F12 pour une animation, selon les paramètres définis dans Render Properties.",
       "difficulty": "easy",
       "duration": 25,
@@ -509,7 +511,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **Subsurface Scattering** ?",
+      "title": "Qu'est-ce que la **Subsurface Scattering** ?",
       "explanation": "La Subsurface Scattering simule la diffusion de la lumière sous la surface des matériaux translucides comme la peau, la cire ou le marbre.",
       "difficulty": "hard",
       "duration": 50,
@@ -533,7 +535,7 @@
       ]
     },
     {
-      "text": "Comment **dupliquer** un objet ?",
+      "title": "Comment **dupliquer** un objet ?",
       "explanation": "La duplication se fait avec Shift+D pour dupliquer et déplacer, ou Alt+D pour une duplication liée (instance).",
       "difficulty": "easy",
       "duration": 25,
@@ -557,7 +559,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Mirror Modifier** ?",
+      "title": "Qu'est-ce que le **Mirror Modifier** ?",
       "explanation": "Le Mirror Modifier crée automatiquement une symétrie de l'objet selon un ou plusieurs axes, utile pour modéliser des objets symétriques.",
       "difficulty": "medium",
       "duration": 35,
@@ -581,7 +583,7 @@
       ]
     },
     {
-      "text": "Comment **sélectionner des éléments** en mode Edit ?",
+      "title": "Comment **sélectionner des éléments** en mode Edit ?",
       "explanation": "En mode Edit, on peut sélectionner des vertices (1), edges (2), ou faces (3), et utiliser Alt+clic pour sélectionner des loops complets.",
       "difficulty": "medium",
       "duration": 35,
@@ -605,7 +607,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Bevel** ?",
+      "title": "Qu'est-ce que le **Bevel** ?",
       "explanation": "Le Bevel (Ctrl+B) crée des chanfreins arrondis sur les arêtes sélectionnées, ajoutant du réalisme en évitant les angles parfaitement nets.",
       "difficulty": "medium",
       "duration": 35,
@@ -629,7 +631,7 @@
       ]
     },
     {
-      "text": "Comment **organiser** la scène avec les Collections ?",
+      "title": "Comment **organiser** la scène avec les Collections ?",
       "explanation": "Les Collections permettent de grouper et organiser les objets dans l'Outliner, facilitant la gestion de scènes complexes et le contrôle de visibilité.",
       "difficulty": "medium",
       "duration": 40,
@@ -653,7 +655,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Sculpting** dans Blender ?",
+      "title": "Qu'est-ce que le **Sculpting** dans Blender ?",
       "explanation": "Le Sculpting permet de modéliser de manière organique en 'sculptant' directement sur la surface du mesh avec différents pinceaux et outils.",
       "difficulty": "medium",
       "duration": 40,
@@ -677,7 +679,7 @@
       ]
     },
     {
-      "text": "Comment **contrôler la caméra** ?",
+      "title": "Comment **contrôler la caméra** ?",
       "explanation": "La caméra se contrôle en la sélectionnant et utilisant les outils de transformation, ou Ctrl+Alt+Numpad 0 pour passer en vue caméra.",
       "difficulty": "medium",
       "duration": 35,
@@ -701,7 +703,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Compositor** ?",
+      "title": "Qu'est-ce que le **Compositor** ?",
       "explanation": "Le Compositor permet de faire de la post-production sur les rendus en combinant différents passes et effets avec un système de nodes.",
       "difficulty": "hard",
       "duration": 45,
@@ -725,7 +727,7 @@
       ]
     },
     {
-      "text": "Comment créer des **particules** ?",
+      "title": "Comment créer des **particules** ?",
       "explanation": "Les systèmes de particules se créent dans les Properties > Particle Properties en ajoutant un nouveau système pour simuler cheveux, fumée, etc.",
       "difficulty": "hard",
       "duration": 40,
@@ -749,7 +751,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Rigging** ?",
+      "title": "Qu'est-ce que le **Rigging** ?",
       "explanation": "Le Rigging consiste à créer un squelette (armature) avec des os pour animer des personnages ou objets de manière réaliste.",
       "difficulty": "hard",
       "duration": 45,
@@ -773,7 +775,7 @@
       ]
     },
     {
-      "text": "Comment utiliser le **Proportional Editing** ?",
+      "title": "Comment utiliser le **Proportional Editing** ?",
       "explanation": "Le Proportional Editing (O) permet d'influencer les vertices voisins lors d'une transformation, créant des déformations plus naturelles.",
       "difficulty": "medium",
       "duration": 40,
@@ -797,7 +799,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **Eevee** ?",
+      "title": "Qu'est-ce que **Eevee** ?",
       "explanation": "Eevee est le moteur de rendu temps réel de Blender qui offre un aperçu rapide des matériaux et éclairages avec une qualité correcte.",
       "difficulty": "medium",
       "duration": 35,
@@ -821,7 +823,7 @@
       ]
     },
     {
-      "text": "Comment **optimiser** les performances de Blender ?",
+      "title": "Comment **optimiser** les performances de Blender ?",
       "explanation": "L'optimisation passe par la simplification des meshes, l'utilisation de proxies, la limitation des subdivisions, et l'ajustement des paramètres de rendu.",
       "difficulty": "hard",
       "duration": 50,
@@ -845,7 +847,7 @@
       ]
     },
     {
-      "text": "Comment créer des **matériaux PBR** ?",
+      "title": "Comment créer des **matériaux PBR** ?",
       "explanation": "Les matériaux PBR se créent avec des nodes Principled BSDF en connectant des textures pour Albedo, Normal, Roughness, Metallic, etc.",
       "difficulty": "hard",
       "duration": 50,
@@ -869,7 +871,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Motion Blur** ?",
+      "title": "Qu'est-ce que le **Motion Blur** ?",
       "explanation": "Le Motion Blur simule le flou de mouvement qui se produit naturellement quand des objets bougent rapidement devant la caméra.",
       "difficulty": "medium",
       "duration": 35,
@@ -893,7 +895,7 @@
       ]
     },
     {
-      "text": "Comment **exporter** un modèle 3D ?",
+      "title": "Comment **exporter** un modèle 3D ?",
       "explanation": "L'export se fait via File > Export en choisissant le format approprié (FBX, OBJ, glTF, etc.) selon l'usage final.",
       "difficulty": "medium",
       "duration": 30,
@@ -917,7 +919,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Freestyle** ?",
+      "title": "Qu'est-ce que le **Freestyle** ?",
       "explanation": "Freestyle est un système de rendu de lignes non-photoréalistes qui permet de créer des contours et effets de dessin artistique.",
       "difficulty": "hard",
       "duration": 40,
@@ -941,7 +943,7 @@
       ]
     },
     {
-      "text": "Comment créer une **animation cyclique** ?",
+      "title": "Comment créer une **animation cyclique** ?",
       "explanation": "Une animation cyclique se crée en s'assurant que la première et dernière keyframe sont identiques, et en utilisant les modificateurs de courbe.",
       "difficulty": "hard",
       "duration": 45,
@@ -966,4 +968,3 @@
     }
   ]
 }
-

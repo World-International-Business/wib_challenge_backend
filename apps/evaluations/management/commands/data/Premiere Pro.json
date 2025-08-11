@@ -1,11 +1,12 @@
 {
   "technology": "Premiere Pro",
-  "title": "Évaluation Adobe Premiere Pro - Montage Vidéo",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles d'Adobe Premiere Pro pour le montage vidéo professionnel, incluant l'interface, le timeline, les effets, la correction colorimétrique, l'audio et l'export.",
+  "title": "Évaluation Adobe Premiere Pro - Montage Vidéo Professionnel",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles d'Adobe Premiere Pro pour le montage vidéo professionnel, incluant l'interface, les outils de montage, les effets, la colorimétrie et l'export.",
   "difficulty": "beginner",
   "questions": [
     {
-      "text": "Qu'est-ce qu'Adobe Premiere Pro ?",
+      "title": "Adobe Premiere Pro",
+      "description": "Qu'est-ce qu'Adobe Premiere Pro ?",
       "explanation": "Adobe Premiere Pro est un logiciel de montage vidéo professionnel qui fait partie de la suite Adobe Creative Cloud, utilisé pour créer des vidéos, films et contenus audiovisuels.",
       "difficulty": "easy",
       "duration": 20,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "text": "Quel est le **panneau principal** pour organiser les rushes ?",
+      "title": "Panneau Projet",
+      "description": "Quel est le **panneau principal** pour organiser les rushes ?",
       "explanation": "Le panneau Projet (Project) permet d'importer, organiser et gérer tous les médias (vidéos, audios, images) utilisés dans le montage.",
       "difficulty": "easy",
       "duration": 25,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "text": "Comment importer des médias dans Premiere Pro ?",
+      "title": "Importation des médias",
+      "description": "Comment importer des médias dans Premiere Pro ?",
       "explanation": "Les médias peuvent être importés via Fichier > Importer, en glissant-déposant dans le panneau Projet, ou avec le raccourci Ctrl+I (Cmd+I sur Mac).",
       "difficulty": "easy",
       "duration": 25,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **Timeline** ?",
+      "title": "Timeline",
+      "description": "Qu'est-ce que la **Timeline** ?",
       "explanation": "La Timeline est l'espace de travail principal où l'on assemble les clips vidéo et audio dans l'ordre chronologique pour créer le montage final.",
       "difficulty": "easy",
       "duration": 30,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "text": "Quel raccourci permet de **couper** un clip ?",
+      "title": "Outil Cutter",
+      "description": "Quel raccourci permet de **couper** un clip ?",
       "explanation": "La touche C active l'outil Cutter (Razor) qui permet de couper les clips à l'endroit désiré sur la timeline.",
       "difficulty": "easy",
       "duration": 20,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "text": "Comment **synchroniser** l'audio et la vidéo ?",
+      "title": "Synchronisation audio/vidéo",
+      "description": "Comment **synchroniser** l'audio et la vidéo ?",
       "explanation": "La synchronisation peut se faire automatiquement avec la fonction 'Synchroniser' en analysant les formes d'onde audio, ou manuellement en alignant les timecodes.",
       "difficulty": "medium",
       "duration": 40,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **séquence** ?",
+      "title": "Séquence",
+      "description": "Qu'est-ce qu'une **séquence** ?",
       "explanation": "Une séquence est un conteneur qui définit les paramètres du projet (résolution, fréquence d'images, format) et contient l'assemblage des clips sur la timeline.",
       "difficulty": "medium",
       "duration": 35,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "text": "Comment créer une **nouvelle séquence** ?",
+      "title": "Créer une nouvelle séquence",
+      "description": "Comment créer une **nouvelle séquence** ?",
       "explanation": "Une nouvelle séquence se crée via Fichier > Nouveau > Séquence, ou en glissant un clip du panneau Projet vers un espace vide de la timeline.",
       "difficulty": "easy",
       "duration": 30,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **point d'entrée** et un **point de sortie** ?",
+      "title": "Points d'entrée et de sortie",
+      "description": "Qu'est-ce qu'un **point d'entrée** et un **point de sortie** ?",
       "explanation": "Les points d'entrée (In) et de sortie (Out) définissent la portion d'un clip qui sera utilisée dans le montage, permettant de sélectionner seulement les parties désirées.",
       "difficulty": "medium",
       "duration": 35,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "text": "Quel raccourci définit un **point d'entrée** ?",
+      "title": "Point d'entrée",
+      "description": "Quel raccourci définit un **point d'entrée** ?",
       "explanation": "La touche I définit un point d'entrée (In point) sur le clip ou la timeline à la position de la tête de lecture.",
       "difficulty": "easy",
       "duration": 20,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "text": "Comment **ajuster la vitesse** d'un clip ?",
+      "title": "Ajustement de la vitesse",
+      "description": "Comment **ajuster la vitesse** d'un clip ?",
       "explanation": "La vitesse d'un clip peut être ajustée via clic droit > Vitesse/Durée, ou en utilisant l'outil Allongement de débit (Rate Stretch Tool).",
       "difficulty": "medium",
       "duration": 35,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **transition** ?",
+      "title": "Transition",
+      "description": "Qu'est-ce qu'une **transition** ?",
       "explanation": "Une transition est un effet qui lie deux clips adjacents, créant un passage fluide entre eux (fondu, volet, morphing, etc.).",
       "difficulty": "easy",
       "duration": 25,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "text": "Comment appliquer une **transition** ?",
+      "title": "Appliquer une transition",
+      "description": "Comment appliquer une **transition** ?",
       "explanation": "Les transitions peuvent être appliquées en les glissant depuis le panneau Effets vers la jonction entre deux clips, ou via le raccourci Ctrl+D pour une transition par défaut.",
       "difficulty": "medium",
       "duration": 30,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **panneau Lumetri** ?",
+      "title": "Panneau Lumetri",
+      "description": "Qu'est-ce que le **panneau Lumetri** ?",
       "explanation": "Le panneau Lumetri Color est l'outil principal de correction et d'étalonnage colorimétrique dans Premiere Pro, permettant d'ajuster les couleurs, l'exposition, et créer des looks.",
       "difficulty": "medium",
       "duration": 40,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "text": "Comment **équilibrer les couleurs** d'un clip ?",
+      "title": "Équilibrage des couleurs",
+      "description": "Comment **équilibrer les couleurs** d'un clip ?",
       "explanation": "L'équilibrage des couleurs se fait dans le panneau Lumetri Color avec les roues chromatiques, les curseurs de balance des blancs, ou l'outil de correction automatique.",
       "difficulty": "medium",
       "duration": 40,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **LUT** ?",
+      "title": "LUT",
+      "description": "Qu'est-ce qu'un **LUT** ?",
       "explanation": "Un LUT (Look-Up Table) est une table de correspondance qui transforme mathématiquement les couleurs d'une image pour créer un look spécifique ou corriger la colorimétrie.",
       "difficulty": "hard",
       "duration": 45,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "text": "Comment **créer un titre** dans Premiere Pro ?",
+      "title": "Création de titre",
+      "description": "Comment **créer un titre** dans Premiere Pro ?",
       "explanation": "Les titres peuvent être créés via Graphiques > Nouveau calque > Texte dans le panneau Graphiques essentiels, ou en important des modèles After Effects.",
       "difficulty": "medium",
       "duration": 35,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**étalonnage** ?",
+      "title": "Étalonnage",
+      "description": "Qu'est-ce que l'**étalonnage** ?",
       "explanation": "L'étalonnage (color grading) est le processus artistique d'ajustement des couleurs pour créer une ambiance, un style visuel ou corriger les différences entre les plans.",
       "difficulty": "medium",
       "duration": 40,
@@ -437,28 +455,48 @@
       ]
     },
     {
-      "text": "Comment **exporter** une vidéo ?",
-      "explanation": "L'export se fait via Fichier > Exporter > Média (Ctrl+M), où l'on peut choisir le format, la qualité et les paramètres de compression.",
-      "difficulty": "easy",
-      "duration": 30,
-      "choices": [
-        {
-          "text": "Fichier > Exporter > Média",
-          "is_correct": true
-        },
-        {
-          "text": "Ctrl+M",
-          "is_correct": true
-        },
-        {
-          "text": "Fichier > Enregistrer",
-          "is_correct": false
-        },
-        {
-          "text": "Timeline > Exporter",
-          "is_correct": false
-        }
-      ]
+      "title": "Exportation",
+      "description": "Comment **exporter** une vidéo ?",
+      "title": "Proxy",
+      "description": "Qu'est-ce que le **proxy** ?",
+      "title": "Stabilisation",
+      "description": "Comment **stabiliser** une vidéo tremblante ?",
+      "title": "Fréquence d'images",
+      "description": "Qu'est-ce que la **fréquence d'images** (framerate) ?",
+      "title": "Ajustement audio",
+      "description": "Comment **ajuster l'audio** d'un clip ?",
+      "title": "Keyframe",
+      "description": "Qu'est-ce qu'un **keyframe** ?",
+      "title": "Effet de ralenti",
+      "description": "Comment créer un **effet de ralenti** ?",
+      "title": "Multicam",
+      "description": "Qu'est-ce que le **multicam** ?",
+      "title": "Suppression du bruit audio",
+      "description": "Comment **supprimer le bruit audio** ?",
+      "title": "Rendering",
+      "description": "Qu'est-ce que le **rendering** ?",
+      "title": "Effet de zoom",
+      "description": "Comment créer un **effet de zoom** ?",
+      "title": "Espace colorimétrique Rec.709",
+      "description": "Qu'est-ce que l'**espace colorimétrique** Rec.709 ?",
+      "title": "Création de masque",
+      "description": "Comment **créer un masque** ?",
+      "title": "Timecode",
+      "description": "Qu'est-ce que le **timecode** ?",
+      "title": "Optimisation des performances",
+      "description": "Comment **optimiser les performances** de Premiere Pro ?",
+      "title": "Audio Units",
+      "description": "Qu'est-ce que l'**Audio Units** (AU) ?",
+      "title": "Séquence imbriquée",
+      "description": "Comment **créer une séquence imbriquée** ?",
+      "title": "Dynamic Link",
+      "description": "Qu'est-ce que le **Dynamic Link** ?",
+      "title": "Générique de fin",
+      "description": "Comment **créer un generique de fin** qui défile ?",
+      "title": "Profondeur de couleur 10-bit",
+      "description": "Qu'est-ce que la **profondeur de couleur** 10-bit ?",
+      "title": "Synchronisation avec audio externe",
+      "description": "Comment **synchroniser** avec un enregistrement audio externe ?"
     },
     {
       "text": "Qu'est-ce que le **proxy** ?",

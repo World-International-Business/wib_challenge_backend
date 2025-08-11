@@ -5,7 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Comment partager un document Google Docs?",
+      "title": "Partager un document",
+      "description": "Comment partager un document Google Docs?",
       "explanation": "Pour partager un document, cliquer sur le bouton 'Partager' en haut à droite et ajouter les adresses email des personnes.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "text": "Comment ajouter un commentaire à un texte?",
+      "title": "Ajouter un commentaire",
+      "description": "Comment ajouter un commentaire à un texte?",
       "explanation": "Pour ajouter un commentaire, sélectionner le texte puis cliquer sur l'icône commentaire ou utiliser Ctrl+Alt+M.",
       "difficulty": "easy",
       "duration": 30,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "text": "Comment créer un titre automatique dans Google Docs?",
+      "title": "Créer un titre automatique",
+      "description": "Comment créer un titre automatique dans Google Docs?",
       "explanation": "Pour créer un titre, sélectionner le texte puis aller dans Format > Styles de paragraphe > Titre 1, 2, 3, etc.",
       "difficulty": "medium",
       "duration": 35,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "text": "Comment insérer une table des matières automatique?",
+      "title": "Insérer une table des matières",
+      "description": "Comment insérer une table des matières automatique?",
       "explanation": "Pour insérer une table des matières, aller dans Insertion > Table des matières après avoir appliqué des styles de titre.",
       "difficulty": "hard",
       "duration": 60,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la fonction de recherche et remplacement?",
+      "title": "Recherche et remplacement",
+      "description": "Comment utiliser la fonction de recherche et remplacement?",
       "explanation": "Pour rechercher et remplacer, utiliser Ctrl+H ou aller dans Édition > Rechercher et remplacer.",
       "difficulty": "easy",
       "duration": 30,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "text": "Comment insérer une image dans le document?",
+      "title": "Insérer une image",
+      "description": "Comment insérer une image dans le document?",
       "explanation": "Pour insérer une image, aller dans Insertion > Image et choisir la source (ordinateur, web, Drive, etc.).",
       "difficulty": "easy",
       "duration": 30,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "text": "Comment collaborer en temps réel sur un document?",
+      "title": "Collaborer en temps réel",
+      "description": "Comment collaborer en temps réel sur un document?",
       "explanation": "La collaboration en temps réel est automatique dans Google Docs dès qu'un document est partagé. Les modifications apparaissent instantanément.",
       "difficulty": "easy",
       "duration": 35,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "text": "Comment créer une liste à puces ou numérotée?",
+      "title": "Créer une liste à puces ou numérotée",
+      "description": "Comment créer une liste à puces ou numérotée?",
       "explanation": "Pour créer une liste, utiliser les boutons de la barre d'outils ou Format > Listes à puces et listes numérotées.",
       "difficulty": "easy",
       "duration": 25,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "text": "Comment accéder à l'historique des versions?",
+      "title": "Accéder à l'historique des versions",
+      "description": "Comment accéder à l'historique des versions?",
       "explanation": "L'historique des versions est accessible via Fichier > Historique des versions > Voir l'historique des versions.",
       "difficulty": "medium",
       "duration": 40,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "text": "Comment insérer un tableau dans Google Docs?",
+      "title": "Insérer un tableau",
+      "description": "Comment insérer un tableau dans Google Docs?",
       "explanation": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir la taille souhaitée.",
       "difficulty": "easy",
       "duration": 30,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "text": "Comment utiliser le mode de suggestion pour les modifications?",
+      "title": "Utiliser le mode de suggestion",
+      "description": "Comment utiliser le mode de suggestion pour les modifications?",
       "explanation": "Le mode suggestion se trouve en haut à droite (icône crayon). Il permet de proposer des modifications sans modifier directement le texte.",
       "difficulty": "medium",
       "duration": 40,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "text": "Comment insérer un lien hypertexte?",
+      "title": "Insérer un lien hypertexte",
+      "description": "Comment insérer un lien hypertexte?",
       "explanation": "Pour insérer un lien, sélectionner le texte puis utiliser Ctrl+K ou Insertion > Lien.",
       "difficulty": "easy",
       "duration": 30,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "text": "Comment modifier les marges du document?",
+      "title": "Modifier les marges",
+      "description": "Comment modifier les marges du document?",
       "explanation": "Pour modifier les marges, aller dans Fichier > Mise en page et ajuster les marges dans la section correspondante.",
       "difficulty": "medium",
       "duration": 35,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "text": "Comment insérer une note de bas de page?",
+      "title": "Insérer une note de bas de page",
+      "description": "Comment insérer une note de bas de page?",
       "explanation": "Pour insérer une note de bas de page, aller dans Insertion > Note de bas de page ou utiliser Ctrl+Alt+F.",
       "difficulty": "medium",
       "duration": 40,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la reconnaissance vocale pour dicter du texte?",
+      "title": "Reconnaissance vocale",
+      "description": "Comment utiliser la reconnaissance vocale pour dicter du texte?",
       "explanation": "Pour utiliser la saisie vocale, aller dans Outils > Saisie vocale ou utiliser Ctrl+Shift+S (Chrome uniquement).",
       "difficulty": "medium",
       "duration": 45,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "text": "Comment créer un signet dans le document?",
+      "title": "Créer un signet",
+      "description": "Comment créer un signet dans le document?",
       "explanation": "Pour créer un signet, positionner le curseur puis aller dans Insertion > Signet.",
       "difficulty": "hard",
       "duration": 50,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "text": "Comment télécharger le document dans différents formats?",
+      "title": "Télécharger le document",
+      "description": "Comment télécharger le document dans différents formats?",
       "explanation": "Pour télécharger, aller dans Fichier > Télécharger et choisir le format souhaité (Word, PDF, etc.).",
       "difficulty": "easy",
       "duration": 30,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "text": "Comment utiliser l'explorateur pour rechercher des informations?",
+      "title": "Utiliser l'explorateur",
+      "description": "Comment utiliser l'explorateur pour rechercher des informations?",
       "explanation": "L'explorateur se trouve en bas à droite (icône étoile) et permet de rechercher des informations pertinentes sans quitter le document.",
       "difficulty": "medium",
       "duration": 40,
@@ -437,7 +455,8 @@
       ]
     },
     {
-      "text": "Comment personnaliser les styles de paragraphe?",
+      "title": "Personnaliser les styles de paragraphe",
+      "description": "Comment personnaliser les styles de paragraphe?",
       "explanation": "Pour personnaliser les styles, aller dans Format > Styles de paragraphe > Options > Enregistrer comme style par défaut.",
       "difficulty": "hard",
       "duration": 70,
@@ -461,7 +480,8 @@
       ]
     },
     {
-      "text": "Comment insérer des caractères spéciaux?",
+      "title": "Insérer des caractères spéciaux",
+      "description": "Comment insérer des caractères spéciaux?",
       "explanation": "Pour insérer des caractères spéciaux, aller dans Insertion > Caractères spéciaux.",
       "difficulty": "medium",
       "duration": 35,
@@ -485,7 +505,8 @@
       ]
     },
     {
-      "text": "Comment utiliser les modèles de document?",
+      "title": "Utiliser les modèles de document",
+      "description": "Comment utiliser les modèles de document?",
       "explanation": "Pour utiliser un modèle, aller sur docs.google.com et cliquer sur 'Galerie de modèles' ou créer un nouveau document > Choisir un modèle.",
       "difficulty": "medium",
       "duration": 45,
@@ -509,7 +530,8 @@
       ]
     },
     {
-      "text": "Comment créer des colonnes dans le document?",
+      "title": "Créer des colonnes",
+      "description": "Comment créer des colonnes dans le document?",
       "explanation": "Pour créer des colonnes, aller dans Format > Colonnes et choisir le nombre de colonnes souhaité.",
       "difficulty": "medium",
       "duration": 40,
@@ -533,7 +555,8 @@
       ]
     },
     {
-      "text": "Comment ajouter des en-têtes et pieds de page?",
+      "title": "Ajouter des en-têtes et pieds de page",
+      "description": "Comment ajouter des en-têtes et pieds de page?",
       "explanation": "Pour ajouter en-têtes/pieds de page, aller dans Insertion > En-têtes et pieds de page.",
       "difficulty": "easy",
       "duration": 30,
@@ -557,7 +580,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la fonction de traduction automatique?",
+      "title": "Traduction automatique",
+      "description": "Comment utiliser la fonction de traduction automatique?",
       "explanation": "Pour traduire le document, aller dans Outils > Traduire le document et choisir la langue cible.",
       "difficulty": "medium",
       "duration": 40,
@@ -581,7 +605,8 @@
       ]
     },
     {
-      "text": "Comment créer un questionnaire ou formulaire depuis Google Docs?",
+      "title": "Créer un questionnaire ou formulaire",
+      "description": "Comment créer un questionnaire ou formulaire depuis Google Docs?",
       "explanation": "Google Docs ne crée pas directement de formulaires. Il faut utiliser Google Forms via Insertion > Formulaire ou créer un nouveau Google Form.",
       "difficulty": "hard",
       "duration": 60,
@@ -605,7 +630,8 @@
       ]
     },
     {
-      "text": "Comment définir des raccourcis clavier personnalisés?",
+      "title": "Raccourcis clavier personnalisés",
+      "description": "Comment définir des raccourcis clavier personnalisés?",
       "explanation": "Google Docs ne permet pas de personnaliser les raccourcis clavier. Les raccourcis sont prédéfinis et accessibles via Ctrl+/ pour les voir.",
       "difficulty": "hard",
       "duration": 50,
@@ -629,7 +655,8 @@
       ]
     },
     {
-      "text": "Comment insérer un graphique depuis Google Sheets?",
+      "title": "Insérer un graphique depuis Google Sheets",
+      "description": "Comment insérer un graphique depuis Google Sheets?",
       "explanation": "Pour insérer un graphique, aller dans Insertion > Graphique > À partir de Sheets et sélectionner la feuille de calcul.",
       "difficulty": "medium",
       "duration": 45,
@@ -653,7 +680,8 @@
       ]
     },
     {
-      "text": "Comment utiliser le correcteur orthographique et grammatical?",
+      "title": "Correcteur orthographique et grammatical",
+      "description": "Comment utiliser le correcteur orthographique et grammatical?",
       "explanation": "Le correcteur est automatique et souligne les erreurs. On peut aussi aller dans Outils > Orthographe et grammaire pour une vérification complète.",
       "difficulty": "easy",
       "duration": 35,
@@ -677,7 +705,8 @@
       ]
     },
     {
-      "text": "Comment travailler hors ligne avec Google Docs?",
+      "title": "Travailler hors ligne",
+      "description": "Comment travailler hors ligne avec Google Docs?",
       "explanation": "Pour travailler hors ligne, activer le mode hors ligne dans Google Drive ou via l'extension Chrome 'Google Docs hors connexion'.",
       "difficulty": "medium",
       "duration": 45,
@@ -701,7 +730,8 @@
       ]
     },
     {
-      "text": "Comment insérer des équations mathématiques?",
+      "title": "Insérer des équations mathématiques",
+      "description": "Comment insérer des équations mathématiques?",
       "explanation": "Pour insérer des équations, aller dans Insertion > Équation et utiliser l'éditeur d'équations.",
       "difficulty": "hard",
       "duration": 50,
@@ -725,7 +755,8 @@
       ]
     },
     {
-      "text": "Comment gérer les droits d'accès au document?",
+      "title": "Gérer les droits d'accès",
+      "description": "Comment gérer les droits d'accès au document?",
       "explanation": "Les droits se gèrent via le bouton Partager : Propriétaire, Éditeur, Commentateur, ou Lecteur. On peut aussi limiter les actions (téléchargement, copie, impression).",
       "difficulty": "medium",
       "duration": 50,
@@ -749,7 +780,8 @@
       ]
     },
     {
-      "text": "Comment utiliser les add-ons (modules complémentaires)?",
+      "title": "Utiliser les add-ons",
+      "description": "Comment utiliser les add-ons (modules complémentaires)?",
       "explanation": "Pour utiliser les add-ons, aller dans Extensions > Modules complémentaires > Télécharger des modules complémentaires.",
       "difficulty": "hard",
       "duration": 60,
@@ -773,7 +805,8 @@
       ]
     },
     {
-      "text": "Comment créer un document maître avec des sous-documents?",
+      "title": "Créer un document maître",
+      "description": "Comment créer un document maître avec des sous-documents?",
       "explanation": "Google Docs ne supporte pas nativement les documents maîtres. Il faut utiliser des liens entre documents ou des add-ons spécialisés.",
       "difficulty": "hard",
       "duration": 70,
@@ -797,7 +830,8 @@
       ]
     },
     {
-      "text": "Comment importer un document Word existant?",
+      "title": "Importer un document Word",
+      "description": "Comment importer un document Word existant?",
       "explanation": "Pour importer un document Word, l'uploader sur Google Drive ou aller dans Fichier > Importer et sélectionner le fichier .docx.",
       "difficulty": "easy",
       "duration": 35,
@@ -821,7 +855,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la fonctionnalité de comparaison de documents?",
+      "title": "Comparer des documents",
+      "description": "Comment utiliser la fonctionnalité de comparaison de documents?",
       "explanation": "Pour comparer des documents, aller dans Outils > Comparer les documents et sélectionner les deux versions à comparer.",
       "difficulty": "hard",
       "duration": 60,
@@ -845,7 +880,8 @@
       ]
     },
     {
-      "text": "Comment créer des styles personnalisés réutilisables?",
+      "title": "Créer des styles personnalisés",
+      "description": "Comment créer des styles personnalisés réutilisables?",
       "explanation": "Pour créer des styles personnalisés, formater le texte puis Format > Styles de paragraphe > Texte normal > Mettre à jour pour correspondre.",
       "difficulty": "hard",
       "duration": 80,
@@ -869,7 +905,8 @@
       ]
     },
     {
-      "text": "Comment utiliser les variables et le publipostage?",
+      "title": "Utiliser les variables et le publipostage",
+      "description": "Comment utiliser les variables et le publipostage?",
       "explanation": "Google Docs ne supporte pas nativement le publipostage. Il faut utiliser des add-ons comme 'Yet Another Mail Merge' ou Google Apps Script.",
       "difficulty": "hard",
       "duration": 90,
@@ -893,7 +930,8 @@
       ]
     },
     {
-      "text": "Comment optimiser la performance d'un long document?",
+      "title": "Optimiser la performance d'un long document",
+      "description": "Comment optimiser la performance d'un long document?",
       "explanation": "Pour optimiser : éviter trop d'images haute résolution, utiliser des liens au lieu d'embedder, diviser en sections, et limiter l'historique des versions.",
       "difficulty": "hard",
       "duration": 100,
@@ -917,7 +955,8 @@
       ]
     },
     {
-      "text": "Comment intégrer Google Docs avec d'autres applications Google Workspace?",
+      "title": "Intégrer Google Docs avec d'autres applications",
+      "description": "Comment intégrer Google Docs avec d'autres applications Google Workspace?",
       "explanation": "Google Docs s'intègre naturellement avec Drive, Sheets (graphiques), Slides (import), Forms, et Gmail (pièces jointes). Utiliser les menus Insertion pour les liens.",
       "difficulty": "medium",
       "duration": 60,
@@ -942,4 +981,3 @@
     }
   ]
 }
-

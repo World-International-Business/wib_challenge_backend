@@ -5,8 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle est la sortie de `console.log(typeof null)`?",
-      "explanation": "En JavaScript, `typeof null` retourne `'object'`. C'est un bug historique qui a été conservé pour maintenir la compatibilité avec le code existant.",
+      "title": "Quelle est la sortie de console.log(typeof null)?",
+      "description": "En JavaScript, `typeof null` retourne `'object'`. C'est un bug historique qui a été conservé pour maintenir la compatibilité avec le code existant.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Comment déclarer une variable qui ne peut pas être réassignée?",
-      "explanation": "Le mot-clé `const` crée une référence en lecture seule à une valeur. Cela ne signifie pas que la valeur est immuable, mais que l'identifiant ne peut pas être réassigné.",
+      "title": "Comment déclarer une variable qui ne peut pas être réassignée?",
+      "description": "Le mot-clé `const` crée une référence en lecture seule à une valeur. Cela ne signifie pas que la valeur est immuable, mais que l'identifiant ne peut pas être réassigné.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Quelle méthode utilise-t-on pour ajouter un élément à la fin d'un tableau?",
-      "explanation": "La méthode `push()` ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle longueur du tableau.",
+      "title": "Quelle méthode utilise-t-on pour ajouter un élément à la fin d'un tableau?",
+      "description": "La méthode `push()` ajoute un ou plusieurs éléments à la fin d'un tableau et retourne la nouvelle longueur du tableau.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment créer une fonction fléchée (arrow function) qui retourne la somme de deux nombres?",
-      "explanation": "Les fonctions fléchées sont une syntaxe concise pour déclarer des fonctions en JavaScript. Elles n'ont pas leur propre `this`, `arguments`, `super`, ou `new.target`.",
+      "title": "Comment créer une fonction fléchée (arrow function) qui retourne la somme de deux nombres?",
+      "description": "Les fonctions fléchées sont une syntaxe concise pour déclarer des fonctions en JavaScript. Elles n'ont pas leur propre `this`, `arguments`, `super`, ou `new.target`.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `==` et `===` en JavaScript?",
-      "explanation": "`==` compare les valeurs après conversion de type, tandis que `===` compare à la fois la valeur et le type, sans conversion. Par exemple, `'5' == 5` est `true`, mais `'5' === 5` est `false`.",
+      "title": "Quelle est la différence entre `==` et `===` en JavaScript?",
+      "description": "`==` compare les valeurs après conversion de type, tandis que `===` compare à la fois la valeur et le type, sans conversion. Par exemple, `'5' == 5` est `true`, mais `'5' === 5` est `false`.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Comment accéder à la propriété `name` d'un objet `person`?",
-      "explanation": "En JavaScript, on peut accéder aux propriétés d'un objet en utilisant la notation point (`person.name`) ou la notation bracket (`person['name']`).",
+      "title": "Comment accéder à la propriété `name` d'un objet `person`?",
+      "description": "En JavaScript, on peut accéder aux propriétés d'un objet en utilisant la notation point (`person.name`) ou la notation bracket (`person['name']`).",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quel est le résultat de `'5' + 2` en JavaScript?",
-      "explanation": "En JavaScript, l'opérateur `+` entre une chaîne et un nombre provoque une concaténation, convertissant le nombre en chaîne. Donc `'5' + 2` donne `'52'`.",
+      "title": "Quel est le résultat de `'5' + 2` en JavaScript?",
+      "description": "En JavaScript, l'opérateur `+` entre une chaîne et un nombre provoque une concaténation, convertissant le nombre en chaîne. Donc `'5' + 2` donne `'52'`.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Quelle méthode est utilisée pour créer une promesse en JavaScript?",
-      "explanation": "En JavaScript, on utilise le constructeur `Promise` pour créer une nouvelle promesse. Il prend une fonction exécuteur qui reçoit deux fonctions comme paramètres: `resolve` et `reject`.",
+      "title": "Quelle méthode est utilisée pour créer une promesse en JavaScript?",
+      "description": "En JavaScript, on utilise le constructeur `Promise` pour créer une nouvelle promesse. Il prend une fonction exécuteur qui reçoit deux fonctions comme paramètres: `resolve` et `reject`.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Quelle méthode permet de sélectionner un élément HTML par son ID?",
-      "explanation": "La méthode `document.getElementById()` permet de sélectionner un élément HTML par son attribut ID. Elle retourne null si aucun élément avec l'ID spécifié n'est trouvé.",
+      "title": "Quelle méthode permet de sélectionner un élément HTML par son ID?",
+      "description": "La méthode `document.getElementById()` permet de sélectionner un élément HTML par son attribut ID. Elle retourne null si aucun élément avec l'ID spécifié n'est trouvé.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment déclarer un tableau vide en JavaScript?",
-      "explanation": "En JavaScript, on peut déclarer un tableau vide en utilisant la notation littérale `[]` ou le constructeur `Array()`.",
+      "title": "Comment déclarer un tableau vide en JavaScript?",
+      "description": "En JavaScript, on peut déclarer un tableau vide en utilisant la notation littérale `[]` ou le constructeur `Array()`.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le hoisting en JavaScript?",
-      "explanation": "Le hoisting est le comportement par défaut de JavaScript qui déplace les déclarations au sommet de leur portée avant l'exécution du code. Cela signifie que les variables et fonctions peuvent être utilisées avant d'être déclarées.",
+      "title": "Qu'est-ce que le hoisting en JavaScript?",
+      "description": "Le hoisting est le comportement par défaut de JavaScript qui déplace les déclarations au sommet de leur portée avant l'exécution du code. Cela signifie que les variables et fonctions peuvent être utilisées avant d'être déclarées.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Quelle est la sortie de `console.log(0.1 + 0.2 === 0.3)`?",
-      "explanation": "En JavaScript, les nombres à virgule flottante peuvent causer des problèmes de précision. `0.1 + 0.2` donne approximativement `0.30000000000000004`, qui n'est pas strictement égal à `0.3`.",
+      "title": "Quelle est la sortie de console.log(0.1 + 0.2 === 0.3)?",
+      "description": "En JavaScript, les nombres à virgule flottante peuvent causer des problèmes de précision. `0.1 + 0.2` donne approximativement `0.30000000000000004`, qui n'est pas strictement égal à `0.3`.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Quelle méthode utilise-t-on pour convertir un objet JSON en chaîne de caractères?",
-      "explanation": "La méthode `JSON.stringify()` convertit une valeur JavaScript en chaîne JSON. C'est utile pour envoyer des données au serveur ou pour stocker des données dans le localStorage.",
+      "title": "Quelle méthode utilise-t-on pour convertir un objet JSON en chaîne de caractères?",
+      "description": "La méthode `JSON.stringify()` convertit une valeur JavaScript en chaîne JSON. C'est utile pour envoyer des données au serveur ou pour stocker des données dans le localStorage.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Quelle déclaration permet de créer une boucle qui itère à travers les propriétés d'un objet?",
-      "explanation": "La boucle `for...in` itère sur toutes les propriétés énumérables d'un objet qui sont codées par des chaînes, y compris les propriétés héritées.",
+      "title": "Quelle déclaration permet de créer une boucle qui itère à travers les propriétés d'un objet?",
+      "description": "La boucle `for...in` itère sur toutes les propriétés énumérables d'un objet qui sont codées par des chaînes, y compris les propriétés héritées.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment déstructurer un objet pour extraire les propriétés `name` et `age`?",
-      "explanation": "La syntaxe de déstructuration permet d'extraire des données de tableaux ou d'objets et de les assigner à des variables distinctes.",
+      "title": "Comment déstructurer un objet pour extraire les propriétés `name` et `age`?",
+      "description": "La syntaxe de déstructuration permet d'extraire des données de tableaux ou d'objets et de les assigner à des variables distinctes.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction de l'opérateur spread (`...`)?",
-      "explanation": "L'opérateur spread (`...`) permet d'étendre un itérable (comme un tableau ou une chaîne de caractères) dans des endroits où zéro ou plusieurs arguments (pour les appels de fonction) ou éléments (pour les littéraux de tableau) sont attendus.",
+      "title": "Quelle est la fonction de l'opérateur spread (`...`)?",
+      "description": "L'opérateur spread (`...`) permet d'étendre un itérable (comme un tableau ou une chaîne de caractères) dans des endroits où zéro ou plusieurs arguments (pour les appels de fonction) ou éléments (pour les littéraux de tableau) sont attendus.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment ajouter un événement de clic à un élément HTML en JavaScript?",
-      "explanation": "La méthode `addEventListener()` attache un gestionnaire d'événements à un élément spécifique. Elle prend le type d'événement (`'click'`), une fonction callback à exécuter, et optionnellement un objet d'options.",
+      "title": "Comment ajouter un événement de clic à un élément HTML en JavaScript?",
+      "description": "La méthode `addEventListener()` attache un gestionnaire d'événements à un élément spécifique. Elle prend le type d'événement (`'click'`), une fonction callback à exécuter, et optionnellement un objet d'options.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Quelle fonction est utilisée pour exécuter du code après un délai spécifié?",
-      "explanation": "La fonction `setTimeout()` exécute une fonction ou un code spécifié après un délai spécifié en millisecondes.",
+      "title": "Quelle fonction est utilisée pour exécuter du code après un délai spécifié?",
+      "description": "La fonction `setTimeout()` exécute une fonction ou un code spécifié après un délai spécifié en millisecondes.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une closure en JavaScript?",
-      "explanation": "Une closure est la combinaison d'une fonction et de l'environnement lexical dans lequel cette fonction a été déclarée. Cela permet à une fonction d'accéder aux variables de sa fonction parente même après que celle-ci ait terminé son exécution.",
+      "title": "Qu'est-ce qu'une closure en JavaScript?",
+      "description": "Une closure est la combinaison d'une fonction et de l'environnement lexical dans lequel cette fonction a été déclarée. Cela permet à une fonction d'accéder aux variables de sa fonction parente même après que celle-ci ait terminé son exécution.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Quelle méthode est utilisée pour tester si une valeur est un tableau?",
-      "explanation": "La méthode statique `Array.isArray()` détermine si la valeur passée est un Array. Elle retourne `true` si la valeur est un Array, sinon `false`.",
+      "title": "Quelle méthode est utilisée pour tester si une valeur est un tableau?",
+      "description": "La méthode statique `Array.isArray()` détermine si la valeur passée est un Array. Elle retourne `true` si la valeur est un Array, sinon `false`.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Comment créer une classe en JavaScript moderne?",
-      "explanation": "Les classes en JavaScript sont principalement du \"sucre syntaxique\" par-dessus le mécanisme de prototype existant. La syntaxe de classe a été introduite dans ECMAScript 2015 (ES6).",
+      "title": "Comment créer une classe en JavaScript moderne?",
+      "description": "Les classes en JavaScript sont principalement du \"sucre syntaxique\" par-dessus le mécanisme de prototype existant. La syntaxe de classe a été introduite dans ECMAScript 2015 (ES6).",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le *temporal dead zone* en JavaScript?",
-      "explanation": "Le *temporal dead zone* est la période entre l'entrée dans la portée d'une variable déclarée avec `let` ou `const` et sa déclaration, pendant laquelle la référence à la variable génère une `ReferenceError`.",
+      "title": "Qu'est-ce que le *temporal dead zone* en JavaScript?",
+      "description": "Le *temporal dead zone* est la période entre l'entrée dans la portée d'une variable déclarée avec `let` ou `const` et sa déclaration, pendant laquelle la référence à la variable génère une `ReferenceError`.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment importer un module nommé 'myModule' en JavaScript?",
-      "explanation": "L'instruction `import` est utilisée pour importer des liaisons qui sont exportées par un autre module. Les modules importés sont en mode strict, qu'ils le déclarent ou non.",
+      "title": "Comment importer un module nommé 'myModule' en JavaScript?",
+      "description": "L'instruction `import` est utilisée pour importer des liaisons qui sont exportées par un autre module. Les modules importés sont en mode strict, qu'ils le déclarent ou non.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment déclarer une fonction asynchrone en JavaScript?",
-      "explanation": "Le mot-clé `async` placé devant une fonction fait en sorte que cette fonction retourne toujours une promesse. Si la promesse est résolvée normalement, la valeur de retour est utilisée comme valeur de résolution.",
+      "title": "Comment déclarer une fonction asynchrone en JavaScript?",
+      "description": "Le mot-clé `async` placé devant une fonction fait en sorte que cette fonction retourne toujours une promesse. Si la promesse est résolvée normalement, la valeur de retour est utilisée comme valeur de résolution.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `let` et `var`?",
-      "explanation": "`let` a une portée de bloc alors que `var` a une portée de fonction. De plus, `var` est hoisted et peut être utilisé (avec valeur `undefined`) avant sa déclaration, tandis que `let` génère une erreur de référence si utilisé avant sa déclaration (temporal dead zone).",
+      "title": "Quelle est la différence entre `let` et `var`?",
+      "description": "`let` a une portée de bloc alors que `var` a une portée de fonction. De plus, `var` est hoisted et peut être utilisé (avec valeur `undefined`) avant sa déclaration, tandis que `let` génère une erreur de référence si utilisé avant sa déclaration (temporal dead zone).",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le `Event Loop` en JavaScript?",
-      "explanation": "L'Event Loop est un modèle de concurrence qui permet à JavaScript d'exécuter des opérations non-bloquantes malgré son caractère single-thread. Il gère l'exécution des callbacks, des promesses et des opérations asynchrones.",
+      "title": "Qu'est-ce que le `Event Loop` en JavaScript?",
+      "description": "L'Event Loop est un modèle de concurrence qui permet à JavaScript d'exécuter des opérations non-bloquantes malgré son caractère single-thread. Il gère l'exécution des callbacks, des promesses et des opérations asynchrones.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Comment vérifier si une propriété existe dans un objet?",
-      "explanation": "L'opérateur `in` retourne `true` si la propriété spécifiée existe dans l'objet ou dans sa chaîne de prototype. La méthode `hasOwnProperty()` vérifie si l'objet possède la propriété spécifiée en propre (sans regarder dans le prototype).",
+      "title": "Comment vérifier si une propriété existe dans un objet?",
+      "description": "L'opérateur `in` retourne `true` si la propriété spécifiée existe dans l'objet ou dans sa chaîne de prototype. La méthode `hasOwnProperty()` vérifie si l'objet possède la propriété spécifiée en propre (sans regarder dans le prototype).",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le `this` en JavaScript?",
-      "explanation": "Dans JavaScript, `this` fait référence à l'objet auquel appartient le code en cours d'exécution. Sa valeur dépend de comment la fonction est appelée (contexte d'exécution) et non de où elle est définie.",
+      "title": "Qu'est-ce que le `this` en JavaScript?",
+      "description": "Dans JavaScript, `this` fait référence à l'objet auquel appartient le code en cours d'exécution. Sa valeur dépend de comment la fonction est appelée (contexte d'exécution) et non de où elle est définie.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment créer une copie profonde d'un objet en JavaScript?",
-      "explanation": "La méthode `JSON.parse(JSON.stringify(obj))` permet de créer une copie profonde d'un objet, mais elle ne fonctionne pas avec les fonctions, les dates, et certains objets spéciaux. Une alternative moderne est `structuredClone()`.",
+      "title": "Comment créer une copie profonde d'un objet en JavaScript?",
+      "description": "La méthode `JSON.parse(JSON.stringify(obj))` permet de créer une copie profonde d'un objet, mais elle ne fonctionne pas avec les fonctions, les dates, et certains objets spéciaux. Une alternative moderne est `structuredClone()`.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Quelle est l'utilité de `Promise.all()`?",
-      "explanation": "`Promise.all()` prend un tableau de promesses et retourne une nouvelle promesse qui se résout lorsque toutes les promesses du tableau sont résolues, ou rejette dès qu'une promesse du tableau est rejetée.",
+      "title": "Quelle est l'utilité de `Promise.all()`?",
+      "description": "`Promise.all()` prend un tableau de promesses et retourne une nouvelle promesse qui se résout lorsque toutes les promesses du tableau sont résolues, ou rejette dès qu'une promesse du tableau est rejetée.",
       "difficulty": "hard",
       "duration": 40,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `undefined` et `null`?",
-      "explanation": "`undefined` signifie qu'une variable a été déclarée mais n'a pas encore reçu de valeur, ou qu'une propriété/fonction ne retourne pas de valeur. `null` est une valeur d'assignation qui représente l'absence intentionnelle d'un objet.",
+      "title": "Quelle est la différence entre `undefined` et `null`?",
+      "description": "`undefined` signifie qu'une variable a été déclarée mais n'a pas encore reçu de valeur, ou qu'une propriété/fonction ne retourne pas de valeur. `null` est une valeur d'assignation qui représente l'absence intentionnelle d'un objet.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Comment utiliser correctement `async/await` pour gérer des erreurs?",
-      "explanation": "La syntaxe `try...catch` permet de capturer les erreurs dans les fonctions async/await. C'est similaire à la gestion des erreurs synchrones, contrairement aux promesses qui utilisent `.catch()`.",
+      "title": "Comment utiliser correctement `async/await` pour gérer des erreurs?",
+      "description": "La syntaxe `try...catch` permet de capturer les erreurs dans les fonctions async/await. C'est similaire à la gestion des erreurs synchrones, contrairement aux promesses qui utilisent `.catch()`.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [

@@ -5,8 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quel est le symbole utilisé pour déclarer une variable en PHP?",
-      "explanation": "En PHP, toutes les variables sont précédées du symbole dollar ($). Ce symbole est obligatoire lors de la déclaration et de l'utilisation des variables.",
+      "title": "Quel est le symbole utilisé pour déclarer une variable en PHP?",
+      "description": "En PHP, toutes les variables sont précédées du symbole dollar ($). Ce symbole est obligatoire lors de la déclaration et de l'utilisation des variables.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Comment afficher du texte en PHP?",
-      "explanation": "En PHP, il existe plusieurs façons d'afficher du texte. Les fonctions `echo` et `print` sont les plus couramment utilisées. La différence principale est que `print` retourne toujours 1, tandis que `echo` ne retourne rien.",
+      "title": "Comment afficher du texte en PHP?",
+      "description": "En PHP, il existe plusieurs façons d'afficher du texte. Les fonctions `echo` et `print` sont les plus couramment utilisées. La différence principale est que `print` retourne toujours 1, tandis que `echo` ne retourne rien.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Comment déclarer une constante en PHP?",
-      "explanation": "En PHP, il existe deux façons de définir des constantes : la fonction `define()` qui prend le nom de la constante et sa valeur comme arguments, ou le mot-clé `const` qui doit être utilisé au niveau du fichier ou de la classe.",
+      "title": "Comment déclarer une constante en PHP?",
+      "description": "En PHP, il existe deux façons de définir des constantes : la fonction `define()` qui prend le nom de la constante et sa valeur comme arguments, ou le mot-clé `const` qui doit être utilisé au niveau du fichier ou de la classe.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `==` et `===` en PHP?",
-      "explanation": "L'opérateur `==` compare uniquement les valeurs après conversion de type si nécessaire, tandis que `===` (identité) compare à la fois la valeur et le type. Par exemple, `\"5\" == 5` est `true`, mais `\"5\" === 5` est `false`.",
+      "title": "Quelle est la différence entre `==` et `===` en PHP?",
+      "description": "L'opérateur `==` compare uniquement les valeurs après conversion de type si nécessaire, tandis que `===` (identité) compare à la fois la valeur et le type. Par exemple, `\"5\" == 5` est `true`, mais `\"5\" === 5` est `false`.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Comment définir une fonction en PHP?",
-      "explanation": "En PHP, les fonctions sont définies à l'aide du mot-clé `function`, suivi du nom de la fonction et de parenthèses qui peuvent contenir des paramètres. Le corps de la fonction est délimité par des accolades.",
+      "title": "Comment définir une fonction en PHP?",
+      "description": "En PHP, les fonctions sont définies à l'aide du mot-clé `function`, suivi du nom de la fonction et de parenthèses qui peuvent contenir des paramètres. Le corps de la fonction est délimité par des accolades.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction pour obtenir la longueur d'une chaîne de caractères en PHP?",
-      "explanation": "La fonction `strlen()` est utilisée pour obtenir la longueur (le nombre de caractères) d'une chaîne en PHP.",
+      "title": "Quelle est la fonction pour obtenir la longueur d'une chaîne de caractères en PHP?",
+      "description": "La fonction `strlen()` est utilisée pour obtenir la longueur (le nombre de caractères) d'une chaîne en PHP.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quel est le résultat de cette opération en PHP: `5 + \"5\"` ?",
-      "explanation": "En PHP, lorsqu'une chaîne est utilisée dans un contexte numérique, elle est automatiquement convertie en nombre si elle commence par des caractères numériques. Donc `5 + \"5\"` donne `10`.",
+      "title": "Quel est le résultat de cette opération en PHP: `5 + \"5\"` ?",
+      "description": "En PHP, lorsqu'une chaîne est utilisée dans un contexte numérique, elle est automatiquement convertie en nombre si elle commence par des caractères numériques. Donc `5 + \"5\"` donne `10`.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Quelle superglobale PHP contient les données envoyées via une requête HTTP POST?",
-      "explanation": "En PHP, les données envoyées via une requête HTTP POST sont accessibles via la superglobale `$_POST`. C'est un tableau associatif contenant les valeurs des champs du formulaire envoyé.",
+      "title": "Quelle superglobale PHP contient les données envoyées via une requête HTTP POST?",
+      "description": "En PHP, les données envoyées via une requête HTTP POST sont accessibles via la superglobale `$_POST`. C'est un tableau associatif contenant les valeurs des champs du formulaire envoyé.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Comment inclure un fichier PHP dans un autre fichier PHP?",
-      "explanation": "PHP offre plusieurs fonctions pour inclure des fichiers : `include` (génère une alerte si le fichier n'est pas trouvé), `require` (génère une erreur fatale si le fichier n'est pas trouvé), `include_once` et `require_once` (qui vérifient également si le fichier a déjà été inclus).",
+      "title": "Comment inclure un fichier PHP dans un autre fichier PHP?",
+      "description": "PHP offre plusieurs fonctions pour inclure des fichiers : `include` (génère une alerte si le fichier n'est pas trouvé), `require` (génère une erreur fatale si le fichier n'est pas trouvé), `include_once` et `require_once` (qui vérifient également si le fichier a déjà été inclus).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment déclarer un tableau en PHP?",
-      "explanation": "En PHP moderne, les tableaux peuvent être déclarés avec la syntaxe `[]` ou avec la fonction `array()`. Les deux approches sont équivalentes.",
+      "title": "Comment déclarer un tableau en PHP?",
+      "description": "En PHP moderne, les tableaux peuvent être déclarés avec la syntaxe `[]` ou avec la fonction `array()`. Les deux approches sont équivalentes.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Comment accéder aux éléments d'un tableau associatif en PHP?",
-      "explanation": "Dans un tableau associatif PHP, chaque valeur est associée à une clé. On accède aux valeurs en utilisant la syntaxe des crochets avec la clé correspondante.",
+      "title": "Comment accéder aux éléments d'un tableau associatif en PHP?",
+      "description": "Dans un tableau associatif PHP, chaque valeur est associée à une clé. On accède aux valeurs en utilisant la syntaxe des crochets avec la clé correspondante.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Quelle fonction PHP est utilisée pour démarrer une session?",
-      "explanation": "La fonction `session_start()` est utilisée pour démarrer une nouvelle session ou reprendre une session existante. Elle doit être appelée avant toute sortie envoyée au navigateur.",
+      "title": "Quelle fonction PHP est utilisée pour démarrer une session?",
+      "description": "La fonction `session_start()` est utilisée pour démarrer une nouvelle session ou reprendre une session existante. Elle doit être appelée avant toute sortie envoyée au navigateur.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Comment définir une classe en PHP?",
-      "explanation": "En PHP, les classes sont définies avec le mot-clé `class` suivi du nom de la classe et d'un bloc de code contenant les propriétés et méthodes de la classe.",
+      "title": "Comment définir une classe en PHP?",
+      "description": "En PHP, les classes sont définies avec le mot-clé `class` suivi du nom de la classe et d'un bloc de code contenant les propriétés et méthodes de la classe.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Quelle est la façon correcte d'hériter d'une classe en PHP?",
-      "explanation": "En PHP, l'héritage est implémenté en utilisant le mot-clé `extends`. Une classe peut hériter d'une seule autre classe (héritage simple).",
+      "title": "Quelle est la façon correcte d'hériter d'une classe en PHP?",
+      "description": "En PHP, l'héritage est implémenté en utilisant le mot-clé `extends`. Une classe peut hériter d'une seule autre classe (héritage simple).",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment se connecter à une base de données MySQL en utilisant PDO en PHP?",
-      "explanation": "PDO (PHP Data Objects) est une interface d'accès aux bases de données en PHP. Pour se connecter à une base de données MySQL, on instancie un objet PDO avec les informations de connexion dans le constructeur.",
+      "title": "Comment se connecter à une base de données MySQL en utilisant PDO en PHP?",
+      "description": "PDO (PHP Data Objects) est une interface d'accès aux bases de données en PHP. Pour se connecter à une base de données MySQL, on instancie un objet PDO avec les informations de connexion dans le constructeur.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `include` et `require` en PHP?",
-      "explanation": "La principale différence entre `include` et `require` est leur comportement en cas d'erreur. Si un fichier n'est pas trouvé, `include` génère un avertissement mais continue l'exécution du script, tandis que `require` génère une erreur fatale et arrête l'exécution.",
+      "title": "Quelle est la différence entre `include` et `require` en PHP?",
+      "description": "La principale différence entre `include` et `require` est leur comportement en cas d'erreur. Si un fichier n'est pas trouvé, `include` génère un avertissement mais continue l'exécution du script, tandis que `require` génère une erreur fatale et arrête l'exécution.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment exécuter une requête SQL avec PDO en PHP?",
-      "explanation": "Pour exécuter une requête SQL avec PDO, on peut utiliser les méthodes `query()` pour les requêtes sans paramètres, ou `prepare()` suivie de `execute()` pour les requêtes préparées avec des paramètres.",
+      "title": "Comment exécuter une requête SQL avec PDO en PHP?",
+      "description": "Pour exécuter une requête SQL avec PDO, on peut utiliser les méthodes `query()` pour les requêtes sans paramètres, ou `prepare()` suivie de `execute()` pour les requêtes préparées avec des paramètres.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Comment itérer sur un tableau en PHP?",
-      "explanation": "Il existe plusieurs façons d'itérer sur un tableau en PHP. La boucle `foreach` est la plus couramment utilisée car elle fonctionne avec les tableaux indexés et associatifs.",
+      "title": "Comment itérer sur un tableau en PHP?",
+      "description": "Il existe plusieurs façons d'itérer sur un tableau en PHP. La boucle `foreach` est la plus couramment utilisée car elle fonctionne avec les tableaux indexés et associatifs.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Quelle est la façon recommandée de gérer les erreurs en PHP moderne?",
-      "explanation": "En PHP moderne, la gestion des erreurs se fait principalement par le mécanisme d'exceptions avec les blocs `try-catch`. Les exceptions permettent de capturer et de traiter les erreurs de manière structurée.",
+      "title": "Quelle est la façon recommandée de gérer les erreurs en PHP moderne?",
+      "description": "En PHP moderne, la gestion des erreurs se fait principalement par le mécanisme d'exceptions avec les blocs `try-catch`. Les exceptions permettent de capturer et de traiter les erreurs de manière structurée.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment implémenter une interface en PHP?",
-      "explanation": "En PHP, une interface est définie avec le mot-clé `interface` et implémentée par une classe avec le mot-clé `implements`. Une classe peut implémenter plusieurs interfaces.",
+      "title": "Comment implémenter une interface en PHP?",
+      "description": "En PHP, une interface est définie avec le mot-clé `interface` et implémentée par une classe avec le mot-clé `implements`. Une classe peut implémenter plusieurs interfaces.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Quelle est la portée par défaut des propriétés et méthodes d'une classe PHP?",
-      "explanation": "En PHP, si aucun modificateur d'accès n'est spécifié, les propriétés et méthodes d'une classe sont `public` par défaut.",
+      "title": "Quelle est la portée par défaut des propriétés et méthodes d'une classe PHP?",
+      "description": "En PHP, si aucun modificateur d'accès n'est spécifié, les propriétés et méthodes d'une classe sont `public` par défaut.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Quel est le résultat de `var_dump(\"10\" === 10)` en PHP?",
-      "explanation": "L'opérateur `===` en PHP vérifie à la fois la valeur et le type. Comme \"10\" est une chaîne et 10 est un entier, la comparaison renvoie `false`.",
+      "title": "Quel est le résultat de `var_dump(\"10\" === 10)` en PHP?",
+      "description": "L'opérateur `===` en PHP vérifie à la fois la valeur et le type. Comme \"10\" est une chaîne et 10 est un entier, la comparaison renvoie `false`.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment définir un espace de noms (namespace) en PHP?",
-      "explanation": "Les espaces de noms en PHP sont définis avec le mot-clé `namespace` au début du fichier. Ils permettent d'encapsuler des classes, fonctions et constantes pour éviter les conflits de noms.",
+      "title": "Comment définir un espace de noms (namespace) en PHP?",
+      "description": "Les espaces de noms en PHP sont définis avec le mot-clé `namespace` au début du fichier. Ils permettent d'encapsuler des classes, fonctions et constantes pour éviter les conflits de noms.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment gérer les dépendances en PHP?",
-      "explanation": "Composer est le gestionnaire de dépendances standard pour PHP. Il permet de déclarer les bibliothèques dont un projet dépend et les installe automatiquement.",
+      "title": "Comment gérer les dépendances en PHP?",
+      "description": "Composer est le gestionnaire de dépendances standard pour PHP. Il permet de déclarer les bibliothèques dont un projet dépend et les installe automatiquement.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment valider qu'une variable est un email valide en PHP?",
-      "explanation": "La fonction `filter_var()` avec le filtre `FILTER_VALIDATE_EMAIL` est la méthode recommandée pour valider les adresses email en PHP. Elle vérifie la conformité avec le format standard des adresses email.",
+      "title": "Comment valider qu'une variable est un email valide en PHP?",
+      "description": "La fonction `filter_var()` avec le filtre `FILTER_VALIDATE_EMAIL` est la méthode recommandée pour valider les adresses email en PHP. Elle vérifie la conformité avec le format standard des adresses email.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction PHP pour hacher un mot de passe de manière sécurisée?",
-      "explanation": "La fonction `password_hash()` est la méthode recommandée pour hacher les mots de passe en PHP. Elle utilise par défaut un algorithme de hachage fort et gère automatiquement le salage (salt) et les coûts.",
+      "title": "Quelle est la fonction PHP pour hacher un mot de passe de manière sécurisée?",
+      "description": "La fonction `password_hash()` est la méthode recommandée pour hacher les mots de passe en PHP. Elle utilise par défaut un algorithme de hachage fort et gère automatiquement le salage (salt) et les coûts.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Quelle est la méthode pour récupérer des données d'une requête GET en PHP?",
-      "explanation": "La superglobale `$_GET` est un tableau associatif contenant les variables passées au script via les paramètres d'URL (query string).",
+      "title": "Quelle est la méthode pour récupérer des données d'une requête GET en PHP?",
+      "description": "La superglobale `$_GET` est un tableau associatif contenant les variables passées au script via les paramètres d'URL (query string).",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment créer un cookie en PHP?",
-      "explanation": "La fonction `setcookie()` est utilisée pour créer un cookie en PHP. Elle prend au minimum le nom et la valeur du cookie, mais peut également spécifier la durée de vie, le chemin, le domaine, et d'autres options de sécurité.",
+      "title": "Comment créer un cookie en PHP?",
+      "description": "La fonction `setcookie()` est utilisée pour créer un cookie en PHP. Elle prend au minimum le nom et la valeur du cookie, mais peut également spécifier la durée de vie, le chemin, le domaine, et d'autres options de sécurité.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment rediriger vers une autre page en PHP?",
-      "explanation": "La fonction `header()` avec le type 'Location' est utilisée pour effectuer une redirection HTTP. Il faut l'utiliser avant d'envoyer toute sortie au navigateur.",
+      "title": "Comment rediriger vers une autre page en PHP?",
+      "description": "La fonction `header()` avec le type 'Location' est utilisée pour effectuer une redirection HTTP. Il faut l'utiliser avant d'envoyer toute sortie au navigateur.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre les méthodes `__construct()` et `__destruct()` dans une classe PHP?",
-      "explanation": "En PHP, `__construct()` est une méthode magique appelée automatiquement lors de l'instantiation d'un objet (équivalent d'un constructeur). `__destruct()` est appelée lorsque l'objet est détruit, soit explicitement, soit quand il n'y a plus de références à l'objet ou à la fin du script.",
+      "title": "Quelle est la différence entre les méthodes `__construct()` et `__destruct()` dans une classe PHP?",
+      "description": "En PHP, `__construct()` est une méthode magique appelée automatiquement lors de l'instantiation d'un objet (équivalent d'un constructeur). `__destruct()` est appelée lorsque l'objet est détruit, soit explicitement, soit quand il n'y a plus de références à l'objet ou à la fin du script.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Comment accéder à une propriété d'une classe parente dans une méthode de la classe enfant?",
-      "explanation": "Le mot-clé `parent::` est utilisé pour accéder aux méthodes ou propriétés de la classe parente qui ont été redéfinies dans la classe enfant. Pour les propriétés protégées ou publiques non redéfinies, on peut y accéder directement.",
+      "title": "Comment accéder à une propriété d'une classe parente dans une méthode de la classe enfant?",
+      "description": "Le mot-clé `parent::` est utilisé pour accéder aux méthodes ou propriétés de la classe parente qui ont été redéfinies dans la classe enfant. Pour les propriétés protégées ou publiques non redéfinies, on peut y accéder directement.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Quel framework PHP est connu pour son élégance et sa simplicité?",
-      "explanation": "Laravel est largement reconnu comme l'un des frameworks PHP les plus élégants et expressifs. Il suit le modèle MVC et offre de nombreuses fonctionnalités pour faciliter le développement web.",
+      "title": "Quel framework PHP est connu pour son élégance et sa simplicité?",
+      "description": "Laravel est largement reconnu comme l'un des frameworks PHP les plus élégants et expressifs. Il suit le modèle MVC et offre de nombreuses fonctionnalités pour faciliter le développement web.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment initialiser un tableau vide en PHP?",
-      "explanation": "En PHP, un tableau vide peut être initialisé avec des crochets vides `[]` ou avec la fonction `array()` sans arguments.",
+      "title": "Comment initialiser un tableau vide en PHP?",
+      "description": "En PHP, un tableau vide peut être initialisé avec des crochets vides `[]` ou avec la fonction `array()` sans arguments.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [

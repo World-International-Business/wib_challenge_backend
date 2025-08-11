@@ -5,7 +5,8 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "text": "Qu'est-ce qu'**Autodesk 3ds Max** ?",
+      "title": "Autodesk 3ds Max",
+      "description": "Qu'est-ce qu'**Autodesk 3ds Max** ?",
       "explanation": "3ds Max est un logiciel professionnel de modélisation 3D, d'animation et de rendu développé par Autodesk, largement utilisé dans l'industrie du jeu vidéo, du cinéma et de l'architecture.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "text": "Quelles sont les **4 viewports** principales dans 3ds Max ?",
+      "title": "4 viewports principales",
+      "description": "Quelles sont les **4 viewports** principales dans 3ds Max ?",
       "explanation": "Les 4 viewports par défaut de 3ds Max sont : Top (vue de dessus), Front (vue de face), Left (vue de gauche) et Perspective (vue 3D). Elles permettent de visualiser et modéliser sous différents angles.",
       "difficulty": "easy",
       "duration": 30,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "text": "Comment créer une **primitive de base** dans 3ds Max ?",
+      "title": "Primitive de base",
+      "description": "Comment créer une **primitive de base** dans 3ds Max ?",
       "explanation": "Les primitives se créent via le panneau Create > Standard Primitives (Box, Sphere, Cylinder, etc.) ou Extended Primitives. On clique et fait glisser dans une viewport pour définir la taille.",
       "difficulty": "easy",
       "duration": 25,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **Modifier** dans 3ds Max ?",
+      "title": "Modifier",
+      "description": "Qu'est-ce qu'un **Modifier** dans 3ds Max ?",
       "explanation": "Un Modifier est un outil non-destructif qui modifie la géométrie d'un objet sans altérer sa structure de base. Il peut être appliqué, désactivé ou supprimé à tout moment via la Modifier Stack.",
       "difficulty": "medium",
       "duration": 40,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "text": "Comment accéder au **mode Edit Poly** ?",
+      "title": "Mode Edit Poly",
+      "description": "Comment accéder au **mode Edit Poly** ?",
       "explanation": "Pour accéder au mode Edit Poly, on sélectionne l'objet puis on ajoute le modifier 'Edit Poly' depuis la Modifier List, ou on convertit l'objet en Editable Poly via clic droit > Convert to Editable Poly.",
       "difficulty": "easy",
       "duration": 30,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "text": "Quels sont les **niveaux de sélection** en mode Edit Poly ?",
+      "title": "Niveaux de sélection Edit Poly",
+      "description": "Quels sont les **niveaux de sélection** en mode Edit Poly ?",
       "explanation": "En mode Edit Poly, il y a 5 niveaux de sélection : Vertex (points), Edge (arêtes), Border (contours), Polygon (faces) et Element (éléments). Chaque niveau permet de modifier différents aspects de la géométrie.",
       "difficulty": "medium",
       "duration": 35,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Extrude** dans 3ds Max ?",
+      "title": "Outil Extrude",
+      "description": "Comment fonctionne l'outil **Extrude** dans 3ds Max ?",
       "explanation": "L'outil Extrude permet de créer de la géométrie en extrudant des faces sélectionnées. Il peut être utilisé en mode Polygon pour extruder des faces individuellement ou en groupe, créant de nouveaux volumes.",
       "difficulty": "easy",
       "duration": 35,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **Modifier Stack** ?",
+      "title": "Modifier Stack",
+      "description": "Qu'est-ce que la **Modifier Stack** ?",
       "explanation": "La Modifier Stack est une pile de modificateurs appliqués à un objet. Elle montre l'historique des modifications et permet de revenir en arrière, désactiver ou réorganiser les modificateurs de manière non-destructive.",
       "difficulty": "medium",
       "duration": 40,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on l'outil **Chamfer** ?",
+      "title": "Outil Chamfer",
+      "description": "Comment utilise-t-on l'outil **Chamfer** ?",
       "explanation": "L'outil Chamfer crée des biseaux sur les arêtes ou vertices sélectionnés, remplaçant une arête vive par une surface biseautée. Il est utile pour créer des détails réalistes et éviter les arêtes trop parfaites.",
       "difficulty": "medium",
       "duration": 35,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Turbosmooth** modifier ?",
+      "title": "Turbosmooth modifier",
+      "description": "Qu'est-ce que le **Turbosmooth** modifier ?",
       "explanation": "Turbosmooth est un modificateur de subdivision qui lisse et subdivise la géométrie en ajoutant plus de polygones, créant des surfaces courbes et organiques à partir de géométrie angulaire.",
       "difficulty": "medium",
       "duration": 40,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Bevel** ?",
+      "title": "Outil Bevel",
+      "description": "Comment fonctionne l'outil **Bevel** ?",
       "explanation": "L'outil Bevel combine extrusion et mise à l'échelle. Il extrude d'abord les faces sélectionnées puis les met à l'échelle, créant des bords biseautés en une seule opération.",
       "difficulty": "medium",
       "duration": 35,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Material Editor** ?",
+      "title": "Material Editor",
+      "description": "Qu'est-ce que le **Material Editor** ?",
       "explanation": "Le Material Editor est l'interface de création et d'édition des matériaux dans 3ds Max. Il permet de définir les propriétés visuelles des objets (couleur, brillance, transparence, etc.) et d'appliquer des textures.",
       "difficulty": "easy",
       "duration": 30,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "text": "Comment applique-t-on un **matériau** à un objet ?",
+      "title": "Application d'un matériau",
+      "description": "Comment applique-t-on un **matériau** à un objet ?",
       "explanation": "Pour appliquer un matériau, on le glisse depuis le Material Editor vers l'objet dans la viewport, ou on sélectionne l'objet et clique sur 'Assign Material to Selection' dans le Material Editor.",
       "difficulty": "easy",
       "duration": 25,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**UVW Mapping** ?",
+      "title": "UVW Mapping",
+      "description": "Qu'est-ce que l'**UVW Mapping** ?",
       "explanation": "L'UVW Mapping définit comment les textures 2D sont appliquées sur la surface 3D d'un objet. Le modificateur UVW Map permet de contrôler la projection des textures (planaire, cylindrique, sphérique, etc.).",
       "difficulty": "medium",
       "duration": 45,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "text": "Comment créer une **animation simple** dans 3ds Max ?",
+      "title": "Animation simple",
+      "description": "Comment créer une **animation simple** dans 3ds Max ?",
       "explanation": "Pour créer une animation, on active l'Auto Key ou Set Key, puis on déplace le curseur temporel et on modifie la position/rotation/échelle de l'objet. 3ds Max crée automatiquement les keyframes intermédiaires.",
       "difficulty": "medium",
       "duration": 40,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Track View** ?",
+      "title": "Track View",
+      "description": "Qu'est-ce que le **Track View** ?",
       "explanation": "Le Track View est l'éditeur d'animation de 3ds Max qui affiche toutes les pistes d'animation sous forme de courbes. Il permet d'éditer précisément les keyframes et les courbes d'interpolation.",
       "difficulty": "medium",
       "duration": 35,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Array** ?",
+      "title": "Outil Array",
+      "description": "Comment fonctionne l'outil **Array** ?",
       "explanation": "L'outil Array permet de dupliquer un objet plusieurs fois selon des patterns définis (linéaire, radial, etc.) avec des transformations progressives. Il est utile pour créer des répétitions organisées d'objets.",
       "difficulty": "medium",
       "duration": 40,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Unwrap UVW** modifier ?",
+      "title": "Unwrap UVW modifier",
+      "description": "Qu'est-ce que le **Unwrap UVW** modifier ?",
       "explanation": "Unwrap UVW est un modificateur avancé qui permet de dérouler manuellement les UV d'un objet 3D, donnant un contrôle précis sur la façon dont les textures sont appliquées sur chaque face.",
       "difficulty": "hard",
       "duration": 45,
@@ -437,7 +455,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on les **Splines** dans 3ds Max ?",
+      "title": "Utilisation des Splines",
+      "description": "Comment utilise-t-on les **Splines** dans 3ds Max ?",
       "explanation": "Les Splines sont des courbes vectorielles créées avec l'outil Line ou autres outils de forme. Elles servent de base pour créer de la géométrie 3D via extrusion, révolution, ou comme chemins d'animation.",
       "difficulty": "medium",
       "duration": 40,
@@ -461,7 +480,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Loft** modifier ?",
+      "title": "Loft modifier",
+      "description": "Qu'est-ce que le **Loft** modifier ?",
       "explanation": "Le Loft crée de la géométrie 3D en reliant plusieurs sections transversales (cross-sections) le long d'un chemin (path). Il est idéal pour créer des formes complexes comme des tuyaux ou des formes organiques.",
       "difficulty": "medium",
       "duration": 45,
@@ -485,7 +505,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne le **Mental Ray** renderer ?",
+      "title": "Mental Ray renderer",
+      "description": "Comment fonctionne le **Mental Ray** renderer ?",
       "explanation": "Mental Ray est un moteur de rendu avancé qui utilise le ray-tracing pour créer des images photoréalistes. Il gère l'éclairage global, les caustiques et offre des matériaux physiquement corrects.",
       "difficulty": "hard",
       "duration": 50,
@@ -509,7 +530,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Global Illumination** ?",
+      "title": "Global Illumination",
+      "description": "Qu'est-ce que le **Global Illumination** ?",
       "explanation": "Le Global Illumination (GI) simule l'éclairage indirect réaliste en calculant comment la lumière rebondit sur les surfaces pour éclairer d'autres parties de la scène, créant un éclairage plus naturel.",
       "difficulty": "hard",
       "duration": 45,
@@ -533,7 +555,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on les **Particle Systems** ?",
+      "title": "Particle Systems",
+      "description": "Comment utilise-t-on les **Particle Systems** ?",
       "explanation": "Les Particle Systems créent et animent de nombreuses petites particules pour simuler des phénomènes comme la fumée, le feu, la pluie. On les configure via des émetteurs et des forces pour contrôler leur comportement.",
       "difficulty": "medium",
       "duration": 45,
@@ -557,7 +580,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Reactor** physics engine ?",
+      "title": "Reactor physics engine",
+      "description": "Qu'est-ce que le **Reactor** physics engine ?",
       "explanation": "Reactor est le moteur de physique intégré à 3ds Max qui simule la physique réelle (gravité, collisions, corps rigides, corps mous) pour créer des animations réalistes sans keyframes manuelles.",
       "difficulty": "medium",
       "duration": 40,
@@ -581,7 +605,8 @@
       ]
     },
     {
-      "text": "Comment créer des **Boolean Operations** ?",
+      "title": "Boolean Operations",
+      "description": "Comment créer des **Boolean Operations** ?",
       "explanation": "Les Boolean Operations (Union, Subtraction, Intersection) combinent deux objets 3D selon des opérations logiques. Elles sont utiles pour créer des formes complexes en combinant des primitives simples.",
       "difficulty": "medium",
       "duration": 40,
@@ -605,7 +630,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Constraint** system ?",
+      "title": "Constraint system",
+      "description": "Qu'est-ce que le **Constraint** system ?",
       "explanation": "Le système Constraints permet de lier automatiquement la transformation d'un objet à celle d'un autre (Position, Orientation, Look At, etc.), créant des relations hiérarchiques pour l'animation.",
       "difficulty": "medium",
       "duration": 45,
@@ -629,7 +655,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Bridge** en mode Edit Poly ?",
+      "title": "Outil Bridge en mode Edit Poly",
+      "description": "Comment fonctionne l'outil **Bridge** en mode Edit Poly ?",
       "explanation": "L'outil Bridge connecte deux sélections d'edges ou de polygons en créant de la géométrie entre elles. Il est utile pour connecter différentes parties d'un objet ou créer des tunnels.",
       "difficulty": "medium",
       "duration": 35,
@@ -653,7 +680,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **MAXScript** ?",
+      "title": "MAXScript",
+      "description": "Qu'est-ce que le **MAXScript** ?",
       "explanation": "MAXScript est le langage de script intégré à 3ds Max qui permet d'automatiser des tâches, créer des outils personnalisés et étendre les fonctionnalités du logiciel via la programmation.",
       "difficulty": "hard",
       "duration": 40,
@@ -677,7 +705,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on l'outil **Inset** ?",
+      "title": "Outil Inset",
+      "description": "Comment utilise-t-on l'outil **Inset** ?",
       "explanation": "L'outil Inset crée une nouvelle face plus petite à l'intérieur de la face sélectionnée, créant un bord autour. Il est utile pour ajouter des détails ou préparer des zones pour l'extrusion.",
       "difficulty": "medium",
       "duration": 35,
@@ -701,7 +730,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Skin** modifier ?",
+      "title": "Skin modifier",
+      "description": "Qu'est-ce que le **Skin** modifier ?",
       "explanation": "Le Skin modifier permet de lier la géométrie d'un mesh à un squelette (bones), permettant la déformation du mesh lors de l'animation du squelette. C'est essentiel pour l'animation de personnages.",
       "difficulty": "hard",
       "duration": 45,
@@ -725,7 +755,8 @@
       ]
     },
     {
-      "text": "Comment créer des **Bones** pour l'animation ?",
+      "title": "Création de Bones",
+      "description": "Comment créer des **Bones** pour l'animation ?",
       "explanation": "Les Bones se créent via Create > Systems > Bones. On clique pour placer le premier bone puis on continue à cliquer pour créer une chaîne d'os connectés, formant un squelette pour l'animation.",
       "difficulty": "medium",
       "duration": 35,
@@ -749,7 +780,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Biped** system ?",
+      "title": "Biped system",
+      "description": "Qu'est-ce que le **Biped** system ?",
       "explanation": "Biped est un système de squelette pré-configuré pour l'animation de personnages bipèdes. Il inclut tous les os nécessaires et des outils d'animation spécialisés pour faciliter l'animation de marche, course, etc.",
       "difficulty": "medium",
       "duration": 40,
@@ -773,7 +805,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **ProOptimizer** ?",
+      "title": "ProOptimizer",
+      "description": "Comment fonctionne l'outil **ProOptimizer** ?",
       "explanation": "ProOptimizer est un modificateur qui réduit automatiquement le nombre de polygones d'un objet tout en préservant sa forme générale. Il est utile pour optimiser les modèles pour les jeux ou le temps réel.",
       "difficulty": "medium",
       "duration": 40,
@@ -797,7 +830,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **FFD (Free Form Deformation)** ?",
+      "title": "FFD (Free Form Deformation)",
+      "description": "Qu'est-ce que le **FFD (Free Form Deformation)** ?",
       "explanation": "FFD crée une cage de points de contrôle autour d'un objet. En déplaçant ces points, on déforme l'objet de manière organique et intuitive, utile pour créer des déformations complexes.",
       "difficulty": "hard",
       "duration": 45,
@@ -821,7 +855,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on les **Morph Targets** ?",
+      "title": "Morph Targets",
+      "description": "Comment utilise-t-on les **Morph Targets** ?",
       "explanation": "Les Morph Targets (ou Morphers) permettent de faire la transition entre différentes formes d'un objet. On crée plusieurs versions du même objet et le Morpher interpole entre elles pour créer des animations de déformation.",
       "difficulty": "hard",
       "duration": 45,
@@ -845,7 +880,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Hair and Fur** system ?",
+      "title": "Hair and Fur system",
+      "description": "Qu'est-ce que le **Hair and Fur** system ?",
       "explanation": "Hair and Fur est un système spécialisé pour créer et animer des cheveux, fourrure et autres fibres. Il utilise des guides et des propriétés physiques pour créer des effets réalistes.",
       "difficulty": "medium",
       "duration": 40,
@@ -869,7 +905,8 @@
       ]
     },
     {
-      "text": "Comment créer des **Lights** dans 3ds Max ?",
+      "title": "Création de Lights",
+      "description": "Comment créer des **Lights** dans 3ds Max ?",
       "explanation": "Les lumières se créent via Create > Lights. 3ds Max offre différents types : Omni (point), Directional (soleil), Spot (projecteur), et Target/Free variants. Chaque type a des propriétés spécifiques.",
       "difficulty": "easy",
       "duration": 35,
@@ -893,7 +930,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **V-Ray** renderer ?",
+      "title": "V-Ray renderer",
+      "description": "Qu'est-ce que le **V-Ray** renderer ?",
       "explanation": "V-Ray est un moteur de rendu tiers très populaire pour 3ds Max, reconnu pour ses capacités photoréalistes, son éclairage global avancé et ses matériaux physiquement corrects.",
       "difficulty": "medium",
       "duration": 35,
@@ -917,7 +955,8 @@
       ]
     },
     {
-      "text": "Comment optimiser une **scène complexe** pour de meilleures performances ?",
+      "title": "Optimisation d'une scène complexe",
+      "description": "Comment optimiser une **scène complexe** pour de meilleures performances ?",
       "explanation": "Pour optimiser : utiliser des proxies pour les objets complexes, des niveaux de détail (LOD), réduire les subdivisions inutiles, optimiser les matériaux, utiliser des instances plutôt que des copies, et gérer efficacement l'éclairage.",
       "difficulty": "hard",
       "duration": 55,
@@ -941,7 +980,8 @@
       ]
     },
     {
-      "text": "Comment intégrer 3ds Max dans un **pipeline de production** ?",
+      "title": "Intégration dans un pipeline de production",
+      "description": "Comment intégrer 3ds Max dans un **pipeline de production** ?",
       "explanation": "L'intégration se fait via des standards de nommage, l'utilisation de formats d'échange (FBX, OBJ), l'automatisation par scripts, la gestion de versions, et l'export vers les moteurs de jeu ou autres logiciels de post-production.",
       "difficulty": "hard",
       "duration": 50,
@@ -966,4 +1006,3 @@
     }
   ]
 }
-

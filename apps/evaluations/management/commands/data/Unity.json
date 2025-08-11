@@ -1,11 +1,12 @@
 {
   "technology": "Unity",
-  "title": "Évaluation Unity Complète",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles de Unity, incluant le développement de jeux, l'animation, les interactions, la physique, les scripts C#, et les techniques de production de contenu interactif.",
-  "difficulty": "intermediate",
+  "title": "Évaluation Unity - Développement de Jeux et Applications 3D",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles d'Unity pour le développement de jeux et d'applications 3D, incluant l'interface, les GameObjects, les scripts, l'animation et le déploiement.",
+  "difficulty": "beginner",
   "questions": [
     {
-      "text": "Qu'est-ce que Unity?",
+      "title": "Unity",
+      "description": "Qu'est-ce qu'Unity ?",
       "explanation": "Unity est un moteur de jeu cross-platform qui permet de créer des jeux et applications interactives pour de multiples plateformes (PC, mobile, consoles, VR/AR, web).",
       "difficulty": "easy",
       "duration": 20,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "text": "Quel langage de script est principalement utilisé dans Unity?",
+      "title": "Unity",
+      "description": "Quel langage de script est principalement utilisé dans Unity ?",
       "explanation": "C# est le langage de script principal de Unity depuis que JavaScript (UnityScript) a été déprécié. C# offre de meilleures performances et plus de fonctionnalités.",
       "difficulty": "easy",
       "duration": 20,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un GameObject dans Unity?",
+      "title": "GameObject",
+      "description": "Qu'est-ce qu'un **GameObject** dans Unity ?",
       "explanation": "Un GameObject est l'objet de base dans Unity. Tout élément dans une scène (personnages, environnement, caméras, lumières) est un GameObject qui peut avoir des composants attachés.",
       "difficulty": "easy",
       "duration": 25,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "text": "Comment créer un cube primitif dans Unity?",
+      "title": "Unity",
+      "description": "Comment créer un cube primitif dans Unity ?",
       "explanation": "Pour créer un cube, on va dans GameObject > 3D Object > Cube ou on fait un clic droit dans la Hierarchy et on sélectionne 3D Object > Cube.",
       "difficulty": "easy",
       "duration": 25,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction du Transform component?",
+      "title": "Transform component",
+      "description": "Quelle est la fonction du Transform component ?",
       "explanation": "Le Transform component définit la position, rotation et échelle d'un GameObject dans l'espace 3D. Chaque GameObject a obligatoirement un Transform.",
       "difficulty": "easy",
       "duration": 30,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "text": "Comment attacher un script à un GameObject?",
+      "title": "Unity",
+      "description": "Comment attacher un script à un GameObject ?",
       "explanation": "On peut attacher un script en le glissant sur le GameObject, en utilisant Add Component dans l'Inspector, ou en cliquant sur Add Component et en cherchant le script.",
       "difficulty": "easy",
       "duration": 30,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "text": "Quelle méthode est appelée une fois au début du script?",
+      "title": "Unity",
+      "description": "Quelle méthode est appelée une fois au début du script ?",
       "explanation": "La méthode Start() est appelée une seule fois au début de la vie du GameObject, après l'Awake() mais avant le premier Update().",
       "difficulty": "easy",
       "duration": 25,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "text": "Quelle méthode est appelée à chaque frame?",
+      "title": "Unity",
+      "description": "Quelle méthode est appelée à chaque frame ?",
       "explanation": "La méthode Update() est appelée une fois par frame et est utilisée pour la logique du jeu qui doit être vérifiée en permanence.",
       "difficulty": "easy",
       "duration": 25,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Update() et FixedUpdate()?",
+      "title": "Unity",
+      "description": "Quelle est la différence entre Update() et FixedUpdate() ?",
       "explanation": "Update() est appelé à chaque frame (fréquence variable), tandis que FixedUpdate() est appelé à intervalles fixes, idéal pour la physique.",
       "difficulty": "medium",
       "duration": 40,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "text": "Comment détecter une collision dans Unity?",
+      "title": "Unity",
+      "description": "Comment détecter une collision dans Unity ?",
       "explanation": "On utilise OnTriggerEnter() pour les triggers ou OnCollisionEnter() pour les collisions physiques. Les objets doivent avoir des Colliders.",
       "difficulty": "medium",
       "duration": 35,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "text": "Quel component est nécessaire pour qu'un objet soit affecté par la physique?",
+      "title": "Rigidbody",
+      "description": "Quel component est nécessaire pour qu'un objet soit affecté par la physique ?",
       "explanation": "Le Rigidbody component permet à un objet d'être affecté par la physique (gravité, forces, collisions). Sans Rigidbody, l'objet est statique.",
       "difficulty": "easy",
       "duration": 30,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "text": "Comment créer une animation dans Unity?",
+      "title": "Animation",
+      "description": "Comment créer une animation dans Unity ?",
       "explanation": "On peut créer des animations via l'Animation window en enregistrant des keyframes, ou importer des animations depuis des logiciels 3D externes.",
       "difficulty": "medium",
       "duration": 40,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un Prefab dans Unity?",
+      "title": "Prefab",
+      "description": "Qu'est-ce qu'un Prefab dans Unity ?",
       "explanation": "Un Prefab est un modèle réutilisable d'un GameObject avec ses composants et propriétés. On peut l'instancier plusieurs fois et les modifications du Prefab affectent toutes ses instances.",
       "difficulty": "medium",
       "duration": 35,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "text": "Comment instancier un Prefab dans le code?",
+      "title": "Prefab",
+      "description": "Comment instancier un Prefab dans le code ?",
       "explanation": "On utilise la méthode Instantiate() en passant le Prefab en paramètre, optionnellement avec une position et rotation.",
       "difficulty": "medium",
       "duration": 35,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction du Canvas dans Unity?",
+      "title": "Canvas",
+      "description": "Quelle est la fonction du Canvas dans Unity ?",
       "explanation": "Le Canvas est le conteneur pour tous les éléments d'interface utilisateur (UI). Il définit comment et où l'UI est rendue dans l'espace.",
       "difficulty": "easy",
       "duration": 30,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "text": "Comment déplacer un objet dans le code Unity?",
+      "title": "Unity",
+      "description": "Comment déplacer un objet dans le code Unity ?",
       "explanation": "On peut déplacer un objet en modifiant transform.position directement ou en utilisant transform.Translate() pour un déplacement relatif.",
       "difficulty": "easy",
       "duration": 35,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "text": "Quelle méthode permet de trouver un GameObject par son nom?",
+      "title": "Unity",
+      "description": "Quelle méthode permet de trouver un GameObject par son nom ?",
       "explanation": "GameObject.Find(\"nom\") permet de trouver un GameObject actif dans la scène par son nom. Attention, cette méthode est coûteuse en performance.",
       "difficulty": "medium",
       "duration": 30,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "text": "Comment gérer les inputs clavier dans Unity?",
+      "title": "Unity",
+      "description": "Comment gérer les inputs clavier dans Unity ?",
       "explanation": "On peut utiliser Input.GetKey() pour les touches maintenues, Input.GetKeyDown() pour la pression, ou le nouveau Input System pour plus de flexibilité.",
       "difficulty": "medium",
       "duration": 40,
@@ -437,7 +455,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une Coroutine dans Unity?",
+      "title": "Coroutine",
+      "description": "Qu'est-ce qu'une Coroutine dans Unity ?",
       "explanation": "Une Coroutine est une fonction qui peut suspendre son exécution et reprendre plus tard, permettant d'étaler des opérations sur plusieurs frames sans bloquer le jeu.",
       "difficulty": "hard",
       "duration": 60,
@@ -461,7 +480,8 @@
       ]
     },
     {
-      "text": "Comment créer un matériau dans Unity?",
+      "title": "Unity",
+      "description": "Comment créer un matériau dans Unity ?",
       "explanation": "On crée un matériau via Create > Material dans le Project window, puis on peut assigner des textures et ajuster les propriétés du shader.",
       "difficulty": "easy",
       "duration": 30,
@@ -485,7 +505,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Scene et Game view?",
+      "title": "Unity",
+      "description": "Quelle est la différence entre Scene et Game view ?",
       "explanation": "Scene view est l'éditeur où on positionne les objets et navigue librement. Game view montre ce que voit la caméra du jeu, c'est le rendu final pour le joueur.",
       "difficulty": "easy",
       "duration": 35,
@@ -509,7 +530,8 @@
       ]
     },
     {
-      "text": "Comment ajouter de l'audio à un GameObject?",
+      "title": "Audio",
+      "description": "Comment ajouter de l'audio à un GameObject ?",
       "explanation": "On ajoute un Audio Source component au GameObject et on assigne un Audio Clip. On peut ensuite contrôler la lecture via le code.",
       "difficulty": "easy",
       "duration": 30,
@@ -533,7 +555,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le Lighting dans Unity?",
+      "title": "Lighting",
+      "description": "Qu'est-ce que le Lighting dans Unity ?",
       "explanation": "Le système de Lighting gère l'éclairage de la scène, incluant les lumières directes, l'éclairage indirect (Global Illumination), les ombres, et le baking des lightmaps.",
       "difficulty": "medium",
       "duration": 45,
@@ -557,7 +580,8 @@
       ]
     },
     {
-      "text": "Comment optimiser les performances d'un jeu Unity?",
+      "title": "Unity",
+      "description": "Comment optimiser les performances d'un jeu Unity ?",
       "explanation": "Optimiser via : réduction des polygones, utilisation d'un object pooling, optimisation des textures, limitation des appels Draw Calls, et profiling régulier avec le Unity Profiler.",
       "difficulty": "hard",
       "duration": 80,
@@ -581,7 +605,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un Shader dans Unity?",
+      "title": "Shader",
+      "description": "Qu'est-ce qu'un Shader dans Unity ?",
       "explanation": "Un Shader est un programme qui s'exécute sur la carte graphique pour définir comment les pixels sont rendus (couleur, éclairage, effets spéciaux).",
       "difficulty": "hard",
       "duration": 50,
@@ -605,7 +630,8 @@
       ]
     },
     {
-      "text": "Comment créer un système de particules?",
+      "title": "Unity",
+      "description": "Comment créer un système de particules ?",
       "explanation": "On ajoute un Particle System component à un GameObject. Le système offre de nombreux paramètres pour contrôler l'apparence et le comportement des particules.",
       "difficulty": "medium",
       "duration": 40,
@@ -629,7 +655,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction du Animator Controller?",
+      "title": "Animator Controller",
+      "description": "Quelle est la fonction du Animator Controller ?",
       "explanation": "L'Animator Controller gère les transitions entre différentes animations via des états et des paramètres, permettant des animations complexes et conditionnelles.",
       "difficulty": "hard",
       "duration": 55,
@@ -653,7 +680,8 @@
       ]
     },
     {
-      "text": "Comment implémenter un système de score dans un jeu?",
+      "title": "Unity",
+      "description": "Comment implémenter un système de score dans un jeu ?",
       "explanation": "On crée une variable score (généralement statique), on l'incrémente lors d'événements, et on met à jour l'affichage UI via un Text component ou TextMeshPro.",
       "difficulty": "medium",
       "duration": 45,
@@ -677,7 +705,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le NavMesh dans Unity?",
+      "title": "NavMesh",
+      "description": "Qu'est-ce que le NavMesh dans Unity ?",
       "explanation": "NavMesh (Navigation Mesh) est un système qui permet aux AI agents de naviguer intelligemment dans l'environnement en évitant les obstacles.",
       "difficulty": "hard",
       "duration": 50,
@@ -701,7 +730,8 @@
       ]
     },
     {
-      "text": "Comment sauvegarder des données de jeu?",
+      "title": "Unity",
+      "description": "Comment sauvegarder des données de jeu ?",
       "explanation": "On peut utiliser PlayerPrefs pour des données simples, JsonUtility pour des structures complexes, ou des systèmes de fichiers pour des sauvegardes avancées.",
       "difficulty": "medium",
       "duration": 50,
@@ -725,7 +755,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un ScriptableObject?",
+      "title": "ScriptableObject",
+      "description": "Qu'est-ce qu'un ScriptableObject ?",
       "explanation": "Un ScriptableObject est une classe qui permet de stocker des données indépendamment des GameObjects, idéal pour créer des assets de données réutilisables.",
       "difficulty": "hard",
       "duration": 55,
@@ -749,7 +780,8 @@
       ]
     },
     {
-      "text": "Comment créer un menu de jeu?",
+      "title": "Unity",
+      "description": "Comment créer un menu de jeu ?",
       "explanation": "On crée un Canvas avec des éléments UI (Button, Text, Image), on configure les interactions via Event System, et on gère les transitions entre scènes.",
       "difficulty": "medium",
       "duration": 45,
@@ -773,7 +805,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Build Settings et Player Settings?",
+      "title": "Build Settings",
+      "description": "Quelle est la différence entre Build Settings et Player Settings ?",
       "explanation": "Build Settings définit quelles scènes inclure et la plateforme cible. Player Settings configure les paramètres spécifiques à l'application (nom, icône, résolution, etc.).",
       "difficulty": "medium",
       "duration": 45,
@@ -797,7 +830,8 @@
       ]
     },
     {
-      "text": "Comment implémenter un système de santé pour un personnage?",
+      "title": "Unity",
+      "description": "Comment implémenter un système de santé pour un personnage ?",
       "explanation": "On crée une variable health, on la diminue lors de dégâts, on vérifie si elle atteint zéro pour déclencher la mort, et on met à jour l'UI de santé.",
       "difficulty": "medium",
       "duration": 50,
@@ -821,7 +855,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le Post-Processing dans Unity?",
+      "title": "Post-Processing",
+      "description": "Qu'est-ce que le Post-Processing dans Unity ?",
       "explanation": "Le Post-Processing applique des effets visuels après le rendu principal (bloom, color grading, depth of field, etc.) pour améliorer l'apparence finale.",
       "difficulty": "hard",
       "duration": 55,
@@ -845,7 +880,8 @@
       ]
     },
     {
-      "text": "Comment créer un jeu multijoueur basique?",
+      "title": "Multijoueur",
+      "description": "Comment créer un jeu multijoueur basique ?",
       "explanation": "On peut utiliser Unity Netcode for GameObjects, Mirror, ou Photon pour gérer la synchronisation réseau, la gestion des joueurs, et la communication client-serveur.",
       "difficulty": "hard",
       "duration": 80,
@@ -869,7 +905,8 @@
       ]
     },
     {
-      "text": "Comment optimiser les textures pour mobile?",
+      "title": "Textures",
+      "description": "Comment optimiser les textures pour mobile ?",
       "explanation": "Pour mobile : utiliser des formats compressés (ASTC, ETC2), réduire les résolutions, éviter les textures trop grandes, et configurer les Import Settings appropriés.",
       "difficulty": "hard",
       "duration": 70,
@@ -893,7 +930,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le Unity Package Manager?",
+      "title": "Unity Package Manager",
+      "description": "Qu'est-ce que le Unity Package Manager ?",
       "explanation": "Le Package Manager permet d'installer, mettre à jour et gérer des packages (fonctionnalités additionnelles, assets, outils) dans Unity de manière centralisée.",
       "difficulty": "medium",
       "duration": 40,
@@ -917,7 +955,8 @@
       ]
     },
     {
-      "text": "Comment créer un effet de trail/traînée derrière un objet?",
+      "title": "Trail",
+      "description": "Comment créer un effet de trail/traînée derrière un objet ?",
       "explanation": "On utilise le Trail Renderer component qui crée automatiquement une traînée basée sur le mouvement de l'objet. On peut ajuster la largeur, durée et matériau.",
       "difficulty": "medium",
       "duration": 40,
@@ -941,7 +980,8 @@
       ]
     },
     {
-      "text": "Comment implémenter un système d'inventaire?",
+      "title": "Inventaire",
+      "description": "Comment implémenter un système d'inventaire ?",
       "explanation": "On crée une structure de données (liste/array) pour stocker les objets, une UI pour l'affichage, et des méthodes pour ajouter/retirer/utiliser les objets de l'inventaire.",
       "difficulty": "hard",
       "duration": 70,
@@ -965,7 +1005,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le Unity Profiler?",
+      "title": "Unity Profiler",
+      "description": "Qu'est-ce que le Unity Profiler ?",
       "explanation": "Le Unity Profiler est un outil de diagnostic qui analyse les performances en temps réel, montrant l'utilisation CPU, GPU, mémoire, et identifiant les goulots d'étranglement.",
       "difficulty": "hard",
       "duration": 60,
@@ -990,4 +1031,3 @@
     }
   ]
 }
-

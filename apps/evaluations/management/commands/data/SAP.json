@@ -1,11 +1,12 @@
 {
   "technology": "SAP",
-  "title": "Évaluation SAP - Système de Gestion Intégré",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles de SAP pour la gestion d'entreprise, incluant la navigation, les modules financiers, la gestion des données, les transactions et les rapports.",
+  "title": "Évaluation SAP - Système de Gestion Intégrée",
+  "description": "Cette évaluation couvre les concepts fondamentaux de SAP, incluant les modules principaux, la navigation, les transactions, et les processus métier dans cet ERP de référence.",
   "difficulty": "beginner",
   "questions": [
     {
-      "text": "Que signifie **SAP** ?",
+      "title": "SAP",
+      "description": "Qu'est-ce que SAP ?",
       "explanation": "SAP signifie Systems, Applications & Products in Data Processing. C'est un système de gestion intégré (ERP) qui centralise les processus d'entreprise.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **module SAP** ?",
+      "title": "Module SAP FI",
+      "description": "Que signifie le **module SAP FI** ?",
       "explanation": "Un module SAP est une unité fonctionnelle qui gère un domaine spécifique de l'entreprise comme la finance (FI), la comptabilité de gestion (CO), ou les ventes (SD).",
       "difficulty": "easy",
       "duration": 30,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "text": "Comment accéder à SAP ?",
+      "title": "Accès à SAP",
+      "description": "Comment accéder à SAP ?",
       "explanation": "L'accès à SAP se fait via SAP GUI (Graphical User Interface) en saisissant l'adresse du serveur, le client, l'utilisateur et le mot de passe.",
       "difficulty": "easy",
       "duration": 25,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **transaction** dans SAP ?",
+      "title": "Transaction SAP",
+      "description": "Qu'est-ce qu'une **transaction** dans SAP ?",
       "explanation": "Une transaction est un code alphanumérique qui permet d'accéder directement à une fonction ou un écran spécifique dans SAP (ex: FB01 pour saisir une écriture).",
       "difficulty": "medium",
       "duration": 35,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "text": "Comment naviguer dans SAP sans connaître le code de transaction ?",
+      "title": "Navigation SAP",
+      "description": "Comment naviguer dans SAP sans connaître le code de transaction ?",
       "explanation": "La navigation se fait via le menu principal (arbre de navigation) ou en utilisant la barre de menu avec les différentes catégories fonctionnelles.",
       "difficulty": "easy",
       "duration": 30,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le module **FI** ?",
+      "title": "Module FI",
+      "description": "Qu'est-ce que le module **FI** ?",
       "explanation": "Le module FI (Financial Accounting) gère la comptabilité financière : grand livre, comptes clients, comptes fournisseurs, immobilisations.",
       "difficulty": "medium",
       "duration": 35,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **mandant** (client) dans SAP ?",
+      "title": "Mandant SAP",
+      "description": "Qu'est-ce qu'un **mandant** (client) dans SAP ?",
       "explanation": "Un mandant est une entité organisationnelle autonome dans SAP avec ses propres données, utilisateurs et paramètres de configuration.",
       "difficulty": "medium",
       "duration": 40,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "text": "Comment **sauvegarder** une saisie dans SAP ?",
+      "title": "Sauvegarde dans SAP",
+      "description": "Comment **sauvegarder** une saisie dans SAP ?",
       "explanation": "La sauvegarde se fait généralement avec Ctrl+S ou en cliquant sur l'icône de sauvegarde, mais certaines transactions utilisent des boutons spécifiques.",
       "difficulty": "easy",
       "duration": 25,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **société** dans SAP ?",
+      "title": "Société dans SAP",
+      "description": "Qu'est-ce qu'une **société** dans SAP ?",
       "explanation": "Une société est une entité légale indépendante dans SAP qui peut établir des bilans et comptes de résultat selon la législation locale.",
       "difficulty": "medium",
       "duration": 40,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "text": "Comment **rechercher** des données dans SAP ?",
+      "title": "Recherche de données dans SAP",
+      "description": "Comment **rechercher** des données dans SAP ?",
       "explanation": "La recherche se fait via des variantes de sélection, en utilisant des critères de recherche, des jokers (* et +), et des plages de valeurs.",
       "difficulty": "medium",
       "duration": 35,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Grand Livre** (GL) ?",
+      "title": "Grand Livre dans SAP",
+      "description": "Qu'est-ce que le **Grand Livre** (GL) ?",
       "explanation": "Le Grand Livre est le livre comptable principal qui contient tous les comptes et écritures comptables de l'entreprise dans SAP FI.",
       "difficulty": "medium",
       "duration": 35,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "text": "Comment créer un **compte général** ?",
+      "title": "Création d'un compte général",
+      "description": "Comment créer un **compte général** ?",
       "explanation": "Un compte général se crée via la transaction FS00 (ou GL01) en définissant le numéro de compte, la désignation et les paramètres de contrôle.",
       "difficulty": "hard",
       "duration": 45,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **centre de coûts** ?",
+      "title": "Centre de coûts dans SAP",
+      "description": "Qu'est-ce qu'un **centre de coûts** ?",
       "explanation": "Un centre de coûts est une unité organisationnelle où les coûts sont collectés et analysés pour le contrôle de gestion (module CO).",
       "difficulty": "medium",
       "duration": 40,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "text": "Comment **saisir une facture fournisseur** ?",
+      "title": "Saisie d'une facture fournisseur",
+      "description": "Comment **saisir une facture fournisseur** ?",
       "explanation": "La saisie d'une facture fournisseur se fait via la transaction FB60 (ou MIRO pour factures avec référence commande) en saisissant les données d'en-tête et de poste.",
       "difficulty": "hard",
       "duration": 50,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **devise de société** ?",
+      "title": "Devise de société",
+      "description": "Qu'est-ce qu'une **devise de société** ?",
       "explanation": "La devise de société est la monnaie principale dans laquelle la société tient sa comptabilité et établit ses états financiers.",
       "difficulty": "medium",
       "duration": 35,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "text": "Comment **consulter un solde de compte** ?",
+      "title": "Consultation d'un solde de compte",
+      "description": "Comment **consulter un solde de compte** ?",
       "explanation": "Le solde d'un compte se consulte via les transactions FBL3N (ligne de poste), FBL1N (client), FBL5N (fournisseur) ou FS10N (soldes).",
       "difficulty": "hard",
       "duration": 45,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **exercice comptable** dans SAP ?",
+      "title": "Exercice comptable dans SAP",
+      "description": "Qu'est-ce qu'un **exercice comptable** dans SAP ?",
       "explanation": "Un exercice comptable définit la période sur laquelle l'entreprise établit ses comptes annuels, généralement 12 mois mais configurable.",
       "difficulty": "medium",
       "duration": 40,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "text": "Comment **lettrer des écritures** ?",
+      "title": "Lettrage des écritures",
+      "description": "Comment **lettrer des écritures** ?",
       "explanation": "Le lettrage se fait via F-03 pour le lettrage manuel ou F-32 pour l'automatique, permettant d'associer des écritures qui s'équilibrent.",
       "difficulty": "hard",
       "duration": 45,
@@ -437,7 +455,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **pièce comptable** ?",
+      "title": "Pièce comptable dans SAP",
+      "description": "Qu'est-ce qu'une **pièce comptable** ?",
       "explanation": "Une pièce comptable est un document SAP qui regroupe une ou plusieurs écritures comptables équilibrées (débit = crédit).",
       "difficulty": "medium",
       "duration": 35,
@@ -461,7 +480,8 @@
       ]
     },
     {
-      "text": "Comment **configurer un utilisateur** SAP ?",
+      "title": "Configuration d'un utilisateur SAP",
+      "description": "Comment **configurer un utilisateur** SAP ?",
       "explanation": "La configuration d'utilisateur se fait via SU01 en définissant les données personnelles, les rôles/profils d'autorisation et les paramètres système.",
       "difficulty": "hard",
       "duration": 50,
@@ -485,7 +505,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **SAP HANA** ?",
+      "title": "SAP HANA",
+      "description": "Qu'est-ce que **SAP HANA** ?",
       "explanation": "SAP HANA est une plateforme de base de données en mémoire qui permet des analyses en temps réel et améliore les performances de SAP.",
       "difficulty": "hard",
       "duration": 45,
@@ -509,7 +530,8 @@
       ]
     },
     {
-      "text": "Comment **générer un rapport** dans SAP ?",
+      "title": "Génération de rapport dans SAP",
+      "description": "Comment **générer un rapport** dans SAP ?",
       "explanation": "Les rapports se génèrent via des transactions spécifiques (ex: S_ALR_87012172 pour balance), en définissant les critères de sélection et variantes.",
       "difficulty": "medium",
       "duration": 40,
@@ -533,7 +555,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **rapprochement bancaire** ?",
+      "title": "Rapprochement bancaire",
+      "description": "Qu'est-ce que le **rapprochement bancaire** ?",
       "explanation": "Le rapprochement bancaire consiste à faire correspondre les écritures comptables avec les relevés bancaires via la transaction FF67.",
       "difficulty": "hard",
       "duration": 45,
@@ -557,7 +580,8 @@
       ]
     },
     {
-      "text": "Comment **bloquer un compte** temporairement ?",
+      "title": "Blocage d'un compte",
+      "description": "Comment **bloquer un compte** temporairement ?",
       "explanation": "Le blocage d'un compte se fait via FS05 en cochant les indicateurs de blocage appropriés (débit, crédit, validation).",
       "difficulty": "hard",
       "duration": 40,
@@ -581,7 +605,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **immobilisation** dans SAP ?",
+      "title": "Immobilisation dans SAP",
+      "description": "Qu'est-ce qu'une **immobilisation** dans SAP ?",
       "explanation": "Une immobilisation est un bien durable de l'entreprise géré dans le module FI-AA (Asset Accounting) avec calcul automatique des amortissements.",
       "difficulty": "medium",
       "duration": 40,
@@ -605,7 +630,8 @@
       ]
     },
     {
-      "text": "Comment **valider les autorisations** d'un utilisateur ?",
+      "title": "Validation des autorisations",
+      "description": "Comment **valider les autorisations** d'un utilisateur ?",
       "explanation": "Les autorisations se valident via SU53 (dernière vérification d'autorisation) ou SU56 (buffer d'autorisation) pour diagnostiquer les problèmes d'accès.",
       "difficulty": "hard",
       "duration": 45,
@@ -629,7 +655,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **SAP Fiori** ?",
+      "title": "SAP Fiori",
+      "description": "Qu'est-ce que **SAP Fiori** ?",
       "explanation": "SAP Fiori est une interface utilisateur moderne et intuitive qui simplifie l'expérience utilisateur avec des applications basées sur des rôles.",
       "difficulty": "medium",
       "duration": 35,
@@ -653,7 +680,8 @@
       ]
     },
     {
-      "text": "Comment **archiver** des données anciennes ?",
+      "title": "Archivage de données",
+      "description": "Comment **archiver** des données anciennes ?",
       "explanation": "L'archivage se fait via des objets d'archivage spécifiques (ex: FI_DOCUMNT pour les pièces comptables) selon des critères de rétention définis.",
       "difficulty": "hard",
       "duration": 50,
@@ -677,7 +705,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **clôture de période** ?",
+      "title": "Clôture de période",
+      "description": "Qu'est-ce que la **clôture de période** ?",
       "explanation": "La clôture de période consiste à bloquer la saisie d'écritures pour une période donnée via les variantes de période (transaction OB52).",
       "difficulty": "hard",
       "duration": 45,
@@ -701,7 +730,8 @@
       ]
     },
     {
-      "text": "Comment **transporter** des configurations** entre environnements ?",
+      "title": "Transport de configurations",
+      "description": "Comment **transporter** des configurations** entre environnements ?",
       "explanation": "Le transport se fait via le système de transport SAP (SE09/SE10) en créant des ordres de transport qui migrent les objets entre DEV, QAS et PRD.",
       "difficulty": "hard",
       "duration": 50,
@@ -725,7 +755,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **workflow** SAP ?",
+      "title": "Workflow SAP",
+      "description": "Qu'est-ce qu'un **workflow** SAP ?",
       "explanation": "Un workflow est un processus automatisé qui route des tâches entre utilisateurs selon des règles prédéfinies (approbations, validations).",
       "difficulty": "hard",
       "duration": 45,
@@ -749,7 +780,8 @@
       ]
     },
     {
-      "text": "Comment **contrôler la qualité** des données ?",
+      "title": "Contrôle de qualité des données",
+      "description": "Comment **contrôler la qualité** des données ?",
       "explanation": "Le contrôle qualité se fait via les substitutions, validations (transaction GGB0/GGB1), contrôles de cohérence et rapports d'anomalies.",
       "difficulty": "hard",
       "duration": 50,
@@ -773,7 +805,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **SAP S/4HANA** ?",
+      "title": "SAP S/4HANA",
+      "description": "Qu'est-ce que **SAP S/4HANA** ?",
       "explanation": "SAP S/4HANA est la suite ERP nouvelle génération de SAP, conçue pour la base de données HANA avec une interface Fiori simplifiée.",
       "difficulty": "medium",
       "duration": 40,
@@ -797,7 +830,8 @@
       ]
     },
     {
-      "text": "Comment **optimiser les performances** SAP ?",
+      "title": "Optimisation des performances SAP",
+      "description": "Comment **optimiser les performances** SAP ?",
       "explanation": "L'optimisation passe par l'analyse des traces ST05, l'indexation des tables, la gestion de la mémoire et l'archivage des données anciennes.",
       "difficulty": "hard",
       "duration": 50,
@@ -821,7 +855,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**intégration** entre modules SAP ?",
+      "title": "Intégration entre modules SAP",
+      "description": "Qu'est-ce que l'**intégration** entre modules SAP ?",
       "explanation": "L'intégration permet aux modules de partager automatiquement les données (ex: une facture MM met à jour FI) via des interfaces standardisées.",
       "difficulty": "hard",
       "duration": 45,
@@ -845,7 +880,8 @@
       ]
     },
     {
-      "text": "Comment **former** les utilisateurs SAP ?",
+      "title": "Formation des utilisateurs SAP",
+      "description": "Comment **former** les utilisateurs SAP ?",
       "explanation": "La formation se fait via des environnements de formation, documentation personnalisée, sessions hands-on et certification sur les processus métier.",
       "difficulty": "medium",
       "duration": 40,
@@ -869,7 +905,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **sécurité** dans SAP ?",
+      "title": "Sécurité dans SAP",
+      "description": "Qu'est-ce que la **sécurité** dans SAP ?",
       "explanation": "La sécurité SAP comprend les autorisations par rôles, l'authentification, la traçabilité des actions, et la ségrégation des tâches (SoD).",
       "difficulty": "hard",
       "duration": 50,
@@ -893,7 +930,8 @@
       ]
     },
     {
-      "text": "Comment **gérer les erreurs** dans SAP ?",
+      "title": "Gestion des erreurs dans SAP",
+      "description": "Comment **gérer les erreurs** dans SAP ?",
       "explanation": "La gestion d'erreurs utilise les logs système (SM21), traces utilisateur, messages d'erreur détaillés et outils de diagnostic comme ST22 pour les dumps.",
       "difficulty": "hard",
       "duration": 45,
@@ -918,4 +956,3 @@
     }
   ]
 }
-

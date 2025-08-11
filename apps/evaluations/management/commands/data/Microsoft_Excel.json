@@ -5,8 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle est la combinaison de touches pour sauvegarder un fichier Excel?",
-      "explanation": "Ctrl+S est le raccourci clavier universel pour sauvegarder un document dans la plupart des applications Microsoft.",
+      "title": "Quelle est la combinaison de touches pour sauvegarder un fichier Excel?",
+      "description": "Ctrl+S est le raccourci clavier universel pour sauvegarder un document dans la plupart des applications Microsoft.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Comment sélectionner une colonne entière dans Excel?",
-      "explanation": "Pour sélectionner une colonne entière, il suffit de cliquer sur l'en-tête de la colonne (lettre A, B, C, etc.).",
+      "title": "Comment sélectionner une colonne entière dans Excel?",
+      "description": "Pour sélectionner une colonne entière, il suffit de cliquer sur l'en-tête de la colonne (lettre A, B, C, etc.).",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Quelle formule permet d'additionner les cellules A1 à A10?",
-      "explanation": "La fonction SOMME (SUM en anglais) permet d'additionner une plage de cellules. La syntaxe est =SOMME(A1:A10).",
+      "title": "Quelle formule permet d'additionner les cellules A1 à A10?",
+      "description": "La fonction SOMME (SUM en anglais) permet d'additionner une plage de cellules. La syntaxe est =SOMME(A1:A10).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment figer la première ligne d'un tableau Excel?",
-      "explanation": "Pour figer des volets, il faut aller dans l'onglet Affichage et cliquer sur 'Figer les volets'. Pour figer la première ligne, sélectionner la ligne 2 puis 'Figer les volets'.",
+      "title": "Comment figer la première ligne d'un tableau Excel?",
+      "description": "Pour figer des volets, il faut aller dans l'onglet Affichage et cliquer sur 'Figer les volets'. Pour figer la première ligne, sélectionner la ligne 2 puis 'Figer les volets'.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de calculer la moyenne d'une plage de cellules?",
-      "explanation": "La fonction MOYENNE calcule la moyenne arithmétique des valeurs dans une plage de cellules.",
+      "title": "Quelle fonction permet de calculer la moyenne d'une plage de cellules?",
+      "description": "La fonction MOYENNE calcule la moyenne arithmétique des valeurs dans une plage de cellules.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Comment insérer une nouvelle ligne dans Excel?",
-      "explanation": "Pour insérer une ligne, faire un clic droit sur le numéro de ligne et sélectionner 'Insérer' dans le menu contextuel.",
+      "title": "Comment insérer une nouvelle ligne dans Excel?",
+      "description": "Pour insérer une ligne, faire un clic droit sur le numéro de ligne et sélectionner 'Insérer' dans le menu contextuel.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre une référence relative et absolue?",
-      "explanation": "Une référence relative (A1) change quand la formule est copiée, tandis qu'une référence absolue ($A$1) reste fixe.",
+      "title": "Quelle est la différence entre une référence relative et absolue?",
+      "description": "Une référence relative (A1) change quand la formule est copiée, tandis qu'une référence absolue ($A$1) reste fixe.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Comment créer un graphique dans Excel?",
-      "explanation": "Pour créer un graphique, sélectionner les données puis aller dans l'onglet Insertion et choisir le type de graphique souhaité.",
+      "title": "Comment créer un graphique dans Excel?",
+      "description": "Pour créer un graphique, sélectionner les données puis aller dans l'onglet Insertion et choisir le type de graphique souhaité.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de rechercher une valeur dans un tableau?",
-      "explanation": "RECHERCHEV (VLOOKUP en anglais) permet de rechercher une valeur dans la première colonne d'un tableau et retourner une valeur de la même ligne.",
+      "title": "Quelle fonction permet de rechercher une valeur dans un tableau?",
+      "description": "RECHERCHEV (VLOOKUP en anglais) permet de rechercher une valeur dans la première colonne d'un tableau et retourner une valeur de la même ligne.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment appliquer un format conditionnel dans Excel?",
-      "explanation": "Le format conditionnel se trouve dans l'onglet Accueil. Il permet de formater automatiquement les cellules selon des critères définis.",
+      "title": "Comment appliquer un format conditionnel dans Excel?",
+      "description": "Le format conditionnel se trouve dans l'onglet Accueil. Il permet de formater automatiquement les cellules selon des critères définis.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Quelle combinaison de touches permet de copier une cellule?",
-      "explanation": "Ctrl+C est le raccourci standard pour copier dans toutes les applications Windows.",
+      "title": "Quelle combinaison de touches permet de copier une cellule?",
+      "description": "Ctrl+C est le raccourci standard pour copier dans toutes les applications Windows.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Comment créer un tableau croisé dynamique?",
-      "explanation": "Un tableau croisé dynamique se crée via l'onglet Insertion > Tableau croisé dynamique après avoir sélectionné les données source.",
+      "title": "Comment créer un tableau croisé dynamique?",
+      "description": "Un tableau croisé dynamique se crée via l'onglet Insertion > Tableau croisé dynamique après avoir sélectionné les données source.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de compter le nombre de cellules non vides?",
-      "explanation": "La fonction NBVAL compte le nombre de cellules qui contiennent des données (non vides) dans une plage.",
+      "title": "Quelle fonction permet de compter le nombre de cellules non vides?",
+      "description": "La fonction NBVAL compte le nombre de cellules qui contiennent des données (non vides) dans une plage.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Comment trier des données par ordre croissant?",
-      "explanation": "Pour trier des données, sélectionner la plage puis aller dans Données > Trier ou utiliser les boutons de tri rapide.",
+      "title": "Comment trier des données par ordre croissant?",
+      "description": "Pour trier des données, sélectionner la plage puis aller dans Données > Trier ou utiliser les boutons de tri rapide.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Quelle est la syntaxe correcte pour une fonction SI?",
-      "explanation": "La fonction SI teste une condition et retourne une valeur si elle est vraie, une autre si elle est fausse. Syntaxe: =SI(test_logique; valeur_si_vrai; valeur_si_faux)",
+      "title": "Quelle est la syntaxe correcte pour une fonction SI?",
+      "description": "La fonction SI teste une condition et retourne une valeur si elle est vraie, une autre si elle est fausse. Syntaxe: =SI(test_logique; valeur_si_vrai; valeur_si_faux)",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Comment protéger une feuille de calcul?",
-      "explanation": "Pour protéger une feuille, aller dans l'onglet Révision > Protéger la feuille et définir un mot de passe si souhaité.",
+      "title": "Comment protéger une feuille de calcul?",
+      "description": "Pour protéger une feuille, aller dans l'onglet Révision > Protéger la feuille et définir un mot de passe si souhaité.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de retourner la valeur maximale d'une plage?",
-      "explanation": "La fonction MAX retourne la plus grande valeur numérique dans une plage de cellules.",
+      "title": "Quelle fonction permet de retourner la valeur maximale d'une plage?",
+      "description": "La fonction MAX retourne la plus grande valeur numérique dans une plage de cellules.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Comment fusionner des cellules dans Excel?",
-      "explanation": "Pour fusionner des cellules, les sélectionner puis aller dans Accueil > Fusionner et centrer.",
+      "title": "Comment fusionner des cellules dans Excel?",
+      "description": "Pour fusionner des cellules, les sélectionner puis aller dans Accueil > Fusionner et centrer.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre SOMME.SI et SOMME.SI.ENS?",
-      "explanation": "SOMME.SI permet de sommer selon un seul critère, tandis que SOMME.SI.ENS permet de sommer selon plusieurs critères.",
+      "title": "Quelle est la différence entre SOMME.SI et SOMME.SI.ENS?",
+      "description": "SOMME.SI permet de sommer selon un seul critère, tandis que SOMME.SI.ENS permet de sommer selon plusieurs critères.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment insérer une formule dans une cellule?",
-      "explanation": "Toute formule dans Excel doit commencer par le signe égal (=) suivi de la fonction ou du calcul.",
+      "title": "Comment insérer une formule dans une cellule?",
+      "description": "Toute formule dans Excel doit commencer par le signe égal (=) suivi de la fonction ou du calcul.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de concaténer du texte?",
-      "explanation": "La fonction CONCATENER ou l'opérateur & permettent de joindre plusieurs chaînes de texte.",
+      "title": "Quelle fonction permet de concaténer du texte?",
+      "description": "La fonction CONCATENER ou l'opérateur & permettent de joindre plusieurs chaînes de texte.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Comment appliquer un filtre automatique?",
-      "explanation": "Pour appliquer un filtre automatique, sélectionner les données puis aller dans Données > Filtre.",
+      "title": "Comment appliquer un filtre automatique?",
+      "description": "Pour appliquer un filtre automatique, sélectionner les données puis aller dans Données > Filtre.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Quelle combinaison de touches permet d'annuler une action?",
-      "explanation": "Ctrl+Z est le raccourci universel pour annuler la dernière action dans la plupart des applications.",
+      "title": "Quelle combinaison de touches permet d'annuler une action?",
+      "description": "Ctrl+Z est le raccourci universel pour annuler la dernière action dans la plupart des applications.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment créer une liste déroulante dans une cellule?",
-      "explanation": "Pour créer une liste déroulante, utiliser la validation des données dans l'onglet Données et choisir 'Liste'.",
+      "title": "Comment créer une liste déroulante dans une cellule?",
+      "description": "Pour créer une liste déroulante, utiliser la validation des données dans l'onglet Données et choisir 'Liste'.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de retourner la position d'un caractère dans un texte?",
-      "explanation": "La fonction TROUVE retourne la position du premier caractère d'une chaîne de texte dans une autre chaîne.",
+      "title": "Quelle fonction permet de retourner la position d'un caractère dans un texte?",
+      "description": "La fonction TROUVE retourne la position du premier caractère d'une chaîne de texte dans une autre chaîne.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Comment masquer une colonne dans Excel?",
-      "explanation": "Pour masquer une colonne, faire un clic droit sur l'en-tête de la colonne et sélectionner 'Masquer'.",
+      "title": "Comment masquer une colonne dans Excel?",
+      "description": "Pour masquer une colonne, faire un clic droit sur l'en-tête de la colonne et sélectionner 'Masquer'.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Copier et Couper?",
-      "explanation": "Copier (Ctrl+C) duplique l'élément, Couper (Ctrl+X) le déplace d'un endroit à un autre.",
+      "title": "Quelle est la différence entre Copier et Couper?",
+      "description": "Copier (Ctrl+C) duplique l'élément, Couper (Ctrl+X) le déplace d'un endroit à un autre.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment changer le format d'une cellule en pourcentage?",
-      "explanation": "Pour formater en pourcentage, sélectionner les cellules puis utiliser le bouton % dans l'onglet Accueil ou Ctrl+Shift+%.",
+      "title": "Comment changer le format d'une cellule en pourcentage?",
+      "description": "Pour formater en pourcentage, sélectionner les cellules puis utiliser le bouton % dans l'onglet Accueil ou Ctrl+Shift+%.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de retourner la date actuelle?",
-      "explanation": "La fonction AUJOURD'HUI() retourne la date actuelle et se met à jour automatiquement chaque jour.",
+      "title": "Quelle fonction permet de retourner la date actuelle?",
+      "description": "La fonction AUJOURD'HUI() retourne la date actuelle et se met à jour automatiquement chaque jour.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Comment répéter une formule sur plusieurs cellules?",
-      "explanation": "Pour répéter une formule, sélectionner la cellule contenant la formule et faire glisser la poignée de recopie ou utiliser Ctrl+D pour copier vers le bas.",
+      "title": "Comment répéter une formule sur plusieurs cellules?",
+      "description": "Pour répéter une formule, sélectionner la cellule contenant la formule et faire glisser la poignée de recopie ou utiliser Ctrl+D pour copier vers le bas.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de compter les cellules qui répondent à un critère?",
-      "explanation": "La fonction NB.SI compte le nombre de cellules qui répondent à un critère spécifique dans une plage.",
+      "title": "Quelle fonction permet de compter les cellules qui répondent à un critère?",
+      "description": "La fonction NB.SI compte le nombre de cellules qui répondent à un critère spécifique dans une plage.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Comment grouper des lignes ou colonnes?",
-      "explanation": "Pour grouper des lignes ou colonnes, les sélectionner puis aller dans Données > Grouper.",
+      "title": "Comment grouper des lignes ou colonnes?",
+      "description": "Pour grouper des lignes ou colonnes, les sélectionner puis aller dans Données > Grouper.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction pour retourner la valeur minimale?",
-      "explanation": "La fonction MIN retourne la plus petite valeur numérique dans une plage de cellules.",
+      "title": "Quelle est la fonction pour retourner la valeur minimale?",
+      "description": "La fonction MIN retourne la plus petite valeur numérique dans une plage de cellules.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -797,8 +797,8 @@
       ]
     },
     {
-      "text": "Comment imprimer seulement une sélection de cellules?",
-      "explanation": "Pour imprimer une sélection, sélectionner les cellules puis aller dans Fichier > Imprimer > Zone d'impression > Sélection.",
+      "title": "Comment imprimer seulement une sélection de cellules?",
+      "description": "Pour imprimer une sélection, sélectionner les cellules puis aller dans Fichier > Imprimer > Zone d'impression > Sélection.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -821,8 +821,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de retourner un nombre aléatoire?",
-      "explanation": "La fonction ALÉA() retourne un nombre aléatoire entre 0 et 1. ALÉA.ENTRE.BORNES() permet de spécifier une plage.",
+      "title": "Quelle fonction permet de retourner un nombre aléatoire?",
+      "description": "La fonction ALÉA() retourne un nombre aléatoire entre 0 et 1. ALÉA.ENTRE.BORNES() permet de spécifier une plage.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -845,8 +845,8 @@
       ]
     },
     {
-      "text": "Comment supprimer les doublons dans Excel?",
-      "explanation": "Pour supprimer les doublons, sélectionner les données puis aller dans Données > Supprimer les doublons.",
+      "title": "Comment supprimer les doublons dans Excel?",
+      "description": "Pour supprimer les doublons, sélectionner les données puis aller dans Données > Supprimer les doublons.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -869,8 +869,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de retourner le nombre de jours entre deux dates?",
-      "explanation": "On peut soustraire directement deux dates (=Date2-Date1) ou utiliser la fonction DATEDIF pour plus d'options.",
+      "title": "Quelle fonction permet de retourner le nombre de jours entre deux dates?",
+      "description": "On peut soustraire directement deux dates (=Date2-Date1) ou utiliser la fonction DATEDIF pour plus d'options.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -893,8 +893,8 @@
       ]
     },
     {
-      "text": "Comment créer un graphique en secteurs (camembert)?",
-      "explanation": "Sélectionner les données, aller dans Insertion > Graphiques et choisir le type 'Secteurs'.",
+      "title": "Comment créer un graphique en secteurs (camembert)?",
+      "description": "Sélectionner les données, aller dans Insertion > Graphiques et choisir le type 'Secteurs'.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -917,8 +917,8 @@
       ]
     },
     {
-      "text": "Quelle est l'extension de fichier par défaut d'Excel 2019?",
-      "explanation": "Depuis Excel 2007, l'extension par défaut est .xlsx pour les fichiers Excel modernes.",
+      "title": "Quelle est l'extension de fichier par défaut d'Excel 2019?",
+      "description": "Depuis Excel 2007, l'extension par défaut est .xlsx pour les fichiers Excel modernes.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -941,8 +941,8 @@
       ]
     },
     {
-      "text": "Comment ancrer une référence de cellule ($A$1)?",
-      "explanation": "Pour ancrer une référence, utiliser le symbole $ devant la lettre de colonne et le numéro de ligne, ou appuyer sur F4 après avoir tapé la référence.",
+      "title": "Comment ancrer une référence de cellule ($A$1)?",
+      "description": "Pour ancrer une référence, utiliser le symbole $ devant la lettre de colonne et le numéro de ligne, ou appuyer sur F4 après avoir tapé la référence.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -965,8 +965,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de retourner l'heure actuelle?",
-      "explanation": "La fonction MAINTENANT() retourne la date et l'heure actuelles. TEMPS() permet de créer une heure spécifique.",
+      "title": "Quelle fonction permet de retourner l'heure actuelle?",
+      "description": "La fonction MAINTENANT() retourne la date et l'heure actuelles. TEMPS() permet de créer une heure spécifique.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -989,8 +989,8 @@
       ]
     },
     {
-      "text": "Comment changer l'orientation d'une feuille de calcul pour l'impression?",
-      "explanation": "Pour changer l'orientation, aller dans Mise en page > Orientation et choisir Portrait ou Paysage.",
+      "title": "Comment changer l'orientation d'une feuille de calcul pour l'impression?",
+      "description": "Pour changer l'orientation, aller dans Mise en page > Orientation et choisir Portrait ou Paysage.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -1014,4 +1014,3 @@
     }
   ]
 }
-

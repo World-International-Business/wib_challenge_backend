@@ -1,12 +1,12 @@
 {
   "technology": "Microsoft PowerPoint",
   "title": "Évaluation Microsoft PowerPoint Complète",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft PowerPoint, incluant la création de diapositives, les animations, les transitions, les modèles, et les techniques de présentation efficaces.",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft PowerPoint, incluant la création de présentations, les animations, les transitions, la gestion des diapositives et les fonctionnalités avancées.",
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle combinaison de touches permet de démarrer un diaporama depuis le début?",
-      "explanation": "F5 est le raccourci pour démarrer un diaporama depuis la première diapositive dans PowerPoint.",
+      "title": "Quelle combinaison de touches permet de lancer une présentation depuis le début?",
+      "description": "F5 est le raccourci pour démarrer la présentation depuis la première diapositive, tandis que Shift+F5 démarre depuis la diapositive actuelle.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -15,22 +15,22 @@
           "is_correct": true
         },
         {
-          "text": "F1",
-          "is_correct": false
-        },
-        {
           "text": "Ctrl+F5",
           "is_correct": false
         },
         {
           "text": "Alt+F5",
           "is_correct": false
+        },
+        {
+          "text": "Shift+F5",
+          "is_correct": false
         }
       ]
     },
     {
-      "text": "Comment ajouter une nouvelle diapositive?",
-      "explanation": "Pour ajouter une nouvelle diapositive, utiliser Ctrl+M ou cliquer sur 'Nouvelle diapositive' dans l'onglet Accueil.",
+      "title": "Comment ajouter une nouvelle diapositive?",
+      "description": "Pour ajouter une nouvelle diapositive, utiliser Ctrl+M ou cliquer sur 'Nouvelle diapositive' dans l'onglet Accueil.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre une transition et une animation?",
-      "explanation": "Une transition s'applique entre les diapositives (passage d'une diapo à l'autre), tandis qu'une animation s'applique aux éléments à l'intérieur d'une diapositive.",
+      "title": "Quelle est la différence entre une transition et une animation?",
+      "description": "Une transition s'applique entre les diapositives (passage d'une diapo à l'autre), tandis qu'une animation s'applique aux éléments à l'intérieur d'une diapositive.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment dupliquer une diapositive?",
-      "explanation": "Pour dupliquer une diapositive, faire un clic droit sur la miniature puis sélectionner 'Dupliquer la diapositive' ou utiliser Ctrl+D.",
+      "title": "Comment dupliquer une diapositive?",
+      "description": "Pour dupliquer une diapositive, faire un clic droit sur la miniature puis sélectionner 'Dupliquer la diapositive' ou utiliser Ctrl+D.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Où trouve-t-on les modèles de diapositives dans PowerPoint?",
-      "explanation": "Les modèles de diapositives se trouvent dans l'onglet Création où l'on peut choisir différents thèmes et variantes.",
+      "title": "Où trouve-t-on les modèles de diapositives dans PowerPoint?",
+      "description": "Les modèles de diapositives se trouvent dans l'onglet Création où l'on peut choisir différents thèmes et variantes.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Comment insérer une image dans une diapositive?",
-      "explanation": "Pour insérer une image, aller dans Insertion > Images et choisir la source (fichier, en ligne, etc.).",
+      "title": "Comment insérer une image dans une diapositive?",
+      "description": "Pour insérer une image, aller dans Insertion > Images et choisir la source (fichier, en ligne, etc.).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quelle touche permet de démarrer le diaporama depuis la diapositive actuelle?",
-      "explanation": "Shift+F5 permet de démarrer le diaporama depuis la diapositive actuellement sélectionnée.",
+      "title": "Quelle touche permet de démarrer le diaporama depuis la diapositive actuelle?",
+      "description": "Shift+F5 permet de démarrer le diaporama depuis la diapositive actuellement sélectionnée.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Comment ajouter des notes du présentateur?",
-      "explanation": "Les notes du présentateur s'ajoutent dans la zone de notes en bas de l'écran ou via l'onglet Affichage > Page de notes.",
+      "title": "Comment ajouter des notes du présentateur?",
+      "description": "Les notes du présentateur s'ajoutent dans la zone de notes en bas de l'écran ou via l'onglet Affichage > Page de notes.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Comment changer la disposition d'une diapositive?",
-      "explanation": "Pour changer la disposition, aller dans Accueil > Disposition et choisir parmi les modèles disponibles.",
+      "title": "Comment changer la disposition d'une diapositive?",
+      "description": "Pour changer la disposition, aller dans Accueil > Disposition et choisir parmi les modèles disponibles.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Quelle est la meilleure pratique pour le nombre de points par diapositive?",
-      "explanation": "Il est recommandé de limiter à 6-7 points maximum par diapositive pour maintenir la lisibilité et l'attention de l'audience.",
+      "title": "Quelle est la meilleure pratique pour le nombre de points par diapositive?",
+      "description": "Il est recommandé de limiter à 6-7 points maximum par diapositive pour maintenir la lisibilité et l'attention de l'audience.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Comment insérer un graphique dans PowerPoint?",
-      "explanation": "Pour insérer un graphique, aller dans Insertion > Graphique et choisir le type souhaité.",
+      "title": "Comment insérer un graphique dans PowerPoint?",
+      "description": "Pour insérer un graphique, aller dans Insertion > Graphique et choisir le type souhaité.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Comment masquer une diapositive sans la supprimer?",
-      "explanation": "Pour masquer une diapositive, faire un clic droit sur sa miniature et sélectionner 'Masquer la diapositive'.",
+      "title": "Comment masquer une diapositive sans la supprimer?",
+      "description": "Pour masquer une diapositive, faire un clic droit sur sa miniature et sélectionner 'Masquer la diapositive'.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Quelle taille de police minimum est recommandée pour une présentation?",
-      "explanation": "Une taille de police d'au moins 24 points est recommandée pour assurer la lisibilité depuis le fond de la salle.",
+      "title": "Quelle taille de police minimum est recommandée pour une présentation?",
+      "description": "Une taille de police d'au moins 24 points est recommandée pour assurer la lisibilité depuis le fond de la salle.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Comment insérer une vidéo dans PowerPoint?",
-      "explanation": "Pour insérer une vidéo, aller dans Insertion > Vidéo et choisir la source (fichier, en ligne, etc.).",
+      "title": "Comment insérer une vidéo dans PowerPoint?",
+      "description": "Pour insérer une vidéo, aller dans Insertion > Vidéo et choisir la source (fichier, en ligne, etc.).",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment appliquer une animation d'entrée à un objet?",
-      "explanation": "Pour appliquer une animation, sélectionner l'objet puis aller dans Animations > Effets d'animation d'entrée.",
+      "title": "Comment appliquer une animation d'entrée à un objet?",
+      "description": "Pour appliquer une animation, sélectionner l'objet puis aller dans Animations > Effets d'animation d'entrée.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Quelle est la règle des 6x6 en présentation?",
-      "explanation": "La règle des 6x6 recommande maximum 6 puces par diapositive avec maximum 6 mots par puce pour maintenir la clarté.",
+      "title": "Quelle est la règle des 6x6 en présentation?",
+      "description": "La règle des 6x6 recommande maximum 6 puces par diapositive avec maximum 6 mots par puce pour maintenir la clarté.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment créer un lien hypertexte vers une autre diapositive?",
-      "explanation": "Sélectionner le texte/objet, faire Ctrl+K ou Insertion > Lien, puis choisir 'Emplacement dans ce document' et sélectionner la diapositive cible.",
+      "title": "Comment créer un lien hypertexte vers une autre diapositive?",
+      "description": "Sélectionner le texte/objet, faire Ctrl+K ou Insertion > Lien, puis choisir 'Emplacement dans ce document' et sélectionner la diapositive cible.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Comment modifier le masque des diapositives?",
-      "explanation": "Pour modifier le masque, aller dans Affichage > Masque des diapositives où l'on peut personnaliser le design global.",
+      "title": "Comment modifier le masque des diapositives?",
+      "description": "Pour modifier le masque, aller dans Affichage > Masque des diapositives où l'on peut personnaliser le design global.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Quelle combinaison de touches permet de terminer le diaporama?",
-      "explanation": "La touche Échap (Escape) permet de sortir du mode diaporama et revenir au mode édition.",
+      "title": "Quelle combinaison de touches permet de terminer le diaporama?",
+      "description": "La touche Échap (Escape) permet de sortir du mode diaporama et revenir au mode édition.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment insérer un tableau dans PowerPoint?",
-      "explanation": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir le nombre de lignes et colonnes.",
+      "title": "Comment insérer un tableau dans PowerPoint?",
+      "description": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir le nombre de lignes et colonnes.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Comment programmer le minutage automatique des diapositives?",
-      "explanation": "Le minutage automatique se configure dans Diaporama > Enregistrer le diaporama ou via Transitions > Avancer la diapositive > Après.",
+      "title": "Comment programmer le minutage automatique des diapositives?",
+      "description": "Le minutage automatique se configure dans Diaporama > Enregistrer le diaporama ou via Transitions > Avancer la diapositive > Après.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Quelle est la meilleure pratique pour les couleurs de fond?",
-      "explanation": "Il est recommandé d'utiliser des couleurs contrastées entre le fond et le texte, avec des fonds sombres pour le texte clair ou vice versa.",
+      "title": "Quelle est la meilleure pratique pour les couleurs de fond?",
+      "description": "Il est recommandé d'utiliser des couleurs contrastées entre le fond et le texte, avec des fonds sombres pour le texte clair ou vice versa.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment grouper plusieurs objets ensemble?",
-      "explanation": "Pour grouper des objets, les sélectionner (Ctrl+clic) puis faire un clic droit > Grouper ou utiliser Ctrl+G.",
+      "title": "Comment grouper plusieurs objets ensemble?",
+      "description": "Pour grouper des objets, les sélectionner (Ctrl+clic) puis faire un clic droit > Grouper ou utiliser Ctrl+G.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment exporter une présentation en PDF?",
-      "explanation": "Pour exporter en PDF, aller dans Fichier > Exporter > Créer PDF/XPS ou Fichier > Enregistrer sous > Type : PDF.",
+      "title": "Comment exporter une présentation en PDF?",
+      "description": "Pour exporter en PDF, aller dans Fichier > Exporter > Créer PDF/XPS ou Fichier > Enregistrer sous > Type : PDF.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment aligner plusieurs objets entre eux?",
-      "explanation": "Pour aligner des objets, les sélectionner puis utiliser Format > Aligner et choisir le type d'alignement souhaité.",
+      "title": "Comment aligner plusieurs objets entre eux?",
+      "description": "Pour aligner des objets, les sélectionner puis utiliser Format > Aligner et choisir le type d'alignement souhaité.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Quelle est l'extension de fichier par défaut de PowerPoint 2019?",
-      "explanation": "Depuis PowerPoint 2007, l'extension par défaut est .pptx pour les présentations modernes.",
+      "title": "Quelle est l'extension de fichier par défaut de PowerPoint 2019?",
+      "description": "Depuis PowerPoint 2007, l'extension par défaut est .pptx pour les présentations modernes.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Comment créer une présentation auto-exécutable?",
-      "explanation": "Pour créer une présentation auto-exécutable, l'enregistrer au format .ppsx via Fichier > Enregistrer sous > Type : Diaporama PowerPoint.",
+      "title": "Comment créer une présentation auto-exécutable?",
+      "description": "Pour créer une présentation auto-exécutable, l'enregistrer au format .ppsx via Fichier > Enregistrer sous > Type : Diaporama PowerPoint.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment insérer des formes géométriques?",
-      "explanation": "Pour insérer des formes, aller dans Insertion > Formes et choisir la forme désirée dans la galerie.",
+      "title": "Comment insérer des formes géométriques?",
+      "description": "Pour insérer des formes, aller dans Insertion > Formes et choisir la forme désirée dans la galerie.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment réorganiser l'ordre des diapositives?",
-      "explanation": "Pour réorganiser les diapositives, utiliser le mode Trieuse de diapositives (Affichage > Trieuse) ou faire glisser les miniatures dans le volet gauche.",
+      "title": "Comment réorganiser l'ordre des diapositives?",
+      "description": "Pour réorganiser les diapositives, utiliser le mode Trieuse de diapositives (Affichage > Trieuse) ou faire glisser les miniatures dans le volet gauche.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Comment ajouter un effet de transition entre les diapositives?",
-      "explanation": "Pour ajouter une transition, sélectionner la diapositive puis aller dans Transitions et choisir l'effet souhaité.",
+      "title": "Comment ajouter un effet de transition entre les diapositives?",
+      "description": "Pour ajouter une transition, sélectionner la diapositive puis aller dans Transitions et choisir l'effet souhaité.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Comment protéger une présentation avec un mot de passe?",
-      "explanation": "Pour protéger la présentation, aller dans Fichier > Informations > Protéger la présentation > Chiffrer avec mot de passe.",
+      "title": "Comment protéger une présentation avec un mot de passe?",
+      "description": "Pour protéger la présentation, aller dans Fichier > Informations > Protéger la présentation > Chiffrer avec mot de passe.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Comment créer un organigramme dans PowerPoint?",
-      "explanation": "Pour créer un organigramme, aller dans Insertion > SmartArt > Hiérarchie et choisir le modèle d'organigramme souhaité.",
+      "title": "Comment créer un organigramme dans PowerPoint?",
+      "description": "Pour créer un organigramme, aller dans Insertion > SmartArt > Hiérarchie et choisir le modèle d'organigramme souhaité.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment imprimer plusieurs diapositives par page?",
-      "explanation": "Lors de l'impression, dans Fichier > Imprimer, choisir la disposition comme '2 diapositives par page', '4 par page', etc.",
+      "title": "Comment imprimer plusieurs diapositives par page?",
+      "description": "Lors de l'impression, dans Fichier > Imprimer, choisir la disposition comme '2 diapositives par page', '4 par page', etc.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -797,8 +797,8 @@
       ]
     },
     {
-      "text": "Comment insérer un audio dans une présentation?",
-      "explanation": "Pour insérer un audio, aller dans Insertion > Audio et choisir la source (fichier audio, enregistrement, etc.).",
+      "title": "Comment insérer un audio dans une présentation?",
+      "description": "Pour insérer un audio, aller dans Insertion > Audio et choisir la source (fichier audio, enregistrement, etc.).",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -821,8 +821,8 @@
       ]
     },
     {
-      "text": "Comment personnaliser la barre d'outils Accès rapide?",
-      "explanation": "Pour personnaliser la barre d'accès rapide, cliquer sur la flèche à droite de la barre > Personnaliser la barre d'outils Accès rapide.",
+      "title": "Comment personnaliser la barre d'outils Accès rapide?",
+      "description": "Pour personnaliser la barre d'accès rapide, cliquer sur la flèche à droite de la barre > Personnaliser la barre d'outils Accès rapide.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -845,8 +845,8 @@
       ]
     },
     {
-      "text": "Comment créer une animation personnalisée complexe?",
-      "explanation": "Pour créer des animations complexes, utiliser le volet Animation (Animations > Volet Animation) qui permet de gérer l'ordre, le minutage et les déclencheurs.",
+      "title": "Comment créer une animation personnalisée complexe?",
+      "description": "Pour créer des animations complexes, utiliser le volet Animation (Animations > Volet Animation) qui permet de gérer l'ordre, le minutage et les déclencheurs.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -869,8 +869,8 @@
       ]
     },
     {
-      "text": "Comment collaborer en temps réel sur une présentation?",
-      "explanation": "Pour collaborer en temps réel, sauvegarder la présentation sur OneDrive ou SharePoint puis la partager via Fichier > Partager.",
+      "title": "Comment collaborer en temps réel sur une présentation?",
+      "description": "Pour collaborer en temps réel, sauvegarder la présentation sur OneDrive ou SharePoint puis la partager via Fichier > Partager.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -893,8 +893,8 @@
       ]
     },
     {
-      "text": "Comment utiliser le mode Présentateur lors d'un diaporama?",
-      "explanation": "Le mode Présentateur s'active automatiquement avec deux écrans ou via Diaporama > Utiliser le mode Présentateur. Il affiche les notes et la diapositive suivante.",
+      "title": "Comment utiliser le mode Présentateur lors d'un diaporama?",
+      "description": "Le mode Présentateur s'active automatiquement avec deux écrans ou via Diaporama > Utiliser le mode Présentateur. Il affiche les notes et la diapositive suivante.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -917,8 +917,8 @@
       ]
     },
     {
-      "text": "Comment créer un quiz interactif dans PowerPoint?",
-      "explanation": "Pour créer un quiz interactif, utiliser des liens hypertextes vers différentes diapositives selon les réponses, ou des déclencheurs d'animation.",
+      "title": "Comment créer un quiz interactif dans PowerPoint?",
+      "description": "Pour créer un quiz interactif, utiliser des liens hypertextes vers différentes diapositives selon les réponses, ou des déclencheurs d'animation.",
       "difficulty": "hard",
       "duration": 90,
       "choices": [
@@ -941,8 +941,8 @@
       ]
     },
     {
-      "text": "Comment optimiser une présentation pour la projection?",
-      "explanation": "Pour optimiser pour la projection : utiliser des polices sans-serif, des couleurs contrastées, une taille de police ≥24pt, et tester sur l'équipement de projection.",
+      "title": "Comment optimiser une présentation pour la projection?",
+      "description": "Pour optimiser pour la projection : utiliser des polices sans-serif, des couleurs contrastées, une taille de police ≥24pt, et tester sur l'équipement de projection.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -966,4 +966,3 @@
     }
   ]
 }
-

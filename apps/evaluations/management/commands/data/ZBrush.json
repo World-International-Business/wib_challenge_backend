@@ -1,11 +1,12 @@
 {
   "technology": "ZBrush",
-  "title": "Évaluation ZBrush - Sculpture numérique",
-  "description": "Cette évaluation couvre les concepts fondamentaux de ZBrush pour la sculpture numérique, incluant les outils de sculpture, les brushes et les techniques de création de modèles haute résolution.",
+  "title": "Évaluation ZBrush - Sculpture Numérique 3D",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de ZBrush pour la sculpture numérique, incluant les outils de base, le sculpting, la retopologie, les matériaux et les techniques avancées de modélisation organique.",
   "difficulty": "beginner",
   "questions": [
     {
-      "text": "Qu'est-ce que ZBrush ?",
+      "title": "ZBrush",
+      "description": "Qu'est-ce que ZBrush ?",
       "explanation": "ZBrush est un logiciel de sculpture numérique qui permet de créer des modèles 3D très détaillés en sculptant directement sur une surface comme de l'argile virtuelle.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un brush dans ZBrush ?",
+      "title": "Brush principal de ZBrush",
+      "description": "Quel est le **brush principal** de ZBrush pour la sculpture ?",
       "explanation": "Un brush (pinceau) est un outil de sculpture qui détermine comment la géométrie sera modifiée (sculptée, lissée, tirée, etc.) lorsque vous dessinez sur le modèle.",
       "difficulty": "easy",
       "duration": 30,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "text": "Comment augmente-t-on la résolution d'un modèle dans ZBrush ?",
+      "title": "Augmentation de la résolution du modèle",
+      "description": "Comment augmente-t-on la résolution d'un modèle dans ZBrush ?",
       "explanation": "La subdivision permet d'augmenter le nombre de polygones du modèle, donnant plus de détails pour la sculpture. Chaque niveau de subdivision multiplie la géométrie.",
       "difficulty": "medium",
       "duration": 40,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que DynaMesh dans ZBrush ?",
+      "title": "Fonctionnalité DynaMesh",
+      "description": "Qu'est-ce que DynaMesh dans ZBrush ?",
       "explanation": "DynaMesh est une fonctionnalité qui retopologise automatiquement le modèle pendant la sculpture, permettant d'ajouter ou enlever de la matière librement sans se soucier de la topologie.",
       "difficulty": "medium",
       "duration": 45,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "text": "Comment fait-on un zoom sur le modèle dans ZBrush ?",
+      "title": "Zoom sur le modèle",
+      "description": "Comment fait-on un zoom sur le modèle dans ZBrush ?",
       "explanation": "Alt + clic droit et glisser vers le haut/bas permet de zoomer/dézoomer sur le modèle dans ZBrush. La molette de la souris fonctionne aussi.",
       "difficulty": "easy",
       "duration": 25,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la symétrie dans ZBrush ?",
+      "title": "Utilisation de la symétrie",
+      "description": "Qu'est-ce que la symétrie dans ZBrush ?",
       "explanation": "La symétrie permet de sculpter automatiquement des deux côtés du modèle simultanément, très utile pour créer des personnages ou objets symétriques.",
       "difficulty": "medium",
       "duration": 35,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne le **Standard Brush** ?",
+      "title": "Fonctionnement du Standard Brush",
+      "description": "Comment fonctionne le **Standard Brush** ?",
       "explanation": "Le Standard Brush est le brush de base pour sculpter. Il ajoute ou retire de la matière selon que l'on utilise le mode additif (Z Add) ou soustractif (Z Sub).",
       "difficulty": "easy",
       "duration": 30,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **ZSpheres** ?",
+      "title": "Qu'est-ce que ZSpheres ?",
+      "description": "Qu'est-ce que **ZSpheres** ?",
       "explanation": "ZSpheres est un système de modélisation par sphères connectées qui permet de créer rapidement une armature pour des créatures organiques, ensuite convertie en géométrie sculpable.",
       "difficulty": "medium",
       "duration": 40,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on l'outil **Move** ?",
+      "title": "Utilisation de l'outil Move",
+      "description": "Comment utilise-t-on l'outil **Move** ?",
       "explanation": "L'outil Move permet de déplacer des parties de la géométrie en tirant et poussant la surface. Il est essentiel pour ajuster les formes et proportions générales.",
       "difficulty": "easy",
       "duration": 25,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Smooth Brush** ?",
+      "title": "Qu'est-ce que le Smooth Brush ?",
+      "description": "Qu'est-ce que le **Smooth Brush** ?",
       "explanation": "Le Smooth Brush lisse la surface en atténuant les détails et irrégularités. Il est souvent utilisé pour nettoyer la sculpture et créer des transitions douces.",
       "difficulty": "easy",
       "duration": 25,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne **ZRemesher** ?",
+      "title": "Fonctionnement de ZRemesher",
+      "description": "Comment fonctionne **ZRemesher** ?",
       "explanation": "ZRemesher retopologise automatiquement un modèle haute résolution pour créer une topologie plus propre et uniforme, idéale pour l'animation ou l'export vers d'autres logiciels.",
       "difficulty": "hard",
       "duration": 45,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que les **SubTools** ?",
+      "title": "Qu'est-ce que les SubTools ?",
+      "description": "Qu'est-ce que les **SubTools** ?",
       "explanation": "Les SubTools permettent de travailler avec plusieurs objets séparés dans ZBrush. Chaque SubTool peut avoir sa propre géométrie, subdivision et propriétés.",
       "difficulty": "medium",
       "duration": 35,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on l'outil **Inflate** ?",
+      "title": "Utilisation de l'outil Inflate",
+      "description": "Comment utilise-t-on l'outil **Inflate** ?",
       "explanation": "L'outil Inflate gonfle uniformément la surface vers l'extérieur, créant un effet de boursouflement. Il est utile pour ajouter du volume rapidement.",
       "difficulty": "easy",
       "duration": 30,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Polypainting** ?",
+      "title": "Qu'est-ce que le Polypainting ?",
+      "description": "Qu'est-ce que le **Polypainting** ?",
       "explanation": "Le Polypainting permet de peindre directement sur la surface du modèle sans UV mapping, en stockant les couleurs sur les vertices. C'est idéal pour les concepts et le prototypage rapide.",
       "difficulty": "medium",
       "duration": 40,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **ClayBuildup** ?",
+      "title": "Fonctionnement de l'outil ClayBuildup",
+      "description": "Comment fonctionne l'outil **ClayBuildup** ?",
       "explanation": "ClayBuildup simule l'ajout d'argile sur la surface. Il construit la matière de manière organique, particulièrement utile pour sculpter des formes organiques et des détails naturels.",
       "difficulty": "medium",
       "duration": 35,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **ZSketch** ?",
+      "title": "Qu'est-ce que ZSketch ?",
+      "description": "Qu'est-ce que **ZSketch** ?",
       "explanation": "ZSketch permet de dessiner en 3D pour créer rapidement des formes de base. Les traits dessinés deviennent des volumes 3D qui peuvent ensuite être convertis en géométrie sculpable.",
       "difficulty": "medium",
       "duration": 40,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on les **Alpha** dans ZBrush ?",
+      "title": "Utilisation des Alpha dans ZBrush",
+      "description": "Comment utilise-t-on les **Alpha** dans ZBrush ?",
       "explanation": "Les Alpha sont des images en niveaux de gris utilisées pour moduler la forme et l'intensité des brushes. Elles permettent de créer des détails complexes et des textures variées.",
       "difficulty": "medium",
       "duration": 40,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Masking** ?",
+      "title": "Qu'est-ce que le Masking ?",
+      "description": "Qu'est-ce que le **Masking** ?",
       "explanation": "Le Masking protège certaines parties du modèle des modifications. Les zones masquées (en rouge) ne seront pas affectées par la sculpture, permettant un contrôle précis.",
       "difficulty": "medium",
       "duration": 35,
@@ -437,7 +455,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Pinch** ?",
+      "title": "Fonctionnement de l'outil Pinch",
+      "description": "Comment fonctionne l'outil **Pinch** ?",
       "explanation": "L'outil Pinch resserre et contracte la géométrie vers le centre du brush, créant des plis, des arêtes vives ou des détails fins comme des rides.",
       "difficulty": "easy",
       "duration": 30,
@@ -461,7 +480,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **FiberMesh** ?",
+      "title": "Qu'est-ce que FiberMesh ?",
+      "description": "Qu'est-ce que **FiberMesh** ?",
       "explanation": "FiberMesh génère automatiquement des fibres (cheveux, fourrure, herbe) à partir de la surface du modèle. Ces fibres peuvent ensuite être sculptées et stylisées.",
       "difficulty": "hard",
       "duration": 45,
@@ -485,7 +505,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on l'outil **Grab** ?",
+      "title": "Utilisation de l'outil Grab",
+      "description": "Comment utilise-t-on l'outil **Grab** ?",
       "explanation": "L'outil Grab permet de saisir et déplacer de larges sections de géométrie, comme si on tirait sur de l'argile. Il est idéal pour ajuster les formes générales.",
       "difficulty": "easy",
       "duration": 25,
@@ -509,7 +530,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **ZProjection** ?",
+      "title": "Qu'est-ce que ZProjection ?",
+      "description": "Qu'est-ce que **ZProjection** ?",
       "explanation": "ZProjection permet de projeter des détails d'un modèle haute résolution vers un modèle basse résolution, transférant ainsi les détails sans affecter la topologie de base.",
       "difficulty": "hard",
       "duration": 50,
@@ -533,7 +555,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Snake Hook** ?",
+      "title": "Fonctionnement de l'outil Snake Hook",
+      "description": "Comment fonctionne l'outil **Snake Hook** ?",
       "explanation": "Snake Hook tire la géométrie en créant une déformation en forme de serpent ou de tentacule. Il est parfait pour créer des appendices, des cornes ou des formes allongées.",
       "difficulty": "medium",
       "duration": 35,
@@ -557,7 +580,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que les **Insert Mesh Brushes** ?",
+      "title": "Insert Mesh Brushes",
+      "description": "Qu'est-ce que les **Insert Mesh Brushes** ?",
       "explanation": "Les Insert Mesh Brushes permettent d'insérer instantanément des géométries prédéfinies (yeux, dents, écailles, etc.) dans le modèle principal, accélérant le processus de création.",
       "difficulty": "medium",
       "duration": 40,
@@ -581,7 +605,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on **ZSketching** pour la création rapide ?",
+      "title": "Utilisation de ZSketching",
+      "description": "Comment utilise-t-on **ZSketching** pour la création rapide ?",
       "explanation": "ZSketching permet de dessiner librement en 3D. Les traits deviennent immédiatement des volumes que l'on peut ajuster, offrant une approche très intuitive pour l'idéation 3D.",
       "difficulty": "medium",
       "duration": 40,
@@ -605,7 +630,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **GoZ** ?",
+      "title": "Qu'est-ce que GoZ ?",
+      "description": "Qu'est-ce que **GoZ** ?",
       "explanation": "GoZ est un système de transfert bidirectionnel entre ZBrush et d'autres logiciels 3D (Maya, 3ds Max, Cinema 4D, etc.), permettant un workflow fluide entre applications.",
       "difficulty": "medium",
       "duration": 40,
@@ -629,7 +655,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Dam Standard** ?",
+      "title": "Fonctionnement de l'outil Dam Standard",
+      "description": "Comment fonctionne l'outil **Dam Standard** ?",
       "explanation": "Dam Standard crée des creux et des sillons dans la surface, simulant des rides, des crevasses ou des détails creux. Il est l'opposé du Standard brush en mode additif.",
       "difficulty": "easy",
       "duration": 30,
@@ -653,7 +680,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Decimation Master** ?",
+      "title": "Qu'est-ce que le Decimation Master ?",
+      "description": "Qu'est-ce que le **Decimation Master** ?",
       "explanation": "Decimation Master réduit automatiquement le nombre de polygones d'un modèle tout en préservant les détails importants, optimisant les modèles pour l'export ou l'impression 3D.",
       "difficulty": "hard",
       "duration": 45,
@@ -677,7 +705,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on les **Curve Brushes** ?",
+      "title": "Utilisation des Curve Brushes",
+      "description": "Comment utilise-t-on les **Curve Brushes** ?",
       "explanation": "Les Curve Brushes utilisent des courbes comme guides pour appliquer des déformations précises et contrôlées le long de chemins définis, idéal pour les détails linéaires.",
       "difficulty": "medium",
       "duration": 40,
@@ -701,7 +730,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **ZPlugin** ?",
+      "title": "Qu'est-ce que ZPlugin ?",
+      "description": "Qu'est-ce que **ZPlugin** ?",
       "explanation": "ZPlugin est le système d'extensions de ZBrush permettant d'ajouter des fonctionnalités via des plugins tiers ou officiels, étendant considérablement les capacités du logiciel.",
       "difficulty": "medium",
       "duration": 35,
@@ -725,7 +755,8 @@
       ]
     },
     {
-      "text": "Comment fonctionne l'outil **Polish** ?",
+      "title": "Fonctionnement de l'outil Polish",
+      "description": "Comment fonctionne l'outil **Polish** ?",
       "explanation": "L'outil Polish crée des surfaces parfaitement lisses et réfléchissantes, simulant un matériau poli. Il est utile pour créer des effets métalliques ou des surfaces très raffinées.",
       "difficulty": "medium",
       "duration": 35,
@@ -749,7 +780,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que **BPR (Best Preview Render)** ?",
+      "title": "Qu'est-ce que BPR (Best Preview Render) ?",
+      "description": "Qu'est-ce que **BPR (Best Preview Render)** ?",
       "explanation": "BPR est le système de rendu haute qualité de ZBrush qui produit des images finales avec éclairage avancé, ombres, et effets de matériaux pour la présentation.",
       "difficulty": "medium",
       "duration": 40,
@@ -773,7 +805,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on les **Transpose Tools** ?",
+      "title": "Utilisation des Transpose Tools",
+      "description": "Comment utilise-t-on les **Transpose Tools** ?",
       "explanation": "Les Transpose Tools permettent de déplacer, redimensionner et faire pivoter des parties du modèle en utilisant un gizmo 3D intuitif, offrant un contrôle précis des transformations.",
       "difficulty": "medium",
       "duration": 40,
@@ -797,7 +830,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **ZPlugin UV Master** ?",
+      "title": "ZPlugin UV Master",
+      "description": "Qu'est-ce que le **ZPlugin UV Master** ?",
       "explanation": "UV Master automatise la création d'UV maps pour les modèles ZBrush, permettant d'exporter les détails sculptés vers d'autres logiciels avec des coordonnées UV appropriées.",
       "difficulty": "hard",
       "duration": 45,
@@ -821,7 +855,8 @@
       ]
     },
     {
-      "text": "Comment utilise-t-on **ZBrushCoreMini** vs **ZBrush complet** ?",
+      "title": "ZBrushCoreMini vs ZBrush complet",
+      "description": "Comment utilise-t-on **ZBrushCoreMini** vs **ZBrush complet** ?",
       "explanation": "ZBrushCoreMini est une version allégée gratuite avec les outils de sculpture de base, tandis que ZBrush complet offre toutes les fonctionnalités avancées, plugins et outils professionnels.",
       "difficulty": "medium",
       "duration": 45,
@@ -845,7 +880,8 @@
       ]
     },
     {
-      "text": "Comment optimiser un **workflow de production** avec ZBrush ?",
+      "title": "Optimisation du workflow de production",
+      "description": "Comment optimiser un **workflow de production** avec ZBrush ?",
       "explanation": "Un workflow efficace implique : planification des niveaux de subdivision, utilisation de références, organisation en SubTools, sauvegarde régulière, et préparation pour l'export selon le pipeline de production.",
       "difficulty": "hard",
       "duration": 55,
@@ -869,7 +905,8 @@
       ]
     },
     {
-      "text": "Comment intégrer ZBrush dans un **pipeline de jeu vidéo** ?",
+      "title": "Intégration de ZBrush dans un pipeline de jeu vidéo",
+      "description": "Comment intégrer ZBrush dans un **pipeline de jeu vidéo** ?",
       "explanation": "L'intégration se fait via la création de modèles haute résolution pour le baking, l'export vers des logiciels de retopologie, la génération de normal maps, et la collaboration avec les outils de production de jeux.",
       "difficulty": "hard",
       "duration": 50,
@@ -893,7 +930,8 @@
       ]
     },
     {
-      "text": "Comment utiliser ZBrush pour l'**impression 3D** ?",
+      "title": "Utilisation de ZBrush pour l'impression 3D",
+      "description": "Comment utiliser ZBrush pour l'**impression 3D** ?",
       "explanation": "Pour l'impression 3D : vérifier que le modèle est manifold (étanche), utiliser Decimation Master pour optimiser, s'assurer de l'épaisseur minimale des parois, et exporter au format STL ou OBJ.",
       "difficulty": "hard",
       "duration": 50,
@@ -918,4 +956,3 @@
     }
   ]
 }
-

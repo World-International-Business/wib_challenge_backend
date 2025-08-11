@@ -1,12 +1,12 @@
 {
   "technology": "Microsoft Word",
   "title": "Évaluation Microsoft Word Complète",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft Word, incluant la mise en forme, les styles, les tableaux, la révision, les en-têtes et pieds de page, et les fonctions avancées de traitement de texte.",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft Word, incluant la mise en forme, les styles, les tableaux, les références et les fonctions avancées de traitement de texte.",
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle combinaison de touches permet de mettre un texte en gras?",
-      "explanation": "Ctrl+B (Bold) est le raccourci universel pour mettre un texte en gras dans Microsoft Word.",
+      "title": "Quelle combinaison de touches permet de mettre un texte en gras?",
+      "description": "Ctrl+B (Bold) est le raccourci universel pour mettre un texte en gras dans Microsoft Word.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Comment créer une liste à puces dans Word?",
-      "explanation": "Pour créer une liste à puces, utiliser le bouton dans l'onglet Accueil ou taper * suivi d'un espace.",
+      "title": "Comment créer une liste à puces dans Word?",
+      "description": "Pour créer une liste à puces, utiliser le bouton dans l'onglet Accueil ou taper * suivi d'un espace.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Enregistrer et Enregistrer sous?",
-      "explanation": "Enregistrer (Ctrl+S) sauvegarde dans le fichier existant, Enregistrer sous (F12) permet de choisir un nouveau nom ou emplacement.",
+      "title": "Quelle est la différence entre Enregistrer et Enregistrer sous?",
+      "description": "Enregistrer (Ctrl+S) sauvegarde dans le fichier existant, Enregistrer sous (F12) permet de choisir un nouveau nom ou emplacement.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment insérer un saut de page dans Word?",
-      "explanation": "Pour insérer un saut de page, utiliser Ctrl+Entrée ou aller dans Insertion > Saut de page.",
+      "title": "Comment insérer un saut de page dans Word?",
+      "description": "Pour insérer un saut de page, utiliser Ctrl+Entrée ou aller dans Insertion > Saut de page.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Comment appliquer un style de titre dans Word?",
-      "explanation": "Les styles de titre se trouvent dans l'onglet Accueil, section Styles. On peut choisir Titre 1, Titre 2, etc.",
+      "title": "Comment appliquer un style de titre dans Word?",
+      "description": "Les styles de titre se trouvent dans l'onglet Accueil, section Styles. On peut choisir Titre 1, Titre 2, etc.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de rechercher et remplacer du texte?",
-      "explanation": "La fonction Rechercher et remplacer est accessible via Ctrl+H ou dans l'onglet Accueil > Remplacer.",
+      "title": "Quelle fonction permet de rechercher et remplacer du texte?",
+      "description": "La fonction Rechercher et remplacer est accessible via Ctrl+H ou dans l'onglet Accueil > Remplacer.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Comment insérer un tableau dans Word?",
-      "explanation": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir le nombre de lignes et colonnes.",
+      "title": "Comment insérer un tableau dans Word?",
+      "description": "Pour insérer un tableau, aller dans Insertion > Tableau et choisir le nombre de lignes et colonnes.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Quelle combinaison de touches permet de sélectionner tout le document?",
-      "explanation": "Ctrl+A (All) sélectionne tout le contenu du document actuel.",
+      "title": "Quelle combinaison de touches permet de sélectionner tout le document?",
+      "description": "Ctrl+A (All) sélectionne tout le contenu du document actuel.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Comment activer le suivi des modifications?",
-      "explanation": "Le suivi des modifications se trouve dans l'onglet Révision > Suivi des modifications.",
+      "title": "Comment activer le suivi des modifications?",
+      "description": "Le suivi des modifications se trouve dans l'onglet Révision > Suivi des modifications.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment insérer une image dans un document Word?",
-      "explanation": "Pour insérer une image, aller dans Insertion > Images et choisir la source (fichier, en ligne, etc.).",
+      "title": "Comment insérer une image dans un document Word?",
+      "description": "Pour insérer une image, aller dans Insertion > Images et choisir la source (fichier, en ligne, etc.).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre un en-tête et un pied de page?",
-      "explanation": "L'en-tête apparaît en haut de chaque page, le pied de page en bas. Ils peuvent contenir des informations répétitives comme la numérotation.",
+      "title": "Quelle est la différence entre un en-tête et un pied de page?",
+      "description": "L'en-tête apparaît en haut de chaque page, le pied de page en bas. Ils peuvent contenir des informations répétitives comme la numérotation.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Comment créer une table des matières automatique?",
-      "explanation": "Pour créer une table des matières, utiliser des styles de titre puis aller dans Références > Table des matières.",
+      "title": "Comment créer une table des matières automatique?",
+      "description": "Pour créer une table des matières, utiliser des styles de titre puis aller dans Références > Table des matières.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Quelle combinaison de touches permet de mettre un texte en italique?",
-      "explanation": "Ctrl+I (Italic) est le raccourci pour mettre un texte en italique dans Word.",
+      "title": "Quelle combinaison de touches permet de mettre un texte en italique?",
+      "description": "Ctrl+I (Italic) est le raccourci pour mettre un texte en italique dans Word.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Comment ajuster l'espacement entre les lignes?",
-      "explanation": "L'espacement des lignes se règle dans Accueil > Paragraphe > Espacement des lignes ou via le bouton dédié.",
+      "title": "Comment ajuster l'espacement entre les lignes?",
+      "description": "L'espacement des lignes se règle dans Accueil > Paragraphe > Espacement des lignes ou via le bouton dédié.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment insérer un numéro de page?",
-      "explanation": "Pour insérer des numéros de page, aller dans Insertion > Numéro de page et choisir l'emplacement.",
+      "title": "Comment insérer un numéro de page?",
+      "description": "Pour insérer des numéros de page, aller dans Insertion > Numéro de page et choisir l'emplacement.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Quelle est la fonction du correcteur orthographique?",
-      "explanation": "Le correcteur orthographique détecte et propose des corrections pour les fautes d'orthographe et de grammaire.",
+      "title": "Quelle est la fonction du correcteur orthographique?",
+      "description": "Le correcteur orthographique détecte et propose des corrections pour les fautes d'orthographe et de grammaire.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment créer une liste numérotée?",
-      "explanation": "Pour créer une liste numérotée, utiliser le bouton Numérotation dans l'onglet Accueil ou taper 1. suivi d'un espace.",
+      "title": "Comment créer une liste numérotée?",
+      "description": "Pour créer une liste numérotée, utiliser le bouton Numérotation dans l'onglet Accueil ou taper 1. suivi d'un espace.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Comment modifier les marges d'un document?",
-      "explanation": "Les marges se modifient dans Mise en page > Marges où l'on peut choisir des marges prédéfinies ou personnalisées.",
+      "title": "Comment modifier les marges d'un document?",
+      "description": "Les marges se modifient dans Mise en page > Marges où l'on peut choisir des marges prédéfinies ou personnalisées.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de compter les mots dans un document?",
-      "explanation": "Le nombre de mots s'affiche dans la barre d'état ou via Révision > Statistiques.",
+      "title": "Quelle fonction permet de compter les mots dans un document?",
+      "description": "Le nombre de mots s'affiche dans la barre d'état ou via Révision > Statistiques.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment insérer un lien hypertexte?",
-      "explanation": "Pour insérer un lien hypertexte, sélectionner le texte puis utiliser Ctrl+K ou Insertion > Lien.",
+      "title": "Comment insérer un lien hypertexte?",
+      "description": "Pour insérer un lien hypertexte, sélectionner le texte puis utiliser Ctrl+K ou Insertion > Lien.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Comment protéger un document Word avec un mot de passe?",
-      "explanation": "Pour protéger un document, aller dans Fichier > Informations > Protéger le document > Chiffrer avec mot de passe.",
+      "title": "Comment protéger un document Word avec un mot de passe?",
+      "description": "Pour protéger un document, aller dans Fichier > Informations > Protéger le document > Chiffrer avec mot de passe.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Couper et Supprimer?",
-      "explanation": "Couper (Ctrl+X) place le texte dans le presse-papiers pour le coller ailleurs, Supprimer l'efface définitivement.",
+      "title": "Quelle est la différence entre Couper et Supprimer?",
+      "description": "Couper (Ctrl+X) place le texte dans le presse-papiers pour le coller ailleurs, Supprimer l'efface définitivement.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment insérer une note de bas de page?",
-      "explanation": "Pour insérer une note de bas de page, aller dans Références > Insérer une note de bas de page.",
+      "title": "Comment insérer une note de bas de page?",
+      "description": "Pour insérer une note de bas de page, aller dans Références > Insérer une note de bas de page.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment annuler la dernière action dans Word?",
-      "explanation": "Ctrl+Z permet d'annuler la dernière action. On peut aussi utiliser le bouton Annuler dans la barre d'accès rapide.",
+      "title": "Comment annuler la dernière action dans Word?",
+      "description": "Ctrl+Z permet d'annuler la dernière action. On peut aussi utiliser le bouton Annuler dans la barre d'accès rapide.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment créer un signet dans un document?",
-      "explanation": "Pour créer un signet, positionner le curseur puis aller dans Insertion > Signets et donner un nom au signet.",
+      "title": "Comment créer un signet dans un document?",
+      "description": "Pour créer un signet, positionner le curseur puis aller dans Insertion > Signets et donner un nom au signet.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Quelle est l'extension de fichier par défaut de Word 2019?",
-      "explanation": "Depuis Word 2007, l'extension par défaut est .docx pour les documents Word modernes.",
+      "title": "Quelle est l'extension de fichier par défaut de Word 2019?",
+      "description": "Depuis Word 2007, l'extension par défaut est .docx pour les documents Word modernes.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Comment aligner un paragraphe au centre?",
-      "explanation": "Pour centrer un paragraphe, utiliser Ctrl+E ou le bouton Centrer dans l'onglet Accueil.",
+      "title": "Comment aligner un paragraphe au centre?",
+      "description": "Pour centrer un paragraphe, utiliser Ctrl+E ou le bouton Centrer dans l'onglet Accueil.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment insérer un caractère spécial?",
-      "explanation": "Pour insérer un caractère spécial, aller dans Insertion > Symbole > Autres symboles.",
+      "title": "Comment insérer un caractère spécial?",
+      "description": "Pour insérer un caractère spécial, aller dans Insertion > Symbole > Autres symboles.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment dupliquer une page dans Word?",
-      "explanation": "Pour dupliquer une page, sélectionner tout le contenu de la page (Ctrl+A si une seule page) puis copier (Ctrl+C) et coller (Ctrl+V) après un saut de page.",
+      "title": "Comment dupliquer une page dans Word?",
+      "description": "Pour dupliquer une page, sélectionner tout le contenu de la page (Ctrl+A si une seule page) puis copier (Ctrl+C) et coller (Ctrl+V) après un saut de page.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Comment créer des colonnes dans un document?",
-      "explanation": "Pour créer des colonnes, aller dans Mise en page > Colonnes et choisir le nombre de colonnes souhaité.",
+      "title": "Comment créer des colonnes dans un document?",
+      "description": "Pour créer des colonnes, aller dans Mise en page > Colonnes et choisir le nombre de colonnes souhaité.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Quelle fonction permet de justifier un texte?",
-      "explanation": "La justification aligne le texte à la fois à gauche et à droite. Le bouton se trouve dans Accueil ou Ctrl+J.",
+      "title": "Quelle fonction permet de justifier un texte?",
+      "description": "La justification aligne le texte à la fois à gauche et à droite. Le bouton se trouve dans Accueil ou Ctrl+J.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Comment insérer la date actuelle dans un document?",
-      "explanation": "Pour insérer la date actuelle, aller dans Insertion > Date et heure et choisir le format souhaité.",
+      "title": "Comment insérer la date actuelle dans un document?",
+      "description": "Pour insérer la date actuelle, aller dans Insertion > Date et heure et choisir le format souhaité.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment créer un retrait de première ligne?",
-      "explanation": "Le retrait de première ligne se configure dans Format > Paragraphe > Retrait > Première ligne ou en utilisant la règle.",
+      "title": "Comment créer un retrait de première ligne?",
+      "description": "Le retrait de première ligne se configure dans Format > Paragraphe > Retrait > Première ligne ou en utilisant la règle.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -797,8 +797,8 @@
       ]
     },
     {
-      "text": "Comment activer l'affichage des caractères non imprimables?",
-      "explanation": "Pour afficher les caractères non imprimables (espaces, paragraphes, etc.), utiliser Ctrl+Shift+8 ou le bouton ¶ dans Accueil.",
+      "title": "Comment activer l'affichage des caractères non imprimables?",
+      "description": "Pour afficher les caractères non imprimables (espaces, paragraphes, etc.), utiliser Ctrl+Shift+8 ou le bouton ¶ dans Accueil.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -821,8 +821,8 @@
       ]
     },
     {
-      "text": "Comment insérer une équation mathématique?",
-      "explanation": "Pour insérer une équation, aller dans Insertion > Équation ou utiliser Alt+= comme raccourci.",
+      "title": "Comment insérer une équation mathématique?",
+      "description": "Pour insérer une équation, aller dans Insertion > Équation ou utiliser Alt+= comme raccourci.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -845,8 +845,8 @@
       ]
     },
     {
-      "text": "Comment changer la casse d'un texte (majuscules/minuscules)?",
-      "explanation": "Pour changer la casse, sélectionner le texte puis utiliser Shift+F3 ou aller dans Accueil > Casse.",
+      "title": "Comment changer la casse d'un texte (majuscules/minuscules)?",
+      "description": "Pour changer la casse, sélectionner le texte puis utiliser Shift+F3 ou aller dans Accueil > Casse.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -869,8 +869,8 @@
       ]
     },
     {
-      "text": "Comment créer un modèle de document?",
-      "explanation": "Pour créer un modèle, créer le document puis l'enregistrer au format .dotx via Fichier > Enregistrer sous > Type : Modèle Word.",
+      "title": "Comment créer un modèle de document?",
+      "description": "Pour créer un modèle, créer le document puis l'enregistrer au format .dotx via Fichier > Enregistrer sous > Type : Modèle Word.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -893,8 +893,8 @@
       ]
     },
     {
-      "text": "Comment comparer deux versions d'un document?",
-      "explanation": "Pour comparer deux documents, aller dans Révision > Comparer > Comparer et sélectionner les deux versions.",
+      "title": "Comment comparer deux versions d'un document?",
+      "description": "Pour comparer deux documents, aller dans Révision > Comparer > Comparer et sélectionner les deux versions.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -917,8 +917,8 @@
       ]
     },
     {
-      "text": "Comment insérer un filigrane dans un document?",
-      "explanation": "Pour insérer un filigrane, aller dans Création > Filigrane et choisir un filigrane prédéfini ou personnalisé.",
+      "title": "Comment insérer un filigrane dans un document?",
+      "description": "Pour insérer un filigrane, aller dans Création > Filigrane et choisir un filigrane prédéfini ou personnalisé.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -941,8 +941,8 @@
       ]
     },
     {
-      "text": "Comment créer une lettrine (grande première lettre)?",
-      "explanation": "Pour créer une lettrine, positionner le curseur au début du paragraphe puis aller dans Insertion > Lettrine.",
+      "title": "Comment créer une lettrine (grande première lettre)?",
+      "description": "Pour créer une lettrine, positionner le curseur au début du paragraphe puis aller dans Insertion > Lettrine.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -966,4 +966,3 @@
     }
   ]
 }
-

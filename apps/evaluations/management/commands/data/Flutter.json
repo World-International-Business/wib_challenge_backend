@@ -1,17 +1,17 @@
 {
   "technology": "Flutter",
   "title": "Évaluation Flutter Complète",
-  "description": "Cette évaluation couvre les concepts fondamentaux de Flutter, incluant les widgets, la gestion d'état, la navigation, et les bonnes pratiques de développement d'applications mobiles cross-platform.",
-  "difficulty": "beginner",
+  "description": "Cette évaluation couvre les concepts fondamentaux et avancés de Flutter, incluant les widgets, la gestion d'état, les animations, les APIs, et les bonnes pratiques de développement d'applications mobiles multiplateformes.",
+  "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Qu'est-ce que Flutter?",
-      "explanation": "Flutter est un framework d'interface utilisateur open-source développé par Google. Il permet de créer des applications compilées en code natif pour mobile, web et bureau à partir d'une seule base de code.",
+      "title": "Qu'est-ce que Flutter?",
+      "description": "Flutter est un framework de développement d'applications multiplateformes créé par Google. Il utilise le langage Dart et permet de créer des applications natives pour iOS et Android à partir d'une seule base de code.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
         {
-          "text": "Un framework UI pour développer des applications cross-platform",
+          "text": "Un framework de développement d'applications multiplateformes de Google",
           "is_correct": true
         },
         {
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Quel langage de programmation est utilisé pour développer avec Flutter?",
-      "explanation": "Dart est le langage de programmation utilisé pour développer avec Flutter. C'est un langage optimisé pour la création d'interfaces utilisateur, développé également par Google.",
+      "title": "Quel langage de programmation est utilisé pour développer avec Flutter?",
+      "description": "Dart est le langage de programmation utilisé pour développer avec Flutter. C'est un langage optimisé pour la création d'interfaces utilisateur, développé également par Google.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un widget dans Flutter?",
-      "explanation": "Dans Flutter, tout est widget. Les widgets sont les éléments de base de l'interface utilisateur d'une application Flutter. Ils peuvent représenter des éléments structurels, stylistiques, ou des contrôles interactifs.",
+      "title": "Qu'est-ce qu'un widget dans Flutter?",
+      "description": "Dans Flutter, tout est widget. Les widgets sont les éléments de base de l'interface utilisateur d'une application Flutter. Ils peuvent représenter des éléments structurels, stylistiques, ou des contrôles interactifs.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre StatelessWidget et StatefulWidget?",
-      "explanation": "Un `StatelessWidget` est immuable, ce qui signifie que ses propriétés ne peuvent pas changer. Un `StatefulWidget` est mutable et peut être mis à jour dynamiquement via son état interne (`State`).",
+      "title": "Quelle est la différence entre StatelessWidget et StatefulWidget?",
+      "description": "Un `StatelessWidget` est immuable, ce qui signifie que ses propriétés ne peuvent pas changer. Un `StatefulWidget` est mutable et peut être mis à jour dynamiquement via son état interne (`State`).",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Comment créer un nouveau projet Flutter en ligne de commande?",
-      "explanation": "La commande `flutter create` est utilisée pour créer un nouveau projet Flutter. Elle génère la structure de base du projet avec tous les fichiers nécessaires pour commencer à développer.",
+      "title": "Comment créer un nouveau projet Flutter en ligne de commande?",
+      "description": "La commande `flutter create` est utilisée pour créer un nouveau projet Flutter. Elle génère la structure de base du projet avec tous les fichiers nécessaires pour commencer à développer.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Quel widget est utilisé pour créer une liste défilante dans Flutter?",
-      "explanation": "Le widget `ListView` est utilisé pour créer des listes défilantes dans Flutter. Il existe plusieurs constructeurs comme `ListView.builder` qui est optimisé pour les listes longues ou de taille inconnue.",
+      "title": "Quel widget est utilisé pour créer une liste défilante dans Flutter?",
+      "description": "Le widget `ListView` est utilisé pour créer des listes défilantes dans Flutter. Il existe plusieurs constructeurs comme `ListView.builder` qui est optimisé pour les listes longues ou de taille inconnue.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quel est le résultat de l'exécution du code suivant?\n```dart\nvar x = 5;\nvar y = '5';\nprint(x + int.parse(y));\n```",
-      "explanation": "La fonction `int.parse()` convertit une chaîne de caractères en entier. Ici, `y` est converti de '5' (chaîne) à 5 (entier), puis additionné à `x` (5), donnant 10.",
+      "title": "Quel est le résultat de l'exécution du code suivant?\n```dart\nvar x = 5;\nvar y = '5';\nprint(x + int.parse(y));\n```",
+      "description": "La fonction `int.parse()` convertit une chaîne de caractères en entier. Ici, `y` est converti de '5' (chaîne) à 5 (entier), puis additionné à `x` (5), donnant 10.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Quelle est la bonne façon de gérer la navigation entre les écrans dans Flutter?",
-      "explanation": "Flutter utilise un système de navigation basé sur les routes. On peut soit utiliser `Navigator.push()` pour naviguer vers une nouvelle route, soit définir des routes nommées et utiliser `Navigator.pushNamed()`.",
+      "title": "Quelle est la bonne façon de gérer la navigation entre les écrans dans Flutter?",
+      "description": "Flutter utilise un système de navigation basé sur les routes. On peut soit utiliser `Navigator.push()` pour naviguer vers une nouvelle route, soit définir des routes nommées et utiliser `Navigator.pushNamed()`.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Comment ajouter des dépendances à un projet Flutter?",
-      "explanation": "Les dépendances sont ajoutées dans le fichier `pubspec.yaml` sous la section `dependencies:`. Après avoir modifié ce fichier, on exécute `flutter pub get` pour télécharger et installer les packages.",
+      "title": "Comment ajouter des dépendances à un projet Flutter?",
+      "description": "Les dépendances sont ajoutées dans le fichier `pubspec.yaml` sous la section `dependencies:`. Après avoir modifié ce fichier, on exécute `flutter pub get` pour télécharger et installer les packages.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le hot reload dans Flutter?",
-      "explanation": "Le hot reload est une fonctionnalité de Flutter qui permet de voir immédiatement les changements de code dans l'application en cours d'exécution, sans perdre l'état actuel de l'application. Cela accélère considérablement le développement.",
+      "title": "Qu'est-ce que le hot reload dans Flutter?",
+      "description": "Le hot reload est une fonctionnalité de Flutter qui permet de voir immédiatement les changements de code dans l'application en cours d'exécution, sans perdre l'état actuel de l'application. Cela accélère considérablement le développement.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Comment centrer un widget dans Flutter?",
-      "explanation": "Le widget `Center` est utilisé pour centrer son enfant au milieu de l'espace disponible. C'est un widget de layout basique très utile pour positionner les éléments.",
+      "title": "Comment centrer un widget dans Flutter?",
+      "description": "Le widget `Center` est utilisé pour centrer son enfant au milieu de l'espace disponible. C'est un widget de layout basique très utile pour positionner les éléments.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Quelle est la sortie du code suivant?\n```dart\nList<int> numbers = [1, 2, 3];\nnumbers.add(4);\nprint(numbers.length);\n```",
-      "explanation": "La méthode `add()` ajoute un élément à la fin d'une liste. Après avoir ajouté le nombre 4 à la liste [1, 2, 3], la longueur de la liste devient 4.",
+      "title": "Quelle est la sortie du code suivant?\n```dart\nList<int> numbers = [1, 2, 3];\nnumbers.add(4);\nprint(numbers.length);\n```",
+      "description": "La méthode `add()` ajoute un élément à la fin d'une liste. Après avoir ajouté le nombre 4 à la liste [1, 2, 3], la longueur de la liste devient 4.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Comment implémenter un gestionnaire d'état dans Flutter?",
-      "explanation": "Flutter offre plusieurs options pour la gestion d'état. Les plus courantes sont : `setState` pour la gestion locale d'état, Provider pour une gestion simple et scalable, et des solutions plus complètes comme Bloc, Redux ou MobX.",
+      "title": "Comment implémenter un gestionnaire d'état dans Flutter?",
+      "description": "Flutter offre plusieurs options pour la gestion d'état. Les plus courantes sont : `setState` pour la gestion locale d'état, Provider pour une gestion simple et scalable, et des solutions plus complètes comme Bloc, Redux ou MobX.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un `BuildContext` dans Flutter?",
-      "explanation": "Un `BuildContext` est une référence à l'emplacement d'un widget dans l'arbre des widgets. Il est utilisé pour diverses fonctionnalités comme la navigation, l'accès aux thèmes, ou la localisation.",
+      "title": "Qu'est-ce qu'un `BuildContext` dans Flutter?",
+      "description": "Un `BuildContext` est une référence à l'emplacement d'un widget dans l'arbre des widgets. Il est utilisé pour diverses fonctionnalités comme la navigation, l'accès aux thèmes, ou la localisation.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Quelle méthode est appelée chaque fois qu'un StatefulWidget est recréé?",
-      "explanation": "La méthode `build()` est appelée chaque fois qu'un widget doit être rendu ou re-rendu. Pour un `StatefulWidget`, c'est la méthode `build()` de l'objet `State` associé qui est appelée.",
+      "title": "Quelle méthode est appelée chaque fois qu'un StatefulWidget est recréé?",
+      "description": "La méthode `build()` est appelée chaque fois qu'un widget doit être rendu ou re-rendu. Pour un `StatefulWidget`, c'est la méthode `build()` de l'objet `State` associé qui est appelée.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Comment définir la couleur de fond d'un `Container`?",
-      "explanation": "La couleur de fond d'un `Container` peut être définie à travers sa propriété `decoration` en utilisant un `BoxDecoration` avec une propriété `color`, ou directement via la propriété `color` du `Container`.",
+      "title": "Comment définir la couleur de fond d'un `Container`?",
+      "description": "La couleur de fond d'un `Container` peut être définie à travers sa propriété `decoration` en utilisant un `BoxDecoration` avec une propriété `color`, ou directement via la propriété `color` du `Container`.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `final` et `const` en Dart?",
-      "explanation": "En Dart, `final` signifie qu'une variable ne peut être assignée qu'une seule fois, tandis que `const` signifie que la valeur est une constante connue à la compilation. Les objets `const` sont immuables et créés au moment de la compilation.",
+      "title": "Quelle est la différence entre `final` et `const` en Dart?",
+      "description": "En Dart, `final` signifie qu'une variable ne peut être assignée qu'une seule fois, tandis que `const` signifie que la valeur est une constante connue à la compilation. Les objets `const` sont immuables et créés au moment de la compilation.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Quel widget utiliser pour créer une barre d'applications dans Flutter?",
-      "explanation": "Le widget `AppBar` est utilisé pour créer une barre d'applications dans Flutter. Il est généralement placé comme propriété `appBar` d'un `Scaffold`.",
+      "title": "Quel widget utiliser pour créer une barre d'applications dans Flutter?",
+      "description": "Le widget `AppBar` est utilisé pour créer une barre d'applications dans Flutter. Il est généralement placé comme propriété `appBar` d'un `Scaffold`.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Comment définir une fonction asynchrone en Dart?",
-      "explanation": "En Dart, une fonction asynchrone est définie avec le mot-clé `async` et peut utiliser `await` pour attendre le résultat d'une opération asynchrone. Elle retourne automatiquement un `Future`.",
+      "title": "Comment définir une fonction asynchrone en Dart?",
+      "description": "En Dart, une fonction asynchrone est définie avec le mot-clé `async` et peut utiliser `await` pour attendre le résultat d'une opération asynchrone. Elle retourne automatiquement un `Future`.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Quelle est la sortie du code suivant?\n```dart\nvar liste = [1, 2, 3];\nvar nouvelleListe = [...liste, 4, 5];\nprint(nouvelleListe);\n```",
-      "explanation": "L'opérateur de décomposition (`...`) en Dart est utilisé pour insérer tous les éléments d'une collection dans une autre collection. Ici, tous les éléments de `liste` sont insérés dans `nouvelleListe`, suivis de 4 et 5.",
+      "title": "Quelle est la sortie du code suivant?\n```dart\nvar liste = [1, 2, 3];\nvar nouvelleListe = [...liste, 4, 5];\nprint(nouvelleListe);\n```",
+      "description": "L'opérateur de décomposition (`...`) en Dart est utilisé pour insérer tous les éléments d'une collection dans une autre collection. Ici, tous les éléments de `liste` sont insérés dans `nouvelleListe`, suivis de 4 et 5.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Comment accéder aux ressources d'un appareil comme la caméra dans Flutter?",
-      "explanation": "Pour accéder aux fonctionnalités natives comme la caméra, Flutter utilise des plugins. Ces plugins sont des packages qui fournissent une interface Dart pour les API natives des plateformes Android et iOS.",
+      "title": "Comment accéder aux ressources d'un appareil comme la caméra dans Flutter?",
+      "description": "Pour accéder aux fonctionnalités natives comme la caméra, Flutter utilise des plugins. Ces plugins sont des packages qui fournissent une interface Dart pour les API natives des plateformes Android et iOS.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Quelle est la méthode recommandée pour effectuer des requêtes HTTP dans Flutter?",
-      "explanation": "Le package `http` officiel est la méthode recommandée pour effectuer des requêtes HTTP dans Flutter. Il fournit des fonctions faciles à utiliser comme `get()`, `post()`, etc., qui retournent des `Future` contenant les réponses.",
+      "title": "Quelle est la méthode recommandée pour effectuer des requêtes HTTP dans Flutter?",
+      "description": "Le package `http` officiel est la méthode recommandée pour effectuer des requêtes HTTP dans Flutter. Il fournit des fonctions faciles à utiliser comme `get()`, `post()`, etc., qui retournent des `Future` contenant les réponses.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment implémenter un thème dans une application Flutter?",
-      "explanation": "Flutter permet de définir un thème global pour l'application via la propriété `theme` du widget `MaterialApp`. Le thème peut ensuite être accédé partout dans l'application via `Theme.of(context)`.",
+      "title": "Comment implémenter un thème dans une application Flutter?",
+      "description": "Flutter permet de définir un thème global pour l'application via la propriété `theme` du widget `MaterialApp`. Le thème peut ensuite être accédé partout dans l'application via `Theme.of(context)`.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Quel widget utiliser pour créer un formulaire dans Flutter?",
-      "explanation": "Le widget `Form` est utilisé pour créer et gérer des formulaires dans Flutter. Il fournit des fonctionnalités comme la validation et la sauvegarde de l'état du formulaire. Les champs du formulaire sont généralement des widgets `TextFormField`.",
+      "title": "Quel widget utiliser pour créer un formulaire dans Flutter?",
+      "description": "Le widget `Form` est utilisé pour créer et gérer des formulaires dans Flutter. Il fournit des fonctionnalités comme la validation et la sauvegarde de l'état du formulaire. Les champs du formulaire sont généralement des widgets `TextFormField`.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment implémenter des animations dans Flutter?",
-      "explanation": "Flutter offre plusieurs façons d'implémenter des animations, des plus simples aux plus complexes : `AnimatedContainer` pour des animations implicites simples, `AnimationController` avec `Tween` pour plus de contrôle, ou des packages dédiés pour des animations plus complexes.",
+      "title": "Comment implémenter des animations dans Flutter?",
+      "description": "Flutter offre plusieurs façons d'implémenter des animations, des plus simples aux plus complexes : `AnimatedContainer` pour des animations implicites simples, `AnimationController` avec `Tween` pour plus de contrôle, ou des packages dédiés pour des animations plus complexes.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `ListView` et `Column` dans Flutter?",
-      "explanation": "La principale différence est que `ListView` est conçu pour être scrollable et est optimisé pour les listes potentiellement grandes, tandis que `Column` affiche tous ses enfants d'un coup et n'est pas scrollable par défaut.",
+      "title": "Quelle est la différence entre `ListView` et `Column` dans Flutter?",
+      "description": "La principale différence est que `ListView` est conçu pour être scrollable et est optimisé pour les listes potentiellement grandes, tandis que `Column` affiche tous ses enfants d'un coup et n'est pas scrollable par défaut.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Comment gérer les permissions dans une application Flutter?",
-      "explanation": "Pour gérer les permissions dans une application Flutter, on utilise généralement des packages comme `permission_handler` qui fournissent une API unifiée pour demander et vérifier les permissions sur Android et iOS.",
+      "title": "Comment gérer les permissions dans une application Flutter?",
+      "description": "Pour gérer les permissions dans une application Flutter, on utilise généralement des packages comme `permission_handler` qui fournissent une API unifiée pour demander et vérifier les permissions sur Android et iOS.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `var`, `final` et `const` en Dart?",
-      "explanation": "`var` déclare une variable dont le type est inféré mais qui peut être réassignée, `final` déclare une variable qui ne peut être assignée qu'une seule fois, et `const` déclare une variable constante dont la valeur doit être connue à la compilation.",
+      "title": "Quelle est la différence entre `var`, `final` et `const` en Dart?",
+      "description": "`var` déclare une variable dont le type est inféré mais qui peut être réassignée, `final` déclare une variable qui ne peut être assignée qu'une seule fois, et `const` déclare une variable constante dont la valeur doit être connue à la compilation.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment passer des arguments lors de la navigation vers un nouvel écran dans Flutter?",
-      "explanation": "Pour passer des arguments lors de la navigation, on peut les inclure directement dans le constructeur du widget de destination lors de l'utilisation de `Navigator.push()`, ou utiliser les arguments nommés avec `Navigator.pushNamed()`.",
+      "title": "Comment passer des arguments lors de la navigation vers un nouvel écran dans Flutter?",
+      "description": "Pour passer des arguments lors de la navigation, on peut les inclure directement dans le constructeur du widget de destination lors de l'utilisation de `Navigator.push()`, ou utiliser les arguments nommés avec `Navigator.pushNamed()`.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Quelle est la sortie du code suivant?\n```dart\nint somme(int a, [int b = 0]) {\n  return a + b;\n}\n\nprint(somme(5));\nprint(somme(5, 3));\n```",
-      "explanation": "En Dart, les paramètres entre crochets `[]` sont optionnels. Ici, `b` a une valeur par défaut de 0. Donc `somme(5)` donne 5+0=5, et `somme(5, 3)` donne 5+3=8.",
+      "title": "Quelle est la sortie du code suivant?\n```dart\nint somme(int a, [int b = 0]) {\n  return a + b;\n}\n\nprint(somme(5));\nprint(somme(5, 3));\n```",
+      "description": "En Dart, les paramètres entre crochets `[]` sont optionnels. Ici, `b` a une valeur par défaut de 0. Donc `somme(5)` donne 5+0=5, et `somme(5, 3)` donne 5+3=8.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Comment implémenter la persistance des données localement dans une application Flutter?",
-      "explanation": "Flutter offre plusieurs options pour stocker des données localement : `shared_preferences` pour des données simples clé-valeur, `sqflite` pour une base de données SQLite, ou des packages comme `hive` pour une solution NoSQL.",
+      "title": "Comment implémenter la persistance des données localement dans une application Flutter?",
+      "description": "Flutter offre plusieurs options pour stocker des données localement : `shared_preferences` pour des données simples clé-valeur, `sqflite` pour une base de données SQLite, ou des packages comme `hive` pour une solution NoSQL.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Quelle est la méthode pour mettre à jour l'état d'un StatefulWidget?",
-      "explanation": "La méthode `setState()` est utilisée pour mettre à jour l'état d'un widget et déclencher un nouveau rendu. Elle prend une fonction anonyme qui effectue les modifications d'état nécessaires.",
+      "title": "Quelle est la méthode pour mettre à jour l'état d'un StatefulWidget?",
+      "description": "La méthode `setState()` est utilisée pour mettre à jour l'état d'un widget et déclencher un nouveau rendu. Elle prend une fonction anonyme qui effectue les modifications d'état nécessaires.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment tester une application Flutter?",
-      "explanation": "Flutter fournit un framework de test complet avec plusieurs types de tests : les tests unitaires pour la logique, les tests de widget pour l'interface utilisateur, et les tests d'intégration pour tester l'application complète.",
+      "title": "Comment tester une application Flutter?",
+      "description": "Flutter fournit un framework de test complet avec plusieurs types de tests : les tests unitaires pour la logique, les tests de widget pour l'interface utilisateur, et les tests d'intégration pour tester l'application complète.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -797,8 +797,8 @@
       ]
     },
     {
-      "text": "Comment gérer les différentes tailles d'écran et orientations dans Flutter?",
-      "explanation": "Pour créer des interfaces adaptatives dans Flutter, on peut utiliser `MediaQuery` pour obtenir les dimensions de l'écran, des widgets comme `LayoutBuilder` ou `OrientationBuilder` pour réagir aux changements, et le design responsive en employant des unités relatives plutôt qu'absolues.",
+      "title": "Comment gérer les différentes tailles d'écran et orientations dans Flutter?",
+      "description": "Pour créer des interfaces adaptatives dans Flutter, on peut utiliser `MediaQuery` pour obtenir les dimensions de l'écran, des widgets comme `LayoutBuilder` ou `OrientationBuilder` pour réagir aux changements, et le design responsive en employant des unités relatives plutôt qu'absolues.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [

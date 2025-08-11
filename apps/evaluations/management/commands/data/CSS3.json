@@ -1,12 +1,36 @@
 {
   "technology": "CSS3",
   "title": "Évaluation CSS3 Complète",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles de CSS3, incluant les sélecteurs avancés, les animations, les transformations, le responsive design, Flexbox, Grid, et les bonnes pratiques de stylisation moderne.",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de CSS3, incluant les sélecteurs avancés, les animations, les transformations, Flexbox, Grid, les media queries et les techniques de mise en page moderne.",
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle est la syntaxe correcte pour appliquer une ombre à un élément?",
-      "explanation": "La propriété box-shadow permet d'ajouter une ou plusieurs ombres à un élément. La syntaxe inclut le décalage horizontal, vertical, le flou, l'étalement et la couleur.",
+      "title": "Quel sélecteur CSS permet de cibler le premier enfant d'un élément?",
+      "description": "Le pseudo-sélecteur `:first-child` cible le premier élément enfant de son parent, quelle que soit sa balise.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "`:first-child`",
+          "is_correct": true
+        },
+        {
+          "text": "`:first-of-type`",
+          "is_correct": false
+        },
+        {
+          "text": "`:nth-child(1)`",
+          "is_correct": false
+        },
+        {
+          "text": "`:child(1)`",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "title": "Comment appliquer une ombre portée à un élément en CSS3?",
+      "description": "La propriété `box-shadow` permet d'ajouter une ombre portée à un élément. Elle prend des valeurs pour le décalage horizontal, le décalage vertical, le flou, l'étalement et la couleur.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -29,8 +53,8 @@
       ]
     },
     {
-      "text": "Comment créer des coins arrondis en CSS3?",
-      "explanation": "La propriété border-radius permet de créer des coins arrondis. On peut spécifier une valeur unique pour tous les coins ou des valeurs différentes pour chaque coin.",
+      "title": "Comment créer des coins arrondis en CSS3?",
+      "description": "La propriété `border-radius` permet de créer des coins arrondis. On peut spécifier une valeur unique pour tous les coins ou des valeurs différentes pour chaque coin.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +77,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de créer un dégradé linéaire?",
-      "explanation": "La fonction linear-gradient() crée un dégradé linéaire entre deux ou plusieurs couleurs dans une direction spécifiée.",
+      "title": "Quelle propriété CSS3 permet de créer un dégradé linéaire?",
+      "description": "La fonction `linear-gradient()` crée un dégradé linéaire entre deux ou plusieurs couleurs dans une direction spécifiée.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -77,8 +101,8 @@
       ]
     },
     {
-      "text": "Comment centrer un élément horizontalement et verticalement avec Flexbox?",
-      "explanation": "Flexbox permet de centrer facilement un élément en utilisant justify-content pour l'axe principal et align-items pour l'axe transversal.",
+      "title": "Comment centrer un élément avec Flexbox?",
+      "description": "Flexbox permet de centrer facilement un élément en utilisant `justify-content` pour l'axe principal et `align-items` pour l'axe transversal.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -101,8 +125,8 @@
       ]
     },
     {
-      "text": "Quelle est la syntaxe correcte pour une animation CSS3?",
-      "explanation": "Une animation CSS3 nécessite la définition de @keyframes et l'application de la propriété animation sur l'élément.",
+      "title": "Quelle est la syntaxe correcte pour une animation CSS3?",
+      "description": "Une animation CSS3 nécessite la définition de `@keyframes` et l'application de la propriété `animation` sur l'élément.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -125,8 +149,8 @@
       ]
     },
     {
-      "text": "Comment créer une grille CSS avec CSS Grid?",
-      "explanation": "CSS Grid utilise display: grid et permet de définir des colonnes et lignes avec grid-template-columns et grid-template-rows.",
+      "title": "Comment créer une grille CSS avec CSS Grid?",
+      "description": "CSS Grid utilise `display: grid` et permet de définir des colonnes et lignes avec `grid-template-columns` et `grid-template-rows`.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -149,8 +173,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de faire une rotation d'un élément?",
-      "explanation": "La propriété transform avec la fonction rotate() permet de faire pivoter un élément autour de son centre.",
+      "title": "Quelle propriété CSS3 permet de faire une rotation d'un élément?",
+      "description": "La propriété `transform` avec la fonction `rotate()` permet de faire pivoter un élément autour de son centre.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -173,8 +197,8 @@
       ]
     },
     {
-      "text": "Comment créer un média query pour les écrans de moins de 768px?",
-      "explanation": "Les media queries permettent d'appliquer des styles selon les caractéristiques de l'appareil, comme la largeur d'écran.",
+      "title": "Comment créer un média query pour les écrans de moins de 768px?",
+      "description": "Les media queries permettent d'appliquer des styles selon les caractéristiques de l'appareil, comme la largeur d'écran.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -197,8 +221,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de créer une transition fluide?",
-      "explanation": "La propriété transition permet de créer des animations fluides lors du changement d'une propriété CSS.",
+      "title": "Quelle propriété CSS3 permet de créer une transition fluide?",
+      "description": "La propriété `transition` permet de créer des animations fluides lors du changement d'une propriété CSS.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -221,8 +245,8 @@
       ]
     },
     {
-      "text": "Comment appliquer un style uniquement au premier enfant d'un élément?",
-      "explanation": "Le pseudo-sélecteur :first-child sélectionne le premier élément enfant de son parent.",
+      "title": "Comment appliquer un style uniquement au premier enfant d'un élément?",
+      "description": "Le pseudo-sélecteur `:first-child` sélectionne le premier élément enfant de son parent.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -245,8 +269,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre `em` et `rem` en CSS?",
-      "explanation": "L'unité `em` est relative à la taille de police de l'élément parent, tandis que `rem` est relative à la taille de police de l'élément racine (html).",
+      "title": "Quelle est la différence entre `em` et `rem` en CSS?",
+      "description": "L'unité `em` est relative à la taille de police de l'élément parent, tandis que `rem` est relative à la taille de police de l'élément racine (html).",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -269,8 +293,8 @@
       ]
     },
     {
-      "text": "Comment créer un layout à trois colonnes avec Flexbox?",
-      "explanation": "Flexbox permet de créer facilement des layouts en colonnes en utilisant display: flex et en contrôlant la taille des éléments enfants.",
+      "title": "Comment créer un layout à trois colonnes avec Flexbox?",
+      "description": "Flexbox permet de créer facilement des layouts en colonnes en utilisant `display: flex` et en contrôlant la taille des éléments enfants.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -293,8 +317,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler l'opacité d'un élément?",
-      "explanation": "La propriété opacity contrôle la transparence d'un élément, avec des valeurs de 0 (transparent) à 1 (opaque).",
+      "title": "Quelle propriété CSS3 permet de contrôler l'opacité d'un élément?",
+      "description": "La propriété `opacity` contrôle la transparence d'un élément, avec des valeurs de 0 (transparent) à 1 (opaque).",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -317,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment sélectionner tous les éléments pairs d'une liste?",
-      "explanation": "Le pseudo-sélecteur :nth-child(even) sélectionne tous les éléments enfants en position paire.",
+      "title": "Comment sélectionner tous les éléments pairs d'une liste?",
+      "description": "Le pseudo-sélecteur `:nth-child(even)` sélectionne tous les éléments enfants en position paire.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -341,8 +365,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de créer un dégradé radial?",
-      "explanation": "La fonction radial-gradient() crée un dégradé circulaire ou elliptique depuis un point central.",
+      "title": "Quelle propriété CSS3 permet de créer un dégradé radial?",
+      "description": "La fonction `radial-gradient()` crée un dégradé circulaire ou elliptique depuis un point central.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -365,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment masquer un élément tout en conservant l'espace qu'il occupe?",
-      "explanation": "La propriété visibility: hidden masque l'élément mais conserve son espace, contrairement à display: none qui le retire complètement du flux.",
+      "title": "Comment masquer un élément tout en conservant l'espace qu'il occupe?",
+      "description": "La propriété `visibility: hidden` masque l'élément mais conserve son espace, contrairement à `display: none` qui le retire complètement du flux.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -389,8 +413,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de définir l'ordre d'affichage des éléments flex?",
-      "explanation": "La propriété order permet de changer l'ordre visuel des éléments flex sans modifier l'ordre dans le HTML.",
+      "title": "Quelle propriété CSS3 permet de définir l'ordre d'affichage des éléments flex?",
+      "description": "La propriété `order` permet de changer l'ordre visuel des éléments flex sans modifier l'ordre dans le HTML.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -413,8 +437,8 @@
       ]
     },
     {
-      "text": "Comment créer un effet de survol (hover) en CSS?",
-      "explanation": "Le pseudo-sélecteur :hover s'applique quand l'utilisateur survole un élément avec le curseur.",
+      "title": "Comment créer un effet de survol (hover) en CSS?",
+      "description": "Le pseudo-sélecteur `:hover` s'applique quand l'utilisateur survole un élément avec le curseur.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -437,8 +461,8 @@
       ]
     },
     {
-      "text": "Quelle est la syntaxe correcte pour utiliser une police web personnalisée?",
-      "explanation": "La règle @font-face permet de définir et utiliser des polices personnalisées en spécifiant la source du fichier de police.",
+      "title": "Quelle est la syntaxe correcte pour utiliser une police web personnalisée?",
+      "description": "La règle `@font-face` permet de définir et utiliser des polices personnalisées en spécifiant la source du fichier de police.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -461,8 +485,8 @@
       ]
     },
     {
-      "text": "Comment créer une animation infinie en CSS3?",
-      "explanation": "La propriété animation-iteration-count: infinite permet de répéter une animation indéfiniment.",
+      "title": "Comment créer une animation infinie en CSS3?",
+      "description": "La propriété `animation-iteration-count: infinite` permet de répéter une animation indéfiniment.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -485,8 +509,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de créer un effet de flou?",
-      "explanation": "La fonction blur() dans la propriété filter permet d'appliquer un effet de flou à un élément.",
+      "title": "Quelle propriété CSS3 permet de créer un effet de flou?",
+      "description": "La fonction `blur()` dans la propriété `filter` permet d'appliquer un effet de flou à un élément.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -509,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment aligner du texte verticalement au centre d'un conteneur?",
-      "explanation": "Il existe plusieurs méthodes : Flexbox, Grid, ou line-height égale à la hauteur du conteneur pour une ligne de texte.",
+      "title": "Comment aligner du texte verticalement au centre d'un conteneur?",
+      "description": "Il existe plusieurs méthodes : Flexbox, Grid, ou `line-height` égale à la hauteur du conteneur pour une ligne de texte.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -533,8 +557,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler l'espacement entre les colonnes dans un multi-column layout?",
-      "explanation": "La propriété column-gap définit l'espace entre les colonnes dans un layout multi-colonnes.",
+      "title": "Quelle propriété CSS3 permet de contrôler l'espacement entre les colonnes dans un multi-column layout?",
+      "description": "La propriété `column-gap` définit l'espace entre les colonnes dans un layout multi-colonnes.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -557,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment créer un conteneur avec une hauteur minimale de 100% de la fenêtre?",
-      "explanation": "L'unité vh (viewport height) représente un pourcentage de la hauteur de la fenêtre. 100vh = 100% de la hauteur de la fenêtre.",
+      "title": "Comment créer un conteneur avec une hauteur minimale de 100% de la fenêtre?",
+      "description": "L'unité `vh` (viewport height) représente un pourcentage de la hauteur de la fenêtre. 100vh = 100% de la hauteur de la fenêtre.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -581,8 +605,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler la façon dont un élément se comporte lors du défilement?",
-      "explanation": "La propriété position: sticky permet à un élément de rester fixe lors du défilement jusqu'à ce qu'il atteigne une position donnée.",
+      "title": "Quelle propriété CSS3 permet de contrôler la façon dont un élément se comporte lors du défilement?",
+      "description": "La propriété `position: sticky` permet à un élément de rester fixe lors du défilement jusqu'à ce qu'il atteigne une position donnée.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -605,8 +629,8 @@
       ]
     },
     {
-      "text": "Comment créer un layout responsive sans media queries?",
-      "explanation": "CSS Grid et Flexbox offrent des fonctions comme minmax(), auto-fit, et fr qui permettent de créer des layouts responsives intrinsèques.",
+      "title": "Comment créer un layout responsive sans media queries?",
+      "description": "CSS Grid et Flexbox offrent des fonctions comme `minmax()`, `auto-fit`, et `fr` qui permettent de créer des layouts responsives intrinsèques.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -629,8 +653,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler l'apparence du curseur?",
-      "explanation": "La propriété cursor permet de changer l'apparence du curseur lorsqu'il survole un élément.",
+      "title": "Quelle propriété CSS3 permet de contrôler l'apparence du curseur?",
+      "description": "La propriété `cursor` permet de changer l'apparence du curseur lorsqu'il survole un élément.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -653,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment créer un effet de parallaxe avec CSS?",
-      "explanation": "L'effet de parallaxe peut être créé en utilisant transform3d et perspective, ou background-attachment: fixed pour un effet simple.",
+      "title": "Comment créer un effet de parallaxe avec CSS?",
+      "description": "L'effet de parallaxe peut être créé en utilisant `transform3d` et `perspective`, ou `background-attachment: fixed` pour un effet simple.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -677,8 +701,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler la casse du texte?",
-      "explanation": "La propriété text-transform permet de modifier la casse du texte (majuscules, minuscules, capitalize).",
+      "title": "Quelle propriété CSS3 permet de contrôler la casse du texte?",
+      "description": "La propriété `text-transform` permet de modifier la casse du texte (majuscules, minuscules, capitalize).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -701,8 +725,8 @@
       ]
     },
     {
-      "text": "Comment créer un masque sur une image en CSS3?",
-      "explanation": "La propriété mask (ou -webkit-mask) permet d'appliquer un masque à un élément en utilisant une image ou un dégradé.",
+      "title": "Comment créer un masque sur une image en CSS3?",
+      "description": "La propriété `mask` (ou `-webkit-mask`) permet d'appliquer un masque à un élément en utilisant une image ou un dégradé.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -725,8 +749,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler l'espacement entre les lettres?",
-      "explanation": "La propriété letter-spacing contrôle l'espace entre les caractères d'un texte.",
+      "title": "Quelle propriété CSS3 permet de contrôler l'espacement entre les lettres?",
+      "description": "La propriété `letter-spacing` contrôle l'espace entre les caractères d'un texte.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -749,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment créer une grille responsive avec CSS Grid?",
-      "explanation": "CSS Grid permet de créer des grilles responsives en utilisant repeat(), auto-fit/auto-fill, et minmax().",
+      "title": "Comment créer une grille responsive avec CSS Grid?",
+      "description": "CSS Grid permet de créer des grilles responsives en utilisant `repeat()`, `auto-fit`/`auto-fill`, et `minmax()`.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -773,8 +797,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler l'ordre de superposition des éléments?",
-      "explanation": "La propriété z-index contrôle l'ordre de superposition des éléments positionnés (relative, absolute, fixed, sticky).",
+      "title": "Quelle propriété CSS3 permet de contrôler l'ordre de superposition des éléments?",
+      "description": "La propriété `z-index` contrôle l'ordre de superposition des éléments positionnés (relative, absolute, fixed, sticky).",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -797,8 +821,8 @@
       ]
     },
     {
-      "text": "Comment créer un conteneur avec un aspect ratio fixe?",
-      "explanation": "La propriété aspect-ratio permet de maintenir un rapport largeur/hauteur fixe, ou on peut utiliser la technique du padding-bottom.",
+      "title": "Comment créer un conteneur avec un aspect ratio fixe?",
+      "description": "La propriété `aspect-ratio` permet de maintenir un rapport largeur/hauteur fixe, ou on peut utiliser la technique du `padding-bottom`.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -821,8 +845,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de créer un effet de découpe (clip-path)?",
-      "explanation": "La propriété clip-path permet de créer des formes de découpe complexes en utilisant des polygones, cercles, ou ellipses.",
+      "title": "Quelle propriété CSS3 permet de créer un effet de découpe (clip-path)?",
+      "description": "La propriété `clip-path` permet de créer des formes de découpe complexes en utilisant des polygones, cercles, ou ellipses.",
       "difficulty": "hard",
       "duration": 65,
       "choices": [
@@ -845,8 +869,8 @@
       ]
     },
     {
-      "text": "Comment optimiser les performances CSS?",
-      "explanation": "L'optimisation CSS inclut la minimisation du CSS, l'évitement des sélecteurs complexes, l'utilisation de transform/opacity pour les animations, et le regroupement des règles.",
+      "title": "Comment optimiser les performances CSS?",
+      "description": "L'optimisation CSS inclut la minimisation du CSS, l'évitement des sélecteurs complexes, l'utilisation de `transform`/`opacity` pour les animations, et le regroupement des règles.",
       "difficulty": "hard",
       "duration": 90,
       "choices": [
@@ -869,8 +893,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler le comportement du défilement?",
-      "explanation": "La propriété scroll-behavior permet de contrôler le comportement du défilement, notamment pour créer un défilement fluide.",
+      "title": "Quelle propriété CSS3 permet de contrôler le comportement du défilement?",
+      "description": "La propriété `scroll-behavior` permet de contrôler le comportement du défilement, notamment pour créer un défilement fluide.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -893,8 +917,8 @@
       ]
     },
     {
-      "text": "Comment créer des variables CSS personnalisées?",
-      "explanation": "Les propriétés personnalisées CSS (variables) sont définies avec -- et utilisées avec la fonction var().",
+      "title": "Comment créer des variables CSS personnalisées?",
+      "description": "Les propriétés personnalisées CSS (variables) sont définies avec `--` et utilisées avec la fonction `var()`.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -917,8 +941,8 @@
       ]
     },
     {
-      "text": "Quelle propriété CSS3 permet de contrôler l'ajustement du contenu dans un conteneur?",
-      "explanation": "La propriété object-fit contrôle comment le contenu d'un élément remplacé (comme img ou video) s'ajuste à son conteneur.",
+      "title": "Quelle propriété CSS3 permet de contrôler l'ajustement du contenu dans un conteneur?",
+      "description": "La propriété `object-fit` contrôle comment le contenu d'un élément remplacé (comme `img` ou `video`) s'ajuste à son conteneur.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -941,8 +965,8 @@
       ]
     },
     {
-      "text": "Comment créer un mode sombre (dark mode) en CSS?",
-      "explanation": "Le mode sombre peut être implémenté en utilisant les media queries prefers-color-scheme et des variables CSS pour basculer entre les thèmes.",
+      "title": "Comment créer un mode sombre (dark mode) en CSS?",
+      "description": "Le mode sombre peut être implémenté en utilisant les media queries `prefers-color-scheme` et des variables CSS pour basculer entre les thèmes.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [

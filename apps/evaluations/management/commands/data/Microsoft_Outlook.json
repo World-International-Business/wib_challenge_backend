@@ -1,12 +1,12 @@
 {
   "technology": "Microsoft Outlook",
   "title": "Évaluation Microsoft Outlook Complète",
-  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft Outlook, incluant la gestion des emails, calendrier, contacts, tâches, et les fonctionnalités avancées de communication professionnelle.",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Microsoft Outlook, incluant la gestion des emails, du calendrier, des contacts, des tâches et l'organisation personnelle.",
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Quelle combinaison de touches permet de créer un nouveau message?",
-      "explanation": "Ctrl+N crée un nouvel élément selon le contexte (nouveau message en mode courrier, nouveau contact en mode contacts, etc.).",
+      "title": "Quelle combinaison de touches permet de créer un nouveau message?",
+      "description": "Ctrl+N est le raccourci pour créer un nouveau message électronique dans Outlook.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -29,8 +29,8 @@
       ]
     },
     {
-      "text": "Comment marquer un email comme important?",
-      "explanation": "Pour marquer un email comme important, utiliser le point d'exclamation rouge dans la barre d'outils ou Ctrl+Shift+I.",
+      "title": "Comment marquer un email comme important?",
+      "description": "Pour marquer un email comme important, utiliser le point d'exclamation rouge dans la barre d'outils ou Ctrl+Shift+I.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre Cc et Cci?",
-      "explanation": "Cc (Copie conforme) affiche les destinataires à tous, tandis que Cci (Copie conforme invisible) cache les destinataires aux autres.",
+      "title": "Quelle est la différence entre Cc et Cci?",
+      "description": "Cc (Copie conforme) affiche les destinataires à tous, tandis que Cci (Copie conforme invisible) cache les destinataires aux autres.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "text": "Comment créer une règle pour organiser automatiquement les emails?",
-      "explanation": "Pour créer une règle, aller dans Fichier > Gérer les règles et alertes > Nouvelle règle, ou clic droit sur un email > Règles > Créer une règle.",
+      "title": "Comment créer une règle pour organiser automatiquement les emails?",
+      "description": "Pour créer une règle, aller dans Fichier > Gérer les règles et alertes > Nouvelle règle, ou clic droit sur un email > Règles > Créer une règle.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "text": "Comment programmer l'envoi d'un email à une heure précise?",
-      "explanation": "Pour programmer l'envoi, composer le message puis aller dans Options > Différer la remise et définir la date/heure d'envoi.",
+      "title": "Comment programmer l'envoi d'un email à une heure précise?",
+      "description": "Pour programmer l'envoi, composer le message puis aller dans Options > Différer la remise et définir la date/heure d'envoi.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -125,8 +125,8 @@
       ]
     },
     {
-      "text": "Comment créer un rendez-vous dans le calendrier?",
-      "explanation": "Pour créer un rendez-vous, aller dans Calendrier puis Ctrl+N ou cliquer sur Nouveau rendez-vous, ou double-cliquer sur une plage horaire.",
+      "title": "Comment créer un rendez-vous dans le calendrier?",
+      "description": "Pour créer un rendez-vous, aller dans Calendrier puis Ctrl+N ou cliquer sur Nouveau rendez-vous, ou double-cliquer sur une plage horaire.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -149,8 +149,8 @@
       ]
     },
     {
-      "text": "Quelle est la différence entre un rendez-vous et une réunion?",
-      "explanation": "Un rendez-vous concerne uniquement votre calendrier, tandis qu'une réunion implique d'inviter d'autres personnes.",
+      "title": "Quelle est la différence entre un rendez-vous et une réunion?",
+      "description": "Un rendez-vous concerne uniquement votre calendrier, tandis qu'une réunion implique d'inviter d'autres personnes.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "text": "Comment ajouter une signature automatique aux emails?",
-      "explanation": "Pour créer une signature, aller dans Fichier > Options > Courrier > Signatures et créer ou modifier une signature.",
+      "title": "Comment ajouter une signature automatique aux emails?",
+      "description": "Pour créer une signature, aller dans Fichier > Options > Courrier > Signatures et créer ou modifier une signature.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -197,8 +197,8 @@
       ]
     },
     {
-      "text": "Comment créer un dossier pour organiser les emails?",
-      "explanation": "Pour créer un dossier, faire un clic droit sur la boîte de réception ou un dossier existant et sélectionner 'Nouveau dossier'.",
+      "title": "Comment créer un dossier pour organiser les emails?",
+      "description": "Pour créer un dossier, faire un clic droit sur la boîte de réception ou un dossier existant et sélectionner 'Nouveau dossier'.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -221,8 +221,8 @@
       ]
     },
     {
-      "text": "Comment rechercher un email spécifique?",
-      "explanation": "Pour rechercher, utiliser la barre de recherche en haut de la liste des messages ou Ctrl+E pour activer la recherche.",
+      "title": "Comment rechercher un email spécifique?",
+      "description": "Pour rechercher, utiliser la barre de recherche en haut de la liste des messages ou Ctrl+E pour activer la recherche.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -245,8 +245,8 @@
       ]
     },
     {
-      "text": "Comment définir un message d'absence automatique?",
-      "explanation": "Pour configurer les réponses automatiques, aller dans Fichier > Réponses automatiques et activer avec le message souhaité.",
+      "title": "Comment définir un message d'absence automatique?",
+      "description": "Pour configurer les réponses automatiques, aller dans Fichier > Réponses automatiques et activer avec le message souhaité.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -269,8 +269,8 @@
       ]
     },
     {
-      "text": "Comment partager son calendrier avec un collègue?",
-      "explanation": "Pour partager le calendrier, clic droit sur 'Calendrier' dans le volet gauche > Propriétés > Autorisations et ajouter la personne.",
+      "title": "Comment partager son calendrier avec un collègue?",
+      "description": "Pour partager le calendrier, clic droit sur 'Calendrier' dans le volet gauche > Propriétés > Autorisations et ajouter la personne.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -293,8 +293,8 @@
       ]
     },
     {
-      "text": "Comment créer un contact dans Outlook?",
-      "explanation": "Pour créer un contact, aller dans Contacts puis Ctrl+N ou cliquer sur Nouveau contact.",
+      "title": "Comment créer un contact dans Outlook?",
+      "description": "Pour créer un contact, aller dans Contacts puis Ctrl+N ou cliquer sur Nouveau contact.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -317,8 +317,8 @@
       ]
     },
     {
-      "text": "Comment rappeler un email déjà envoyé?",
-      "explanation": "Pour rappeler un email, l'ouvrir depuis les Éléments envoyés, puis Actions > Rappeler ce message (ne fonctionne qu'avec Exchange).",
+      "title": "Comment rappeler un email déjà envoyé?",
+      "description": "Pour rappeler un email, l'ouvrir depuis les Éléments envoyés, puis Actions > Rappeler ce message (ne fonctionne qu'avec Exchange).",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -341,8 +341,8 @@
       ]
     },
     {
-      "text": "Comment créer une liste de distribution?",
-      "explanation": "Pour créer une liste de distribution, aller dans Contacts > Accueil > Nouveau groupe de contacts ou Nouvelle liste de distribution.",
+      "title": "Comment créer une liste de distribution?",
+      "description": "Pour créer une liste de distribution, aller dans Contacts > Accueil > Nouveau groupe de contacts ou Nouvelle liste de distribution.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -365,8 +365,8 @@
       ]
     },
     {
-      "text": "Comment marquer un email comme lu/non lu?",
-      "explanation": "Pour changer le statut lu/non lu, clic droit sur l'email > Marquer comme lu/non lu, ou Ctrl+Q pour lu, Ctrl+U pour non lu.",
+      "title": "Comment marquer un email comme lu/non lu?",
+      "description": "Pour changer le statut lu/non lu, clic droit sur l'email > Marquer comme lu/non lu, ou Ctrl+Q pour lu, Ctrl+U pour non lu.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -389,8 +389,8 @@
       ]
     },
     {
-      "text": "Comment créer une tâche dans Outlook?",
-      "explanation": "Pour créer une tâche, aller dans Tâches puis Ctrl+N ou cliquer sur Nouvelle tâche.",
+      "title": "Comment créer une tâche dans Outlook?",
+      "description": "Pour créer une tâche, aller dans Tâches puis Ctrl+N ou cliquer sur Nouvelle tâche.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -413,8 +413,8 @@
       ]
     },
     {
-      "text": "Comment archiver automatiquement les anciens emails?",
-      "explanation": "L'archivage automatique se configure dans Fichier > Options > Avancé > Paramètres d'archivage automatique.",
+      "title": "Comment archiver automatiquement les anciens emails?",
+      "description": "L'archivage automatique se configure dans Fichier > Options > Avancé > Paramètres d'archivage automatique.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -437,8 +437,8 @@
       ]
     },
     {
-      "text": "Comment ajouter un compte email supplémentaire?",
-      "explanation": "Pour ajouter un compte, aller dans Fichier > Ajouter un compte et suivre l'assistant de configuration.",
+      "title": "Comment ajouter un compte email supplémentaire?",
+      "description": "Pour ajouter un compte, aller dans Fichier > Ajouter un compte et suivre l'assistant de configuration.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -461,8 +461,8 @@
       ]
     },
     {
-      "text": "Comment utiliser les catégories pour organiser les emails?",
-      "explanation": "Pour utiliser les catégories, sélectionner l'email puis Accueil > Catégoriser et choisir ou créer une catégorie colorée.",
+      "title": "Comment utiliser les catégories pour organiser les emails?",
+      "description": "Pour utiliser les catégories, sélectionner l'email puis Accueil > Catégoriser et choisir ou créer une catégorie colorée.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -485,8 +485,8 @@
       ]
     },
     {
-      "text": "Comment définir un rappel pour un email reçu?",
-      "explanation": "Pour ajouter un rappel, clic droit sur l'email > Assurer un suivi > Ajouter un rappel et définir la date/heure.",
+      "title": "Comment définir un rappel pour un email reçu?",
+      "description": "Pour ajouter un rappel, clic droit sur l'email > Assurer un suivi > Ajouter un rappel et définir la date/heure.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -509,8 +509,8 @@
       ]
     },
     {
-      "text": "Comment créer un événement récurrent dans le calendrier?",
-      "explanation": "Lors de la création d'un rendez-vous, cliquer sur 'Périodicité' dans le ruban et définir la fréquence de répétition.",
+      "title": "Comment créer un événement récurrent dans le calendrier?",
+      "description": "Lors de la création d'un rendez-vous, cliquer sur 'Périodicité' dans le ruban et définir la fréquence de répétition.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -533,8 +533,8 @@
       ]
     },
     {
-      "text": "Comment bloquer un expéditeur indésirable?",
-      "explanation": "Pour bloquer un expéditeur, clic droit sur l'email > Courrier indésirable > Bloquer l'expéditeur.",
+      "title": "Comment bloquer un expéditeur indésirable?",
+      "description": "Pour bloquer un expéditeur, clic droit sur l'email > Courrier indésirable > Bloquer l'expéditeur.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -557,8 +557,8 @@
       ]
     },
     {
-      "text": "Comment exporter ses contacts Outlook?",
-      "explanation": "Pour exporter les contacts, aller dans Fichier > Ouvrir et exporter > Importer/Exporter et choisir d'exporter vers un fichier.",
+      "title": "Comment exporter ses contacts Outlook?",
+      "description": "Pour exporter les contacts, aller dans Fichier > Ouvrir et exporter > Importer/Exporter et choisir d'exporter vers un fichier.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -581,8 +581,8 @@
       ]
     },
     {
-      "text": "Comment définir des heures de travail dans le calendrier?",
-      "explanation": "Pour définir les heures de travail, aller dans Fichier > Options > Calendrier > Heures de travail et définir les horaires.",
+      "title": "Comment définir des heures de travail dans le calendrier?",
+      "description": "Pour définir les heures de travail, aller dans Fichier > Options > Calendrier > Heures de travail et définir les horaires.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -605,8 +605,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la fonctionnalité de vote dans un email?",
-      "explanation": "Pour ajouter des boutons de vote, lors de la composition aller dans Options > Utiliser les boutons de vote et choisir les options.",
+      "title": "Comment utiliser la fonctionnalité de vote dans un email?",
+      "description": "Pour ajouter des boutons de vote, lors de la composition aller dans Options > Utiliser les boutons de vote et choisir les options.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -629,8 +629,8 @@
       ]
     },
     {
-      "text": "Comment modifier l'affichage de la boîte de réception?",
-      "explanation": "Pour modifier l'affichage, aller dans Affichage > Affichage actuel et choisir parmi les options (Compact, Simple, Aperçu, etc.).",
+      "title": "Comment modifier l'affichage de la boîte de réception?",
+      "description": "Pour modifier l'affichage, aller dans Affichage > Affichage actuel et choisir parmi les options (Compact, Simple, Aperçu, etc.).",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -653,8 +653,8 @@
       ]
     },
     {
-      "text": "Comment créer un modèle d'email réutilisable?",
-      "explanation": "Pour créer un modèle, composer l'email puis Fichier > Enregistrer sous > Type : Modèle Outlook (.oft).",
+      "title": "Comment créer un modèle d'email réutilisable?",
+      "description": "Pour créer un modèle, composer l'email puis Fichier > Enregistrer sous > Type : Modèle Outlook (.oft).",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -677,8 +677,8 @@
       ]
     },
     {
-      "text": "Comment configurer la synchronisation avec un appareil mobile?",
-      "explanation": "La synchronisation mobile se configure généralement via ActiveSync dans Fichier > Informations sur le compte > Paramètres de synchronisation.",
+      "title": "Comment configurer la synchronisation avec un appareil mobile?",
+      "description": "La synchronisation mobile se configure généralement via ActiveSync dans Fichier > Informations sur le compte > Paramètres de synchronisation.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -701,8 +701,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la fonction de nettoyage automatique?",
-      "explanation": "Le nettoyage automatique se trouve dans Fichier > Outils de nettoyage > Nettoyage de boîte aux lettres pour supprimer les éléments anciens.",
+      "title": "Comment utiliser la fonction de nettoyage automatique?",
+      "description": "Le nettoyage automatique se trouve dans Fichier > Outils de nettoyage > Nettoyage de boîte aux lettres pour supprimer les éléments anciens.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -725,8 +725,8 @@
       ]
     },
     {
-      "text": "Comment déléguer l'accès à sa boîte mail à un assistant?",
-      "explanation": "Pour déléguer l'accès, aller dans Fichier > Paramètres du compte > Accès délégué et ajouter la personne avec les permissions appropriées.",
+      "title": "Comment déléguer l'accès à sa boîte mail à un assistant?",
+      "description": "Pour déléguer l'accès, aller dans Fichier > Paramètres du compte > Accès délégué et ajouter la personne avec les permissions appropriées.",
       "difficulty": "hard",
       "duration": 90,
       "choices": [
@@ -749,8 +749,8 @@
       ]
     },
     {
-      "text": "Comment utiliser la recherche avancée pour trouver des emails spécifiques?",
-      "explanation": "Pour la recherche avancée, utiliser Ctrl+Shift+F ou dans la barre de recherche cliquer sur 'Outils de recherche' pour accéder aux filtres avancés.",
+      "title": "Comment utiliser la recherche avancée pour trouver des emails spécifiques?",
+      "description": "Pour la recherche avancée, utiliser Ctrl+Shift+F ou dans la barre de recherche cliquer sur 'Outils de recherche' pour accéder aux filtres avancés.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -773,8 +773,8 @@
       ]
     },
     {
-      "text": "Comment configurer les notifications de bureau?",
-      "explanation": "Les notifications se configurent dans Fichier > Options > Courrier > Options des messages > Affichage des notifications de bureau.",
+      "title": "Comment configurer les notifications de bureau?",
+      "description": "Les notifications se configurent dans Fichier > Options > Courrier > Options des messages > Affichage des notifications de bureau.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -797,8 +797,8 @@
       ]
     },
     {
-      "text": "Comment créer des dossiers de recherche personnalisés?",
-      "explanation": "Pour créer un dossier de recherche, clic droit sur 'Dossiers de recherche' > Nouveau dossier de recherche et définir les critères.",
+      "title": "Comment créer des dossiers de recherche personnalisés?",
+      "description": "Pour créer un dossier de recherche, clic droit sur 'Dossiers de recherche' > Nouveau dossier de recherche et définir les critères.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -821,8 +821,8 @@
       ]
     },
     {
-      "text": "Comment personnaliser les boutons de la barre d'outils?",
-      "explanation": "Pour personnaliser la barre d'outils, clic droit sur le ruban > Personnaliser le ruban et modifier les onglets et commandes.",
+      "title": "Comment personnaliser les boutons de la barre d'outils?",
+      "description": "Pour personnaliser la barre d'outils, clic droit sur le ruban > Personnaliser le ruban et modifier les onglets et commandes.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -845,8 +845,8 @@
       ]
     },
     {
-      "text": "Comment configurer la réponse automatique différente pour les contacts internes et externes?",
-      "explanation": "Dans Fichier > Réponses automatiques, cocher 'Envoyer des réponses automatiques' et utiliser les onglets séparés pour internes et externes.",
+      "title": "Comment configurer la réponse automatique différente pour les contacts internes et externes?",
+      "description": "Dans Fichier > Réponses automatiques, cocher 'Envoyer des réponses automatiques' et utiliser les onglets séparés pour internes et externes.",
       "difficulty": "hard",
       "duration": 80,
       "choices": [
@@ -869,8 +869,8 @@
       ]
     },
     {
-      "text": "Comment utiliser les indicateurs de suivi colorés?",
-      "explanation": "Pour utiliser les indicateurs, clic droit sur un email > Assurer un suivi > Aujourd'hui/Demain/etc., ou utiliser les boutons colorés dans le ruban.",
+      "title": "Comment utiliser les indicateurs de suivi colorés?",
+      "description": "Pour utiliser les indicateurs, clic droit sur un email > Assurer un suivi > Aujourd'hui/Demain/etc., ou utiliser les boutons colorés dans le ruban.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -893,8 +893,8 @@
       ]
     },
     {
-      "text": "Comment gérer plusieurs calendriers simultanément?",
-      "explanation": "Pour gérer plusieurs calendriers, les cocher dans le volet gauche pour les afficher simultanément, ou utiliser l'affichage superposé.",
+      "title": "Comment gérer plusieurs calendriers simultanément?",
+      "description": "Pour gérer plusieurs calendriers, les cocher dans le volet gauche pour les afficher simultanément, ou utiliser l'affichage superposé.",
       "difficulty": "medium",
       "duration": 50,
       "choices": [
@@ -918,4 +918,3 @@
     }
   ]
 }
-
