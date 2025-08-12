@@ -54,7 +54,6 @@
     },
     {
       "title": "Comment déplacer un objet dans Blender ?",
-      "description": "Utilisation de la touche **G** (grab/move) puis contrainte avec **X/Y/Z** pour les axes",
       "explanation": "Pour déplacer un objet, on appuie sur 'G' (grab/move) puis on peut contraindre le mouvement avec X, Y ou Z pour les axes.",
       "difficulty": "easy",
       "duration": 25,
@@ -103,7 +102,6 @@
     },
     {
       "title": "Comment redimensionner un objet ?",
-      "description": "Utilisation de la touche **S** (scale) puis **X/Y/Z** pour les axes ou **Shift+Z** pour exclure un axe",
       "explanation": "La touche 'S' (scale) permet de redimensionner un objet, suivi de X, Y ou Z pour contraindre à un axe, ou Shift+Z pour exclure un axe.",
       "difficulty": "easy",
       "duration": 25,

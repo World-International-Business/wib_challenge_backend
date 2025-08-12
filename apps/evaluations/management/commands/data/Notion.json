@@ -29,7 +29,7 @@
       ]
     },
     {
-      "title": "Comment créer une **nouvelle page** dans Notion ?",
+      "title": "Comment créer une **nouvelle page** dans Notion?",
       "explanation": "Une nouvelle page se crée en cliquant sur '+ Nouvelle page' dans la barre latérale ou en tapant '/' dans une page existante puis 'Page'.",
       "difficulty": "easy",
       "duration": 20,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "title": "Qu'est-ce qu'un **bloc** dans Notion ?",
+      "title": "Qu'est-ce qu'un **bloc** dans Notion?",
       "explanation": "Un bloc est l'unité de base de contenu dans Notion : texte, titre, image, base de données, etc. Chaque élément de la page est un bloc modifiable.",
       "difficulty": "medium",
       "duration": 30,

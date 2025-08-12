@@ -6,7 +6,7 @@
   "questions": [
     {
       "title": "Quelle combinaison de touches permet de mettre un texte en gras?",
-      "description": "Ctrl+B (Bold) est le raccourci universel pour mettre un texte en gras dans Microsoft Word.",
+      "explanation": "Ctrl+B (Bold) est le raccourci universel pour mettre un texte en gras dans Microsoft Word.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -30,7 +30,7 @@
     },
     {
       "title": "Comment créer une liste à puces dans Word?",
-      "description": "Pour créer une liste à puces, utiliser le bouton dans l'onglet Accueil ou taper * suivi d'un espace.",
+      "explanation": "Pour créer une liste à puces, utiliser le bouton dans l'onglet Accueil ou taper * suivi d'un espace.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -53,8 +53,8 @@
       ]
     },
     {
-      "title": "Quelle est la différence entre Enregistrer et Enregistrer sous?",
-      "description": "Enregistrer (Ctrl+S) sauvegarde dans le fichier existant, Enregistrer sous (F12) permet de choisir un nouveau nom ou emplacement.",
+      "title": "Quelle est la différence entre *Enregistrer* et *Enregistrer sous*?",
+      "explanation": "Enregistrer (Ctrl+S) sauvegarde dans le fichier existant, Enregistrer sous (F12) permet de choisir un nouveau nom ou emplacement.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -78,7 +78,7 @@
     },
     {
       "title": "Comment insérer un saut de page dans Word?",
-      "description": "Pour insérer un saut de page, utiliser Ctrl+Entrée ou aller dans Insertion > Saut de page.",
+      "explanation": "Pour insérer un saut de page, utiliser Ctrl+Entrée ou aller dans Insertion > Saut de page.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [

@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-from random import shuffle
 
 from django.core.management import BaseCommand, call_command
 from django.db import transaction
@@ -28,78 +27,93 @@ class Command(BaseCommand):
         call_command('create_default_admin')
 
         admin_user = User.objects.get(pk=1)
+        processed_files = 0
 
         for file in data_dir.glob('*.json'):
-            self.import_from_json(file, admin_user, force)
+            try:
+                self.import_from_json(file, admin_user, force)
+                processed_files += 1
+            except Exception as e:
+                self.stdout.write(self.style.ERROR(
+                    f'Error processing {file.name}: {str(e)}'))
+                if hasattr(e, '__traceback__'):
+                    import traceback
+                    self.stdout.write(self.style.ERROR(
+                        traceback.format_exc()))
+
+        self.stdout.write(self.style.SUCCESS(
+            f'Successfully processed {processed_files} evaluation files.'))
 
     def import_from_json(self, data_file: Path, admin_user: User, force=False):
-
         with data_file.open(encoding='utf-8') as f:
             data = json.load(f)
             tech_name = data.pop('technology')
+
             try:
-                tech = Technology.objects.get(
-                    name__iexact=tech_name)
+                tech = Technology.objects.get(name__iexact=tech_name)
             except Technology.DoesNotExist:
                 self.stdout.write(self.style.ERROR(
                     f'Technology "{tech_name}" not found. Skipping file {data_file.name}.'))
                 return
-            questions = data.pop('questions', [])
 
-            evaluation, created = Evaluation.objects.get_or_create(
-                **data,
+            questions_data = data.pop('questions', [])
+
+            evaluation, created = Evaluation.objects.update_or_create(
+                title=data.get('title'),
                 technology=tech,
                 publisher=admin_user,
                 defaults={
+                    **data,
                     'image': tech.image,
                 }
             )
 
-            if not created:
-                if force:
-                    # Mise à jour de l'évaluation existante
-                    for key, value in data.items():
-                        setattr(evaluation, key, value)
-                    evaluation.image = tech.image
-                    evaluation.save()
+            if not force and not created:
+                self.stdout.write(self.style.WARNING(
+                    f'Évaluation "{evaluation.title}" already exists. Use --force to update. Skipping file {data_file.name}.'))
+                return
 
-                    # Suppression des anciennes questions pour recréer toutes les nouvelles
-                    Question.objects.filter(evaluation=evaluation).delete()
+            existing_questions = {
+                q.title.lower(): q for q in
+                Question.objects.filter(technology=tech, publisher=admin_user)
+            }
 
-                    self.stdout.write(self.style.WARNING(
-                        f'Évaluation "{evaluation.title}" mise à jour avec succès.'))
-                else:
-                    self.stdout.write(self.style.WARNING(
-                        f'Évaluation "{evaluation.title}" already exists. Skipping file {data_file.name}.'))
-                    return
+            nb_questions = 0
 
-            questions_obj = []
-            choices_data = []
-            for q_data in questions:
+            for q_data in questions_data:
                 choices = q_data.pop('choices', [])
-                question = Question(
-                    **q_data,
-                    evaluation=evaluation,
-                    publisher=admin_user,
-                    status=Question.Status.PUBLISHED,
-                    technology=evaluation.technology,
-                )
-                questions_obj.append(question)
-                choices_data.append(choices)
+                title = q_data.get('title')
 
-            questions_obj = Question.objects.bulk_create(questions_obj)
-            choices_obj = []
-            for i, question in enumerate(questions_obj):
-                choices = choices_data[i]
-                shuffle(choices)
-                for c_data in choices:
-                    choice = Choice(
-                        question=question,
-                        **c_data,
+                question = existing_questions.get(title.lower())
+
+                if question:
+                    for field, value in q_data.items():
+                        if hasattr(question, field):
+                            setattr(question, field, value)
+                    question.status = Question.Status.PUBLISHED
+                    question.save()
+
+                    question.choices.all().delete()
+                else:
+                    question = Question.objects.create(
+                        **q_data,
+                        publisher=admin_user,
+                        status=Question.Status.PUBLISHED,
+                        technology=tech,
                     )
-                    choices_obj.append(choice)
-            Choice.objects.bulk_create(choices_obj)
+
+                nb_questions += 1
+                Choice.objects.bulk_create([
+                    Choice(question=question, **choice_data)
+                    for choice_data in choices
+                ])
+
+                if not evaluation.questions.filter(pk=question.pk).exists():
+                    evaluation.questions.add(question)
+
+            self.stdout.write(self.style.SUCCESS(
+                f'Successfully processed evaluation "{evaluation.title}" with {len(questions_data)} questions.'))
 
             action = "mise à jour" if not created else "créée"
             self.stdout.write(self.style.SUCCESS(
-                f'Évaluation "{evaluation.title}" {action} avec succès avec {len(questions)} questions.'))
+                f'Évaluation "{evaluation.title}" {action} avec succès avec {nb_questions} questions.'))

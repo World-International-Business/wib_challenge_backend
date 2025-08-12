@@ -6,7 +6,7 @@
   "questions": [
     {
       "title": "Quelle est la façon correcte de créer une liste vide en Python?",
-      "description": "En Python, une liste vide peut être créée soit avec la notation littérale `[]`, soit avec le constructeur `list()`.",
+      "explanation": "En Python, une liste vide peut être créée soit avec la notation littérale `[]`, soit avec le constructeur `list()`.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -30,7 +30,7 @@
     },
     {
       "title": "Comment accéder au troisième élément d'une liste my_list?",
-      "description": "En Python, l'indexation commence à 0, donc le troisième élément a l'index 2.",
+      "explanation": "En Python, l'indexation commence à 0, donc le troisième élément a l'index 2.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -55,6 +55,7 @@
     {
       "title": "Quelle sera la sortie du code suivant?",
       "description": "```python\nx = 10\nif x > 5:\n    print('Plus grand que 5')\nelif x > 15:\n    print('Plus grand que 15')\nelse:\n    print('Autre cas')\n```",
+      "explanation": "Dans cette structure conditionnelle, la première condition `x > 5` est vraie (10 > 5), donc le code affiche 'Plus grand que 5' et ne vérifie pas les conditions suivantes.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -77,8 +78,7 @@
       ]
     },
     {
-      "title": "Quelle est la façon correcte de créer un dictionnaire en Python?",
-      "description": "Un dictionnaire peut être créé en utilisant des accolades `{}` avec des paires clé-valeur séparées par des deux-points, ou en utilisant le constructeur `dict()`.",
+      "title": "Quelle est la façon correcte de créer un dictionnaire en Python? Un dictionnaire peut être créé en utilisant des accolades `{}` avec des paires clé-valeur séparées par des deux-points, ou en utilisant le constructeur `dict()`.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -103,6 +103,7 @@
     {
       "title": "Qu'est-ce que le \"duck typing\" en Python?",
       "description": "Le duck typing est un concept où le type ou la classe d'un objet est moins important que les méthodes qu'il définit. Si un objet marche comme un canard et fait coin-coin comme un canard, alors c'est un canard (même s'il n'est pas de la classe Canard).",
+      "explanation": "Le duck typing est un concept où le type ou la classe d'un objet est moins important que les méthodes qu'il définit. Si un objet marche comme un canard et fait coin-coin comme un canard, alors c'est un canard.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [

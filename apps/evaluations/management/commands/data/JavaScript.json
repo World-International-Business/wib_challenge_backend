@@ -5,8 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "title": "Quelle est la sortie de console.log(typeof null)?",
-      "description": "En JavaScript, `typeof null` retourne `'object'`. C'est un bug historique qui a été conservé pour maintenir la compatibilité avec le code existant.",
+      "title": "Quelle est la sortie de `console.log(typeof null)`?",
+      "explanation": "En JavaScript, `typeof null` retourne `'object'`. C'est un bug historique qui a été conservé pour maintenir la compatibilité avec le code existant.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "title": "Quelle est la sortie de console.log(0.1 + 0.2 === 0.3)?",
+      "title": "Quelle est la sortie de `console.log(0.1 + 0.2 === 0.3)`?",
       "description": "En JavaScript, les nombres à virgule flottante peuvent causer des problèmes de précision. `0.1 + 0.2` donne approximativement `0.30000000000000004`, qui n'est pas strictement égal à `0.3`.",
       "difficulty": "medium",
       "duration": 35,

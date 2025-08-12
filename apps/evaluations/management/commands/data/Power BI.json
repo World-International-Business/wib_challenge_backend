@@ -5,8 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "title": "Microsoft Power BI",
-      "description": "Qu'est-ce que Microsoft Power BI ?",
+      "title": "Qu'est-ce que Microsoft Power BI?",
       "explanation": "Power BI est une suite d'outils de business intelligence de Microsoft qui permet d'analyser des données et de créer des visualisations interactives et des rapports.",
       "difficulty": "easy",
       "duration": 25,
@@ -30,8 +29,7 @@
       ]
     },
     {
-      "title": "Composants principaux",
-      "description": "Quels sont les **composants principaux** de Power BI ?",
+      "title": "Quels sont les composants principaux de Power BI?",
       "explanation": "Power BI se compose de Power BI Desktop (création), Power BI Service (cloud), Power BI Mobile (consultation mobile) et Power BI Gateway (connexions on-premise).",
       "difficulty": "medium",
       "duration": 35,
@@ -55,8 +53,7 @@
       ]
     },
     {
-      "title": "Importer des données",
-      "description": "Comment **importer des données** dans Power BI ?",
+      "title": "Comment importer des données dans Power BI?",
       "explanation": "Les données s'importent via 'Obtenir des données' qui propose de nombreuses sources : Excel, SQL Server, web, SharePoint, APIs, fichiers CSV, etc.",
       "difficulty": "easy",
       "duration": 30,
@@ -80,8 +77,7 @@
       ]
     },
     {
-      "title": "Power Query",
-      "description": "Qu'est-ce que **Power Query** ?",
+      "title": "Qu'est-ce que Power Query?",
       "explanation": "Power Query est l'outil ETL (Extract, Transform, Load) intégré à Power BI qui permet de nettoyer, transformer et combiner les données avant analyse.",
       "difficulty": "medium",
       "duration": 40,
@@ -105,8 +101,7 @@
       ]
     },
     {
-      "title": "Créer une relation",
-      "description": "Comment créer une **relation** entre deux tables ?",
+      "title": "Comment créer une relation entre deux tables?",
       "explanation": "Les relations se créent dans la vue Modèle en glissant un champ d'une table vers le champ correspondant d'une autre table, ou via 'Gérer les relations'.",
       "difficulty": "medium",
       "duration": 35,
@@ -130,8 +125,7 @@
       ]
     },
     {
-      "title": "Mesure dans Power BI",
-      "description": "Qu'est-ce qu'une **mesure** dans Power BI ?",
+      "title": "Qu'est-ce qu'une mesure dans Power BI?",
       "explanation": "Une mesure est un calcul dynamique écrit en DAX qui s'évalue en fonction du contexte de filtre (ex: somme des ventes par région).",
       "difficulty": "medium",
       "duration": 40,
@@ -155,8 +149,7 @@
       ]
     },
     {
-      "title": "Langage DAX",
-      "description": "Qu'est-ce que **DAX** ?",
+      "title": "Qu'est-ce que DAX?",
       "explanation": "DAX (Data Analysis Expressions) est le langage de formules de Power BI pour créer des mesures, colonnes calculées et tables calculées.",
       "difficulty": "medium",
       "duration": 35,
@@ -180,8 +173,7 @@
       ]
     },
     {
-      "title": "Créer un graphique",
-      "description": "Comment créer un **graphique** dans Power BI ?",
+      "title": "Comment créer un graphique dans Power BI?",
       "explanation": "Les graphiques se créent en sélectionnant une visualisation dans le panneau Visualisations puis en glissant les champs appropriés dans les zones de données.",
       "difficulty": "easy",
       "duration": 30,
@@ -205,8 +197,7 @@
       ]
     },
     {
-      "title": "Filtre dans Power BI",
-      "description": "Qu'est-ce qu'un **filtre** dans Power BI ?",
+      "title": "Qu'est-ce qu'un filtre dans Power BI?",
       "explanation": "Un filtre permet de limiter les données affichées selon des critères spécifiques. Il peut être appliqué au niveau visuel, page ou rapport.",
       "difficulty": "easy",
       "duration": 30,
@@ -230,8 +221,7 @@
       ]
     },
     {
-      "title": "Publier un rapport",
-      "description": "Comment **publier** un rapport sur Power BI Service ?",
+      "title": "Comment publier un rapport sur Power BI Service?",
       "explanation": "La publication se fait depuis Power BI Desktop via le bouton 'Publier' qui upload le rapport vers l'espace de travail choisi dans Power BI Service.",
       "difficulty": "easy",
       "duration": 25,
@@ -255,8 +245,7 @@
       ]
     },
     {
-      "title": "Tableau de bord",
-      "description": "Qu'est-ce qu'un **tableau de bord** (Dashboard) ?",
+      "title": "Qu'est-ce qu'un tableau de bord (Dashboard)?",
       "explanation": "Un tableau de bord est une vue d'ensemble qui combine des éléments visuels de différents rapports en une seule page pour un aperçu rapide des KPI.",
       "difficulty": "medium",
       "duration": 35,
@@ -280,8 +269,7 @@
       ]
     },
     {
-      "title": "Actualiser les données",
-      "description": "Comment **actualiser** les données ?",
+      "title": "Comment actualiser les données?",
       "explanation": "L'actualisation se fait manuellement avec le bouton Actualiser, ou automatiquement via une planification dans Power BI Service (nécessite une gateway pour sources on-premise).",
       "difficulty": "medium",
       "duration": 40,
@@ -305,8 +293,7 @@
       ]
     },
     {
-      "title": "Colonne calculée",
-      "description": "Qu'est-ce qu'une **colonne calculée** ?",
+      "title": "Qu'est-ce qu'une colonne calculée?",
       "explanation": "Une colonne calculée est une nouvelle colonne créée avec une formule DAX qui s'évalue ligne par ligne et est stockée dans le modèle de données.",
       "difficulty": "medium",
       "duration": 40,
@@ -330,8 +317,7 @@
       ]
     },
     {
-      "title": "Créer un KPI",
-      "description": "Comment créer un **KPI** (indicateur clé) ?",
+      "title": "Comment créer un KPI (indicateur clé)?",
       "explanation": "Un KPI se crée avec la visualisation 'Carte' pour une valeur simple, ou 'Jauge' pour comparer à un objectif, en utilisant des mesures DAX appropriées.",
       "difficulty": "medium",
       "duration": 35,
@@ -355,8 +341,7 @@
       ]
     },
     {
-      "title": "Drill-down",
-      "description": "Qu'est-ce que le **drill-down** ?",
+      "title": "Qu'est-ce que le drill-down?",
       "explanation": "Le drill-down permet de naviguer dans les niveaux de détail d'une hiérarchie (ex: Année > Trimestre > Mois) pour explorer les données en profondeur.",
       "difficulty": "medium",
       "duration": 35,
@@ -380,8 +365,7 @@
       ]
     },
     {
-      "title": "Partager un rapport",
-      "description": "Comment **partager** un rapport ?",
+      "title": "Comment partager un rapport?",
       "explanation": "Le partage se fait dans Power BI Service via le bouton 'Partager' qui permet d'inviter des utilisateurs avec différents niveaux de permissions.",
       "difficulty": "easy",
       "duration": 30,
@@ -405,8 +389,7 @@
       ]
     },
     {
-      "title": "Espace de travail",
-      "description": "Qu'est-ce qu'un **espace de travail** ?",
+      "title": "Qu'est-ce qu'un espace de travail?",
       "explanation": "Un espace de travail est un conteneur collaboratif où les équipes peuvent créer, modifier et partager des rapports, tableaux de bord et jeux de données.",
       "difficulty": "medium",
       "duration": 35,
@@ -430,8 +413,7 @@
       ]
     },
     {
-      "title": "Table de faits et dimensions",
-      "description": "Comment créer une **table de faits** et des **tables de dimensions** ?",
+      "title": "Comment créer une table de faits et des tables de dimensions?",
       "explanation": "Dans Power BI, on structure les données selon le modèle en étoile : table de faits centrale (transactions) liée à des tables de dimensions (clients, produits, temps).",
       "difficulty": "hard",
       "duration": 50,
@@ -455,8 +437,7 @@
       ]
     },
     {
-      "title": "DirectQuery",
-      "description": "Qu'est-ce que **DirectQuery** ?",
+      "title": "Qu'est-ce que DirectQuery?",
       "explanation": "DirectQuery permet de se connecter directement à la source de données sans importer, gardant les données à jour mais avec des performances potentiellement moindres.",
       "difficulty": "hard",
       "duration": 45,
@@ -480,8 +461,7 @@
       ]
     },
     {
-      "title": "Optimiser les performances",
-      "description": "Comment optimiser les **performances** d'un rapport ?",
+      "title": "Comment optimiser les performances d'un rapport?",
       "explanation": "L'optimisation passe par la réduction des colonnes inutiles, l'utilisation de mesures au lieu de colonnes calculées, l'optimisation DAX et la compression des données.",
       "difficulty": "hard",
       "duration": 50,
@@ -505,8 +485,7 @@
       ]
     },
     {
-      "title": "Power BI Premium",
-      "description": "Qu'est-ce que **Power BI Premium** ?",
+      "title": "Qu'est-ce que Power BI Premium?",
       "explanation": "Power BI Premium offre une capacité dédiée avec des fonctionnalités avancées : actualisation plus fréquente, partage étendu, et IA intégrée.",
       "difficulty": "medium",
       "duration": 35,
@@ -530,8 +509,7 @@
       ]
     },
     {
-      "title": "Rapport paginé",
-      "description": "Comment créer un **rapport paginé** ?",
+      "title": "Comment créer un rapport paginé?",
       "explanation": "Les rapports paginés se créent avec Power BI Report Builder, optimisés pour l'impression avec mise en page fixe et export vers PDF/Excel.",
       "difficulty": "hard",
       "duration": 40,
@@ -555,8 +533,7 @@
       ]
     },
     {
-      "title": "Sécurité au niveau ligne",
-      "description": "Qu'est-ce que la **sécurité au niveau ligne** (RLS) ?",
+      "title": "Qu'est-ce que la sécurité au niveau ligne (RLS)?",
       "explanation": "La RLS (Row Level Security) permet de filtrer automatiquement les données selon l'utilisateur connecté, garantissant que chacun ne voit que ses données autorisées.",
       "difficulty": "hard",
       "duration": 45,
@@ -580,8 +557,7 @@
       ]
     },
     {
-      "title": "Utiliser des paramètres",
-      "description": "Comment utiliser des **paramètres** dans Power BI ?",
+      "title": "Comment utiliser des paramètres dans Power BI?",
       "explanation": "Les paramètres se créent dans Power Query Editor pour rendre les requêtes dynamiques (ex: période de dates, serveur de base) et peuvent être modifiés sans refaire le rapport.",
       "difficulty": "hard",
       "duration": 45,
@@ -605,8 +581,7 @@
       ]
     },
     {
-      "title": "Power BI Embedded",
-      "description": "Qu'est-ce que **Power BI Embedded** ?",
+      "title": "Qu'est-ce que Power BI Embedded?",
       "explanation": "Power BI Embedded permet d'intégrer des rapports et tableaux de bord Power BI dans des applications tierces ou sites web personnalisés.",
       "difficulty": "hard",
       "duration": 40,
@@ -630,8 +605,7 @@
       ]
     },
     {
-      "title": "Créer des alertes",
-      "description": "Comment créer des **alertes** sur les données ?",
+      "title": "Comment créer des alertes sur les données?",
       "explanation": "Les alertes se configurent dans Power BI Service sur des cartes et jauges pour recevoir des notifications quand les valeurs dépassent des seuils définis.",
       "difficulty": "medium",
       "duration": 40,
@@ -655,8 +629,7 @@
       ]
     },
     {
-      "title": "Power BI Goals",
-      "description": "Qu'est-ce que **Power BI Goals** ?",
+      "title": "Qu'est-ce que Power BI Goals?",
       "explanation": "Power BI Goals permet de définir et suivre des objectifs métier avec des métriques clés, facilitant l'alignement sur les KPI organisationnels.",
       "difficulty": "medium",
       "duration": 35,
@@ -680,8 +653,7 @@
       ]
     },
     {
-      "title": "Utiliser l'IA",
-      "description": "Comment utiliser l'**IA** dans Power BI ?",
+      "title": "Comment utiliser l'IA dans Power BI?",
       "explanation": "Power BI intègre plusieurs fonctions IA : Q&A (questions en langage naturel), Quick Insights (insights automatiques), et AI Visuals (décomposition, influenceurs clés).",
       "difficulty": "hard",
       "duration": 50,
@@ -705,8 +677,7 @@
       ]
     },
     {
-      "title": "Certification de jeu de données",
-      "description": "Qu'est-ce que la **certification de jeu de données** ?",
+      "title": "Qu'est-ce que la certification de jeu de données?",
       "explanation": "La certification marque un jeu de données comme source de vérité approuvée par l'organisation, garantissant sa fiabilité pour les rapports critiques.",
       "difficulty": "hard",
       "duration": 40,
@@ -730,8 +701,7 @@
       ]
     },
     {
-      "title": "Rapport mobile-friendly",
-      "description": "Comment créer un **rapport mobile-friendly** ?",
+      "title": "Comment créer un rapport mobile-friendly?",
       "explanation": "Un rapport mobile-friendly utilise la vue mobile de Power BI Desktop pour optimiser la disposition des visuels sur petit écran avec navigation tactile.",
       "difficulty": "medium",
       "duration": 40,
@@ -755,8 +725,7 @@
       ]
     },
     {
-      "title": "Power Automate avec Power BI",
-      "description": "Qu'est-ce que **Power Automate** avec Power BI ?",
+      "title": "Qu'est-ce que Power Automate avec Power BI?",
       "explanation": "Power Automate permet d'automatiser des workflows déclenchés par des événements Power BI (actualisation, seuils atteints) vers d'autres systèmes.",
       "difficulty": "hard",
       "duration": 45,
@@ -780,8 +749,7 @@
       ]
     },
     {
-      "title": "Gérer les versions",
-      "description": "Comment **gérer les versions** d'un rapport ?",
+      "title": "Comment gérer les versions d'un rapport?",
       "explanation": "Power BI Service maintient un historique des versions, permettant de restaurer des versions antérieures et de voir les modifications avec horodatage.",
       "difficulty": "medium",
       "duration": 35,
@@ -805,8 +773,7 @@
       ]
     },
     {
-      "title": "Power BI Dataflows",
-      "description": "Qu'est-ce que **Power BI Dataflows** ?",
+      "title": "Qu'est-ce que Power BI Dataflows?",
       "explanation": "Les Dataflows permettent de préparer et stocker des données transformées dans le cloud, créant une couche de données réutilisable pour plusieurs rapports.",
       "difficulty": "hard",
       "duration": 45,
@@ -830,8 +797,7 @@
       ]
     },
     {
-      "title": "Exporter des données",
-      "description": "Comment **exporter** des données depuis Power BI ?",
+      "title": "Comment exporter des données depuis Power BI?",
       "explanation": "L'export se fait via les options du visuel (données sous-jacentes, données résumées) vers Excel, CSV, ou PDF pour l'ensemble du rapport.",
       "difficulty": "medium",
       "duration": 30,
@@ -855,8 +821,7 @@
       ]
     },
     {
-      "title": "Gouvernance des données",
-      "description": "Qu'est-ce que la **gouvernance** des données dans Power BI ?",
+      "title": "Qu'est-ce que la gouvernance des données dans Power BI?",
       "explanation": "La gouvernance inclut la gestion des accès, la certification des données, les politiques de partage, et le monitoring de l'utilisation via le portail d'administration.",
       "difficulty": "hard",
       "duration": 50,
@@ -880,8 +845,7 @@
       ]
     },
     {
-      "title": "Calculs de table temporelle",
-      "description": "Comment créer des **calculs de table temporelle** ?",
+      "title": "Comment créer des calculs de table temporelle?",
       "explanation": "Les calculs temporels utilisent les fonctions DAX TIME Intelligence (DATEADD, SAMEPERIODLASTYEAR, YTD) pour comparer des périodes et créer des analyses temporelles.",
       "difficulty": "hard",
       "duration": 50,
@@ -905,8 +869,7 @@
       ]
     },
     {
-      "title": "Troubleshooter un rapport lent",
-      "description": "Comment **troubleshooter** un rapport lent ?",
+      "title": "Comment troubleshooter un rapport lent?",
       "explanation": "Le diagnostic utilise Performance Analyzer dans Desktop, vérifie les relations, optimise les requêtes DAX, et examine les sources de données avec Query Diagnostics.",
       "difficulty": "hard",
       "duration": 50,
@@ -930,8 +893,7 @@
       ]
     },
     {
-      "title": "Power BI REST APIs",
-      "description": "Qu'est-ce que **Power BI REST APIs** ?",
+      "title": "Qu'est-ce que Power BI REST APIs?",
       "explanation": "Les REST APIs permettent d'intégrer Power BI programmatiquement : gestion des rapports, actualisation des données, embedding et administration via code.",
       "difficulty": "hard",
       "duration": 45,
@@ -955,8 +917,7 @@
       ]
     },
     {
-      "title": "Stratégie de déploiement",
-      "description": "Comment implémenter une **stratégie de déploiement** Power BI ?",
+      "title": "Comment implémenter une stratégie de déploiement Power BI?",
       "explanation": "La stratégie inclut des environnements séparés (Dev/Test/Prod), pipelines de déploiement, gestion des sources de données et formation des utilisateurs finaux.",
       "difficulty": "hard",
       "duration": 50,

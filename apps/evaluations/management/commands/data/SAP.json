@@ -5,8 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "title": "SAP",
-      "description": "Qu'est-ce que SAP ?",
+      "title": "Qu'est-ce que SAP?",
       "explanation": "SAP signifie Systems, Applications & Products in Data Processing. C'est un système de gestion intégré (ERP) qui centralise les processus d'entreprise.",
       "difficulty": "easy",
       "duration": 25,
@@ -30,8 +29,7 @@
       ]
     },
     {
-      "title": "Module SAP FI",
-      "description": "Que signifie le **module SAP FI** ?",
+      "title": "Que signifie le **module SAP FI**?",
       "explanation": "Un module SAP est une unité fonctionnelle qui gère un domaine spécifique de l'entreprise comme la finance (FI), la comptabilité de gestion (CO), ou les ventes (SD).",
       "difficulty": "easy",
       "duration": 30,
@@ -55,8 +53,7 @@
       ]
     },
     {
-      "title": "Accès à SAP",
-      "description": "Comment accéder à SAP ?",
+      "title": "Comment accéder à SAP?",
       "explanation": "L'accès à SAP se fait via SAP GUI (Graphical User Interface) en saisissant l'adresse du serveur, le client, l'utilisateur et le mot de passe.",
       "difficulty": "easy",
       "duration": 25,

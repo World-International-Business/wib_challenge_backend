@@ -7,6 +7,7 @@
     {
       "title": "Qu'est-ce que Tailwind CSS?",
       "description": "Tailwind CSS est un framework CSS utilitaire de bas niveau qui permet de construire des designs personnalisés sans quitter votre HTML. Contrairement aux frameworks comme Bootstrap qui offrent des composants prédéfinis, Tailwind fournit des classes utilitaires de bas niveau qui peuvent être combinées pour créer n'importe quel design.",
+      "explanation": "Tailwind CSS est un framework CSS utilitaire de bas niveau qui permet de construire des designs personnalisés sans quitter votre HTML. Contrairement aux frameworks comme Bootstrap qui offrent des composants prédéfinis, Tailwind fournit des classes utilitaires de bas niveau qui peuvent être combinées pour créer n'importe quel design.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -31,6 +32,7 @@
     {
       "title": "Comment définir la couleur de texte en rouge avec Tailwind CSS?",
       "description": "En Tailwind, les couleurs de texte sont définies avec le préfixe `text-` suivi du nom de la couleur et éventuellement d'une variante d'intensité. `text-red-500` applique une couleur rouge de moyenne intensité au texte.",
+      "explanation": "En Tailwind, les couleurs de texte sont définies avec le préfixe `text-` suivi du nom de la couleur et éventuellement d'une variante d'intensité. `text-red-500` applique une couleur rouge de moyenne intensité au texte.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -319,6 +321,7 @@
     {
       "title": "Comment utiliser l'espace de nommage groupe (group) pour styliser des éléments enfants lors du survol du parent?",
       "description": "La classe `group` sur un élément parent, combinée avec `group-hover:` sur les enfants, permet de modifier le style des enfants lorsque le parent est survolé. C'est une technique utile pour les cartes, boutons complexes, etc.",
+      "explanation": "La classe `group` sur un élément parent, combinée avec `group-hover:` sur les enfants, permet de modifier le style des enfants lorsque le parent est survolé. C'est une technique utile pour les cartes, boutons complexes, etc.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [

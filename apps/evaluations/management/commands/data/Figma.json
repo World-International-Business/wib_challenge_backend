@@ -5,8 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "title": "Figma",
-      "description": "Qu'est-ce que Figma ?",
+      "title": "Qu'est-ce que Figma ?",
       "explanation": "Figma est un outil de design d'interface utilisateur basé sur le web qui permet la collaboration en temps réel et le prototypage interactif.",
       "difficulty": "easy",
       "duration": 20,
@@ -30,8 +29,7 @@
       ]
     },
     {
-      "title": "Avantage principal de Figma",
-      "description": "Quel est l'avantage principal de Figma par rapport aux outils de design traditionnels ?",
+      "title": "Quel est l'avantage principal de Figma par rapport aux outils de design traditionnels ?",
       "explanation": "Figma permet la collaboration en temps réel entre plusieurs utilisateurs, contrairement aux outils traditionnels qui nécessitent des fichiers partagés.",
       "difficulty": "easy",
       "duration": 25,
@@ -55,8 +53,7 @@
       ]
     },
     {
-      "title": "Nouveau fichier dans Figma",
-      "description": "Comment créer un nouveau fichier dans Figma ?",
+      "title": "Comment créer un nouveau fichier dans Figma ?",
       "explanation": "Dans Figma, on peut créer un nouveau fichier en cliquant sur le bouton '+' ou 'New' dans le tableau de bord.",
       "difficulty": "easy",
       "duration": 20,
@@ -80,8 +77,7 @@
       ]
     },
     {
-      "title": "Frame dans Figma",
-      "description": "Qu'est-ce qu'un **Frame** dans Figma ?",
+      "title": "Qu'est-ce qu'un *Frame* dans Figma ?",
       "explanation": "Un Frame est un conteneur qui définit les limites d'un design, similaire à un artboard. Il peut représenter un écran, une section ou tout élément conteneur.",
       "difficulty": "medium",
       "duration": 30,
@@ -105,8 +101,7 @@
       ]
     },
     {
-      "title": "Raccourci clavier Frame",
-      "description": "Quel raccourci clavier permet de créer un Frame ?",
+      "title": "Quel raccourci clavier permet de créer un Frame ?",
       "explanation": "La touche 'F' permet de sélectionner l'outil Frame rapidement dans Figma.",
       "difficulty": "easy",
       "duration": 20,
@@ -130,8 +125,7 @@
       ]
     },
     {
-      "title": "Dupliquer un élément",
-      "description": "Comment dupliquer un élément dans Figma ?",
+      "title": "Comment dupliquer un élément dans Figma ?",
       "explanation": "Pour dupliquer un élément dans Figma, on peut utiliser Ctrl+D (Cmd+D sur Mac) ou maintenir Alt en glissant l'élément.",
       "difficulty": "easy",
       "duration": 25,
@@ -155,8 +149,7 @@
       ]
     },
     {
-      "title": "Composant dans Figma",
-      "description": "Qu'est-ce qu'un **Composant** dans Figma ?",
+      "title": "Qu'est-ce qu'un **Composant** dans Figma ?",
       "explanation": "Un Composant est un élément réutilisable qui peut être instancié plusieurs fois. Les modifications du composant maître se répercutent sur toutes ses instances.",
       "difficulty": "medium",
       "duration": 35,
@@ -180,8 +173,7 @@
       ]
     },
     {
-      "title": "Créer un Composant",
-      "description": "Comment créer un Composant à partir d'un élément ?",
+      "title": "Comment créer un Composant à partir d'un élément ?",
       "explanation": "Pour créer un composant, on sélectionne l'élément et on utilise Ctrl+Alt+K (Cmd+Option+K sur Mac) ou clic droit > 'Create Component'.",
       "difficulty": "medium",
       "duration": 30,
@@ -205,8 +197,7 @@
       ]
     },
     {
-      "title": "Auto Layout dans Figma",
-      "description": "Qu'est-ce que l'**Auto Layout** dans Figma ?",
+      "title": "Qu'est-ce que l'**Auto Layout** dans Figma ?",
       "explanation": "Auto Layout permet de créer des designs qui s'adaptent automatiquement au contenu, similaire au flexbox en CSS.",
       "difficulty": "medium",
       "duration": 40,
@@ -230,8 +221,7 @@
       ]
     },
     {
-      "title": "Activer l'Auto Layout",
-      "description": "Comment activer l'Auto Layout sur un élément ?",
+      "title": "Comment activer l'Auto Layout sur un élément ?",
       "explanation": "L'Auto Layout peut être activé en sélectionnant l'élément et en appuyant sur Shift+A ou via le panneau de propriétés.",
       "difficulty": "medium",
       "duration": 30,
@@ -255,8 +245,7 @@
       ]
     },
     {
-      "title": "Style dans Figma",
-      "description": "Qu'est-ce qu'un **Style** dans Figma ?",
+      "title": "Qu'est-ce qu'un **Style** dans Figma ?",
       "explanation": "Un Style permet de sauvegarder des propriétés de design (couleurs, typographie, effets, grilles) pour les réutiliser et maintenir la cohérence.",
       "difficulty": "medium",
       "duration": 35,
@@ -280,8 +269,7 @@
       ]
     },
     {
-      "title": "Créer un prototype",
-      "description": "Comment créer un **prototype** dans Figma ?",
+      "title": "Comment créer un **prototype** dans Figma ?",
       "explanation": "Pour créer un prototype, on passe en mode Prototype et on relie les frames avec des flèches pour définir les interactions.",
       "difficulty": "medium",
       "duration": 40,
@@ -305,8 +293,7 @@
       ]
     },
     {
-      "title": "Interactions dans Figma",
-      "description": "Quels types d'interactions sont disponibles dans Figma ?",
+      "title": "Quels types d'interactions sont disponibles dans Figma ?",
       "explanation": "Figma offre plusieurs types d'interactions : On Click, On Hover, On Press, On Drag, After Delay, et Mouse Enter/Leave.",
       "difficulty": "medium",
       "duration": 45,
@@ -330,8 +317,7 @@
       ]
     },
     {
-      "title": "Partager un design",
-      "description": "Comment **partager** un design Figma ?",
+      "title": "Comment **partager** un design Figma ?",
       "explanation": "On peut partager un design via le bouton 'Share' qui génère un lien de partage avec différents niveaux de permissions.",
       "difficulty": "easy",
       "duration": 25,
@@ -355,8 +341,7 @@
       ]
     },
     {
-      "title": "Mode Développeur",
-      "description": "Qu'est-ce que le **mode Développeur** dans Figma ?",
+      "title": "Qu'est-ce que le **mode Développeur** dans Figma ?",
       "explanation": "Le mode Développeur (Dev Mode) fournit aux développeurs des informations techniques comme le code CSS, les mesures, et les assets exportables.",
       "difficulty": "medium",
       "duration": 35,
@@ -380,8 +365,7 @@
       ]
     },
     {
-      "title": "Créer une grille",
-      "description": "Comment créer une **grille** dans Figma ?",
+      "title": "Comment créer une **grille** dans Figma ?",
       "explanation": "Une grille peut être ajoutée à un Frame via le panneau de propriétés en cliquant sur l'icône de grille et en configurant les colonnes/rangées.",
       "difficulty": "medium",
       "duration": 30,
@@ -405,8 +389,7 @@
       ]
     },
     {
-      "title": "Variante de composant",
-      "description": "Qu'est-ce qu'une **Variante** de composant ?",
+      "title": "Qu'est-ce qu'une **Variante** de composant ?",
       "explanation": "Les Variantes permettent de regrouper différentes versions d'un composant (états, tailles, couleurs) en un seul composant principal.",
       "difficulty": "hard",
       "duration": 45,
@@ -430,8 +413,7 @@
       ]
     },
     {
-      "title": "Contraindre un élément",
-      "description": "Comment **contraindre** un élément dans un Frame ?",
+      "title": "Comment **contraindre** un élément dans un Frame ?",
       "explanation": "Les contraintes définissent comment un élément se comporte lors du redimensionnement de son conteneur (gauche, droite, centre, échelle, etc.).",
       "difficulty": "medium",
       "duration": 35,
@@ -455,8 +437,7 @@
       ]
     },
     {
-      "title": "FigJam",
-      "description": "Qu'est-ce que **FigJam** ?",
+      "title": "Qu'est-ce que **FigJam** ?",
       "explanation": "FigJam est l'outil de tableau blanc collaboratif de Figma, conçu pour le brainstorming, les diagrammes et les ateliers d'équipe.",
       "difficulty": "easy",
       "duration": 25,
@@ -480,8 +461,7 @@
       ]
     },
     {
-      "title": "Créer un masque",
-      "description": "Comment créer un **masque** dans Figma ?",
+      "title": "Comment créer un **masque** dans Figma ?",
       "explanation": "Un masque peut être créé en sélectionnant deux objets et en utilisant Ctrl+Alt+M (Cmd+Option+M sur Mac) ou via le menu contextuel.",
       "difficulty": "medium",
       "duration": 30,
@@ -505,8 +485,7 @@
       ]
     },
     {
-      "title": "Smart Animate",
-      "description": "Qu'est-ce que le **Smart Animate** ?",
+      "title": "Qu'est-ce que le **Smart Animate** ?",
       "explanation": "Smart Animate crée automatiquement des transitions fluides entre des frames en interpolant les propriétés des objets similaires.",
       "difficulty": "hard",
       "duration": 40,
@@ -530,8 +509,7 @@
       ]
     },
     {
-      "title": "Exporter des assets",
-      "description": "Comment **exporter** des assets depuis Figma ?",
+      "title": "Comment **exporter** des assets depuis Figma ?",
       "explanation": "Les assets peuvent être exportés via le panneau Export en sélectionnant l'élément et en choisissant le format (PNG, JPG, SVG, PDF).",
       "difficulty": "easy",
       "duration": 30,
@@ -555,8 +533,7 @@
       ]
     },
     {
-      "title": "Équipe dans Figma",
-      "description": "Qu'est-ce qu'une **équipe** (Team) dans Figma ?",
+      "title": "Qu'est-ce qu'une **équipe** (Team) dans Figma ?",
       "explanation": "Une équipe est un espace de travail partagé où plusieurs utilisateurs peuvent collaborer sur des projets avec des permissions définies.",
       "difficulty": "easy",
       "duration": 25,
@@ -580,8 +557,7 @@
       ]
     },
     {
-      "title": "Utiliser les plugins",
-      "description": "Comment utiliser les **plugins** dans Figma ?",
+      "title": "Comment utiliser les **plugins** dans Figma ?",
       "explanation": "Les plugins sont accessibles via le menu Plugins ou en tapant '/' dans l'interface. Ils étendent les fonctionnalités de Figma.",
       "difficulty": "medium",
       "duration": 30,
@@ -605,8 +581,7 @@
       ]
     },
     {
-      "title": "Inspection d'un design",
-      "description": "Qu'est-ce que l'**inspection** d'un design ?",
+      "title": "Qu'est-ce que l'**inspection** d'un design ?",
       "explanation": "L'inspection permet aux développeurs de voir les propriétés CSS, les mesures, les couleurs et autres spécifications techniques d'un design.",
       "difficulty": "medium",
       "duration": 35,
@@ -630,8 +605,7 @@
       ]
     },
     {
-      "title": "Créer un système de design",
-      "description": "Comment créer un **système de design** dans Figma ?",
+      "title": "Comment créer un **système de design** dans Figma ?",
       "explanation": "Un système de design se construit avec des composants, des styles, des tokens de design et une bibliothèque partagée pour maintenir la cohérence.",
       "difficulty": "hard",
       "duration": 50,
@@ -655,8 +629,7 @@
       ]
     },
     {
-      "title": "Overflow dans Figma",
-      "description": "Qu'est-ce que l'**overflow** dans Figma ?",
+      "title": "Qu'est-ce que l'**overflow** dans Figma ?",
       "explanation": "L'overflow détermine comment le contenu qui dépasse les limites d'un Frame est affiché (visible, masqué, ou avec défilement).",
       "difficulty": "medium",
       "duration": 35,
@@ -680,8 +653,7 @@
       ]
     },
     {
-      "title": "Créer une transition",
-      "description": "Comment créer une **transition** entre deux écrans ?",
+      "title": "Comment créer une **transition** entre deux écrans ?",
       "explanation": "Les transitions se créent en mode Prototype en reliant deux frames et en configurant l'animation (type, durée, easing).",
       "difficulty": "medium",
       "duration": 40,
@@ -705,8 +677,7 @@
       ]
     },
     {
-      "title": "Boolean Operations",
-      "description": "Qu'est-ce que le **Boolean Operations** dans Figma ?",
+      "title": "Qu'est-ce que le **Boolean Operations** dans Figma ?",
       "explanation": "Les Boolean Operations permettent de combiner des formes (union, soustraction, intersection, exclusion) pour créer des formes complexes.",
       "difficulty": "medium",
       "duration": 35,
@@ -730,8 +701,7 @@
       ]
     },
     {
-      "title": "Organiser les calques",
-      "description": "Comment **organiser** les calques dans Figma ?",
+      "title": "Comment **organiser** les calques dans Figma ?",
       "explanation": "Les calques peuvent être organisés en les renommant, les groupant (Ctrl+G), et en utilisant une hiérarchie logique dans le panneau des calques.",
       "difficulty": "easy",
       "duration": 30,
@@ -755,8 +725,7 @@
       ]
     },
     {
-      "title": "Component Set",
-      "description": "Qu'est-ce que le **Component Set** ?",
+      "title": "Qu'est-ce que le **Component Set** ?",
       "explanation": "Un Component Set regroupe plusieurs variantes d'un composant, permettant de passer facilement d'une variante à l'autre.",
       "difficulty": "hard",
       "duration": 40,
@@ -780,8 +749,7 @@
       ]
     },
     {
-      "title": "Collaborer en temps réel",
-      "description": "Comment **collaborer en temps réel** dans Figma ?",
+      "title": "Comment **collaborer en temps réel** dans Figma ?",
       "explanation": "La collaboration se fait automatiquement quand plusieurs personnes accèdent au même fichier. On peut voir les curseurs des autres et leurs modifications en direct.",
       "difficulty": "easy",
       "duration": 25,
@@ -805,8 +773,7 @@
       ]
     },
     {
-      "title": "Accessibility (a11y)",
-      "description": "Qu'est-ce que l'**accessibility** (a11y) dans Figma ?",
+      "title": "Qu'est-ce que l'**accessibility** (a11y) dans Figma ?",
       "explanation": "Figma propose des outils pour tester l'accessibilité : contraste des couleurs, focus states, annotations pour les lecteurs d'écran.",
       "difficulty": "hard",
       "duration": 45,
@@ -830,8 +797,7 @@
       ]
     },
     {
-      "title": "Design responsive",
-      "description": "Comment créer un **design responsive** dans Figma ?",
+      "title": "Comment créer un **design responsive** dans Figma ?",
       "explanation": "Le design responsive se crée avec les contraintes, l'Auto Layout, et en définissant plusieurs breakpoints avec différentes tailles de Frame.",
       "difficulty": "hard",
       "duration": 50,
@@ -855,8 +821,7 @@
       ]
     },
     {
-      "title": "Design Tokens",
-      "description": "Qu'est-ce que les **Design Tokens** ?",
+      "title": "Qu'est-ce que les **Design Tokens** dans Figma ?",
       "explanation": "Les Design Tokens sont des valeurs nommées qui stockent les décisions de design (couleurs, espacements, typographie) pour maintenir la cohérence.",
       "difficulty": "hard",
       "duration": 45,
@@ -880,8 +845,7 @@
       ]
     },
     {
-      "title": "Tester un prototype",
-      "description": "Comment **tester** un prototype Figma ?",
+      "title": "Comment tester un prototype Figma ?",
       "explanation": "Un prototype se teste en mode Présentation (Play) en cliquant sur l'icône de lecture, permettant d'interagir avec le design comme un utilisateur final.",
       "difficulty": "medium",
       "duration": 30,
@@ -905,8 +869,7 @@
       ]
     },
     {
-      "title": "Handoff en design",
-      "description": "Qu'est-ce que le **handoff** en design ?",
+      "title": "Qu'est-ce que le *handoff* en design ?",
       "explanation": "Le handoff est le processus de transmission des specifications de design aux développeurs, facilité par les outils d'inspection de Figma.",
       "difficulty": "hard",
       "duration": 40,
@@ -930,8 +893,7 @@
       ]
     },
     {
-      "title": "Version control dans Figma",
-      "description": "Comment **version control** dans Figma ?",
+      "title": "Comment version control dans Figma ?",
       "explanation": "Figma sauvegarde automatiquement l'historique des versions, accessible via le panneau Version History pour voir et restaurer les versions précédentes.",
       "difficulty": "medium",
       "duration": 35,
@@ -955,8 +917,7 @@
       ]
     },
     {
-      "title": "Résolution pour designs mobiles",
-      "description": "Quelle est la **résolution recommandée** pour les designs mobiles ?",
+      "title": "Quelle est la **résolution recommandée** pour les designs mobiles ?",
       "explanation": "Pour les designs mobiles, il est recommandé de designer à 1x (375x812 pour iPhone) ou 2x selon les besoins, Figma gérant automatiquement les exports en différentes résolutions.",
       "difficulty": "medium",
       "duration": 35,
@@ -980,8 +941,7 @@
       ]
     },
     {
-      "title": "Commenter un design",
-      "description": "Comment **commenter** un design dans Figma ?",
+      "title": "Comment **commenter** un design dans Figma ?",
       "explanation": "Les commentaires se font en cliquant sur l'icône de commentaire puis en cliquant sur la zone à commenter, permettant des discussions contextuelles.",
       "difficulty": "easy",
       "duration": 25,

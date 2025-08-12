@@ -5,8 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "title": "Unity",
-      "description": "Qu'est-ce qu'Unity ?",
+      "title": "Qu'est-ce qu'Unity?",
       "explanation": "Unity est un moteur de jeu cross-platform qui permet de créer des jeux et applications interactives pour de multiples plateformes (PC, mobile, consoles, VR/AR, web).",
       "difficulty": "easy",
       "duration": 20,
@@ -30,8 +29,7 @@
       ]
     },
     {
-      "title": "Unity",
-      "description": "Quel langage de script est principalement utilisé dans Unity ?",
+      "title": "Quel langage de script est principalement utilisé dans Unity?",
       "explanation": "C# est le langage de script principal de Unity depuis que JavaScript (UnityScript) a été déprécié. C# offre de meilleures performances et plus de fonctionnalités.",
       "difficulty": "easy",
       "duration": 20,

@@ -6,7 +6,7 @@
   "questions": [
     {
       "title": "Qu'est-ce que Canva ?",
-      "description": "Canva est une **plateforme de design graphique en ligne** qui permet de créer facilement des visuels professionnels avec des templates prédéfinis, accessible aux non-designers.",
+      "explanation": "Canva est une plateforme de design graphique en ligne qui permet de créer facilement des visuels professionnels avec des templates prédéfinis, accessible aux non-designers.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -30,7 +30,7 @@
     },
     {
       "title": "Quel est l'avantage principal de Canva par rapport aux logiciels traditionnels ?",
-      "description": "Canva se distingue par sa **simplicité d'utilisation**, ses templates prêts à l'emploi et son accessibilité aux non-professionnels du design.",
+      "explanation": "Canva se distingue par sa simplicité d'utilisation, ses templates prêts à l'emploi et son accessibilité aux non-professionnels du design.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -54,7 +54,7 @@
     },
     {
       "title": "Comment créer un nouveau design dans Canva ?",
-      "description": "Pour créer un nouveau design, on clique sur 'Créer un design' puis on choisit un format ou on recherche un type de document spécifique.",
+      "explanation": "Pour créer un nouveau design, on clique sur 'Créer un design' puis on choisit un format ou on recherche un type de document spécifique.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -77,8 +77,8 @@
       ]
     },
     {
-      "title": "Qu'est-ce qu'un **template** dans Canva ?",
-      "description": "Un template est un modèle de design prédéfini que l'on peut personnaliser en changeant les textes, couleurs, images selon ses besoins.",
+      "title": "Qu'est-ce qu'un *template* dans Canva ?",
+      "explanation": "Un template est un modèle de design prédéfini que l'on peut personnaliser en changeant les textes, couleurs, images selon ses besoins.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -101,8 +101,8 @@
       ]
     },
     {
-      "title": "Comment **rechercher** un template spécifique ?",
-      "description": "La recherche de templates se fait via la barre de recherche en tapant des mots-clés comme 'poster', 'logo', 'invitation', etc.",
+      "title": "Comment *rechercher* un template spécifique ?",
+      "explanation": "La recherche de templates se fait via la barre de recherche en tapant des mots-clés comme 'poster', 'logo', 'invitation', etc.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -126,7 +126,7 @@
     },
     {
       "title": "Comment **ajouter du texte** à un design ?",
-      "description": "Le texte s'ajoute via l'onglet 'Texte' dans la barre latérale, où l'on peut choisir des styles prédéfinis ou ajouter un texte simple.",
+      "explanation": "Le texte s'ajoute via l'onglet 'Texte' dans la barre latérale, où l'on peut choisir des styles prédéfinis ou ajouter un texte simple.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -150,7 +150,7 @@
     },
     {
       "title": "Comment **modifier les couleurs** d'un élément ?",
-      "description": "Les couleurs se modifient en sélectionnant l'élément puis en cliquant sur l'icône de couleur pour accéder à la palette ou saisir un code couleur.",
+      "explanation": "Les couleurs se modifient en sélectionnant l'élément puis en cliquant sur l'icône de couleur pour accéder à la palette ou saisir un code couleur.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -174,7 +174,7 @@
     },
     {
       "title": "Comment **importer ses propres images** ?",
-      "description": "Les images personnelles s'importent via l'onglet 'Imports' ou en glissant-déposant directement sur le canevas depuis l'ordinateur.",
+      "explanation": "Les images personnelles s'importent via l'onglet 'Imports' ou en glissant-déposant directement sur le canevas depuis l'ordinateur.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -198,7 +198,7 @@
     },
     {
       "title": "Qu'est-ce que **Canva Pro** ?",
-      "description": "Canva Pro est la version payante qui offre plus de templates, d'images premium, des outils avancés comme le redimensionnement magique et le stockage cloud.",
+      "explanation": "Canva Pro est la version payante qui offre plus de templates, d'images premium, des outils avancés comme le redimensionnement magique et le stockage cloud.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -222,7 +222,7 @@
     },
     {
       "title": "Comment **redimensionner** un design pour différents formats ?",
-      "description": "Le redimensionnement se fait avec la fonction 'Redimensionner' (Canva Pro) qui adapte automatiquement le design aux nouvelles dimensions, ou en créant un nouveau design.",
+      "explanation": "Le redimensionnement se fait avec la fonction 'Redimensionner' (Canva Pro) qui adapte automatiquement le design aux nouvelles dimensions, ou en créant un nouveau design.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -246,7 +246,7 @@
     },
     {
       "title": "Comment **collaborer** sur un design Canva ?",
-      "description": "La collaboration se fait en partageant le design avec d'autres utilisateurs via le bouton 'Partager', en définissant les permissions (visualisation ou modification).",
+      "explanation": "La collaboration se fait en partageant le design avec d'autres utilisateurs via le bouton 'Partager', en définissant les permissions (visualisation ou modification).",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -270,7 +270,7 @@
     },
     {
       "title": "Quels **formats d'export** propose Canva ?",
-      "description": "Canva propose l'export en PNG, JPG, PDF, MP4 (pour les vidéos), GIF (pour les animations), et parfois SVG selon le type de design.",
+      "explanation": "Canva propose l'export en PNG, JPG, PDF, MP4 (pour les vidéos), GIF (pour les animations), et parfois SVG selon le type de design.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -294,7 +294,7 @@
     },
     {
       "title": "Comment créer un **logo** dans Canva ?",
-      "description": "Un logo se crée en choisissant le format 'Logo' puis en utilisant des éléments graphiques, du texte, et des formes pour composer un design unique.",
+      "explanation": "Un logo se crée en choisissant le format 'Logo' puis en utilisant des éléments graphiques, du texte, et des formes pour composer un design unique.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -318,7 +318,7 @@
     },
     {
       "title": "Qu'est-ce que la **Brand Kit** dans Canva ?",
-      "description": "La Brand Kit permet de sauvegarder les couleurs, polices et logos de sa marque pour maintenir une cohérence visuelle dans tous les designs.",
+      "explanation": "La Brand Kit permet de sauvegarder les couleurs, polices et logos de sa marque pour maintenir une cohérence visuelle dans tous les designs.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -342,7 +342,7 @@
     },
     {
       "title": "Comment **aligner** des éléments dans Canva ?",
-      "description": "L'alignement se fait en sélectionnant plusieurs éléments puis en utilisant les outils d'alignement qui apparaissent dans la barre d'outils.",
+      "explanation": "L'alignement se fait en sélectionnant plusieurs éléments puis en utilisant les outils d'alignement qui apparaissent dans la barre d'outils.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -366,7 +366,7 @@
     },
     {
       "title": "Comment créer des **animations** dans Canva ?",
-      "description": "Les animations se créent en ajoutant des effets d'animation aux éléments via le menu 'Animer', avec différents types d'entrée, sortie et boucles.",
+      "explanation": "Les animations se créent en ajoutant des effets d'animation aux éléments via le menu 'Animer', avec différents types d'entrée, sortie et boucles.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -390,7 +390,7 @@
     },
     {
       "title": "Qu'est-ce que **Canva for Teams** ?",
-      "description": "Canva for Teams est la version entreprise qui permet la collaboration d'équipe, la gestion centralisée des marques et des templates approuvés.",
+      "explanation": "Canva for Teams est la version entreprise qui permet la collaboration d'équipe, la gestion centralisée des marques et des templates approuvés.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -414,7 +414,7 @@
     },
     {
       "title": "Comment créer un **post Instagram** optimisé ?",
-      "description": "Un post Instagram se crée en choisissant le format 'Publication Instagram' qui respecte automatiquement les dimensions recommandées (1080x1080px).",
+      "explanation": "Un post Instagram se crée en choisissant le format 'Publication Instagram' qui respecte automatiquement les dimensions recommandées (1080x1080px).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -438,7 +438,7 @@
     },
     {
       "title": "Comment **supprimer l'arrière-plan** d'une image ?",
-      "description": "La suppression d'arrière-plan se fait avec l'outil 'Effaceur d'arrière-plan' (Canva Pro) qui détecte automatiquement le sujet principal.",
+      "explanation": "La suppression d'arrière-plan se fait avec l'outil 'Effaceur d'arrière-plan' (Canva Pro) qui détecte automatiquement le sujet principal.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -462,7 +462,7 @@
     },
     {
       "title": "Comment créer une **présentation** dans Canva ?",
-      "description": "Une présentation se crée en choisissant le format 'Présentation' puis en ajoutant des slides avec différents layouts et contenus.",
+      "explanation": "Une présentation se crée en choisissant le format 'Présentation' puis en ajoutant des slides avec différents layouts et contenus.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -486,7 +486,7 @@
     },
     {
       "title": "Qu'est-ce que le **Magic Resize** ?",
-      "description": "Magic Resize est une fonctionnalité Pro qui redimensionne automatiquement un design vers différents formats en adaptant intelligemment les éléments.",
+      "explanation": "Magic Resize est une fonctionnalité Pro qui redimensionne automatiquement un design vers différents formats en adaptant intelligemment les éléments.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -510,7 +510,7 @@
     },
     {
       "title": "Comment **organiser** ses designs dans Canva ?",
-      "description": "Les designs s'organisent en créant des dossiers, en utilisant les favoris, et en renommant les projets pour faciliter la recherche.",
+      "explanation": "Les designs s'organisent en créant des dossiers, en utilisant les favoris, et en renommant les projets pour faciliter la recherche.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -534,7 +534,7 @@
     },
     {
       "title": "Comment créer un **QR code** dans Canva ?",
-      "description": "Un QR code se crée via l'onglet 'Applications' en recherchant 'QR code', puis en saisissant l'URL ou le texte à encoder.",
+      "explanation": "Un QR code se crée via l'onglet 'Applications' en recherchant 'QR code', puis en saisissant l'URL ou le texte à encoder.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -558,7 +558,7 @@
     },
     {
       "title": "Qu'est-ce que **Canva Print** ?",
-      "description": "Canva Print est le service d'impression de Canva qui permet de commander l'impression physique de ses designs (cartes, posters, etc.).",
+      "explanation": "Canva Print est le service d'impression de Canva qui permet de commander l'impression physique de ses designs (cartes, posters, etc.).",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -582,7 +582,7 @@
     },
     {
       "title": "Comment créer un **design accessible** ?",
-      "description": "Un design accessible utilise des contrastes suffisants, des polices lisibles, des tailles de texte appropriées et évite les combinaisons de couleurs problématiques.",
+      "explanation": "Un design accessible utilise des contrastes suffisants, des polices lisibles, des tailles de texte appropriées et évite les combinaisons de couleurs problématiques.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -606,7 +606,7 @@
     },
     {
       "title": "Comment **dupliquer** un design ?",
-      "description": "Un design se duplique via le menu '...' du design puis 'Dupliquer', ou en utilisant 'Enregistrer sous' pour créer une copie modifiable.",
+      "explanation": "Un design se duplique via le menu '...' du design puis 'Dupliquer', ou en utilisant 'Enregistrer sous' pour créer une copie modifiable.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -630,7 +630,7 @@
     },
     {
       "title": "Comment ajouter des **effets** aux éléments ?",
-      "description": "Les effets s'ajoutent en sélectionnant un élément puis en cliquant sur 'Effets' pour accéder aux ombres, flous, reliefs, etc.",
+      "explanation": "Les effets s'ajoutent en sélectionnant un élément puis en cliquant sur 'Effets' pour accéder aux ombres, flous, reliefs, etc.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -654,7 +654,7 @@
     },
     {
       "title": "Qu'est-ce que le **Content Planner** ?",
-      "description": "Le Content Planner est un outil de planification de contenu qui permet de programmer et organiser ses publications sur les réseaux sociaux.",
+      "explanation": "Le Content Planner est un outil de planification de contenu qui permet de programmer et organiser ses publications sur les réseaux sociaux.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -678,7 +678,7 @@
     },
     {
       "title": "Comment créer un **mockup** dans Canva ?",
-      "description": "Les mockups se créent en utilisant des templates de produits (téléphones, t-shirts, etc.) et en y appliquant ses designs via l'outil 'Remplacer l'image'.",
+      "explanation": "Les mockups se créent en utilisant des templates de produits (téléphones, t-shirts, etc.) et en y appliquant ses designs via l'outil 'Remplacer l'image'.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -702,7 +702,7 @@
     },
     {
       "title": "Comment **optimiser** un design pour le web ?",
-      "description": "L'optimisation web nécessite d'utiliser des formats légers (PNG/JPG), des dimensions appropriées, et de compresser les images avant export.",
+      "explanation": "L'optimisation web nécessite d'utiliser des formats légers (PNG/JPG), des dimensions appropriées, et de compresser les images avant export.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -726,7 +726,7 @@
     },
     {
       "title": "Qu'est-ce que **Canva Docs** ?",
-      "description": "Canva Docs est un outil de création de documents qui combine texte et éléments visuels, permettant de créer des rapports, propositions et documents enrichis.",
+      "explanation": "Canva Docs est un outil de création de documents qui combine texte et éléments visuels, permettant de créer des rapports, propositions et documents enrichis.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -750,7 +750,7 @@
     },
     {
       "title": "Comment créer une **infographie** efficace ?",
-      "description": "Une infographie efficace structure l'information hiérarchiquement, utilise des couleurs cohérentes, des icônes claires et limite le texte au minimum.",
+      "explanation": "Une infographie efficace structure l'information hiérarchiquement, utilise des couleurs cohérentes, des icônes claires et limite le texte au minimum.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -774,7 +774,7 @@
     },
     {
       "title": "Comment **sauvegarder** automatiquement dans Canva ?",
-      "description": "Canva sauvegarde automatiquement tous les changements en temps réel. Il n'y a pas besoin de sauvegarder manuellement, tout est stocké dans le cloud.",
+      "explanation": "Canva sauvegarde automatiquement tous les changements en temps réel. Il n'y a pas besoin de sauvegarder manuellement, tout est stocké dans le cloud.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -798,7 +798,7 @@
     },
     {
       "title": "Comment créer du **contenu de marque** cohérent ?",
-      "description": "La cohérence de marque s'obtient en utilisant la Brand Kit, en respectant les couleurs et polices définies, et en créant des templates personnalisés.",
+      "explanation": "La cohérence de marque s'obtient en utilisant la Brand Kit, en respectant les couleurs et polices définies, et en créant des templates personnalisés.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -822,7 +822,7 @@
     },
     {
       "title": "Comment **mesurer les performances** d'un design ?",
-      "description": "Dans Canva, on peut analyser les performances via les statistiques de vues, téléchargements, et l'engagement si le contenu est publié sur les réseaux sociaux.",
+      "explanation": "Dans Canva, on peut analyser les performances via les statistiques de vues, téléchargements, et l'engagement si le contenu est publié sur les réseaux sociaux.",
       "difficulty": "hard",
       "duration": 40,
       "choices": [
@@ -846,7 +846,7 @@
     },
     {
       "title": "Comment **exporter en haute qualité** ?",
-      "description": "L'export haute qualité se fait en choisissant le format PDF ou PNG, en activant l'option 'Haute qualité' dans les paramètres d'export.",
+      "explanation": "L'export haute qualité se fait en choisissant le format PDF ou PNG, en activant l'option 'Haute qualité' dans les paramètres d'export.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -870,7 +870,7 @@
     },
     {
       "title": "Qu'est-ce que **Canva Magic Studio** ?",
-      "description": "Magic Studio regroupe les outils alimentés par l'IA de Canva comme Magic Write, Magic Eraser, Magic Edit pour automatiser certaines tâches créatives.",
+      "explanation": "Magic Studio regroupe les outils alimentés par l'IA de Canva comme Magic Write, Magic Eraser, Magic Edit pour automatiser certaines tâches créatives.",
       "difficulty": "hard",
       "duration": 40,
       "choices": [
@@ -894,7 +894,7 @@
     },
     {
       "title": "Comment créer un **design responsive** ?",
-      "description": "Le design responsive dans Canva se fait en créant plusieurs versions du même design pour différents formats (desktop, mobile, tablette) avec Magic Resize.",
+      "explanation": "Le design responsive dans Canva se fait en créant plusieurs versions du même design pour différents formats (desktop, mobile, tablette) avec Magic Resize.",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -918,7 +918,7 @@
     },
     {
       "title": "Comment **protéger** ses designs dans Canva ?",
-      "description": "Les designs se protègent en gardant les projets privés, en utilisant des dossiers d'équipe avec permissions, et en évitant de partager publiquement.",
+      "explanation": "Les designs se protègent en gardant les projets privés, en utilisant des dossiers d'équipe avec permissions, et en évitant de partager publiquement.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [

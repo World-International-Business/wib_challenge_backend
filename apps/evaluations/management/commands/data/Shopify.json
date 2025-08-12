@@ -5,8 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "title": "Shopify",
-      "description": "Qu'est-ce que Shopify ?",
+      "title": "Qu'est-ce que Shopify?",
       "explanation": "Shopify est une plateforme e-commerce complète qui permet aux entrepreneurs de créer et de gérer une boutique en ligne. Elle offre des services tels que la gestion des produits, la gestion des commandes, le paiement, l'hébergement et bien d'autres.",
       "difficulty": "easy",
       "duration": 20,
@@ -30,8 +29,7 @@
       ]
     },
     {
-      "title": "Personnalisation de thèmes",
-      "description": "Quel langage est utilisé pour personnaliser les thèmes Shopify ?",
+      "title": "Quel langage est utilisé pour personnaliser les thèmes Shopify?",
       "explanation": "Liquid est un langage de modèle (templating language) créé par Shopify et écrit en Ruby. Il est utilisé pour charger du contenu dynamique dans les pages Shopify.",
       "difficulty": "easy",
       "duration": 25,
@@ -55,8 +53,8 @@
       ]
     },
     {
-      "title": "Ajout de sections",
-      "description": "Comment peut-on ajouter une nouvelle section à un thème Shopify ?",
+      "title": "Comment peut-on ajouter une nouvelle section à un thème Shopify?",
+      "description": "Dans Shopify, les sections sont des composants modulaires qui peuvent être ajoutés à une page. Pour créer une nouvelle section, il faut ajouter un fichier .liquid dans le dossier 'sections' du thème avec le code HTML, Liquid et les paramètres nécessaires.",
       "explanation": "Dans Shopify, les sections sont des composants modulaires qui peuvent être ajoutés à une page. Pour créer une nouvelle section, il faut ajouter un fichier .liquid dans le dossier 'sections' du thème avec le code HTML, Liquid et les paramètres nécessaires.",
       "difficulty": "medium",
       "duration": 40,

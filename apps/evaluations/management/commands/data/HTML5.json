@@ -6,7 +6,7 @@
   "questions": [
     {
       "title": "Quelle est la déclaration DOCTYPE correcte pour HTML5?",
-      "description": "HTML5 utilise une déclaration DOCTYPE simplifiée qui indique simplement que le document utilise HTML.",
+      "explanation": "HTML5 utilise une déclaration DOCTYPE simplifiée qui indique simplement que le document utilise HTML.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -30,7 +30,7 @@
     },
     {
       "title": "Quelle balise HTML5 est utilisée pour définir le contenu principal d'un document?",
-      "description": "La balise `<main>` représente le contenu principal du body d'un document. Il ne doit y avoir qu'un seul élément main par page.",
+      "explanation": "La balise `<main>` représente le contenu principal du body d'un document. Il ne doit y avoir qu'un seul élément main par page.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -535,6 +535,7 @@
     {
       "title": "Comment définir une image responsive en HTML5?",
       "description": "L'attribut `srcset` permet de définir plusieurs sources d'images selon la résolution de l'écran, rendant l'image responsive.",
+      "explanation": "L'attribut `srcset` permet de définir plusieurs sources d'images selon la résolution de l'écran, rendant l'image responsive.",
       "difficulty": "hard",
       "duration": 70,
       "choices": [
@@ -552,30 +553,6 @@
         },
         {
           "text": "`<img src=\"image.jpg\" style=\"width: 100%\">`",
-          "is_correct": false
-        }
-      ]
-    },
-    {
-      "title": "Quelle balise HTML5 permet de marquer du texte comme important sans le mettre en gras?",
-      "description": "La balise `<mark>` met en surbrillance du texte pour indiquer son importance ou sa pertinence, sans le mettre en gras.",
-      "difficulty": "medium",
-      "duration": 35,
-      "choices": [
-        {
-          "text": "`<mark>`",
-          "is_correct": true
-        },
-        {
-          "text": "`<highlight>`",
-          "is_correct": false
-        },
-        {
-          "text": "`<important>`",
-          "is_correct": false
-        },
-        {
-          "text": "`<emphasis>`",
           "is_correct": false
         }
       ]
@@ -775,6 +752,7 @@
     {
       "title": "Comment optimiser le référencement SEO d'une page HTML5?",
       "description": "Le SEO en HTML5 implique l'utilisation de balises sémantiques appropriées, de métadonnées, de structure hiérarchique des titres, et d'attributs alt pour les images.",
+      "explanation": "Le SEO en HTML5 implique l'utilisation de balises sémantiques appropriées, de métadonnées, de structure hiérarchique des titres, et d'attributs alt pour les images.",
       "difficulty": "hard",
       "duration": 90,
       "choices": [
@@ -943,6 +921,7 @@
     {
       "title": "Comment optimiser le chargement des images en HTML5?",
       "description": "L'optimisation des images peut se faire avec l'attribut loading='lazy' pour le lazy loading, srcset pour les images responsives, et des formats modernes comme WebP.",
+      "explanation": "L'optimisation des images peut se faire avec l'attribut loading='lazy' pour le lazy loading, srcset pour les images responsives, et des formats modernes comme WebP.",
       "difficulty": "hard",
       "duration": 90,
       "choices": [

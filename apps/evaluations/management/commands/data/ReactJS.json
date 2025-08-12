@@ -7,6 +7,7 @@
     {
       "title": "Qu'est-ce que React.js?",
       "description": "React est une bibliothèque JavaScript frontale open-source développée par Facebook pour créer des interfaces utilisateur, particulièrement des applications à page unique où l'interface utilisateur doit être mise à jour dynamiquement.",
+      "explanation": "React est une bibliothèque JavaScript frontale open-source développée par Facebook pour créer des interfaces utilisateur, particulièrement des applications à page unique où l'interface utilisateur doit être mise à jour dynamiquement.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -31,6 +32,7 @@
     {
       "title": "Quel est l'élément de base dans React?",
       "description": "Les composants sont les éléments de base dans React. Ils permettent de diviser l'interface utilisateur en éléments indépendants et réutilisables, et de considérer chaque élément de façon isolée.",
+      "explanation": "Les composants sont les éléments de base dans React. Ils permettent de diviser l'interface utilisateur en éléments indépendants et réutilisables, et de considérer chaque élément de façon isolée.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -55,6 +57,7 @@
     {
       "title": "Comment créer un composant fonctionnel en React?",
       "description": "Un composant fonctionnel en React est une simple fonction JavaScript qui accepte des props en argument et retourne un élément React (généralement décrit avec JSX).",
+      "explanation": "Un composant fonctionnel en React est une simple fonction JavaScript qui accepte des props en argument et retourne un élément React (généralement décrit avec JSX).",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -293,8 +296,9 @@
       ]
     },
     {
-      "title": "Quelle est la sortie de ce code?\n```jsx\nfunction Exemple() {\n  const [compteur, setCompteur] = useState(0);\n  return (\n    <div>\n      <p>Vous avez cliqué {compteur} fois</p>\n      <button onClick={() => setCompteur(compteur + 1)}>\n        Cliquer\n      </button>\n    </div>\n  );\n}\n```",
-      "description": "Ce code définit un composant fonctionnel qui utilise le hook useState pour gérer un état 'compteur'. Chaque fois qu'on clique sur le bouton, la valeur du compteur est incrémentée et affichée dans le paragraphe.",
+      "title": "Quelle sera la sortie du code suivant?",
+      "description": "```jsx\nfunction Exemple() {\n  const [compteur, setCompteur] = useState(0);\n  return (\n    <div>\n      <p>Vous avez cliqué {compteur} fois</p>\n      <button onClick={() => setCompteur(compteur + 1)}>\n        Cliquer\n      </button>\n    </div>\n  );\n}\n```",
+      "explanation": "Ce code définit un composant fonctionnel qui utilise le hook useState pour gérer un état 'compteur'. Chaque fois qu'on clique sur le bouton, la valeur du compteur est incrémentée et affichée dans le paragraphe.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [

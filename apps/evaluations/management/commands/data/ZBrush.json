@@ -5,8 +5,7 @@
   "difficulty": "beginner",
   "questions": [
     {
-      "title": "ZBrush",
-      "description": "Qu'est-ce que ZBrush ?",
+      "title": "Qu'est-ce que ZBrush?",
       "explanation": "ZBrush est un logiciel de sculpture numérique qui permet de créer des modèles 3D très détaillés en sculptant directement sur une surface comme de l'argile virtuelle.",
       "difficulty": "easy",
       "duration": 25,
@@ -30,8 +29,7 @@
       ]
     },
     {
-      "title": "Brush principal de ZBrush",
-      "description": "Quel est le **brush principal** de ZBrush pour la sculpture ?",
+      "title": "Quel est le **brush principal** de ZBrush pour la sculpture?",
       "explanation": "Un brush (pinceau) est un outil de sculpture qui détermine comment la géométrie sera modifiée (sculptée, lissée, tirée, etc.) lorsque vous dessinez sur le modèle.",
       "difficulty": "easy",
       "duration": 30,
@@ -930,7 +928,7 @@
       ]
     },
     {
-      "title": "Utilisation de ZBrush pour l'impression 3D",
+      "title": "Utilisation de ZBrush pour l''impression 3D",
       "description": "Comment utiliser ZBrush pour l'**impression 3D** ?",
       "explanation": "Pour l'impression 3D : vérifier que le modèle est manifold (étanche), utiliser Decimation Master pour optimiser, s'assurer de l'épaisseur minimale des parois, et exporter au format STL ou OBJ.",
       "difficulty": "hard",

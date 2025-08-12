@@ -6,7 +6,7 @@
   "questions": [
     {
       "title": "Qu'est-ce que Django?",
-      "description": "Django est un framework web Python de haut niveau qui encourage un développement rapide et propre. Il suit le principe DRY (Don't Repeat Yourself) et adopte le modèle architectural MVT (Model-View-Template).",
+      "explanation": "Django est un framework web Python de haut niveau qui encourage un développement rapide et propre. Il suit le principe DRY (Don't Repeat Yourself) et adopte le modèle architectural MVT (Model-View-Template).",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -30,7 +30,7 @@
     },
     {
       "title": "Quelle commande permet de créer un nouveau projet Django?",
-      "description": "La commande `django-admin startproject` crée la structure de base d'un nouveau projet Django avec tous les fichiers nécessaires.",
+      "explanation": "La commande `django-admin startproject` crée la structure de base d'un nouveau projet Django avec tous les fichiers nécessaires.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -54,7 +54,7 @@
     },
     {
       "title": "Quelle commande permet de créer une nouvelle application Django?",
-      "description": "La commande `python manage.py startapp` crée une nouvelle application Django avec la structure standard incluant models.py, views.py, etc.",
+      "explanation": "La commande `python manage.py startapp` crée une nouvelle application Django avec la structure standard incluant models.py, views.py, etc.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -78,7 +78,7 @@
     },
     {
       "title": "Quelle est l'architecture utilisée par Django?",
-      "description": "Django utilise l'architecture MVT (Model-View-Template), une variante de MVC. Le Model définit les données, la View contient la logique de présentation, et le Template gère l'affichage.",
+      "explanation": "Django utilise l'architecture MVT (Model-View-Template), une variante de MVC. Le Model définit les données, la View contient la logique de présentation, et le Template gère l'affichage.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -102,7 +102,7 @@
     },
     {
       "title": "Dans un modèle Django, comment définit-on une clé étrangère vers le modèle User?",
-      "description": "La classe `ForeignKey` établit une relation une-à-plusieurs entre deux modèles. Le premier paramètre est le modèle cible et on peut utiliser le modèle User du système d'authentification de Django avec `settings.AUTH_USER_MODEL` pour éviter les dépendances circulaires.",
+      "explanation": "La classe `ForeignKey` établit une relation une-à-plusieurs entre deux modèles. Le premier paramètre est le modèle cible et on peut utiliser le modèle User du système d'authentification de Django avec `settings.AUTH_USER_MODEL` pour éviter les dépendances circulaires.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -126,7 +126,7 @@
     },
     {
       "title": "Quelle commande exécute les migrations de base de données dans Django?",
-      "description": "La commande `python manage.py migrate` applique les migrations à la base de données, créant les tables nécessaires ou les modifiant selon les changements définis dans les fichiers de migration.",
+      "explanation": "La commande `python manage.py migrate` applique les migrations à la base de données, créant les tables nécessaires ou les modifiant selon les changements définis dans les fichiers de migration.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -150,7 +150,7 @@
     },
     {
       "title": "Comment créer un superutilisateur dans Django?",
-      "description": "La commande `python manage.py createsuperuser` lance un assistant interactif qui demande un nom d'utilisateur, une adresse email et un mot de passe pour créer un compte administrateur avec tous les privilèges.",
+      "explanation": "La commande `python manage.py createsuperuser` lance un assistant interactif qui demande un nom d'utilisateur, une adresse email et un mot de passe pour créer un compte administrateur avec tous les privilèges.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -174,7 +174,7 @@
     },
     {
       "title": "Comment définir une URL dans Django?",
-      "description": "Dans Django, les URLs sont définies dans le fichier urls.py en utilisant la fonction `path()` qui prend le motif d'URL, la vue à appeler et un nom optionnel pour l'URL.",
+      "explanation": "Dans Django, les URLs sont définies dans le fichier urls.py en utilisant la fonction `path()` qui prend le motif d'URL, la vue à appeler et un nom optionnel pour l'URL.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -198,7 +198,7 @@
     },
     {
       "title": "Comment récupérer tous les objets d'un modèle en Django?",
-      "description": "La méthode `Model.objects.all()` renvoie un QuerySet contenant tous les objets de la base de données pour le modèle spécifié.",
+      "explanation": "La méthode `Model.objects.all()` renvoie un QuerySet contenant tous les objets de la base de données pour le modèle spécifié.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -222,7 +222,7 @@
     },
     {
       "title": "Comment filtrer des objets dans un QuerySet Django?",
-      "description": "La méthode `filter()` permet d'obtenir un nouveau QuerySet contenant les objets qui correspondent aux paramètres de recherche spécifiés.",
+      "explanation": "La méthode `filter()` permet d'obtenir un nouveau QuerySet contenant les objets qui correspondent aux paramètres de recherche spécifiés.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -246,7 +246,7 @@
     },
     {
       "title": "Comment créer une vue basée sur une classe dans Django?",
-      "description": "Les vues basées sur des classes (Class-Based Views) sont implémentées en héritant de classes comme `View`, `TemplateView`, `ListView`, etc. de django.views.generic. Elles offrent un moyen réutilisable et orienté objet de gérer les requêtes HTTP.",
+      "explanation": "Les vues basées sur des classes (Class-Based Views) sont implémentées en héritant de classes comme `View`, `TemplateView`, `ListView`, etc. de django.views.generic. Elles offrent un moyen réutilisable et orienté objet de gérer les requêtes HTTP.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -270,7 +270,7 @@
     },
     {
       "title": "Comment créer un formulaire à partir d'un modèle Django?",
-      "description": "Django permet de générer automatiquement des formulaires à partir de modèles en utilisant `ModelForm`. Cela crée un formulaire avec des champs correspondant aux champs du modèle, avec les validations appropriées.",
+      "explanation": "Django permet de générer automatiquement des formulaires à partir de modèles en utilisant `ModelForm`. Cela crée un formulaire avec des champs correspondant aux champs du modèle, avec les validations appropriées.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -294,7 +294,7 @@
     },
     {
       "title": "Comment afficher un template dans Django?",
-      "description": "La fonction `render()` combine un template avec un contexte (dictionnaire de variables) et renvoie une réponse HTTP avec le contenu rendu.",
+      "explanation": "La fonction `render()` combine un template avec un contexte (dictionnaire de variables) et renvoie une réponse HTTP avec le contenu rendu.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -318,7 +318,7 @@
     },
     {
       "title": "Comment étendre un template dans Django?",
-      "description": "Django utilise l'héritage de templates pour réutiliser le code HTML. La balise `{% extends %}` spécifie le template parent, et les blocs `{% block %}` définissent les sections qui peuvent être remplacées dans les templates enfants.",
+      "explanation": "Django utilise l'héritage de templates pour réutiliser le code HTML. La balise `{% extends %}` spécifie le template parent, et les blocs `{% block %}` définissent les sections qui peuvent être remplacées dans les templates enfants.",
       "difficulty": "easy",
       "duration": 30,
       "choices": [
@@ -342,7 +342,7 @@
     },
     {
       "title": "Comment définir une relation many-to-many dans un modèle Django?",
-      "description": "Le champ `ManyToManyField` est utilisé pour définir une relation plusieurs-à-plusieurs entre deux modèles. Django crée automatiquement une table de jointure pour gérer cette relation.",
+      "explanation": "Le champ `ManyToManyField` est utilisé pour définir une relation plusieurs-à-plusieurs entre deux modèles. Django crée automatiquement une table de jointure pour gérer cette relation.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [
@@ -366,7 +366,7 @@
     },
     {
       "title": "Comment ajouter un middleware dans Django?",
-      "description": "Les middlewares sont configurés dans la liste `MIDDLEWARE` du fichier settings.py. L'ordre est important car ils s'exécutent dans l'ordre pour les requêtes et dans l'ordre inverse pour les réponses.",
+      "explanation": "Les middlewares sont configurés dans la liste `MIDDLEWARE` du fichier settings.py. L'ordre est important car ils s'exécutent dans l'ordre pour les requêtes et dans l'ordre inverse pour les réponses.",
       "difficulty": "medium",
       "duration": 30,
       "choices": [
@@ -390,7 +390,7 @@
     },
     {
       "title": "Comment créer un signal dans Django?",
-      "description": "Les signaux permettent à certaines actions de déclencher des événements ailleurs dans l'application. Django fournit plusieurs signaux prédéfinis comme `pre_save`, `post_save`, etc. qu'on peut connecter à des fonctions.",
+      "explanation": "Les signaux permettent à certaines actions de déclencher des événements ailleurs dans l'application. Django fournit plusieurs signaux prédéfinis comme `pre_save`, `post_save`, etc. qu'on peut connecter à des fonctions.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -414,7 +414,7 @@
     },
     {
       "title": "Comment implémenter l'authentification par token dans Django?",
-      "description": "Django REST framework fournit plusieurs mécanismes d'authentification, dont l'authentification par token. Après avoir configuré `rest_framework.authtoken` dans `INSTALLED_APPS`, on peut utiliser la classe `TokenAuthentication`.",
+      "explanation": "Django REST framework fournit plusieurs mécanismes d'authentification, dont l'authentification par token. Après avoir configuré `rest_framework.authtoken` dans `INSTALLED_APPS`, on peut utiliser la classe `TokenAuthentication`.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -438,7 +438,7 @@
     },
     {
       "title": "Comment créer une pagination dans Django?",
-      "description": "Django fournit des classes de pagination dans le module `django.core.paginator`. La classe `Paginator` permet de diviser une collection d'objets en pages.",
+      "explanation": "Django fournit des classes de pagination dans le module `django.core.paginator`. La classe `Paginator` permet de diviser une collection d'objets en pages.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -462,7 +462,7 @@
     },
     {
       "title": "Comment implémenter la validation personnalisée dans un formulaire Django?",
-      "description": "Pour ajouter une validation personnalisée à un champ de formulaire, on crée une méthode commençant par `clean_` suivi du nom du champ. Pour valider le formulaire entier, on implémente la méthode `clean()`.",
+      "explanation": "Pour ajouter une validation personnalisée à un champ de formulaire, on crée une méthode commençant par `clean_` suivi du nom du champ. Pour valider le formulaire entier, on implémente la méthode `clean()`.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -486,7 +486,7 @@
     },
     {
       "title": "Comment intégrer les médias (CSS, JS) dans un projet Django?",
-      "description": "Django gère les fichiers statiques via l'application `django.contrib.staticfiles`. On configure `STATIC_URL` et `STATIC_ROOT` dans settings.py, et on peut utiliser le tag `{% static %}` dans les templates pour générer les URLs des fichiers statiques.",
+      "explanation": "Django gère les fichiers statiques via l'application `django.contrib.staticfiles`. On configure `STATIC_URL` et `STATIC_ROOT` dans settings.py, et on peut utiliser le tag `{% static %}` dans les templates pour générer les URLs des fichiers statiques.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -510,7 +510,7 @@
     },
     {
       "title": "Comment utiliser les permissions dans Django?",
-      "description": "Django fournit un système de permissions intégré qui permet de contrôler l'accès aux vues et aux modèles. Les permissions peuvent être attribuées à des utilisateurs ou à des groupes.",
+      "explanation": "Django fournit un système de permissions intégré qui permet de contrôler l'accès aux vues et aux modèles. Les permissions peuvent être attribuées à des utilisateurs ou à des groupes.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -534,7 +534,7 @@
     },
     {
       "title": "Comment implémenter la pagination dans un template Django?",
-      "description": "Une fois que l'objet `page_obj` est passé au template depuis la vue, on peut utiliser ses attributs pour construire la navigation de pagination.",
+      "explanation": "Une fois que l'objet `page_obj` est passé au template depuis la vue, on peut utiliser ses attributs pour construire la navigation de pagination.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -558,7 +558,7 @@
     },
     {
       "title": "Comment mettre en place le système de messages dans Django?",
-      "description": "Django fournit un framework de messages qui permet d'afficher des notifications à l'utilisateur après une action (succès, erreur, info, etc.). Il est généralement configuré par défaut.",
+      "explanation": "Django fournit un framework de messages qui permet d'afficher des notifications à l'utilisateur après une action (succès, erreur, info, etc.). Il est généralement configuré par défaut.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [
@@ -582,7 +582,7 @@
     },
     {
       "title": "Comment configurer les e-mails dans Django?",
-      "description": "Django offre une API simple pour envoyer des e-mails. Les paramètres comme le serveur SMTP, le port, et les identifiants sont configurés dans settings.py.",
+      "explanation": "Django offre une API simple pour envoyer des e-mails. Les paramètres comme le serveur SMTP, le port, et les identifiants sont configurés dans settings.py.",
       "difficulty": "medium",
       "duration": 40,
       "choices": [
@@ -606,7 +606,7 @@
     },
     {
       "title": "Comment mettre en place la localisation (i18n) dans Django?",
-      "description": "Django fournit un excellent support pour la traduction et la localisation. On utilise des marqueurs de traduction dans le code et les templates, puis on génère et compile les fichiers de traduction.",
+      "explanation": "Django fournit un excellent support pour la traduction et la localisation. On utilise des marqueurs de traduction dans le code et les templates, puis on génère et compile les fichiers de traduction.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -630,7 +630,7 @@
     },
     {
       "title": "Comment utiliser la mise en cache dans Django?",
-      "description": "Django fournit plusieurs niveaux de mise en cache: par vue, par template, par fragment ou à bas niveau avec l'API de cache. La configuration détermine où les données sont stockées (mémoire, fichier, base de données, Redis, etc.).",
+      "explanation": "Django fournit plusieurs niveaux de mise en cache: par vue, par template, par fragment ou à bas niveau avec l'API de cache. La configuration détermine où les données sont stockées (mémoire, fichier, base de données, Redis, etc.).",
       "difficulty": "hard",
       "duration": 45,
       "choices": [
@@ -654,7 +654,7 @@
     },
     {
       "title": "Comment mettre en place les tests dans Django?",
-      "description": "Django fournit un framework de test qui étend unittest. Il inclut des classes spécifiques comme TestCase qui configurent automatiquement une base de données de test et divers utilitaires pour tester les vues et les modèles.",
+      "explanation": "Django fournit un framework de test qui étend unittest. Il inclut des classes spécifiques comme TestCase qui configurent automatiquement une base de données de test et divers utilitaires pour tester les vues et les modèles.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -678,7 +678,7 @@
     },
     {
       "title": "Comment déployer une application Django en production?",
-      "description": "Un déploiement Django typique utilise un serveur WSGI comme Gunicorn ou uWSGI, un serveur HTTP comme Nginx ou Apache, et parfois un proxy inverse. Il nécessite également des paramètres de sécurité appropriés.",
+      "explanation": "Un déploiement Django typique utilise un serveur WSGI comme Gunicorn ou uWSGI, un serveur HTTP comme Nginx ou Apache, et parfois un proxy inverse. Il nécessite également des paramètres de sécurité appropriés.",
       "difficulty": "hard",
       "duration": 60,
       "choices": [
@@ -702,7 +702,7 @@
     },
     {
       "title": "Comment mettre en place un système de vérification d'email (confirmation) lors de l'inscription?",
-      "description": "Un système de vérification d'email typique génère un token unique, l'envoie à l'utilisateur par email, et vérifie le token lorsque l'utilisateur clique sur le lien de confirmation.",
+      "explanation": "Un système de vérification d'email typique génère un token unique, l'envoie à l'utilisateur par email, et vérifie le token lorsque l'utilisateur clique sur le lien de confirmation.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -726,7 +726,7 @@
     },
     {
       "title": "Comment implémenter un système de recherche dans Django?",
-      "description": "Django offre plusieurs options pour la recherche, de la simple requête avec `filter()` à l'utilisation de moteurs de recherche dédiés comme PostgreSQL Full Text Search ou l'intégration d'Elasticsearch.",
+      "explanation": "Django offre plusieurs options pour la recherche, de la simple requête avec `filter()` à l'utilisation de moteurs de recherche dédiés comme PostgreSQL Full Text Search ou l'intégration d'Elasticsearch.",
       "difficulty": "medium",
       "duration": 45,
       "choices": [
@@ -750,7 +750,7 @@
     },
     {
       "title": "Comment implémenter un système de paiement avec Django?",
-      "description": "Pour gérer les paiements, on utilise généralement une bibliothèque cliente d'une passerelle de paiement comme Stripe ou PayPal. Django facilite l'intégration grâce à son système de vues et formulaires.",
+      "explanation": "Pour gérer les paiements, on utilise généralement une bibliothèque cliente d'une passerelle de paiement comme Stripe ou PayPal. Django facilite l'intégration grâce à son système de vues et formulaires.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
@@ -774,7 +774,7 @@
     },
     {
       "title": "Comment améliorer les performances d'une application Django?",
-      "description": "L'optimisation des performances de Django implique souvent de réduire les requêtes de base de données, utiliser la mise en cache, configurer des requêtes optimisées, et gérer efficacement les assets statiques.",
+      "explanation": "L'optimisation des performances de Django implique souvent de réduire les requêtes de base de données, utiliser la mise en cache, configurer des requêtes optimisées, et gérer efficacement les assets statiques.",
       "difficulty": "hard",
       "duration": 50,
       "choices": [
@@ -798,7 +798,7 @@
     },
     {
       "title": "Comment gérer les tâches asynchrones dans Django?",
-      "description": "Pour les tâches asynchrones ou programmées, on utilise généralement Celery avec un broker comme Redis ou RabbitMQ. Celery permet d'exécuter des tâches en arrière-plan et de planifier des tâches récurrentes.",
+      "explanation": "Pour les tâches asynchrones ou programmées, on utilise généralement Celery avec un broker comme Redis ou RabbitMQ. Celery permet d'exécuter des tâches en arrière-plan et de planifier des tâches récurrentes.",
       "difficulty": "hard",
       "duration": 55,
       "choices": [
