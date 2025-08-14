@@ -1,0 +1,968 @@
+{
+  "technology": "QSHE",
+  "title": "Évaluation Responsable des Opérations - Management et Gestion Opérationnelle",
+  "description": "Cette évaluation couvre les compétences clés du responsable des opérations : management d'équipes, optimisation des processus, gestion QHSE, supply chain, outils bureautiques et leadership situationnel.",
+  "difficulty": "advanced",
+  "questions": [
+    {
+      "text": "Quelle est la **première étape** pour remotiver une équipe en perte de performance ?",
+      "explanation": "La première étape consiste à diagnostiquer les causes : écouter individuellement et collectivement, identifier les problèmes (surcharge, manque de reconnaissance, objectifs flous, outils inadaptés) avant de proposer des solutions.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Diagnostiquer les causes par l'écoute et l'analyse des problèmes",
+          "is_correct": true
+        },
+        {
+          "text": "Sanctionner immédiatement les moins performants",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter les primes et récompenses financières",
+          "is_correct": false
+        },
+        {
+          "text": "Changer l'équipe et recruter de nouveaux collaborateurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle méthode est la plus **efficace** pour évaluer la performance d'équipe ?",
+      "explanation": "L'évaluation efficace combine indicateurs quantitatifs (KPI, objectifs chiffrés) et qualitatifs (comportements, collaboration) avec un suivi régulier et des entretiens individuels pour une vision complète.",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Combinaison d'indicateurs quantitatifs et qualitatifs avec suivi régulier",
+          "is_correct": true
+        },
+        {
+          "text": "Évaluation uniquement sur les résultats chiffrés",
+          "is_correct": false
+        },
+        {
+          "text": "Notation par les pairs seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation annuelle basée sur le ressenti",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle **méthode d'optimisation** suit généralement cette séquence : Analyser → Mesurer → Améliorer → Contrôler ?",
+      "explanation": "C'est la méthode DMAIC (Define, Measure, Analyze, Improve, Control) du Lean Six Sigma, approche structurée pour l'amélioration continue des processus opérationnels.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "DMAIC (Lean Six Sigma) - méthode structurée d'amélioration continue",
+          "is_correct": true
+        },
+        {
+          "text": "Brainstorming créatif en équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Benchmarking concurrentiel",
+          "is_correct": false
+        },
+        {
+          "text": "Essais-erreurs par itération",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment identifier les **points faibles** d'un processus ?",
+      "explanation": "L'identification des points faibles nécessite : cartographie du processus (process mapping), mesure des temps et goulots, collecte de données terrain, écoute des acteurs et analyse des écarts avec les objectifs.",
+      "difficulty": "medium",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Cartographie processus, mesure temps/goulots, collecte données, écoute acteurs",
+          "is_correct": true
+        },
+        {
+          "text": "Observation ponctuelle et intuition managériale",
+          "is_correct": false
+        },
+        {
+          "text": "Comparaison avec la concurrence seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Analyse des plaintes clients uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **KPI** et quelle est sa caractéristique principale ?",
+      "explanation": "Un KPI (Key Performance Indicator) est un indicateur clé de performance qui doit être SMART : Spécifique, Mesurable, Atteignable, Réaliste et Temporellement défini pour piloter efficacement.",
+      "difficulty": "easy",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Indicateur clé de performance qui doit être SMART (Spécifique, Mesurable, etc.)",
+          "is_correct": true
+        },
+        {
+          "text": "Rapport mensuel de synthèse des activités",
+          "is_correct": false
+        },
+        {
+          "text": "Objectif fixé par la direction générale",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de motivation des équipes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quand un KPI est **dans le rouge**, quelle est la première action à mener ?",
+      "explanation": "La première action est l'analyse des causes racines pour comprendre pourquoi l'indicateur dérive, puis définir un plan d'action correctif avec échéances et responsables, avant de communiquer.",
+      "difficulty": "medium",
+      "duration": 65,
+      "choices": [
+        {
+          "text": "Analyser les causes racines puis établir plan d'action correctif",
+          "is_correct": true
+        },
+        {
+          "text": "Alerter immédiatement la direction générale",
+          "is_correct": false
+        },
+        {
+          "text": "Réviser l'objectif à la baisse",
+          "is_correct": false
+        },
+        {
+          "text": "Attendre la prochaine mesure pour confirmer",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles sont les **étapes clés** d'élaboration d'un budget opérationnel ?",
+      "explanation": "Les étapes sont : analyser l'historique, prévoir l'activité (volumes, prix), calculer les charges variables et fixes, intégrer les projets d'investissement, valider avec les équipes et ajuster selon les contraintes.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Analyser historique → Prévoir activité → Calculer charges → Intégrer projets → Valider",
+          "is_correct": true
+        },
+        {
+          "text": "Reprendre le budget N-1 et ajouter l'inflation",
+          "is_correct": false
+        },
+        {
+          "text": "Partir des objectifs de marge et déduire les coûts",
+          "is_correct": false
+        },
+        {
+          "text": "Demander à chaque service son besoin et additionner",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment réduire les coûts **sans nuire à la qualité** ?",
+      "explanation": "Réduire les coûts sans nuire à la qualité passe par : élimination des gaspillages (Lean), négociation fournisseurs, optimisation des processus, automatisation, mutualisation des ressources et amélioration de la productivité.",
+      "difficulty": "medium",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Éliminer gaspillages, optimiser processus, négocier, automatiser, mutualiser",
+          "is_correct": true
+        },
+        {
+          "text": "Diminuer la qualité des matières premières",
+          "is_correct": false
+        },
+        {
+          "text": "Réduire les effectifs uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Reporter les investissements maintenance",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quel est le rôle de la **QHSE** dans l'entreprise agroalimentaire ?",
+      "explanation": "En agroalimentaire, la QHSE garantit : sécurité sanitaire des aliments, respect des normes (HACCP, ISO 22000), protection des consommateurs, traçabilité, sécurité du personnel et respect environnemental.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Sécurité sanitaire, normes HACCP/ISO 22000, traçabilité, protection consommateurs",
+          "is_correct": true
+        },
+        {
+          "text": "Contrôle de la production seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Gestion des ressources humaines",
+          "is_correct": false
+        },
+        {
+          "text": "Optimisation des coûts de production",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **mesures** garantissent le respect des normes QHSE ?",
+      "explanation": "Les mesures incluent : formation du personnel, procédures documentées, audits internes réguliers, surveillances et contrôles, actions correctives, veille réglementaire et amélioration continue.",
+      "difficulty": "medium",
+      "duration": 75,
+      "choices": [
+        {
+          "text": "Formation, procédures, audits, contrôles, actions correctives, veille réglementaire",
+          "is_correct": true
+        },
+        {
+          "text": "Certification externe annuelle seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle qualité des produits finis uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Respect des consignes de sécurité de base",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la **séquence** de gestion d'un incident de sécurité ?",
+      "explanation": "La séquence est : Sécuriser (personnes et site) → Alerter (secours/hiérarchie) → Analyser les causes → Mesures correctives → Communication → Retour d'expérience → Prévention.",
+      "difficulty": "hard",
+      "duration": 95,
+      "choices": [
+        {
+          "text": "Sécuriser → Alerter → Analyser → Corriger → Communiquer → REX → Prévenir",
+          "is_correct": true
+        },
+        {
+          "text": "Analyser les causes puis sécuriser le site",
+          "is_correct": false
+        },
+        {
+          "text": "Communiquer d'abord puis gérer l'incident",
+          "is_correct": false
+        },
+        {
+          "text": "Attendre les secours avant toute action",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment intégrer les objectifs **RSE** dans les opérations ?",
+      "explanation": "L'intégration RSE passe par : définition d'objectifs concrets, formation équipes, intégration dans les processus, mesure d'indicateurs RSE, reporting, partenariats durables et amélioration continue.",
+      "difficulty": "medium",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Objectifs concrets, formation, intégration processus, mesure, reporting, partenariats",
+          "is_correct": true
+        },
+        {
+          "text": "Communication externe uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Dons caritatifs et actions ponctuelles",
+          "is_correct": false
+        },
+        {
+          "text": "Respect des réglementations seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment assurer la **fluidité de communication** entre opérations et autres départements ?",
+      "explanation": "La fluidité nécessite : points réguliers planifiés, outils collaboratifs partagés, process de remontée/descente d'information, interfaces désignées par département et culture de transparence.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Points réguliers, outils partagés, process info, interfaces dédiées, transparence",
+          "is_correct": true
+        },
+        {
+          "text": "Réunions mensuelles de synthèse seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Communication par email uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Chaque service communique quand nécessaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Face à un **problème de coordination**, quelle approche adopter ?",
+      "explanation": "L'approche efficace : identifier les causes (communication, processus, responsabilités), réunir les parties prenantes, clarifier les rôles, définir les interfaces et mettre en place un suivi.",
+      "difficulty": "medium",
+      "duration": 75,
+      "choices": [
+        {
+          "text": "Identifier causes → Réunir parties → Clarifier rôles → Définir interfaces → Suivre",
+          "is_correct": true
+        },
+        {
+          "text": "Sanctionner les responsables du problème",
+          "is_correct": false
+        },
+        {
+          "text": "Centraliser toutes les décisions",
+          "is_correct": false
+        },
+        {
+          "text": "Laisser chaque service s'organiser",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser la **gestion des stocks** ?",
+      "explanation": "L'optimisation passe par : analyse ABC, calcul des stocks de sécurité, amélioration des prévisions, réduction des lead times, rotation accélérée et outils de pilotage (WMS, ERP).",
+      "difficulty": "medium",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Analyse ABC, stocks sécurité, prévisions, réduction lead times, outils pilotage",
+          "is_correct": true
+        },
+        {
+          "text": "Réduction systématique des stocks",
+          "is_correct": false
+        },
+        {
+          "text": "Commandes en grande quantité seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Gestion manuelle avec inventaires fréquents",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle **approche** pour résoudre un défi logistique complexe ?",
+      "explanation": "L'approche structurée : analyser le problème (données, contraintes), identifier les alternatives, évaluer les solutions (coûts, délais, risques), tester si possible, déployer et mesurer les résultats.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Analyser → Identifier alternatives → Évaluer → Tester → Déployer → Mesurer",
+          "is_correct": true
+        },
+        {
+          "text": "Appliquer la solution qui a fonctionné ailleurs",
+          "is_correct": false
+        },
+        {
+          "text": "Déléguer la résolution aux équipes terrain",
+          "is_correct": false
+        },
+        {
+          "text": "Faire appel à un consultant externe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quels **critères** pour sélectionner et évaluer des fournisseurs ?",
+      "explanation": "Les critères incluent : qualité des produits/services, prix et conditions, délais de livraison, capacité financière, certifications, références clients, proximité géographique et éthique.",
+      "difficulty": "medium",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Qualité, prix, délais, capacité financière, certifications, références, éthique",
+          "is_correct": true
+        },
+        {
+          "text": "Prix le plus bas seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Proximité géographique uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Recommandations de la direction",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Face à une **rupture d'approvisionnement critique**, quelle priorité ?",
+      "explanation": "La priorité est : évaluer l'impact (production, clients), activer les fournisseurs alternatifs, négocier des solutions d'urgence, communiquer aux parties prenantes et sécuriser l'avenir.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Évaluer impact → Activer alternatives → Négocier urgence → Communiquer → Sécuriser",
+          "is_correct": true
+        },
+        {
+          "text": "Attendre que le fournisseur résolve le problème",
+          "is_correct": false
+        },
+        {
+          "text": "Arrêter la production immédiatement",
+          "is_correct": false
+        },
+        {
+          "text": "Chercher de nouveaux fournisseurs seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **étapes** dans un processus d'achat à l'international ?",
+      "explanation": "Les étapes : identification fournisseur, négociation contrat, définition incoterms, organisation transport, gestion douanière, assurance, paiement sécurisé et réception marchandises.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Sourcing → Négociation → Incoterms → Transport → Douanes → Assurance → Paiement → Réception",
+          "is_correct": true
+        },
+        {
+          "text": "Commande directe comme en national",
+          "is_correct": false
+        },
+        {
+          "text": "Paiement d'avance puis attente livraison",
+          "is_correct": false
+        },
+        {
+          "text": "Délégation complète au transitaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **opérations** dans un processus de dédouanement ?",
+      "explanation": "Le dédouanement comprend : déclaration en douane, présentation documents (facture, origine, transport), contrôle douanier éventuel, paiement droits et taxes, puis mainlevée des marchandises.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Déclaration → Documents → Contrôle → Paiement droits → Mainlevée",
+          "is_correct": true
+        },
+        {
+          "text": "Paiement des taxes puis récupération automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Simple vérification documentaire",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle uniquement des marchandises dangereuses",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quels **principes** dans la gestion stockage/déstockage ?",
+      "explanation": "Les principes : FIFO/FEFO (premier entré, premier sorti), zonage par typologie, optimisation implantation, traçabilité, respect chaîne du froid, inventaires réguliers et sécurité.",
+      "difficulty": "medium",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "FIFO/FEFO, zonage, optimisation implantation, traçabilité, chaîne froid, inventaires",
+          "is_correct": true
+        },
+        {
+          "text": "Stockage par ordre d'arrivée seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Maximiser la densité de stockage uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Déstockage selon les commandes urgentes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **étapes** pour la pénétration d'un nouveau produit au Cameroun ?",
+      "explanation": "Les étapes : étude de marché local, adaptation produit/prix, stratégie distribution, plan marketing, tests pilotes, formation équipes, lancement progressif et ajustements.",
+      "difficulty": "hard",
+      "duration": 130,
+      "choices": [
+        {
+          "text": "Étude marché → Adaptation → Distribution → Marketing → Tests → Formation → Lancement",
+          "is_correct": true
+        },
+        {
+          "text": "Réplication de la stratégie d'un autre pays",
+          "is_correct": false
+        },
+        {
+          "text": "Lancement immédiat avec communication massive",
+          "is_correct": false
+        },
+        {
+          "text": "Attendre la demande spontanée du marché",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer une **confrontation avec les autorités** locales ?",
+      "explanation": "L'approche : écoute respectueuse, compréhension des préoccupations, dialogue constructif, recherche de solutions conformes, documentation des échanges et suivi des engagements pris.",
+      "difficulty": "hard",
+      "duration": 95,
+      "choices": [
+        {
+          "text": "Écoute respectueuse → Compréhension → Dialogue → Solutions conformes → Documentation → Suivi",
+          "is_correct": true
+        },
+        {
+          "text": "Confrontation directe et ferme",
+          "is_correct": false
+        },
+        {
+          "text": "Contournement des autorités",
+          "is_correct": false
+        },
+        {
+          "text": "Délégation au service juridique seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **étapes** pour un compte rendu professionnel avec logo et tableaux ?",
+      "explanation": "Les étapes : définir structure et plan, créer modèle avec logo et charte graphique, rédiger contenu avec titres numérotés, insérer tableaux et graphiques, relecture et validation.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Définir structure → Créer modèle logo → Rédiger → Insérer tableaux → Relire → Valider",
+          "is_correct": true
+        },
+        {
+          "text": "Rédiger d'abord puis ajouter la forme",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser un modèle standard sans personnalisation",
+          "is_correct": false
+        },
+        {
+          "text": "Déléguer la mise en forme à un assistant",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **protéger** un document Word par mot de passe ?",
+      "explanation": "Dans Word : Fichier → Informations → Protéger le document → Chiffrer avec mot de passe. Pour contrôler les modifications : Révision → Restreindre la modification → Paramétrer les autorisations.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Fichier → Informations → Protéger document → Chiffrer avec mot de passe",
+          "is_correct": true
+        },
+        {
+          "text": "Enregistrer le fichier dans un dossier sécurisé",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser la fonction 'Révision' seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Convertir en PDF avec protection",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **formules Excel** utilisez-vous fréquemment en gestion opérationnelle ?",
+      "explanation": "Les formules courantes : SOMME.SI (total conditionnel), RECHERCHEV (correspondances), SI (conditions logiques), MOYENNE (calculs statistiques), NB.SI (comptages conditionnels).",
+      "difficulty": "medium",
+      "duration": 75,
+      "choices": [
+        {
+          "text": "SOMME.SI (totaux conditionnels), RECHERCHEV (correspondances), SI (logique)",
+          "is_correct": true
+        },
+        {
+          "text": "Uniquement SOMME et MOYENNE",
+          "is_correct": false
+        },
+        {
+          "text": "Formules de calcul financier complexes seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Macros VBA pour tous les calculs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Dans quel **contexte** utiliser un tableau croisé dynamique ?",
+      "explanation": "Les TCD sont utiles pour : synthétiser grandes bases de données, analyser tendances par dimensions multiples, créer tableaux de bord, calculer sous-totaux automatiques et pivoter les analyses.",
+      "difficulty": "medium",
+      "duration": 65,
+      "choices": [
+        {
+          "text": "Synthèse grandes bases, analyses multidimensionnelles, tableaux de bord, sous-totaux",
+          "is_correct": true
+        },
+        {
+          "text": "Calculs simples sur petites données",
+          "is_correct": false
+        },
+        {
+          "text": "Mise en forme de listes seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Création de graphiques basiques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **détecter des doublons** dans un fichier Excel de 500 lignes ?",
+      "explanation": "Plusieurs méthodes : mise en forme conditionnelle (Accueil → Règles de mise en surbrillance → Valeurs en double), ou Données → Supprimer les doublons, ou formule COUNTIF pour compter les occurrences.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Mise en forme conditionnelle 'Valeurs en double' ou Données → Supprimer doublons",
+          "is_correct": true
+        },
+        {
+          "text": "Tri puis vérification visuelle ligne par ligne",
+          "is_correct": false
+        },
+        {
+          "text": "Utilisation d'un logiciel spécialisé externe",
+          "is_correct": false
+        },
+        {
+          "text": "Suppression manuelle des lignes suspectes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment calculer la **part de marché** de chaque produit dans Excel ?",
+      "explanation": "Part de marché = (Ventes produit / Total ventes marché) × 100. Dans Excel : créer colonne avec formule =(Ventes_produit/SOMME(Plage_totale))*100 et appliquer à chaque ligne.",
+      "difficulty": "medium",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "=(Ventes_produit/SOMME(Plage_totale))*100 pour chaque ligne",
+          "is_correct": true
+        },
+        {
+          "text": "Diviser chaque vente par le nombre de produits",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement la fonction MOYENNE",
+          "is_correct": false
+        },
+        {
+          "text": "Créer un graphique puis lire les pourcentages",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **structurer** une présentation pour comité de direction ?",
+      "explanation": "Structure efficace : page de garde, agenda/sommaire, synthèse exécutive, contexte/enjeux, analyse détaillée, recommandations, plan d'action chiffré, annexes techniques.",
+      "difficulty": "medium",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Garde → Sommaire → Synthèse → Contexte → Analyse → Recommandations → Actions → Annexes",
+          "is_correct": true
+        },
+        {
+          "text": "Présentation chronologique des événements",
+          "is_correct": false
+        },
+        {
+          "text": "Focus uniquement sur les résultats chiffrés",
+          "is_correct": false
+        },
+        {
+          "text": "Détails techniques puis conclusions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **intégrer** des graphiques Excel dans PowerPoint ?",
+      "explanation": "Méthodes : copier-coller avec liaison (Collage spécial → Lier), insérer objet Excel, ou copier en tant qu'image. La liaison permet la mise à jour automatique des données.",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Copier-coller avec liaison (Collage spécial → Lier) pour mise à jour automatique",
+          "is_correct": true
+        },
+        {
+          "text": "Copier-coller simple uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Recréer les graphiques dans PowerPoint",
+          "is_correct": false
+        },
+        {
+          "text": "Insérer des captures d'écran",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Pourquoi utiliser les **masques de diapositives** ?",
+      "explanation": "Les masques permettent : cohérence visuelle (polices, couleurs, logos), gain de temps, modifications globales, respect de la charte graphique et professionnalisme de la présentation.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Cohérence visuelle, gain temps, modifications globales, respect charte graphique",
+          "is_correct": true
+        },
+        {
+          "text": "Créer des animations complexes",
+          "is_correct": false
+        },
+        {
+          "text": "Masquer des diapositives sensibles",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer les versions de présentation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment rendre une présentation **visuellement attractive** et professionnelle ?",
+      "explanation": "Clés du succès : règle 6x6 (6 puces max, 6 mots max), visuels de qualité, couleurs cohérentes, espaces blancs, graphiques clairs, police lisible et messages synthétiques.",
+      "difficulty": "medium",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Règle 6x6, visuels qualité, couleurs cohérentes, espaces blancs, messages synthétiques",
+          "is_correct": true
+        },
+        {
+          "text": "Animations nombreuses et effets colorés",
+          "is_correct": false
+        },
+        {
+          "text": "Texte dense avec toutes les informations",
+          "is_correct": false
+        },
+        {
+          "text": "Utilisation exclusive de modèles standard",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment **convaincre** de changer une méthode de travail inefficace ?",
+      "explanation": "Stratégie de conviction : démontrer les problèmes actuels avec données, présenter les bénéfices du changement, impliquer les équipes dans la solution, tester pilote et accompagner la transition.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Démontrer problèmes avec données → Bénéfices → Impliquer équipes → Test pilote → Accompagner",
+          "is_correct": true
+        },
+        {
+          "text": "Imposer le changement par autorité hiérarchique",
+          "is_correct": false
+        },
+        {
+          "text": "Critiquer l'ancienne méthode publiquement",
+          "is_correct": false
+        },
+        {
+          "text": "Attendre que les problèmes deviennent évidents",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment prendre une **décision difficile** avec informations incomplètes ?",
+      "explanation": "Méthode : identifier les informations critiques disponibles, évaluer les risques de chaque option, consulter les experts, définir des critères de décision, trancher et prévoir un suivi rapproché.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Identifier infos critiques → Évaluer risques → Consulter experts → Critères → Trancher → Suivre",
+          "is_correct": true
+        },
+        {
+          "text": "Attendre d'avoir toutes les informations",
+          "is_correct": false
+        },
+        {
+          "text": "Déléguer la décision à un supérieur",
+          "is_correct": false
+        },
+        {
+          "text": "Choisir l'option la moins risquée systématiquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment maintenir la **performance** sous forte pression ?",
+      "explanation": "Stratégies : communication transparente sur la situation, priorisation des tâches critiques, soutien renforcé aux équipes, célébration des petites victoires et préservation du moral.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Communication transparente, priorisation, soutien équipes, célébrations, préservation moral",
+          "is_correct": true
+        },
+        {
+          "text": "Augmenter la pression sur tous les collaborateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Réduire les objectifs pour les rendre atteignables",
+          "is_correct": false
+        },
+        {
+          "text": "Ignorer la pression et continuer normalement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment s'assurer que les **messages** sont bien compris par équipes dispersées ?",
+      "explanation": "Bonnes pratiques : messages clairs et structurés, canaux multiples (écrit + oral), accusés de réception, reformulation, séances Q&R, relais locaux et vérification de la compréhension.",
+      "difficulty": "medium",
+      "duration": 95,
+      "choices": [
+        {
+          "text": "Messages clairs, canaux multiples, accusés réception, reformulation, Q&R, relais locaux",
+          "is_correct": true
+        },
+        {
+          "text": "Email unique avec toutes les informations",
+          "is_correct": false
+        },
+        {
+          "text": "Réunion générale en visioconférence",
+          "is_correct": false
+        },
+        {
+          "text": "Diffusion via les managers intermédiaires seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer un **conflit** entre départements ?",
+      "explanation": "Approche de résolution : écoute active de chaque partie, identification des vrais enjeux, recherche d'intérêts communs, médiation neutre, solutions gagnant-gagnant et suivi post-conflit.",
+      "difficulty": "hard",
+      "duration": 105,
+      "choices": [
+        {
+          "text": "Écoute active → Identifier enjeux → Intérêts communs → Médiation → Win-win → Suivi",
+          "is_correct": true
+        },
+        {
+          "text": "Trancher en faveur du département le plus important",
+          "is_correct": false
+        },
+        {
+          "text": "Réorganiser pour éviter les interactions",
+          "is_correct": false
+        },
+        {
+          "text": "Escalader immédiatement vers la direction",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment réagir à un **changement imprévu** bouleversant les plans ?",
+      "explanation": "Réaction adaptative : évaluer rapidement l'impact, communiquer transparence sur la situation, réajuster les priorités, mobiliser les ressources, adapter le planning et maintenir le moral.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Évaluer impact → Communiquer transparence → Réajuster priorités → Mobiliser → Adapter → Soutenir moral",
+          "is_correct": true
+        },
+        {
+          "text": "Maintenir les plans originaux coûte que coûte",
+          "is_correct": false
+        },
+        {
+          "text": "Reporter toutes les décisions en attente",
+          "is_correct": false
+        },
+        {
+          "text": "Blâmer les responsables du changement imprévu",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelles **3 actions prioritaires** pour améliorer les performances opérationnelles sur 6 mois ?",
+      "explanation": "Actions prioritaires : 1) Diagnostic complet des processus et identification des goulots, 2) Formation/coaching des équipes sur les bonnes pratiques, 3) Mise en place d'indicateurs de pilotage et tableaux de bord.",
+      "difficulty": "hard",
+      "duration": 140,
+      "choices": [
+        {
+          "text": "1) Diagnostic processus/goulots 2) Formation équipes 3) Indicateurs pilotage/tableaux bord",
+          "is_correct": true
+        },
+        {
+          "text": "1) Réduction effectifs 2) Nouveaux outils 3) Réorganisation structure",
+          "is_correct": false
+        },
+        {
+          "text": "1) Augmentation budget 2) Recrutements 3) Externalisation activités",
+          "is_correct": false
+        },
+        {
+          "text": "1) Formation direction 2) Audit externe 3) Benchmark concurrence",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
