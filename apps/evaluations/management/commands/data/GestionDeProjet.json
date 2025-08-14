@@ -1,0 +1,1016 @@
+{
+  "technology": "Gestion de projet",
+  "title": "Évaluation Gestion de Projet - Management de Projets Opérationnels",
+  "description": "Cette évaluation couvre les méthodologies, outils et bonnes pratiques de gestion de projet, incluant les approches classiques, agiles, la planification, le suivi, la gestion des risques et le leadership d'équipe.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Qu'est-ce qu'un **projet** ?",
+      "explanation": "Un projet est un ensemble d'activités temporaires, coordonnées et contrôlées, avec des dates de début et de fin, entrepris dans le but d'atteindre un objectif conforme à des exigences spécifiques.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Ensemble d'activités temporaires pour atteindre un objectif spécifique",
+          "is_correct": true
+        },
+        {
+          "text": "Activité répétitive et continue",
+          "is_correct": false
+        },
+        {
+          "text": "Processus de production industrielle",
+          "is_correct": false
+        },
+        {
+          "text": "Plan d'affaires à long terme",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qui a défini les bases modernes de la **gestion de projet** ?",
+      "explanation": "Henry Gantt (diagramme de Gantt) et Henri Fayol (principes de management) sont considérés comme les pionniers. Le PMI (Project Management Institute) a formalisé la discipline dans les années 1960-70.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Henry Gantt et Henri Fayol, formalisé par le PMI",
+          "is_correct": true
+        },
+        {
+          "text": "Steve Jobs et Bill Gates",
+          "is_correct": false
+        },
+        {
+          "text": "Frederick Taylor uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Toyota et Taiichi Ohno",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **triangle de la contrainte** (triple contrainte) ?",
+      "explanation": "Le triangle de la contrainte représente les trois contraintes principales d'un projet : le coût (budget), le délai (temps) et la qualité (périmètre). Modifier l'une impacte les autres.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Coût, Délai et Qualité/Périmètre - trois contraintes interdépendantes",
+          "is_correct": true
+        },
+        {
+          "text": "Ressources humaines, techniques et financières",
+          "is_correct": false
+        },
+        {
+          "text": "Planification, exécution et contrôle",
+          "is_correct": false
+        },
+        {
+          "text": "Client, fournisseur et équipe projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **diagramme de Gantt** ?",
+      "explanation": "Un diagramme de Gantt est un outil de planification qui représente graphiquement les tâches d'un projet dans le temps, montrant leur durée, leurs dépendances et leur avancement.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Représentation graphique des tâches dans le temps avec dépendances",
+          "is_correct": true
+        },
+        {
+          "text": "Organigramme des responsabilités",
+          "is_correct": false
+        },
+        {
+          "text": "Analyse des coûts par activité",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation des risques projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que signifie **PERT** ?",
+      "explanation": "PERT signifie Program Evaluation and Review Technique. C'est une méthode de planification qui utilise un réseau de tâches pour identifier le chemin critique et optimiser les délais.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Program Evaluation and Review Technique - méthode de planification réseau",
+          "is_correct": true
+        },
+        {
+          "text": "Performance Evaluation and Risk Testing",
+          "is_correct": false
+        },
+        {
+          "text": "Project Execution and Resource Tracking",
+          "is_correct": false
+        },
+        {
+          "text": "Planning Effort and Responsibility Tool",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **chemin critique** ?",
+      "explanation": "Le chemin critique est la séquence de tâches qui détermine la durée minimale du projet. Tout retard sur une tâche du chemin critique retarde l'ensemble du projet.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Séquence de tâches déterminant la durée minimale du projet",
+          "is_correct": true
+        },
+        {
+          "text": "Tâches les plus importantes pour le client",
+          "is_correct": false
+        },
+        {
+          "text": "Activités les plus coûteuses",
+          "is_correct": false
+        },
+        {
+          "text": "Ressources les plus rares du projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la méthode **Agile** ?",
+      "explanation": "La méthode Agile est une approche itérative et incrémentale de gestion de projet qui privilégie la collaboration, l'adaptation au changement et la livraison rapide de valeur.",
+      "difficulty": "easy",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Approche itérative privilégiant collaboration et adaptation au changement",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de planification détaillée à long terme",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de gestion des coûts",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de résolution de conflits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **Sprint** en Scrum ?",
+      "explanation": "Un Sprint est une itération de durée fixe (généralement 1-4 semaines) pendant laquelle l'équipe développe un incrément de produit potentiellement livrable.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Itération de durée fixe pour développer un incrément livrable",
+          "is_correct": true
+        },
+        {
+          "text": "Réunion quotidienne de l'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Phase finale de livraison",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode d'estimation des charges",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **WBS** (Work Breakdown Structure) ?",
+      "explanation": "La WBS est une décomposition hiérarchique du travail du projet en livrables et composants plus petits et plus gérables, facilitant la planification et le contrôle.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Décomposition hiérarchique du travail en composants gérables",
+          "is_correct": true
+        },
+        {
+          "text": "Planning des ressources humaines",
+          "is_correct": false
+        },
+        {
+          "text": "Système de suivi budgétaire",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode d'évaluation de la performance",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **jalon** (milestone) ?",
+      "explanation": "Un jalon est un événement important du projet qui marque l'achèvement d'une étape clé. Il a généralement une durée nulle et sert de point de contrôle.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Événement important marquant l'achèvement d'une étape clé",
+          "is_correct": true
+        },
+        {
+          "text": "Ressource critique du projet",
+          "is_correct": false
+        },
+        {
+          "text": "Budget alloué à une phase",
+          "is_correct": false
+        },
+        {
+          "text": "Réunion d'équipe hebdomadaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gestion des risques** en projet ?",
+      "explanation": "La gestion des risques consiste à identifier, analyser, évaluer et traiter les incertitudes susceptibles d'affecter les objectifs du projet, positivement ou négativement.",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Identification, analyse et traitement des incertitudes du projet",
+          "is_correct": true
+        },
+        {
+          "text": "Assurance tous risques pour l'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Évitement systématique des changements",
+          "is_correct": false
+        },
+        {
+          "text": "Planification des urgences seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **PMO** ?",
+      "explanation": "PMO signifie Project Management Office. C'est une structure organisationnelle qui standardise les processus de gestion de projet et facilite le partage des ressources, méthodologies et outils.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Project Management Office - structure standardisant les processus projet",
+          "is_correct": true
+        },
+        {
+          "text": "Project Manager Officer - responsable unique",
+          "is_correct": false
+        },
+        {
+          "text": "Performance Measurement Organization",
+          "is_correct": false
+        },
+        {
+          "text": "Product Marketing Operations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**analyse de la valeur acquise** (Earned Value) ?",
+      "explanation": "L'analyse de la valeur acquise est une technique de mesure de performance qui compare le travail planifié, le travail réalisé et le coût réel pour évaluer l'avancement et prévoir les tendances.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Technique comparant planifié, réalisé et coût réel pour mesurer performance",
+          "is_correct": true
+        },
+        {
+          "text": "Évaluation de la satisfaction client",
+          "is_correct": false
+        },
+        {
+          "text": "Calcul de la rentabilité du projet",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de pricing des prestations",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **livrable** ?",
+      "explanation": "Un livrable est tout produit, service ou résultat unique et vérifiable qui doit être produit pour achever un processus, une phase ou un projet.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Produit, service ou résultat unique et vérifiable du projet",
+          "is_correct": true
+        },
+        {
+          "text": "Document de planification",
+          "is_correct": false
+        },
+        {
+          "text": "Réunion de présentation",
+          "is_correct": false
+        },
+        {
+          "text": "Rapport d'avancement mensuel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la méthode **PRINCE2** ?",
+      "explanation": "PRINCE2 (Projects IN Controlled Environments) est une méthodologie de gestion de projet structurée basée sur l'expérience et les bonnes pratiques, largement utilisée au Royaume-Uni.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Méthodologie structurée Projects IN Controlled Environments",
+          "is_correct": true
+        },
+        {
+          "text": "Logiciel de planification de projets",
+          "is_correct": false
+        },
+        {
+          "text": "Certification de chef de projet",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode d'évaluation des risques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **backlog** en Agile ?",
+      "explanation": "Le backlog est une liste ordonnée et priorisée des fonctionnalités, exigences et améliorations à développer dans le produit, gérée par le Product Owner.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Liste ordonnée et priorisée des fonctionnalités à développer",
+          "is_correct": true
+        },
+        {
+          "text": "Historique des tâches accomplies",
+          "is_correct": false
+        },
+        {
+          "text": "Planning des ressources futures",
+          "is_correct": false
+        },
+        {
+          "text": "Archive des documents projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **matrice RACI** ?",
+      "explanation": "RACI est un outil définissant les rôles et responsabilités : Responsible (Réalisateur), Accountable (Responsable), Consulted (Consulté), Informed (Informé).",
+      "difficulty": "medium",
+      "duration": 65,
+      "choices": [
+        {
+          "text": "Outil définissant rôles : Responsible, Accountable, Consulted, Informed",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode d'évaluation des coûts",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de planification des délais",
+          "is_correct": false
+        },
+        {
+          "text": "Système de classification des risques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **sponsor** de projet ?",
+      "explanation": "Le sponsor est la personne ou le groupe qui fournit les ressources financières et le soutien politique au projet, et qui est responsable de sa réussite devant l'organisation.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Personne fournissant ressources financières et soutien politique",
+          "is_correct": true
+        },
+        {
+          "text": "Chef de projet technique",
+          "is_correct": false
+        },
+        {
+          "text": "Client final du projet",
+          "is_correct": false
+        },
+        {
+          "text": "Fournisseur principal",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode MoSCoW** ?",
+      "explanation": "MoSCoW est une technique de priorisation : Must have (Indispensable), Should have (Important), Could have (Confortable), Won't have (Pas cette fois).",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Technique de priorisation : Must, Should, Could, Won't have",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de planification russe",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de gestion des coûts",
+          "is_correct": false
+        },
+        {
+          "text": "Système de suivi de la qualité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **comité de pilotage** ?",
+      "explanation": "Le comité de pilotage est une instance de gouvernance réunissant les parties prenantes clés pour prendre les décisions stratégiques et suivre l'avancement du projet.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Instance de gouvernance pour décisions stratégiques et suivi",
+          "is_correct": true
+        },
+        {
+          "text": "Équipe technique du projet",
+          "is_correct": false
+        },
+        {
+          "text": "Groupe de test utilisateurs",
+          "is_correct": false
+        },
+        {
+          "text": "Service de contrôle qualité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **kick-off meeting** ?",
+      "explanation": "Le kick-off meeting est la réunion de lancement officiel du projet qui rassemble toutes les parties prenantes pour présenter les objectifs, l'équipe, le planning et les règles de fonctionnement.",
+      "difficulty": "easy",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Réunion de lancement officiel présentant objectifs et organisation",
+          "is_correct": true
+        },
+        {
+          "text": "Dernière réunion avant livraison",
+          "is_correct": false
+        },
+        {
+          "text": "Point hebdomadaire d'avancement",
+          "is_correct": false
+        },
+        {
+          "text": "Session de formation des utilisateurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **plan de communication** ?",
+      "explanation": "Le plan de communication définit qui doit être informé, de quoi, quand, comment et par qui pendant le projet, assurant une circulation efficace de l'information.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Définit qui informer, de quoi, quand et comment pendant le projet",
+          "is_correct": true
+        },
+        {
+          "text": "Stratégie marketing du projet",
+          "is_correct": false
+        },
+        {
+          "text": "Planning des réunions seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Choix des outils informatiques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gestion du changement** ?",
+      "explanation": "La gestion du changement consiste à accompagner les individus et l'organisation dans l'adoption des modifications apportées par le projet, tant sur les aspects techniques qu'humains.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Accompagnement des individus et organisation dans l'adoption des modifications",
+          "is_correct": true
+        },
+        {
+          "text": "Modification du périmètre projet",
+          "is_correct": false
+        },
+        {
+          "text": "Révision du planning initial",
+          "is_correct": false
+        },
+        {
+          "text": "Changement d'équipe projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode Kanban** en gestion de projet ?",
+      "explanation": "Kanban est une méthode visuelle de gestion des flux de travail utilisant un tableau avec des colonnes (À faire, En cours, Terminé) pour visualiser et optimiser le processus.",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Méthode visuelle avec tableau à colonnes pour gérer flux de travail",
+          "is_correct": true
+        },
+        {
+          "text": "Technique de calcul des coûts japonaise",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de formation d'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de gestion des risques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **rétrospective** en Agile ?",
+      "explanation": "Une rétrospective est une réunion d'équipe à la fin de chaque itération pour identifier ce qui a bien fonctionné, les problèmes rencontrés et les améliorations à apporter.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Réunion d'équipe pour identifier réussites, problèmes et améliorations",
+          "is_correct": true
+        },
+        {
+          "text": "Révision du code informatique",
+          "is_correct": false
+        },
+        {
+          "text": "Analyse financière du projet",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation individuelle des performances",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Design Thinking** ?",
+      "explanation": "Le Design Thinking est une approche d'innovation centrée sur l'humain qui intègre les besoins des utilisateurs, les possibilités technologiques et les exigences économiques.",
+      "difficulty": "medium",
+      "duration": 65,
+      "choices": [
+        {
+          "text": "Approche d'innovation centrée humain intégrant besoins, technologie, économie",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de conception graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de brainstorming créatif",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de planification architecturale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **MVP** (Minimum Viable Product) ?",
+      "explanation": "Un MVP est la version la plus simple d'un produit qui permet de valider les hypothèses clés auprès des utilisateurs avec un minimum d'efforts et de développement.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Version la plus simple validant hypothèses avec minimum d'efforts",
+          "is_correct": true
+        },
+        {
+          "text": "Produit le plus cher de la gamme",
+          "is_correct": false
+        },
+        {
+          "text": "Version finale du produit",
+          "is_correct": false
+        },
+        {
+          "text": "Prototype non fonctionnel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **planification par vagues successives** ?",
+      "explanation": "C'est une technique de planification progressive où le travail à accomplir dans un futur proche est planifié en détail, tandis que le travail plus lointain est planifié à un niveau élevé.",
+      "difficulty": "hard",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Planification détaillée du proche, niveau élevé pour le lointain",
+          "is_correct": true
+        },
+        {
+          "text": "Planification par équipes séparées",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de répartition budgétaire",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de gestion des ressources",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **burndown chart** ?",
+      "explanation": "Un burndown chart est un graphique montrant la quantité de travail restant à accomplir au fil du temps dans une itération ou un projet, permettant de visualiser l'avancement.",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Graphique montrant le travail restant au fil du temps",
+          "is_correct": true
+        },
+        {
+          "text": "Planning des congés de l'équipe",
+          "is_correct": false
+        },
+        {
+          "text": "Analyse des coûts cumulés",
+          "is_correct": false
+        },
+        {
+          "text": "Suivi de la satisfaction client",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode des six chapeaux** d'Edward de Bono ?",
+      "explanation": "C'est une méthode de réflexion de groupe où six chapeaux de couleurs différentes représentent six modes de pensée (factuel, émotionnel, critique, optimiste, créatif, organisateur) pour explorer un problème.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Six modes de pensée représentés par des chapeaux colorés",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de gestion de six équipes",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de planification en 6 étapes",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de classification des risques",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**agilité à l'échelle** (Scaled Agile) ?",
+      "explanation": "L'agilité à l'échelle applique les principes agiles à de grandes organisations avec des frameworks comme SAFe, LeSS ou Spotify Model pour coordonner plusieurs équipes agiles.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Application des principes agiles aux grandes organisations (SAFe, LeSS)",
+          "is_correct": true
+        },
+        {
+          "text": "Agile uniquement pour petites équipes",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de mesure de performance",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de gestion budgétaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gestion de portefeuille de projets** ?",
+      "explanation": "La gestion de portefeuille consiste à sélectionner, prioriser et aligner les projets avec la stratégie organisationnelle pour optimiser l'allocation des ressources et maximiser la valeur.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Sélection et priorisation projets alignés avec stratégie pour optimiser ressources",
+          "is_correct": true
+        },
+        {
+          "text": "Gestion des finances de chaque projet",
+          "is_correct": false
+        },
+        {
+          "text": "Coordination des équipes multiples",
+          "is_correct": false
+        },
+        {
+          "text": "Archivage des documents projets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **théorie des contraintes** appliquée aux projets ?",
+      "explanation": "La théorie des contraintes identifie et gère les goulots d'étranglement (contraintes) qui limitent la performance du système projet, en se concentrant sur l'optimisation de ces contraintes.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Identification et gestion des goulots d'étranglement limitant la performance",
+          "is_correct": true
+        },
+        {
+          "text": "Respect strict des délais imposés",
+          "is_correct": false
+        },
+        {
+          "text": "Limitation du budget projet",
+          "is_correct": false
+        },
+        {
+          "text": "Réduction du nombre de ressources",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les **parties prenantes** difficiles ?",
+      "explanation": "Pour gérer les parties prenantes difficiles : écoute active, identification de leurs vrais besoins, communication transparente, recherche de solutions gagnant-gagnant, et escalade si nécessaire.",
+      "difficulty": "hard",
+      "duration": 130,
+      "choices": [
+        {
+          "text": "Écoute active, identification besoins, communication transparente, win-win",
+          "is_correct": true
+        },
+        {
+          "text": "Évitement et contournement systématique",
+          "is_correct": false
+        },
+        {
+          "text": "Imposer les décisions par autorité",
+          "is_correct": false
+        },
+        {
+          "text": "Déléguer à la hiérarchie uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode Critical Chain** ?",
+      "explanation": "Critical Chain est une méthode de gestion de projet basée sur la théorie des contraintes qui se concentre sur la gestion des ressources critiques plutôt que sur les activités critiques.",
+      "difficulty": "hard",
+      "duration": 140,
+      "choices": [
+        {
+          "text": "Méthode basée théorie contraintes se concentrant sur ressources critiques",
+          "is_correct": true
+        },
+        {
+          "text": "Version améliorée du chemin critique",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de communication en chaîne",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de gestion des fournisseurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment mesurer le **ROI** (Return on Investment) d'un projet ?",
+      "explanation": "ROI = (Bénéfices du projet - Coûts du projet) / Coûts du projet × 100. Il faut identifier tous les bénéfices tangibles et intangibles, ainsi que tous les coûts directs et indirects.",
+      "difficulty": "hard",
+      "duration": 150,
+      "choices": [
+        {
+          "text": "ROI = (Bénéfices - Coûts) / Coûts × 100, inclure tangible et intangible",
+          "is_correct": true
+        },
+        {
+          "text": "Diviser budget par nombre de livrables",
+          "is_correct": false
+        },
+        {
+          "text": "Comparer avec projets similaires seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Calculer uniquement les économies de coûts",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gestion de projet hybride** ?",
+      "explanation": "La gestion hybride combine les approches prédictives (traditionnelles) et adaptatives (agiles) selon les besoins du projet, utilisant le meilleur des deux mondes.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Combinaison d'approches prédictives et adaptatives selon besoins",
+          "is_correct": true
+        },
+        {
+          "text": "Mélange de plusieurs logiciels de gestion",
+          "is_correct": false
+        },
+        {
+          "text": "Équipe composée d'internes et externes",
+          "is_correct": false
+        },
+        {
+          "text": "Financement mixte public-privé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer un **projet de transformation digitale** ?",
+      "explanation": "Gérer la transformation digitale nécessite : vision claire, sponsorship fort, gestion du changement, formation utilisateurs, approche itérative, mesure de l'adoption et adaptation continue.",
+      "difficulty": "hard",
+      "duration": 160,
+      "choices": [
+        {
+          "text": "Vision claire, sponsorship, gestion changement, formation, itératif, mesure",
+          "is_correct": true
+        },
+        {
+          "text": "Focus uniquement sur la technologie",
+          "is_correct": false
+        },
+        {
+          "text": "Remplacement brutal des anciens systèmes",
+          "is_correct": false
+        },
+        {
+          "text": "Formation technique seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**intelligence artificielle** appliquée à la gestion de projet ?",
+      "explanation": "L'IA en gestion de projet aide à : prédire les risques, optimiser l'allocation des ressources, automatiser le reporting, analyser les données de performance et suggérer des actions correctives.",
+      "difficulty": "hard",
+      "duration": 140,
+      "choices": [
+        {
+          "text": "Prédiction risques, optimisation ressources, automatisation, analyse performance",
+          "is_correct": true
+        },
+        {
+          "text": "Remplacement complet du chef de projet",
+          "is_correct": false
+        },
+        {
+          "text": "Planification automatique uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Chatbot pour communication équipe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer un **projet international multiculturel** ?",
+      "explanation": "Projets internationaux nécessitent : compréhension culturelle, fuseaux horaires, communication multilingue, réglementations locales, équipes distribuées et outils collaboratifs adaptés.",
+      "difficulty": "hard",
+      "duration": 170,
+      "choices": [
+        {
+          "text": "Compréhension culturelle, fuseaux horaires, multilingue, réglementations locales",
+          "is_correct": true
+        },
+        {
+          "text": "Imposer une culture et langue unique",
+          "is_correct": false
+        },
+        {
+          "text": "Centraliser toutes les décisions",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter les différences culturelles",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gestion de projet durable** (Green Project Management) ?",
+      "explanation": "La gestion de projet durable intègre les principes du développement durable dans tous les aspects du projet : réduction impact environnemental, responsabilité sociale, viabilité économique long terme.",
+      "difficulty": "hard",
+      "duration": 180,
+      "choices": [
+        {
+          "text": "Intégration développement durable : environnemental, social, économique viable",
+          "is_correct": true
+        },
+        {
+          "text": "Projets uniquement dans l'environnement",
+          "is_correct": false
+        },
+        {
+          "text": "Réduction des coûts seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Utilisation d'énergies renouvelables",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment établir une **culture projet** dans une organisation ?",
+      "explanation": "Établir une culture projet nécessite : leadership engagé, formation généralisée, standardisation processus, reconnaissance succès, apprentissage des échecs, outils partagés et amélioration continue.",
+      "difficulty": "hard",
+      "duration": 200,
+      "choices": [
+        {
+          "text": "Leadership engagé, formation, standardisation, reconnaissance, apprentissage continu",
+          "is_correct": true
+        },
+        {
+          "text": "Formation des chefs de projet seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Achat d'outils de gestion projet",
+          "is_correct": false
+        },
+        {
+          "text": "Création d'un service projet isolé",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

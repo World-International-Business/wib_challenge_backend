@@ -1,0 +1,920 @@
+{
+  "technology": "Tableau Software",
+  "title": "Évaluation Tableau Software - Visualisation et Analyse de Données",
+  "description": "Cette évaluation couvre les fonctionnalités essentielles de Tableau Software pour la visualisation de données, incluant la connexion aux sources, la création de tableaux de bord, les calculs, les graphiques et l'analyse avancée.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Qu'est-ce que **Tableau Software** ?",
+      "explanation": "Tableau Software est une plateforme de business intelligence et de visualisation de données qui permet de créer des tableaux de bord interactifs et des analyses visuelles à partir de diverses sources de données.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Plateforme de visualisation de données et business intelligence",
+          "is_correct": true
+        },
+        {
+          "text": "Tableur comme Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données relationnelle",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de programmation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qui a fondé **Tableau Software** ?",
+      "explanation": "Tableau Software a été fondé en 2003 par Christian Chabot, Pat Hanrahan et Chris Stolte à Stanford University, basé sur des recherches en visualisation de données.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Christian Chabot, Pat Hanrahan et Chris Stolte",
+          "is_correct": true
+        },
+        {
+          "text": "Bill Gates et Paul Allen",
+          "is_correct": false
+        },
+        {
+          "text": "Larry Ellison et Marc Benioff",
+          "is_correct": false
+        },
+        {
+          "text": "Michael Dell et Steve Jobs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **source de données** dans Tableau ?",
+      "explanation": "Une source de données dans Tableau est la connexion établie avec un fichier, une base de données ou un service cloud contenant les données à analyser et visualiser.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Connexion aux données à analyser (fichier, BDD, cloud)",
+          "is_correct": true
+        },
+        {
+          "text": "Un graphique créé dans Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Une formule de calcul",
+          "is_correct": false
+        },
+        {
+          "text": "Un utilisateur Tableau",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **dimension** dans Tableau ?",
+      "explanation": "Une dimension est un champ qualitatif qui contient des valeurs discrètes comme des noms, dates, ou catégories. Les dimensions sont utilisées pour segmenter et filtrer les données.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Champ qualitatif avec valeurs discrètes (catégories, noms, dates)",
+          "is_correct": true
+        },
+        {
+          "text": "Champ numérique pour les calculs",
+          "is_correct": false
+        },
+        {
+          "text": "Taille de l'écran d'affichage",
+          "is_correct": false
+        },
+        {
+          "text": "Type de graphique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **mesure** dans Tableau ?",
+      "explanation": "Une mesure est un champ quantitatif contenant des valeurs numériques qui peuvent être agrégées (somme, moyenne, comptage). Les mesures sont généralement utilisées sur l'axe des valeurs.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Champ quantitatif numérique qui peut être agrégé",
+          "is_correct": true
+        },
+        {
+          "text": "Unité de longueur dans Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Action de l'utilisateur",
+          "is_correct": false
+        },
+        {
+          "text": "Type de filtre",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **graphique en barres** simple ?",
+      "explanation": "Pour créer un graphique en barres, il faut glisser une dimension vers les lignes ou colonnes et une mesure vers l'autre axe. Tableau sélectionne automatiquement le type de graphique approprié.",
+      "difficulty": "easy",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Glisser une dimension sur un axe et une mesure sur l'autre",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des mesures",
+          "is_correct": false
+        },
+        {
+          "text": "Créer un calcul complexe d'abord",
+          "is_correct": false
+        },
+        {
+          "text": "Importer un modèle prédéfini",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **tableau de bord** (Dashboard) ?",
+      "explanation": "Un tableau de bord est une collection de plusieurs vues (graphiques, cartes, tableaux) organisées sur une seule page pour offrir une vue d'ensemble interactive des données.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Collection de plusieurs vues organisées sur une page",
+          "is_correct": true
+        },
+        {
+          "text": "Graphique individuel",
+          "is_correct": false
+        },
+        {
+          "text": "Source de données",
+          "is_correct": false
+        },
+        {
+          "text": "Rapport imprimé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **filtre** dans Tableau ?",
+      "explanation": "Pour créer un filtre, il faut glisser un champ (dimension ou mesure) vers l'étagère Filtres, puis configurer les critères de filtrage souhaités dans la boîte de dialogue qui s'ouvre.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Glisser un champ vers l'étagère Filtres et configurer les critères",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement le menu contextuel",
+          "is_correct": false
+        },
+        {
+          "text": "Écrire une formule SQL",
+          "is_correct": false
+        },
+        {
+          "text": "Modifier directement les données source",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**agrégation** dans Tableau ?",
+      "explanation": "L'agrégation est le processus de combinaison de plusieurs valeurs en une seule valeur de synthèse (somme, moyenne, comptage, médiane, etc.). Tableau agrège automatiquement les mesures.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Combinaison de plusieurs valeurs en une synthèse (somme, moyenne, etc.)",
+          "is_correct": true
+        },
+        {
+          "text": "Ajout de nouvelles colonnes",
+          "is_correct": false
+        },
+        {
+          "text": "Connexion de plusieurs sources",
+          "is_correct": false
+        },
+        {
+          "text": "Format d'affichage des données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **champ calculé** ?",
+      "explanation": "Un champ calculé se crée via le menu Analyse > Créer un champ calculé, ou en cliquant droit dans le volet Données. On peut alors écrire une formule utilisant les fonctions Tableau.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Menu Analyse > Créer un champ calculé, puis écrire une formule",
+          "is_correct": true
+        },
+        {
+          "text": "Modifier directement les données source",
+          "is_correct": false
+        },
+        {
+          "text": "Importer depuis Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement l'interface graphique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la fonction **SUM()** fait ?",
+      "explanation": "La fonction SUM() calcule la somme de tous les valores d'un champ numérique. C'est l'une des fonctions d'agrégation les plus couramment utilisées dans Tableau.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Calcule la somme de toutes les valeurs d'un champ numérique",
+          "is_correct": true
+        },
+        {
+          "text": "Compte le nombre de lignes",
+          "is_correct": false
+        },
+        {
+          "text": "Calcule la moyenne",
+          "is_correct": false
+        },
+        {
+          "text": "Trouve la valeur maximale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **carte géographique** ?",
+      "explanation": "Pour créer une carte, il faut avoir des champs géographiques (pays, régions, villes) que Tableau reconnaît automatiquement avec une icône globe. On peut alors les glisser vers la vue.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Utiliser des champs géographiques reconnus par Tableau (globe)",
+          "is_correct": true
+        },
+        {
+          "text": "Importer des coordonnées manuellement seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des mesures numériques",
+          "is_correct": false
+        },
+        {
+          "text": "Connecter à Google Maps obligatoirement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **paramètre** dans Tableau ?",
+      "explanation": "Un paramètre est une valeur globale dynamique qui peut remplacer une valeur constante dans des calculs, filtres, ou lignes de référence. Il peut être contrôlé par l'utilisateur final.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Valeur globale dynamique contrôlable par l'utilisateur",
+          "is_correct": true
+        },
+        {
+          "text": "Type de graphique spécialisé",
+          "is_correct": false
+        },
+        {
+          "text": "Connexion à une base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Format d'export de données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment publier sur **Tableau Server** ?",
+      "explanation": "Pour publier sur Tableau Server, il faut aller dans Serveur > Publier le classeur, se connecter au serveur, choisir le projet de destination et configurer les options de publication.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Serveur > Publier le classeur, se connecter et choisir le projet",
+          "is_correct": true
+        },
+        {
+          "text": "Exporter en PDF puis envoyer par email",
+          "is_correct": false
+        },
+        {
+          "text": "Copier-coller dans le navigateur web",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser un FTP externe",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **action** dans un tableau de bord ?",
+      "explanation": "Une action permet l'interactivité entre les vues d'un tableau de bord : filtrage, surlignage, ou navigation vers une autre vue/URL lors d'un clic ou survol.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Interactivité entre vues (filtrage, surlignage, navigation)",
+          "is_correct": true
+        },
+        {
+          "text": "Animation d'un graphique",
+          "is_correct": false
+        },
+        {
+          "text": "Mise à jour automatique des données",
+          "is_correct": false
+        },
+        {
+          "text": "Envoi d'email automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **graphique en aires** ?",
+      "explanation": "Un graphique en aires se crée en utilisant des mesures continues et en sélectionnant le type de repère 'Aires' dans l'onglet Repères, ou via le menu 'Montre-moi'.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Utiliser des mesures continues et sélectionner le repère 'Aires'",
+          "is_correct": true
+        },
+        {
+          "text": "Uniquement via l'import depuis Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Convertir d'abord en graphique linéaire",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser exclusivement des dimensions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Tableau Prep** ?",
+      "explanation": "Tableau Prep est un outil de préparation de données qui permet de nettoyer, transformer et combiner les données avant de les analyser dans Tableau Desktop.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Outil de préparation et nettoyage de données",
+          "is_correct": true
+        },
+        {
+          "text": "Version mobile de Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Serveur de données",
+          "is_correct": false
+        },
+        {
+          "text": "Plugin pour Excel",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **histogramme** ?",
+      "explanation": "Pour créer un histogramme, il faut créer des groupes (bins) à partir d'un champ continu via Créer > Groupes, puis utiliser ces groupes comme dimension avec une mesure de comptage.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Créer des groupes (bins) d'un champ continu puis compter",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser directement un graphique en barres",
+          "is_correct": false
+        },
+        {
+          "text": "Importer depuis un logiciel statistique",
+          "is_correct": false
+        },
+        {
+          "text": "Convertir toutes les mesures en dimensions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **calcul de table** ?",
+      "explanation": "Un calcul de table est un type de calcul qui s'applique aux valeurs dans la vue après que les données ont été ramenées de la source. Il permet des analyses comme les pourcentages cumulés ou les différences.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Calcul appliqué aux valeurs dans la vue après récupération des données",
+          "is_correct": true
+        },
+        {
+          "text": "Calcul fait directement dans la base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Formule pour créer des tableaux",
+          "is_correct": false
+        },
+        {
+          "text": "Mise en forme de tableau",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **ligne de tendance** ?",
+      "explanation": "Pour ajouter une ligne de tendance, il faut avoir un nuage de points avec des champs continus sur les deux axes, puis faire clic droit sur la vue et sélectionner 'Ligne de tendance'.",
+      "difficulty": "medium",
+      "duration": 75,
+      "choices": [
+        {
+          "text": "Clic droit sur un nuage de points > Ligne de tendance",
+          "is_correct": true
+        },
+        {
+          "text": "Menu Analyse > Créer une tendance",
+          "is_correct": false
+        },
+        {
+          "text": "Glisser une mesure vers Détails",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des dimensions",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Tableau Public** ?",
+      "explanation": "Tableau Public est une version gratuite de Tableau qui permet de créer et publier des visualisations sur le web, mais toutes les données sont publiques et visibles par tous.",
+      "difficulty": "easy",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Version gratuite avec publication publique sur le web",
+          "is_correct": true
+        },
+        {
+          "text": "Version payante pour entreprises",
+          "is_correct": false
+        },
+        {
+          "text": "API de Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données publique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment grouper des valeurs dans une dimension ?",
+      "explanation": "Pour grouper des valeurs, il faut sélectionner plusieurs valeurs dans la vue ou la légende, puis faire clic droit et choisir 'Grouper' ou utiliser l'icône de trombone.",
+      "difficulty": "medium",
+      "duration": 65,
+      "choices": [
+        {
+          "text": "Sélectionner plusieurs valeurs, clic droit > Grouper",
+          "is_correct": true
+        },
+        {
+          "text": "Créer un nouveau champ calculé seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Modifier la source de données",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser un filtre avancé",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **granularité** des données ?",
+      "explanation": "La granularité fait référence au niveau de détail des données. Une granularité fine montre beaucoup de détails (ligne par ligne), une granularité grossière montre des agrégations.",
+      "difficulty": "medium",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Niveau de détail des données (fin = détaillé, grossier = agrégé)",
+          "is_correct": true
+        },
+        {
+          "text": "Qualité visuelle des graphiques",
+          "is_correct": false
+        },
+        {
+          "text": "Taille du fichier de données",
+          "is_correct": false
+        },
+        {
+          "text": "Vitesse de traitement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **graphique en secteurs** (camembert) ?",
+      "explanation": "Pour créer un graphique en secteurs, il faut glisser une dimension vers Couleur et une mesure vers Angle dans l'onglet Repères, ou utiliser 'Montre-moi' avec une dimension et une mesure sélectionnées.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Glisser dimension vers Couleur et mesure vers Angle",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des pourcentages",
+          "is_correct": false
+        },
+        {
+          "text": "Convertir depuis un graphique linéaire",
+          "is_correct": false
+        },
+        {
+          "text": "Importer depuis PowerPoint",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **extrait** (Extract) ?",
+      "explanation": "Un extrait est une copie des données source sauvegardée dans un fichier Tableau (.hyper) pour améliorer les performances et permettre le travail hors ligne.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Copie des données sauvegardée pour améliorer les performances",
+          "is_correct": true
+        },
+        {
+          "text": "Résumé automatique des données",
+          "is_correct": false
+        },
+        {
+          "text": "Export vers Excel",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde du classeur complet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment utiliser la fonction **DATEPART()** ?",
+      "explanation": "DATEPART() extrait une partie spécifique d'une date (année, mois, jour, etc.). Syntaxe: DATEPART('year', [Date Field]) pour extraire l'année par exemple.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Extrait une partie de date : DATEPART('year', [Date Field])",
+          "is_correct": true
+        },
+        {
+          "text": "Calcule la différence entre deux dates",
+          "is_correct": false
+        },
+        {
+          "text": "Formate l'affichage des dates",
+          "is_correct": false
+        },
+        {
+          "text": "Crée automatiquement des périodes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Tableau Online** ?",
+      "explanation": "Tableau Online est la version hébergée dans le cloud de Tableau Server, offrant les mêmes fonctionnalités de collaboration et publication sans infrastructure sur site.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Version cloud de Tableau Server hébergée par Tableau",
+          "is_correct": true
+        },
+        {
+          "text": "Version web gratuite de Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Tableau pour les formations en ligne",
+          "is_correct": false
+        },
+        {
+          "text": "API pour développeurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **graphique double axe** ?",
+      "explanation": "Pour créer un graphique double axe, il faut avoir deux mesures, puis faire clic droit sur la deuxième mesure et sélectionner 'Axe double' ou glisser la mesure vers l'axe droit.",
+      "difficulty": "hard",
+      "duration": 95,
+      "choices": [
+        {
+          "text": "Clic droit sur la deuxième mesure > Axe double",
+          "is_correct": true
+        },
+        {
+          "text": "Créer deux vues séparées",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des dimensions",
+          "is_correct": false
+        },
+        {
+          "text": "Modifier les propriétés d'axe seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **ensemble** (Set) ?",
+      "explanation": "Un ensemble est un champ personnalisé qui définit un sous-groupe de données basé sur certaines conditions. Il peut être statique (valeurs fixes) ou dynamique (basé sur des critères).",
+      "difficulty": "hard",
+      "duration": 130,
+      "choices": [
+        {
+          "text": "Sous-groupe de données défini par des conditions (statique ou dynamique)",
+          "is_correct": true
+        },
+        {
+          "text": "Collection de graphiques",
+          "is_correct": false
+        },
+        {
+          "text": "Configuration de tableau de bord",
+          "is_correct": false
+        },
+        {
+          "text": "Format d'export de données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser les **performances** d'un classeur Tableau ?",
+      "explanation": "Pour optimiser les performances : utiliser des extraits, limiter le nombre de repères affichés, éviter les calculs complexes sur de gros volumes, utiliser des filtres contextuels, et optimiser les requêtes.",
+      "difficulty": "hard",
+      "duration": 150,
+      "choices": [
+        {
+          "text": "Utiliser extraits, limiter repères, filtres contextuels, optimiser requêtes",
+          "is_correct": true
+        },
+        {
+          "text": "Augmenter seulement la RAM de l'ordinateur",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser uniquement des données en temps réel",
+          "is_correct": false
+        },
+        {
+          "text": "Créer plus de tableaux de bord",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la fonction **LOD** (Level of Detail) ?",
+      "explanation": "Les expressions LOD permettent de calculer des valeurs à un niveau de granularité différent de celui de la vue. Il y a trois types : FIXED, INCLUDE, et EXCLUDE.",
+      "difficulty": "hard",
+      "duration": 140,
+      "choices": [
+        {
+          "text": "Calculs à un niveau de granularité différent (FIXED, INCLUDE, EXCLUDE)",
+          "is_correct": true
+        },
+        {
+          "text": "Fonction pour les graphiques en 3D",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de mise en forme",
+          "is_correct": false
+        },
+        {
+          "text": "Type de connexion aux données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **analyse de cohorte** ?",
+      "explanation": "Une analyse de cohorte dans Tableau nécessite de grouper les clients par périodes d'acquisition, puis suivre leur comportement dans le temps en utilisant des calculs de table et des graphiques de tendance.",
+      "difficulty": "hard",
+      "duration": 180,
+      "choices": [
+        {
+          "text": "Grouper par période d'acquisition et suivre dans le temps avec calculs de table",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des filtres de dates",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des graphiques en secteurs multiples",
+          "is_correct": false
+        },
+        {
+          "text": "Importer depuis Google Analytics directement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **Tableau Catalog** ?",
+      "explanation": "Tableau Catalog est une fonctionnalité de découverte de données et de lignage qui aide les utilisateurs à comprendre d'où viennent les données et comment elles sont utilisées dans l'organisation.",
+      "difficulty": "hard",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "Outil de découverte de données et de lignage",
+          "is_correct": true
+        },
+        {
+          "text": "Bibliothèque de modèles de graphiques",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données intégrée",
+          "is_correct": false
+        },
+        {
+          "text": "Système de sauvegarde automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment implémenter la **sécurité au niveau ligne** (RLS) ?",
+      "explanation": "La sécurité au niveau ligne s'implémente en créant un champ calculé qui filtre les données selon l'utilisateur connecté, puis en appliquant ce calcul comme filtre de source de données.",
+      "difficulty": "hard",
+      "duration": 160,
+      "choices": [
+        {
+          "text": "Champ calculé filtrant par utilisateur appliqué comme filtre source",
+          "is_correct": true
+        },
+        {
+          "text": "Paramètres utilisateur manuels seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Permissions sur Tableau Server uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Chiffrement des données source",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer un **graphique de Gantt** ?",
+      "explanation": "Un graphique de Gantt se crée en plaçant les tâches sur les lignes, les dates sur les colonnes, et en utilisant le type de repère 'Gantt Bar' avec une mesure de durée.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Tâches en lignes, dates en colonnes, repère 'Gantt Bar' avec durée",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des graphiques en barres horizontales",
+          "is_correct": false
+        },
+        {
+          "text": "Importer depuis Microsoft Project obligatoirement",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des paramètres de temps complexes",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**analytique intégrée** (Embedded Analytics) ?",
+      "explanation": "L'analytique intégrée permet d'incorporer des visualisations Tableau directement dans des applications web ou portails en utilisant l'API JavaScript ou des iframes.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Incorporation de visualisations dans applications web via API/iframe",
+          "is_correct": true
+        },
+        {
+          "text": "Analyse des données internes seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Calculs automatiques dans Tableau",
+          "is_correct": false
+        },
+        {
+          "text": "Intelligence artificielle intégrée",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les **relations** entre tables ?",
+      "explanation": "Depuis Tableau 2020.2, les relations remplacent les jointures comme méthode par défaut. On fait glisser les tables dans le canevas et Tableau suggère automatiquement les relations basées sur les noms de champs.",
+      "difficulty": "hard",
+      "duration": 135,
+      "choices": [
+        {
+          "text": "Glisser tables dans le canevas, Tableau suggère relations automatiquement",
+          "is_correct": true
+        },
+        {
+          "text": "Utiliser uniquement des jointures SQL",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des unions pour toutes les tables",
+          "is_correct": false
+        },
+        {
+          "text": "Modifier les clés primaires dans la source",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **analyse de régression** avancée ?",
+      "explanation": "Pour une analyse de régression avancée, utiliser les fonctions statistiques intégrées, créer des lignes de tendance avec équations, et utiliser R/Python via TabPy pour des modèles complexes.",
+      "difficulty": "hard",
+      "duration": 200,
+      "choices": [
+        {
+          "text": "Fonctions statistiques, lignes tendance avec équations, R/Python via TabPy",
+          "is_correct": true
+        },
+        {
+          "text": "Uniquement les graphiques en nuage de points",
+          "is_correct": false
+        },
+        {
+          "text": "Calculs de table simples seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Import depuis SPSS obligatoire",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}

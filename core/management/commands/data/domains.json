@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Développement logiciel",
+        "description": "Domaine regroupant les métiers de conception et développement d'applications et de logiciels."
+    },
+    {
+        "name": "Design & UX",
+        "description": "Domaine regroupant les métiers liés à l'expérience utilisateur et à la conception d'interfaces."
+    },
+    {
+        "name": "Produit",
+        "description": "Domaine regroupant les métiers liés à la gestion de produits numériques."
+    },
+    {
+        "name": "Data",
+        "description": "Domaine regroupant les métiers liés à la collecte, au traitement et à l'analyse des données."
+    },
+    {
+        "name": "Intelligence Artificielle / Machine Learning",
+        "description": "Domaine regroupant les métiers liés à l'IA et à l'apprentissage automatique."
+    },
+    {
+        "name": "Sécurité",
+        "description": "Domaine regroupant les métiers liés à la cybersécurité et à la sécurité informatique."
+    },
+    {
+        "name": "Gestion / Encadrement",
+        "description": "Domaine regroupant les métiers de management technique et de direction."
+    },
+    {
+        "name": "Autres rôles techniques",
+        "description": "Domaine regroupant divers rôles techniques comme le support ou les développeurs no-code/low-code."
+    },
+    {
+        "name": "Gestion de projet",
+        "description": "Domaine regroupant les métiers liés à la gestion et l'organisation des projets techniques et digitaux."
+    },
+    {
+        "name": "Direction & Support administratif",
+        "description": "Domaine regroupant les métiers de support administratif et d'assistance à la direction."
+    },
+    {
+        "name": "Ressources Humaines",
+        "description": "Domaine regroupant les métiers liés à la gestion des talents et des ressources humaines en entreprise tech."
+    },
+    {
+        "name": "Autres rôles connexes",
+        "description": "Domaine regroupant les métiers connexes comme l'Office Management, le juridique ou la finance."
+    },
+    {
+        "name": "Opérations & Gestion",
+        "description": "Domaine regroupant les métiers liés à la gestion des opérations, supply chain, qualité et amélioration continue."
+    }
+]

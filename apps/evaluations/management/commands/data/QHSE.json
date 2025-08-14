@@ -1,0 +1,944 @@
+{
+  "technology": "QHSE",
+  "title": "Évaluation QHSE - Qualité, Hygiène, Sécurité, Environnement",
+  "description": "Cette évaluation couvre les normes et outils QHSE, incluant ISO 9001 (Qualité), ISO 14001 (Environnement), ISO 45001 (Santé-Sécurité), ainsi que la gestion des risques et la culture générale en QHSE.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Que signifie **QHSE** ?",
+      "explanation": "QHSE signifie Qualité, Hygiène, Sécurité, Environnement. C'est une approche intégrée de management des risques et de la performance.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Qualité, Hygiène, Sécurité, Environnement",
+          "is_correct": true
+        },
+        {
+          "text": "Qualité, Habilitation, Service, Excellence",
+          "is_correct": false
+        },
+        {
+          "text": "Questions, Hypothèses, Solutions, Évaluations",
+          "is_correct": false
+        },
+        {
+          "text": "Quantité, Horaires, Système, Efficacité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la norme **ISO 9001** ?",
+      "explanation": "ISO 9001 est la norme internationale pour les systèmes de management de la qualité, basée sur l'amélioration continue et la satisfaction client.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Norme internationale pour le management de la qualité",
+          "is_correct": true
+        },
+        {
+          "text": "Norme environnementale",
+          "is_correct": false
+        },
+        {
+          "text": "Norme de sécurité informatique",
+          "is_correct": false
+        },
+        {
+          "text": "Norme comptable internationale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que représente la norme **ISO 14001** ?",
+      "explanation": "ISO 14001 est la norme internationale pour les systèmes de management environnemental, visant à réduire l'impact environnemental des activités.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Système de management environnemental",
+          "is_correct": true
+        },
+        {
+          "text": "Système de management de la qualité",
+          "is_correct": false
+        },
+        {
+          "text": "Système de sécurité au travail",
+          "is_correct": false
+        },
+        {
+          "text": "Système de management financier",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **roue de Deming** (PDCA) ?",
+      "explanation": "La roue de Deming (Plan-Do-Check-Act) est un cycle d'amélioration continue utilisé dans les systèmes qualité pour planifier, réaliser, vérifier et agir.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Cycle d'amélioration continue Plan-Do-Check-Act",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de calcul statistique",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de gestion de projet",
+          "is_correct": false
+        },
+        {
+          "text": "Technique de formation",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qui a créé la **roue de Deming** ?",
+      "explanation": "La roue de Deming a été popularisée par William Edwards Deming, statisticien américain et pionnier de la qualité, bien qu'initialement développée par Walter Shewhart.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "William Edwards Deming",
+          "is_correct": true
+        },
+        {
+          "text": "Joseph Juran",
+          "is_correct": false
+        },
+        {
+          "text": "Philip Crosby",
+          "is_correct": false
+        },
+        {
+          "text": "Kaoru Ishikawa",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **audit qualité** ?",
+      "explanation": "Un audit qualité est un examen méthodique et indépendant pour déterminer si les activités qualité sont conformes aux dispositions préétablies.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Examen méthodique de conformité aux dispositions qualité",
+          "is_correct": true
+        },
+        {
+          "text": "Contrôle financier",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation des performances commerciales",
+          "is_correct": false
+        },
+        {
+          "text": "Vérification technique des produits",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que signifie **SMQ** ?",
+      "explanation": "SMQ signifie Système de Management de la Qualité. C'est l'ensemble des éléments corrélés permettant d'orienter et contrôler un organisme en matière de qualité.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Système de Management de la Qualité",
+          "is_correct": true
+        },
+        {
+          "text": "Service Médical Qualifié",
+          "is_correct": false
+        },
+        {
+          "text": "Système de Mesure Quantitative",
+          "is_correct": false
+        },
+        {
+          "text": "Standards Mondiaux de Qualité",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **EPI** ?",
+      "explanation": "EPI signifie Équipement de Protection Individuelle. Ce sont des dispositifs portés par une personne pour se protéger contre les risques professionnels.",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Équipement de Protection Individuelle",
+          "is_correct": true
+        },
+        {
+          "text": "Évaluation des Performances Industrielles",
+          "is_correct": false
+        },
+        {
+          "text": "Espace Public Informatique",
+          "is_correct": false
+        },
+        {
+          "text": "Entreprise Publique Internationale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**analyse de risques** ?",
+      "explanation": "L'analyse de risques est un processus systématique d'identification, d'évaluation et de hiérarchisation des risques pour déterminer les mesures de maîtrise appropriées.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Processus d'identification, évaluation et hiérarchisation des risques",
+          "is_correct": true
+        },
+        {
+          "text": "Contrôle des coûts",
+          "is_correct": false
+        },
+        {
+          "text": "Audit financier",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation des performances",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que représente **ISO 45001** ?",
+      "explanation": "ISO 45001 est la norme internationale pour les systèmes de management de la santé et sécurité au travail, remplaçant OHSAS 18001.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Système de management de la santé et sécurité au travail",
+          "is_correct": true
+        },
+        {
+          "text": "Norme de qualité produit",
+          "is_correct": false
+        },
+        {
+          "text": "Norme environnementale",
+          "is_correct": false
+        },
+        {
+          "text": "Norme de sécurité informatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **document unique** ?",
+      "explanation": "Le document unique d'évaluation des risques professionnels (DUERP) est obligatoire en France et recense tous les risques identifiés dans l'entreprise.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Document d'évaluation des risques professionnels obligatoire",
+          "is_correct": true
+        },
+        {
+          "text": "Contrat de travail type",
+          "is_correct": false
+        },
+        {
+          "text": "Manuel qualité",
+          "is_correct": false
+        },
+        {
+          "text": "Procédure d'urgence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **CHSCT** ?",
+      "explanation": "Le CHSCT (Comité d'Hygiène, de Sécurité et des Conditions de Travail) était l'instance représentative du personnel en matière de santé-sécurité, remplacé par le CSE.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Comité d'Hygiène, de Sécurité et des Conditions de Travail",
+          "is_correct": true
+        },
+        {
+          "text": "Centre d'Hygiène et de Sécurité Communautaire",
+          "is_correct": false
+        },
+        {
+          "text": "Conseil de la Haute Sécurité au Travail",
+          "is_correct": false
+        },
+        {
+          "text": "Comité de la Sécurité Civile et Territoriale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **plan de prévention** ?",
+      "explanation": "Le plan de prévention définit les mesures de sécurité à prendre lors d'interventions d'entreprises extérieures pour éviter les risques d'interférences.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Mesures de sécurité pour interventions d'entreprises extérieures",
+          "is_correct": true
+        },
+        {
+          "text": "Planning de maintenance préventive",
+          "is_correct": false
+        },
+        {
+          "text": "Programme de formation sécurité",
+          "is_correct": false
+        },
+        {
+          "text": "Plan d'évacuation d'urgence",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode AMDEC** ?",
+      "explanation": "AMDEC (Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité) est une méthode préventive de fiabilité qui permet d'analyser les risques de dysfonctionnement d'un système.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité",
+          "is_correct": true
+        },
+        {
+          "text": "Association Médicale de Contrôle",
+          "is_correct": false
+        },
+        {
+          "text": "Analyse Multicritère de Décision",
+          "is_correct": false
+        },
+        {
+          "text": "Audit Méthodologique et Documentaire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **traçabilité** ?",
+      "explanation": "La traçabilité est la capacité à retrouver l'historique, l'utilisation ou la localisation d'un produit ou d'un processus au moyen d'identifications enregistrées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Capacité à retrouver l'historique d'un produit ou processus",
+          "is_correct": true
+        },
+        {
+          "text": "Suivi des performances commerciales",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle des coûts de production",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation de la satisfaction client",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **non-conformité** ?",
+      "explanation": "Une non-conformité est la non-satisfaction d'une exigence spécifiée dans les référentiels, normes ou procédures de l'organisation.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Non-satisfaction d'une exigence spécifiée",
+          "is_correct": true
+        },
+        {
+          "text": "Défaut de paiement",
+          "is_correct": false
+        },
+        {
+          "text": "Absence de personnel",
+          "is_correct": false
+        },
+        {
+          "text": "Retard de livraison",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **principe de précaution** ?",
+      "explanation": "Le principe de précaution vise à éviter des dommages graves et irréversibles à l'environnement ou à la santé, même en l'absence de certitude scientifique absolue.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Éviter des dommages graves malgré l'incertitude scientifique",
+          "is_correct": true
+        },
+        {
+          "text": "Attendre la certitude avant d'agir",
+          "is_correct": false
+        },
+        {
+          "text": "Prendre des risques calculés",
+          "is_correct": false
+        },
+        {
+          "text": "Éviter tout changement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **indicateur KPI** en QHSE ?",
+      "explanation": "Un KPI (Key Performance Indicator) en QHSE est une mesure quantifiable qui permet d'évaluer l'efficacité des actions mises en œuvre (taux de fréquence des accidents, nombre d'audits, etc.).",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Mesure quantifiable d'évaluation de l'efficacité des actions",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de gestion financière",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de formation",
+          "is_correct": false
+        },
+        {
+          "text": "Procédure de contrôle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**empreinte carbone** ?",
+      "explanation": "L'empreinte carbone mesure la quantité de gaz à effet de serre (GES) émise directement ou indirectement par une activité, un produit ou une organisation.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Quantité de gaz à effet de serre émise par une activité",
+          "is_correct": true
+        },
+        {
+          "text": "Surface d'occupation au sol",
+          "is_correct": false
+        },
+        {
+          "text": "Consommation d'eau",
+          "is_correct": false
+        },
+        {
+          "text": "Production de déchets",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **RSE** ?",
+      "explanation": "La RSE (Responsabilité Sociétale des Entreprises) est la prise en compte par les entreprises des enjeux environnementaux, sociaux et économiques dans leurs activités.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Responsabilité Sociétale des Entreprises",
+          "is_correct": true
+        },
+        {
+          "text": "Réseau Social d'Entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Ressources Système Entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Réglementation Sécurité Environnement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **certification** ?",
+      "explanation": "La certification est la procédure par laquelle un organisme accrédité atteste qu'un produit, service ou système est conforme à des exigences spécifiées.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Attestation de conformité par un organisme accrédité",
+          "is_correct": true
+        },
+        {
+          "text": "Formation diplômante",
+          "is_correct": false
+        },
+        {
+          "text": "Autorisation légale",
+          "is_correct": false
+        },
+        {
+          "text": "Garantie commerciale",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode 5S** ?",
+      "explanation": "La méthode 5S (Seiri, Seiton, Seiso, Seiketsu, Shitsuke) est une technique d'organisation de l'espace de travail visant l'efficacité et la sécurité.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Technique d'organisation de l'espace de travail japonaise",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de calcul statistique",
+          "is_correct": false
+        },
+        {
+          "text": "Procédure de sécurité",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de gestion de projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **EPC** ?",
+      "explanation": "EPC signifie Équipement de Protection Collective. Ce sont des dispositifs techniques destinés à protéger un groupe de personnes contre les risques professionnels.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Équipement de Protection Collective",
+          "is_correct": true
+        },
+        {
+          "text": "Espace Public Communautaire",
+          "is_correct": false
+        },
+        {
+          "text": "Évaluation des Pratiques Commerciales",
+          "is_correct": false
+        },
+        {
+          "text": "Entreprise Publique de Construction",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**ISO 26000** ?",
+      "explanation": "ISO 26000 est la norme internationale qui fournit des lignes directrices pour la responsabilité sociétale des organisations.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Norme de lignes directrices pour la responsabilité sociétale",
+          "is_correct": true
+        },
+        {
+          "text": "Norme de management environnemental",
+          "is_correct": false
+        },
+        {
+          "text": "Norme de sécurité informatique",
+          "is_correct": false
+        },
+        {
+          "text": "Norme de qualité produit",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **veille réglementaire** ?",
+      "explanation": "La veille réglementaire consiste à surveiller l'évolution des textes légaux et réglementaires applicables à l'activité de l'organisation pour assurer la conformité.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Surveillance de l'évolution des textes légaux et réglementaires",
+          "is_correct": true
+        },
+        {
+          "text": "Contrôle de la concurrence",
+          "is_correct": false
+        },
+        {
+          "text": "Surveillance technologique",
+          "is_correct": false
+        },
+        {
+          "text": "Écoute des clients",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **accident du travail** ?",
+      "explanation": "Un accident du travail est un accident survenu par le fait ou à l'occasion du travail, quelle qu'en soit la cause, à toute personne salariée ou travaillant à quelque titre que ce soit.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Accident survenu par le fait ou à l'occasion du travail",
+          "is_correct": true
+        },
+        {
+          "text": "Accident survenu uniquement sur le lieu de travail",
+          "is_correct": false
+        },
+        {
+          "text": "Accident causé par la négligence du salarié",
+          "is_correct": false
+        },
+        {
+          "text": "Accident pendant les heures de bureau",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **développement durable** ?",
+      "explanation": "Le développement durable répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs, intégrant les dimensions économique, sociale et environnementale.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Développement répondant aux besoins présents sans compromettre l'avenir",
+          "is_correct": true
+        },
+        {
+          "text": "Croissance économique rapide",
+          "is_correct": false
+        },
+        {
+          "text": "Développement technologique avancé",
+          "is_correct": false
+        },
+        {
+          "text": "Expansion géographique d'entreprise",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qui a défini le concept de **développement durable** ?",
+      "explanation": "Le concept de développement durable a été formalisé par la Commission Brundtland (Gro Harlem Brundtland) dans le rapport 'Notre avenir à tous' en 1987.",
+      "difficulty": "hard",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Commission Brundtland en 1987",
+          "is_correct": true
+        },
+        {
+          "text": "Nations Unies en 1992",
+          "is_correct": false
+        },
+        {
+          "text": "Rachel Carson en 1962",
+          "is_correct": false
+        },
+        {
+          "text": "Al Gore en 2000",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **maladie professionnelle** ?",
+      "explanation": "Une maladie professionnelle est la conséquence directe de l'exposition d'un travailleur à un risque physique, chimique, biologique ou résultant des conditions dans lesquelles il exerce son activité professionnelle.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Maladie causée par l'exposition à des risques professionnels",
+          "is_correct": true
+        },
+        {
+          "text": "Maladie contractée sur le lieu de travail",
+          "is_correct": false
+        },
+        {
+          "text": "Maladie transmise par les collègues",
+          "is_correct": false
+        },
+        {
+          "text": "Maladie liée au stress du travail",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**ergonomie** ?",
+      "explanation": "L'ergonomie est la science qui étudie l'adaptation du travail à l'homme en vue d'améliorer les conditions de travail et de prévenir les risques professionnels.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Science de l'adaptation du travail à l'homme",
+          "is_correct": true
+        },
+        {
+          "text": "Étude des économies d'énergie",
+          "is_correct": false
+        },
+        {
+          "text": "Organisation des espaces de travail",
+          "is_correct": false
+        },
+        {
+          "text": "Gestion du temps de travail",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **plan d'urgence** ?",
+      "explanation": "Un plan d'urgence définit l'organisation, les moyens et les procédures à mettre en œuvre pour faire face à une situation d'urgence ou de crise.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Organisation et procédures pour faire face aux urgences",
+          "is_correct": true
+        },
+        {
+          "text": "Planning de production prioritaire",
+          "is_correct": false
+        },
+        {
+          "text": "Plan de financement d'urgence",
+          "is_correct": false
+        },
+        {
+          "text": "Procédure de recrutement rapide",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **norme REACH** ?",
+      "explanation": "REACH (Registration, Evaluation, Authorisation and Restriction of Chemicals) est un règlement européen sur l'enregistrement, l'évaluation et l'autorisation des substances chimiques.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Règlement européen sur les substances chimiques",
+          "is_correct": true
+        },
+        {
+          "text": "Norme de qualité alimentaire",
+          "is_correct": false
+        },
+        {
+          "text": "Standard de sécurité informatique",
+          "is_correct": false
+        },
+        {
+          "text": "Protocole de communication",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**amélioration continue** ?",
+      "explanation": "L'amélioration continue est une démarche progressive et permanente d'optimisation des processus, produits ou services visant l'excellence opérationnelle.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Démarche progressive d'optimisation permanente",
+          "is_correct": true
+        },
+        {
+          "text": "Formation continue du personnel",
+          "is_correct": false
+        },
+        {
+          "text": "Maintenance préventive régulière",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle qualité quotidien",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **système intégré** QHSE ?",
+      "explanation": "Un système intégré QHSE combine en une seule démarche cohérente les exigences des normes ISO 9001 (Qualité), ISO 14001 (Environnement) et ISO 45001 (Santé-Sécurité).",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Combinaison cohérente des normes ISO 9001, 14001 et 45001",
+          "is_correct": true
+        },
+        {
+          "text": "Logiciel de gestion QHSE",
+          "is_correct": false
+        },
+        {
+          "text": "Équipe dédiée QHSE",
+          "is_correct": false
+        },
+        {
+          "text": "Formation polyvalente QHSE",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **matrice des risques** ?",
+      "explanation": "La matrice des risques est un outil de visualisation qui permet de classer les risques selon leur probabilité d'occurrence et leur gravité pour prioriser les actions.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Outil de classification des risques par probabilité et gravité",
+          "is_correct": true
+        },
+        {
+          "text": "Tableau des responsabilités",
+          "is_correct": false
+        },
+        {
+          "text": "Planning des audits",
+          "is_correct": false
+        },
+        {
+          "text": "Liste des procédures",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **plan de maîtrise** ?",
+      "explanation": "Un plan de maîtrise définit les moyens de surveillance et de contrôle mis en place pour maîtriser un processus ou réduire un risque identifié.",
+      "difficulty": "hard",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Moyens de surveillance et contrôle pour maîtriser un processus",
+          "is_correct": true
+        },
+        {
+          "text": "Planning de formation",
+          "is_correct": false
+        },
+        {
+          "text": "Budget prévisionnel",
+          "is_correct": false
+        },
+        {
+          "text": "Organigramme hiérarchique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **méthode HACCP** ?",
+      "explanation": "HACCP (Hazard Analysis Critical Control Points) est une méthode d'analyse des dangers et de maîtrise des points critiques, principalement utilisée dans l'agroalimentaire.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Analyse des dangers et maîtrise des points critiques",
+          "is_correct": true
+        },
+        {
+          "text": "Méthode de contrôle qualité industriel",
+          "is_correct": false
+        },
+        {
+          "text": "Système de management environnemental",
+          "is_correct": false
+        },
+        {
+          "text": "Procédure de sécurité informatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**analyse du cycle de vie** (ACV) ?",
+      "explanation": "L'ACV est une méthode d'évaluation environnementale qui analyse l'impact d'un produit ou service sur tout son cycle de vie, de l'extraction des matières premières à sa fin de vie.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Évaluation environnementale sur tout le cycle de vie d'un produit",
+          "is_correct": true
+        },
+        {
+          "text": "Analyse de la durée de vie des équipements",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle de la qualité en continu",
+          "is_correct": false
+        },
+        {
+          "text": "Suivi des performances financières",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **référent sécurité** ?",
+      "explanation": "Un référent sécurité est une personne désignée pour animer la prévention des risques professionnels et conseiller l'employeur en matière de santé et sécurité au travail.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Personne chargée d'animer la prévention des risques professionnels",
+          "is_correct": true
+        },
+        {
+          "text": "Agent de sécurité incendie",
+          "is_correct": false
+        },
+        {
+          "text": "Responsable informatique",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôleur de gestion",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
