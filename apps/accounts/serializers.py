@@ -2,6 +2,7 @@ import json
 import mimetypes
 import urllib.request
 import uuid
+from traceback import print_exception
 
 from decouple import config
 from django.contrib.auth.hashers import make_password
@@ -194,7 +195,8 @@ class GoogleLoginSerializer(serializers.Serializer):
                 "refresh": str(refresh),
                 "data": UserSerializer(user, context=self.context).data
             }
-        except ValueError:
+        except ValueError as e:
+            print_exception(e)
             raise ValidationError("Token invalide")
         except Exception as e:
             raise ValidationError(str(e))

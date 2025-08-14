@@ -88,15 +88,6 @@ class User(BaseModel, AbstractUser):
         super().__init__(*args, **kwargs)
         self._original_picture_path = self.picture.path if self.pk and self.picture else None
 
-    def save(self, *args, **kwargs):
-        if not self.first_name.strip():
-            raise ValueError(_('Le prénom est obligatoire'))
-
-        if self.email:
-            self.email = self.email.lower().strip()
-
-        super().save(*args, **kwargs)
-
     def delete(self, using=None, keep_parents=False):
         """Soft delete — désactive l'utilisateur au lieu de le supprimer"""
         self.is_active = False

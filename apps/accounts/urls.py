@@ -1,6 +1,7 @@
 from django.urls import path, include
+from drf_spectacular.utils import extend_schema
 from rest_framework.routers import DefaultRouter
-from rest_framework_simplejwt.views import token_verify, token_refresh, token_blacklist, token_obtain_pair
+from rest_framework_simplejwt.views import TokenVerifyView, TokenBlacklistView, TokenRefreshView, TokenObtainPairView
 
 from apps.accounts.views import RegisterUserView, UserViewSet, PasswordResetView, PasswordResetConfirmView, \
     GoogleLoginView
@@ -8,6 +9,16 @@ from apps.accounts.views import RegisterUserView, UserViewSet, PasswordResetView
 users_router = DefaultRouter()
 
 users_router.register(r'users', UserViewSet, basename='users')
+
+
+def set_auth_tags(_class):
+    return extend_schema(tags=["Authentification"])(_class)
+
+
+token_verify = set_auth_tags(TokenVerifyView).as_view()
+token_refresh = set_auth_tags(TokenRefreshView).as_view()
+token_blacklist = set_auth_tags(TokenBlacklistView).as_view()
+token_obtain_pair = set_auth_tags(TokenObtainPairView).as_view()
 
 auth_urlpatterns = [
     path('register/', RegisterUserView.as_view(), name='register'),
@@ -28,4 +39,5 @@ urlpatterns = [
     path('', include(users_router.urls)),
     path('auth/', include(auth_urlpatterns)),
     # path('oauth2/', include(oauth2_urlpatterns))
+
 ]

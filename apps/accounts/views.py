@@ -6,17 +6,17 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema, OpenApiExample, extend_schema_view
+from rest_access_policy import AccessViewSetMixin
 from rest_framework import generics, viewsets, status, mixins
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404, GenericAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from apps.accounts.models import User
+from apps.accounts.policy import UserAccountPolicy
 from apps.accounts.serializers import UserSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, \
     PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer, GoogleLoginSerializer
-from wib_challenge.permissions import IsSelf, ReadOnly
 from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageResponseSerializer
 
 
@@ -47,9 +47,9 @@ from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageRespons
         tags=["Utilisateurs"]
     )
 )
-class UserViewSet(mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.ReadOnlyModelViewSet):
+class UserViewSet(AccessViewSetMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly, IsSelf | ReadOnly]
+    access_policy = UserAccountPolicy
 
     def get_serializer_class(self, *args, **kwargs):
         if self.action == 'change_password':
@@ -57,7 +57,7 @@ class UserViewSet(mixins.UpdateModelMixin, mixins.DestroyModelMixin, viewsets.Re
         return UserSerializer
 
     def get_queryset(self):
-        return self.queryset if self.request.user.is_staff else self.queryset.filter(is_active=True, is_staff=False)
+        return self.access_policy.scope_queryset(self.request, self.queryset)
 
     @extend_schema(
         request=PasswordChangeSerializer,
