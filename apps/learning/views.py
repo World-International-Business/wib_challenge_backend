@@ -21,7 +21,7 @@ from .serializers import (
     QuizSerializer, QuizPublicSerializer, QuizQuestionSerializer,
     QuizChoiceSerializer, QuizResultSerializer, ProgressSerializer, CertificateSerializer,
     CourseProgressSerializer, UserProgressStatsSerializer, QuizStatsSerializer,
-    ErrorResponseSerializer, SuccessMessageSerializer, QuizSubmissionSerializer
+    QuizSubmissionSerializer
 )
 
 
@@ -38,7 +38,6 @@ from .serializers import (
         tags=["Cours"],
         responses={
             200: CourseSerializer,
-            404: ErrorResponseSerializer
         }
     ),
     create=extend_schema(
@@ -47,7 +46,6 @@ from .serializers import (
         tags=["Cours"],
         responses={
             201: CourseSerializer,
-            400: ErrorResponseSerializer
         }
     ),
     update=extend_schema(
@@ -56,8 +54,6 @@ from .serializers import (
         tags=["Cours"],
         responses={
             200: CourseSerializer,
-            400: ErrorResponseSerializer,
-            404: ErrorResponseSerializer
         }
     ),
     partial_update=extend_schema(
@@ -66,8 +62,6 @@ from .serializers import (
         tags=["Cours"],
         responses={
             200: CourseSerializer,
-            400: ErrorResponseSerializer,
-            404: ErrorResponseSerializer
         }
     ),
     destroy=extend_schema(
@@ -76,7 +70,6 @@ from .serializers import (
         tags=["Cours"],
         responses={
             204: None,
-            404: ErrorResponseSerializer
         }
     )
 )
@@ -101,8 +94,6 @@ class CourseViewSet(viewsets.ModelViewSet):
         tags=["Cours"],
         responses={
             200: CourseProgressSerializer,
-            401: ErrorResponseSerializer,
-            404: ErrorResponseSerializer
         }
     )
     @action(detail=True, methods=['get'])
@@ -134,11 +125,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         description="Générer un certificat pour ce cours si l'utilisateur l'a terminé",
         tags=["Cours"],
         responses={
-            200: SuccessMessageSerializer,
             201: CertificateSerializer,
-            400: ErrorResponseSerializer,
-            401: ErrorResponseSerializer,
-            404: ErrorResponseSerializer
         }
     )
     @action(detail=True, methods=['post'])
@@ -290,8 +277,6 @@ class ContentViewSet(viewsets.ModelViewSet):
         tags=["Contenus"],
         responses={
             200: ProgressSerializer,
-            401: ErrorResponseSerializer,
-            404: ErrorResponseSerializer
         }
     )
     @action(detail=True, methods=['post'])
@@ -370,9 +355,6 @@ class QuizViewSet(viewsets.ModelViewSet):
         request=QuizSubmissionSerializer,
         responses={
             201: QuizResultSerializer,
-            400: ErrorResponseSerializer,
-            401: ErrorResponseSerializer,
-            404: ErrorResponseSerializer
         }
     )
     @action(detail=True, methods=['post'])

@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_extensions.db.models import TitleSlugDescriptionModel
 
 from apps.core.models import BaseModel
 
@@ -14,7 +15,12 @@ class SkillLevel(models.TextChoices):
     ADVANCED = 'advanced', _('Avancé')
 
 
-class Course(BaseModel):
+class LearningModel(BaseModel, TitleSlugDescriptionModel):
+    class Meta:
+        abstract = True
+
+
+class Course(LearningModel):
     title = models.CharField(_('Titre'), max_length=255)
     description = models.TextField(_('Description'))
     level = models.CharField(_('Niveau'), max_length=20, choices=SkillLevel.choices)
@@ -29,7 +35,7 @@ class Course(BaseModel):
         return self.title
 
 
-class Module(models.Model):
+class Module(LearningModel):
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
@@ -56,7 +62,8 @@ class ContentType(models.TextChoices):
     MARKDOWN = 'markdown', _('Markdown')
 
 
-class Content(models.Model):
+class Content(LearningModel):
+    description = None
     module = models.ForeignKey(
         Module,
         on_delete=models.CASCADE,
@@ -130,7 +137,7 @@ class Content(models.Model):
         return f"{self.module.title} - {self.title}"
 
 
-class Quiz(models.Model):
+class Quiz(LearningModel):
     module = models.OneToOneField(
         Module,
         null=True,
@@ -150,7 +157,7 @@ class Quiz(models.Model):
         return f"{self.module.title} - {self.title}"
 
 
-class QuizQuestion(models.Model):
+class QuizQuestion(LearningModel):
     quiz = models.ForeignKey(
         Quiz,
         on_delete=models.CASCADE,

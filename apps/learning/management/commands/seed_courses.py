@@ -4,7 +4,7 @@ from pathlib import Path
 from django.core.management import BaseCommand
 from django.db import transaction
 
-from learning.models import Course, Module, Content, Quiz, QuizQuestion, QuizChoice
+from apps.learning.models import Course, Module, Content, Quiz, QuizQuestion, QuizChoice
 
 
 class Command(BaseCommand):

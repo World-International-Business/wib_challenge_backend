@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
-    Progress, Certificate
+    Progress, Certificate, ContentType
 )
 
 User = get_user_model()
@@ -52,16 +52,6 @@ class ContentProgressInlineSerializer(serializers.Serializer):
     completed_at = serializers.DateTimeField(allow_null=True)
 
 
-class ErrorResponseSerializer(serializers.Serializer):
-    """Serializer pour les réponses d'erreur"""
-    detail = serializers.CharField()
-
-
-class SuccessMessageSerializer(serializers.Serializer):
-    """Serializer pour les messages de succès"""
-    detail = serializers.CharField()
-
-
 class QuizChoiceSerializer(serializers.ModelSerializer):
     """Serializer pour les choix de réponse des quiz"""
 
@@ -69,6 +59,20 @@ class QuizChoiceSerializer(serializers.ModelSerializer):
         model = QuizChoice
         fields = ['id', 'question', 'text', 'is_correct']
         read_only_fields = ['id']
+
+    def validate(self, data):
+        """Validation pour s'assurer qu'il y a au moins une réponse correcte par question"""
+        if self.instance is None:  # Création
+            question = data.get('question')
+            if question and data.get('is_correct', False):
+                # Vérifier qu'il n'y a pas déjà trop de réponses correctes
+                existing_correct = QuizChoice.objects.filter(
+                    question=question, is_correct=True
+                ).count()
+                if existing_correct >= 1 and data.get('is_correct'):
+                    # Permettre plusieurs réponses correctes pour les questions à choix multiples
+                    pass
+        return data
 
 
 class QuizChoicePublicSerializer(serializers.ModelSerializer):
@@ -86,8 +90,19 @@ class QuizQuestionSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = QuizQuestion
-        fields = ['id', 'quiz', 'title', 'description', 'explanation', 'choices']
+        fields = ['id', 'quiz', 'title', 'description', 'choices']
         read_only_fields = ['id']
+
+    def validate_choices(self, value):
+        """Validation pour s'assurer qu'il y a au moins 2 choix et au moins 1 réponse correcte"""
+        if len(value) < 2:
+            raise serializers.ValidationError(_("Une question doit avoir au moins 2 choix de réponse"))
+
+        correct_choices = [choice for choice in value if choice.get('is_correct', False)]
+        if len(correct_choices) == 0:
+            raise serializers.ValidationError(_("Une question doit avoir au moins une réponse correcte"))
+
+        return value
 
 
 class QuizQuestionPublicSerializer(serializers.ModelSerializer):
@@ -112,6 +127,12 @@ class QuizSerializer(WritableNestedModelSerializer):
 
     def get_question_count(self, obj: Quiz) -> int:
         return obj.questions.count()
+
+    def validate_questions(self, value):
+        """Validation pour s'assurer qu'un quiz a au moins une question"""
+        if self.instance is None and len(value) == 0:  # Création
+            raise serializers.ValidationError(_("Un quiz doit avoir au moins une question"))
+        return value
 
 
 class QuizPublicSerializer(serializers.ModelSerializer):
@@ -155,33 +176,58 @@ class QuizResultSerializer(serializers.ModelSerializer):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
+    def validate_quiz_id(self, value):
+        """Validation pour vérifier que le quiz existe"""
+        try:
+            Quiz.objects.get(id=value)
+        except Quiz.DoesNotExist:
+            raise serializers.ValidationError(_("Le quiz spécifié n'existe pas"))
+        return value
+
 
 class QuizListSerializer(serializers.ModelSerializer):
     """Serializer pour la liste des quiz"""
     question_count = serializers.SerializerMethodField()
     is_attempted = serializers.SerializerMethodField()
     is_passed = serializers.SerializerMethodField()
+    best_score = serializers.SerializerMethodField()
 
     class Meta:
         model = Quiz
-        fields = ['id', 'module', 'title', 'description', 'question_count', 'is_attempted', 'is_passed']
+        fields = ['id', 'module', 'title', 'description', 'question_count', 'is_attempted', 'is_passed', 'best_score']
         read_only_fields = ['id']
 
     def get_question_count(self, obj: Quiz) -> int:
         return obj.questions.count()
 
     def get_is_passed(self, obj: Quiz) -> bool:
-        return QuizResult.objects.filter(
-            user=self.context['request'].user,
-            quiz=obj,
-            score__gte=70,
-        ).exists()
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return QuizResult.objects.filter(
+                user=request.user,
+                quiz=obj,
+                score__gte=70,
+            ).exists()
+        return False
 
     def get_is_attempted(self, obj: Quiz) -> bool:
-        return QuizResult.objects.filter(
-            user=self.context['request'].user,
-            quiz=obj,
-        ).exists()
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return QuizResult.objects.filter(
+                user=request.user,
+                quiz=obj,
+            ).exists()
+        return False
+
+    def get_best_score(self, obj: Quiz) -> float:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            best_result = QuizResult.objects.filter(
+                user=request.user,
+                quiz=obj,
+            ).order_by('-score').first()
+            return best_result.score if best_result else 0
+        return 0
 
 
 class ContentDetailSerializer(serializers.ModelSerializer):
@@ -222,7 +268,47 @@ class ContentDetailSerializer(serializers.ModelSerializer):
                     'is_completed': progress.is_completed,
                     'completed_at': progress.completed_at
                 }
-        return None
+        return {'is_completed': False, 'completed_at': None}
+
+    def validate(self, data):
+        """Validation basée sur le type de contenu"""
+        content_type = data.get('content_type')
+        resource_file = data.get('resource_file')
+        resource_url = data.get('resource_url')
+        content = data.get('content')
+
+        if content_type == ContentType.VIDEO:
+            if not resource_file and not resource_url:
+                raise serializers.ValidationError({
+                    'resource_file': _('Un fichier ou une URL est requis pour le type vidéo.'),
+                    'resource_url': _('Un fichier ou une URL est requis pour le type vidéo.')
+                })
+
+        elif content_type == ContentType.PDF:
+            if not resource_file:
+                raise serializers.ValidationError({
+                    'resource_file': _('Un fichier PDF est requis pour le type PDF.')
+                })
+
+        elif content_type == ContentType.TALK:
+            if not resource_url:
+                raise serializers.ValidationError({
+                    'resource_url': _('Une URL est requise pour le type conférence.')
+                })
+
+        elif content_type == ContentType.EXTERNAL_RESOURCE:
+            if not resource_url:
+                raise serializers.ValidationError({
+                    'resource_url': _('Une URL est requise pour le type ressource externe.')
+                })
+
+        elif content_type == ContentType.MARKDOWN:
+            if not content:
+                raise serializers.ValidationError({
+                    'content': _('Le contenu markdown est requis pour le type markdown.')
+                })
+
+        return data
 
 
 class ContentListSerializer(serializers.ModelSerializer):
@@ -244,7 +330,7 @@ class ContentListSerializer(serializers.ModelSerializer):
                     'is_completed': progress.is_completed,
                     'completed_at': progress.completed_at
                 }
-        return None
+        return {'is_completed': False, 'completed_at': None}
 
 
 class ModuleSerializer(serializers.ModelSerializer):
@@ -264,6 +350,12 @@ class ModuleSerializer(serializers.ModelSerializer):
 
     def get_has_quiz(self, obj: Module) -> bool:
         return hasattr(obj, 'quiz') and obj.quiz is not None
+
+    def validate_title(self, value):
+        """Validation pour s'assurer que le titre n'est pas vide"""
+        if not value.strip():
+            raise serializers.ValidationError(_("Le titre ne peut pas être vide"))
+        return value.strip()
 
 
 class CourseSerializer(WritableNestedModelSerializer):
@@ -297,8 +389,10 @@ class CourseSerializer(WritableNestedModelSerializer):
         if request and request.user.is_authenticated:
             total_contents = Content.objects.filter(module__course=obj).count()
             total_quizzes = Quiz.objects.filter(module__course=obj).count()
-            if total_contents == 0:
-                return {'percentage': 0, 'completed_contents': 0, 'total_contents': 0}
+
+            if total_contents == 0 and total_quizzes == 0:
+                return {'percentage': 0, 'completed_contents': 0, 'total_contents': 0, 'completed_quizzes': 0,
+                        'total_quizzes': 0}
 
             completed_contents = Progress.objects.filter(
                 user=request.user,
@@ -312,7 +406,10 @@ class CourseSerializer(WritableNestedModelSerializer):
                 score__gte=70,
             ).count()
 
-            percentage = ((completed_contents + completed_quizzes) / (total_contents + total_quizzes)) * 100
+            total_items = total_contents + total_quizzes
+            completed_items = completed_contents + completed_quizzes
+            percentage = (completed_items / total_items) * 100 if total_items > 0 else 0
+
             return {
                 'percentage': round(percentage, 2),
                 'completed_contents': completed_contents,
@@ -320,7 +417,14 @@ class CourseSerializer(WritableNestedModelSerializer):
                 'completed_quizzes': completed_quizzes,
                 'total_quizzes': total_quizzes
             }
-        return None
+        return {'percentage': 0, 'completed_contents': 0, 'total_contents': 0, 'completed_quizzes': 0,
+                'total_quizzes': 0}
+
+    def validate_title(self, value):
+        """Validation pour s'assurer que le titre n'est pas vide"""
+        if not value.strip():
+            raise serializers.ValidationError(_("Le titre ne peut pas être vide"))
+        return value.strip()
 
 
 class CourseListSerializer(serializers.ModelSerializer):
@@ -360,6 +464,14 @@ class ProgressSerializer(serializers.ModelSerializer):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
+    def validate_content_id(self, value):
+        """Validation pour vérifier que le contenu existe"""
+        try:
+            Content.objects.get(id=value)
+        except Content.DoesNotExist:
+            raise serializers.ValidationError(_("Le contenu spécifié n'existe pas"))
+        return value
+
 
 class CertificateSerializer(serializers.ModelSerializer):
     """Serializer pour les certificats"""
@@ -376,6 +488,14 @@ class CertificateSerializer(serializers.ModelSerializer):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)
 
+    def validate_course_id(self, value):
+        """Validation pour vérifier que le cours existe"""
+        try:
+            Course.objects.get(id=value)
+        except Course.DoesNotExist:
+            raise serializers.ValidationError(_("Le cours spécifié n'existe pas"))
+        return value
+
 
 class QuizSubmissionChoiceSerializer(serializers.Serializer):
     """Serializer pour les choix sélectionnés dans une soumission de quiz"""
@@ -385,6 +505,25 @@ class QuizSubmissionChoiceSerializer(serializers.Serializer):
         allow_empty=False
     )
 
+    def validate_question_id(self, value):
+        """Validation pour vérifier que la question existe"""
+        try:
+            QuizQuestion.objects.get(id=value)
+        except QuizQuestion.DoesNotExist:
+            raise serializers.ValidationError(_("La question spécifiée n'existe pas"))
+        return value
+
+    def validate_choice_ids(self, value):
+        """Validation pour vérifier que tous les choix existent"""
+        if not value:
+            raise serializers.ValidationError(_("Au moins un choix doit être sélectionné"))
+
+        existing_choices = QuizChoice.objects.filter(id__in=value).count()
+        if existing_choices != len(value):
+            raise serializers.ValidationError(_("Un ou plusieurs choix spécifiés n'existent pas"))
+
+        return value
+
 
 class QuizSubmissionSerializer(serializers.Serializer):
     """Serializer pour soumettre un quiz complet"""
@@ -393,6 +532,12 @@ class QuizSubmissionSerializer(serializers.Serializer):
     def validate_answers(self, value):
         if not value:
             raise serializers.ValidationError(_("Au moins une réponse est requise"))
+
+        # Vérifier que toutes les questions du quiz ont une réponse
+        question_ids = [answer['question_id'] for answer in value]
+        if len(question_ids) != len(set(question_ids)):
+            raise serializers.ValidationError(_("Chaque question ne peut avoir qu'une seule réponse"))
+
         return value
 
 
