@@ -1,0 +1,29 @@
+INVITATION À UNE ÉVALUATION TECHNIQUE - WIB CHALLENGE
+---------------------------------------------------------
+
+Bonjour {{ candidate_name }},
+
+L'entreprise {{ company_name }} vous a invité à réaliser un test technique sur la plateforme WIB Challenge :
+
+{{ test_name }}
+
+Pour accéder au test, veuillez cliquer sur le lien ci-dessous ou le copier dans votre navigateur :
+{{ test_url }}
+
+Les candidats répondent généralement dans les 48 heures à ce QCM. Celui-ci est relativement court et permettra à l'entreprise de répondre rapidement à votre candidature.
+
+IMPORTANT : 
+- Cette invitation expire le {{ expire_at|date:"d F Y à h:i" }}. Veuillez compléter votre évaluation avant cette date.
+- Nous vous rappelons que notre outil de test technique est équipé d'un système de détection de comportements suspects. Si une anomalie est détectée pendant votre test, les recruteurs en seront informés.
+
+N'hésitez pas à nous contacter pour toute question, nous vous répondrons avec plaisir :)
+
+Bonne chance dans votre évaluation !
+
+Cordialement,
+L'équipe WIB Challenge
+
+---------------------------------------------------------
+© {{ current_year }} WIB Challenge - Tous droits réservés
+Pour se désabonner : {{ unsubscribe_url }}
+Politique de confidentialité : {{ privacy_url }}

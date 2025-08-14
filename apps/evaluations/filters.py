@@ -1,9 +1,7 @@
-from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django_filters import rest_framework as filters
 
-from apps.accounts.models import User
-from apps.evaluations.models import Evaluation, SubmissionAttempt, Answer, Submission, Candidate
+from apps.evaluations.models import Evaluation, SubmissionAttempt, Answer, Submission, Candidate, Participant
 
 
 class EvaluationFilterSet(filters.FilterSet):
@@ -146,9 +144,9 @@ class SubmissionAttemptFilterSet(filters.FilterSet):
     ended_after = filters.DateTimeFilter(field_name='ended_at', lookup_expr='gte')
     ended_before = filters.DateTimeFilter(field_name='ended_at', lookup_expr='lte')
 
-    candidate_type = filters.CharFilter(method='filter_by_candidate_type')
-    candidate_email = filters.CharFilter(method='filter_by_candidate_email')
-    candidate_name = filters.CharFilter(method='filter_by_candidate_name')
+    participant_type = filters.CharFilter(field_name='participant__type', lookup_expr='exact')
+    participant_email = filters.CharFilter(method='filter_by_participant_email')
+    participant_name = filters.CharFilter(method='filter_by_participant_name')
 
     is_finished = filters.BooleanFilter(method='filter_is_finished')
     has_submission = filters.BooleanFilter(method='filter_has_submission')
@@ -172,63 +170,31 @@ class SubmissionAttemptFilterSet(filters.FilterSet):
         model = SubmissionAttempt
         fields = {
             'evaluation': ['exact'],
+            'participant': ['exact'],
             'is_completed': ['exact'],
             'corrected': ['exact'],
         }
 
-    def filter_by_candidate_type(self, queryset, name, value):
-        """Filtre par type de candidat (user ou external)"""
+    def filter_by_participant_email(self, queryset, name, value):
+        """Filtre par email du participant"""
         if not value:
             return queryset
 
-        if value.lower() == 'user':
-            user_ct = ContentType.objects.get_for_model(User)
-            return queryset.filter(candidate_content_type=user_ct)
-        elif value.lower() == 'external':
-            candidate_ct = ContentType.objects.get_for_model(Candidate)
-            return queryset.filter(candidate_content_type=candidate_ct)
+        return queryset.filter(
+            Q(participant__user__email__icontains=value) |
+            Q(participant__candidate__email__icontains=value)
+        )
 
-        return queryset
-
-    def filter_by_candidate_email(self, queryset, name, value):
-        """Filtre par email du candidat"""
+    def filter_by_participant_name(self, queryset, name, value):
+        """Filtre par nom du participant"""
         if not value:
             return queryset
 
-        user_ct = ContentType.objects.get_for_model(User)
-        user_attempts = queryset.filter(
-            candidate_content_type=user_ct,
-            candidate_object_id__in=User.objects.filter(email__icontains=value).values('id')
+        return queryset.filter(
+            Q(participant__user__first_name__icontains=value) |
+            Q(participant__user__last_name__icontains=value) |
+            Q(participant__candidate__full_name__icontains=value)
         )
-
-        candidate_ct = ContentType.objects.get_for_model(Candidate)
-        candidate_attempts = queryset.filter(
-            candidate_content_type=candidate_ct,
-            candidate_object_id__in=Candidate.objects.filter(email__icontains=value).values('id')
-        )
-
-        return user_attempts.union(candidate_attempts)
-
-    def filter_by_candidate_name(self, queryset, name, value):
-        """Filtre par nom du candidat"""
-        if not value:
-            return queryset
-
-        user_ct = ContentType.objects.get_for_model(User)
-        user_attempts = queryset.filter(
-            candidate_content_type=user_ct,
-            candidate_object_id__in=User.objects.filter(
-                Q(first_name__icontains=value) | Q(last_name__icontains=value)
-            ).values('id')
-        )
-
-        candidate_ct = ContentType.objects.get_for_model(Candidate)
-        candidate_attempts = queryset.filter(
-            candidate_content_type=candidate_ct,
-            candidate_object_id__in=Candidate.objects.filter(full_name__icontains=value).values('id')
-        )
-
-        return user_attempts.union(candidate_attempts)
 
     def filter_is_finished(self, queryset, name, value):
         """Filtre les tentatives finies/non finies"""
@@ -314,9 +280,96 @@ class SubmissionFilterSet(filters.FilterSet):
             return queryset.filter(Q(personality_detail__isnull=True) | Q(personality_detail__exact=''))
 
 
+class ParticipantFilterSet(filters.FilterSet):
+    """
+    FilterSet pour le modèle Participant.
+    """
+    type = filters.ChoiceFilter(field_name='type', choices=Participant.Type.choices)
+
+    # Filtres pour les utilisateurs
+    user_email = filters.CharFilter(field_name='user__email', lookup_expr='icontains')
+    user_name = filters.CharFilter(method='filter_by_user_name')
+
+    # Filtres pour les candidats
+    candidate_email = filters.CharFilter(field_name='candidate__email', lookup_expr='icontains')
+    candidate_name = filters.CharFilter(field_name='candidate__full_name', lookup_expr='icontains')
+    candidate_owner = filters.CharFilter(field_name='candidate__owner__email', lookup_expr='icontains')
+
+    created_after = filters.DateTimeFilter(field_name='created_at', lookup_expr='gte')
+    created_before = filters.DateTimeFilter(field_name='created_at', lookup_expr='lte')
+
+    search = filters.CharFilter(method='filter_search')
+    email_contains = filters.CharFilter(method='filter_by_email')
+    name_contains = filters.CharFilter(method='filter_by_name')
+    evaluation = filters.NumberFilter(method='filter_by_evaluation')
+
+    class Meta:
+        model = Participant
+        fields = {
+            'type': ['exact'],
+            'user': ['exact'],
+            'candidate': ['exact'],
+        }
+
+    def filter_by_user_name(self, queryset, name, value):
+        """Filtre par nom de l'utilisateur"""
+        if not value:
+            return queryset
+        return queryset.filter(
+            Q(user__first_name__icontains=value) |
+            Q(user__last_name__icontains=value)
+        )
+
+    def filter_by_email(self, queryset, name, value):
+        """Filtre par email du participant"""
+        if not value:
+            return queryset
+        return queryset.filter(
+            Q(user__email__icontains=value) |
+            Q(candidate__email__icontains=value)
+        )
+
+    def filter_by_name(self, queryset, name, value):
+        """Filtre par nom du participant"""
+        if not value:
+            return queryset
+        return queryset.filter(
+            Q(user__first_name__icontains=value) |
+            Q(user__last_name__icontains=value) |
+            Q(candidate__full_name__icontains=value)
+        )
+
+    def filter_search(self, queryset, name, value):
+        """Recherche globale dans nom et email"""
+        if not value:
+            return queryset
+        return queryset.filter(
+            Q(user__first_name__icontains=value) |
+            Q(user__last_name__icontains=value) |
+            Q(user__email__icontains=value) |
+            Q(candidate__full_name__icontains=value) |
+            Q(candidate__email__icontains=value)
+        )
+
+    def filter_by_evaluation(self, queryset, name, value):
+        """Filtre les participants qui ont des tentatives pour une évaluation spécifique"""
+        if not value:
+            return queryset
+
+        participant_ids = SubmissionAttempt.objects.filter(
+            evaluation_id=value
+        ).values_list('participant_id', flat=True)
+
+        return queryset.filter(id__in=participant_ids)
+
+
+# Garder CandidateFilterSet pour la rétrocompatibilité si nécessaire
+CandidateFilterSet = filters.FilterSet
+
+
 class CandidateFilterSet(filters.FilterSet):
     """
-    FilterSet pour le modèle Candidate.
+    FilterSet pour le modèle Candidate (rétrocompatibilité).
     """
     owner_email = filters.CharFilter(field_name='owner__email', lookup_expr='icontains')
     owner_name = filters.CharFilter(method='filter_by_owner_name')
@@ -327,6 +380,7 @@ class CandidateFilterSet(filters.FilterSet):
     search = filters.CharFilter(method='filter_search')
     name_contains = filters.CharFilter(field_name='full_name', lookup_expr='icontains')
     email_contains = filters.CharFilter(field_name='email', lookup_expr='icontains')
+    evaluation = filters.NumberFilter(method='filter_by_evaluation')
 
     class Meta:
         model = Candidate
@@ -353,3 +407,15 @@ class CandidateFilterSet(filters.FilterSet):
             Q(full_name__icontains=value) |
             Q(email__icontains=value)
         )
+
+    def filter_by_evaluation(self, queryset, name, value):
+        """Filtre les candidats qui ont des tentatives pour une évaluation spécifique"""
+        if not value:
+            return queryset
+
+        candidate_ids = SubmissionAttempt.objects.filter(
+            evaluation_id=value,
+            participant__candidate__isnull=False
+        ).values_list('participant__candidate_id', flat=True)
+
+        return queryset.filter(id__in=candidate_ids)
