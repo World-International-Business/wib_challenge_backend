@@ -1,15 +1,24 @@
+from logging import getLogger
+from smtplib import SMTPException
+
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema_view, extend_schema
+from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAdminUser
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from apps.core.filters import TechnologyFilter, ProfessionFilter, DomainFilter
 from apps.core.models import Profession, Technology, Domain
 from apps.core.serializers import ProfessionSerializer, ProfessionDetailSerializer, TechnologySerializer, \
     DomainSerializer
 from wib_challenge.permissions import ReadOnly
+from .serializers import ContactSerializer
+
+logger = getLogger(__name__)
 
 
 @extend_schema_view(
@@ -149,3 +158,40 @@ def health_check(request):
     Endpoint simple pour les healthchecks Docker
     """
     return HttpResponse("ok", content_type="text/plain")
+
+
+class ContactView(APIView):
+    """Vue pour gérer les messages de contact"""
+
+    def post(self, request):
+        """Envoie un email de contact"""
+        serializer = ContactSerializer(data=request.data)
+
+        if serializer.is_valid():
+            try:
+                serializer.send_email()
+
+                return Response({
+                    'success': True,
+                    'message': 'Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.'
+                }, status=status.HTTP_200_OK)
+
+            except SMTPException as e:
+                logger.error(f"Erreur lors de l'envoi de l'email de contact: {e}")
+                return Response({
+                    'success': False,
+                    'message': 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer plus tard.'
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+            except Exception as e:
+                logger.error(f"Erreur inattendue lors de l'envoi du contact: {e}")
+                return Response({
+                    'success': False,
+                    'message': 'Une erreur inattendue est survenue. Veuillez réessayer plus tard.'
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        return Response({
+            'success': False,
+            'message': 'Les données fournies ne sont pas valides.',
+            'errors': serializer.errors
+        }, status=status.HTTP_400_BAD_REQUEST)
