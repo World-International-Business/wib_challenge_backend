@@ -221,40 +221,40 @@ class OrgAnswer(BaseModel):
     def __str__(self):
         return f'{self.attempt} - {self.question} - {self.answered_at} - {"Correct" if self.is_correct else "Incorrect"}'
 
-
-class EvaluationInvitation(BaseModel):
-    class Status(models.TextChoices):
-        PENDING = 'pending', _('En attente')
-        ACCEPTED = 'accepted', _('Accepté')
-        DECLINED = 'declined', _('Refusé')
-        EXPIRED = 'expired', _('Expirée')
-
-    evaluation = models.ForeignKey(OrgEvaluation, on_delete=models.CASCADE, verbose_name=_('Évaluation'),
-                                   related_name='invitations')
-    candidate = models.OneToOneField(Candidate, on_delete=models.CASCADE, verbose_name=_('Candidat'),
-                                     related_name='invitation')
-    token = models.CharField(_('Token d\'invitation'),
-                             max_length=64, unique=True)
-    invited_at = models.DateTimeField(_('Invité le'), auto_now_add=True)
-    expires_at = models.DateTimeField(_('Expire le'))
-    status = models.CharField(
-        _('Statut'), choices=Status.choices, default=Status.PENDING, max_length=20)
-
-    class Meta:
-        unique_together = ('evaluation', 'candidate')
-        indexes = [models.Index(fields=['token']),
-                   models.Index(fields=['status'])]
-        ordering = ['-invited_at']
-
-    def save(self, *args, **kwargs):
-        if not self.token:
-            self.token = secrets.token_urlsafe(32)
-        super().save(*args, **kwargs)
-
-    @property
-    def is_valid(self):
-        """Vérifie si l'invitation est valide"""
-        return self.status not in [self.Status.EXPIRED, self.Status.DECLINED] and self.expires_at > timezone.now()
-
-    def __str__(self):
-        return f'Invitation {self.token} - {self.evaluation.title} - {self.candidate.full_name} - {self.status}'
+#
+# class EvaluationInvitation(BaseModel):
+#     class Status(models.TextChoices):
+#         PENDING = 'pending', _('En attente')
+#         ACCEPTED = 'accepted', _('Accepté')
+#         DECLINED = 'declined', _('Refusé')
+#         EXPIRED = 'expired', _('Expirée')
+#
+#     evaluation = models.ForeignKey(OrgEvaluation, on_delete=models.CASCADE, verbose_name=_('Évaluation'),
+#                                    related_name='invitations')
+#     candidate = models.OneToOneField(Candidate, on_delete=models.CASCADE, verbose_name=_('Candidat'),
+#                                      related_name='invitation')
+#     token = models.CharField(_('Token d\'invitation'),
+#                              max_length=64, unique=True)
+#     invited_at = models.DateTimeField(_('Invité le'), auto_now_add=True)
+#     expires_at = models.DateTimeField(_('Expire le'))
+#     status = models.CharField(
+#         _('Statut'), choices=Status.choices, default=Status.PENDING, max_length=20)
+#
+#     class Meta:
+#         unique_together = ('evaluation', 'candidate')
+#         indexes = [models.Index(fields=['token']),
+#                    models.Index(fields=['status'])]
+#         ordering = ['-invited_at']
+#
+#     def save(self, *args, **kwargs):
+#         if not self.token:
+#             self.token = secrets.token_urlsafe(32)
+#         super().save(*args, **kwargs)
+#
+#     @property
+#     def is_valid(self):
+#         """Vérifie si l'invitation est valide"""
+#         return self.status not in [self.Status.EXPIRED, self.Status.DECLINED] and self.expires_at > timezone.now()
+#
+#     def __str__(self):
+#         return f'Invitation {self.token} - {self.evaluation.title} - {self.candidate.full_name} - {self.status}'

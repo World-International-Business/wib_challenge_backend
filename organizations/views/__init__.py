@@ -55,32 +55,3 @@ class OrgQuestionViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, view
         evaluation = get_object_or_404(
             OrgEvaluation, id=evaluation_id, organization=self.request.user.organization)
         serializer.save(evaluation=evaluation)
-
-    @extend_schema(
-        request=None,
-        responses={200: TechnologyStats},
-    )
-    @action(detail=False, methods=['get'], url_path='technology-stats/(?P<tech_pk>[0-9]+)', url_name='technology-stats')
-    def technology_stats(self, request, tech_pk=None, organization_pk=None):
-        """
-        Retrieve statistics for a specific technology in the organization.
-        """
-        technology = get_object_or_404(Technology, pk=tech_pk)
-
-        questions = technology.questions.all()
-        nb_questions = questions.count()
-
-        available = {
-            Question.Difficulty.EASY: questions.filter(difficulty=Question.Difficulty.EASY).count(),
-            Question.Difficulty.MEDIUM: questions.filter(difficulty=Question.Difficulty.MEDIUM).count(),
-            Question.Difficulty.HARD: questions.filter(
-                difficulty=Question.Difficulty.HARD).count()
-        }
-
-        return Response({
-            'id': technology.id,
-            'name': technology.name,
-            'url': request.build_absolute_uri(technology.image.url) if technology.image else None,
-            'question_count': nb_questions,
-            'available': available,
-        }, status=200)

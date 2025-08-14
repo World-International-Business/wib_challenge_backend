@@ -71,25 +71,6 @@ class OrgEvaluationViewSet(viewsets.ModelViewSet):
                 _("Cette évaluation ne peut pas être modifiée."))
 
     @extend_schema(
-        request=InviteCandidateSerializer
-    )
-    @action(detail=True, methods=['post'], url_path='invite-candidates')
-    @transaction.atomic
-    def invite_candidates(self, request, pk=None, organization_pk=None):
-        """Crée une invitation pour un candidat"""
-        evaluation = self.get_object()
-        candidates = request.data.get('candidates', [])
-        expires_at = request.data.get('expires_at')
-
-        for candidate in candidates:
-            serializer = EvaluationInvitationSerializer(
-                data={**candidate, 'expires_at': expires_at}, context={'request': request})
-            serializer.is_valid(raise_exception=True)
-            serializer.save(evaluation=evaluation)
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-    @extend_schema(
         request=ProportionEvaluationSerializer,
         responses={200: EvaluationResponseSerializer},
         summary="Mise à jour par proportions personnalisées",

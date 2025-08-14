@@ -427,7 +427,7 @@ class EvaluationInvitationAdmin(admin.ModelAdmin):
 
     @admin.action(description=_('Envoyer un email de rappel'))
     def send_reminder_email(self, request, queryset):
-        from organizations.utils import send_reminder_email
+        from apps.evaluations.utils import send_reminder_email
 
         sent_count = 0
         for invitation in queryset:

@@ -1,6 +1,5 @@
 from django.db import transaction
 from django.db.models import Sum
-from django.utils import timezone
 from drf_spectacular.utils import inline_serializer, extend_schema_field
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
@@ -10,7 +9,6 @@ from organizations.models import (
     Organization, OrgEvaluation, OrgQuestion, OrgChoice,
     OrgSubmissionAttempt, OrgAnswer, OrgSubmission, Candidate, EvaluationInvitation
 )
-from organizations.utils import send_invitation_email
 from apps.questions.models import Question
 
 
@@ -112,6 +110,20 @@ class OrgEvaluationSerializer(WritableNestedModelSerializer):
         return aggregate['total_time'] or 0
 
 
+class OrgAnswerSerializer(serializers.ModelSerializer):
+    selected_choices = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=OrgChoice.objects.all())
+    question = OrgQuestionSerializer(read_only=True)
+
+    question_id = serializers.PrimaryKeyRelatedField(
+        write_only=True, queryset=OrgQuestion.objects, source='question')
+
+    class Meta:
+        model = OrgAnswer
+        fields = '__all__'
+        read_only_fields = ['attempt', 'is_correct', 'answered_at', 'score']
+
+
 class OrgSubmissionAttemptSerializer(serializers.ModelSerializer):
     candidate = CandidateSerializer(read_only=True)
 
@@ -144,20 +156,6 @@ class OrgSubmissionAttemptSerializer(serializers.ModelSerializer):
         return OrgQuestionSerializer(questions, many=True).data
 
 
-class OrgAnswerSerializer(serializers.ModelSerializer):
-    selected_choices = serializers.PrimaryKeyRelatedField(
-        many=True, queryset=OrgChoice.objects.all())
-    question = OrgQuestionSerializer(read_only=True)
-
-    question_id = serializers.PrimaryKeyRelatedField(
-        write_only=True, queryset=OrgQuestion.objects, source='question')
-
-    class Meta:
-        model = OrgAnswer
-        fields = '__all__'
-        read_only_fields = ['attempt', 'is_correct', 'answered_at', 'score']
-
-
 class OrgSubmissionSerializer(serializers.ModelSerializer):
     answers = OrgAnswerSerializer(
         source='attempt.answers', many=True, read_only=True)
@@ -187,42 +185,3 @@ InviteCandidateSerializer = inline_serializer(
         'candidates': CandidateSerializer(many=True)
     }
 )
-
-
-class EvaluationInvitationSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(write_only=True)
-    full_name = serializers.CharField(write_only=True)
-
-    class Meta:
-        model = EvaluationInvitation
-        fields = ['id', 'email', 'full_name',
-                  'evaluation', 'status', 'expires_at']
-        read_only_fields = ['id', 'status', 'evaluation']
-
-    def validate_expire_at(self, value):
-        if timezone.now() > value:
-            raise serializers.ValidationError(
-                "La date d'expiration doit être dans le futur.")
-        return value
-
-    def create(self, validated_data):
-        email = validated_data.pop('email', '')
-        full_name = validated_data.pop('full_name', '')
-        expire_at = validated_data.pop('expires_at', None)
-        evaluation = validated_data.get('evaluation')
-        organization = evaluation.organization
-
-        candidate = Candidate.objects.get_or_create(
-            email=email,
-            organization=organization,
-            full_name=full_name
-        )[0]
-
-        invitation = EvaluationInvitation.objects.create(
-            candidate=candidate,
-            evaluation=evaluation,
-            expires_at=expire_at
-        )
-
-        send_invitation_email(self.context['request'], invitation)
-        return invitation
