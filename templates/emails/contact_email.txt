@@ -1,0 +1,21 @@
+=================================================
+🎯 WIB CHALLENGE - NOUVEAU MESSAGE DE CONTACT
+=================================================
+
+📋 INFORMATIONS DU CONTACT
+--------------------------
+👤 Nom: {{ name }}
+📧 Email: {{ email }}
+{% if phone %}📞 Téléphone: {{ phone }}{% endif %}
+📋 Objet: {{ object }}
+📅 Reçu le: {{ "now"|date:"d/m/Y à H:i" }}
+
+💬 MESSAGE
+-----------
+{{ message }}
+
+=================================================
+Ce message a été envoyé depuis le formulaire de contact de WIB Challenge.
+Pour répondre, utilisez l'adresse email: {{ email }}
+=================================================
+

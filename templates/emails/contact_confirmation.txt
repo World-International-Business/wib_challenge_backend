@@ -1,0 +1,34 @@
+=================================================
+🎯 WIB CHALLENGE - CONFIRMATION DE RÉCEPTION
+=================================================
+
+Bonjour {{ name }},
+
+✅ MESSAGE BIEN REÇU !
+
+Nous avons bien reçu votre message concernant "{{ object }}"
+et nous vous répondrons dans les plus brefs délais.
+
+📋 RÉCAPITULATIF
+----------------
+Objet: {{ object }}
+Email: {{ email }}
+{% if phone %}Téléphone: {{ phone }}{% endif %}
+Envoyé le: {{ "now"|date:"d/m/Y à H:i" }}
+
+🚀 PROCHAINES ÉTAPES
+--------------------
+• Délai de réponse: 24-48h ouvrées
+• Vérifiez vos emails (y compris les spams)
+• Pour les demandes urgentes, n'hésitez pas à nous relancer
+
+📞 CONTACT
+----------
+Email: contact@wibchallenge.com
+Site web: www.wibchallenge.com
+
+=================================================
+Cet email de confirmation a été généré automatiquement.
+© 2024 WIB Challenge - Tous droits réservés
+=================================================
+

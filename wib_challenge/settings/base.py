@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+    'django_extensions',
     'django_filters',
     'corsheaders',
     'apps.core',
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'apps.questions',
     'apps.evaluations',
     # 'organizations',
-    # 'learning',
+    'apps.learning',
     # 'jobs',
 ]
 
@@ -156,6 +157,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
+
+DEFAULT_EVALUATION_QUESTION_COUNT = 20  # TODO
 
 # Logging Configuration
 LOGGING = {
@@ -310,3 +313,9 @@ SPECTACULAR_SETTINGS = {
         'drf_spectacular.hooks.postprocess_schema_enums'
     ],
 }
+
+DRF_ACCESS_POLICY = {
+    "reusable_conditions": ["wib_challenge.access_policies"],
+}
+
+CONTACT_EMAIL = None
