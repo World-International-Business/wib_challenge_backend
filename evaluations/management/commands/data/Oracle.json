@@ -1,0 +1,1112 @@
+{
+  "technology": "Oracle",
+  "title": "Évaluation Oracle - Système ERP pour la Gestion d'Entreprise",
+  "description": "Cette évaluation couvre Oracle Database, Oracle ERP, Oracle Cloud, l'administration, la programmation PL/SQL, et les outils de gestion d'entreprise avec un focus sur les aspects opérationnels.",
+  "difficulty": "intermediate",
+  "questions": [
+    {
+      "text": "Qu'est-ce qu'**Oracle** ?",
+      "explanation": "Oracle est un système de gestion de base de données relationnelle (SGBDR) et une suite d'applications d'entreprise pour la gestion des ressources (ERP).",
+      "difficulty": "easy",
+      "duration": 25,
+      "choices": [
+        {
+          "text": "Système de gestion de base de données et suite ERP",
+          "is_correct": true
+        },
+        {
+          "text": "Langage de programmation web",
+          "is_correct": false
+        },
+        {
+          "text": "Système d'exploitation serveur",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de conception graphique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qui a fondé **Oracle Corporation** ?",
+      "explanation": "Oracle a été fondée en 1977 par Larry Ellison, Bob Miner et Ed Oates. Larry Ellison est resté longtemps le PDG emblématique de l'entreprise.",
+      "difficulty": "medium",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Larry Ellison, Bob Miner et Ed Oates",
+          "is_correct": true
+        },
+        {
+          "text": "Bill Gates et Paul Allen",
+          "is_correct": false
+        },
+        {
+          "text": "Steve Jobs et Steve Wozniak",
+          "is_correct": false
+        },
+        {
+          "text": "Michael Dell",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **SQL** ?",
+      "explanation": "SQL (Structured Query Language) est le langage standard pour interroger et manipuler les bases de données relationnelles, largement utilisé avec Oracle.",
+      "difficulty": "easy",
+      "duration": 30,
+      "choices": [
+        {
+          "text": "Structured Query Language - langage de requête structuré",
+          "is_correct": true
+        },
+        {
+          "text": "System Quality Language",
+          "is_correct": false
+        },
+        {
+          "text": "Software Query Logic",
+          "is_correct": false
+        },
+        {
+          "text": "Standard Quality Level",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **PL/SQL** ?",
+      "explanation": "PL/SQL (Procedural Language/SQL) est le langage de programmation procédural d'Oracle qui étend SQL avec des structures de contrôle, fonctions et procédures.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Procedural Language/SQL - extension procédurale de SQL",
+          "is_correct": true
+        },
+        {
+          "text": "Parallel Language/SQL",
+          "is_correct": false
+        },
+        {
+          "text": "Public Language/SQL",
+          "is_correct": false
+        },
+        {
+          "text": "Premium Language/SQL",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **instance Oracle** ?",
+      "explanation": "Une instance Oracle est l'ensemble des processus et structures mémoire qui permettent d'accéder à une base de données Oracle. Elle comprend la SGA et les processus background.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Ensemble des processus et structures mémoire pour accéder à la BD",
+          "is_correct": true
+        },
+        {
+          "text": "Une copie de la base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Un utilisateur connecté à Oracle",
+          "is_correct": false
+        },
+        {
+          "text": "Un serveur physique Oracle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **SGA** ?",
+      "explanation": "La SGA (System Global Area) est la zone mémoire partagée d'Oracle contenant les caches de données, le cache des instructions SQL et d'autres structures critiques.",
+      "difficulty": "hard",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "System Global Area - zone mémoire partagée d'Oracle",
+          "is_correct": true
+        },
+        {
+          "text": "Standard Gateway Application",
+          "is_correct": false
+        },
+        {
+          "text": "Secure Gateway Access",
+          "is_correct": false
+        },
+        {
+          "text": "System Generation Assistant",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **tablespace** ?",
+      "explanation": "Un tablespace est une unité logique de stockage dans Oracle qui regroupe un ou plusieurs fichiers de données et contient les objets de base de données (tables, index).",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Unité logique de stockage regroupant des fichiers de données",
+          "is_correct": true
+        },
+        {
+          "text": "Espace disque disponible sur le serveur",
+          "is_correct": false
+        },
+        {
+          "text": "Table temporaire pour les calculs",
+          "is_correct": false
+        },
+        {
+          "text": "Espace de travail utilisateur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment créer une **table** en Oracle ?",
+      "explanation": "Une table se crée avec la commande CREATE TABLE suivie du nom de la table et des définitions de colonnes avec leurs types de données et contraintes.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "CREATE TABLE nom_table (colonne1 type, colonne2 type, ...)",
+          "is_correct": true
+        },
+        {
+          "text": "NEW TABLE nom_table WITH (colonnes)",
+          "is_correct": false
+        },
+        {
+          "text": "INSERT TABLE nom_table COLUMNS (...)",
+          "is_correct": false
+        },
+        {
+          "text": "BUILD TABLE nom_table STRUCTURE (...)",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **index** ?",
+      "explanation": "Un index est une structure de données qui améliore les performances des requêtes en créant un chemin d'accès rapide aux données d'une ou plusieurs colonnes de table.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Structure de données pour accélérer les requêtes sur des colonnes",
+          "is_correct": true
+        },
+        {
+          "text": "Liste alphabétique des tables",
+          "is_correct": false
+        },
+        {
+          "text": "Numérotation automatique des lignes",
+          "is_correct": false
+        },
+        {
+          "text": "Catalogue des utilisateurs",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **contrainte** (constraint) ?",
+      "explanation": "Une contrainte est une règle appliquée à une ou plusieurs colonnes pour garantir l'intégrité des données (PRIMARY KEY, FOREIGN KEY, NOT NULL, CHECK, UNIQUE).",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Règle pour garantir l'intégrité des données dans les colonnes",
+          "is_correct": true
+        },
+        {
+          "text": "Limitation du nombre de lignes dans une table",
+          "is_correct": false
+        },
+        {
+          "text": "Restriction d'accès utilisateur",
+          "is_correct": false
+        },
+        {
+          "text": "Limite de taille des fichiers",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **vue** (view) ?",
+      "explanation": "Une vue est une requête SQL stockée qui présente les données comme une table virtuelle. Elle peut simplifier des requêtes complexes et contrôler l'accès aux données.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Requête SQL stockée présentant les données comme une table virtuelle",
+          "is_correct": true
+        },
+        {
+          "text": "Interface graphique pour consulter les données",
+          "is_correct": false
+        },
+        {
+          "text": "Rapport automatique des données",
+          "is_correct": false
+        },
+        {
+          "text": "Copie en lecture seule d'une table",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **procédure stockée** ?",
+      "explanation": "Une procédure stockée est un ensemble d'instructions SQL et PL/SQL compilées et stockées dans la base de données, réutilisables et optimisées pour les performances.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Ensemble d'instructions SQL/PL-SQL compilées et stockées dans la BD",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde automatique des données",
+          "is_correct": false
+        },
+        {
+          "text": "Processus de maintenance de la base",
+          "is_correct": false
+        },
+        {
+          "text": "Méthode de stockage des fichiers",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment effectuer une **sauvegarde** (backup) Oracle ?",
+      "explanation": "Les sauvegardes Oracle peuvent être réalisées avec RMAN (Recovery Manager), Export/Import, ou des sauvegardes à froid. RMAN est l'outil recommandé pour les sauvegardes d'entreprise.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "RMAN (Recovery Manager), Export/Import, ou sauvegardes à froid",
+          "is_correct": true
+        },
+        {
+          "text": "Copie simple des fichiers de données uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde automatique par Oracle Cloud uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Export des tables individuellement seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que **RMAN** ?",
+      "explanation": "RMAN (Recovery Manager) est l'outil Oracle de sauvegarde et récupération qui permet de gérer les sauvegardes, restaurations et récupérations de bases de données de manière centralisée.",
+      "difficulty": "hard",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Recovery Manager - outil Oracle de sauvegarde et récupération",
+          "is_correct": true
+        },
+        {
+          "text": "Relational Management System",
+          "is_correct": false
+        },
+        {
+          "text": "Resource Manager Application",
+          "is_correct": false
+        },
+        {
+          "text": "Remote Management Network",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **utilisateur** Oracle ?",
+      "explanation": "Un utilisateur Oracle est un compte qui peut se connecter à la base de données avec des privilèges spécifiques. Chaque utilisateur a un schéma associé contenant ses objets.",
+      "difficulty": "medium",
+      "duration": 40,
+      "choices": [
+        {
+          "text": "Compte avec privilèges spécifiques et schéma associé d'objets",
+          "is_correct": true
+        },
+        {
+          "text": "Personne utilisant l'application Oracle",
+          "is_correct": false
+        },
+        {
+          "text": "Licence d'utilisation Oracle",
+          "is_correct": false
+        },
+        {
+          "text": "Poste de travail client",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **rôle** (role) Oracle ?",
+      "explanation": "Un rôle est un ensemble nommé de privilèges qui peut être accordé à des utilisateurs ou à d'autres rôles, simplifiant ainsi la gestion des autorisations.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Ensemble nommé de privilèges accordé aux utilisateurs",
+          "is_correct": true
+        },
+        {
+          "text": "Fonction d'un utilisateur dans l'entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Type de données spécial",
+          "is_correct": false
+        },
+        {
+          "text": "Processus système Oracle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**Oracle ERP Cloud** ?",
+      "explanation": "Oracle ERP Cloud est une suite d'applications cloud intégrées couvrant la finance, la comptabilité, l'approvisionnement, la gestion de projets et les opérations d'entreprise.",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Suite d'applications cloud pour finance, comptabilité et opérations",
+          "is_correct": true
+        },
+        {
+          "text": "Stockage cloud pour bases de données",
+          "is_correct": false
+        },
+        {
+          "text": "Interface web pour Oracle Database",
+          "is_correct": false
+        },
+        {
+          "text": "Service de sauvegarde en ligne",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**Oracle Fusion** ?",
+      "explanation": "Oracle Fusion est une architecture d'applications d'entreprise qui combine les meilleures fonctionnalités des acquisitions Oracle dans une plateforme unifiée et moderne.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Architecture unifiée combinant les applications Oracle dans une plateforme moderne",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de fusion de bases de données",
+          "is_correct": false
+        },
+        {
+          "text": "Interface de connexion multiple",
+          "is_correct": false
+        },
+        {
+          "text": "Système de réplication des données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment optimiser les **performances** d'une requête Oracle ?",
+      "explanation": "L'optimisation passe par l'utilisation d'index appropriés, l'analyse du plan d'exécution, l'utilisation de hints, la réécriture de requêtes et le paramétrage de l'optimiseur.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Index, analyse du plan d'exécution, hints, réécriture de requêtes",
+          "is_correct": true
+        },
+        {
+          "text": "Augmenter uniquement la mémoire serveur",
+          "is_correct": false
+        },
+        {
+          "text": "Utiliser plus de processeurs seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Redémarrer la base de données régulièrement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**optimiseur Oracle** ?",
+      "explanation": "L'optimiseur Oracle est le composant qui analyse les requêtes SQL et choisit le plan d'exécution le plus efficace en se basant sur les statistiques et les coûts estimés.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Composant qui choisit le plan d'exécution le plus efficace pour les requêtes",
+          "is_correct": true
+        },
+        {
+          "text": "Outil de compression des données",
+          "is_correct": false
+        },
+        {
+          "text": "Processus de défragmentation",
+          "is_correct": false
+        },
+        {
+          "text": "Système de cache intelligent",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'une **transaction** ?",
+      "explanation": "Une transaction est une unité logique de travail composée d'une ou plusieurs opérations SQL qui doivent toutes réussir ou échouer ensemble (propriétés ACID).",
+      "difficulty": "medium",
+      "duration": 50,
+      "choices": [
+        {
+          "text": "Unité logique de travail avec propriétés ACID (tout ou rien)",
+          "is_correct": true
+        },
+        {
+          "text": "Opération financière dans l'ERP",
+          "is_correct": false
+        },
+        {
+          "text": "Échange de données entre serveurs",
+          "is_correct": false
+        },
+        {
+          "text": "Processus de sauvegarde automatique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que signifie **COMMIT** ?",
+      "explanation": "COMMIT valide définitivement toutes les modifications effectuées dans la transaction courante et les rend visibles aux autres utilisateurs.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Valide définitivement les modifications de la transaction courante",
+          "is_correct": true
+        },
+        {
+          "text": "Annule les modifications en cours",
+          "is_correct": false
+        },
+        {
+          "text": "Sauvegarde la base de données",
+          "is_correct": false
+        },
+        {
+          "text": "Ferme la connexion utilisateur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Que signifie **ROLLBACK** ?",
+      "explanation": "ROLLBACK annule toutes les modifications effectuées dans la transaction courante et restaure l'état précédent de la base de données.",
+      "difficulty": "medium",
+      "duration": 35,
+      "choices": [
+        {
+          "text": "Annule toutes les modifications de la transaction courante",
+          "is_correct": true
+        },
+        {
+          "text": "Valide les modifications en cours",
+          "is_correct": false
+        },
+        {
+          "text": "Restaure une sauvegarde complète",
+          "is_correct": false
+        },
+        {
+          "text": "Retourne à la version précédente d'Oracle",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'un **déclencheur** (trigger) ?",
+      "explanation": "Un trigger est un bloc PL/SQL qui s'exécute automatiquement en réponse à des événements spécifiques sur une table ou vue (INSERT, UPDATE, DELETE).",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Bloc PL/SQL s'exécutant automatiquement lors d'événements sur tables",
+          "is_correct": true
+        },
+        {
+          "text": "Minuteur pour les tâches programmées",
+          "is_correct": false
+        },
+        {
+          "text": "Bouton d'interface utilisateur",
+          "is_correct": false
+        },
+        {
+          "text": "Signal d'alerte système",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**Oracle Apex** ?",
+      "explanation": "Oracle APEX (Application Express) est une plateforme de développement low-code pour créer rapidement des applications web basées sur Oracle Database.",
+      "difficulty": "medium",
+      "duration": 45,
+      "choices": [
+        {
+          "text": "Plateforme de développement low-code pour applications web Oracle",
+          "is_correct": true
+        },
+        {
+          "text": "Outil d'optimisation des performances",
+          "is_correct": false
+        },
+        {
+          "text": "Interface d'administration avancée",
+          "is_correct": false
+        },
+        {
+          "text": "Service de cloud computing",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment configurer la **haute disponibilité** Oracle ?",
+      "explanation": "La haute disponibilité Oracle peut être configurée avec Oracle RAC (Real Application Clusters), Data Guard pour la réplication, et Oracle GoldenGate pour la synchronisation temps réel.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Oracle RAC, Data Guard, GoldenGate pour clustering et réplication",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde fréquente et serveurs multiples seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Redondance matérielle uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Monitoring continu des performances",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**Oracle RAC** ?",
+      "explanation": "Oracle RAC (Real Application Clusters) permet à plusieurs instances Oracle sur différents serveurs d'accéder simultanément à la même base de données pour la haute disponibilité.",
+      "difficulty": "hard",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Real Application Clusters - instances multiples sur serveurs différents",
+          "is_correct": true
+        },
+        {
+          "text": "Rapid Application Creator",
+          "is_correct": false
+        },
+        {
+          "text": "Remote Access Control",
+          "is_correct": false
+        },
+        {
+          "text": "Relational Analytics Center",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**Oracle Data Guard** ?",
+      "explanation": "Oracle Data Guard est une solution de disaster recovery qui maintient des copies synchronisées de la base de données primaire sur des sites distants pour la continuité d'activité.",
+      "difficulty": "hard",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Solution de disaster recovery avec copies synchronisées distantes",
+          "is_correct": true
+        },
+        {
+          "text": "Système de sécurité des données",
+          "is_correct": false
+        },
+        {
+          "text": "Antivirus pour bases de données",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de chiffrement des données",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment surveiller les **performances Oracle** ?",
+      "explanation": "La surveillance Oracle utilise AWR (Automatic Workload Repository), Enterprise Manager, les vues v$ système, ADDM (Automatic Database Diagnostic Monitor) et les alertes automatiques.",
+      "difficulty": "hard",
+      "duration": 85,
+      "choices": [
+        {
+          "text": "AWR, Enterprise Manager, vues v$, ADDM, alertes automatiques",
+          "is_correct": true
+        },
+        {
+          "text": "Vérification manuelle des logs uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Monitoring réseau externe seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Rapports utilisateur hebdomadaires",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**AWR** ?",
+      "explanation": "AWR (Automatic Workload Repository) collecte automatiquement les statistiques de performance d'Oracle et génère des rapports d'analyse pour l'optimisation.",
+      "difficulty": "hard",
+      "duration": 55,
+      "choices": [
+        {
+          "text": "Automatic Workload Repository - collecte automatique statistiques performance",
+          "is_correct": true
+        },
+        {
+          "text": "Advanced Web Reports",
+          "is_correct": false
+        },
+        {
+          "text": "Application Workflow Repository",
+          "is_correct": false
+        },
+        {
+          "text": "Automated Warning Reporter",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer les **utilisateurs et privilèges** Oracle ?",
+      "explanation": "La gestion se fait via CREATE USER, GRANT/REVOKE pour les privilèges, les rôles prédéfinis (DBA, CONNECT), et les profils pour contrôler les ressources et mots de passe.",
+      "difficulty": "hard",
+      "duration": 75,
+      "choices": [
+        {
+          "text": "CREATE USER, GRANT/REVOKE, rôles prédéfinis, profils utilisateur",
+          "is_correct": true
+        },
+        {
+          "text": "Interface graphique uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Fichiers de configuration externes",
+          "is_correct": false
+        },
+        {
+          "text": "Synchronisation avec Active Directory seulement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce qu'**Oracle Enterprise Manager** ?",
+      "explanation": "Oracle Enterprise Manager (OEM) est une plateforme complète de gestion et monitoring qui permet d'administrer, surveiller et optimiser les environnements Oracle Database et Cloud.",
+      "difficulty": "medium",
+      "duration": 60,
+      "choices": [
+        {
+          "text": "Plateforme complète de gestion et monitoring des environnements Oracle",
+          "is_correct": true
+        },
+        {
+          "text": "Gestionnaire de fichiers d'entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Outil de planification des ressources",
+          "is_correct": false
+        },
+        {
+          "text": "Manager des équipes de développement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment effectuer un **tuning** de base Oracle ?",
+      "explanation": "Le tuning Oracle implique l'optimisation des paramètres système, l'ajustement de la SGA, la gestion des tablespaces, l'optimisation des requêtes et la maintenance des statistiques.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Optimisation paramètres, SGA, tablespaces, requêtes, statistiques",
+          "is_correct": true
+        },
+        {
+          "text": "Redémarrage régulier du serveur seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Augmentation de la RAM uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Mise à jour vers la dernière version",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **planification de capacité** Oracle ?",
+      "explanation": "La planification de capacité Oracle consiste à prévoir les besoins futurs en ressources (CPU, mémoire, stockage, réseau) basés sur l'analyse des tendances et la croissance métier.",
+      "difficulty": "hard",
+      "duration": 90,
+      "choices": [
+        {
+          "text": "Prévision des besoins futurs en ressources basée sur les tendances",
+          "is_correct": true
+        },
+        {
+          "text": "Planning des tâches de maintenance",
+          "is_correct": false
+        },
+        {
+          "text": "Calendrier des sauvegardes",
+          "is_correct": false
+        },
+        {
+          "text": "Organisation des équipes projet",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment intégrer Oracle avec d'**autres systèmes** ?",
+      "explanation": "L'intégration Oracle se fait via Oracle Integration Cloud, API REST, Web Services, Oracle GoldenGate pour la réplication, et des connecteurs ETL comme Oracle Data Integrator.",
+      "difficulty": "hard",
+      "duration": 95,
+      "choices": [
+        {
+          "text": "Integration Cloud, API REST, Web Services, GoldenGate, connecteurs ETL",
+          "is_correct": true
+        },
+        {
+          "text": "Fichiers CSV et imports/exports seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Connexions directes à la base uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Middleware tiers obligatoire",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que la **gouvernance des données** Oracle ?",
+      "explanation": "La gouvernance des données Oracle inclut la classification des données, les politiques de sécurité, l'audit trail, la conformité réglementaire et la qualité des données avec des outils intégrés.",
+      "difficulty": "hard",
+      "duration": 100,
+      "choices": [
+        {
+          "text": "Classification, sécurité, audit, conformité réglementaire, qualité données",
+          "is_correct": true
+        },
+        {
+          "text": "Sauvegarde et archivage seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Contrôle d'accès basique",
+          "is_correct": false
+        },
+        {
+          "text": "Documentation technique des tables",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment assurer la **sécurité** Oracle ?",
+      "explanation": "La sécurité Oracle comprend l'authentification forte, le chiffrement des données (TDE), les audits de sécurité, le contrôle d'accès granulaire, et la sécurisation réseau avec Oracle Net.",
+      "difficulty": "hard",
+      "duration": 110,
+      "choices": [
+        {
+          "text": "Authentification forte, chiffrement TDE, audits, contrôle d'accès, Oracle Net",
+          "is_correct": true
+        },
+        {
+          "text": "Mots de passe complexes uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Firewall réseau seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Antivirus sur le serveur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que le **Cloud Oracle** ?",
+      "explanation": "Oracle Cloud est une plateforme cloud complète offrant Infrastructure (IaaS), Platform (PaaS) et Software (SaaS) avec des services de base de données, applications et outils de développement.",
+      "difficulty": "medium",
+      "duration": 70,
+      "choices": [
+        {
+          "text": "Plateforme cloud complète IaaS/PaaS/SaaS avec BD et applications",
+          "is_correct": true
+        },
+        {
+          "text": "Stockage en ligne pour documents",
+          "is_correct": false
+        },
+        {
+          "text": "Service de sauvegarde externe",
+          "is_correct": false
+        },
+        {
+          "text": "Interface web pour Oracle Database",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment planifier une **migration Oracle** ?",
+      "explanation": "La migration Oracle nécessite l'analyse de l'existant, la définition de l'architecture cible, les tests de migration, la validation des performances, et la planification de la bascule avec rollback.",
+      "difficulty": "hard",
+      "duration": 120,
+      "choices": [
+        {
+          "text": "Analyse existant, architecture cible, tests, validation performances, bascule",
+          "is_correct": true
+        },
+        {
+          "text": "Copie directe des données seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Installation nouvelle version uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Export/import simple des tables",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**architecture Oracle** moderne ?",
+      "explanation": "L'architecture Oracle moderne intègre le cloud hybride, les microservices, les conteneurs, l'intelligence artificielle, les API REST, et l'approche DevOps pour l'agilité et la scalabilité.",
+      "difficulty": "hard",
+      "duration": 130,
+      "choices": [
+        {
+          "text": "Cloud hybride, microservices, conteneurs, IA, API REST, DevOps",
+          "is_correct": true
+        },
+        {
+          "text": "Serveurs physiques dédiés seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Architecture monolithique traditionnelle",
+          "is_correct": false
+        },
+        {
+          "text": "Base de données centralisée unique",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment implémenter l'**DevOps** avec Oracle ?",
+      "explanation": "DevOps Oracle utilise Oracle Developer Cloud, Database DevOps avec pipelines CI/CD, automatisation des déploiements, tests automatisés, et intégration avec Git et outils de monitoring.",
+      "difficulty": "hard",
+      "duration": 140,
+      "choices": [
+        {
+          "text": "Developer Cloud, pipelines CI/CD, automatisation, tests, Git, monitoring",
+          "is_correct": true
+        },
+        {
+          "text": "Déploiement manuel avec documentation",
+          "is_correct": false
+        },
+        {
+          "text": "Développement et production séparés",
+          "is_correct": false
+        },
+        {
+          "text": "Tests utilisateur uniquement",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Qu'est-ce que l'**Oracle Autonomous Database** ?",
+      "explanation": "Oracle Autonomous Database est une base de données cloud qui s'auto-administre, s'auto-sécurise et s'auto-répare grâce à l'intelligence artificielle et le machine learning, réduisant les tâches d'administration.",
+      "difficulty": "hard",
+      "duration": 80,
+      "choices": [
+        {
+          "text": "Base de données cloud auto-gérée par IA réduisant l'administration",
+          "is_correct": true
+        },
+        {
+          "text": "Base de données avec sauvegarde automatique",
+          "is_correct": false
+        },
+        {
+          "text": "Installation Oracle automatisée",
+          "is_correct": false
+        },
+        {
+          "text": "Interface utilisateur autonome",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment mesurer le **ROI** d'une implémentation Oracle ?",
+      "explanation": "Le ROI Oracle se mesure par la réduction des coûts opérationnels, l'amélioration des performances, l'augmentation de productivité, la réduction des temps d'arrêt et l'accélération des processus métier sur 3-5 ans.",
+      "difficulty": "hard",
+      "duration": 150,
+      "choices": [
+        {
+          "text": "Réduction coûts, performances, productivité, temps d'arrêt, processus métier",
+          "is_correct": true
+        },
+        {
+          "text": "Coût de licence uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Temps d'implémentation seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Nombre d'utilisateurs connectés",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quelle est la **stratégie de formation** Oracle optimale ?",
+      "explanation": "La stratégie optimale combine formation certifiante officielle Oracle, hands-on labs, mentoring par experts, communautés de pratique, veille technologique continue et projets pilotes progressifs.",
+      "difficulty": "hard",
+      "duration": 160,
+      "choices": [
+        {
+          "text": "Formation certifiante, labs pratiques, mentoring, communautés, veille, pilotes",
+          "is_correct": true
+        },
+        {
+          "text": "Documentation en ligne uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Formation théorique en salle",
+          "is_correct": false
+        },
+        {
+          "text": "Auto-formation par essai-erreur",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Comment gérer un **projet Oracle** complexe d'entreprise ?",
+      "explanation": "La gestion d'un projet Oracle complexe nécessite une méthodologie agile adaptée, une équipe pluridisciplinaire, une architecture évolutive, des phases pilotes, la gestion du change management et un sponsor exécutif fort.",
+      "difficulty": "hard",
+      "duration": 180,
+      "choices": [
+        {
+          "text": "Méthodologie agile, équipe pluridisciplinaire, architecture évolutive, pilotes, change management, sponsor exécutif",
+          "is_correct": true
+        },
+        {
+          "text": "Gestion de projet classique avec cahier des charges figé",
+          "is_correct": false
+        },
+        {
+          "text": "Équipe technique uniquement avec déploiement big bang",
+          "is_correct": false
+        },
+        {
+          "text": "Consultant externe gérant tout le projet seul",
+          "is_correct": false
+        }
+      ]
+    },
+    {
+      "text": "Quels sont les **défis futurs** d'Oracle ?",
+      "explanation": "Les défis futurs d'Oracle incluent la compétition cloud intense, l'adaptation aux architectures modernes (Kubernetes, serverless), l'intégration IA/ML native, la simplification pour développeurs et la transformation digitale accélérée.",
+      "difficulty": "hard",
+      "duration": 200,
+      "choices": [
+        {
+          "text": "Compétition cloud, architectures modernes, IA/ML native, simplicité développeurs, transformation digitale",
+          "is_correct": true
+        },
+        {
+          "text": "Maintien compatibilité ascendante uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Réduction des coûts de licence seulement",
+          "is_correct": false
+        },
+        {
+          "text": "Support des anciennes versions indefiniment",
+          "is_correct": false
+        }
+      ]
+    }
+  ]
+}
