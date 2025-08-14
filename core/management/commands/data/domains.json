@@ -46,5 +46,9 @@
     {
         "name": "Autres rôles connexes",
         "description": "Domaine regroupant les métiers connexes comme l'Office Management, le juridique ou la finance."
+    },
+    {
+        "name": "Opérations & Gestion",
+        "description": "Domaine regroupant les métiers liés à la gestion des opérations, supply chain, qualité et amélioration continue."
     }
 ]
