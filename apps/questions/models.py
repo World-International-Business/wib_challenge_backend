@@ -1,12 +1,13 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_extensions.db.models import TitleSlugDescriptionModel
 
 from apps.accounts.models import User
 from apps.core.models import BaseModel, Technology
 
 
-class Question(BaseModel):
+class Question(BaseModel, TitleSlugDescriptionModel):
     class Meta:
         verbose_name = _('Question')
         verbose_name_plural = _('Questions')

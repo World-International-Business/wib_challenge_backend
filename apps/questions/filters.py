@@ -31,6 +31,7 @@ class QuestionFilterSet(filters.FilterSet):
 
     has_explanation = filters.BooleanFilter(method='filter_has_explanation')
     has_description = filters.BooleanFilter(method='filter_has_description')
+    evaluation = filters.NumberFilter(method='filter_by_evaluation')
 
     order_by = filters.OrderingFilter(
         fields=(
@@ -60,6 +61,12 @@ class QuestionFilterSet(filters.FilterSet):
             'technology': ['exact'],
             'duration': ['exact', 'gte', 'lte'],
         }
+
+    def filter_by_evaluation(self, queryset, name, value):
+        """Filtre par evaluation"""
+        if not value:
+            return queryset
+        return queryset.filter(evaluations__id=value)
 
     def filter_by_publisher_name(self, queryset, name, value):
         """Filtre par nom ou prénom de l'éditeur"""
