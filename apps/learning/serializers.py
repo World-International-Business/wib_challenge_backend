@@ -119,10 +119,18 @@ class QuizSerializer(WritableNestedModelSerializer):
     """Serializer pour les quiz"""
     questions = QuizQuestionSerializer(many=True, required=False)
     question_count = serializers.SerializerMethodField()
+    passing_score = serializers.IntegerField(min_value=0, max_value=100)
+    time_limit_minutes = serializers.IntegerField(min_value=1, allow_null=True, required=False)
+    max_attempts = serializers.IntegerField(min_value=0)
+    randomize_questions = serializers.BooleanField(required=False)
 
     class Meta:
         model = Quiz
-        fields = ['id', 'module', 'title', 'description', 'questions', 'question_count']
+        fields = [
+            'id', 'module', 'title', 'description', 'passing_score',
+            'time_limit_minutes', 'max_attempts', 'randomize_questions',
+            'is_active', 'questions', 'question_count'
+        ]
         read_only_fields = ['id']
 
     def get_question_count(self, obj: Quiz) -> int:
@@ -142,7 +150,11 @@ class QuizPublicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ['id', 'module', 'title', 'description', 'questions', 'question_count']
+        fields = [
+            'id', 'module', 'title', 'description', 'passing_score',
+            'time_limit_minutes', 'max_attempts', 'randomize_questions',
+            'questions', 'question_count'
+        ]
         read_only_fields = ['id']
 
     def get_question_count(self, obj: Quiz) -> int:
@@ -151,26 +163,34 @@ class QuizPublicSerializer(serializers.ModelSerializer):
 
 class QuizAnswerSerializer(serializers.ModelSerializer):
     """Serializer pour les réponses de quiz"""
-    question = QuizQuestionSerializer(read_only=True)
-    selected_choices = QuizChoiceSerializer(many=True, read_only=True)
+    question = QuizQuestionPublicSerializer(read_only=True)
+    selected_choices = QuizChoicePublicSerializer(many=True, read_only=True)
 
     class Meta:
         model = QuizAnswer
-        fields = ['id', 'result', 'question', 'selected_choices', 'is_correct']
+        fields = ['id', 'result', 'question', 'selected_choices', 'is_correct', 'points_earned']
         read_only_fields = ['id']
 
 
 class QuizResultSerializer(serializers.ModelSerializer):
     """Serializer pour les résultats de quiz"""
     user = serializers.StringRelatedField(read_only=True)
-    quiz = QuizSerializer(read_only=True)
+    quiz = QuizPublicSerializer(read_only=True)
     answers = QuizAnswerSerializer(many=True, read_only=True)
-    quiz_id = serializers.IntegerField(write_only=True)
+    quiz_id = serializers.IntegerField(write_only=True, required=False)
+    duration_formatted = serializers.CharField(read_only=True)
 
     class Meta:
         model = QuizResult
-        fields = ['id', 'user', 'quiz', 'quiz_id', 'submitted_at', 'score', 'answers']
-        read_only_fields = ['id', 'user', 'submitted_at', 'score']
+        fields = [
+            'id', 'user', 'quiz', 'quiz_id', 'started_at', 'submitted_at',
+            'score', 'total_points', 'obtained_points', 'is_passed',
+            'attempt_number', 'time_taken_seconds', 'duration_formatted', 'answers'
+        ]
+        read_only_fields = [
+            'id', 'user', 'started_at', 'submitted_at', 'score',
+            'total_points', 'obtained_points', 'is_passed', 'attempt_number'
+        ]
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
@@ -191,10 +211,15 @@ class QuizListSerializer(serializers.ModelSerializer):
     is_attempted = serializers.SerializerMethodField()
     is_passed = serializers.SerializerMethodField()
     best_score = serializers.SerializerMethodField()
+    attempts_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Quiz
-        fields = ['id', 'module', 'title', 'description', 'question_count', 'is_attempted', 'is_passed', 'best_score']
+        fields = [
+            'id', 'module', 'title', 'description', 'passing_score',
+            'time_limit_minutes', 'max_attempts', 'question_count',
+            'is_attempted', 'is_passed', 'best_score', 'attempts_count'
+        ]
         read_only_fields = ['id']
 
     def get_question_count(self, obj: Quiz) -> int:
@@ -227,6 +252,15 @@ class QuizListSerializer(serializers.ModelSerializer):
                 quiz=obj,
             ).order_by('-score').first()
             return best_result.score if best_result else 0
+        return 0
+
+    def get_attempts_count(self, obj: Quiz) -> int:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return QuizResult.objects.filter(
+                user=request.user,
+                quiz=obj,
+            ).count()
         return 0
 
 

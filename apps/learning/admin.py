@@ -1,11 +1,15 @@
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db import models
-from django.db.models import Count, Avg, Q
-from django.urls import reverse
+from django.db.models import Count, Avg, Q, Sum, Max
+from django.urls import reverse, path
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+from django.http import JsonResponse, HttpResponse
+from django.shortcuts import get_object_or_404
+import csv
+from datetime import timedelta
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice,
@@ -21,9 +25,13 @@ class CourseStatusFilter(SimpleListFilter):
         return [
             ('free', _('Gratuits')),
             ('paid', _('Payants')),
+            ('active', _('Actifs')),
+            ('inactive', _('Inactifs')),
             ('beginner', _('Débutant')),
             ('intermediate', _('Intermédiaire')),
             ('advanced', _('Avancé')),
+            ('popular', _('Populaires (>10 étudiants)')),
+            ('new', _('Nouveaux (7 derniers jours)')),
         ]
 
     def queryset(self, request, queryset):
@@ -31,85 +39,165 @@ class CourseStatusFilter(SimpleListFilter):
             return queryset.filter(is_free=True)
         elif self.value() == 'paid':
             return queryset.filter(is_free=False)
+        elif self.value() == 'active':
+            return queryset.filter(is_active=True)
+        elif self.value() == 'inactive':
+            return queryset.filter(is_active=False)
         elif self.value() in ['beginner', 'intermediate', 'advanced']:
             return queryset.filter(level=self.value())
+        elif self.value() == 'popular':
+            return queryset.annotate(
+                student_count=Count('modules__contents__progress__user', distinct=True)
+            ).filter(student_count__gt=10)
+        elif self.value() == 'new':
+            return queryset.filter(created_at__gte=timezone.now() - timedelta(days=7))
         return queryset
 
 
 class ModuleInline(admin.TabularInline):
     model = Module
     extra = 0
-    fields = ['title', 'description', 'content_count', 'has_quiz']
+    fields = ['title', 'description', 'order', 'is_active', 'content_count', 'has_quiz']
     readonly_fields = ['content_count', 'has_quiz']
     show_change_link = True
+    ordering = ['order', 'title']
 
     def get_queryset(self, request):
-        queryset = super().get_queryset(request)
-        return queryset.annotate(
+        return super().get_queryset(request).select_related('course').prefetch_related(
+            'contents', 'quiz'
+        ).annotate(
             total_contents=Count('contents'),
             has_quiz_count=Count('quiz')
         )
 
     @admin.display(description=_('Nb contenus'))
     def content_count(self, obj):
-        count = getattr(obj, 'total_contents', 0)
+        count = getattr(obj, 'total_contents', obj.contents.count())
         if count > 0:
+            color = '#28a745' if count >= 5 else '#ffc107' if count >= 2 else '#17a2b8'
             return format_html(
-                '<span style="background-color: #28a745; color: white; padding: 2px 6px; border-radius: 8px; font-size: 11px;">{}</span>',
-                count
+                '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 8px; font-size: 11px;">{}</span>',
+                color, count
             )
-        return 0
+        return format_html('<span style="color: #dc3545;">0</span>')
 
     @admin.display(description=_('Quiz'), boolean=True)
     def has_quiz(self, obj):
-        return getattr(obj, 'has_quiz_count', 0) > 0
+        return getattr(obj, 'has_quiz_count', 0) > 0 or hasattr(obj, 'quiz')
 
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = [
-        'title', 'level_badge', 'free_badge', 'modules_count',
-        'total_contents_count', 'total_quizzes_count', 'students_count',
-        'completion_rate', 'certificates_count'
+        'title', 'level_badge', 'status_badge', 'free_badge', 'instructor_info',
+        'modules_count', 'total_contents_count', 'students_count',
+        'completion_rate', 'certificates_count', 'last_activity'
     ]
-    list_filter = [CourseStatusFilter, 'level', 'is_free']
-    search_fields = ['title', 'description']
+    list_filter = [
+        CourseStatusFilter, 'level', 'is_free', 'is_active',
+        'instructor', 'created_at'
+    ]
+    search_fields = [
+        'title', 'description', 'instructor__username',
+        'instructor__email', 'instructor__first_name', 'instructor__last_name'
+    ]
     readonly_fields = [
-        'modules_count', 'total_contents_count', 'total_quizzes_count',
-        'students_count', 'completion_rate', 'certificates_count', 'course_stats'
+        'slug', 'modules_count', 'total_contents_count', 'total_quizzes_count',
+        'students_count', 'completion_rate', 'certificates_count',
+        'course_stats', 'engagement_metrics'
     ]
     inlines = [ModuleInline]
+    list_per_page = 25
 
     fieldsets = [
         (_('Informations générales'), {
-            'fields': ['title', 'description', 'level', 'is_free']
+            'fields': ['title', 'slug', 'description', 'level', 'instructor'],
+            'classes': ['wide']
         }),
-        (_('Statistiques'), {
+        (_('Configuration'), {
+            'fields': [
+                'is_free', 'is_active', 'estimated_duration'
+            ],
+            'classes': ['collapse']
+        }),
+        (_('Statistiques générales'), {
             'fields': [
                 'modules_count', 'total_contents_count', 'total_quizzes_count',
                 'students_count', 'completion_rate', 'certificates_count'
             ],
             'classes': ['collapse']
         }),
-        (_('Analyse détaillée'), {
-            'fields': ['course_stats'],
+        (_('Analyses avancées'), {
+            'fields': ['course_stats', 'engagement_metrics'],
             'classes': ['collapse']
         })
     ]
 
     actions = [
-        'make_free', 'make_paid', 'generate_certificates', 'course_analytics'
+        'make_free', 'make_paid', 'activate_courses', 'deactivate_courses',
+        'generate_certificates', 'export_analytics'
     ]
 
     def get_queryset(self, request):
-        queryset = super().get_queryset(request)
-        return queryset.annotate(
-            modules_total=Count('modules'),
-            total_contents=Count('modules__contents'),
-            total_quizzes=Count('modules__quiz'),
+        return super().get_queryset(request).select_related(
+            'instructor'
+        ).prefetch_related(
+            'modules', 'modules__contents', 'modules__quiz',
+            'certificate_set'
+        ).annotate(
+            modules_total=Count('modules', distinct=True),
+            total_contents=Count('modules__contents', distinct=True),
+            total_quizzes=Count('modules__quiz', distinct=True),
             students_total=Count('modules__contents__progress__user', distinct=True),
-            certificates_total=Count('certificate')
+            certificates_total=Count('certificate', distinct=True),
+            last_progress=Max('modules__contents__progress__last_accessed')
         )
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('export-analytics/',
+                 self.admin_site.admin_view(self.export_analytics_view),
+                 name='learning_course_export_analytics'),
+        ]
+        return custom_urls + urls
+
+    def export_analytics_view(self, request):
+        """Export CSV des analytics de tous les cours"""
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="course_analytics.csv"'
+
+        writer = csv.writer(response)
+        writer.writerow([
+            'Cours', 'Niveau', 'Gratuit', 'Actif', 'Modules', 'Contenus',
+            'Étudiants', 'Taux complétion', 'Certificats'
+        ])
+
+        for course in self.get_queryset(request):
+            writer.writerow([
+                course.title,
+                course.get_level_display(),
+                'Oui' if course.is_free else 'Non',
+                'Oui' if course.is_active else 'Non',
+                getattr(course, 'modules_total', 0),
+                getattr(course, 'total_contents', 0),
+                getattr(course, 'students_total', 0),
+                f"{self._calculate_completion_rate(course):.1f}%",
+                getattr(course, 'certificates_total', 0),
+            ])
+
+        return response
+
+    @admin.display(description=_('Quizzes'))
+    def total_quizzes_count(self, obj):
+        count = getattr(obj, 'total_quizzes', 0)
+        if count > 0:
+            url = reverse('admin:learning_quiz_changelist') + f'?module__course__id__exact={obj.id}'
+            return format_html(
+                '<a href="{}" style="color: #417690;">{}</a>',
+                url, count
+            )
+        return 0
 
     @admin.display(description=_('Niveau'), ordering='level')
     def level_badge(self, obj):
@@ -131,7 +219,17 @@ class CourseAdmin(admin.ModelAdmin):
             color, label
         )
 
-    @admin.display(description=_('Content Type'), boolean=True)
+    @admin.display(description=_('Statut'), ordering='is_active')
+    def status_badge(self, obj):
+        if obj.is_active:
+            return format_html(
+                '<span style="background-color: #28a745; color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px;">✓ Actif</span>'
+            )
+        return format_html(
+            '<span style="background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px;">✗ Inactif</span>'
+        )
+
+    @admin.display(description=_('Type'), boolean=True)
     def free_badge(self, obj):
         if obj.is_free:
             return format_html(
@@ -140,6 +238,16 @@ class CourseAdmin(admin.ModelAdmin):
         return format_html(
             '<span style="color: #dc3545; font-weight: bold;">Payant</span>'
         )
+
+    @admin.display(description=_('Instructeur'))
+    def instructor_info(self, obj):
+        if obj.instructor:
+            name = obj.instructor.get_full_name() or obj.instructor.username
+            return format_html(
+                '<div><strong>{}</strong><br><small style="color: #6c757d;">{}</small></div>',
+                name, obj.instructor.email
+            )
+        return format_html('<em style="color: #dc3545;">Non assigné</em>')
 
     @admin.display(description=_('Modules'), ordering='modules_total')
     def modules_count(self, obj):
@@ -163,17 +271,6 @@ class CourseAdmin(admin.ModelAdmin):
             )
         return 0
 
-    @admin.display(description=_('Quiz'), ordering='total_quizzes')
-    def total_quizzes_count(self, obj):
-        count = getattr(obj, 'total_quizzes', 0)
-        if count > 0:
-            url = reverse('admin:learning_quiz_changelist') + f'?module__course__id__exact={obj.id}'
-            return format_html(
-                '<a href="{}" style="color: #417690;">{}</a>',
-                url, count
-            )
-        return 0
-
     @admin.display(description=_('Étudiants'), ordering='students_total')
     def students_count(self, obj):
         count = getattr(obj, 'students_total', 0)
@@ -184,18 +281,34 @@ class CourseAdmin(admin.ModelAdmin):
             )
         return 0
 
-    @admin.display(description=_('Taux de complétion'))
-    def completion_rate(self, obj):
+    @admin.display(description=_('Dernière activité'))
+    def last_activity(self, obj):
+        last_progress = getattr(obj, 'last_progress', None)
+        if last_progress:
+            days_ago = (timezone.now() - last_progress).days
+            if days_ago == 0:
+                return format_html('<span style="color: #28a745;">Aujourd\'hui</span>')
+            elif days_ago <= 7:
+                return format_html('<span style="color: #ffc107;">Il y a {} jour(s)</span>', days_ago)
+            else:
+                return format_html('<span style="color: #dc3545;">Il y a {} jour(s)</span>', days_ago)
+        return format_html('<span style="color: #6c757d;">Aucune</span>')
+
+    def _calculate_completion_rate(self, obj):
+        """Calcul optimisé du taux de complétion"""
         total_enrollments = Progress.objects.filter(
             content__module__course=obj
         ).values('user').distinct().count()
 
         if total_enrollments == 0:
-            return "0%"
+            return 0
 
         completed_courses = Certificate.objects.filter(course=obj).count()
-        rate = (completed_courses / total_enrollments) * 100
+        return (completed_courses / total_enrollments) * 100
 
+    @admin.display(description=_('Taux de complétion'))
+    def completion_rate(self, obj):
+        rate = self._calculate_completion_rate(obj)
         color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 50 else '#dc3545'
         return format_html(
             '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
@@ -215,7 +328,6 @@ class CourseAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Statistiques détaillées'))
     def course_stats(self, obj):
-        # Calculer les statistiques avancées
         total_contents = Content.objects.filter(module__course=obj).count()
         total_progress = Progress.objects.filter(content__module__course=obj).count()
         completed_progress = Progress.objects.filter(
@@ -240,52 +352,136 @@ class CourseAdmin(admin.ModelAdmin):
             avg_score
         )
 
+    @admin.display(description=_('Métriques d\'engagement'))
+    def engagement_metrics(self, obj):
+        total_contents = getattr(obj, 'total_contents', 0)
+        students_total = getattr(obj, 'students_total', 0)
+
+        if students_total > 0 and total_contents > 0:
+            total_progress = Progress.objects.filter(content__module__course=obj).count()
+            engagement_rate = (total_progress / (students_total * total_contents)) * 100
+
+            color = '#28a745' if engagement_rate >= 80 else '#ffc107' if engagement_rate >= 50 else '#dc3545'
+
+            return format_html(
+                '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+                '<strong>Engagement:</strong><br>'
+                '• Taux: <span style="color: {}; font-weight: bold;">{:.1f}%</span><br>'
+                '• Interactions: {}<br>'
+                '</div>',
+                color, engagement_rate, total_progress
+            )
+
+        return format_html('<em style="color: #6c757d;">Données insuffisantes</em>')
+
     @admin.action(description=_('Rendre gratuit'))
     def make_free(self, request, queryset):
-        updated = queryset.update(is_free=True)
-        self.message_user(
-            request,
-            f"{updated} cours rendu(s) gratuit(s).",
-            messages.SUCCESS
-        )
+        try:
+            updated = queryset.update(is_free=True)
+            self.message_user(
+                request,
+                f"{updated} cours rendu(s) gratuit(s) avec succès.",
+                messages.SUCCESS
+            )
+        except Exception as e:
+            self.message_user(
+                request,
+                f"Erreur lors de la modification: {str(e)}",
+                messages.ERROR
+            )
 
     @admin.action(description=_('Rendre payant'))
     def make_paid(self, request, queryset):
-        updated = queryset.update(is_free=False)
-        self.message_user(
-            request,
-            f"{updated} cours rendu(s) payant(s).",
-            messages.SUCCESS
-        )
+        try:
+            updated = queryset.update(is_free=False)
+            self.message_user(
+                request,
+                f"{updated} cours rendu(s) payant(s) avec succès.",
+                messages.SUCCESS
+            )
+        except Exception as e:
+            self.message_user(
+                request,
+                f"Erreur lors de la modification: {str(e)}",
+                messages.ERROR
+            )
 
-    @admin.action(description=_('Générer certificats pour étudiants éligibles'))
+    @admin.action(description=_('Activer les cours sélectionnés'))
+    def activate_courses(self, request, queryset):
+        try:
+            updated = queryset.update(is_active=True)
+            self.message_user(
+                request,
+                f"{updated} cours activé(s) avec succès.",
+                messages.SUCCESS
+            )
+        except Exception as e:
+            self.message_user(
+                request,
+                f"Erreur lors de l'activation: {str(e)}",
+                messages.ERROR
+            )
+
+    @admin.action(description=_('Désactiver les cours sélectionnés'))
+    def deactivate_courses(self, request, queryset):
+        try:
+            updated = queryset.update(is_active=False)
+            self.message_user(
+                request,
+                f"{updated} cours désactivé(s) avec succès.",
+                messages.WARNING
+            )
+        except Exception as e:
+            self.message_user(
+                request,
+                f"Erreur lors de la désactivation: {str(e)}",
+                messages.ERROR
+            )
+
+    @admin.action(description=_('Générer certificats automatiquement'))
     def generate_certificates(self, request, queryset):
         generated = 0
-        for course in queryset:
-            # Trouver les utilisateurs qui ont terminé tous les contenus
-            users_completed = []
-            total_contents = Content.objects.filter(module__course=course).count()
+        errors = 0
 
-            if total_contents > 0:
-                for user_progress in Progress.objects.filter(
-                        content__module__course=course
-                ).values('user').annotate(
-                    completed_count=Count('id', filter=Q(is_completed=True))
-                ):
-                    if user_progress['completed_count'] == total_contents:
-                        user_id = user_progress['user']
+        for course in queryset:
+            try:
+                total_contents = Content.objects.filter(module__course=course).count()
+
+                if total_contents > 0:
+                    eligible_users = Progress.objects.filter(
+                        content__module__course=course,
+                        is_completed=True
+                    ).values('user').annotate(
+                        completed_count=Count('id')
+                    ).filter(completed_count=total_contents).values_list('user', flat=True)
+
+                    for user_id in eligible_users:
                         certificate, created = Certificate.objects.get_or_create(
                             user_id=user_id,
                             course=course
                         )
                         if created:
                             generated += 1
+            except Exception as e:
+                errors += 1
+                continue
 
-        self.message_user(
-            request,
-            f"{generated} certificat(s) généré(s) automatiquement.",
-            messages.SUCCESS
-        )
+        if generated > 0:
+            self.message_user(
+                request,
+                f"{generated} certificat(s) généré(s) automatiquement.",
+                messages.SUCCESS
+            )
+        if errors > 0:
+            self.message_user(
+                request,
+                f"{errors} erreur(s) lors de la génération des certificats.",
+                messages.WARNING
+            )
+
+    @admin.action(description=_('Exporter les analytics'))
+    def export_analytics(self, request, queryset):
+        return self.export_analytics_view(request)
 
 
 class ContentInline(admin.TabularInline):
@@ -527,7 +723,7 @@ class ContentAdmin(admin.ModelAdmin):
 
         recent_completions = progress_data.filter(
             is_completed=True,
-            completed_at__gte=timezone.now() - timezone.timedelta(days=7)
+            completed_at__gte=timezone.now() - timedelta(days=7)
         ).count()
 
         return format_html(
@@ -813,7 +1009,7 @@ class QuizAnswerInline(admin.TabularInline):
     @admin.display(description=_('Choix sélectionnés'))
     def selected_choices_preview(self, obj):
         if obj.pk:
-            choices = obj.selected_choices.all()[:3]  # Limiter l'affichage
+            choices = obj.selected_choices.all()[:3]
             return ', '.join([choice.text[:20] for choice in choices])
         return '-'
 
@@ -824,24 +1020,25 @@ class QuizAnswerInline(admin.TabularInline):
 @admin.register(QuizResult)
 class QuizResultAdmin(admin.ModelAdmin):
     list_display = [
-        'user_link', 'quiz_link', 'score_badge', 'submitted_at',
-        'answers_count', 'correct_answers'
+        'user_link', 'quiz_link', 'score_badge', 'passed_status',
+        'attempt_number', 'duration_display', 'submitted_at'
     ]
-    list_filter = ['quiz__module__course', 'quiz', 'submitted_at']
+    list_filter = [
+        'is_passed', 'quiz__module__course', 'quiz', 'submitted_at',
+        'attempt_number'
+    ]
     search_fields = ['user__username', 'user__email', 'quiz__title']
-    readonly_fields = ['score', 'submitted_at', 'answers_count', 'detailed_results']
-    date_hierarchy = 'submitted_at'
-    inlines = [QuizAnswerInline]
-
-    fieldsets = [
-        (_('Informations générales'), {
-            'fields': ['user', 'quiz', 'score', 'submitted_at']
-        }),
-        (_('Résultats détaillés'), {
-            'fields': ['answers_count', 'detailed_results'],
-            'classes': ['collapse']
-        })
+    readonly_fields = [
+        'score', 'started_at', 'submitted_at', 'is_passed', 'time_taken_seconds',
+        'total_points', 'obtained_points', 'answers_count', 'detailed_results'
     ]
+    date_hierarchy = 'submitted_at'
+    list_per_page = 50
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'user', 'quiz', 'quiz__module', 'quiz__module__course'
+        ).prefetch_related('answers', 'answers__selected_choices')
 
     @admin.display(description=_('Utilisateur'), ordering='user__username')
     def user_link(self, obj):
@@ -867,129 +1064,59 @@ class QuizResultAdmin(admin.ModelAdmin):
             color, obj.score
         )
 
+    @admin.display(description=_('Réussi'), boolean=True)
+    def passed_status(self, obj):
+        return obj.is_passed
+
+    @admin.display(description=_('Durée'))
+    def duration_display(self, obj):
+        return obj.duration_formatted
+
     @admin.display(description=_('Réponses'))
     def answers_count(self, obj):
         correct = obj.answers.filter(is_correct=True).count()
         total = obj.answers.count()
         return f"{correct}/{total}"
 
-    @admin.display(description=_('Bonnes réponses'))
-    def correct_answers(self, obj):
-        return obj.answers.filter(is_correct=True).count()
-
     @admin.display(description=_('Détails des réponses'))
     def detailed_results(self, obj):
         html = '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
-        for answer in obj.answers.all():
+        for answer in obj.answers.all()[:5]:
             status_icon = '✅' if answer.is_correct else '❌'
             html += f'<div style="margin-bottom: 5px;">'
-            html += f'{status_icon} <strong>{answer.question.title}</strong><br>'
-            html += f'<small>Choix sélectionnés: {", ".join([choice.text for choice in answer.selected_choices.all()])}</small>'
+            html += f'{status_icon} <strong>{answer.question.title[:50]}</strong><br>'
+            choices_text = ", ".join([choice.text[:20] for choice in answer.selected_choices.all()])
+            html += f'<small>Choix: {choices_text}</small>'
             html += '</div>'
+        if obj.answers.count() > 5:
+            html += f'<small>... et {obj.answers.count() - 5} autres réponses</small>'
         html += '</div>'
         return format_html(html)
-
-
-@admin.register(QuizAnswer)
-class QuizAnswerAdmin(admin.ModelAdmin):
-    list_display = ['result_link', 'question_link', 'selected_choices_display',
-                    'is_correct_badge', 'question_success_rate']
-    list_filter = ['is_correct', 'result__quiz__module__course', 'result__quiz']
-    search_fields = ['result__user__username', 'question__title']
-    readonly_fields = ['is_correct', 'selected_choices_display']
-    raw_id_fields = ['result', 'question']
-    filter_horizontal = ['selected_choices']
-
-    fieldsets = [
-        (_('Informations générales'), {
-            'fields': ['result', 'question']
-        }),
-        (_('Réponses'), {
-            'fields': ['selected_choices', 'selected_choices_display', 'is_correct']
-        })
-    ]
-
-    @admin.display(description=_('Résultat'))
-    def result_link(self, obj):
-        url = reverse('admin:learning_quizresult_change', args=[obj.result.pk])
-        return format_html(
-            '<a href="{}" style="color: #417690;">{} - {}</a>',
-            url, obj.result.user.username, obj.result.quiz.title
-        )
-
-    @admin.display(description=_('Question'))
-    def question_link(self, obj):
-        url = reverse('admin:learning_quizquestion_change', args=[obj.question.pk])
-        return format_html(
-            '<a href="{}" style="color: #417690;">{}</a>',
-            url, obj.question.title[:50]
-        )
-
-    @admin.display(description=_('Choix sélectionnés'))
-    def selected_choices_display(self, obj):
-        if obj.pk:
-            choices = obj.selected_choices.all()
-            if not choices:
-                return format_html('<em style="color: #dc3545;">Aucune réponse</em>')
-
-            html = '<ul style="margin: 0; padding-left: 20px;">'
-            for choice in choices:
-                style = 'color: #28a745; font-weight: bold;' if choice.is_correct else 'color: #dc3545;'
-                icon = '✅' if choice.is_correct else '❌'
-                html += f'<li style="{style}">{icon} {choice.text}</li>'
-            html += '</ul>'
-            return format_html(html)
-        return '-'
-
-    @admin.display(description=_('Correct'), boolean=True)
-    def is_correct_badge(self, obj):
-        return obj.is_correct
-
-    @admin.display(description=_('Taux de réussite'))
-    def question_success_rate(self, obj):
-        total_answers = QuizAnswer.objects.filter(question=obj.question).count()
-        if total_answers == 0:
-            return "N/A"
-
-        correct_answers = QuizAnswer.objects.filter(
-            question=obj.question, is_correct=True
-        ).count()
-        rate = (correct_answers / total_answers) * 100
-
-        color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 60 else '#dc3545'
-        return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
-            color, rate
-        )
 
 
 @admin.register(Progress)
 class ProgressAdmin(admin.ModelAdmin):
     list_display = [
         'user_link', 'content_link', 'is_completed_badge',
-        'completed_at', 'course_info'
+        'progress_percentage', 'last_accessed', 'course_info'
     ]
     list_filter = [
         'is_completed', 'content__module__course', 'content__module',
-        'content__content_type', 'completed_at'
+        'content__content_type', 'completed_at', 'last_accessed'
     ]
     search_fields = [
         'user__username', 'user__email', 'content__title',
         'content__module__title', 'content__module__course__title'
     ]
-    readonly_fields = ['completed_at']
-    date_hierarchy = 'completed_at'
-
-    fieldsets = [
-        (_('Informations générales'), {
-            'fields': ['user', 'content', 'is_completed']
-        }),
-        (_('Dates'), {
-            'fields': ['completed_at']
-        })
-    ]
+    readonly_fields = ['started_at', 'completed_at', 'last_accessed', 'time_spent_display']
+    date_hierarchy = 'last_accessed'
 
     actions = ['mark_completed', 'mark_incomplete']
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'user', 'content', 'content__module', 'content__module__course'
+        )
 
     @admin.display(description=_('Utilisateur'), ordering='user__username')
     def user_link(self, obj):
@@ -1012,6 +1139,23 @@ class ProgressAdmin(admin.ModelAdmin):
     def is_completed_badge(self, obj):
         return obj.is_completed
 
+    @admin.display(description=_('Progression'))
+    def progress_percentage(self, obj):
+        if obj.is_completed:
+            return format_html(
+                '<span style="color: #28a745; font-weight: bold;">100%</span>'
+            )
+        else:
+            if obj.content.duration_minutes and obj.time_spent_seconds:
+                estimated_seconds = obj.content.duration_minutes * 60
+                percentage = min((obj.time_spent_seconds / estimated_seconds) * 100, 99)
+                color = '#ffc107' if percentage >= 50 else '#17a2b8'
+                return format_html(
+                    '<span style="color: {}; font-weight: bold;">{:.0f}%</span>',
+                    color, percentage
+                )
+        return "0%"
+
     @admin.display(description=_('Cours'))
     def course_info(self, obj):
         return format_html(
@@ -1020,23 +1164,47 @@ class ProgressAdmin(admin.ModelAdmin):
             obj.content.module.title
         )
 
+    @admin.display(description=_('Temps passé'))
+    def time_spent_display(self, obj):
+        if obj.time_spent_seconds:
+            hours = obj.time_spent_seconds // 3600
+            minutes = (obj.time_spent_seconds % 3600) // 60
+            if hours > 0:
+                return f"{hours}h {minutes}m"
+            return f"{minutes}m"
+        return "0m"
+
     @admin.action(description=_('Marquer comme terminé'))
     def mark_completed(self, request, queryset):
-        updated = queryset.update(is_completed=True, completed_at=timezone.now())
-        self.message_user(
-            request,
-            f"{updated} progrès marqué(s) comme terminé(s).",
-            messages.SUCCESS
-        )
+        try:
+            updated = queryset.update(is_completed=True, completed_at=timezone.now())
+            self.message_user(
+                request,
+                f"{updated} progrès marqué(s) comme terminé(s).",
+                messages.SUCCESS
+            )
+        except Exception as e:
+            self.message_user(
+                request,
+                f"Erreur: {str(e)}",
+                messages.ERROR
+            )
 
     @admin.action(description=_('Marquer comme non terminé'))
     def mark_incomplete(self, request, queryset):
-        updated = queryset.update(is_completed=False, completed_at=None)
-        self.message_user(
-            request,
-            f"{updated} progrès marqué(s) comme non terminé(s).",
-            messages.SUCCESS
-        )
+        try:
+            updated = queryset.update(is_completed=False, completed_at=None)
+            self.message_user(
+                request,
+                f"{updated} progrès marqué(s) comme non terminé(s).",
+                messages.SUCCESS
+            )
+        except Exception as e:
+            self.message_user(
+                request,
+                f"Erreur: {str(e)}",
+                messages.ERROR
+            )
 
 
 @admin.register(Certificate)

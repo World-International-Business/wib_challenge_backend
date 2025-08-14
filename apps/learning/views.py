@@ -18,7 +18,7 @@ from .models import (
 )
 from .serializers import (
     CourseSerializer, CourseListSerializer, ModuleSerializer, ContentDetailSerializer, ContentListSerializer,
-    QuizSerializer, QuizPublicSerializer, QuizQuestionSerializer,
+    QuizSerializer, QuizPublicSerializer, QuizListSerializer, QuizQuestionSerializer,
     QuizChoiceSerializer, QuizResultSerializer, ProgressSerializer, CertificateSerializer,
     CourseProgressSerializer, UserProgressStatsSerializer, QuizStatsSerializer,
     QuizSubmissionSerializer
@@ -337,14 +337,19 @@ class ContentViewSet(viewsets.ModelViewSet):
 )
 class QuizViewSet(viewsets.ModelViewSet):
     """ViewSet pour la gestion des quiz"""
-    queryset = Quiz.objects.all()
+    queryset = Quiz.objects.select_related('module', 'module__course').prefetch_related('questions',
+                                                                                        'questions__choices')
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = QuizFilter
     search_fields = ['title', 'description']
+    ordering_fields = ['title', 'created_at', 'passing_score']
+    ordering = ['title']
 
     def get_serializer_class(self):
-        if self.action in ['list', 'retrieve'] and not self.request.user.is_staff:
+        if self.action == 'list':
+            return QuizListSerializer
+        elif self.action in ['retrieve'] and not (self.request.user.is_staff or self.request.user.is_superuser):
             return QuizPublicSerializer
         return QuizSerializer
 
@@ -364,21 +369,47 @@ class QuizViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
 
+        # Vérifier le nombre maximum de tentatives
+        if quiz.max_attempts > 0:
+            user_attempts = QuizResult.objects.filter(user=request.user, quiz=quiz).count()
+            if user_attempts >= quiz.max_attempts:
+                return Response(
+                    {'detail': f'Nombre maximum de tentatives atteint ({quiz.max_attempts})'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
         serializer = QuizSubmissionSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         answers_data = serializer.validated_data['answers']
 
+        # Vérifier que toutes les questions du quiz sont répondues
+        quiz_questions = set(quiz.questions.values_list('id', flat=True))
+        answered_questions = set(answer['question_id'] for answer in answers_data)
+
+        if quiz_questions != answered_questions:
+            return Response(
+                {'detail': 'Toutes les questions doivent être répondues'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         with transaction.atomic():
+            # Déterminer le numéro de tentative
+            last_attempt = QuizResult.objects.filter(
+                user=request.user, quiz=quiz
+            ).order_by('-attempt_number').first()
+            attempt_number = (last_attempt.attempt_number + 1) if last_attempt else 1
+
             quiz_result = QuizResult.objects.create(
                 user=request.user,
                 quiz=quiz,
-                score=0
+                attempt_number=attempt_number,
+                submitted_at=timezone.now()
             )
 
-            total_questions = quiz.questions.count()
-            correct_answers = 0
+            total_points = 0
+            obtained_points = 0
 
             for answer_data in answers_data:
                 question_id = answer_data['question_id']
@@ -394,8 +425,7 @@ class QuizViewSet(viewsets.ModelViewSet):
 
                 quiz_answer = QuizAnswer.objects.create(
                     result=quiz_result,
-                    question=question,
-                    is_correct=False
+                    question=question
                 )
 
                 selected_choices = QuizChoice.objects.filter(
@@ -411,20 +441,79 @@ class QuizViewSet(viewsets.ModelViewSet):
 
                 quiz_answer.selected_choices.set(selected_choices)
 
+                # Vérification de la correction
                 correct_choices = question.choices.filter(is_correct=True)
                 selected_correct = selected_choices.filter(is_correct=True)
                 selected_incorrect = selected_choices.filter(is_correct=False)
 
-                if (selected_correct.count() == correct_choices.count() and
-                        selected_incorrect.count() == 0):
-                    quiz_answer.is_correct = True
-                    correct_answers += 1
+                is_correct = (
+                        selected_correct.count() == correct_choices.count() and
+                        selected_incorrect.count() == 0
+                )
 
+                quiz_answer.is_correct = is_correct
+                quiz_answer.points_earned = question.points if is_correct else 0
                 quiz_answer.save()
 
-            score = (correct_answers / total_questions * 100) if total_questions > 0 else 0
-            quiz_result.score = score
-            quiz_result.save()
+                total_points += question.points
+                obtained_points += quiz_answer.points_earned
+
+            # Mise à jour du résultat final
+            quiz_result.total_points = total_points
+            quiz_result.obtained_points = obtained_points
+            quiz_result.save()  # Le score et is_passed sont calculés automatiquement
+
+        return Response(
+            QuizResultSerializer(quiz_result, context={'request': request}).data,
+            status=status.HTTP_201_CREATED
+        )
+
+    @extend_schema(
+        summary="Démarrer un quiz",
+        description="Démarrer une nouvelle tentative de quiz",
+        tags=["Quiz"],
+        responses={201: QuizResultSerializer}
+    )
+    @action(detail=True, methods=['post'])
+    def start(self, request, pk=None):
+        """Démarrer une nouvelle tentative de quiz"""
+        quiz = self.get_object()
+        if not request.user.is_authenticated:
+            return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Vérifier le nombre maximum de tentatives
+        if quiz.max_attempts > 0:
+            user_attempts = QuizResult.objects.filter(user=request.user, quiz=quiz).count()
+            if user_attempts >= quiz.max_attempts:
+                return Response(
+                    {'detail': f'Nombre maximum de tentatives atteint ({quiz.max_attempts})'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+        # Vérifier qu'il n'y a pas déjà une tentative en cours
+        ongoing_attempt = QuizResult.objects.filter(
+            user=request.user,
+            quiz=quiz,
+            submitted_at__isnull=True
+        ).first()
+
+        if ongoing_attempt:
+            return Response(
+                QuizResultSerializer(ongoing_attempt, context={'request': request}).data,
+                status=status.HTTP_200_OK
+            )
+
+        # Créer une nouvelle tentative
+        last_attempt = QuizResult.objects.filter(
+            user=request.user, quiz=quiz
+        ).order_by('-attempt_number').first()
+        attempt_number = (last_attempt.attempt_number + 1) if last_attempt else 1
+
+        quiz_result = QuizResult.objects.create(
+            user=request.user,
+            quiz=quiz,
+            attempt_number=attempt_number
+        )
 
         return Response(
             QuizResultSerializer(quiz_result, context={'request': request}).data,
@@ -450,13 +539,17 @@ class QuizResultViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = QuizResultFilter
-    ordering_fields = ['submitted_at', 'score']
-    ordering = ['-submitted_at']
+    ordering_fields = ['submitted_at', 'started_at', 'score', 'attempt_number']
+    ordering = ['-started_at']
 
     def get_queryset(self):
-        if self.request.user.is_staff:
-            return QuizResult.objects.all()
-        return QuizResult.objects.filter(user=self.request.user)
+        queryset = QuizResult.objects.select_related(
+            'user', 'quiz', 'quiz__module', 'quiz__module__course'
+        ).prefetch_related('answers', 'answers__selected_choices', 'answers__question')
+
+        if self.request.user.is_staff or self.request.user.is_superuser:
+            return queryset
+        return queryset.filter(user=self.request.user)
 
     @extend_schema(
         summary="Statistiques des quiz",

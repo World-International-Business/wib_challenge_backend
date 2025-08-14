@@ -1,9 +1,12 @@
 import django_filters
+from django.contrib.auth import get_user_model
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizResult,
     Progress, Certificate, SkillLevel, ContentType
 )
+
+User = get_user_model()
 
 
 class CourseFilter(django_filters.FilterSet):
@@ -100,6 +103,23 @@ class QuizFilter(django_filters.FilterSet):
         choices=SkillLevel.choices,
         label='Niveau du cours'
     )
+    is_active = django_filters.BooleanFilter(label='Actif')
+    passing_score_min = django_filters.NumberFilter(
+        field_name='passing_score',
+        lookup_expr='gte',
+        label='Score de passage minimum'
+    )
+    passing_score_max = django_filters.NumberFilter(
+        field_name='passing_score',
+        lookup_expr='lte',
+        label='Score de passage maximum'
+    )
+    has_time_limit = django_filters.BooleanFilter(
+        field_name='time_limit_minutes',
+        lookup_expr='isnull',
+        exclude=True,
+        label='A une limite de temps'
+    )
     min_questions = django_filters.NumberFilter(
         field_name='questions',
         lookup_expr='count__gte',
@@ -118,7 +138,8 @@ class QuizFilter(django_filters.FilterSet):
     class Meta:
         model = Quiz
         fields = [
-            'title', 'description', 'module', 'course', 'course_level',
+            'title', 'description', 'module', 'course', 'course_level', 'is_active',
+            'passing_score_min', 'passing_score_max', 'has_time_limit',
             'min_questions', 'max_questions', 'created_after', 'created_before'
         ]
 
@@ -201,6 +222,10 @@ class QuizChoiceFilter(django_filters.FilterSet):
 
 class QuizResultFilter(django_filters.FilterSet):
     """Filtres pour les résultats de quiz"""
+    user = django_filters.ModelChoiceFilter(
+        queryset=User.objects.all(),
+        label='Utilisateur'
+    )
     quiz = django_filters.ModelChoiceFilter(
         queryset=Quiz.objects.all(),
         label='Quiz'
@@ -215,14 +240,10 @@ class QuizResultFilter(django_filters.FilterSet):
         queryset=Course.objects.all(),
         label='Cours'
     )
+    is_passed = django_filters.BooleanFilter(label='Quiz réussi')
     min_score = django_filters.NumberFilter(field_name='score', lookup_expr='gte', label='Score minimum')
     max_score = django_filters.NumberFilter(field_name='score', lookup_expr='lte', label='Score maximum')
-    passed = django_filters.BooleanFilter(
-        field_name='score',
-        lookup_expr='gte',
-        method='filter_passed',
-        label='Quiz réussi (≥70%)'
-    )
+    attempt_number = django_filters.NumberFilter(label='Numéro de tentative')
     submitted_after = django_filters.DateTimeFilter(
         field_name='submitted_at',
         lookup_expr='gte',
@@ -233,19 +254,22 @@ class QuizResultFilter(django_filters.FilterSet):
         lookup_expr='lte',
         label='Soumis avant'
     )
-
-    def filter_passed(self, queryset, name, value):
-        """Filtre pour les quiz réussis (score >= 70)"""
-        if value:
-            return queryset.filter(score__gte=70)
-        else:
-            return queryset.filter(score__lt=70)
+    started_after = django_filters.DateTimeFilter(
+        field_name='started_at',
+        lookup_expr='gte',
+        label='Commencé après'
+    )
+    started_before = django_filters.DateTimeFilter(
+        field_name='started_at',
+        lookup_expr='lte',
+        label='Commencé avant'
+    )
 
     class Meta:
         model = QuizResult
         fields = [
-            'quiz', 'module', 'course', 'min_score', 'max_score', 'passed',
-            'submitted_after', 'submitted_before'
+            'user', 'quiz', 'module', 'course', 'is_passed', 'min_score', 'max_score',
+            'attempt_number', 'submitted_after', 'submitted_before', 'started_after', 'started_before'
         ]
 
 
