@@ -1,14 +1,15 @@
 from django.urls import path, include
-from rest_framework.routers import SimpleRouter
 
+from wib_challenge.routers import AppRouter
 from .views import (
     JobCategoryViewSet, JobOfferViewSet,
-    MyJobOffersView, JobSearchView
+    MyJobOffersView, JobSearchView, JobApplicationViewSet
 )
 
-router = SimpleRouter()
+router = AppRouter()
 router.register(r'categories', JobCategoryViewSet)
 router.register(r'offers', JobOfferViewSet)
+router.register(r'applications', JobApplicationViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

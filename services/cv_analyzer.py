@@ -6,7 +6,7 @@ from google.genai import types
 from google.genai.types import GenerateContentConfigDict
 from pydantic import BaseModel
 
-from jobs.models import JobOffer, JobApplication
+from apps.jobs.models import JobOffer, JobApplication
 from services.utils import get_genai_client
 
 

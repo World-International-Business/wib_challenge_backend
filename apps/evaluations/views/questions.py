@@ -1,4 +1,6 @@
-from drf_spectacular.utils import extend_schema
+from sqlite3.dbapi2 import paramstyle
+
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
 from rest_framework_nested.viewsets import NestedViewSetMixin
 
@@ -7,7 +9,10 @@ from apps.questions.views import QuestionViewSetMixin
 
 
 @extend_schema(
-    tags=["Evaluation Questions"]
+    tags=["Evaluation Questions"],
+    parameters=[
+        OpenApiParameter(name='evaluation_pk', type=int, location=OpenApiParameter.PATH)
+    ]
 )
 class EvaluationQuestionsViewSet(QuestionViewSetMixin, NestedViewSetMixin, viewsets.ModelViewSet):
     parent_lookup_kwargs = {

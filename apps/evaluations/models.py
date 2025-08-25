@@ -6,10 +6,10 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 from django.db.models.signals import pre_delete, pre_save
 from django.dispatch import receiver
+from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TitleSlugDescriptionModel
-from rest_framework.utils import timezone
 
 from apps.core.models import BaseModel, Profession, delete_old_image
 from apps.questions.models import Question, Choice
@@ -178,6 +178,7 @@ class SubmissionAttempt(models.Model):
         verbose_name = _('Tentative de soumission')
         verbose_name_plural = _('Tentatives de soumission')
         indexes = [models.Index(fields=['started_at']), ]
+        ordering = ['-started_at']
 
     def __str__(self):
         return f'{self.participant} - {self.evaluation} - {self.started_at}'
@@ -289,6 +290,13 @@ class EvaluationInvitation(BaseModel):
 
     def __str__(self):
         return f'Invitation {self.token} - {self.evaluation.title} - {self.candidate.full_name} - {self.status}'
+
+
+class SkillEvaluation(BaseModel):
+    evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, related_name='skill_evaluations',
+                                   verbose_name=_('Évaluation'))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='skill_evaluations',
+                             verbose_name=_('User'))
 
 
 receiver([pre_save, pre_delete], sender=Evaluation)(delete_old_image)

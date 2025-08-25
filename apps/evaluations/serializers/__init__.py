@@ -8,7 +8,7 @@ from rest_framework import serializers
 from apps.accounts.serializers import PublisherSerializer
 from apps.core.serializers import TechnologySerializer, ProfessionSerializer
 from apps.evaluations.models import Evaluation, SubmissionAttempt, Answer, Competition, EvaluationType, \
-    Candidate, Participant, EvaluationInvitation, QuestionOrder
+    Candidate, Participant, EvaluationInvitation, QuestionOrder, SkillEvaluation
 from apps.evaluations.utils import send_invitation_email
 from apps.questions.models import Choice, Question
 from apps.questions.serializers import QuestionSerializer
@@ -47,7 +47,7 @@ class CompetitionSerializer(serializers.ModelSerializer):
         model = Competition
         fields = '__all__'
 
-    def get_is_active(self, obj):
+    def get_is_active(self, obj) -> bool:
         """Vérifie si la compétition est active"""
         from django.utils import timezone
         now = timezone.now()
@@ -135,6 +135,15 @@ class EvaluationSerializer(WritableNestedModelSerializer):
         elif image:
             return image.url
         return None
+
+
+class SkillEvaluationSerializer(serializers.ModelSerializer):
+    evaluation = EvaluationSerializer(read_only=True)
+
+    class Meta:
+        model = SkillEvaluation
+        fields = '__all__'
+        read_only_fields = ['id', 'created_at', 'updated_at', 'user']
 
 
 class AnswerSerializer(WritableNestedModelSerializer):
@@ -265,6 +274,10 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
             candidate=candidate,
             evaluation=evaluation,
             expires_at=expire_at
+        )
+        SubmissionAttempt.objects.create(
+            participant=Participant.objects.get_or_create(candidate=candidate)[0],
+            evaluation=evaluation
         )
 
         send_invitation_email(self.context['request'], invitation)

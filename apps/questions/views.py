@@ -10,6 +10,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from apps.core.models import Technology
+from apps.evaluations.models import EvaluationType
 from apps.questions.filters import QuestionFilterSet
 from apps.questions.models import Question
 from apps.questions.permissions import IsQuestionOwner
@@ -27,7 +28,9 @@ class QuestionViewSetMixin:
 
     def get_queryset(self):
         queryset = Question.objects.select_related('publisher', 'technology').prefetch_related('choices',
-                                                                                               'technology__professions')
+                                                                                               'technology__professions').exclude(
+            evaluations__evaluation_type=EvaluationType.PERSONALITY
+        )
         user = self.request.user
         if user.is_staff:
             return queryset
@@ -58,7 +61,7 @@ class ReadOnlyQuestionViewSet(QuestionViewSetMixin, mixins.UpdateModelMixin, vie
         request=None,
         responses={200: TechnologyStats},
     )
-    @action(detail=False, methods=['get'], url_path='technology-stats/(?P<tech_pk>[0-9]+)', url_name='technology-stats')
+    @action(detail=False, methods=['get'], url_path='technology-stats/<int:tech_pk>', url_name='technology-stats')
     def technology_stats(self, request, tech_pk=None, organization_pk=None):
         """
         Retrieve statistics for a specific technology in the organization.

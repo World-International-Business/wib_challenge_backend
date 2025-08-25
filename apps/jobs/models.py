@@ -1,30 +1,31 @@
+from django.conf import settings
 from django.db import models
-from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from django_extensions.db.models import TitleSlugDescriptionModel
 
 from apps.core.models import BaseModel
-from organizations.models import Organization, ExperienceLevel
+from apps.evaluations.models import ExperienceLevel
+from apps.organizations.models import Organization
 
 
-class JobCategory(models.Model):
+class JobCategory(TitleSlugDescriptionModel):
     """
     Modèle représentant les catégories de postes (ex: Développement, Marketing, Finance).
     Permet de classer les offres d'emploi par domaine d'expertise.
     """
-    name = models.CharField(_("Nom de la catégorie"), max_length=100)
-    slug = models.SlugField(_("Slug URL"), max_length=120, unique=True)
+    title = models.CharField(_("Nom de la catégorie"), max_length=100)
     description = models.TextField(_("Description"), blank=True)
 
     class Meta:
         verbose_name = _("Catégorie d'emploi")
         verbose_name_plural = _("Catégories d'emploi")
-        ordering = ['name']
+        ordering = ['title']
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
-class JobOffer(models.Model):
+class JobOffer(TitleSlugDescriptionModel):
     """
     Modèle principal pour les offres d'emploi.
     Contient toutes les informations relatives à un poste proposé par une entreprise.
@@ -46,7 +47,6 @@ class JobOffer(models.Model):
         FREELANCE = 'freelance', _('Freelance')
 
     title = models.CharField(_("Titre du poste"), max_length=255)
-    slug = models.SlugField(_("Slug URL"), max_length=255, unique=True)
     company = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='job_offers',
                                 verbose_name=_("Entreprise"))
     category = models.ForeignKey(JobCategory, on_delete=models.PROTECT, related_name='job_offers',
@@ -79,14 +79,6 @@ class JobOffer(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.slug or not self.pk:
-            super().save(*args, **kwargs)
-            self.slug = f"{self.id}-{slugify(self.title)}"
-            self.save(update_fields=['slug'])
-        else:
-            super().save(*args, **kwargs)
-
 
 class JobApplication(BaseModel):
     """
@@ -99,6 +91,7 @@ class JobApplication(BaseModel):
     applicant_email = models.EmailField(_("Email du candidat"))
     resume = models.FileField(_("CV"), upload_to='resumes/', blank=True, null=True)
     cover_letter = models.TextField(_("Lettre de motivation"), blank=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     ai_analysis = models.TextField(_("Analyse IA du CV"), blank=True)
     ai_decision = models.BooleanField(_("Décision IA"), null=True, blank=True)
     submitted_at = models.DateTimeField(_("Date de soumission"), auto_now_add=True)

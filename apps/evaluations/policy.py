@@ -20,17 +20,18 @@ class EvaluationPolicy(AccessPolicy):
             condition='is_creator',
         ),
         Statement(
-            action=['update', 'partial_update', 'destroy', 'evaluation_statistics'],
+            action=['test_skills', 'get_test_skills'],
             principal='authenticated',
             effect='allow',
-            condition_expression='is_creator and is_publisher',
+            condition='is_developer',
         ),
         Statement(
-            action=['invite_candidates'],
+            action=['update', 'partial_update', 'destroy', 'evaluation_statistics', 'invite_candidates',
+                    'update_by_proportion', 'add_question', 'add_from_scratch', 'grouped'],
             principal='authenticated',
             effect='allow',
             condition_expression='is_creator and is_publisher',
-        ),
+        )
     ]
 
     def is_publisher(self, request, view, action) -> bool:

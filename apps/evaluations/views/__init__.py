@@ -1,14 +1,17 @@
+from django.contrib.auth import get_user_model
 from django.db import transaction, models
-from django.db.models import Avg, Q, F, Min, Max, Count, Sum, Case, When, FloatField
+from django.db.models import Avg, Q, F, Min, Max, Count, Sum, Case, When, FloatField, QuerySet
 from django.db.models import Prefetch
 from django.utils import timezone
 from django.utils.decorators import method_decorator
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema, OpenApiRequest, extend_schema_view
+from drf_spectacular.utils import extend_schema, OpenApiRequest, extend_schema_view, OpenApiParameter
 from rest_access_policy import AccessViewSetMixin
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -18,19 +21,23 @@ from apps.evaluations.filters import (
     EvaluationFilterSet
 )
 from apps.evaluations.models import (
-    Evaluation, EvaluationType, SubmissionAttempt, Submission, Answer
+    Evaluation, EvaluationType, SubmissionAttempt, Submission, Answer, ExperienceLevel, SkillEvaluation
 )
 from apps.evaluations.policy import EvaluationPolicy
 from apps.evaluations.serializers import (
     EvaluationSerializer, InviteCandidateSerializer,
-    EvaluationInvitationSerializer, SubmissionAttemptListSerializer
+    EvaluationInvitationSerializer, SubmissionAttemptListSerializer, SkillEvaluationSerializer
 )
+from apps.evaluations.serializers.evaluations import ProportionEvaluationSerializer, EvaluationResponseSerializer
 from apps.evaluations.serializers.results import CandidateResultSerializer, SubmissionAttemptDetailSerializer
 from apps.evaluations.serializers.stats import (
     UserEvaluationStatisticsSerializer,
     DetailedEvaluationStatisticsSerializer
 )
+from apps.evaluations.utils import send_reminder_email
+from apps.evaluations.views.generated import create_evaluation_from_techs
 from apps.questions.models import Question
+from apps.questions.serializers import AddQuestionSerializer, QuestionSerializer
 from wib_challenge.pagination import paginated_response
 
 
@@ -67,6 +74,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
     """
     serializer_class = EvaluationSerializer
     access_policy = EvaluationPolicy
+    lookup_value_converter = 'int'
 
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = EvaluationFilterSet
@@ -107,12 +115,12 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
                      ) & (
                              Q(questions_count__gte=20) |
                              Q(publisher=user)
-                     )) | (Q(attempts__participant__user=user) if 'result' in self.action else Q())
+                     )) | (Q(attempts__participant__user=user) if 'results' == self.action else Q())
                 )
         else:
             queryset = queryset.filter(archived=False, questions_count__gte=20)
 
-        return queryset
+        return queryset.exclude(skill_evaluations__isnull=False)
 
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
@@ -122,7 +130,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         summary="Évaluation par slug",
         description="Récupère une évaluation par son identifiant slug",
     )
-    @action(detail=False, methods=['get'], url_path='slug/(?P<slug>[^/.]+)')
+    @action(detail=False, methods=['get'], url_path='slug/<slug:slug>')
     def get_by_slug(self, request, slug: str):
         """Récupère une évaluation par son slug"""
         evaluation = get_object_or_404(self.get_queryset(), slug=slug)
@@ -163,11 +171,20 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
-        request=InviteCandidateSerializer
+        request=OpenApiRequest(),
+        responses={200: EvaluationResponseSerializer}
     )
-    @action(detail=True, methods=['post'], url_path='invite-candidates')
+    @action(detail=True, methods=['get'], url_path='grouped')
+    def grouped(self, request, pk=None):
+        return Response(EvaluationResponseSerializer(self.get_object(), context={'request': request}).data)
+
+    @extend_schema(
+        request=InviteCandidateSerializer,
+        responses=None
+    )
+    @action(detail=True, methods=['post'], url_path='candidates/invite')
     @transaction.atomic
-    def invite_candidates(self, request, pk=None, organization_pk=None):
+    def invite_candidates(self, request, pk=None):
         """Crée une invitation pour un candidat"""
         evaluation = self.get_object()
         candidates = request.data.get('candidates', [])
@@ -183,6 +200,27 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
 
     @extend_schema(
         request=OpenApiRequest(),
+        parameters=[
+            OpenApiParameter(name='invite_id', type=int, location=OpenApiParameter.PATH)
+        ],
+        responses=None
+    )
+    @action(detail=True, methods=['post'], url_path='candidates/<str:invite_id>/remind')
+    @transaction.atomic
+    def remind_candidate(self, request, pk=None, invite_id=None):
+        """ Envoie un rappel à un candidat """
+        evaluation = self.get_object()
+        invitation = evaluation.invitations.filter(id=invite_id, evaluation=evaluation,
+                                                   expires_at__gte=timezone.now()).first()
+        if not invitation:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        send_reminder_email(request, invitation)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @extend_schema(
+        request=OpenApiRequest(),
         responses={200: ListSerializer(child=SubmissionAttemptListSerializer())},
         summary="Mes tentatives d'évaluation",
         description="Récupère toutes mes tentatives pour une évaluation",
@@ -190,14 +228,17 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
     @action(detail=True, methods=['get'], url_path='my-attempts')
     def my_attempts(self, request, pk: int):
         """Récupère toutes les tentatives pour une évaluation"""
-        evaluation = self.get_object()
-        attempts = evaluation.attempts.select_related(
-            'participant__user', 'participant__candidate', 'submission'
-        ).prefetch_related('answers')
+        try:
+            evaluation = self.get_object()
+            attempts = evaluation.attempts.select_related(
+                'participant__user', 'participant__candidate', 'submission'
+            ).prefetch_related('answers')
 
-        attempts = attempts.filter(participant__user=request.user)
+            attempts = attempts.filter(participant__user=request.user)
 
-        return paginated_response(self, attempts, SubmissionAttemptListSerializer)
+            return paginated_response(self, attempts, SubmissionAttemptListSerializer)
+        except Evaluation.DoesNotExist:
+            return Response(_("Evaluation not found"), status=status.HTTP_404_NOT_FOUND)
 
     @extend_schema(
         request=OpenApiRequest(),
@@ -206,11 +247,11 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         description="Récupère toutes mes tentatives pour une évaluation",
     )
     @action(detail=False, methods=['get'], url_path='my-attempts')
-    def all_my_attempts(self, request, pk: int):
+    def all_my_attempts(self, request):
         """Récupère toutes les tentatives pour une évaluation"""
         attempts = SubmissionAttempt.objects.select_related(
             'participant__user', 'participant__candidate', 'submission'
-        ).prefetch_related('answers')
+        ).prefetch_related('answers').filter(participant__user=request.user)
 
         return paginated_response(self, attempts, SubmissionAttemptListSerializer)
 
@@ -245,17 +286,20 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         evaluation: Evaluation = self.get_object()
         attempts = evaluation.attempts.filter(
             Q(evaluation__publisher=request.user) | Q(participant__user=request.user),
-            is_completed=True,
+            # is_completed=True,
         )
         return paginated_response(self, attempts, CandidateResultSerializer)
 
     @extend_schema(
         request=OpenApiRequest(),
+        parameters=[
+            OpenApiParameter(name='result_id', type=int, location=OpenApiParameter.PATH)
+        ],
         responses={200: SubmissionAttemptDetailSerializer},
         summary="Résultat d'une évaluation",
         description="Récupère un résultat d'une évaluation",
     )
-    @action(detail=True, url_path=r'results/(?P<result_id>[^/.]+)')
+    @action(detail=True, url_path=r'results/<int:result_id>')
     def result(self, request, pk=None, result_id=None):
         """Récupère les résultats d'une évaluation"""
         evaluation: Evaluation = self.get_object()
@@ -493,3 +537,167 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         }
 
         return Response(stats, status=status.HTTP_200_OK)
+
+    def check_can_update(self, evaluation: Evaluation):
+        if Evaluation.objects.filter(
+                id=evaluation.id, attempts__started_at__isnull=False,
+        ).exists():
+            raise ValidationError(
+                _("Cette évaluation ne peut pas être modifiée."))
+
+    @extend_schema(
+        request=ProportionEvaluationSerializer,
+        responses={200: EvaluationResponseSerializer},
+        summary="Mise à jour par proportions personnalisées",
+        description="Ajoute ou remplace des questions selon des proportions personnalisées par technologie et difficulté",
+    )
+    @transaction.atomic
+    @action(detail=True, methods=['put', 'post'], url_path='add-question-basic', url_name='add-question-basic')
+    def update_by_proportion(self, request, pk=None):
+        """
+        Mise à jour d'une évaluation avec des proportions personnalisées
+        Format attendu :
+        {
+            "proportions" : [
+                {
+                    "technology": 1,
+                    "easy": 3,
+                    "medium": 8,
+                    "hard": 7
+                },
+                {...}
+            ],
+            "replace_existing" : true/false
+        }
+        """
+        evaluation = self.get_object()
+        self.check_can_update(evaluation)
+        if evaluation.evaluation_type == EvaluationType.PERSONALITY:
+            raise ValidationError(
+                _("Cette évaluation ne peut pas avoir de questions technologiques/techniques."))
+
+        serializer = ProportionEvaluationSerializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+
+        proportions = serializer.validated_data['proportions']
+        replace_existing = serializer.validated_data['replace_existing']
+
+        if replace_existing:
+            evaluation.questions.all().delete()
+        else:
+            evaluation.questions.filter(technology__isnull=False).delete()
+
+        for prop in proportions:
+            technology = prop['technology']
+            num_easy = prop.get('easy', 0)
+            num_medium = prop.get('medium', 0)
+            num_hard = prop.get('hard', 0)
+
+            if num_easy > 0:
+                easy_questions = Question.objects.filter(
+                    technology=technology,
+                    difficulty=Question.Difficulty.EASY,
+                    status=Question.Status.PUBLISHED
+                ).order_by('?')[:num_easy]
+
+                self._add_questions_to_evaluation(evaluation, easy_questions)
+
+            if num_medium > 0:
+                medium_questions = Question.objects.filter(
+                    technology=technology,
+                    difficulty=Question.Difficulty.MEDIUM,
+                    status=Question.Status.PUBLISHED
+                ).order_by('?')[:num_medium]
+
+                self._add_questions_to_evaluation(evaluation, medium_questions)
+
+            if num_hard > 0:
+                hard_questions = Question.objects.filter(
+                    technology=technology,
+                    difficulty=Question.Difficulty.HARD,
+                    status=Question.Status.PUBLISHED
+                ).order_by('?')[:num_hard]
+
+                self._add_questions_to_evaluation(evaluation, hard_questions)
+
+        evaluation.refresh_from_db()
+        response_data = EvaluationResponseSerializer(evaluation, context={'request': request}).data
+        return Response(response_data)
+
+    @extend_schema(
+        request=AddQuestionSerializer,
+        responses={200: EvaluationResponseSerializer},
+        summary="Ajout manuel de questions",
+        description="Ajoute une question soit en utilisant une question existante, soit en créant une nouvelle",
+    )
+    @action(detail=True, methods=['put', 'post'], url_path='add-question', url_name='add-question')
+    def add_question(self, request, pk=None):
+        """
+        Ajout manuel de questions à une évaluation:
+        - Soit en créant de nouvelles questions
+        - Soit en ajoutant des questions existantes
+        """
+        evaluation = self.get_object()
+        self.check_can_update(evaluation)
+        serializer = AddQuestionSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        evaluation.questions.add(serializer.validated_data['question'])
+        serializer_data = EvaluationResponseSerializer(evaluation, context={'request': request}).data
+        return Response(serializer_data, status=status.HTTP_201_CREATED)
+
+    @extend_schema(
+        request=QuestionSerializer,
+        responses={200: EvaluationResponseSerializer},
+        summary="Ajout manuel de questions",
+        description="Ajoute une question soit en utilisant une question existante, soit en créant une nouvelle",
+    )
+    @action(detail=True, methods=['put', 'post'], url_path='add-question/scratch', url_name='add-question-scratch')
+    def add_from_scratch(self, request, pk=None):
+        """
+        Ajout manuel de questions à une évaluation:
+        - Soit en créant de nouvelles questions
+        - Soit en ajoutant des questions existantes
+        """
+        evaluation = self.get_object()
+        self.check_can_update(evaluation)
+        serializer = QuestionSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance = serializer.save()
+        evaluation.questions.add(instance)
+        serializer_data = EvaluationResponseSerializer(evaluation, context={'request': request}).data
+        return Response(serializer_data, status=status.HTTP_201_CREATED)
+
+    @extend_schema(
+        request=OpenApiRequest()
+    )
+    @action(detail=False, methods=['post'], url_path='test-skills')
+    def test_skills(self, request):
+        techs = request.user.profile.technologies.all()
+        if not techs.exists():
+            raise ValidationError(_('Vous devez avoir au moins une technologie pour tester vos compétences'))
+        evaluation = create_evaluation_from_techs(
+            publisher=get_user_model().objects.filter(is_superuser=True).first(),
+            title=f"Évaluation Des Compétences de base",
+            description=f"Évaluation automatique pour les compétences de base",
+            experience_level=ExperienceLevel.INTERMEDIATE,
+            technologies=techs
+        )
+        skill_evaluation = SkillEvaluation.objects.create(evaluation=evaluation, user=request.user)
+        return Response(EvaluationSerializer(evaluation).data, status=status.HTTP_201_CREATED)
+
+    @extend_schema(
+        request=OpenApiRequest(),
+        responses={200: ListSerializer(child=SkillEvaluationSerializer())}
+    )
+    @test_skills.mapping.get
+    def get_test_skills(self, request):
+        evaluations = request.user.profile.skill_evaluations.all()
+        return paginated_response(self, evaluations, SkillEvaluationSerializer)
+
+    @staticmethod
+    def _add_questions_to_evaluation(evaluation: Evaluation, questions: QuerySet[Question, Question]):
+        """Helper pour ajouter des questions à l'évaluation"""
+        question_ids = list(questions.values_list('id', flat=True))
+
+        evaluation.questions.add(*question_ids)

@@ -7,9 +7,9 @@ from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from apps.core.filters import TechnologyFilter, ProfessionFilter, DomainFilter
 from apps.core.models import Profession, Technology, Domain
@@ -160,8 +160,10 @@ def health_check(request):
     return HttpResponse("ok", content_type="text/plain")
 
 
-class ContactView(APIView):
+class ContactView(GenericAPIView):
     """Vue pour gérer les messages de contact"""
+
+    serializer_class = ContactSerializer
 
     def post(self, request):
         """Envoie un email de contact"""

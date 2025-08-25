@@ -1,4 +1,3 @@
-from django.db import transaction
 from drf_spectacular.utils import inline_serializer
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
@@ -17,32 +16,31 @@ class ChoiceSerializer(serializers.ModelSerializer):
         }
 
 
+class AddQuestionSerializer(serializers.Serializer):
+    question = serializers.IntegerField()
+
+    def validate(self, attrs):
+        question_id = attrs.get('question')
+        if Question.objects.filter(pk=question_id).exists():
+            return attrs
+        raise serializers.ValidationError('Question does not exist')
+
+
 class QuestionSerializer(WritableNestedModelSerializer):
     choices = ChoiceSerializer(many=True)
     publisher = PublisherSerializer(read_only=True)
-    # profession = serializers.SlugRelatedField(
-    #     slug_field='title', read_only=True, source='evaluation.profession')
     technology = TechnologySerializer(read_only=True)
     weight = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Question
         fields = '__all__'
-        read_only_fields = ['publisher', 'status', 'technology']
+        read_only_fields = ['publisher', 'technology']
 
     def validate_status(self, value):
         if value != Question.Status.PENDING and value != '':
             raise serializers.ValidationError('Status must be PENDING or empty')
         return value
-
-    @transaction.atomic
-    def create(self, validated_data):
-        return super().create(validated_data)
-
-    @transaction.atomic
-    def update(self, instance, validated_data):
-        instance = super().update(instance, validated_data)
-        return instance
 
 
 EvaluationQuestionProportions = inline_serializer(

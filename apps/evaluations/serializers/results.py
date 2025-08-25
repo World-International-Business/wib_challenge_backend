@@ -38,6 +38,7 @@ class CandidateResultSerializer(serializers.ModelSerializer):
     stats = serializers.SerializerMethodField()
     other_stats = serializers.SerializerMethodField()
     last_activity = serializers.SerializerMethodField()
+    invitation = serializers.SerializerMethodField()
 
     class Meta:
         model = SubmissionAttempt
@@ -87,26 +88,16 @@ class CandidateResultSerializer(serializers.ModelSerializer):
 
         stats = []
         for tech in technologies:
-            # Get questions related to this technology in the evaluation
             tech_questions = tech.questions.filter(
                 evaluations=attempt.evaluation)
-            # Get answers for these questions in the attempt
             answers = attempt.answers.filter(question__in=tech_questions)
 
             total_questions = tech_questions.count()
-            correct_answers = answers.filter(
-                status=Answer.Status.CORRECT).count()
-            partial_answers = answers.filter(
-                status=Answer.Status.PARTIAL).count()
-            incorrect_answers = answers.filter(
-                status=Answer.Status.INCORRECT).count()
-            timeout_answers = answers.filter(
-                status=Answer.Status.TIMEOUT).count()
-            discarded_answers = answers.filter(
-                status=Answer.Status.DISCARDED).count()
+            correct_answers, discarded_answers, incorrect_answers, partial_answers, timeout_answers = self.split_answers(
+                answers)
 
-            score = score = answers.aggregate(total_score=Sum('score'))[
-                                'total_score'] or 0.0
+            score = answers.aggregate(total_score=Sum('score'))[
+                        'total_score'] or 0.0
 
             stats.append({
                 'technology': tech.name,
@@ -144,14 +135,8 @@ class CandidateResultSerializer(serializers.ModelSerializer):
             return None
         answers = attempt.answers.filter(question__technology=None)
 
-        correct_answers = answers.filter(status=Answer.Status.CORRECT).count()
-        partial_answers = answers.filter(status=Answer.Status.PARTIAL).count()
-        timeout_answers = answers.filter(
-            status=Answer.Status.TIMEOUT).count()
-        discarded_answers = answers.filter(
-            status=Answer.Status.DISCARDED).count()
-        incorrect_answers = answers.filter(
-            status=Answer.Status.INCORRECT).count()
+        correct_answers, discarded_answers, incorrect_answers, partial_answers, timeout_answers = self.split_answers(
+            answers)
 
         score = answers.aggregate(total_score=Sum('score'))[
                     'total_score'] or 0.0
@@ -165,3 +150,40 @@ class CandidateResultSerializer(serializers.ModelSerializer):
             'discarded_answers': discarded_answers,
             'partial_answers': partial_answers,
         }
+
+    def split_answers(self, answers):
+        correct_answers = answers.filter(status=Answer.Status.CORRECT).count()
+        partial_answers = answers.filter(status=Answer.Status.PARTIAL).count()
+        timeout_answers = answers.filter(
+            status=Answer.Status.TIMEOUT).count()
+        discarded_answers = answers.filter(
+            status=Answer.Status.DISCARDED).count()
+        incorrect_answers = answers.filter(
+            status=Answer.Status.INCORRECT).count()
+        return correct_answers, discarded_answers, incorrect_answers, partial_answers, timeout_answers
+
+    @extend_schema_field(
+        inline_serializer(
+            name='CandidateResultInvitation',
+            fields={
+                'id': serializers.IntegerField(),
+                'token': serializers.CharField(),
+                'status': serializers.CharField(),
+                'invited_at': serializers.DateTimeField(),
+                'expires_at': serializers.DateTimeField(),
+            }
+        )
+    )
+    def get_invitation(self, obj: SubmissionAttempt):
+        invitation = EvaluationInvitation.objects.filter(
+            evaluation=obj.evaluation, candidate=obj.participant.candidate
+        ).first()
+        if invitation:
+            return {
+                'id': invitation.id,
+                'token': invitation.token,
+                'status': invitation.status,
+                'invited_at': invitation.invited_at,
+                'expires_at': invitation.expires_at,
+            }
+        return None

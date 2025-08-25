@@ -711,7 +711,7 @@ class ContentAdmin(admin.ModelAdmin):
         color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 50 else '#dc3545'
 
         return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            '<span style="color: {}; font-weight: bold;">{}%</span>',
             color, rate
         )
 

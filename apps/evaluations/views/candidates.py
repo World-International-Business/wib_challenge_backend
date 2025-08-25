@@ -145,7 +145,7 @@ class CandidateEvaluationViewSet(viewsets.GenericViewSet):
         ],
         responses={200: AnswerSerializer}
     )
-    @action(detail=False, methods=['post'], url_path=r'attempts/(?P<attempt_id>\d+)/answers')
+    @action(detail=False, methods=['post'], url_path=r'attempts/<int:attempt_id>/answers')
     @transaction.atomic
     def submit_answer(self, request, attempt_id=None):
         """Soumet une réponse à une question"""
@@ -174,7 +174,7 @@ class CandidateEvaluationViewSet(viewsets.GenericViewSet):
         return Response(status=status.HTTP_200_OK, data=AnswerSerializer(answers, many=True).data)
 
     @extend_schema(request=OpenApiRequest(), responses={200: SubmissionAttemptDetailSerializer})
-    @action(detail=False, methods=['post'], url_path=r'attempts/(?P<attempt_id>\d+)/finalize')
+    @action(detail=False, methods=['post'], url_path=r'attempts/<int:attempt_id>/finalize')
     @transaction.atomic
     def finish(self, request, attempt_id=None):
         """Termine l'évaluation"""

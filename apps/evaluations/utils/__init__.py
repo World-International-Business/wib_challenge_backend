@@ -7,9 +7,11 @@ from apps.evaluations.models import EvaluationInvitation
 
 
 def send_invitation_email(request, invitation: EvaluationInvitation):
+    publisher = invitation.evaluation.publisher
     context = {
         'candidate_name': invitation.candidate.full_name,
-        'company_name': invitation.evaluation.organization.name,
+        'company_name': publisher.organization.name if hasattr(publisher,
+                                                               'organization') else publisher.get_full_name(),
         'test_name': invitation.evaluation.title,
         'test_url': config('FRONTEND_INVITATION_URL', cast=str, default='').strip('/') + '/' + invitation.token,
         'unsubscribe_url': '',  # TODO : add unsubscribe url

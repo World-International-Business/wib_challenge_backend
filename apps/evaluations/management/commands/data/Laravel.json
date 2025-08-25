@@ -6,7 +6,7 @@
   "questions": [
     {
       "title": "Quelle commande Artisan permet de créer un nouveau contrôleur?",
-      "explanation": "La commande `php artisan make:controller` est utilisée pour créer un nouveau fichier de contrôleur dans le répertoire `app/Http/Controllers`. Vous pouvez spécifier différentes options comme `--resource` pour générer un contrôleur avec les méthodes CRUD.",
+      "description": "La commande `php artisan make:controller` est utilisée pour créer un nouveau fichier de contrôleur dans le répertoire `app/Http/Controllers`. Vous pouvez spécifier différentes options comme `--resource` pour générer un contrôleur avec les méthodes CRUD.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -126,8 +126,7 @@
     },
     {
       "title": "Comment définir une relation 'un à plusieurs' dans un modèle Eloquent?",
-      "description": "```php\npublic function posts() {\n    return $this->hasMany(Post::class);\n}\n```",
-      "explanation": "Dans Eloquent, les relations entre modèles sont définies comme des méthodes. La méthode `hasMany()` est utilisée pour définir une relation 'un à plusieurs', où un modèle possède plusieurs instances d'un autre modèle.",
+      "description": "Dans Eloquent, les relations entre modèles sont définies comme des méthodes. La méthode `hasMany()` est utilisée pour définir une relation 'un à plusieurs', où un modèle possède plusieurs instances d'un autre modèle.",
       "difficulty": "medium",
       "duration": 35,
       "choices": [

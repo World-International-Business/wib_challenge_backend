@@ -11,9 +11,9 @@ from .models import JobCategory, JobOffer
 
 @admin.register(JobCategory)
 class JobCategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'job_offers_count', 'published_jobs_count']
-    search_fields = ['name', 'description']
-    prepopulated_fields = {'slug': ('name',)}
+    list_display = ['title', 'slug', 'job_offers_count', 'published_jobs_count']
+    search_fields = ['title', 'description']
+    prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['job_offers_count', 'published_jobs_count']
 
     def get_queryset(self, request):
@@ -140,13 +140,13 @@ class JobOfferAdmin(admin.ModelAdmin):
             )
         return '-'
 
-    @admin.display(description=_('Catégorie'), ordering='category__name')
+    @admin.display(description=_('Catégorie'), ordering='category__title')
     def category_link(self, obj):
         if obj.category:
             url = reverse('admin:jobs_jobcategory_change', args=[obj.category.pk])
             return format_html(
                 '<a href="{}" style="color: #417690;">{}</a>',
-                url, obj.category.name
+                url, obj.category.title
             )
         return '-'
 
@@ -176,7 +176,7 @@ class JobOfferAdmin(admin.ModelAdmin):
     @admin.display(description=_('Mise en avant'))
     def featured_badge(self, obj):
         return format_html(
-            '<span style="color: #ffc107; font-size: 16px;">%s</span>'
+            '<span style="color: #ffc107; font-size: 16px;">{}</span>',
             '⭐' if obj.featured else '-'
         )
 
@@ -239,7 +239,7 @@ class JobOfferAdmin(admin.ModelAdmin):
                 '<strong>{}</strong><br>'
                 '<small>{}</small>'
                 '</div>',
-                obj.category.name,
+                obj.category.title,
                 obj.category.description or 'Pas de description'
             )
         return '-'

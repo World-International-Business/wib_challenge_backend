@@ -100,7 +100,7 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
 
     def get_candidates_count(self, obj: Evaluation) -> int:
         """Retourne le nombre de candidats ayant été invités à l'évaluation"""
-        return obj.invitations.count()
+        return obj.attempts.count()
 
     @extend_schema_field(
         inline_serializer(
@@ -118,8 +118,7 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
         )
     )
     def get_questions(self, obj):
-        technologies = Technology.objects.filter(
-            org_questions__evaluation=obj).distinct()
+        technologies = Technology.objects.filter(questions__evaluations=obj).distinct()
 
         result = []
         for tech in technologies:

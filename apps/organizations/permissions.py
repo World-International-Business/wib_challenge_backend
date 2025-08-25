@@ -10,6 +10,6 @@ class IsOrganization(permissions.BasePermission):
 
     def has_permission(self, request, view):
         return (request.user.is_authenticated and
-                request.user.role == User.Roles.ORG and
+                request.user.role == User.Roles.ORGANIZATION and
                 hasattr(request.user, 'organization')
                 )

@@ -229,7 +229,6 @@ class EvaluationAdmin(admin.ModelAdmin):
     search_fields = ['title', 'description', 'technology__name', 'publisher__username']
     list_filter = [DifficultyFilter, EvaluationTypeFilter, 'technology', 'profession', 'archived', 'created_at']
     readonly_fields = ['created_at', 'updated_at', 'statistics', 'slug']
-    prepopulated_fields = {'slug': ('title',)}
     inlines = [CompetitionInline, EvaluationInvitationInline]
     list_per_page = 25
 
@@ -321,7 +320,7 @@ class EvaluationAdmin(admin.ModelAdmin):
         avg = obj.attempts.filter(submission__isnull=False).aggregate(avg=Avg('submission__score'))['avg']
         if avg is not None:
             color = 'green' if avg >= 70 else 'orange' if avg >= 50 else 'red'
-            return format_html('<span style="color: {};">{:.1f}</span>', color, avg)
+            return format_html('<span style="color: {};">{}</span>', color, avg)
         return "-"
 
     @admin.display(description=_("Publié"), boolean=True)

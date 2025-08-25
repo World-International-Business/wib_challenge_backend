@@ -5,7 +5,8 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "title": "Comment partager une feuille Google Sheets avec quelqu'un?",
+      "title": "Partager une feuille",
+      "description": "Comment partager une feuille Google Sheets avec quelqu'un?",
       "explanation": "Pour partager une feuille, cliquer sur le bouton 'Partager' en haut à droite et ajouter les adresses email des personnes avec qui partager.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +30,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet d'additionner une plage de cellules dans Google Sheets?",
+      "title": "Fonction SUM",
+      "description": "Quelle fonction permet d'additionner une plage de cellules dans Google Sheets?",
       "explanation": "La fonction SUM permet d'additionner une plage de cellules. La syntaxe est =SUM(A1:A10) par exemple.",
       "difficulty": "easy",
       "duration": 25,
@@ -53,7 +55,8 @@
       ]
     },
     {
-      "title": "Comment figer la première ligne dans Google Sheets?",
+      "title": "Figer une ligne",
+      "description": "Comment figer la première ligne dans Google Sheets?",
       "explanation": "Pour figer des lignes ou colonnes, aller dans Affichage > Figer et choisir '1 ligne' pour figer la première ligne.",
       "difficulty": "medium",
       "duration": 35,
@@ -77,7 +80,8 @@
       ]
     },
     {
-      "title": "Quelle est la différence entre une référence relative et absolue?",
+      "title": "Références relative et absolue",
+      "description": "Quelle est la différence entre une référence relative et absolue?",
       "explanation": "Une référence relative (A1) change quand la formule est copiée, tandis qu'une référence absolue ($A$1) reste fixe.",
       "difficulty": "medium",
       "duration": 45,
@@ -101,7 +105,8 @@
       ]
     },
     {
-      "title": "Comment créer un graphique dans Google Sheets?",
+      "title": "Créer un graphique",
+      "description": "Comment créer un graphique dans Google Sheets?",
       "explanation": "Pour créer un graphique, sélectionner les données puis aller dans Insertion > Graphique.",
       "difficulty": "easy",
       "duration": 30,
@@ -125,7 +130,8 @@
       ]
     },
     {
-      "title": "Comment importer des données depuis un fichier CSV?",
+      "title": "Importer des données CSV",
+      "description": "Comment importer des données depuis un fichier CSV?",
       "explanation": "Pour importer un CSV, aller dans Fichier > Importer et sélectionner le fichier CSV à importer.",
       "difficulty": "medium",
       "duration": 40,
@@ -149,7 +155,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet de compter les cellules non vides?",
+      "title": "Compter cellules non vides",
+      "description": "Quelle fonction permet de compter les cellules non vides?",
       "explanation": "La fonction COUNTA compte le nombre de cellules non vides dans une plage.",
       "difficulty": "medium",
       "duration": 35,
@@ -173,7 +180,8 @@
       ]
     },
     {
-      "title": "Comment appliquer une mise en forme conditionnelle?",
+      "title": "Mise en forme conditionnelle",
+      "description": "Comment appliquer une mise en forme conditionnelle?",
       "explanation": "La mise en forme conditionnelle se trouve dans Format > Mise en forme conditionnelle.",
       "difficulty": "medium",
       "duration": 40,
@@ -197,7 +205,8 @@
       ]
     },
     {
-      "title": "Comment trier des données par ordre croissant?",
+      "title": "Trier des données",
+      "description": "Comment trier des données par ordre croissant?",
       "explanation": "Pour trier, sélectionner les données puis aller dans Données > Trier la plage.",
       "difficulty": "easy",
       "duration": 30,
@@ -221,7 +230,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet de rechercher une valeur dans un tableau?",
+      "title": "Rechercher une valeur",
+      "description": "Quelle fonction permet de rechercher une valeur dans un tableau?",
       "explanation": "VLOOKUP permet de rechercher une valeur dans la première colonne d'une plage et retourner une valeur de la même ligne.",
       "difficulty": "medium",
       "duration": 40,
@@ -245,7 +255,8 @@
       ]
     },
     {
-      "title": "Comment collaborer en temps réel avec d'autres utilisateurs?",
+      "title": "Collaboration en temps réel",
+      "description": "Comment collaborer en temps réel avec d'autres utilisateurs?",
       "explanation": "Google Sheets permet la collaboration en temps réel automatiquement dès qu'une feuille est partagée. Les modifications apparaissent instantanément.",
       "difficulty": "easy",
       "duration": 35,
@@ -269,7 +280,8 @@
       ]
     },
     {
-      "title": "Comment ajouter des commentaires à une cellule?",
+      "title": "Ajouter des commentaires",
+      "description": "Comment ajouter des commentaires à une cellule?",
       "explanation": "Pour ajouter un commentaire, clic droit sur la cellule et sélectionner 'Insérer un commentaire' ou utiliser Ctrl+Alt+M.",
       "difficulty": "easy",
       "duration": 30,
@@ -293,7 +305,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet de calculer la moyenne d'une plage?",
+      "title": "Calculer la moyenne",
+      "description": "Quelle fonction permet de calculer la moyenne d'une plage?",
       "explanation": "La fonction AVERAGE calcule la moyenne arithmétique des valeurs dans une plage.",
       "difficulty": "easy",
       "duration": 25,
@@ -317,7 +330,8 @@
       ]
     },
     {
-      "title": "Comment protéger des cellules contre la modification?",
+      "title": "Protéger des cellules",
+      "description": "Comment protéger des cellules contre la modification?",
       "explanation": "Pour protéger des cellules, aller dans Données > Protéger les feuilles et plages.",
       "difficulty": "hard",
       "duration": 50,
@@ -341,7 +355,8 @@
       ]
     },
     {
-      "title": "Comment créer une liste déroulante dans une cellule?",
+      "title": "Liste déroulante",
+      "description": "Comment créer une liste déroulante dans une cellule?",
       "explanation": "Pour créer une liste déroulante, sélectionner la cellule puis aller dans Données > Validation des données.",
       "difficulty": "medium",
       "duration": 45,
@@ -365,7 +380,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet de joindre du texte de plusieurs cellules?",
+      "title": "Joindre du texte",
+      "description": "Quelle fonction permet de joindre du texte de plusieurs cellules?",
       "explanation": "La fonction CONCATENATE ou l'opérateur & permettent de joindre du texte. La fonction JOIN est aussi disponible.",
       "difficulty": "medium",
       "duration": 35,
@@ -389,7 +405,8 @@
       ]
     },
     {
-      "title": "Comment appliquer un filtre aux données?",
+      "title": "Appliquer un filtre",
+      "description": "Comment appliquer un filtre aux données?",
       "explanation": "Pour appliquer un filtre, sélectionner les données puis aller dans Données > Créer un filtre.",
       "difficulty": "easy",
       "duration": 30,
@@ -413,7 +430,8 @@
       ]
     },
     {
-      "title": "Comment utiliser la fonction SI (IF) dans Google Sheets?",
+      "title": "Utiliser la fonction SI",
+      "description": "Comment utiliser la fonction SI (IF) dans Google Sheets?",
       "explanation": "La fonction IF teste une condition et retourne une valeur si vraie, une autre si fausse. Syntaxe: =IF(condition; valeur_si_vrai; valeur_si_faux)",
       "difficulty": "medium",
       "duration": 45,
@@ -437,7 +455,8 @@
       ]
     },
     {
-      "title": "Comment accéder à l'historique des versions d'une feuille?",
+      "title": "Historique des versions",
+      "description": "Comment accéder à l'historique des versions d'une feuille?",
       "explanation": "L'historique des versions est accessible via Fichier > Historique des versions > Voir l'historique des versions.",
       "difficulty": "medium",
       "duration": 40,
@@ -461,7 +480,8 @@
       ]
     },
     {
-      "title": "Quelle fonction retourne la date d'aujourd'hui?",
+      "title": "Date d'aujourd'hui",
+      "description": "Quelle fonction retourne la date d'aujourd'hui?",
       "explanation": "La fonction TODAY() retourne la date actuelle et se met à jour automatiquement.",
       "difficulty": "easy",
       "duration": 25,
@@ -485,7 +505,8 @@
       ]
     },
     {
-      "title": "Comment insérer une nouvelle ligne ou colonne?",
+      "title": "Insérer une ligne ou colonne",
+      "description": "Comment insérer une nouvelle ligne ou colonne?",
       "explanation": "Pour insérer une ligne/colonne, clic droit sur le numéro de ligne ou lettre de colonne et sélectionner 'Insérer'.",
       "difficulty": "easy",
       "duration": 25,
@@ -509,8 +530,8 @@
       ]
     },
     {
-      "title": "Comment utiliser SUMIF pour sommer selon un critère?",
-      "description": "SUMIF permet de sommer les cellules qui répondent à un critère. Syntaxe: =SUMIF(plage; critère; somme_plage)",
+      "title": "Utiliser SUMIF",
+      "description": "Comment utiliser SUMIF pour sommer selon un critère?",
       "explanation": "SUMIF permet de sommer les cellules qui répondent à un critère. Syntaxe: =SUMIF(plage; critère; somme_plage)",
       "difficulty": "hard",
       "duration": 60,
@@ -534,7 +555,8 @@
       ]
     },
     {
-      "title": "Comment copier une formule vers d'autres cellules?",
+      "title": "Copier une formule",
+      "description": "Comment copier une formule vers d'autres cellules?",
       "explanation": "Pour copier une formule, sélectionner la cellule et faire glisser la poignée de recopie (petit carré) vers les cellules cibles.",
       "difficulty": "easy",
       "duration": 30,
@@ -558,7 +580,8 @@
       ]
     },
     {
-      "title": "Comment créer un tableau croisé dynamique?",
+      "title": "Tableau croisé dynamique",
+      "description": "Comment créer un tableau croisé dynamique?",
       "explanation": "Pour créer un tableau croisé dynamique, sélectionner les données puis aller dans Insertion > Tableau croisé dynamique.",
       "difficulty": "hard",
       "duration": 55,
@@ -582,7 +605,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet de compter les cellules selon un critère?",
+      "title": "Compter selon un critère",
+      "description": "Quelle fonction permet de compter les cellules selon un critère?",
       "explanation": "La fonction COUNTIF compte les cellules qui répondent à un critère spécifique.",
       "difficulty": "medium",
       "duration": 35,
@@ -606,7 +630,8 @@
       ]
     },
     {
-      "title": "Comment utiliser la fonction IMPORTRANGE pour importer des données d'une autre feuille?",
+      "title": "Utiliser IMPORTRANGE",
+      "description": "Comment utiliser la fonction IMPORTRANGE pour importer des données d'une autre feuille?",
       "explanation": "IMPORTRANGE permet d'importer une plage d'une autre feuille Google Sheets. Syntaxe: =IMPORTRANGE(\"URL_feuille\"; \"Feuille!Plage\")",
       "difficulty": "hard",
       "duration": 70,
@@ -630,7 +655,8 @@
       ]
     },
     {
-      "title": "Comment travailler hors ligne avec Google Sheets?",
+      "title": "Travailler hors ligne",
+      "description": "Comment travailler hors ligne avec Google Sheets?",
       "explanation": "Pour travailler hors ligne, activer le mode hors ligne dans les paramètres Google Drive ou via l'extension Chrome 'Google Docs hors connexion'.",
       "difficulty": "medium",
       "duration": 45,
@@ -654,7 +680,8 @@
       ]
     },
     {
-      "title": "Comment utiliser les scripts Google Apps Script?",
+      "title": "Utiliser Google Apps Script",
+      "description": "Comment utiliser les scripts Google Apps Script?",
       "explanation": "Pour utiliser Apps Script, aller dans Extensions > Apps Script pour créer des scripts personnalisés et automatiser des tâches.",
       "difficulty": "hard",
       "duration": 80,
@@ -678,7 +705,8 @@
       ]
     },
     {
-      "title": "Comment publier une feuille sur le web?",
+      "title": "Publier une feuille",
+      "description": "Comment publier une feuille sur le web?",
       "explanation": "Pour publier sur le web, aller dans Fichier > Partager > Publier sur le Web et choisir les options de publication.",
       "difficulty": "medium",
       "duration": 40,
@@ -702,7 +730,8 @@
       ]
     },
     {
-      "title": "Quelle fonction permet de retourner un nombre aléatoire?",
+      "title": "Nombre aléatoire",
+      "description": "Quelle fonction permet de retourner un nombre aléatoire?",
       "explanation": "La fonction RAND() retourne un nombre aléatoire entre 0 et 1. RANDBETWEEN() permet de spécifier une plage.",
       "difficulty": "medium",
       "duration": 35,
@@ -726,7 +755,8 @@
       ]
     },
     {
-      "title": "Comment utiliser la fonction QUERY pour interroger des données?",
+      "title": "Utiliser la fonction QUERY",
+      "description": "Comment utiliser la fonction QUERY pour interroger des données?",
       "explanation": "La fonction QUERY utilise un langage similaire à SQL pour interroger des données. Syntaxe: =QUERY(données; \"SELECT ...\"; en-têtes)",
       "difficulty": "hard",
       "duration": 90,
@@ -750,7 +780,8 @@
       ]
     },
     {
-      "title": "Comment créer des graphiques sparkline dans une cellule?",
+      "title": "Graphiques sparkline",
+      "description": "Comment créer des graphiques sparkline dans une cellule?",
       "explanation": "La fonction SPARKLINE crée des mini-graphiques dans une cellule. Syntaxe: =SPARKLINE(données; {\"charttype\",\"type\"})",
       "difficulty": "hard",
       "duration": 70,
@@ -774,7 +805,8 @@
       ]
     },
     {
-      "title": "Comment utiliser l'exploration de données (Explore)?",
+      "title": "Exploration de données",
+      "description": "Comment utiliser l'exploration de données (Explore)?",
       "explanation": "L'exploration de données se trouve en bas à droite (icône étoile) et propose automatiquement des graphiques et analyses basés sur vos données.",
       "difficulty": "medium",
       "duration": 40,
@@ -798,7 +830,8 @@
       ]
     },
     {
-      "title": "Comment créer des macros pour automatiser des tâches?",
+      "title": "Créer des macros",
+      "description": "Comment créer des macros pour automatiser des tâches?",
       "explanation": "Les macros se créent via Extensions > Macros > Enregistrer une macro, ou directement dans Apps Script pour plus de contrôle.",
       "difficulty": "hard",
       "duration": 80,
@@ -822,7 +855,8 @@
       ]
     },
     {
-      "title": "Comment synchroniser Google Sheets avec d'autres applications?",
+      "title": "Synchroniser avec d'autres applications",
+      "description": "Comment synchroniser Google Sheets avec d'autres applications?",
       "explanation": "Google Sheets peut se synchroniser via l'API, Zapier, IFTTT, ou des fonctions comme IMPORTDATA, IMPORTXML pour récupérer des données externes.",
       "difficulty": "hard",
       "duration": 100,
@@ -846,7 +880,8 @@
       ]
     },
     {
-      "title": "Comment optimiser les performances d'une grande feuille de calcul?",
+      "title": "Optimiser les performances",
+      "description": "Comment optimiser les performances d'une grande feuille de calcul?",
       "explanation": "Pour optimiser : limiter les formules volatiles, utiliser des plages nommées, éviter les références circulaires, et utiliser ARRAYFORMULA pour les formules répétitives.",
       "difficulty": "hard",
       "duration": 120,
@@ -870,7 +905,8 @@
       ]
     },
     {
-      "title": "Comment utiliser la fonction ARRAYFORMULA?",
+      "title": "Utiliser ARRAYFORMULA",
+      "description": "Comment utiliser la fonction ARRAYFORMULA?",
       "explanation": "ARRAYFORMULA applique une formule à une plage entière plutôt qu'à une cellule. Syntaxe: =ARRAYFORMULA(formule(plage))",
       "difficulty": "hard",
       "duration": 80,
@@ -894,7 +930,8 @@
       ]
     },
     {
-      "title": "Comment gérer les droits d'accès granulaires sur une feuille?",
+      "title": "Gérer les droits d'accès",
+      "description": "Comment gérer les droits d'accès granulaires sur une feuille?",
       "explanation": "Les droits se gèrent via le bouton Partager : Propriétaire, Éditeur, Commentateur, ou Lecteur. On peut aussi protéger des plages spécifiques.",
       "difficulty": "medium",
       "duration": 50,
@@ -918,7 +955,8 @@
       ]
     },
     {
-      "title": "Comment utiliser les fonctions de date et heure avancées?",
+      "title": "Fonctions de date et heure avancées",
+      "description": "Comment utiliser les fonctions de date et heure avancées?",
       "explanation": "Google Sheets offre NOW(), TODAY(), DATE(), TIME(), WEEKDAY(), MONTH(), YEAR(), DATEDIF() pour manipuler dates et heures.",
       "difficulty": "medium",
       "duration": 60,

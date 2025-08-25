@@ -1,11 +1,13 @@
+from django.urls import include, path
 from rest_framework_nested import routers
 
 from apps.candidates.views import (
     CandidateProfileViewSet, ExperienceViewSet, LanguageViewSet, EducationViewSet,
-    ProjectViewSet, ProjectImageViewSet
+    ProjectViewSet, ProjectImageViewSet, ProfileTechnologyViewSet
 )
+from wib_challenge.routers import AppRouter
 
-router = routers.SimpleRouter()
+router = AppRouter()
 
 router.register(r'candidate-profiles', CandidateProfileViewSet, basename='candidates')
 
@@ -15,6 +17,8 @@ profile_router = routers.NestedSimpleRouter(router, r'candidate-profiles', looku
 
 profile_router.register(r'experiences', ExperienceViewSet, basename='experiences')
 
+profile_router.register(r'technologies', ProfileTechnologyViewSet, basename='technologies')
+
 profile_router.register(r'educations', EducationViewSet, basename='educations')
 
 profile_router.register(r'languages', LanguageViewSet, basename='languages')
@@ -22,6 +26,6 @@ profile_router.register(r'languages', LanguageViewSet, basename='languages')
 profile_router.register(r'projects', ProjectViewSet, basename='projects')
 
 urlpatterns = [
-    *router.urls,
-    *profile_router.urls
+    path('', include(router.urls)),
+    path('', include(profile_router.urls)),
 ]

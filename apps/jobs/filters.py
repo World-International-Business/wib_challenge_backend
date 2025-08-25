@@ -1,7 +1,7 @@
 from django_filters import rest_framework as filters
 
-from organizations.models import ExperienceLevel
-from .models import JobOffer, JobCategory
+from apps.evaluations.models import ExperienceLevel
+from .models import JobOffer, JobCategory, JobApplication
 
 
 class JobOfferFilter(filters.FilterSet):
@@ -62,3 +62,9 @@ class JobOfferFilter(filters.FilterSet):
             'remote_allowed', 'experience_level', 'job_type', 'status',
             'featured', 'published_after', 'published_before'
         ]
+
+
+class JobApplicationFilter(filters.FilterSet):
+    class Meta:
+        model = JobApplication
+        fields = ['job_offer']

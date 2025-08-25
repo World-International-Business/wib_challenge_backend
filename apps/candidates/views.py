@@ -11,9 +11,9 @@ from rest_framework.response import Response
 from apps.candidates.filters import (
     CandidateProfileFilterSet, ExperienceFilterSet, EducationFilterSet, ProjectFilterSet, LanguageFilterSet
 )
-from apps.candidates.models import CandidateProfile, Experience, Education, Language, Project
+from apps.candidates.models import CandidateProfile, Experience, Education, Language, Project, ProfileTechnology
 from apps.candidates.serializers import CandidateProfileSerializer, ExperienceSerializer, EducationSerializer, \
-    LanguageSerializer, ProjectSerializer
+    LanguageSerializer, ProjectSerializer, ProfileTechnologySerializer
 from wib_challenge.permissions import IsOwner, ReadOnly
 
 
@@ -49,7 +49,7 @@ class CandidateProfileViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=False, methods=['get'], url_path=r'user/(?P<user_id>\d+)')
+    @action(detail=False, methods=['get'], url_path=r'user/<int:user_id>')
     def get_by_user(self, request, user_id: int):
         profile = get_object_or_404(self.get_queryset(), user=user_id)
         serializer = self.get_serializer(profile)
@@ -71,6 +71,12 @@ class NestedProfileViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)
+
+
+class ProfileTechnologyViewSet(NestedProfileViewSet):
+    queryset = ProfileTechnology.objects.all()
+    serializer_class = ProfileTechnologySerializer
+    ordering = ['-level']
 
 
 class ExperienceViewSet(NestedProfileViewSet):

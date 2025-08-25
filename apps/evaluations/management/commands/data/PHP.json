@@ -7,7 +7,6 @@
     {
       "title": "Quel est le symbole utilisé pour déclarer une variable en PHP?",
       "description": "En PHP, toutes les variables sont précédées du symbole dollar ($). Ce symbole est obligatoire lors de la déclaration et de l'utilisation des variables.",
-      "explanation": "En PHP, toutes les variables sont précédées du symbole dollar ($). Ce symbole est obligatoire lors de la déclaration et de l'utilisation des variables.",
       "difficulty": "easy",
       "duration": 20,
       "choices": [
@@ -32,7 +31,6 @@
     {
       "title": "Comment afficher du texte en PHP?",
       "description": "En PHP, il existe plusieurs façons d'afficher du texte. Les fonctions `echo` et `print` sont les plus couramment utilisées. La différence principale est que `print` retourne toujours 1, tandis que `echo` ne retourne rien.",
-      "explanation": "En PHP, il existe plusieurs façons d'afficher du texte. Les fonctions `echo` et `print` sont les plus couramment utilisées. La différence principale est que `print` retourne toujours 1, tandis que `echo` ne retourne rien.",
       "difficulty": "easy",
       "duration": 25,
       "choices": [
@@ -104,8 +102,7 @@
     },
     {
       "title": "Comment définir une fonction en PHP?",
-      "description": "```php\nfunction maFonction($param) {\n    return $param * 2;\n}\n```",
-      "explanation": "En PHP, les fonctions sont définies à l'aide du mot-clé `function`, suivi du nom de la fonction et de parenthèses qui peuvent contenir des paramètres. Le corps de la fonction est délimité par des accolades.",
+      "description": "En PHP, les fonctions sont définies à l'aide du mot-clé `function`, suivi du nom de la fonction et de parenthèses qui peuvent contenir des paramètres. Le corps de la fonction est délimité par des accolades.",
       "difficulty": "easy",
       "duration": 35,
       "choices": [

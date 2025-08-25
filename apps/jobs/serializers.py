@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from organizations.models import Organization
+from apps.organizations.models import Organization
 from .models import JobCategory, JobOffer, JobApplication
 
 
@@ -9,14 +9,14 @@ class JobCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JobCategory
-        fields = ['id', 'name', 'slug', 'description', 'job_count']
+        fields = "__all__"
         read_only_fields = ['slug']
 
 
 class JobCategoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobCategory
-        fields = ['id', 'name', 'slug']
+        fields = ['id', 'title', 'slug']
 
 
 class OrganizationBasicSerializer(serializers.ModelSerializer):
@@ -92,11 +92,22 @@ class GenerateJobOfferSerializer(serializers.ModelSerializer):
 
 
 class JobApplicationSerializer(serializers.ModelSerializer):
+    use_profile = serializers.BooleanField(required=False)
+
     class Meta:
         model = JobApplication
         fields = '__all__'
         extra_kwargs = {
             'ai_analysis': {'read_only': True},
             'ai_decision': {'read_only': True},
-            'job_offer': {'required': False}
+            'job_offer': {'required': False},
+            'user': {'required': False}
         }
+
+    def validate(self, attrs):
+        if not attrs.get('use_profile') and not attrs.get('resume'):
+            raise serializers.ValidationError('Vous devez fournir un cv ou un profil')
+        if attrs.get('use_profile') and attrs.get('resume'):
+            raise serializers.ValidationError('Vous ne pouvez pas fournir un cv et un profil')
+        attrs.pop('use_profile')
+        return attrs

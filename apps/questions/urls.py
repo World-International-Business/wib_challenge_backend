@@ -1,8 +1,7 @@
-from rest_framework.routers import SimpleRouter
-
 from apps.questions.views import ReadOnlyQuestionViewSet
+from wib_challenge.routers import AppRouter
 
-router = SimpleRouter()
+router = AppRouter()
 
 router.register('questions', ReadOnlyQuestionViewSet, basename='questions')
 

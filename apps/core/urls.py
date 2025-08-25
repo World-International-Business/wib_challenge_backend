@@ -1,9 +1,9 @@
 from django.urls import path
-from rest_framework.routers import SimpleRouter
 
 from apps.core.views import ProfessionViewSet, TechnologyViewSet, DomainViewSet, ContactView
+from wib_challenge.routers import AppRouter
 
-router = SimpleRouter()
+router = AppRouter()
 
 router.register('domains', DomainViewSet, basename='domains')
 router.register('professions', ProfessionViewSet, basename='professions')

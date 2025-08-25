@@ -1,8 +1,8 @@
 from django.db.models import Count, Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema
-from rest_framework import generics, filters, status
+from drf_spectacular.utils import extend_schema, OpenApiParameter
+from rest_framework import generics, filters, status, mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
@@ -12,16 +12,18 @@ from rest_framework.response import Response
 from services.cv_analyzer import analyze_job_application
 from services.generate_offer import generate_offer
 from wib_challenge.permissions import ReadOnly
-from .filters import JobOfferFilter
-from .models import JobCategory, JobOffer
+from .filters import JobOfferFilter, JobApplicationFilter
+from .models import JobCategory, JobOffer, JobApplication
 from .permissions import IsCompanyOwnerOrReadOnly
 from .serializers import (
     JobCategorySerializer, JobCategoryListSerializer,
     JobOfferListSerializer, JobOfferDetailSerializer,
     JobOfferCreateUpdateSerializer, GenerateJobOfferSerializer, JobApplicationSerializer
 )
+from ..accounts.permissions import IsOrganization
 
 
+@extend_schema(tags=['Offres d\'emploi'])
 class JobCategoryViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les catégories d'emploi (lecture seule)
@@ -30,7 +32,7 @@ class JobCategoryViewSet(viewsets.ModelViewSet):
         job_count=Count('job_offers', filter=Q(job_offers__status='published'))
     )
     serializer_class = JobCategorySerializer
-    permission_classes = [IsAdminUser | ReadOnly]
+    permission_classes = [IsAdminUser | IsOrganization | ReadOnly]
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -38,13 +40,13 @@ class JobCategoryViewSet(viewsets.ModelViewSet):
         return JobCategorySerializer
 
 
+@extend_schema(tags=['Offres d\'emploi'])
 class JobOfferViewSet(viewsets.ModelViewSet):
     """
     ViewSet pour les offres d'emploi avec toutes les opérations CRUD
     """
     queryset = JobOffer.objects.select_related('company', 'category')
     permission_classes = [IsAuthenticatedOrReadOnly, IsCompanyOwnerOrReadOnly]
-    # lookup_field = 'slug'
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = JobOfferFilter
     search_fields = ['title', 'description', 'company__name', 'location']
@@ -75,6 +77,16 @@ class JobOfferViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(company=self.request.user.organization)
+
+    @action(detail=False, methods=['get'], url_path='slug/<slug:slug>/')
+    def get_by_slug(self, request, slug=None):
+        """Récupérer une offre d'emploi par son slug"""
+        job = self.get_queryset().filter(slug=slug).first()
+        if not job:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = self.get_serializer(instance=job)
+        return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def featured(self, request):
@@ -168,14 +180,18 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         job_offer = self.get_object()
         serializer = JobApplicationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(job_offer=job_offer)
+        user = request.user if request.user.is_authenticated and hasattr(request.user, 'profile') else None
+        serializer.save(job_offer=job_offer, user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @extend_schema(
         request=None,
+        parameters=[
+            OpenApiParameter(name='application_id', type=int, location=OpenApiParameter.PATH)
+        ],
         responses={200: JobApplicationSerializer}
     )
-    @action(detail=True, methods=['post'], url_path='analyze/(?P<application_id>[^/.]+)')
+    @action(detail=True, methods=['post'], url_path='analyze/<int:application_id>')
     def analyze(self, request, pk=None, application_id=None):
         """
         Permet à un candidat de postuler une offre d'emploi.
@@ -187,6 +203,7 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+@extend_schema(tags=['Offres d\'emploi'])
 class MyJobOffersView(generics.ListAPIView):
     """
     Vue pour lister les offres d'emploi de l'organisation connectée
@@ -206,6 +223,7 @@ class MyJobOffersView(generics.ListAPIView):
         ).select_related('company', 'category')
 
 
+@extend_schema(tags=['Offres d\'emploi'])
 class JobSearchView(generics.ListAPIView):
     """
     Vue dédiée à la recherche d'offres d'emploi
@@ -221,3 +239,23 @@ class JobSearchView(generics.ListAPIView):
         return JobOffer.objects.filter(
             status='published'
         ).select_related('company', 'category')
+
+
+@extend_schema(tags=['Offres d\'emploi'])
+class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelViewSet):
+    """
+    ViewSet pour les applications d'emploi
+    """
+    queryset = JobApplication.objects.all()
+    serializer_class = JobApplicationSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_class = JobApplicationFilter
+    permission_classes = [IsAuthenticated, IsOrganization]
+
+    def get_queryset(self):
+        if hasattr(self.request.user, 'organization'):
+            return JobApplication.objects.filter(
+                job_offer__company=self.request.user.organization
+            ).select_related('job_offer', 'job_offer__company')
+        else:
+            return JobApplication.objects.none()
