@@ -5,7 +5,7 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Qu'est-ce qu'un **projet** ?",
+      "title": "Qu'est-ce qu'un **projet** ?",
       "explanation": "Un projet est un ensemble d'activités temporaires, coordonnées et contrôlées, avec des dates de début et de fin, entrepris dans le but d'atteindre un objectif conforme à des exigences spécifiques.",
       "difficulty": "easy",
       "duration": 30,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "text": "Qui a défini les bases modernes de la **gestion de projet** ?",
+      "title": "Qui a défini les bases modernes de la **gestion de projet** ?",
       "explanation": "Henry Gantt (diagramme de Gantt) et Henri Fayol (principes de management) sont considérés comme les pionniers. Le PMI (Project Management Institute) a formalisé la discipline dans les années 1960-70.",
       "difficulty": "medium",
       "duration": 35,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **triangle de la contrainte** (triple contrainte) ?",
+      "title": "Qu'est-ce que le **triangle de la contrainte** (triple contrainte) ?",
       "explanation": "Le triangle de la contrainte représente les trois contraintes principales d'un projet : le coût (budget), le délai (temps) et la qualité (périmètre). Modifier l'une impacte les autres.",
       "difficulty": "medium",
       "duration": 40,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **diagramme de Gantt** ?",
+      "title": "Qu'est-ce qu'un **diagramme de Gantt** ?",
       "explanation": "Un diagramme de Gantt est un outil de planification qui représente graphiquement les tâches d'un projet dans le temps, montrant leur durée, leurs dépendances et leur avancement.",
       "difficulty": "easy",
       "duration": 35,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "text": "Que signifie **PERT** ?",
+      "title": "Que signifie **PERT** ?",
       "explanation": "PERT signifie Program Evaluation and Review Technique. C'est une méthode de planification qui utilise un réseau de tâches pour identifier le chemin critique et optimiser les délais.",
       "difficulty": "medium",
       "duration": 45,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **chemin critique** ?",
+      "title": "Qu'est-ce que le **chemin critique** ?",
       "explanation": "Le chemin critique est la séquence de tâches qui détermine la durée minimale du projet. Tout retard sur une tâche du chemin critique retarde l'ensemble du projet.",
       "difficulty": "medium",
       "duration": 50,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la méthode **Agile** ?",
+      "title": "Qu'est-ce que la méthode **Agile** ?",
       "explanation": "La méthode Agile est une approche itérative et incrémentale de gestion de projet qui privilégie la collaboration, l'adaptation au changement et la livraison rapide de valeur.",
       "difficulty": "easy",
       "duration": 40,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **Sprint** en Scrum ?",
+      "title": "Qu'est-ce qu'un **Sprint** en Scrum ?",
       "explanation": "Un Sprint est une itération de durée fixe (généralement 1-4 semaines) pendant laquelle l'équipe développe un incrément de produit potentiellement livrable.",
       "difficulty": "medium",
       "duration": 45,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **WBS** (Work Breakdown Structure) ?",
+      "title": "Qu'est-ce que la **WBS** (Work Breakdown Structure) ?",
       "explanation": "La WBS est une décomposition hiérarchique du travail du projet en livrables et composants plus petits et plus gérables, facilitant la planification et le contrôle.",
       "difficulty": "medium",
       "duration": 60,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **jalon** (milestone) ?",
+      "title": "Qu'est-ce qu'un **jalon** (milestone) ?",
       "explanation": "Un jalon est un événement important du projet qui marque l'achèvement d'une étape clé. Il a généralement une durée nulle et sert de point de contrôle.",
       "difficulty": "easy",
       "duration": 35,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **gestion des risques** en projet ?",
+      "title": "Qu'est-ce que la **gestion des risques** en projet ?",
       "explanation": "La gestion des risques consiste à identifier, analyser, évaluer et traiter les incertitudes susceptibles d'affecter les objectifs du projet, positivement ou négativement.",
       "difficulty": "medium",
       "duration": 55,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **PMO** ?",
+      "title": "Qu'est-ce que le **PMO** ?",
       "explanation": "PMO signifie Project Management Office. C'est une structure organisationnelle qui standardise les processus de gestion de projet et facilite le partage des ressources, méthodologies et outils.",
       "difficulty": "medium",
       "duration": 50,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**analyse de la valeur acquise** (Earned Value) ?",
+      "title": "Qu'est-ce que l'**analyse de la valeur acquise** (Earned Value) ?",
       "explanation": "L'analyse de la valeur acquise est une technique de mesure de performance qui compare le travail planifié, le travail réalisé et le coût réel pour évaluer l'avancement et prévoir les tendances.",
       "difficulty": "hard",
       "duration": 80,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **livrable** ?",
+      "title": "Qu'est-ce qu'un **livrable** ?",
       "explanation": "Un livrable est tout produit, service ou résultat unique et vérifiable qui doit être produit pour achever un processus, une phase ou un projet.",
       "difficulty": "easy",
       "duration": 30,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la méthode **PRINCE2** ?",
+      "title": "Qu'est-ce que la méthode **PRINCE2** ?",
       "explanation": "PRINCE2 (Projects IN Controlled Environments) est une méthodologie de gestion de projet structurée basée sur l'expérience et les bonnes pratiques, largement utilisée au Royaume-Uni.",
       "difficulty": "hard",
       "duration": 70,
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **backlog** en Agile ?",
+      "title": "Qu'est-ce qu'un **backlog** en Agile ?",
       "explanation": "Le backlog est une liste ordonnée et priorisée des fonctionnalités, exigences et améliorations à développer dans le produit, gérée par le Product Owner.",
       "difficulty": "medium",
       "duration": 45,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **matrice RACI** ?",
+      "title": "Qu'est-ce que la **matrice RACI** ?",
       "explanation": "RACI est un outil définissant les rôles et responsabilités : Responsible (Réalisateur), Accountable (Responsable), Consulted (Consulté), Informed (Informé).",
       "difficulty": "medium",
       "duration": 65,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **sponsor** de projet ?",
+      "title": "Qu'est-ce qu'un **sponsor** de projet ?",
       "explanation": "Le sponsor est la personne ou le groupe qui fournit les ressources financières et le soutien politique au projet, et qui est responsable de sa réussite devant l'organisation.",
       "difficulty": "medium",
       "duration": 40,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode MoSCoW** ?",
+      "title": "Qu'est-ce que la **méthode MoSCoW** ?",
       "explanation": "MoSCoW est une technique de priorisation : Must have (Indispensable), Should have (Important), Could have (Confortable), Won't have (Pas cette fois).",
       "difficulty": "medium",
       "duration": 55,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **comité de pilotage** ?",
+      "title": "Qu'est-ce qu'un **comité de pilotage** ?",
       "explanation": "Le comité de pilotage est une instance de gouvernance réunissant les parties prenantes clés pour prendre les décisions stratégiques et suivre l'avancement du projet.",
       "difficulty": "medium",
       "duration": 50,
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **kick-off meeting** ?",
+      "title": "Qu'est-ce que le **kick-off meeting** ?",
       "explanation": "Le kick-off meeting est la réunion de lancement officiel du projet qui rassemble toutes les parties prenantes pour présenter les objectifs, l'équipe, le planning et les règles de fonctionnement.",
       "difficulty": "easy",
       "duration": 40,
@@ -509,7 +509,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **plan de communication** ?",
+      "title": "Qu'est-ce qu'un **plan de communication** ?",
       "explanation": "Le plan de communication définit qui doit être informé, de quoi, quand, comment et par qui pendant le projet, assurant une circulation efficace de l'information.",
       "difficulty": "medium",
       "duration": 60,
@@ -533,7 +533,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **gestion du changement** ?",
+      "title": "Qu'est-ce que la **gestion du changement** ?",
       "explanation": "La gestion du changement consiste à accompagner les individus et l'organisation dans l'adoption des modifications apportées par le projet, tant sur les aspects techniques qu'humains.",
       "difficulty": "medium",
       "duration": 70,
@@ -557,7 +557,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode Kanban** en gestion de projet ?",
+      "title": "Qu'est-ce que la **méthode Kanban** en gestion de projet ?",
       "explanation": "Kanban est une méthode visuelle de gestion des flux de travail utilisant un tableau avec des colonnes (À faire, En cours, Terminé) pour visualiser et optimiser le processus.",
       "difficulty": "medium",
       "duration": 55,
@@ -581,7 +581,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **rétrospective** en Agile ?",
+      "title": "Qu'est-ce qu'une **rétrospective** en Agile ?",
       "explanation": "Une rétrospective est une réunion d'équipe à la fin de chaque itération pour identifier ce qui a bien fonctionné, les problèmes rencontrés et les améliorations à apporter.",
       "difficulty": "medium",
       "duration": 50,
@@ -605,7 +605,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Design Thinking** ?",
+      "title": "Qu'est-ce que le **Design Thinking** ?",
       "explanation": "Le Design Thinking est une approche d'innovation centrée sur l'humain qui intègre les besoins des utilisateurs, les possibilités technologiques et les exigences économiques.",
       "difficulty": "medium",
       "duration": 65,
@@ -629,7 +629,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **MVP** (Minimum Viable Product) ?",
+      "title": "Qu'est-ce qu'un **MVP** (Minimum Viable Product) ?",
       "explanation": "Un MVP est la version la plus simple d'un produit qui permet de valider les hypothèses clés auprès des utilisateurs avec un minimum d'efforts et de développement.",
       "difficulty": "medium",
       "duration": 60,
@@ -653,7 +653,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **planification par vagues successives** ?",
+      "title": "Qu'est-ce que la **planification par vagues successives** ?",
       "explanation": "C'est une technique de planification progressive où le travail à accomplir dans un futur proche est planifié en détail, tandis que le travail plus lointain est planifié à un niveau élevé.",
       "difficulty": "hard",
       "duration": 85,
@@ -677,7 +677,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **burndown chart** ?",
+      "title": "Qu'est-ce qu'un **burndown chart** ?",
       "explanation": "Un burndown chart est un graphique montrant la quantité de travail restant à accomplir au fil du temps dans une itération ou un projet, permettant de visualiser l'avancement.",
       "difficulty": "medium",
       "duration": 55,
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode des six chapeaux** d'Edward de Bono ?",
+      "title": "Qu'est-ce que la **méthode des six chapeaux** d'Edward de Bono ?",
       "explanation": "C'est une méthode de réflexion de groupe où six chapeaux de couleurs différentes représentent six modes de pensée (factuel, émotionnel, critique, optimiste, créatif, organisateur) pour explorer un problème.",
       "difficulty": "hard",
       "duration": 90,
@@ -725,7 +725,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**agilité à l'échelle** (Scaled Agile) ?",
+      "title": "Qu'est-ce que l'**agilité à l'échelle** (Scaled Agile) ?",
       "explanation": "L'agilité à l'échelle applique les principes agiles à de grandes organisations avec des frameworks comme SAFe, LeSS ou Spotify Model pour coordonner plusieurs équipes agiles.",
       "difficulty": "hard",
       "duration": 100,
@@ -749,7 +749,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **gestion de portefeuille de projets** ?",
+      "title": "Qu'est-ce que la **gestion de portefeuille de projets** ?",
       "explanation": "La gestion de portefeuille consiste à sélectionner, prioriser et aligner les projets avec la stratégie organisationnelle pour optimiser l'allocation des ressources et maximiser la valeur.",
       "difficulty": "hard",
       "duration": 110,
@@ -773,7 +773,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **théorie des contraintes** appliquée aux projets ?",
+      "title": "Qu'est-ce que la **théorie des contraintes** appliquée aux projets ?",
       "explanation": "La théorie des contraintes identifie et gère les goulots d'étranglement (contraintes) qui limitent la performance du système projet, en se concentrant sur l'optimisation de ces contraintes.",
       "difficulty": "hard",
       "duration": 120,
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "text": "Comment gérer les **parties prenantes** difficiles ?",
+      "title": "Comment gérer les **parties prenantes** difficiles ?",
       "explanation": "Pour gérer les parties prenantes difficiles : écoute active, identification de leurs vrais besoins, communication transparente, recherche de solutions gagnant-gagnant, et escalade si nécessaire.",
       "difficulty": "hard",
       "duration": 130,
@@ -821,7 +821,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode Critical Chain** ?",
+      "title": "Qu'est-ce que la **méthode Critical Chain** ?",
       "explanation": "Critical Chain est une méthode de gestion de projet basée sur la théorie des contraintes qui se concentre sur la gestion des ressources critiques plutôt que sur les activités critiques.",
       "difficulty": "hard",
       "duration": 140,
@@ -845,7 +845,7 @@
       ]
     },
     {
-      "text": "Comment mesurer le **ROI** (Return on Investment) d'un projet ?",
+      "title": "Comment mesurer le **ROI** (Return on Investment) d'un projet ?",
       "explanation": "ROI = (Bénéfices du projet - Coûts du projet) / Coûts du projet × 100. Il faut identifier tous les bénéfices tangibles et intangibles, ainsi que tous les coûts directs et indirects.",
       "difficulty": "hard",
       "duration": 150,
@@ -869,7 +869,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **gestion de projet hybride** ?",
+      "title": "Qu'est-ce que la **gestion de projet hybride** ?",
       "explanation": "La gestion hybride combine les approches prédictives (traditionnelles) et adaptatives (agiles) selon les besoins du projet, utilisant le meilleur des deux mondes.",
       "difficulty": "hard",
       "duration": 100,
@@ -893,7 +893,7 @@
       ]
     },
     {
-      "text": "Comment gérer un **projet de transformation digitale** ?",
+      "title": "Comment gérer un **projet de transformation digitale** ?",
       "explanation": "Gérer la transformation digitale nécessite : vision claire, sponsorship fort, gestion du changement, formation utilisateurs, approche itérative, mesure de l'adoption et adaptation continue.",
       "difficulty": "hard",
       "duration": 160,
@@ -917,7 +917,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**intelligence artificielle** appliquée à la gestion de projet ?",
+      "title": "Qu'est-ce que l'**intelligence artificielle** appliquée à la gestion de projet ?",
       "explanation": "L'IA en gestion de projet aide à : prédire les risques, optimiser l'allocation des ressources, automatiser le reporting, analyser les données de performance et suggérer des actions correctives.",
       "difficulty": "hard",
       "duration": 140,
@@ -941,7 +941,7 @@
       ]
     },
     {
-      "text": "Comment gérer un **projet international multiculturel** ?",
+      "title": "Comment gérer un **projet international multiculturel** ?",
       "explanation": "Projets internationaux nécessitent : compréhension culturelle, fuseaux horaires, communication multilingue, réglementations locales, équipes distribuées et outils collaboratifs adaptés.",
       "difficulty": "hard",
       "duration": 170,
@@ -965,7 +965,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **gestion de projet durable** (Green Project Management) ?",
+      "title": "Qu'est-ce que la **gestion de projet durable** (Green Project Management) ?",
       "explanation": "La gestion de projet durable intègre les principes du développement durable dans tous les aspects du projet : réduction impact environnemental, responsabilité sociale, viabilité économique long terme.",
       "difficulty": "hard",
       "duration": 180,
@@ -989,7 +989,7 @@
       ]
     },
     {
-      "text": "Comment établir une **culture projet** dans une organisation ?",
+      "title": "Comment établir une **culture projet** dans une organisation ?",
       "explanation": "Établir une culture projet nécessite : leadership engagé, formation généralisée, standardisation processus, reconnaissance succès, apprentissage des échecs, outils partagés et amélioration continue.",
       "difficulty": "hard",
       "duration": 200,

@@ -3,6 +3,9 @@
   "description": "Un cours complet et détaillé pour apprendre les fondamentaux de Python depuis zéro. Ce cours couvre tous les concepts essentiels : variables, types de données, structures de contrôle, fonctions, classes, gestion des erreurs et bien plus encore.",
   "level": "beginner",
   "is_free": true,
+  "skills": [
+    "Python"
+  ],
   "modules": [
     {
       "title": "Introduction à Python",

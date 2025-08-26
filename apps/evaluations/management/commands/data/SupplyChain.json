@@ -5,7 +5,7 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Que signifie **Supply Chain** ?",
+      "title": "Que signifie **Supply Chain** ?",
       "explanation": "Supply Chain signifie chaîne d'approvisionnement ou chaîne logistique. C'est l'ensemble des processus qui permettent de faire parvenir un produit du fournisseur au client final.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **SCM** ?",
+      "title": "Qu'est-ce que le **SCM** ?",
       "explanation": "SCM signifie Supply Chain Management. C'est la gestion intégrée des flux de produits, d'informations et financiers le long de la chaîne d'approvisionnement.",
       "difficulty": "easy",
       "duration": 30,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **ERP** ?",
+      "title": "Qu'est-ce qu'un **ERP** ?",
       "explanation": "ERP signifie Enterprise Resource Planning. C'est un progiciel intégrant les principales fonctions de l'entreprise (comptabilité, gestion commerciale, stocks, production, etc.).",
       "difficulty": "easy",
       "duration": 30,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **WMS** ?",
+      "title": "Qu'est-ce que le **WMS** ?",
       "explanation": "WMS signifie Warehouse Management System. C'est un système de gestion d'entrepôt qui optimise les opérations de stockage, préparation et expédition.",
       "difficulty": "medium",
       "duration": 35,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **TMS** ?",
+      "title": "Qu'est-ce que le **TMS** ?",
       "explanation": "TMS signifie Transportation Management System. C'est un système de gestion du transport qui optimise les tournées, les modes de transport et le suivi des livraisons.",
       "difficulty": "medium",
       "duration": 35,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**EDI** ?",
+      "title": "Qu'est-ce que l'**EDI** ?",
       "explanation": "EDI signifie Échange de Données Informatisé. C'est un standard de communication électronique qui permet l'échange automatique de documents commerciaux entre partenaires.",
       "difficulty": "medium",
       "duration": 40,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Juste-à-Temps** (JAT) ?",
+      "title": "Qu'est-ce que le **Juste-à-Temps** (JAT) ?",
       "explanation": "Le Juste-à-Temps est une méthode d'organisation de la production qui vise à réduire les stocks en produisant et livrant uniquement ce qui est nécessaire, quand c'est nécessaire.",
       "difficulty": "medium",
       "duration": 40,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "text": "Qui a développé le concept de **Juste-à-Temps** ?",
+      "title": "Qui a développé le concept de **Juste-à-Temps** ?",
       "explanation": "Le Juste-à-Temps a été développé par Toyota, notamment par Taiichi Ohno, dans le cadre du Toyota Production System (TPS) après la Seconde Guerre mondiale.",
       "difficulty": "hard",
       "duration": 35,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **stock de sécurité** ?",
+      "title": "Qu'est-ce que le **stock de sécurité** ?",
       "explanation": "Le stock de sécurité est une quantité de produits conservée en plus du stock normal pour faire face aux variations imprévisibles de la demande ou des délais de livraison.",
       "difficulty": "medium",
       "duration": 35,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **point de commande** ?",
+      "title": "Qu'est-ce que le **point de commande** ?",
       "explanation": "Le point de commande est le niveau de stock qui déclenche automatiquement une nouvelle commande pour éviter la rupture de stock.",
       "difficulty": "medium",
       "duration": 35,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **lead time** ?",
+      "title": "Qu'est-ce que le **lead time** ?",
       "explanation": "Le lead time est le délai total entre le déclenchement d'une commande et la réception effective des produits commandés.",
       "difficulty": "medium",
       "duration": 30,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **cross-docking** ?",
+      "title": "Qu'est-ce qu'un **cross-docking** ?",
       "explanation": "Le cross-docking est une technique logistique où les marchandises sont transférées directement du transport d'arrivée vers le transport de départ, sans stockage intermédiaire.",
       "difficulty": "hard",
       "duration": 45,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode ABC** en gestion des stocks ?",
+      "title": "Qu'est-ce que la **méthode ABC** en gestion des stocks ?",
       "explanation": "La méthode ABC classe les articles en trois catégories (A, B, C) selon leur valeur ou importance pour optimiser la gestion : A (80% de la valeur, 20% des références), B et C.",
       "difficulty": "hard",
       "duration": 45,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**incoterm** ?",
+      "title": "Qu'est-ce que l'**incoterm** ?",
       "explanation": "Les incoterms (International Commercial Terms) sont des règles internationales qui définissent les responsabilités entre acheteur et vendeur lors d'un transport international.",
       "difficulty": "hard",
       "duration": 40,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "text": "Que signifie **DDP** en incoterm ?",
+      "title": "Que signifie **DDP** en incoterm ?",
       "explanation": "DDP (Delivered Duty Paid) signifie que le vendeur livre la marchandise à destination, en ayant payé tous les frais et droits, y compris les droits de douane.",
       "difficulty": "hard",
       "duration": 40,
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **traçabilité** dans la supply chain ?",
+      "title": "Qu'est-ce que la **traçabilité** dans la supply chain ?",
       "explanation": "La traçabilité est la capacité à identifier et suivre un produit tout au long de la chaîne d'approvisionnement, de la production à la consommation.",
       "difficulty": "medium",
       "duration": 35,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **MRP** ?",
+      "title": "Qu'est-ce que le **MRP** ?",
       "explanation": "MRP (Material Requirements Planning) est un système de planification des besoins en composants et matières premières basé sur la demande prévisionnelle.",
       "difficulty": "hard",
       "duration": 40,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **MRP II** ?",
+      "title": "Qu'est-ce que le **MRP II** ?",
       "explanation": "MRP II (Manufacturing Resource Planning) est l'évolution du MRP qui intègre la planification des ressources de production (machines, main-d'œuvre) en plus des matières.",
       "difficulty": "hard",
       "duration": 45,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**APS** ?",
+      "title": "Qu'est-ce que l'**APS** ?",
       "explanation": "APS (Advanced Planning and Scheduling) est un système avancé de planification et d'ordonnancement qui optimise les ressources en temps réel.",
       "difficulty": "hard",
       "duration": 40,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **Kanban** ?",
+      "title": "Qu'est-ce que le **Kanban** ?",
       "explanation": "Le Kanban est un système de gestion visuel de la production qui utilise des cartes ou signaux pour déclencher la fabrication ou le réapprovisionnement selon la demande.",
       "difficulty": "medium",
       "duration": 40,
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **rotation des stocks** ?",
+      "title": "Qu'est-ce que la **rotation des stocks** ?",
       "explanation": "La rotation des stocks mesure le nombre de fois qu'un stock est renouvelé sur une période donnée. Elle s'exprime par le ratio : Consommations / Stock moyen.",
       "difficulty": "medium",
       "duration": 40,
@@ -509,7 +509,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode FIFO** ?",
+      "title": "Qu'est-ce que la **méthode FIFO** ?",
       "explanation": "FIFO (First In, First Out) est une méthode de gestion des stocks où les premiers produits entrés sont les premiers sortis, importante pour les produits périssables.",
       "difficulty": "medium",
       "duration": 35,
@@ -533,7 +533,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode LIFO** ?",
+      "title": "Qu'est-ce que la **méthode LIFO** ?",
       "explanation": "LIFO (Last In, First Out) est une méthode où les derniers produits entrés sont les premiers sortis. Elle est interdite en comptabilité française mais utilisée dans certains contextes logistiques.",
       "difficulty": "medium",
       "duration": 35,
@@ -557,7 +557,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **supply chain verte** ?",
+      "title": "Qu'est-ce que la **supply chain verte** ?",
       "explanation": "La supply chain verte intègre les préoccupations environnementales dans la gestion de la chaîne d'approvisionnement pour réduire l'empreinte écologique.",
       "difficulty": "medium",
       "duration": 40,
@@ -581,7 +581,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**effet coup de fouet** (Bullwhip Effect) ?",
+      "title": "Qu'est-ce que l'**effet coup de fouet** (Bullwhip Effect) ?",
       "explanation": "L'effet coup de fouet est l'amplification des variations de demande le long de la chaîne d'approvisionnement, créant des distorsions et inefficacités.",
       "difficulty": "hard",
       "duration": 45,
@@ -605,7 +605,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **vendor managed inventory** (VMI) ?",
+      "title": "Qu'est-ce que le **vendor managed inventory** (VMI) ?",
       "explanation": "Le VMI est un mode de gestion où le fournisseur gère directement les stocks de son client, optimisant ainsi les niveaux de stock et réduisant les ruptures.",
       "difficulty": "hard",
       "duration": 45,
@@ -629,7 +629,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **logistique inversée** ?",
+      "title": "Qu'est-ce que la **logistique inversée** ?",
       "explanation": "La logistique inversée gère les flux de produits dans le sens inverse de la chaîne traditionnelle : retours, recyclage, reconditionnement, élimination des déchets.",
       "difficulty": "medium",
       "duration": 40,
@@ -653,7 +653,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **postponement** ?",
+      "title": "Qu'est-ce que le **postponement** ?",
       "explanation": "Le postponement consiste à retarder la différenciation finale des produits le plus tard possible dans la chaîne pour réduire les stocks et améliorer la réactivité.",
       "difficulty": "hard",
       "duration": 45,
@@ -677,7 +677,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **blockchain** dans la supply chain ?",
+      "title": "Qu'est-ce que la **blockchain** dans la supply chain ?",
       "explanation": "La blockchain appliquée à la supply chain permet une traçabilité sécurisée et transparente des produits grâce à un registre décentralisé et immuable.",
       "difficulty": "hard",
       "duration": 45,
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "text": "Qui a théorisé le concept de **supply chain** moderne ?",
+      "title": "Qui a théorisé le concept de **supply chain** moderne ?",
       "explanation": "Le concept moderne de supply chain a été popularisé par Keith Oliver de Booz Allen Hamilton en 1982, bien que les principes existaient déjà chez des praticiens comme Toyota.",
       "difficulty": "hard",
       "duration": 40,
@@ -725,7 +725,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**IoT** dans la supply chain ?",
+      "title": "Qu'est-ce que l'**IoT** dans la supply chain ?",
       "explanation": "L'IoT (Internet of Things) permet la connectivité des objets physiques (capteurs, puces RFID) pour collecter et échanger des données en temps réel dans la chaîne logistique.",
       "difficulty": "medium",
       "duration": 40,
@@ -749,7 +749,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **S&OP** ?",
+      "title": "Qu'est-ce que le **S&OP** ?",
       "explanation": "S&OP (Sales and Operations Planning) est un processus de planification intégrée qui aligne les prévisions commerciales avec les capacités opérationnelles.",
       "difficulty": "hard",
       "duration": 40,
@@ -773,7 +773,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **CPFR** ?",
+      "title": "Qu'est-ce que le **CPFR** ?",
       "explanation": "CPFR (Collaborative Planning, Forecasting and Replenishment) est une approche collaborative entre partenaires pour améliorer les prévisions et l'approvisionnement.",
       "difficulty": "hard",
       "duration": 50,
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **3PL** ?",
+      "title": "Qu'est-ce qu'un **3PL** ?",
       "explanation": "3PL (Third Party Logistics) désigne un prestataire logistique externe qui gère tout ou partie des opérations logistiques d'une entreprise (transport, entreposage, etc.).",
       "difficulty": "medium",
       "duration": 35,
@@ -821,7 +821,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **4PL** ?",
+      "title": "Qu'est-ce qu'un **4PL** ?",
       "explanation": "4PL (Fourth Party Logistics) est un intégrateur qui gère et coordonne l'ensemble de la chaîne d'approvisionnement d'un client, y compris les autres prestataires 3PL.",
       "difficulty": "hard",
       "duration": 45,
@@ -845,7 +845,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode Wilson** ?",
+      "title": "Qu'est-ce que la **méthode Wilson** ?",
       "explanation": "La méthode Wilson (ou formule de Wilson) calcule la quantité économique de commande optimale qui minimise le coût total de gestion des stocks.",
       "difficulty": "hard",
       "duration": 45,
@@ -869,7 +869,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **picking** ?",
+      "title": "Qu'est-ce que le **picking** ?",
       "explanation": "Le picking est l'opération qui consiste à prélever dans les stocks les articles correspondant à une commande client pour constituer le colis à expédier.",
       "difficulty": "medium",
       "duration": 30,
@@ -893,7 +893,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **RFID** ?",
+      "title": "Qu'est-ce que la **RFID** ?",
       "explanation": "RFID (Radio Frequency Identification) est une technologie d'identification automatique qui utilise les ondes radio pour identifier et suivre des objets portant des étiquettes électroniques.",
       "difficulty": "medium",
       "duration": 40,
@@ -917,7 +917,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**omnicanalité** ?",
+      "title": "Qu'est-ce que l'**omnicanalité** ?",
       "explanation": "L'omnicanalité est une stratégie qui intègre tous les canaux de vente (magasin, web, mobile) pour offrir une expérience client unifiée et cohérente.",
       "difficulty": "medium",
       "duration": 40,
@@ -941,7 +941,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **supply chain 4.0** ?",
+      "title": "Qu'est-ce que la **supply chain 4.0** ?",
       "explanation": "La supply chain 4.0 intègre les technologies de l'industrie 4.0 (IoT, IA, robotique, blockchain) pour créer une chaîne d'approvisionnement intelligente et connectée.",
       "difficulty": "hard",
       "duration": 50,
@@ -965,7 +965,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **planification collaborative** ?",
+      "title": "Qu'est-ce que la **planification collaborative** ?",
       "explanation": "La planification collaborative implique le partage d'informations et la coordination entre partenaires de la supply chain pour optimiser ensemble la planification et les prévisions.",
       "difficulty": "medium",
       "duration": 45,

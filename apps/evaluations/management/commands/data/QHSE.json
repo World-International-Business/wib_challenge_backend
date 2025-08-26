@@ -5,7 +5,7 @@
   "difficulty": "intermediate",
   "questions": [
     {
-      "text": "Que signifie **QHSE** ?",
+      "title": "Que signifie **QHSE** ?",
       "explanation": "QHSE signifie Qualité, Hygiène, Sécurité, Environnement. C'est une approche intégrée de management des risques et de la performance.",
       "difficulty": "easy",
       "duration": 25,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la norme **ISO 9001** ?",
+      "title": "Qu'est-ce que la norme **ISO 9001** ?",
       "explanation": "ISO 9001 est la norme internationale pour les systèmes de management de la qualité, basée sur l'amélioration continue et la satisfaction client.",
       "difficulty": "easy",
       "duration": 30,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "text": "Que représente la norme **ISO 14001** ?",
+      "title": "Que représente la norme **ISO 14001** ?",
       "explanation": "ISO 14001 est la norme internationale pour les systèmes de management environnemental, visant à réduire l'impact environnemental des activités.",
       "difficulty": "easy",
       "duration": 30,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **roue de Deming** (PDCA) ?",
+      "title": "Qu'est-ce que la **roue de Deming** (PDCA) ?",
       "explanation": "La roue de Deming (Plan-Do-Check-Act) est un cycle d'amélioration continue utilisé dans les systèmes qualité pour planifier, réaliser, vérifier et agir.",
       "difficulty": "medium",
       "duration": 35,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "text": "Qui a créé la **roue de Deming** ?",
+      "title": "Qui a créé la **roue de Deming** ?",
       "explanation": "La roue de Deming a été popularisée par William Edwards Deming, statisticien américain et pionnier de la qualité, bien qu'initialement développée par Walter Shewhart.",
       "difficulty": "medium",
       "duration": 30,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **audit qualité** ?",
+      "title": "Qu'est-ce qu'un **audit qualité** ?",
       "explanation": "Un audit qualité est un examen méthodique et indépendant pour déterminer si les activités qualité sont conformes aux dispositions préétablies.",
       "difficulty": "medium",
       "duration": 35,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "text": "Que signifie **SMQ** ?",
+      "title": "Que signifie **SMQ** ?",
       "explanation": "SMQ signifie Système de Management de la Qualité. C'est l'ensemble des éléments corrélés permettant d'orienter et contrôler un organisme en matière de qualité.",
       "difficulty": "easy",
       "duration": 25,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **EPI** ?",
+      "title": "Qu'est-ce qu'un **EPI** ?",
       "explanation": "EPI signifie Équipement de Protection Individuelle. Ce sont des dispositifs portés par une personne pour se protéger contre les risques professionnels.",
       "difficulty": "easy",
       "duration": 25,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**analyse de risques** ?",
+      "title": "Qu'est-ce que l'**analyse de risques** ?",
       "explanation": "L'analyse de risques est un processus systématique d'identification, d'évaluation et de hiérarchisation des risques pour déterminer les mesures de maîtrise appropriées.",
       "difficulty": "medium",
       "duration": 40,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "text": "Que représente **ISO 45001** ?",
+      "title": "Que représente **ISO 45001** ?",
       "explanation": "ISO 45001 est la norme internationale pour les systèmes de management de la santé et sécurité au travail, remplaçant OHSAS 18001.",
       "difficulty": "medium",
       "duration": 35,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **document unique** ?",
+      "title": "Qu'est-ce qu'un **document unique** ?",
       "explanation": "Le document unique d'évaluation des risques professionnels (DUERP) est obligatoire en France et recense tous les risques identifiés dans l'entreprise.",
       "difficulty": "medium",
       "duration": 40,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **CHSCT** ?",
+      "title": "Qu'est-ce que le **CHSCT** ?",
       "explanation": "Le CHSCT (Comité d'Hygiène, de Sécurité et des Conditions de Travail) était l'instance représentative du personnel en matière de santé-sécurité, remplacé par le CSE.",
       "difficulty": "medium",
       "duration": 35,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **plan de prévention** ?",
+      "title": "Qu'est-ce qu'un **plan de prévention** ?",
       "explanation": "Le plan de prévention définit les mesures de sécurité à prendre lors d'interventions d'entreprises extérieures pour éviter les risques d'interférences.",
       "difficulty": "medium",
       "duration": 40,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode AMDEC** ?",
+      "title": "Qu'est-ce que la **méthode AMDEC** ?",
       "explanation": "AMDEC (Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité) est une méthode préventive de fiabilité qui permet d'analyser les risques de dysfonctionnement d'un système.",
       "difficulty": "hard",
       "duration": 45,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **traçabilité** ?",
+      "title": "Qu'est-ce que la **traçabilité** ?",
       "explanation": "La traçabilité est la capacité à retrouver l'historique, l'utilisation ou la localisation d'un produit ou d'un processus au moyen d'identifications enregistrées.",
       "difficulty": "medium",
       "duration": 35,
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **non-conformité** ?",
+      "title": "Qu'est-ce qu'une **non-conformité** ?",
       "explanation": "Une non-conformité est la non-satisfaction d'une exigence spécifiée dans les référentiels, normes ou procédures de l'organisation.",
       "difficulty": "medium",
       "duration": 35,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **principe de précaution** ?",
+      "title": "Qu'est-ce que le **principe de précaution** ?",
       "explanation": "Le principe de précaution vise à éviter des dommages graves et irréversibles à l'environnement ou à la santé, même en l'absence de certitude scientifique absolue.",
       "difficulty": "medium",
       "duration": 40,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **indicateur KPI** en QHSE ?",
+      "title": "Qu'est-ce qu'un **indicateur KPI** en QHSE ?",
       "explanation": "Un KPI (Key Performance Indicator) en QHSE est une mesure quantifiable qui permet d'évaluer l'efficacité des actions mises en œuvre (taux de fréquence des accidents, nombre d'audits, etc.).",
       "difficulty": "medium",
       "duration": 40,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**empreinte carbone** ?",
+      "title": "Qu'est-ce que l'**empreinte carbone** ?",
       "explanation": "L'empreinte carbone mesure la quantité de gaz à effet de serre (GES) émise directement ou indirectement par une activité, un produit ou une organisation.",
       "difficulty": "medium",
       "duration": 35,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **RSE** ?",
+      "title": "Qu'est-ce que la **RSE** ?",
       "explanation": "La RSE (Responsabilité Sociétale des Entreprises) est la prise en compte par les entreprises des enjeux environnementaux, sociaux et économiques dans leurs activités.",
       "difficulty": "easy",
       "duration": 30,
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **certification** ?",
+      "title": "Qu'est-ce que la **certification** ?",
       "explanation": "La certification est la procédure par laquelle un organisme accrédité atteste qu'un produit, service ou système est conforme à des exigences spécifiées.",
       "difficulty": "medium",
       "duration": 35,
@@ -509,7 +509,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode 5S** ?",
+      "title": "Qu'est-ce que la **méthode 5S** ?",
       "explanation": "La méthode 5S (Seiri, Seiton, Seiso, Seiketsu, Shitsuke) est une technique d'organisation de l'espace de travail visant l'efficacité et la sécurité.",
       "difficulty": "medium",
       "duration": 40,
@@ -533,7 +533,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **EPC** ?",
+      "title": "Qu'est-ce qu'un **EPC** ?",
       "explanation": "EPC signifie Équipement de Protection Collective. Ce sont des dispositifs techniques destinés à protéger un groupe de personnes contre les risques professionnels.",
       "difficulty": "medium",
       "duration": 30,
@@ -557,7 +557,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**ISO 26000** ?",
+      "title": "Qu'est-ce que l'**ISO 26000** ?",
       "explanation": "ISO 26000 est la norme internationale qui fournit des lignes directrices pour la responsabilité sociétale des organisations.",
       "difficulty": "hard",
       "duration": 40,
@@ -581,7 +581,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **veille réglementaire** ?",
+      "title": "Qu'est-ce que la **veille réglementaire** ?",
       "explanation": "La veille réglementaire consiste à surveiller l'évolution des textes légaux et réglementaires applicables à l'activité de l'organisation pour assurer la conformité.",
       "difficulty": "medium",
       "duration": 40,
@@ -605,7 +605,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **accident du travail** ?",
+      "title": "Qu'est-ce qu'un **accident du travail** ?",
       "explanation": "Un accident du travail est un accident survenu par le fait ou à l'occasion du travail, quelle qu'en soit la cause, à toute personne salariée ou travaillant à quelque titre que ce soit.",
       "difficulty": "medium",
       "duration": 35,
@@ -629,7 +629,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **développement durable** ?",
+      "title": "Qu'est-ce que le **développement durable** ?",
       "explanation": "Le développement durable répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs, intégrant les dimensions économique, sociale et environnementale.",
       "difficulty": "medium",
       "duration": 40,
@@ -653,7 +653,7 @@
       ]
     },
     {
-      "text": "Qui a défini le concept de **développement durable** ?",
+      "title": "Qui a défini le concept de **développement durable** ?",
       "explanation": "Le concept de développement durable a été formalisé par la Commission Brundtland (Gro Harlem Brundtland) dans le rapport 'Notre avenir à tous' en 1987.",
       "difficulty": "hard",
       "duration": 35,
@@ -677,7 +677,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'une **maladie professionnelle** ?",
+      "title": "Qu'est-ce qu'une **maladie professionnelle** ?",
       "explanation": "Une maladie professionnelle est la conséquence directe de l'exposition d'un travailleur à un risque physique, chimique, biologique ou résultant des conditions dans lesquelles il exerce son activité professionnelle.",
       "difficulty": "medium",
       "duration": 40,
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**ergonomie** ?",
+      "title": "Qu'est-ce que l'**ergonomie** ?",
       "explanation": "L'ergonomie est la science qui étudie l'adaptation du travail à l'homme en vue d'améliorer les conditions de travail et de prévenir les risques professionnels.",
       "difficulty": "medium",
       "duration": 35,
@@ -725,7 +725,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **plan d'urgence** ?",
+      "title": "Qu'est-ce qu'un **plan d'urgence** ?",
       "explanation": "Un plan d'urgence définit l'organisation, les moyens et les procédures à mettre en œuvre pour faire face à une situation d'urgence ou de crise.",
       "difficulty": "medium",
       "duration": 35,
@@ -749,7 +749,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **norme REACH** ?",
+      "title": "Qu'est-ce que la **norme REACH** ?",
       "explanation": "REACH (Registration, Evaluation, Authorisation and Restriction of Chemicals) est un règlement européen sur l'enregistrement, l'évaluation et l'autorisation des substances chimiques.",
       "difficulty": "hard",
       "duration": 45,
@@ -773,7 +773,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**amélioration continue** ?",
+      "title": "Qu'est-ce que l'**amélioration continue** ?",
       "explanation": "L'amélioration continue est une démarche progressive et permanente d'optimisation des processus, produits ou services visant l'excellence opérationnelle.",
       "difficulty": "medium",
       "duration": 35,
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **système intégré** QHSE ?",
+      "title": "Qu'est-ce qu'un **système intégré** QHSE ?",
       "explanation": "Un système intégré QHSE combine en une seule démarche cohérente les exigences des normes ISO 9001 (Qualité), ISO 14001 (Environnement) et ISO 45001 (Santé-Sécurité).",
       "difficulty": "hard",
       "duration": 45,
@@ -821,7 +821,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **matrice des risques** ?",
+      "title": "Qu'est-ce que la **matrice des risques** ?",
       "explanation": "La matrice des risques est un outil de visualisation qui permet de classer les risques selon leur probabilité d'occurrence et leur gravité pour prioriser les actions.",
       "difficulty": "hard",
       "duration": 40,
@@ -845,7 +845,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **plan de maîtrise** ?",
+      "title": "Qu'est-ce qu'un **plan de maîtrise** ?",
       "explanation": "Un plan de maîtrise définit les moyens de surveillance et de contrôle mis en place pour maîtriser un processus ou réduire un risque identifié.",
       "difficulty": "hard",
       "duration": 40,
@@ -869,7 +869,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que la **méthode HACCP** ?",
+      "title": "Qu'est-ce que la **méthode HACCP** ?",
       "explanation": "HACCP (Hazard Analysis Critical Control Points) est une méthode d'analyse des dangers et de maîtrise des points critiques, principalement utilisée dans l'agroalimentaire.",
       "difficulty": "hard",
       "duration": 45,
@@ -893,7 +893,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que l'**analyse du cycle de vie** (ACV) ?",
+      "title": "Qu'est-ce que l'**analyse du cycle de vie** (ACV) ?",
       "explanation": "L'ACV est une méthode d'évaluation environnementale qui analyse l'impact d'un produit ou service sur tout son cycle de vie, de l'extraction des matières premières à sa fin de vie.",
       "difficulty": "hard",
       "duration": 50,
@@ -917,7 +917,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **référent sécurité** ?",
+      "title": "Qu'est-ce qu'un **référent sécurité** ?",
       "explanation": "Un référent sécurité est une personne désignée pour animer la prévention des risques professionnels et conseiller l'employeur en matière de santé et sécurité au travail.",
       "difficulty": "medium",
       "duration": 35,

@@ -879,7 +879,7 @@
       ]
     },
     {
-      "text": "Comment **tester** un prototype Figma ?",
+      "title": "Comment **tester** un prototype Figma ?",
       "explanation": "Un prototype se teste en mode Présentation (Play) en cliquant sur l'icône de lecture, permettant d'interagir avec le design comme un utilisateur final.",
       "difficulty": "medium",
       "duration": 30,
@@ -903,7 +903,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce que le **handoff** en design ?",
+      "title": "Qu'est-ce que le **handoff** en design ?",
       "explanation": "Le handoff est le processus de transmission des specifications de design aux développeurs, facilité par les outils d'inspection de Figma.",
       "difficulty": "hard",
       "duration": 40,
@@ -927,7 +927,7 @@
       ]
     },
     {
-      "text": "Comment **version control** dans Figma ?",
+      "title": "Comment **version control** dans Figma ?",
       "explanation": "Figma sauvegarde automatiquement l'historique des versions, accessible via le panneau Version History pour voir et restaurer les versions précédentes.",
       "difficulty": "medium",
       "duration": 35,
@@ -951,7 +951,7 @@
       ]
     },
     {
-      "text": "Quelle est la **résolution recommandée** pour les designs mobiles ?",
+      "title": "Quelle est la **résolution recommandée** pour les designs mobiles ?",
       "explanation": "Pour les designs mobiles, il est recommandé de designer à 1x (375x812 pour iPhone) ou 2x selon les besoins, Figma gérant automatiquement les exports en différentes résolutions.",
       "difficulty": "medium",
       "duration": 35,
@@ -975,7 +975,7 @@
       ]
     },
     {
-      "text": "Comment **commenter** un design dans Figma ?",
+      "title": "Comment **commenter** un design dans Figma ?",
       "explanation": "Les commentaires se font en cliquant sur l'icône de commentaire puis en cliquant sur la zone à commenter, permettant des discussions contextuelles.",
       "difficulty": "easy",
       "duration": 25,

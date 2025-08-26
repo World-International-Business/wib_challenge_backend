@@ -4,6 +4,7 @@ from pathlib import Path
 from django.core.management import BaseCommand
 from django.db import transaction
 
+from apps.core.models import Technology
 from apps.learning.models import Course, Module, Content, Quiz, QuizQuestion, QuizChoice
 
 
@@ -69,6 +70,9 @@ class Command(BaseCommand):
             return
 
         course = self.create_or_update_course(data, existing_course, force)
+        skills = data.get('skills', [])
+        if skills:
+            course.skills.set(list(Technology.objects.filter(name__in=skills).values_list('id', flat=True)))
 
         if course:
             self.stdout.write(

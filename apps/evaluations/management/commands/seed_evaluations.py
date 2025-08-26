@@ -83,8 +83,11 @@ class Command(BaseCommand):
             for q_data in questions_data:
                 choices = q_data.pop('choices', [])
                 title = q_data.get('title')
-
-                question = existing_questions.get(title.lower())
+                try:
+                    question = existing_questions.get(title.lower())
+                except:
+                    print(q_data)
+                    return KeyboardInterrupt
 
                 if question:
                     for field, value in q_data.items():

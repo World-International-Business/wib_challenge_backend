@@ -5,7 +5,7 @@
   "difficulty": "advanced",
   "questions": [
     {
-      "text": "Quelle est la **première étape** pour remotiver une équipe en perte de performance ?",
+      "title": "Quelle est la **première étape** pour remotiver une équipe en perte de performance ?",
       "explanation": "La première étape consiste à diagnostiquer les causes : écouter individuellement et collectivement, identifier les problèmes (surcharge, manque de reconnaissance, objectifs flous, outils inadaptés) avant de proposer des solutions.",
       "difficulty": "medium",
       "duration": 60,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "text": "Quelle méthode est la plus **efficace** pour évaluer la performance d'équipe ?",
+      "title": "Quelle méthode est la plus **efficace** pour évaluer la performance d'équipe ?",
       "explanation": "L'évaluation efficace combine indicateurs quantitatifs (KPI, objectifs chiffrés) et qualitatifs (comportements, collaboration) avec un suivi régulier et des entretiens individuels pour une vision complète.",
       "difficulty": "medium",
       "duration": 55,
@@ -53,7 +53,7 @@
       ]
     },
     {
-      "text": "Quelle **méthode d'optimisation** suit généralement cette séquence : Analyser → Mesurer → Améliorer → Contrôler ?",
+      "title": "Quelle **méthode d'optimisation** suit généralement cette séquence : Analyser → Mesurer → Améliorer → Contrôler ?",
       "explanation": "C'est la méthode DMAIC (Define, Measure, Analyze, Improve, Control) du Lean Six Sigma, approche structurée pour l'amélioration continue des processus opérationnels.",
       "difficulty": "hard",
       "duration": 70,
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "text": "Comment identifier les **points faibles** d'un processus ?",
+      "title": "Comment identifier les **points faibles** d'un processus ?",
       "explanation": "L'identification des points faibles nécessite : cartographie du processus (process mapping), mesure des temps et goulots, collecte de données terrain, écoute des acteurs et analyse des écarts avec les objectifs.",
       "difficulty": "medium",
       "duration": 80,
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "text": "Qu'est-ce qu'un **KPI** et quelle est sa caractéristique principale ?",
+      "title": "Qu'est-ce qu'un **KPI** et quelle est sa caractéristique principale ?",
       "explanation": "Un KPI (Key Performance Indicator) est un indicateur clé de performance qui doit être SMART : Spécifique, Mesurable, Atteignable, Réaliste et Temporellement défini pour piloter efficacement.",
       "difficulty": "easy",
       "duration": 45,
@@ -125,7 +125,7 @@
       ]
     },
     {
-      "text": "Quand un KPI est **dans le rouge**, quelle est la première action à mener ?",
+      "title": "Quand un KPI est **dans le rouge**, quelle est la première action à mener ?",
       "explanation": "La première action est l'analyse des causes racines pour comprendre pourquoi l'indicateur dérive, puis définir un plan d'action correctif avec échéances et responsables, avant de communiquer.",
       "difficulty": "medium",
       "duration": 65,
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "text": "Quelles sont les **étapes clés** d'élaboration d'un budget opérationnel ?",
+      "title": "Quelles sont les **étapes clés** d'élaboration d'un budget opérationnel ?",
       "explanation": "Les étapes sont : analyser l'historique, prévoir l'activité (volumes, prix), calculer les charges variables et fixes, intégrer les projets d'investissement, valider avec les équipes et ajuster selon les contraintes.",
       "difficulty": "hard",
       "duration": 100,
@@ -173,7 +173,7 @@
       ]
     },
     {
-      "text": "Comment réduire les coûts **sans nuire à la qualité** ?",
+      "title": "Comment réduire les coûts **sans nuire à la qualité** ?",
       "explanation": "Réduire les coûts sans nuire à la qualité passe par : élimination des gaspillages (Lean), négociation fournisseurs, optimisation des processus, automatisation, mutualisation des ressources et amélioration de la productivité.",
       "difficulty": "medium",
       "duration": 85,
@@ -197,7 +197,7 @@
       ]
     },
     {
-      "text": "Quel est le rôle de la **QHSE** dans l'entreprise agroalimentaire ?",
+      "title": "Quel est le rôle de la **QHSE** dans l'entreprise agroalimentaire ?",
       "explanation": "En agroalimentaire, la QHSE garantit : sécurité sanitaire des aliments, respect des normes (HACCP, ISO 22000), protection des consommateurs, traçabilité, sécurité du personnel et respect environnemental.",
       "difficulty": "hard",
       "duration": 90,
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "text": "Quelles **mesures** garantissent le respect des normes QHSE ?",
+      "title": "Quelles **mesures** garantissent le respect des normes QHSE ?",
       "explanation": "Les mesures incluent : formation du personnel, procédures documentées, audits internes réguliers, surveillances et contrôles, actions correctives, veille réglementaire et amélioration continue.",
       "difficulty": "medium",
       "duration": 75,
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "text": "Quelle est la **séquence** de gestion d'un incident de sécurité ?",
+      "title": "Quelle est la **séquence** de gestion d'un incident de sécurité ?",
       "explanation": "La séquence est : Sécuriser (personnes et site) → Alerter (secours/hiérarchie) → Analyser les causes → Mesures correctives → Communication → Retour d'expérience → Prévention.",
       "difficulty": "hard",
       "duration": 95,
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "text": "Comment intégrer les objectifs **RSE** dans les opérations ?",
+      "title": "Comment intégrer les objectifs **RSE** dans les opérations ?",
       "explanation": "L'intégration RSE passe par : définition d'objectifs concrets, formation équipes, intégration dans les processus, mesure d'indicateurs RSE, reporting, partenariats durables et amélioration continue.",
       "difficulty": "medium",
       "duration": 80,
@@ -293,7 +293,7 @@
       ]
     },
     {
-      "text": "Comment assurer la **fluidité de communication** entre opérations et autres départements ?",
+      "title": "Comment assurer la **fluidité de communication** entre opérations et autres départements ?",
       "explanation": "La fluidité nécessite : points réguliers planifiés, outils collaboratifs partagés, process de remontée/descente d'information, interfaces désignées par département et culture de transparence.",
       "difficulty": "medium",
       "duration": 70,
@@ -317,7 +317,7 @@
       ]
     },
     {
-      "text": "Face à un **problème de coordination**, quelle approche adopter ?",
+      "title": "Face à un **problème de coordination**, quelle approche adopter ?",
       "explanation": "L'approche efficace : identifier les causes (communication, processus, responsabilités), réunir les parties prenantes, clarifier les rôles, définir les interfaces et mettre en place un suivi.",
       "difficulty": "medium",
       "duration": 75,
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "text": "Comment optimiser la **gestion des stocks** ?",
+      "title": "Comment optimiser la **gestion des stocks** ?",
       "explanation": "L'optimisation passe par : analyse ABC, calcul des stocks de sécurité, amélioration des prévisions, réduction des lead times, rotation accélérée et outils de pilotage (WMS, ERP).",
       "difficulty": "medium",
       "duration": 85,
@@ -365,7 +365,7 @@
       ]
     },
     {
-      "text": "Quelle **approche** pour résoudre un défi logistique complexe ?",
+      "title": "Quelle **approche** pour résoudre un défi logistique complexe ?",
       "explanation": "L'approche structurée : analyser le problème (données, contraintes), identifier les alternatives, évaluer les solutions (coûts, délais, risques), tester si possible, déployer et mesurer les résultats.",
       "difficulty": "hard",
       "duration": 110,
@@ -389,7 +389,7 @@
       ]
     },
     {
-      "text": "Quels **critères** pour sélectionner et évaluer des fournisseurs ?",
+      "title": "Quels **critères** pour sélectionner et évaluer des fournisseurs ?",
       "explanation": "Les critères incluent : qualité des produits/services, prix et conditions, délais de livraison, capacité financière, certifications, références clients, proximité géographique et éthique.",
       "difficulty": "medium",
       "duration": 80,
@@ -413,7 +413,7 @@
       ]
     },
     {
-      "text": "Face à une **rupture d'approvisionnement critique**, quelle priorité ?",
+      "title": "Face à une **rupture d'approvisionnement critique**, quelle priorité ?",
       "explanation": "La priorité est : évaluer l'impact (production, clients), activer les fournisseurs alternatifs, négocier des solutions d'urgence, communiquer aux parties prenantes et sécuriser l'avenir.",
       "difficulty": "hard",
       "duration": 90,
@@ -437,7 +437,7 @@
       ]
     },
     {
-      "text": "Quelles **étapes** dans un processus d'achat à l'international ?",
+      "title": "Quelles **étapes** dans un processus d'achat à l'international ?",
       "explanation": "Les étapes : identification fournisseur, négociation contrat, définition incoterms, organisation transport, gestion douanière, assurance, paiement sécurisé et réception marchandises.",
       "difficulty": "hard",
       "duration": 120,
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "text": "Quelles **opérations** dans un processus de dédouanement ?",
+      "title": "Quelles **opérations** dans un processus de dédouanement ?",
       "explanation": "Le dédouanement comprend : déclaration en douane, présentation documents (facture, origine, transport), contrôle douanier éventuel, paiement droits et taxes, puis mainlevée des marchandises.",
       "difficulty": "hard",
       "duration": 100,
@@ -485,7 +485,7 @@
       ]
     },
     {
-      "text": "Quels **principes** dans la gestion stockage/déstockage ?",
+      "title": "Quels **principes** dans la gestion stockage/déstockage ?",
       "explanation": "Les principes : FIFO/FEFO (premier entré, premier sorti), zonage par typologie, optimisation implantation, traçabilité, respect chaîne du froid, inventaires réguliers et sécurité.",
       "difficulty": "medium",
       "duration": 85,
@@ -509,7 +509,7 @@
       ]
     },
     {
-      "text": "Quelles **étapes** pour la pénétration d'un nouveau produit au Cameroun ?",
+      "title": "Quelles **étapes** pour la pénétration d'un nouveau produit au Cameroun ?",
       "explanation": "Les étapes : étude de marché local, adaptation produit/prix, stratégie distribution, plan marketing, tests pilotes, formation équipes, lancement progressif et ajustements.",
       "difficulty": "hard",
       "duration": 130,
@@ -533,7 +533,7 @@
       ]
     },
     {
-      "text": "Comment gérer une **confrontation avec les autorités** locales ?",
+      "title": "Comment gérer une **confrontation avec les autorités** locales ?",
       "explanation": "L'approche : écoute respectueuse, compréhension des préoccupations, dialogue constructif, recherche de solutions conformes, documentation des échanges et suivi des engagements pris.",
       "difficulty": "hard",
       "duration": 95,
@@ -557,7 +557,7 @@
       ]
     },
     {
-      "text": "Quelles **étapes** pour un compte rendu professionnel avec logo et tableaux ?",
+      "title": "Quelles **étapes** pour un compte rendu professionnel avec logo et tableaux ?",
       "explanation": "Les étapes : définir structure et plan, créer modèle avec logo et charte graphique, rédiger contenu avec titres numérotés, insérer tableaux et graphiques, relecture et validation.",
       "difficulty": "medium",
       "duration": 70,
@@ -581,7 +581,7 @@
       ]
     },
     {
-      "text": "Comment **protéger** un document Word par mot de passe ?",
+      "title": "Comment **protéger** un document Word par mot de passe ?",
       "explanation": "Dans Word : Fichier → Informations → Protéger le document → Chiffrer avec mot de passe. Pour contrôler les modifications : Révision → Restreindre la modification → Paramétrer les autorisations.",
       "difficulty": "medium",
       "duration": 60,
@@ -605,7 +605,7 @@
       ]
     },
     {
-      "text": "Quelles **formules Excel** utilisez-vous fréquemment en gestion opérationnelle ?",
+      "title": "Quelles **formules Excel** utilisez-vous fréquemment en gestion opérationnelle ?",
       "explanation": "Les formules courantes : SOMME.SI (total conditionnel), RECHERCHEV (correspondances), SI (conditions logiques), MOYENNE (calculs statistiques), NB.SI (comptages conditionnels).",
       "difficulty": "medium",
       "duration": 75,
@@ -629,7 +629,7 @@
       ]
     },
     {
-      "text": "Dans quel **contexte** utiliser un tableau croisé dynamique ?",
+      "title": "Dans quel **contexte** utiliser un tableau croisé dynamique ?",
       "explanation": "Les TCD sont utiles pour : synthétiser grandes bases de données, analyser tendances par dimensions multiples, créer tableaux de bord, calculer sous-totaux automatiques et pivoter les analyses.",
       "difficulty": "medium",
       "duration": 65,
@@ -653,7 +653,7 @@
       ]
     },
     {
-      "text": "Comment **détecter des doublons** dans un fichier Excel de 500 lignes ?",
+      "title": "Comment **détecter des doublons** dans un fichier Excel de 500 lignes ?",
       "explanation": "Plusieurs méthodes : mise en forme conditionnelle (Accueil → Règles de mise en surbrillance → Valeurs en double), ou Données → Supprimer les doublons, ou formule COUNTIF pour compter les occurrences.",
       "difficulty": "medium",
       "duration": 70,
@@ -677,7 +677,7 @@
       ]
     },
     {
-      "text": "Comment calculer la **part de marché** de chaque produit dans Excel ?",
+      "title": "Comment calculer la **part de marché** de chaque produit dans Excel ?",
       "explanation": "Part de marché = (Ventes produit / Total ventes marché) × 100. Dans Excel : créer colonne avec formule =(Ventes_produit/SOMME(Plage_totale))*100 et appliquer à chaque ligne.",
       "difficulty": "medium",
       "duration": 80,
@@ -701,7 +701,7 @@
       ]
     },
     {
-      "text": "Comment **structurer** une présentation pour comité de direction ?",
+      "title": "Comment **structurer** une présentation pour comité de direction ?",
       "explanation": "Structure efficace : page de garde, agenda/sommaire, synthèse exécutive, contexte/enjeux, analyse détaillée, recommandations, plan d'action chiffré, annexes techniques.",
       "difficulty": "medium",
       "duration": 90,
@@ -725,7 +725,7 @@
       ]
     },
     {
-      "text": "Comment **intégrer** des graphiques Excel dans PowerPoint ?",
+      "title": "Comment **intégrer** des graphiques Excel dans PowerPoint ?",
       "explanation": "Méthodes : copier-coller avec liaison (Collage spécial → Lier), insérer objet Excel, ou copier en tant qu'image. La liaison permet la mise à jour automatique des données.",
       "difficulty": "medium",
       "duration": 55,
@@ -749,7 +749,7 @@
       ]
     },
     {
-      "text": "Pourquoi utiliser les **masques de diapositives** ?",
+      "title": "Pourquoi utiliser les **masques de diapositives** ?",
       "explanation": "Les masques permettent : cohérence visuelle (polices, couleurs, logos), gain de temps, modifications globales, respect de la charte graphique et professionnalisme de la présentation.",
       "difficulty": "medium",
       "duration": 50,
@@ -773,7 +773,7 @@
       ]
     },
     {
-      "text": "Comment rendre une présentation **visuellement attractive** et professionnelle ?",
+      "title": "Comment rendre une présentation **visuellement attractive** et professionnelle ?",
       "explanation": "Clés du succès : règle 6x6 (6 puces max, 6 mots max), visuels de qualité, couleurs cohérentes, espaces blancs, graphiques clairs, police lisible et messages synthétiques.",
       "difficulty": "medium",
       "duration": 85,
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "text": "Comment **convaincre** de changer une méthode de travail inefficace ?",
+      "title": "Comment **convaincre** de changer une méthode de travail inefficace ?",
       "explanation": "Stratégie de conviction : démontrer les problèmes actuels avec données, présenter les bénéfices du changement, impliquer les équipes dans la solution, tester pilote et accompagner la transition.",
       "difficulty": "hard",
       "duration": 110,
@@ -821,7 +821,7 @@
       ]
     },
     {
-      "text": "Comment prendre une **décision difficile** avec informations incomplètes ?",
+      "title": "Comment prendre une **décision difficile** avec informations incomplètes ?",
       "explanation": "Méthode : identifier les informations critiques disponibles, évaluer les risques de chaque option, consulter les experts, définir des critères de décision, trancher et prévoir un suivi rapproché.",
       "difficulty": "hard",
       "duration": 120,
@@ -845,7 +845,7 @@
       ]
     },
     {
-      "text": "Comment maintenir la **performance** sous forte pression ?",
+      "title": "Comment maintenir la **performance** sous forte pression ?",
       "explanation": "Stratégies : communication transparente sur la situation, priorisation des tâches critiques, soutien renforcé aux équipes, célébration des petites victoires et préservation du moral.",
       "difficulty": "hard",
       "duration": 100,
@@ -869,7 +869,7 @@
       ]
     },
     {
-      "text": "Comment s'assurer que les **messages** sont bien compris par équipes dispersées ?",
+      "title": "Comment s'assurer que les **messages** sont bien compris par équipes dispersées ?",
       "explanation": "Bonnes pratiques : messages clairs et structurés, canaux multiples (écrit + oral), accusés de réception, reformulation, séances Q&R, relais locaux et vérification de la compréhension.",
       "difficulty": "medium",
       "duration": 95,
@@ -893,7 +893,7 @@
       ]
     },
     {
-      "text": "Comment gérer un **conflit** entre départements ?",
+      "title": "Comment gérer un **conflit** entre départements ?",
       "explanation": "Approche de résolution : écoute active de chaque partie, identification des vrais enjeux, recherche d'intérêts communs, médiation neutre, solutions gagnant-gagnant et suivi post-conflit.",
       "difficulty": "hard",
       "duration": 105,
@@ -917,7 +917,7 @@
       ]
     },
     {
-      "text": "Comment réagir à un **changement imprévu** bouleversant les plans ?",
+      "title": "Comment réagir à un **changement imprévu** bouleversant les plans ?",
       "explanation": "Réaction adaptative : évaluer rapidement l'impact, communiquer transparence sur la situation, réajuster les priorités, mobiliser les ressources, adapter le planning et maintenir le moral.",
       "difficulty": "hard",
       "duration": 110,
@@ -941,7 +941,7 @@
       ]
     },
     {
-      "text": "Quelles **3 actions prioritaires** pour améliorer les performances opérationnelles sur 6 mois ?",
+      "title": "Quelles **3 actions prioritaires** pour améliorer les performances opérationnelles sur 6 mois ?",
       "explanation": "Actions prioritaires : 1) Diagnostic complet des processus et identification des goulots, 2) Formation/coaching des équipes sur les bonnes pratiques, 3) Mise en place d'indicateurs de pilotage et tableaux de bord.",
       "difficulty": "hard",
       "duration": 140,
