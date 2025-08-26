@@ -19,6 +19,7 @@ class PageNumberAndSizePagination(PageNumberPagination):
 
 def paginated_response(view: 'GenericAPIView', queryset: 'QuerySet', serializer: 'type[Serializer]', context=None):
     page = view.paginate_queryset(queryset)
+    context = context or view.get_serializer_context()
     if page is not None:
         serializer = serializer(page, many=True, context=context)
         return view.get_paginated_response(serializer.data)

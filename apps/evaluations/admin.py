@@ -627,7 +627,7 @@ class SubmissionAdmin(admin.ModelAdmin):
     list_display = ['id', 'participant_name', 'evaluation_name', 'score_badge', 'submitted_at']
     search_fields = ['attempt__participant__user__username', 'attempt__participant__candidate__full_name',
                      'attempt__evaluation__title']
-    list_filter = [ScoreRangeFilter, 'submitted_at']
+    list_filter = ['submitted_at']
     readonly_fields = ['submitted_at', 'participant_name', 'evaluation_name', 'attempt_link']
 
     fieldsets = (
@@ -653,18 +653,18 @@ class SubmissionAdmin(admin.ModelAdmin):
     @admin.display(description=_("Score"))
     def score_badge(self, obj):
         if obj.score is not None:
-            if obj.score >= 80:
+            if obj.score_percent >= 80:
                 color = '#28a745'
                 icon = '🏆'
-            elif obj.score >= 60:
+            elif obj.score_percent >= 60:
                 color = '#ffc107'
                 icon = '🥈'
             else:
                 color = '#dc3545'
                 icon = '📉'
             return format_html(
-                '<span style="background-color: {}; color: white; padding: 4px 12px; border-radius: 15px;">{} {:.1f}</span>',
-                color, icon, obj.score
+                '<span style="background-color: {}; color: white; padding: 4px 12px; border-radius: 15px;">{} {}</span>',
+                color, icon, obj.score_percent
             )
         return "-"
 

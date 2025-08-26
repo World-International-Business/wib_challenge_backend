@@ -77,18 +77,6 @@ class Evaluation(BaseModel, TitleSlugDescriptionModel):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            base_slug = slugify(self.title)
-            unique_slug = base_slug
-            counter = 1
-
-            while Evaluation.objects.exclude(pk=self.pk).filter(slug=unique_slug).exists():
-                unique_slug = f"{base_slug}-{counter}"
-                counter += 1
-            self.slug = unique_slug
-        super().save(*args, **kwargs)
-
     @property
     def is_constructed(self):
         """Détermine si l'évaluation a assez de questions publiées"""
@@ -202,6 +190,10 @@ class Submission(models.Model):
 
     def __str__(self):
         return f'{self.score} - {self.submitted_at}'
+
+    @property
+    def score_percent(self):
+        return round((self.score / self.attempt.evaluation.max_score) * 100, 2)
 
 
 class Answer(models.Model):

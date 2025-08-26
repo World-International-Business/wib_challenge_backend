@@ -1,11 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TitleSlugDescriptionModel
-from django.utils import timezone
 
-from apps.core.models import BaseModel
+from apps.core.models import BaseModel, Technology
 
 User = get_user_model()
 
@@ -27,28 +27,16 @@ class Course(LearningModel):
     level = models.CharField(_('Niveau'), max_length=20, choices=SkillLevel.choices)
     is_free = models.BooleanField(_('Gratuit'), default=True)
     is_active = models.BooleanField(_('Actif'), default=True)
-    instructor = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='courses_created',
-        verbose_name=_('Instructeur')
-    )
-    estimated_duration = models.PositiveIntegerField(
-        _('Durée estimée (heures)'),
-        null=True,
-        blank=True
-    )
+    publisher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
+                                  related_name='courses_created', verbose_name=_('Instructeur'))
+    estimated_duration = models.PositiveIntegerField(_('Durée estimée (heures)'), null=True, blank=True)
+    skills = models.ManyToManyField(Technology, blank=True, related_name='courses', verbose_name=_('Compétence'))
 
     class Meta:
         verbose_name = _('Cours')
         verbose_name_plural = _('Cours')
         ordering = ['title']
-        indexes = [
-            models.Index(fields=['level', 'is_free', 'is_active']),
-            models.Index(fields=['created_at']),
-        ]
+        indexes = [models.Index(fields=['level', 'is_free', 'is_active']), models.Index(fields=['created_at']), ]
 
     def __str__(self):
         return self.title
@@ -72,12 +60,7 @@ class Course(LearningModel):
 
 
 class Module(LearningModel):
-    course = models.ForeignKey(
-        Course,
-        on_delete=models.CASCADE,
-        related_name='modules',
-        verbose_name=_('Cours')
-    )
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules', verbose_name=_('Cours'))
     title = models.CharField(_('Titre'), max_length=255)
     description = models.TextField(_('Description'), blank=True)
     order = models.PositiveIntegerField(_('Ordre'), default=0)
@@ -87,10 +70,7 @@ class Module(LearningModel):
         verbose_name = _('Module')
         verbose_name_plural = _('Modules')
         ordering = ['course', 'order', 'title']
-        indexes = [
-            models.Index(fields=['course', 'order']),
-            models.Index(fields=['is_active']),
-        ]
+        indexes = [models.Index(fields=['course', 'order']), models.Index(fields=['is_active']), ]
 
     def __str__(self):
         return f"{self.course.title} - {self.title}"
@@ -114,12 +94,7 @@ class ContentType(models.TextChoices):
 
 class Content(LearningModel):
     description = None
-    module = models.ForeignKey(
-        Module,
-        on_delete=models.CASCADE,
-        related_name='contents',
-        verbose_name=_('Module')
-    )
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents', verbose_name=_('Module'))
     title = models.CharField(_('Titre'), max_length=255)
     content_type = models.CharField(_('Type de contenu'), max_length=15, choices=ContentType.choices)
     resource_file = models.FileField(_('Fichier'), null=True, blank=True, upload_to='learning/contents/')
@@ -127,21 +102,14 @@ class Content(LearningModel):
     content = models.TextField(_('Contenu'), null=True, blank=True)
     order = models.PositiveIntegerField(_('Ordre'), default=0)
     is_active = models.BooleanField(_('Actif'), default=True)
-    duration_minutes = models.PositiveIntegerField(
-        _('Durée (minutes)'),
-        null=True,
-        blank=True
-    )
+    duration_minutes = models.PositiveIntegerField(_('Durée (minutes)'), null=True, blank=True)
 
     class Meta:
         verbose_name = _('Contenu')
         verbose_name_plural = _('Contenus')
         ordering = ['module', 'order', 'title']
-        indexes = [
-            models.Index(fields=['module', 'order']),
-            models.Index(fields=['content_type']),
-            models.Index(fields=['is_active']),
-        ]
+        indexes = [models.Index(fields=['module', 'order']), models.Index(fields=['content_type']),
+                   models.Index(fields=['is_active']), ]
 
     def clean(self):
         """Validation avancée du contenu"""
@@ -189,28 +157,13 @@ class Content(LearningModel):
 
 
 class Quiz(LearningModel):
-    module = models.OneToOneField(
-        Module,
-        null=True,
-        on_delete=models.CASCADE,
-        related_name='quiz',
-        verbose_name=_('Module')
-    )
+    module = models.OneToOneField(Module, null=True, on_delete=models.CASCADE, related_name='quiz',
+                                  verbose_name=_('Module'))
     title = models.CharField(_('Titre'), max_length=255)
     description = models.TextField(_('Description'), blank=True)
-    passing_score = models.PositiveIntegerField(
-        _('Score de passage (%)'),
-        default=70
-    )
-    time_limit_minutes = models.PositiveIntegerField(
-        _('Limite de temps (minutes)'),
-        null=True,
-        blank=True
-    )
-    max_attempts = models.PositiveIntegerField(
-        _('Nombre maximum de tentatives'),
-        default=3
-    )
+    passing_score = models.PositiveIntegerField(_('Score de passage (%)'), default=70)
+    time_limit_minutes = models.PositiveIntegerField(_('Limite de temps (minutes)'), null=True, blank=True)
+    max_attempts = models.PositiveIntegerField(_('Nombre maximum de tentatives'), default=3)
     is_active = models.BooleanField(_('Actif'), default=True)
     randomize_questions = models.BooleanField(_('Questions aléatoires'), default=False)
 
@@ -218,9 +171,7 @@ class Quiz(LearningModel):
         verbose_name = _('Quiz')
         verbose_name_plural = _('Quiz')
         ordering = ['module', 'title']
-        indexes = [
-            models.Index(fields=['is_active']),
-        ]
+        indexes = [models.Index(fields=['is_active']), ]
 
     def clean(self):
         super().clean()
@@ -247,12 +198,7 @@ class Quiz(LearningModel):
 
 
 class QuizQuestion(LearningModel):
-    quiz = models.ForeignKey(
-        Quiz,
-        on_delete=models.CASCADE,
-        related_name='questions',
-        verbose_name=_('Quiz')
-    )
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name='questions', verbose_name=_('Quiz'))
     title = models.CharField(_('Question'), max_length=500)
     description = models.TextField(_('Description'), blank=True)
     explanation = models.TextField(_('Explication'), blank=True)
@@ -264,10 +210,7 @@ class QuizQuestion(LearningModel):
         verbose_name = _('Question de Quiz')
         verbose_name_plural = _('Questions de Quiz')
         ordering = ['quiz', 'order', 'id']
-        indexes = [
-            models.Index(fields=['quiz', 'order']),
-            models.Index(fields=['is_active']),
-        ]
+        indexes = [models.Index(fields=['quiz', 'order']), models.Index(fields=['is_active']), ]
 
     def save(self, *args, **kwargs):
         if not self.order:
@@ -285,12 +228,8 @@ class QuizQuestion(LearningModel):
 
 
 class QuizChoice(models.Model):
-    question = models.ForeignKey(
-        QuizQuestion,
-        on_delete=models.CASCADE,
-        related_name='choices',
-        verbose_name=_('Question')
-    )
+    question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE, related_name='choices',
+                                 verbose_name=_('Question'))
     text = models.CharField(_('Texte'), max_length=500)
     is_correct = models.BooleanField(_('Réponse correcte'), default=False)
     order = models.PositiveIntegerField(_('Ordre'), default=0)
@@ -299,10 +238,7 @@ class QuizChoice(models.Model):
         verbose_name = _('Choix de réponse')
         verbose_name_plural = _('Choix de réponses')
         ordering = ['question', 'order', 'id']
-        indexes = [
-            models.Index(fields=['question', 'order']),
-            models.Index(fields=['is_correct']),
-        ]
+        indexes = [models.Index(fields=['question', 'order']), models.Index(fields=['is_correct']), ]
 
     def save(self, *args, **kwargs):
         if not self.order:
@@ -330,11 +266,8 @@ class QuizResult(models.Model):
         verbose_name = _('Résultat de Quiz')
         verbose_name_plural = _('Résultats de Quiz')
         ordering = ['-started_at']
-        indexes = [
-            models.Index(fields=['user', 'quiz']),
-            models.Index(fields=['is_passed']),
-            models.Index(fields=['started_at']),
-        ]
+        indexes = [models.Index(fields=['user', 'quiz']), models.Index(fields=['is_passed']),
+                   models.Index(fields=['started_at']), ]
 
     def save(self, *args, **kwargs):
         if self.submitted_at:
@@ -349,9 +282,7 @@ class QuizResult(models.Model):
 
         # Auto-increment attempt number
         if not self.attempt_number:
-            last_attempt = QuizResult.objects.filter(
-                user=self.user, quiz=self.quiz
-            ).order_by('-attempt_number').first()
+            last_attempt = QuizResult.objects.filter(user=self.user, quiz=self.quiz).order_by('-attempt_number').first()
             self.attempt_number = (last_attempt.attempt_number + 1) if last_attempt else 1
 
         super().save(*args, **kwargs)
@@ -369,22 +300,9 @@ class QuizResult(models.Model):
 
 
 class QuizAnswer(models.Model):
-    result = models.ForeignKey(
-        QuizResult,
-        on_delete=models.CASCADE,
-        related_name='answers',
-        verbose_name=_('Résultat')
-    )
-    question = models.ForeignKey(
-        QuizQuestion,
-        on_delete=models.CASCADE,
-        verbose_name=_('Question')
-    )
-    selected_choices = models.ManyToManyField(
-        QuizChoice,
-        verbose_name=_('Choix sélectionnés'),
-        blank=True
-    )
+    result = models.ForeignKey(QuizResult, on_delete=models.CASCADE, related_name='answers', verbose_name=_('Résultat'))
+    question = models.ForeignKey(QuizQuestion, on_delete=models.CASCADE, verbose_name=_('Question'))
+    selected_choices = models.ManyToManyField(QuizChoice, verbose_name=_('Choix sélectionnés'), blank=True)
     is_correct = models.BooleanField(_('Correct'), default=False)
     points_earned = models.PositiveIntegerField(_('Points gagnés'), default=0)
 
@@ -392,10 +310,7 @@ class QuizAnswer(models.Model):
         verbose_name = _('Réponse de Quiz')
         verbose_name_plural = _('Réponses de Quiz')
         unique_together = ('result', 'question')
-        indexes = [
-            models.Index(fields=['result', 'question']),
-            models.Index(fields=['is_correct']),
-        ]
+        indexes = [models.Index(fields=['result', 'question']), models.Index(fields=['is_correct']), ]
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -404,18 +319,14 @@ class QuizAnswer(models.Model):
             correct_choices = self.question.choices.filter(is_correct=True)
             selected_choices = self.selected_choices.all()
 
-            is_correct = (
-                    set(correct_choices) == set(selected_choices.filter(is_correct=True)) and
-                    not selected_choices.filter(is_correct=False).exists()
-            )
+            is_correct = (set(correct_choices) == set(
+                selected_choices.filter(is_correct=True)) and not selected_choices.filter(is_correct=False).exists())
 
             if is_correct != self.is_correct:
                 self.is_correct = is_correct
                 self.points_earned = self.question.points if is_correct else 0
-                QuizAnswer.objects.filter(pk=self.pk).update(
-                    is_correct=self.is_correct,
-                    points_earned=self.points_earned
-                )
+                QuizAnswer.objects.filter(pk=self.pk).update(is_correct=self.is_correct,
+                                                             points_earned=self.points_earned)
 
     def __str__(self):
         return f"{self.result.user.username} - {self.question.title[:50]} - {'✓' if self.is_correct else '✗'}"
@@ -435,11 +346,8 @@ class Progress(models.Model):
         verbose_name_plural = _('Progrès')
         unique_together = ('user', 'content')
         ordering = ['-last_accessed']
-        indexes = [
-            models.Index(fields=['user', 'content']),
-            models.Index(fields=['is_completed']),
-            models.Index(fields=['last_accessed']),
-        ]
+        indexes = [models.Index(fields=['user', 'content']), models.Index(fields=['is_completed']),
+                   models.Index(fields=['last_accessed']), ]
 
     def save(self, *args, **kwargs):
         if self.is_completed and not self.completed_at:
@@ -466,11 +374,8 @@ class Certificate(models.Model):
         verbose_name_plural = _('Certificats')
         unique_together = ('user', 'course')
         ordering = ['-issued_at']
-        indexes = [
-            models.Index(fields=['certificate_number']),
-            models.Index(fields=['is_valid']),
-            models.Index(fields=['issued_at']),
-        ]
+        indexes = [models.Index(fields=['certificate_number']), models.Index(fields=['is_valid']),
+                   models.Index(fields=['issued_at']), ]
 
     def save(self, *args, **kwargs):
         if not self.certificate_number:

@@ -1,13 +1,13 @@
 from django.urls import include, path
+from rest_framework.routers import SimpleRouter
 from rest_framework_nested import routers
 
 from apps.candidates.views import (
     CandidateProfileViewSet, ExperienceViewSet, LanguageViewSet, EducationViewSet,
     ProjectViewSet, ProjectImageViewSet, ProfileTechnologyViewSet
 )
-from wib_challenge.routers import AppRouter
 
-router = AppRouter()
+router = SimpleRouter()
 
 router.register(r'candidate-profiles', CandidateProfileViewSet, basename='candidates')
 

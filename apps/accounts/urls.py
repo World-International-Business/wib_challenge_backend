@@ -1,12 +1,12 @@
 from django.urls import path, include
 from drf_spectacular.utils import extend_schema
-from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenVerifyView, TokenBlacklistView, TokenRefreshView, TokenObtainPairView
 
 from apps.accounts.views import RegisterUserView, UserViewSet, PasswordResetView, PasswordResetConfirmView, \
     GoogleLoginView
+from wib_challenge.routers import AppRouter
 
-users_router = DefaultRouter()
+users_router = AppRouter()
 
 users_router.register(r'users', UserViewSet, basename='users')
 

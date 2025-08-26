@@ -49,7 +49,7 @@ class CandidateProfileViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=False, methods=['get'], url_path=r'user/<int:user_id>')
+    @action(detail=False, methods=['get'], url_path=r'user/(?P<user_id>\d+)')
     def get_by_user(self, request, user_id: int):
         profile = get_object_or_404(self.get_queryset(), user=user_id)
         serializer = self.get_serializer(profile)

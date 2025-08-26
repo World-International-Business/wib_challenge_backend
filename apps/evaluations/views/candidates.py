@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from django.db import transaction
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from drf_spectacular.utils import extend_schema, OpenApiRequest, OpenApiParameter
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError, NotFound, PermissionDenied, NotAuthenticated
@@ -109,7 +109,7 @@ class CandidateEvaluationViewSet(viewsets.GenericViewSet):
         return attempt, invitation
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         parameters=[
             OpenApiParameter(name="payload", required=False, type=str)
         ],
@@ -173,7 +173,7 @@ class CandidateEvaluationViewSet(viewsets.GenericViewSet):
 
         return Response(status=status.HTTP_200_OK, data=AnswerSerializer(answers, many=True).data)
 
-    @extend_schema(request=OpenApiRequest(), responses={200: SubmissionAttemptDetailSerializer})
+    @extend_schema(request=None, responses={200: SubmissionAttemptDetailSerializer})
     @action(detail=False, methods=['post'], url_path=r'attempts/<int:attempt_id>/finalize')
     @transaction.atomic
     def finish(self, request, attempt_id=None):

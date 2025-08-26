@@ -7,9 +7,9 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema, OpenApiRequest, extend_schema_view, OpenApiParameter
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
 from rest_access_policy import AccessViewSetMixin
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -41,11 +41,55 @@ from apps.questions.serializers import AddQuestionSerializer, QuestionSerializer
 from wib_challenge.pagination import paginated_response
 
 
+@extend_schema(tags=['Évaluations'])
+class EvaluationSearchView(generics.ListAPIView):
+    serializer_class = EvaluationSerializer
+    queryset = Evaluation.objects.all()
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = EvaluationFilterSet
+    search_fields = ['title', 'description', 'technology__name', 'profession__title']
+    ordering_fields = ['created_at', 'updated_at', 'title', 'difficulty']
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        queryset = (
+            Evaluation.objects
+            .select_related('technology', 'profession', 'publisher', 'competition')
+            .prefetch_related(
+                Prefetch(
+                    'questions',
+                    queryset=Question.objects.filter(status=Question.Status.PUBLISHED)
+                )
+            )
+            .annotate(
+                questions_count=models.Count(
+                    'questions',
+                    filter=Q(questions__status=Question.Status.PUBLISHED),
+                    distinct=True
+                )
+            )
+        )
+
+        user = self.request.user
+        if user.is_authenticated:
+            if not user.is_staff:
+                queryset = queryset.filter(
+                    (
+                            Q(archived=True, publisher=user) |
+                            Q(archived=False)
+                    ) & (
+                            Q(questions_count__gte=20) |
+                            Q(publisher=user)
+                    )
+                )
+        else:
+            queryset = queryset.filter(archived=False, questions_count__gte=20)
+
+        return queryset.exclude(
+            Q(skill_evaluations__isnull=False) & Q(skill_evaluations__user=user) if user.is_authenticated else Q())
+
+
 @extend_schema_view(
-    list=extend_schema(
-        summary="Liste des évaluations",
-        description="Récupère la liste des évaluations disponibles avec filtres et recherche",
-    ),
     create=extend_schema(
         summary="Créer une évaluation",
         description="Crée une nouvelle évaluation (admin uniquement)",
@@ -68,7 +112,7 @@ from wib_challenge.pagination import paginated_response
     )
 )
 @extend_schema(tags=['Évaluations'])
-class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
+class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIView, viewsets.GenericViewSet):
     """
     ViewSet pour gérer les évaluations et les sessions d'évaluation
     """
@@ -102,25 +146,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
             )
         )
 
-        if self.action == 'list':
-            queryset = queryset.exclude(evaluation_type=EvaluationType.COMPETITION)
-
-        user = self.request.user
-        if user.is_authenticated:
-            if not user.is_staff:
-                queryset = queryset.filter(
-                    ((
-                             Q(archived=True, publisher=user) |
-                             Q(archived=False)
-                     ) & (
-                             Q(questions_count__gte=20) |
-                             Q(publisher=user)
-                     )) | (Q(attempts__participant__user=user) if 'results' == self.action else Q())
-                )
-        else:
-            queryset = queryset.filter(archived=False, questions_count__gte=20)
-
-        return queryset.exclude(skill_evaluations__isnull=False)
+        return queryset
 
     def perform_create(self, serializer):
         serializer.save(publisher=self.request.user)
@@ -138,7 +164,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=EvaluationSerializer())},
         summary="Liste des compétitions",
         description="Récupère toutes les compétitions disponibles",
@@ -152,7 +178,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=EvaluationSerializer())},
         summary="Compétitions actives",
         description="Récupère les compétitions actuellement actives",
@@ -171,7 +197,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: EvaluationResponseSerializer}
     )
     @action(detail=True, methods=['get'], url_path='grouped')
@@ -199,7 +225,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         parameters=[
             OpenApiParameter(name='invite_id', type=int, location=OpenApiParameter.PATH)
         ],
@@ -220,7 +246,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=SubmissionAttemptListSerializer())},
         summary="Mes tentatives d'évaluation",
         description="Récupère toutes mes tentatives pour une évaluation",
@@ -241,7 +267,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
             return Response(_("Evaluation not found"), status=status.HTTP_404_NOT_FOUND)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=SubmissionAttemptListSerializer())},
         summary="Mes tentatives d'évaluation",
         description="Récupère toutes mes tentatives pour une évaluation",
@@ -256,7 +282,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return paginated_response(self, attempts, SubmissionAttemptListSerializer)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=SubmissionAttemptListSerializer())},
         summary="Tentatives d'évaluation",
         description="Récupère toutes les tentatives pour une évaluation",
@@ -275,7 +301,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return paginated_response(self, attempts, SubmissionAttemptListSerializer)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=CandidateResultSerializer())},
         summary="Résultats d'une évaluation",
         description="Récupère les résultats d'une évaluation",
@@ -291,7 +317,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return paginated_response(self, attempts, CandidateResultSerializer)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         parameters=[
             OpenApiParameter(name='result_id', type=int, location=OpenApiParameter.PATH)
         ],
@@ -669,7 +695,7 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
         return Response(serializer_data, status=status.HTTP_201_CREATED)
 
     @extend_schema(
-        request=OpenApiRequest()
+        request=None
     )
     @action(detail=False, methods=['post'], url_path='test-skills')
     def test_skills(self, request):
@@ -683,11 +709,11 @@ class EvaluationViewSet(AccessViewSetMixin, viewsets.ModelViewSet):
             experience_level=ExperienceLevel.INTERMEDIATE,
             technologies=techs
         )
-        skill_evaluation = SkillEvaluation.objects.create(evaluation=evaluation, user=request.user)
+        SkillEvaluation.objects.create(evaluation=evaluation, user=request.user)
         return Response(EvaluationSerializer(evaluation).data, status=status.HTTP_201_CREATED)
 
     @extend_schema(
-        request=OpenApiRequest(),
+        request=None,
         responses={200: ListSerializer(child=SkillEvaluationSerializer())}
     )
     @test_skills.mapping.get

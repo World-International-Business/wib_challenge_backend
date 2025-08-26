@@ -4,16 +4,14 @@ from django.db.models import Sum
 from drf_spectacular.utils import extend_schema_field, inline_serializer
 from rest_framework import serializers
 
-from apps.core.models import Technology
-from apps.evaluations.models import Answer, EvaluationInvitation, SubmissionAttempt, Submission
+from apps.evaluations.models import EvaluationInvitation, SubmissionAttempt, Submission
 from apps.evaluations.serializers import AnswerSerializer, ParticipantSerializer
+from apps.evaluations.utils.stats import get_evaluation_tech_stats, split_answers
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
-    answers = AnswerSerializer(
-        source='attempt.answers', many=True, read_only=True)
-    max_score = serializers.FloatField(
-        source='attempt.evaluation.max_score', read_only=True)
+    answers = AnswerSerializer(source='attempt.answers', many=True, read_only=True)
+    max_score = serializers.FloatField(source='attempt.evaluation.max_score', read_only=True)
 
     class Meta:
         model = Submission
@@ -57,7 +55,8 @@ class CandidateResultSerializer(serializers.ModelSerializer):
             return obj.started_at
         else:
             invitation = EvaluationInvitation.objects.filter(
-                evaluation=obj.evaluation, candidate=obj.participant.candidate
+                evaluation=obj.evaluation,
+                candidate=obj.participant.candidate
             ).first()
 
             if invitation:
@@ -67,8 +66,7 @@ class CandidateResultSerializer(serializers.ModelSerializer):
 
     @extend_schema_field(
         inline_serializer(
-            name='CandidateResultStats',
-            many=True,
+            name='CandidateResultStats', many=True,
             fields={
                 'technology': serializers.CharField(),
                 'score': serializers.FloatField(),
@@ -82,33 +80,15 @@ class CandidateResultSerializer(serializers.ModelSerializer):
         )
     )
     def get_stats(self, attempt: SubmissionAttempt):
-        if not attempt or not attempt.is_completed:
-            return None
-        technologies = Technology.objects.filter(questions__evaluations=attempt.evaluation).distinct()
-
         stats = []
-        for tech in technologies:
-            tech_questions = tech.questions.filter(
-                evaluations=attempt.evaluation)
-            answers = attempt.answers.filter(question__in=tech_questions)
-
-            total_questions = tech_questions.count()
-            correct_answers, discarded_answers, incorrect_answers, partial_answers, timeout_answers = self.split_answers(
-                answers)
-
-            score = answers.aggregate(total_score=Sum('score'))[
-                        'total_score'] or 0.0
-
-            stats.append({
-                'technology': tech.name,
-                'score': round(score, 2),
-                'total_questions': total_questions,
-                'correct_answers': correct_answers,
-                'incorrect_answers': incorrect_answers,
-                'partial_answers': partial_answers,
-                'timeout_answers': timeout_answers,
-                'discarded_answers': discarded_answers,
-            })
+        if not attempt or not attempt.is_completed:
+            return stats
+        for stat in get_evaluation_tech_stats(attempt):
+            stats.append(
+                {'technology': stat.technology.name, 'score': stat.score, 'total_questions': stat.total_questions,
+                 'correct_answers': stat.correct_answers, 'incorrect_answers': stat.incorrect_answers,
+                 'partial_answers': stat.partial_answers, 'timeout_answers': stat.timeout_answers,
+                 'discarded_answers': stat.discarded_answers, })
 
         return stats
 
@@ -135,32 +115,18 @@ class CandidateResultSerializer(serializers.ModelSerializer):
             return None
         answers = attempt.answers.filter(question__technology=None)
 
-        correct_answers, discarded_answers, incorrect_answers, partial_answers, timeout_answers = self.split_answers(
-            answers)
-
-        score = answers.aggregate(total_score=Sum('score'))[
-                    'total_score'] or 0.0
+        stat = split_answers(answers)
+        score = answers.aggregate(total_score=Sum('score'))['total_score'] or 0.0
 
         return {
             'score': round(score, 2),
             'total_questions': total_questions,
-            'correct_answers': correct_answers,
-            'incorrect_answers': incorrect_answers,
-            'timeout_answers': timeout_answers,
-            'discarded_answers': discarded_answers,
-            'partial_answers': partial_answers,
+            'correct_answers': stat.correct,
+            'incorrect_answers': stat.incorrect,
+            'partial_answers': stat.partial,
+            'timeout_answers': stat.timeout,
+            'discarded_answers': stat.discarded,
         }
-
-    def split_answers(self, answers):
-        correct_answers = answers.filter(status=Answer.Status.CORRECT).count()
-        partial_answers = answers.filter(status=Answer.Status.PARTIAL).count()
-        timeout_answers = answers.filter(
-            status=Answer.Status.TIMEOUT).count()
-        discarded_answers = answers.filter(
-            status=Answer.Status.DISCARDED).count()
-        incorrect_answers = answers.filter(
-            status=Answer.Status.INCORRECT).count()
-        return correct_answers, discarded_answers, incorrect_answers, partial_answers, timeout_answers
 
     @extend_schema_field(
         inline_serializer(
@@ -176,7 +142,8 @@ class CandidateResultSerializer(serializers.ModelSerializer):
     )
     def get_invitation(self, obj: SubmissionAttempt):
         invitation = EvaluationInvitation.objects.filter(
-            evaluation=obj.evaluation, candidate=obj.participant.candidate
+            evaluation=obj.evaluation,
+            candidate=obj.participant.candidate
         ).first()
         if invitation:
             return {

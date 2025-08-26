@@ -1,5 +1,3 @@
-from sqlite3.dbapi2 import paramstyle
-
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
 from rest_framework_nested.viewsets import NestedViewSetMixin

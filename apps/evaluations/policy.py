@@ -4,7 +4,7 @@ from rest_access_policy import AccessPolicy, Statement
 class EvaluationPolicy(AccessPolicy):
     statements = [
         Statement(
-            action=['list', 'get_by_slug', 'retrieve', 'competitions', 'active_competitions'],
+            action=['get_by_slug', 'retrieve', 'competitions', 'active_competitions'],
             principal='*',
             effect='allow',
         ),

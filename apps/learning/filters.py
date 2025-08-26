@@ -27,10 +27,7 @@ class ModuleFilter(django_filters.FilterSet):
     """Filtres pour les modules"""
     title = django_filters.CharFilter(lookup_expr='icontains', label='Titre')
     description = django_filters.CharFilter(lookup_expr='icontains', label='Description')
-    course = django_filters.ModelChoiceFilter(
-        queryset=Course.objects.all(),
-        label='Cours'
-    )
+
     course_level = django_filters.ChoiceFilter(
         field_name='course__level',
         choices=SkillLevel.choices,

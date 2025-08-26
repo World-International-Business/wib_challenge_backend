@@ -8,6 +8,7 @@ from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
     Progress, Certificate, ContentType
 )
+from ..evaluations.models import SubmissionAttempt
 
 User = get_user_model()
 
@@ -399,11 +400,12 @@ class CourseSerializer(WritableNestedModelSerializer):
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
     user_progress = serializers.SerializerMethodField()
+    skills = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
 
     class Meta:
         model = Course
         fields = [
-            'id', 'title', 'description', 'level', 'is_free',
+            'id', 'title', 'description', 'level', 'is_free', 'skills',
             'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'user_progress'
         ]
         read_only_fields = ['id']
@@ -466,10 +468,11 @@ class CourseListSerializer(serializers.ModelSerializer):
     module_count = serializers.SerializerMethodField()
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
+    skills = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'description', 'level', 'is_free', 'module_count', 'total_content_count',
+        fields = ['id', 'title', 'description', 'level', 'is_free', 'module_count', 'total_content_count', 'skills',
                   'total_quiz_count']
         read_only_fields = ['id']
 
@@ -583,3 +586,15 @@ class QuizAnswerSubmissionSerializer(serializers.Serializer):
         if not value:
             raise serializers.ValidationError(_("Au moins une réponse est requise"))
         return value
+
+
+class CourseSuggestSerializer(serializers.Serializer):
+    result = serializers.IntegerField()
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        try:
+            SubmissionAttempt.objects.get(pk=attrs.get('result'), is_completed=True)
+            return attrs
+        except SubmissionAttempt.DoesNotExist:
+            raise serializers.ValidationError(_("Le résultat spécifié n'existe pas ou n'est pas disponible"))

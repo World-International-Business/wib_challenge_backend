@@ -166,6 +166,8 @@ class AnswerSerializer(WritableNestedModelSerializer):
 
 class SubmissionAttemptListSerializer(serializers.ModelSerializer):
     candidate = ParticipantSerializer(source='participant', read_only=True)
+    title = serializers.CharField(source='evaluation.title', read_only=True)
+    score = serializers.FloatField(source='submission.score', read_only=True)
 
     class Meta:
         model = SubmissionAttempt

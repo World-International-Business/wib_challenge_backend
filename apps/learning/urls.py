@@ -1,8 +1,8 @@
+from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-from .views import (
-    CourseViewSet, ModuleViewSet, ContentViewSet, QuizViewSet, QuizQuestionViewSet, QuizChoiceViewSet,
-    QuizResultViewSet, ProgressViewSet, CertificateViewSet
-)
+
+from .views import (CourseViewSet, ModuleViewSet, ContentViewSet, QuizViewSet, QuizQuestionViewSet, QuizChoiceViewSet,
+                    QuizResultViewSet, ProgressViewSet, CertificateViewSet, CourseSuggestionView)
 
 router = DefaultRouter()
 
@@ -16,4 +16,7 @@ router.register(r'quiz-results', QuizResultViewSet, basename='quiz-result')
 router.register(r'progress', ProgressViewSet, basename='progress')
 router.register(r'certificates', CertificateViewSet, basename='certificate')
 
-urlpatterns = router.urls
+urlpatterns = [
+    re_path('courses/suggest/?$', CourseSuggestionView.as_view(), name='suggest_courses'),
+    path('', include(router.urls))
+]

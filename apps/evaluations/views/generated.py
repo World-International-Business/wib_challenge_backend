@@ -1,7 +1,7 @@
 from django.db import transaction
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
-from rest_framework.decorators import permission_classes, api_view
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -37,41 +37,41 @@ QUESTIONS_PER_TECH = {
 }
 
 
-@extend_schema(
-    request=AutomaticEvaluationSerializer,
-    summary="Création automatique d'évaluation",
-    description="Génère une évaluation basée sur une profession, un niveau d'expérience et des technologies",
-    responses={201: EvaluationResponseSerializer}
-)
-@permission_classes([IsAuthenticated, IsCreator])
-@api_view(['POST'])
-@transaction.atomic
-def generate_evaluation_from_specs(request):
+class GenerateEvaluationFromSpecsView(GenericAPIView):
     """
     Création automatique d'une évaluation basée sur :
     * Profession (pour le titre)
     * Niveau d'expérience (junior, intermediate, senior)
     * Liste de Technologies
     """
-    serializer = AutomaticEvaluationSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
+    permission_classes = [IsAuthenticated, IsCreator]
+    serializer_class = AutomaticEvaluationSerializer
 
-    profession = serializer.validated_data['profession']
-    experience_level = serializer.validated_data['experience_level']
-    technologies = serializer.validated_data['technologies']
-
-    evaluation = create_evaluation_from_techs(
-        publisher=request.user,
-        title=f"Évaluation {profession.title} - {experience_level.capitalize()}",
-        description=f"Évaluation automatique pour {profession.title} niveau {experience_level.capitalize()}",
-        experience_level=experience_level,
-        technologies=technologies
+    @extend_schema(
+        summary="Création automatique d'évaluation",
+        description="Génère une évaluation basée sur une profession, un niveau d'expérience et des technologies",
+        responses={201: EvaluationResponseSerializer}
     )
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-    response_data = EvaluationResponseSerializer(evaluation, context={
-        'request': request,
-    }).data
-    return Response(response_data, status=status.HTTP_201_CREATED)
+        profession = serializer.validated_data['profession']
+        experience_level = serializer.validated_data['experience_level']
+        technologies = serializer.validated_data['technologies']
+
+        evaluation = create_evaluation_from_techs(
+            publisher=request.user,
+            title=f"Évaluation {profession.title} - {experience_level.capitalize()}",
+            description=f"Évaluation automatique pour {profession.title} niveau {experience_level.capitalize()}",
+            experience_level=experience_level,
+            technologies=technologies
+        )
+
+        response_data = EvaluationResponseSerializer(evaluation, context={
+            'request': request,
+        }).data
+        return Response(response_data, status=status.HTTP_201_CREATED)
 
 
 def create_evaluation_from_techs(publisher, title, description, experience_level, technologies):
@@ -118,66 +118,69 @@ def create_evaluation_from_techs(publisher, title, description, experience_level
     return evaluation
 
 
-@extend_schema(
-    request=AutomaticPersonalityEvaluationSerializer,
-    summary="Création automatique d'évaluation de personnalité",
-    description="Génère une évaluation de personnalité basée sur une profession, un niveau d'expérience et d'une description",
-    responses={201: EvaluationResponseSerializer}
-)
-@permission_classes([IsAuthenticated, IsCreator])
-@api_view(['POST'])
-@transaction.atomic
-def generate_personality_evaluation(request):
+class GeneratePersonalityEvaluationView(GenericAPIView):
     """
     Création automatique d'une évaluation de personnalité basée sur :
     * Profession (pour le titre)
     * Niveau d'expérience (junior, intermediate, senior)
     * Description du poste
     """
-    serializer = AutomaticPersonalityEvaluationSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
+    permission_classes = [IsAuthenticated, IsCreator]
+    serializer_class = AutomaticPersonalityEvaluationSerializer
 
-    profession = serializer.validated_data['profession']
-    experience_level = serializer.validated_data['experience_level']
-    description = serializer.validated_data['description']
-
-    try:
-        data = generate_evaluation(profession, experience_level, description)
-    except Exception as e:
-        return Response(
-            {"detail": f"Erreur lors de la génération des questions: {str(e)}"},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-
-    evaluation = Evaluation.objects.create(
-        publisher=request.user,
-        title=f"Évaluation Personnalité {profession.title} - {experience_level.capitalize()}",
-        description=data.theme,
-        profession=profession,
-        type=EvaluationType.PERSONALITY,
-        questions_order=QuestionOrder.RANDOM
+    @extend_schema(
+        summary="Création automatique d'évaluation de personnalité",
+        description="Génère une évaluation de personnalité basée sur une profession, un niveau d'expérience et d'une description",
+        responses={201: EvaluationResponseSerializer}
     )
+    @transaction.atomic
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-    all_questions = [
-        Question(
-            text=question.text,
-            evaluation=evaluation,
-            duration=60,
-            difficulty=Question.Difficulty.MEDIUM,
-        )
-        for question in data.questions
-    ]
-    Question.objects.bulk_create(all_questions)
-    Choice.objects.bulk_create([
-        Choice(
-            question=question,
-            text=choice.text,
-            is_correct=choice.is_correct,
-        )
-        for i, question in enumerate(all_questions) for choice in data.questions[i].choices
-    ])
+        profession = serializer.validated_data['profession']
+        experience_level = serializer.validated_data['experience_level']
+        description = serializer.validated_data['description']
 
-    response_data = EvaluationResponseSerializer(evaluation, context={
-        'request': request,
-    }).data
-    return Response(response_data, status=status.HTTP_201_CREATED)
+        try:
+            data = generate_evaluation(profession, experience_level, description)
+        except Exception as e:
+            return Response(
+                {"detail": f"Erreur lors de la génération des questions: {str(e)}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        evaluation = Evaluation.objects.create(
+            publisher=request.user,
+            title=f"Évaluation Personnalité {profession.title} - {experience_level.capitalize()}",
+            description=data.theme,
+            profession=profession,
+            type=EvaluationType.PERSONALITY,
+            questions_order=QuestionOrder.RANDOM
+        )
+
+        all_questions = [
+            Question(
+                text=question.text,
+                evaluation=evaluation,
+                duration=60,
+                difficulty=Question.Difficulty.MEDIUM,
+            )
+            for question in data.questions
+        ]
+        Question.objects.bulk_create(all_questions)
+        Choice.objects.bulk_create([
+            Choice(
+                question=question,
+                text=choice.text,
+                is_correct=choice.is_correct,
+            )
+            for i, question in enumerate(all_questions) for choice in data.questions[i].choices
+        ])
+
+        response_data = EvaluationResponseSerializer(evaluation, context={
+            'request': request,
+        }).data
+        return Response(
+            response_data, status=status.HTTP_201_CREATED
+        )

@@ -2,12 +2,16 @@ from django.db import transaction
 from django.db.models import Avg, Max
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema, extend_schema_view
-from rest_framework import viewsets, permissions, status
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
+from rest_framework import viewsets, permissions, status, generics
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
+from services.suggest_courses import suggest_courses_from_attempt
+from wib_challenge.pagination import paginated_response
 from .filters import (
     CourseFilter, ModuleFilter, ContentFilter, QuizFilter, QuizQuestionFilter, QuizChoiceFilter,
     QuizResultFilter, ProgressFilter, CertificateFilter
@@ -21,8 +25,9 @@ from .serializers import (
     QuizSerializer, QuizPublicSerializer, QuizListSerializer, QuizQuestionSerializer,
     QuizChoiceSerializer, QuizResultSerializer, ProgressSerializer, CertificateSerializer,
     CourseProgressSerializer, UserProgressStatsSerializer, QuizStatsSerializer,
-    QuizSubmissionSerializer
+    QuizSubmissionSerializer, CourseSuggestSerializer
 )
+from ..evaluations.models import SubmissionAttempt
 
 
 @extend_schema_view(
@@ -87,6 +92,9 @@ class CourseViewSet(viewsets.ModelViewSet):
         if self.action == 'list':
             return CourseListSerializer
         return CourseSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(publisher=self.request.user)
 
     @extend_schema(
         summary="Progrès du cours",
@@ -681,36 +689,7 @@ class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 @extend_schema_view(
-    list=extend_schema(
-        summary="Liste des questions de quiz",
-        description="Récupérer la liste des questions de quiz",
-        tags=["Quiz"]
-    ),
-    retrieve=extend_schema(
-        summary="Détails d'une question de quiz",
-        description="Récupérer les détails d'une question de quiz",
-        tags=["Quiz"]
-    ),
-    create=extend_schema(
-        summary="Créer une question de quiz",
-        description="Créer une nouvelle question de quiz",
-        tags=["Quiz"]
-    ),
-    update=extend_schema(
-        summary="Mettre à jour une question de quiz",
-        description="Mettre à jour complètement une question de quiz",
-        tags=["Quiz"]
-    ),
-    partial_update=extend_schema(
-        summary="Mettre à jour partiellement une question de quiz",
-        description="Mettre à jour partiellement une question de quiz",
-        tags=["Quiz"]
-    ),
-    destroy=extend_schema(
-        summary="Supprimer une question de quiz",
-        description="Supprimer définitivement une question de quiz",
-        tags=["Quiz"]
-    )
+    tags=["Quiz"]
 )
 class QuizQuestionViewSet(viewsets.ModelViewSet):
     """ViewSet pour la gestion des questions de quiz"""
@@ -766,3 +745,30 @@ class QuizChoiceViewSet(viewsets.ModelViewSet):
     search_fields = ['text']
     ordering_fields = ['text']
     ordering = ['id']
+
+
+@extend_schema(
+    tags=["Suggestion de cours"]
+)
+class CourseSuggestionView(generics.ListAPIView):
+    serializer_class = CourseSuggestSerializer
+    permission_classes = []  # [IsAuthenticated]
+    queryset = Course.objects.all()
+
+    @extend_schema(
+        parameters=[
+            OpenApiParameter('result', required=True, type=OpenApiTypes.INT)
+        ],
+        responses=CourseSerializer(many=True)
+    )
+    def get(self, request):
+        """Obtenir des suggestions de cours"""
+        serializer = self.get_serializer(data=request.GET)
+        serializer.is_valid(raise_exception=True)
+        courses = suggest_courses_from_attempt(
+            get_object_or_404(
+                SubmissionAttempt.objects.all(),
+                pk=serializer.validated_data['result']
+            )
+        )
+        return paginated_response(self, courses, CourseSerializer)
