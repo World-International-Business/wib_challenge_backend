@@ -18,10 +18,8 @@ evaluation_router.register('questions', EvaluationQuestionsViewSet, basename='qu
 evaluation_router.register('participants', ParticipantViewSet, basename='participants')
 
 urlpatterns = [
-    path('evaluations/', EvaluationSearchView.as_view(), name='evaluation-search'),
+    path('evaluations/', EvaluationSearchView.as_view({'post': 'create', 'get': 'list'}), name='evaluation-search'),
     path('evaluations/builder/', GenerateEvaluationFromSpecsView.as_view(), name='generate-evaluation'),
     path('evaluations/personality-builder/', GeneratePersonalityEvaluationView.as_view(),
-         name='generate-personality-evaluation'),
-    path('', include(router.urls)),
-    path('', include(evaluation_router.urls)),
-]
+         name='generate-personality-evaluation'), path('', include(router.urls)),
+    path('', include(evaluation_router.urls)), ]

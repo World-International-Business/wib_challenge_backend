@@ -32,7 +32,7 @@ class RecentlyJoinedFilter(admin.SimpleListFilter):
     parameter_name = 'recent'
 
     def lookups(self, request, model_admin):
-        return (('7', _('Cette semaine')), ('30', _('Ce mois')), ('90', _('Ces 3 mois')),)
+        return ('7', _('Cette semaine')), ('30', _('Ce mois')), ('90', _('Ces 3 mois')),
 
     def queryset(self, request, queryset):
         if self.value():

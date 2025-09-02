@@ -1,5 +1,5 @@
 redis==6.4.0
-Django==5.1.8
+Django==5.2.5
 pillow==11.3.0
 openpyxl==3.1.5
 pymupdf==1.26.4
@@ -11,7 +11,7 @@ whitenoise==6.9.0
 django-filter==25.1
 django-redis==6.0.0
 python-decouple==3.8
-google-genai==1.31.0
+google-genai==1.32.0
 google-auth==2.40.3
 dj-database-url==3.0.1
 django-extensions==4.1

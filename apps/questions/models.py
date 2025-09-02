@@ -1,5 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TitleSlugDescriptionModel
 
@@ -43,13 +45,20 @@ class Question(BaseModel, TitleSlugDescriptionModel):
     technology = models.ForeignKey(Technology, on_delete=models.CASCADE, related_name='questions',
                                    verbose_name=_('Technologie'), null=True, blank=True, db_index=True)
 
+    weight = models.IntegerField(_('Poids'), default=100, db_index=True)
+
     def __str__(self):
         return self.title[:50]
 
-    @property
-    def weight(self) -> int:
-        """Retourne le poids associé à la difficulté de la question"""
+    def get_weight_from_difficulty(self):
+        """Calcule le poids en fonction de la difficulté"""
         return self.DIFFICULTY_WEIGHTS.get(self.difficulty, 0)
+
+
+@receiver(pre_save, sender=Question)
+def set_question_weight(sender, instance, **kwargs):
+    """Met à jour automatiquement le poids en fonction de la difficulté"""
+    instance.weight = instance.get_weight_from_difficulty()
 
 
 class Choice(BaseModel):

@@ -43,6 +43,10 @@ class CandidateProfile(BaseModel):
         verbose_name = _('Profil')
         verbose_name_plural = _('Profils')
         ordering = ('user__first_name', '-created_at', 'profession__title')
+        indexes = [
+            models.Index(fields=['open_to_work']),
+            models.Index(fields=['years_experience']),
+        ]
 
 
 class Experience(BaseModel):

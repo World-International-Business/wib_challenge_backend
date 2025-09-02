@@ -11,6 +11,8 @@ from rest_framework.response import Response
 
 from services.cv_analyzer import analyze_job_application
 from services.generate_offer import generate_offer
+from services.users_job_suggestions import get_users_suggestions_for_job
+from wib_challenge.pagination import paginated_response
 from wib_challenge.permissions import ReadOnly
 from .filters import JobOfferFilter, JobApplicationFilter
 from .models import JobCategory, JobOffer, JobApplication
@@ -21,6 +23,7 @@ from .serializers import (
     JobOfferCreateUpdateSerializer, GenerateJobOfferSerializer, JobApplicationSerializer
 )
 from ..accounts.permissions import IsOrganization
+from ..accounts.serializers import UserSerializer
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -201,6 +204,15 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         job_application = analyze_job_application(job_application, job_offer)
         serializer = JobApplicationSerializer(instance=job_application)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @extend_schema(
+        request=None,
+        responses=UserSerializer(many=True)
+    )
+    @action(detail=True, methods=['get'], url_path='suggest-users')
+    def suggest_users(self, request, pk=None):
+        users = get_users_suggestions_for_job(self.get_object())
+        return paginated_response(self, users, UserSerializer)
 
 
 @extend_schema(tags=['Offres d\'emploi'])

@@ -54,7 +54,7 @@ class Command(BaseCommand):
             except Technology.DoesNotExist:
                 self.stdout.write(self.style.ERROR(
                     f'Technology "{tech_name}" not found. Skipping file {data_file.name}.'))
-                return
+                return None
 
             questions_data = data.pop('questions', [])
 
@@ -71,7 +71,7 @@ class Command(BaseCommand):
             if not force and not created:
                 self.stdout.write(self.style.WARNING(
                     f'Évaluation "{evaluation.title}" already exists. Use --force to update. Skipping file {data_file.name}.'))
-                return
+                return None
 
             existing_questions = {
                 q.title.lower(): q for q in
@@ -87,7 +87,7 @@ class Command(BaseCommand):
                     question = existing_questions.get(title.lower())
                 except:
                     print(q_data)
-                    return KeyboardInterrupt
+                    raise KeyboardInterrupt
 
                 if question:
                     for field, value in q_data.items():

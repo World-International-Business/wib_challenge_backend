@@ -42,7 +42,7 @@ from wib_challenge.pagination import paginated_response
 
 
 @extend_schema(tags=['Évaluations'])
-class EvaluationSearchView(generics.ListAPIView):
+class EvaluationSearchView(AccessViewSetMixin, generics.ListAPIView, generics.CreateAPIView, viewsets.GenericViewSet):
     serializer_class = EvaluationSerializer
     queryset = Evaluation.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -50,6 +50,7 @@ class EvaluationSearchView(generics.ListAPIView):
     search_fields = ['title', 'description', 'technology__name', 'profession__title']
     ordering_fields = ['created_at', 'updated_at', 'title', 'difficulty']
     ordering = ['-created_at']
+    access_policy = EvaluationPolicy
 
     def get_queryset(self):
         queryset = (
@@ -88,6 +89,9 @@ class EvaluationSearchView(generics.ListAPIView):
         return queryset.exclude(
             Q(skill_evaluations__isnull=False) & Q(skill_evaluations__user=user) if user.is_authenticated else Q())
 
+    def perform_create(self, serializer):
+        serializer.save(publisher=self.request.user)
+
 
 @extend_schema_view(
     create=extend_schema(
@@ -112,7 +116,8 @@ class EvaluationSearchView(generics.ListAPIView):
     )
 )
 @extend_schema(tags=['Évaluations'])
-class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIView, viewsets.GenericViewSet):
+class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIView,
+                        viewsets.GenericViewSet):
     """
     ViewSet pour gérer les évaluations et les sessions d'évaluation
     """
@@ -147,9 +152,6 @@ class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIVie
         )
 
         return queryset
-
-    def perform_create(self, serializer):
-        serializer.save(publisher=self.request.user)
 
     @method_decorator(cache_page(60 * 5))
     @extend_schema(

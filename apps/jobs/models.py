@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_extensions.db.models import TitleSlugDescriptionModel
 
-from apps.core.models import BaseModel
+from apps.core.models import BaseModel, Technology
 from apps.evaluations.models import ExperienceLevel
 from apps.organizations.models import Organization
 
@@ -52,6 +52,7 @@ class JobOffer(TitleSlugDescriptionModel):
     category = models.ForeignKey(JobCategory, on_delete=models.PROTECT, related_name='job_offers',
                                  verbose_name=_("Catégorie"))
     description = models.TextField(_("Description du poste"))
+    skills = models.ManyToManyField(Technology, verbose_name=_('Compétences'), related_name='jobs')
     responsibilities = models.TextField(_("Responsabilités"), blank=True)
     requirements = models.TextField(_("Prérequis"))
     benefits = models.TextField(_("Avantages"), blank=True)

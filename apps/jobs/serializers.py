@@ -1,7 +1,9 @@
+from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
 from apps.organizations.models import Organization
 from .models import JobCategory, JobOffer, JobApplication
+from ..core.models import Technology
 
 
 class JobCategorySerializer(serializers.ModelSerializer):
@@ -41,6 +43,7 @@ class JobOfferListSerializer(serializers.ModelSerializer):
 class JobOfferDetailSerializer(serializers.ModelSerializer):
     company = OrganizationBasicSerializer(read_only=True)
     category = JobCategorySerializer(read_only=True)
+    skills = serializers.SlugRelatedField(slug_field='name', read_only=True, many=True)
 
     class Meta:
         model = JobOffer
@@ -50,11 +53,13 @@ class JobOfferDetailSerializer(serializers.ModelSerializer):
             'salary_max', 'currency', 'job_type', 'experience_level',
             'location', 'remote_allowed', 'application_url', 'application_email',
             'status', 'featured', 'created_at', 'updated_at', 'published_at',
-            'expires_at'
+            'expires_at', 'skills'
         ]
 
 
-class JobOfferCreateUpdateSerializer(serializers.ModelSerializer):
+class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
+    skills = serializers.SlugRelatedField(slug_field='name', many=True, queryset=Technology.objects.all())
+
     class Meta:
         model = JobOffer
         fields = [
@@ -62,7 +67,7 @@ class JobOfferCreateUpdateSerializer(serializers.ModelSerializer):
             'requirements', 'benefits', 'salary_min', 'salary_max',
             'currency', 'job_type', 'experience_level', 'location',
             'remote_allowed', 'application_url', 'application_email',
-            'status', 'featured', 'expires_at'
+            'status', 'featured', 'expires_at', 'skills'
         ]
 
     def validate(self, data):
@@ -77,18 +82,31 @@ class JobOfferCreateUpdateSerializer(serializers.ModelSerializer):
 class GenerateJobOfferSerializer(serializers.ModelSerializer):
     prompt = serializers.CharField(write_only=True)
     analyze = serializers.CharField(read_only=True)
+    skills = serializers.SlugRelatedField(slug_field='name', many=True, queryset=Technology.objects.all())
 
     class Meta:
         model = JobOffer
         fields = ['title', 'description', 'responsibilities',
-                  'requirements', 'benefits', 'prompt', 'analyze']
+                  'requirements', 'benefits', 'prompt', 'analyze', 'skills']
         extra_kwargs = {
             'title': {'required': False},
             'description': {'required': False},
             'responsibilities': {'required': False},
             'requirements': {'required': False},
             'benefits': {'required': False},
+            'skills': {'required': False}
         }
+
+    def validate_skills(self, skills):
+        if not skills:
+            return []
+
+        matched_skills = []
+        for skill in skills:
+            matched_skill = Technology.objects.filter(name__icontains=skill).first()
+            if matched_skill:
+                matched_skills.append(matched_skill.name)
+        return list(set(matched_skills))
 
 
 class JobApplicationSerializer(serializers.ModelSerializer):

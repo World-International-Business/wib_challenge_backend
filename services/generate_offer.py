@@ -1,5 +1,5 @@
 from google.genai.types import GenerateContentConfigDict
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from services.utils import get_genai_client, GEMINI_MODEL_LITE
 
@@ -11,6 +11,7 @@ class OfferInfo(BaseModel):
     requirements: str | None = None
     benefits: str | None = None
     analyze: str | None = None
+    skills: list[str] | None = Field(None, description='Technologies/competences de deux mots max')
 
 
 def generate_offer(prompt_description: str, data: dict[str, str]):
@@ -26,6 +27,7 @@ def generate_offer(prompt_description: str, data: dict[str, str]):
         f"Exigences : {offer.requirements or 'Non spécifié'}\n"
         f"Avantages : {offer.benefits or 'Non spécifié'}\n"
         "Structure l'offre de façon professionnelle et attractive.\n"
+        "Pour les champs avec plusieurs éléments, mets un élément par ligne (pas de markdown).\n"
         "Analyse : Dis moi si je dois te fournir plus de detail et Donne moi des suggestions si applicable en utilisant le champ `analyze` au format Markdown."
         "NB: uniquement le champ `analyze` accepte le markdown"
     )

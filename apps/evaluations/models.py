@@ -165,7 +165,11 @@ class SubmissionAttempt(models.Model):
     class Meta:
         verbose_name = _('Tentative de soumission')
         verbose_name_plural = _('Tentatives de soumission')
-        indexes = [models.Index(fields=['started_at']), ]
+        indexes = [
+            models.Index(fields=['started_at']),
+            models.Index(fields=['participant', 'evaluation']),
+            models.Index(fields=['is_completed']),
+        ]
         ordering = ['-started_at']
 
     def __str__(self):
