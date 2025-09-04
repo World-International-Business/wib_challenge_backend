@@ -691,7 +691,8 @@ class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIVie
         self.check_can_update(evaluation)
         serializer = QuestionSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        instance = serializer.save()
+        instance = serializer.save(publisher=self.request.user,
+                                   status=Question.Status.PUBLISHED if not self.request.user.is_dev else Question.Status.PENDING)
         evaluation.questions.add(instance)
         serializer_data = EvaluationResponseSerializer(evaluation, context={'request': request}).data
         return Response(serializer_data, status=status.HTTP_201_CREATED)

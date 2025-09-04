@@ -232,6 +232,10 @@ Cours
 - **Correspondance compétences** : Analyse fine des technologies
 - **Scoring prédictif** : Probabilité de réussite du candidat
 - **Classement automatique** : Tri par pertinence
+- **Voir Plus** :
+- https://claude.ai/share/481e04db-a4b4-4a5a-9319-61a66301ff9f
+- https://chatgpt.com/share/68b975a2-4f00-800b-86cf-718d9ae9f77f
+- https://grok.com/s/c2hhcmQtNA%3D%3D_b6cdf296-7fda-4470-9e5d-ad0f1b3f9201
 
 ### 3.4 Processus de Recrutement
 

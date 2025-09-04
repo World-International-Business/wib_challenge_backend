@@ -1,4 +1,4 @@
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_nested.viewsets import NestedViewSetMixin
@@ -9,9 +9,6 @@ from apps.evaluations.serializers import ParticipantSerializer
 
 @extend_schema(
     tags=['Evaluation Participants'],
-    parameters=[
-        OpenApiParameter(name='evaluation_pk', type=int, location=OpenApiParameter.PATH)
-    ]
 )
 class ParticipantViewSet(NestedViewSetMixin, viewsets.ReadOnlyModelViewSet):
     queryset = Participant.objects.all()

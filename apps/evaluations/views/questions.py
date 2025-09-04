@@ -8,9 +8,6 @@ from apps.questions.views import QuestionViewSetMixin
 
 @extend_schema(
     tags=["Evaluation Questions"],
-    parameters=[
-        OpenApiParameter(name='evaluation_pk', type=int, location=OpenApiParameter.PATH)
-    ]
 )
 class EvaluationQuestionsViewSet(QuestionViewSetMixin, NestedViewSetMixin, viewsets.ModelViewSet):
     parent_lookup_kwargs = {
