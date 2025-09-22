@@ -1,13 +1,18 @@
 from django.db.models import Count, Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
-from drf_spectacular.utils import extend_schema, OpenApiParameter
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiResponse, OpenApiExample
 from rest_framework import generics, filters, status, mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
+from rest_framework.generics import GenericAPIView
+import os
+import json
+from urllib.parse import quote
+import requests
 
 from services.cv_analyzer import analyze_job_application
 from services.generate_offer import generate_offer
@@ -24,6 +29,8 @@ from .serializers import (
 )
 from ..accounts.permissions import IsOrganization
 from ..accounts.serializers import UserSerializer
+from .serializers import JobMatchRequestSerializer
+from apps.accounts.models import User
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -271,3 +278,181 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             ).select_related('job_offer', 'job_offer__company')
         else:
             return JobApplication.objects.none()
+
+
+@extend_schema(tags=["Offres d'emploi"], request=JobMatchRequestSerializer)
+class JobMatchView(GenericAPIView):
+    """Endpoint /jobs/match qui relaye une requête vers le service FastAPI de matching.
+
+    Il prend un JSON réduit décrivant l'offre et l'encode dans le path
+    de la route externe: http://celeryfastapi-213-32-91-101.traefik.me/match/{json}
+    """
+    serializer_class = JobMatchRequestSerializer
+    permission_classes = []
+
+    MATCH_SERVICE_URL = os.getenv(
+        "JOB_MATCH_SERVICE_URL",
+        # "http://celeryfastapi-213-32-91-101.traefik.me",
+        "http://localhost:8001",
+    )
+
+    @extend_schema(
+        summary="Match d'un job avec des candidats",
+        description=(
+            "Effectue un matching entre une offre d'emploi et des candidats. "
+            "Retourne une liste de candidats avec leurs informations de contact et d'éventuelles erreurs."
+        ),
+        request=JobMatchRequestSerializer,
+        responses={
+            200: OpenApiResponse(
+                description="Liste des candidats avec leurs informations de contact",
+                response={
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "candidateId": {"type": "string", "description": "Identifiant unique du candidat"},
+                            "firstName": {"type": "string", "description": "Prénom du candidat"},
+                            "lastName": {"type": "string", "description": "Nom de famille du candidat"},
+                            "email": {"type": "string", "format": "email", "description": "Email du candidat"},
+                            "phone": {"type": "string", "description": "Numéro de téléphone du candidat"},
+                            "error": {"type": "string", "description": "Message d'erreur éventuel pour ce candidat"}
+                        },
+                        "required": ["candidateId", "firstName", "lastName", "email", "phone", "error"]
+                    }
+                }
+            ),
+            400: OpenApiResponse(description="Payload invalide"),
+            502: OpenApiResponse(description="Erreur lors de l'appel au service externe"),
+        },
+        examples=[
+            OpenApiExample(
+                "Exemple de requête complète",
+                value={
+                    "title": "Senior Backend Engineer",
+                    "description": "Développer des APIs scalables",
+                    "responsibilities": "Concevoir, coder, tester",
+                    "requirements": "5+ ans Python/Django",
+                    "benefits": "Télétravail, BSPCE",
+                    "jobType": "full_time",
+                    "experienceLevel": "senior",
+                    "location": "Paris",
+                    "remoteAllowed": True,
+                    "featured": True,
+                    "skills": ["Python", "Django", "PostgreSQL"]
+                },
+                request_only=True
+            ),
+            OpenApiExample(
+                "Exemple de réponse",
+                value=[
+                    {
+                        "candidateId": "123e4567-e89b-12d3-a456-426614174000",
+                        "firstName": "Jean",
+                        "lastName": "Dupont",
+                        "email": "jean.dupont@example.com",
+                        "phone": "+33123456789",
+                        "error": ""
+                    },
+                    {
+                        "candidateId": "123e4567-e89b-12d3-a456-426614174001",
+                        "firstName": "Marie",
+                        "lastName": "Martin",
+                        "email": "marie.martin@example.com",
+                        "phone": "+33987654321",
+                        "error": ""
+                    }
+                ],
+                response_only=True
+            )
+        ],
+    )
+    def post(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # Construire le JSON pour le service externe
+        payload = serializer.validated_data
+        # Adapter aux exigences du service FastAPI (champ 'id' requis et 'required_skills')
+        # L'API FastAPI attend id en chaîne: convertissons systématiquement
+        inbound_id = request.data.get("id", "0")
+        try:
+            outbound_id = str(inbound_id)
+        except Exception:
+            outbound_id = "0"
+
+        outbound = {
+            **payload,
+            "id": outbound_id,
+            "required_skills": payload.get("skills", []),
+        }
+        url = f"{self.MATCH_SERVICE_URL}/match"
+        try:
+            resp = requests.post(url, json=outbound, timeout=200)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_502_BAD_GATEWAY)
+
+        content_type = resp.headers.get("content-type", "")
+        if "application/json" in content_type:
+            try:
+                data = resp.json()
+            except Exception:
+                data = {"raw": resp.text}
+        else:
+            data = {"raw": resp.text}
+
+        # Si l'appel externe a échoué, renvoyer la réponse telle quelle
+        if resp.status_code >= 400:
+            return Response(data, status=resp.status_code)
+
+        # Transformer la réponse (liste de {rank, candidateId, score}) en contacts candidats
+        results = []
+        items = data if isinstance(data, list) else data.get("results", []) if isinstance(data, dict) else []
+        for item in items:
+            try:
+                # Supporter candidateId ou candidate_id
+                cid_raw = None
+                if isinstance(item, dict):
+                    cid_raw = item.get("candidateId") if "candidateId" in item else item.get("candidate_id")
+                cid_str = str(cid_raw) if cid_raw is not None else None
+
+                if not cid_str:
+                    results.append({
+                        "candidateId": None,
+                        "firstName": None,
+                        "lastName": None,
+                        "email": None,
+                        "phone": None,
+                        "error": "candidateId manquant"
+                    })
+                    continue
+
+                user = User.objects.filter(pk=cid_str).first()
+                if user is None:
+                    results.append({
+                        "candidateId": cid_str,
+                        "firstName": None,
+                        "lastName": None,
+                        "email": None,
+                        "phone": None,
+                        "error": "candidat introuvable"
+                    })
+                else:
+                    results.append({
+                        "candidateId": str(user.id),
+                        "firstName": user.first_name,
+                        "lastName": user.last_name,
+                        "email": user.email,
+                        "phone": user.phone,
+                    })
+            except Exception as e:
+                results.append({
+                    "candidateId": None,
+                    "firstName": None,
+                    "lastName": None,
+                    "email": None,
+                    "phone": None,
+                    "error": f"exception: {str(e)}"
+                })
+
+        return Response(results, status=status.HTTP_200_OK)
