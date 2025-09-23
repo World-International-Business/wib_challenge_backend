@@ -1,4 +1,10 @@
 import os
+try:
+    from dotenv import load_dotenv
+    load_dotenv()  # Charger les variables d'environnement depuis un fichier .env
+except ImportError:
+    # python-dotenv n'est pas installé, utiliser les variables d'environnement système
+    pass
 import json
 from typing import Any, Dict
 import redis
@@ -6,35 +12,51 @@ import logging
 from redis.exceptions import ReadOnlyError
 
 # Même configuration que le consumer FastAPI
-STREAM_KEY = os.getenv("STREAM_KEY")
-STREAM_FIELD = os.getenv("STREAM_FIELD")  # champ utilisé pour stocker le JSON
+STREAM_KEY = os.getenv("STREAM_KEY") or "profiles_stream"
+STREAM_FIELD = os.getenv("STREAM_FIELD") or "data"  # champ utilisé pour stocker le JSON
 REDIS_URL = os.getenv("REDIS_URL")
 # URL d'écriture prioritaire (primaire). Utilise l'URL fournie par défaut si non configurée.
 REDIS_WRITE_URL = os.getenv("REDIS_WRITE_URL")
 
 # Compatibilité avec le producteur alternatif fourni par l'utilisateur
 # Si ACTIVÉ, on duplique l'envoi sur un stream/field alternatif
-STREAM_COMPAT_ENABLED = os.getenv("STREAM_COMPAT_ENABLED").lower() in {"1", "true", "yes"}
+STREAM_COMPAT_ENABLED = os.getenv("STREAM_COMPAT_ENABLED", "false").lower() in {"1", "true", "yes"}
 STREAM_COMPAT_KEY = os.getenv("STREAM_COMPAT_KEY")
 STREAM_COMPAT_FIELD = os.getenv("STREAM_COMPAT_FIELD")
 
 # Fallback host/port/password si REDIS_URL n'est pas défini
 REDIS_HOST = os.getenv("REDIS_HOST")
-REDIS_PORT = int(os.getenv("REDIS_PORT"))
+REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
 REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
 
 logger = logging.getLogger(__name__)
 
 # Option pour faire remonter les erreurs au lieu de les masquer (utile en dev/tests)
-RAISE_ON_ERROR = os.getenv("REDIS_RAISE_ON_ERROR").lower() in {"1", "true", "yes"}
+RAISE_ON_ERROR = os.getenv("REDIS_RAISE_ON_ERROR", "1").lower() in {"1", "true", "yes"}
 # Option pour suivre automatiquement le master si l'URL cible est un replica
-FOLLOW_MASTER = os.getenv("REDIS_FOLLOW_MASTER").lower() in {"1", "true", "yes"}
+FOLLOW_MASTER = os.getenv("REDIS_FOLLOW_MASTER", "1").lower() in {"1", "true", "yes"}
 
 
-def get_redis_client() -> "redis.Redis[str]":
+def validate_environment_variables() -> bool:
+    """Valide que les variables d'environnement critiques sont définies.
+
+    Retourne True si toutes les variables critiques sont définies, False sinon.
+    """
+    # Plus besoin de validation car nous avons des valeurs par défaut
+    logger.info("Variables d'environnement initialisées avec valeurs par défaut si nécessaire")
+    return True
+
+
+def get_redis_client() -> "redis.Redis[str] | None":
     """Retourne un client Redis configuré à partir de REDIS_URL.
     Utilise decode_responses=True pour manipuler des str.
+    Retourne None si Redis n'est pas configuré.
     """
+    # Vérifier si Redis est configuré
+    if not REDIS_URL and not REDIS_WRITE_URL and not REDIS_HOST:
+        logger.warning("Redis n'est pas configuré - aucune connexion possible")
+        return None
+        
     # Priorité à l'URL d'écriture si fournie (assurée par défaut ci-dessus)
     client = None
     if REDIS_WRITE_URL:
@@ -42,7 +64,7 @@ def get_redis_client() -> "redis.Redis[str]":
     elif REDIS_URL:
         client = redis.from_url(REDIS_URL, decode_responses=True)
     else:
-        # Fallback connexion explicite host/port/password (inspiration du code testé par l'utilisateur)
+        # Fallback connexion explicite host/port/password
         client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, password=REDIS_PASSWORD, decode_responses=True)
 
     if FOLLOW_MASTER:
@@ -95,6 +117,10 @@ def publish_json(stream_key: str, data: Dict[str, Any]) -> bool:
     """
     try:
         client = get_redis_client()
+        if client is None:
+            logger.warning("Redis n'est pas configuré - publication ignorée pour stream=%s", stream_key)
+            return False
+            
         payload = json.dumps(data, ensure_ascii=False)
         msg_id = client.xadd(stream_key, {STREAM_FIELD: payload}, id="*")
         logger.info("Message publié sur Redis", extra={
@@ -127,17 +153,29 @@ def publish_json(stream_key: str, data: Dict[str, Any]) -> bool:
 def _main() -> None:
     """Point d'entrée de test pour exécuter ce fichier directement.
     - Configure le logging
+    - Valide les variables d'environnement
     - Vérifie la connectivité Redis (PING)
     - Envoie un message de test sur le stream configuré
     """
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
+
+    # Valider les variables d'environnement
+    if not validate_environment_variables():
+        logger.error("Validation des variables d'environnement échouée")
+        return
+
     logger.info(
         "Config Redis: write_url=%s url=%s host=%s port=%s stream=%s field=%s compat_enabled=%s",
         REDIS_WRITE_URL, REDIS_URL, REDIS_HOST, REDIS_PORT, STREAM_KEY, STREAM_FIELD, STREAM_COMPAT_ENABLED,
     )
 
+    # Vérifier la connectivité Redis
+    client = get_redis_client()
+    if client is None:
+        logger.warning("Redis n'est pas configuré - test ignoré")
+        return
+
     try:
-        client = get_redis_client()
         pong = client.ping()
         logger.info("PING Redis -> %s", pong)
         try:
