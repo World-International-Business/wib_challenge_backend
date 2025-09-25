@@ -292,8 +292,8 @@ class JobMatchView(GenericAPIView):
 
     MATCH_SERVICE_URL = os.getenv(
         "JOB_MATCH_SERVICE_URL",
-        # "http://celeryfastapi-213-32-91-101.traefik.me",
-        "http://localhost:8001",
+        "http://api-celery-fastapi-213-32-91-101.traefik.me/",
+        # "http://localhost:8001",
     )
 
     @extend_schema(

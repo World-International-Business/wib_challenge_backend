@@ -58,7 +58,7 @@ class JobOfferDetailSerializer(serializers.ModelSerializer):
 
 
 class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
-    skills = serializers.SlugRelatedField(slug_field='name', many=True, queryset=Technology.objects.all())
+    skills = serializers.SlugRelatedField(slug_field='name', many=True, queryset=Technology.objects.all(), required=False)
 
     class Meta:
         model = JobOffer
