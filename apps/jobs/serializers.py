@@ -4,6 +4,7 @@ from rest_framework import serializers
 from apps.organizations.models import Organization
 from .models import JobCategory, JobOffer, JobApplication
 from ..core.models import Technology
+from ..core.serializers import TagsSerializerField
 
 
 class JobCategorySerializer(serializers.ModelSerializer):
@@ -58,7 +59,7 @@ class JobOfferDetailSerializer(serializers.ModelSerializer):
 
 
 class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
-    skills = serializers.SlugRelatedField(slug_field='name', many=True, queryset=Technology.objects.all())
+    skills = TagsSerializerField(slug_field='name', many=True, queryset=Technology.objects.all())
 
     class Meta:
         model = JobOffer
@@ -82,7 +83,7 @@ class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
 class GenerateJobOfferSerializer(serializers.ModelSerializer):
     prompt = serializers.CharField(write_only=True)
     analyze = serializers.CharField(read_only=True)
-    skills = serializers.SlugRelatedField(slug_field='name', many=True, queryset=Technology.objects.all())
+    skills = TagsSerializerField(slug_field='name', many=True, queryset=Technology.objects.all(), required=False)
 
     class Meta:
         model = JobOffer
@@ -97,16 +98,6 @@ class GenerateJobOfferSerializer(serializers.ModelSerializer):
             'skills': {'required': False}
         }
 
-    def validate_skills(self, skills):
-        if not skills:
-            return []
-
-        matched_skills = []
-        for skill in skills:
-            matched_skill = Technology.objects.filter(name__icontains=skill).first()
-            if matched_skill:
-                matched_skills.append(matched_skill.name)
-        return list(set(matched_skills))
 
 
 class JobApplicationSerializer(serializers.ModelSerializer):
