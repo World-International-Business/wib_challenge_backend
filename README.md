@@ -1,38 +1,152 @@
-# WIB Challenge - Plateforme d'Évaluation et de Formation Professionnelle
+# WIB Challenge - Plateforme d'Évaluation et de Recrutement Technique
 
-WIB Challenge est une plateforme complète dédiée à l'évaluation des compétences techniques et à la formation
-professionnelle. Elle permet aux organisations de recruter efficacement, aux candidats de développer leurs compétences,
-et aux professionnels de trouver des opportunités d'emploi.
+WIB Challenge est une plateforme complète dédiée à l'évaluation des compétences techniques et au recrutement. Elle permet aux organisations de gérer efficacement leurs processus de recrutement technique tout en offrant aux candidats une expérience d'évaluation fluide et professionnelle.
 
 ## 🎯 Vue d'Ensemble
 
 Cette application web moderne offre un écosystème complet pour :
 
-- **Les organisations** : Créer des évaluations personnalisées, gérer des processus de recrutement et publier des offres
-  d'emploi
-- **Les candidats** : Passer des évaluations, suivre des formations et postuler à des offres
-- **Les professionnels** : Créer un profil complet, suivre des cours et participer à des compétitions
+- **Les organisations** : Publier des offres d'emploi, évaluer les candidats et gérer les processus de recrutement
+- **Les candidats** : Passer des évaluations techniques, suivre leur progression et postuler à des offres
+- **Les recruteurs** : Gérer les candidatures, évaluer les compétences et prendre des décisions éclairées
 
 ## 🚀 Fonctionnalités Principales
 
-### 1. Système d'Évaluation Intelligent
+### 1. Gestion des Offres d'Emploi
 
-#### Types d'Évaluations
+- Publication et gestion des offres d'emploi
+- Système de correspondance intelligent entre les offres et les profils candidats
+- Gestion des candidatures et du processus de recrutement
+- Tableau de bord analytique pour le suivi des performances
 
-- **Évaluations Techniques** : Tests de compétences spécialisées dans différentes technologies (Python, JavaScript,
-  React, Django, etc.)
-- **Évaluations Logiques** : Tests de raisonnement et de résolution de problèmes
-- **Tests de Personnalité** : Évaluations psychométriques pour comprendre les traits de caractère
-- **Compétitions** : Challenges communautaires avec classements et récompenses
+### 2. Évaluations Techniques
 
-#### Génération Automatique d'Évaluations
+- Tests de compétences techniques dans divers langages (Python, JavaScript, etc.)
+- Questions à choix multiples et exercices pratiques
+- Évaluation automatisée des réponses
+- Suivi détaillé des performances des candidats
 
-- Création d'évaluations basées sur le niveau d'expérience (Junior, Intermédiaire, Senior)
-- Sélection automatique de questions selon les technologies requises
-- Distribution intelligente des difficultés (Facile, Moyen, Difficile)
-- Adaptation du contenu selon la profession cible
+### 3. Gestion des Candidats
 
-#### Système de Questions Avancé
+- Profils candidats complets avec compétences et expériences
+- Historique des évaluations et résultats
+- Suivi des candidatures en temps réel
+- Système de notation et de commentaires
+
+### 4. API RESTful
+
+- Architecture REST complète avec Django REST Framework
+- Authentification JWT sécurisée
+- Documentation interactive avec Swagger/OpenAPI
+- Intégration avec des services externes
+
+## 🛠️ Technologies Utilisées
+
+### Backend
+- **Framework** : Django 5.2.5
+- **Base de données** : PostgreSQL / MySQL
+- **Cache** : Redis
+- **File d'attente** : Celery
+- **Authentification** : JWT (JSON Web Tokens)
+- **Documentation** : DRF Spectacular (OpenAPI 3)
+- **Traitement asynchrone** : Celery
+
+### Services Externes
+- Stockage de fichiers : AWS S3 ou équivalent
+- Envoi d'emails : SendGrid/Amazon SES
+- Évaluation de code : Service d'évaluation personnalisé
+
+## 🚀 Démarrage Rapide
+
+### Prérequis
+
+- Python 3.10+
+- PostgreSQL/MySQL
+- Redis
+- Node.js & npm (pour les assets frontend)
+
+### Installation
+
+1. **Cloner le dépôt**
+   ```bash
+   git clone [URL_DU_REPO]
+   cd wib-challenge/backend-django/wib_challenge_backend
+   ```
+
+2. **Créer et activer un environnement virtuel**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Sur Linux/Mac
+   # OU
+   .\venv\Scripts\activate  # Sur Windows
+   ```
+
+3. **Installer les dépendances**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configurer les variables d'environnement**
+   Créer un fichier `.env` à la racine du projet avec les variables nécessaires :
+   ```env
+   DEBUG=True
+   SECRET_KEY=votre_cle_secrete
+   DATABASE_URL=postgres://user:password@localhost:5432/wib_challenge
+   REDIS_URL=redis://localhost:6379/0
+   ```
+
+5. **Appliquer les migrations**
+   ```bash
+   python manage.py migrate
+   ```
+
+6. **Créer un superutilisateur**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+7. **Lancer le serveur de développement**
+   ```bash
+   python manage.py runserver
+   ```
+
+## 📚 Documentation de l'API
+
+La documentation interactive de l'API est disponible à l'adresse :
+`http://localhost:8000/api/schema/swagger-ui/`
+
+## 🧪 Tests
+
+Pour exécuter les tests :
+```bash
+python manage.py test
+```
+
+## 🐳 Déploiement avec Docker
+
+Un fichier `Dockerfile` et `docker-compose.yml` sont fournis pour un déploiement conteneurisé :
+
+```bash
+docker-compose up --build
+```
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Voici comment contribuer :
+
+1. Forkez le projet
+2. Créez votre branche de fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. Committez vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. Poussez vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une Pull Request
+
+## 📝 Licence
+
+Ce projet est sous licence MIT - voir le fichier `LICENSE` pour plus de détails.
+
+## 📞 Contact
+
+Pour toute question ou suggestion, veuillez contacter l'équipe de développement à [email@example.com]
 
 - Base de données riche avec des questions techniques détaillées
 - Questions à choix multiples avec explications pédagogiques

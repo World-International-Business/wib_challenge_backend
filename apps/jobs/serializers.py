@@ -120,3 +120,19 @@ class JobApplicationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError('Vous ne pouvez pas fournir un cv et un profil')
         attrs.pop('use_profile')
         return attrs
+
+
+class JobMatchRequestSerializer(serializers.Serializer):
+    """Schéma réduit d'une offre d'emploi pour l'endpoint /jobs/match."""
+    title = serializers.CharField()
+    description = serializers.CharField()
+    responsibilities = serializers.CharField()
+    requirements = serializers.CharField()
+    benefits = serializers.CharField()
+    # Le service de match accepte n'importe quelle chaîne pour jobType
+    jobType = serializers.CharField(required=False, allow_blank=True, default="")
+    experienceLevel = serializers.CharField(required=False, allow_blank=True, default="")
+    location = serializers.CharField()
+    remoteAllowed = serializers.BooleanField(required=False, default=False)
+    featured = serializers.BooleanField(required=False, default=False)
+    skills = serializers.ListField(child=serializers.CharField(), allow_empty=True, required=False, default=list)
