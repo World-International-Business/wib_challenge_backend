@@ -49,12 +49,17 @@ class Command(BaseCommand):
             data = json.load(f)
             tech_name = data.pop('technology')
 
+            # try:
+            #     tech = Technology.objects.get(name__iexact=tech_name)
+            # except Technology.DoesNotExist:
+            #     self.stdout.write(self.style.ERROR(
+            #         f'Technology "{tech_name}" not found. Skipping file {data_file.name}.'))
+            #     return None
             try:
                 tech = Technology.objects.get(name__iexact=tech_name)
             except Technology.DoesNotExist:
-                self.stdout.write(self.style.ERROR(
-                    f'Technology "{tech_name}" not found. Skipping file {data_file.name}.'))
-                return None
+                tech = Technology.objects.create(name=tech_name)
+
 
             questions_data = data.pop('questions', [])
 
