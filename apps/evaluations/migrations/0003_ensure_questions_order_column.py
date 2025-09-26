@@ -5,8 +5,8 @@ from django.db import migrations
 def ensure_questions_order(apps, schema_editor):
     connection = schema_editor.connection
     with connection.cursor() as cursor:
-        cursor.execute("PRAGMA table_info('evaluations_evaluation')")
-        cols = [row[1] for row in cursor.fetchall()]
+        cursor.execute("SELECT column_name FROM information_schema.columns WHERE table_name = 'evaluations_evaluation' AND column_name = 'questions_order'")
+        cols = [row[0] for row in cursor.fetchall()]
         if 'questions_order' not in cols:
             # Default value 2 corresponds to QuestionOrder.ADDED in models
             schema_editor.execute(
