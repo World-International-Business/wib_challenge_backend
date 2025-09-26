@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Fcihiers de migration
+migrations/
+
 # Variables d'environnement
 .wibc_env/
 
