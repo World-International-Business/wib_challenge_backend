@@ -4,7 +4,7 @@ from datetime import timedelta
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db import models
-from django.db.models import Count, Avg, Max, Q
+from django.db.models import Count, Avg, Max, Q, Case, When, F, FloatField
 from django.http import HttpResponse
 from django.urls import reverse, path
 from django.utils import timezone
@@ -116,7 +116,7 @@ class CourseAdmin(admin.ModelAdmin):
     list_display = [
         'title', 'level_badge', 'status_badge', 'free_badge', 'instructor_info',
         'modules_count', 'total_contents_count', 'students_count',
-        'completion_rate', 'certificates_count', 'last_activity'
+        'display_completion_rate', 'certificates_count', 'last_activity'
     ]
     list_filter = [
         CourseStatusFilter, InstructorFilter, 'level', 'is_free', 'is_active',
@@ -128,7 +128,7 @@ class CourseAdmin(admin.ModelAdmin):
     ]
     readonly_fields = [
         'slug', 'modules_count', 'total_contents_count', 'total_quizzes_count',
-        'students_count', 'completion_rate', 'certificates_count',
+        'students_count', 'certificates_count',
         'course_stats', 'engagement_metrics'
     ]
     inlines = [ModuleInline]
@@ -148,7 +148,7 @@ class CourseAdmin(admin.ModelAdmin):
         (_('Statistiques générales'), {
             'fields': [
                 'modules_count', 'total_contents_count', 'total_quizzes_count',
-                'students_count', 'completion_rate', 'certificates_count'
+                'students_count', 'certificates_count'
             ],
             'classes': ['collapse']
         }),
@@ -171,11 +171,16 @@ class CourseAdmin(admin.ModelAdmin):
             'certificate_set'
         ).annotate(
             modules_total=Count('modules', distinct=True),
-            total_contents=Count('modules__contents', distinct=True),
-            total_quizzes=Count('modules__quiz', distinct=True),
+            total_contents_agg=Count('modules__contents', distinct=True),
+            total_quizzes_agg=Count('modules__quiz', distinct=True),
             students_total=Count('modules__contents__progress__user', distinct=True),
             certificates_total=Count('certificate', distinct=True),
-            last_progress=Max('modules__contents__progress__last_accessed')
+            last_progress=Max('modules__contents__progress__last_accessed'),
+            completion_rate_agg=Case(
+                When(students_total__gt=0, then=(F('certificates_total') * 100.0 / F('students_total'))),
+                default=0.0,
+                output_field=FloatField()
+            )
         )
 
     def get_urls(self):
@@ -205,9 +210,9 @@ class CourseAdmin(admin.ModelAdmin):
                 'Oui' if course.is_free else 'Non',
                 'Oui' if course.is_active else 'Non',
                 getattr(course, 'modules_total', 0),
-                getattr(course, 'total_contents', 0),
+                getattr(course, 'total_contents_agg', 0),
                 getattr(course, 'students_total', 0),
-                f"{self._calculate_completion_rate(course):.1f}%",
+                f"{getattr(course, 'completion_rate_agg', 0.0):.1f}%",
                 getattr(course, 'certificates_total', 0),
             ])
 
@@ -215,7 +220,7 @@ class CourseAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Quizzes'))
     def total_quizzes_count(self, obj):
-        count = getattr(obj, 'total_quizzes', 0)
+        count = getattr(obj, 'total_quizzes_agg', 0)
         if count > 0:
             url = reverse('admin:learning_quiz_changelist') + f'?module__course__id__exact={obj.id}'
             return format_html(
@@ -254,7 +259,7 @@ class CourseAdmin(admin.ModelAdmin):
             '<span style="background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 12px; font-size: 11px;">✗ Inactif</span>'
         )
 
-    @admin.display(description=_('Type'), boolean=True)
+    @admin.display(description=_('Type'))
     def free_badge(self, obj):
         if obj.is_free:
             return format_html(
@@ -285,9 +290,9 @@ class CourseAdmin(admin.ModelAdmin):
             )
         return 0
 
-    @admin.display(description=_('Contenus'), ordering='total_contents')
+    @admin.display(description=_('Contenus'), ordering='total_contents_agg')
     def total_contents_count(self, obj):
-        count = getattr(obj, 'total_contents', 0)
+        count = getattr(obj, 'total_contents_agg', 0)
         if count > 0:
             url = reverse('admin:learning_content_changelist') + f'?module__course__id__exact={obj.id}'
             return format_html(
@@ -318,20 +323,17 @@ class CourseAdmin(admin.ModelAdmin):
 
     def _calculate_completion_rate(self, obj):
         """Calcul optimisé du taux de complétion"""
-        total_enrollments = getattr(obj, 'students_total', 0)
-        if total_enrollments == 0:
-            return 0.0
+        return getattr(obj, 'completion_rate_agg', 0.0)
 
-        completed_courses = getattr(obj, 'certificates_total', 0)
-        return (completed_courses / total_enrollments) * 100 if total_enrollments > 0 else 0.0
-
-    @admin.display(description=_('Taux de complétion'))
-    def completion_rate(self, obj):
+    @admin.display(description=_('Taux de complétion'), ordering='completion_rate_agg')
+    def display_completion_rate(self, obj):
         rate = self._calculate_completion_rate(obj)
-        color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 50 else '#dc3545'
+        # Forcer la conversion en float pour éviter toute ambiguïté de type.
+        rate_as_float = float(rate)
+        color = '#28a745' if rate_as_float >= 80 else '#ffc107' if rate_as_float >= 50 else '#dc3545'
         return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
-            color, rate
+            '<span style="color: {}; font-weight: bold;">{}%</span>',
+            color, rate_as_float
         )
 
     @admin.display(description=_('Certificats'), ordering='certificates_total')
@@ -347,7 +349,7 @@ class CourseAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Statistiques détaillées'))
     def course_stats(self, obj):
-        total_contents = getattr(obj, 'total_contents', 0)
+        total_contents = getattr(obj, 'total_contents_agg', 0)
 
         progress_stats = Progress.objects.filter(content__module__course=obj).aggregate(
             total_progress=Count('id'),
@@ -376,7 +378,7 @@ class CourseAdmin(admin.ModelAdmin):
 
     @admin.display(description=_('Métriques d\'engagement'))
     def engagement_metrics(self, obj):
-        total_contents = getattr(obj, 'total_contents', 0)
+        total_contents = getattr(obj, 'total_contents_agg', 0)
         students_total = getattr(obj, 'students_total', 0)
 
         if students_total > 0 and total_contents > 0:

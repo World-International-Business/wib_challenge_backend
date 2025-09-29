@@ -379,7 +379,7 @@ class QuizViewSet(viewsets.ModelViewSet):
 
         # Vérifier le nombre maximum de tentatives
         if quiz.max_attempts > 0:
-            user_attempts = QuizResult.objects.filter(user=request.user, quiz=quiz).count()
+            user_attempts = QuizResult.objects.filter(user=request.user, quiz_id=quiz.id).count()
             if user_attempts >= quiz.max_attempts:
                 return Response(
                     {'detail': f'Nombre maximum de tentatives atteint ({quiz.max_attempts})'},
@@ -403,18 +403,20 @@ class QuizViewSet(viewsets.ModelViewSet):
             )
 
         with transaction.atomic():
-            # Déterminer le numéro de tentative
-            last_attempt = QuizResult.objects.filter(
-                user=request.user, quiz=quiz
-            ).order_by('-attempt_number').first()
-            attempt_number = (last_attempt.attempt_number + 1) if last_attempt else 1
-
-            quiz_result = QuizResult.objects.create(
+            # Récupérer la tentative en cours
+            quiz_result = QuizResult.objects.filter(
                 user=request.user,
                 quiz=quiz,
-                attempt_number=attempt_number,
-                submitted_at=timezone.now()
-            )
+                submitted_at__isnull=True
+            ).order_by('-started_at').first()
+
+            if not quiz_result:
+                return Response(
+                    {'detail': 'Aucune tentative de quiz en cours trouvée. Veuillez démarrer le quiz avant de le soumettre.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            quiz_result.submitted_at = timezone.now()
 
             total_points = 0
             obtained_points = 0
@@ -491,7 +493,7 @@ class QuizViewSet(viewsets.ModelViewSet):
 
         # Vérifier le nombre maximum de tentatives
         if quiz.max_attempts > 0:
-            user_attempts = QuizResult.objects.filter(user=request.user, quiz=quiz).count()
+            user_attempts = QuizResult.objects.filter(user=request.user, quiz_id=quiz.id).count()
             if user_attempts >= quiz.max_attempts:
                 return Response(
                     {'detail': f'Nombre maximum de tentatives atteint ({quiz.max_attempts})'},
