@@ -29,12 +29,14 @@ class Course(LearningModel):
     is_active = models.BooleanField(_('Actif'), default=True)
     publisher = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                   related_name='courses_created', verbose_name=_('Instructeur'))
-    estimated_duration = models.PositiveIntegerField(_('Durée estimée (heures)'), null=True, blank=True)
+    estimated_duration = models.PositiveIntegerField(_('Durée estimée (mois)'), null=True, blank=True)
+    picture_cover = models.ImageField(_('Image'), upload_to='learning/courses/pictures/', null=True, blank=True)
+    price = models.DecimalField(_('Prix (en euros)'), max_digits=10, decimal_places=2, null=True, blank=True)
     skills = models.ManyToManyField(Technology, blank=True, related_name='courses', verbose_name=_('Compétence'))
 
     class Meta:
-        verbose_name = _('Cours')
-        verbose_name_plural = _('Cours')
+        verbose_name = _('Formation')
+        verbose_name_plural = _('Formations')
         ordering = ['title']
         indexes = [models.Index(fields=['level', 'is_free', 'is_active']), models.Index(fields=['created_at']), ]
 

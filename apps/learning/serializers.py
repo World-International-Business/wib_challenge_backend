@@ -406,7 +406,7 @@ class CourseSerializer(WritableNestedModelSerializer):
         model = Course
         fields = [
             'id', 'title', 'description', 'level', 'is_free', 'skills',
-            'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'user_progress'
+            'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'user_progress','picture_cover','price','estimated_duration','publisher'
         ]
         read_only_fields = ['id']
 
@@ -472,7 +472,7 @@ class CourseListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'description', 'level', 'is_free', 'module_count', 'total_content_count', 'skills',
+        fields = ['id', 'title', 'description', 'level', 'is_free', 'picture_cover', 'price', 'estimated_duration', 'module_count', 'total_content_count', 'skills',
                   'total_quiz_count']
         read_only_fields = ['id']
 

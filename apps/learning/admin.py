@@ -141,7 +141,7 @@ class CourseAdmin(admin.ModelAdmin):
         }),
         (_('Configuration'), {
             'fields': [
-                'is_free', 'is_active', 'estimated_duration'
+                'is_free', 'is_active', 'estimated_duration','picture_cover','price'
             ],
             'classes': ['collapse']
         }),

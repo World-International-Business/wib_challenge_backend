@@ -11,9 +11,9 @@ from .models import JobCategory, JobOffer
 
 @admin.register(JobCategory)
 class JobCategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'slug', 'job_offers_count', 'published_jobs_count']
+    list_display = ['title', 'job_offers_count', 'published_jobs_count']
     search_fields = ['title', 'description']
-    prepopulated_fields = {'slug': ('title',)}
+    # prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['job_offers_count', 'published_jobs_count']
 
     def get_queryset(self, request):
