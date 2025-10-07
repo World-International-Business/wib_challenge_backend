@@ -1,5 +1,6 @@
 python manage.py wait_for_db
-python manage.py migrate
+python manage.py migrate accounts --noinput
+python manage.py migrate --noinput
 python manage.py create_default_admin
 python manage.py seed_core --force
 python manage.py seed_evaluations --force
