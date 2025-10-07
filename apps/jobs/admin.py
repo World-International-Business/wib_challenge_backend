@@ -104,7 +104,7 @@ class JobOfferAdmin(admin.ModelAdmin):
             'fields': ['title', 'company', 'category', 'status', 'featured']
         }),
         (_('Détails du poste'), {
-            'fields': ['description', 'responsibilities', 'requirements', 'benefits']
+            'fields': ['description', 'responsibilities', 'requirements', 'benefits','skills']
         }),
         (_('Conditions'), {
             'fields': [

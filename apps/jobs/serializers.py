@@ -37,7 +37,7 @@ class JobOfferListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'slug', 'company', 'category', 'job_type',
             'experience_level', 'location', 'remote_allowed', 'salary_min',
-            'salary_max', 'currency', 'featured', 'published_at','expires_at','status','updated_at'
+            'salary_max', 'currency', 'featured', 'published_at','expires_at','status','updated_at','skills'
         ]
 
 
