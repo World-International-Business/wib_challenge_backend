@@ -6,9 +6,10 @@ from rest_framework import generics, filters, status, mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser, AllowAny
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
+from rest_framework.views import APIView
 import os
 import json
 from urllib.parse import quote
@@ -55,12 +56,12 @@ class JobOfferViewSet(viewsets.ModelViewSet):
     """
       ViewSet pour les offres d'emploi avec toutes les opérations CRUD
     """
-    queryset = JobOffer.objects.select_related('company', 'category')
+    queryset = JobOffer.objects.select_related('company', 'poste')
     permission_classes = [IsAuthenticatedOrReadOnly, IsCompanyOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = JobOfferFilter
     search_fields = ['title', 'description', 'company__name', 'location']
-    ordering_fields = ['created_at', 'published_at', 'salary_min', 'salary_max']
+    ordering_fields = ['created_at', 'published_at', 'salary']
     ordering = ['-created_at']
 
     def get_queryset(self):
@@ -221,6 +222,63 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         users = get_users_suggestions_for_job(self.get_object())
         return paginated_response(self, users, UserSerializer)
 
+    @extend_schema(
+        request=None,
+        responses={
+            200: OpenApiResponse(
+                description="Liste des candidatures avec statistiques",
+                examples=[
+                    OpenApiExample(
+                        'Exemple de réponse',
+                        value={
+                            "statistics": {
+                                "total": 25,
+                                "pending": 15,
+                                "shortlisted": 5,
+                                "accepted": 3,
+                                "rejected": 2
+                            },
+                            "applications": []
+                        }
+                    )
+                ]
+            )
+        }
+    )
+    @action(detail=True, methods=['get'], url_path='applications')
+    def get_applications(self, request, pk=None):
+        """
+        Récupère toutes les candidatures d'une offre avec statistiques par statut.
+        Filtres disponibles: ?status=pending&applicant_name=John
+        """
+        job_offer = self.get_object()
+        applications = job_offer.applications.select_related(
+            'user', 
+            'user__profile', 
+            'user__profile__profession'
+        ).all()
+        
+        # Appliquer les filtres
+        filterset = JobApplicationFilter(request.GET, queryset=applications)
+        filtered_applications = filterset.qs
+        
+        # Calculer les statistiques
+        stats = applications.aggregate(
+            total=Count('id'),
+            pending=Count('id', filter=Q(status='pending')),
+            shortlisted=Count('id', filter=Q(status='shortlisted')),
+            accepted=Count('id', filter=Q(status='accepted')),
+            rejected=Count('id', filter=Q(status='rejected'))
+        )
+        
+        # Sérialiser les candidatures filtrées
+        serializer = JobApplicationSerializer(filtered_applications, many=True)
+        
+        return Response({
+            'statistics': stats,
+            'applications': serializer.data
+        })
+
 
 @extend_schema(tags=['Offres d\'emploi'])
 class MyJobOffersView(generics.ListAPIView):
@@ -239,7 +297,7 @@ class MyJobOffersView(generics.ListAPIView):
     def get_queryset(self):
         return JobOffer.objects.filter(
             company=self.request.user.organization
-        ).select_related('company', 'category')
+        ).select_related('company', 'poste')
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -251,13 +309,13 @@ class JobSearchView(generics.ListAPIView):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = JobOfferFilter
     search_fields = ['title', 'description', 'company__name', 'location', 'requirements']
-    ordering_fields = ['created_at', 'published_at', 'salary_min', 'salary_max']
+    ordering_fields = ['created_at', 'published_at', 'salary']
     ordering = ['-published_at']
 
     def get_queryset(self):
         return JobOffer.objects.filter(
             status='published'
-        ).select_related('company', 'category')
+        ).select_related('company', 'poste')
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -270,14 +328,58 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = JobApplicationFilter
     permission_classes = [IsAuthenticated, IsOrganization]
+    search_fields = ['applicant_name', 'applicant_email']
+    ordering_fields = ['submitted_at', 'status']
+    ordering = ['-submitted_at']
 
     def get_queryset(self):
         if hasattr(self.request.user, 'organization'):
             return JobApplication.objects.filter(
                 job_offer__company=self.request.user.organization
-            ).select_related('job_offer', 'job_offer__company')
+            ).select_related(
+                'job_offer', 
+                'job_offer__company', 
+                'user',
+                'user__profile',
+                'user__profile__profession'
+            )
         else:
             return JobApplication.objects.none()
+
+    @extend_schema(
+        request={
+            'application/json': {
+                'type': 'object',
+                'properties': {
+                    'status': {
+                        'type': 'string',
+                        'enum': ['pending', 'shortlisted', 'accepted', 'rejected']
+                    }
+                },
+                'required': ['status']
+            }
+        },
+        responses={200: JobApplicationSerializer}
+    )
+    @action(detail=True, methods=['patch'], url_path='update-status')
+    def update_status(self, request, pk=None):
+        """
+        Met à jour le statut d'une candidature.
+        """
+        application = self.get_object()
+        new_status = request.data.get('status')
+        
+        if new_status not in dict(JobApplication.ApplicationStatus.choices):
+            return Response(
+                {'error': 'Statut invalide. Choix possibles: pending, shortlisted, accepted, rejected'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        application.status = new_status
+        application.save(update_fields=['status', 'updated_at'])
+        
+        serializer = self.get_serializer(application)
+        return Response(serializer.data)
 
 
 @extend_schema(tags=["Offres d'emploi"], request=JobMatchRequestSerializer)
@@ -456,3 +558,35 @@ class JobMatchView(GenericAPIView):
                 })
 
         return Response(results, status=status.HTTP_200_OK)
+
+
+@extend_schema(tags=['Métadonnées'])
+class JobMetadataView(APIView):
+    """
+    Retourne les métadonnées pour les offres d'emploi (types, statuts, documents requis, etc.)
+    Cette API permet au frontend d'afficher les listes déroulantes sans dupliquer les choix.
+    """
+    permission_classes = [AllowAny]
+    
+    def get(self, request):
+        from apps.evaluations.models import ExperienceLevel
+        
+        # Utilisation de camelCase pour être cohérent avec le reste de l'API DRF
+        return Response({
+            'jobTypes': [
+                {'value': choice[0], 'label': choice[1]} 
+                for choice in JobOffer.JobType.choices
+            ],
+            'experienceLevels': [
+                {'value': choice[0], 'label': choice[1]} 
+                for choice in ExperienceLevel.choices
+            ],
+            'requiredDocumentTypes': [
+                {'value': choice[0], 'label': choice[1]} 
+                for choice in JobOffer.RequiredDocumentType.choices
+            ],
+            'statusChoices': [
+                {'value': choice[0], 'label': choice[1]} 
+                for choice in JobOffer.Status.choices
+            ],
+        })

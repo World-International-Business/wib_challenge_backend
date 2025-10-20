@@ -5,9 +5,9 @@ from .models import JobOffer, JobCategory, JobApplication
 
 
 class JobOfferFilter(filters.FilterSet):
-    category = filters.ModelChoiceFilter(
+    poste = filters.ModelChoiceFilter(
         queryset=JobCategory.objects.all(),
-        field_name='category',
+        field_name='poste',
         to_field_name='slug'
     )
 
@@ -21,14 +21,9 @@ class JobOfferFilter(filters.FilterSet):
         lookup_expr='icontains'
     )
 
-    salary_min = filters.NumberFilter(
-        field_name='salary_min',
-        lookup_expr='gte'
-    )
-
-    salary_max = filters.NumberFilter(
-        field_name='salary_max',
-        lookup_expr='lte'
+    salary = filters.CharFilter(
+        field_name='salary',
+        lookup_expr='icontains'
     )
 
     remote_allowed = filters.BooleanFilter(
@@ -58,13 +53,43 @@ class JobOfferFilter(filters.FilterSet):
     class Meta:
         model = JobOffer
         fields = [
-            'category', 'location', 'company', 'salary_min', 'salary_max',
+            'poste', 'location', 'company', 'salary',
             'remote_allowed', 'experience_level', 'job_type', 'status',
             'featured', 'published_after', 'published_before'
         ]
 
 
 class JobApplicationFilter(filters.FilterSet):
+    status = filters.ChoiceFilter(
+        choices=JobApplication.ApplicationStatus.choices,
+        field_name='status'
+    )
+    
+    job_offer = filters.NumberFilter(
+        field_name='job_offer__id'
+    )
+    
+    submitted_after = filters.DateTimeFilter(
+        field_name='submitted_at',
+        lookup_expr='gte'
+    )
+    
+    submitted_before = filters.DateTimeFilter(
+        field_name='submitted_at',
+        lookup_expr='lte'
+    )
+    
+    applicant_name = filters.CharFilter(
+        field_name='applicant_name',
+        lookup_expr='icontains'
+    )
+    
+    applicant_email = filters.CharFilter(
+        field_name='applicant_email',
+        lookup_expr='icontains'
+    )
+
     class Meta:
         model = JobApplication
-        fields = ['job_offer']
+        fields = ['job_offer', 'status', 'ai_decision', 'submitted_after', 'submitted_before', 
+                  'applicant_name', 'applicant_email']

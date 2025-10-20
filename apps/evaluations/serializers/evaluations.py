@@ -23,6 +23,10 @@ class AutomaticEvaluationSerializer(serializers.Serializer):
         queryset=Technology.objects.all(),
         help_text="Liste des IDs des technologies à inclure dans l'évaluation"
     )
+    title = serializers.CharField(required=False, help_text="Titre de l'évaluation")
+    description = serializers.CharField(required=False, help_text="Description de l'évaluation")
+    is_active = serializers.BooleanField(default=True, help_text="Indique si l'évaluation est active")
+    questions_order = serializers.IntegerField(required=False, help_text="Ordre des questions")
 
 
 class AutomaticPersonalityEvaluationSerializer(serializers.Serializer):
@@ -92,11 +96,34 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
     others_count = serializers.SerializerMethodField()
     max_score = serializers.FloatField(read_only=True)
     is_editable = serializers.SerializerMethodField()
+    experienceLevel = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
+    profession = serializers.StringRelatedField()
 
     class Meta:
         model = Evaluation
         fields = '__all__'
         read_only_fields = ['publisher', 'slug']
+    
+    def get_experienceLevel(self, obj: Evaluation) -> str:
+        """Mapper difficulty vers experienceLevel pour le frontend"""
+        difficulty_to_experience = {
+            Evaluation.Difficulty.BEGINNER: 'junior',
+            Evaluation.Difficulty.INTERMEDIATE: 'intermediate',
+            Evaluation.Difficulty.EXPERT: 'senior'
+        }
+        return difficulty_to_experience.get(obj.difficulty, 'junior')
+
+    def get_status(self, obj: Evaluation) -> str:
+        """Retourne le statut de l'évaluation : draft, active ou archived"""
+        if obj.archived:
+            return 'archived'
+        
+        # Une évaluation est active si le champ is_active est True
+        if obj.is_active:
+            return 'active'
+        else:
+            return 'draft'
 
     def get_candidates_count(self, obj: Evaluation) -> int:
         """Retourne le nombre de candidats ayant été invités à l'évaluation"""

@@ -47,7 +47,7 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
 **Responsabilités**: {job_offer.responsibilities}
 **Prérequis**: {job_offer.requirements}
 **Avantages**: {job_offer.benefits}
-**Salaire**: {job_offer.salary_min} - {job_offer.salary_max} {job_offer.currency}
+**Salaire**: {job_offer.salary} {job_offer.currency}
 **Type de contrat**: {job_offer.get_job_type_display()}
 **Niveau d'expérience**: {job_offer.get_experience_level_display()}
 **Localisation**: {job_offer.location}

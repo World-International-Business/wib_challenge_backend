@@ -69,6 +69,8 @@ class EvaluationSerializer(WritableNestedModelSerializer):
     max_score = serializers.SerializerMethodField()
     is_public = serializers.SerializerMethodField()
     is_organizational = serializers.SerializerMethodField()
+    experienceLevel = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
     competition = CompetitionSerializer(required=False)
 
     class Meta:
@@ -135,6 +137,26 @@ class EvaluationSerializer(WritableNestedModelSerializer):
         elif image:
             return image.url
         return None
+
+    def get_experienceLevel(self, obj: Evaluation) -> str:
+        """Mapper difficulty vers experienceLevel pour le frontend"""
+        difficulty_to_experience = {
+            Evaluation.Difficulty.BEGINNER: 'junior',
+            Evaluation.Difficulty.INTERMEDIATE: 'intermediate',
+            Evaluation.Difficulty.EXPERT: 'senior'
+        }
+        return difficulty_to_experience.get(obj.difficulty, 'junior')
+
+    def get_status(self, obj: Evaluation) -> str:
+        """Retourne le statut de l'évaluation : draft, active ou archived"""
+        if obj.archived:
+            return 'archived'
+        
+        # Une évaluation est active si le champ is_active est True
+        if obj.is_active:
+            return 'active'
+        else:
+            return 'draft'
 
 
 class SkillEvaluationSerializer(serializers.ModelSerializer):

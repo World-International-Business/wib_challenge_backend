@@ -46,18 +46,28 @@ class JobOffer(TitleSlugDescriptionModel):
         REMOTE = 'remote', _('Télétravail')
         FREELANCE = 'freelance', _('Freelance')
 
+    class RequiredDocumentType(models.TextChoices):
+        CV = 'cv', _('CV/Curriculum Vitae')
+        COVER_LETTER = 'cover_letter', _('Lettre de motivation')
+        PORTFOLIO = 'portfolio', _('Portfolio')
+        DIPLOMA = 'diploma', _('Diplôme')
+        ID_CARD = 'id_card', _('Pièce d\'identité')
+        WORK_PERMIT = 'work_permit', _('Permis de travail')
+        RECOMMENDATION_LETTER = 'recommendation_letter', _('Lettre de recommandation')
+        CERTIFICATE = 'certificate', _('Certificat professionnel')
+        TRANSCRIPT = 'transcript', _('Relevé de notes')
+
     title = models.CharField(_("Titre du poste"), max_length=255)
     company = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='job_offers',
                                 verbose_name=_("Entreprise"))
-    category = models.ForeignKey(JobCategory, on_delete=models.PROTECT, related_name='job_offers',
-                                 verbose_name=_("Catégorie"))
+    poste = models.ForeignKey(JobCategory, on_delete=models.PROTECT, related_name='job_offers',
+                             verbose_name=_("Poste"))
     description = models.TextField(_("Description du poste"))
     skills = models.ManyToManyField(Technology, verbose_name=_('Compétences'), related_name='jobs')
     responsibilities = models.TextField(_("Responsabilités"), blank=True)
     requirements = models.TextField(_("Prérequis"))
     benefits = models.TextField(_("Avantages"), blank=True)
-    salary_min = models.DecimalField(_("Salaire minimum"), max_digits=10, decimal_places=2, null=True, blank=True)
-    salary_max = models.DecimalField(_("Salaire maximum"), max_digits=10, decimal_places=2, null=True, blank=True)
+    salary = models.CharField(_("Salaire"), max_length=255, blank=True, null=True)
     currency = models.CharField(_("Devise"), max_length=3, default='EUR')
     job_type = models.CharField(_("Type de contrat"), max_length=20, choices=JobType.choices)
     experience_level = models.CharField(_("Niveau d'expérience"), max_length=20, choices=ExperienceLevel.choices)
@@ -65,6 +75,8 @@ class JobOffer(TitleSlugDescriptionModel):
     remote_allowed = models.BooleanField(_("Télétravail autorisé"), default=False)
     application_url = models.URLField(_("URL de candidature"), blank=True)
     application_email = models.EmailField(_("Email pour candidature"), blank=True)
+    attachments = models.ImageField(_("Image/Flyer"), upload_to='job_attachments/', blank=True, null=True)
+    required_documents = models.JSONField(_("Documents requis"), default=list, blank=True)
     status = models.CharField(_("Statut"), max_length=20, choices=Status.choices, default=Status.DRAFT)
     featured = models.BooleanField(_("Mise en avant"), default=False)
     created_at = models.DateTimeField(_("Date de création"), auto_now_add=True)
@@ -85,6 +97,12 @@ class JobApplication(BaseModel):
     """
     Modèle pour les applications d'emploi.
    """
+    class ApplicationStatus(models.TextChoices):
+        PENDING = 'pending', _('En attente')
+        SHORTLISTED = 'shortlisted', _('Présélectionné')
+        ACCEPTED = 'accepted', _('Retenu')
+        REJECTED = 'rejected', _('Rejeté')
+
     job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name='applications',
                                   verbose_name=_("Offre d'emploi"))
 
@@ -93,6 +111,12 @@ class JobApplication(BaseModel):
     resume = models.FileField(_("CV"), upload_to='resumes/', blank=True, null=True)
     cover_letter = models.TextField(_("Lettre de motivation"), blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.CharField(
+        _("Statut"),
+        max_length=20,
+        choices=ApplicationStatus.choices,
+        default=ApplicationStatus.PENDING
+    )
     ai_analysis = models.TextField(_("Analyse IA du CV"), blank=True)
     ai_decision = models.BooleanField(_("Décision IA"), null=True, blank=True)
     submitted_at = models.DateTimeField(_("Date de soumission"), auto_now_add=True)
