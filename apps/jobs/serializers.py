@@ -30,31 +30,32 @@ class OrganizationBasicSerializer(serializers.ModelSerializer):
 
 class JobOfferListSerializer(serializers.ModelSerializer):
     company = OrganizationBasicSerializer(read_only=True)
-    category = JobCategoryListSerializer(read_only=True)
+    poste = JobCategoryListSerializer(read_only=True)
 
     class Meta:
         model = JobOffer
         fields = [
-            'id', 'title', 'slug', 'company', 'category', 'job_type',
-            'experience_level', 'location', 'remote_allowed', 'salary_min',
-            'salary_max', 'currency', 'featured', 'published_at','expires_at','status','updated_at','skills'
+            'id', 'title', 'slug', 'company', 'poste', 'job_type',
+            'experience_level', 'location', 'remote_allowed', 'salary',
+            'currency', 'featured', 'published_at','expires_at','status','updated_at','skills',
+            'attachments', 'required_documents'
         ]
 
 
 class JobOfferDetailSerializer(serializers.ModelSerializer):
     company = OrganizationBasicSerializer(read_only=True)
-    category = JobCategorySerializer(read_only=True)
+    poste = JobCategorySerializer(read_only=True)
     skills = serializers.SlugRelatedField(slug_field='name', read_only=True, many=True)
 
     class Meta:
         model = JobOffer
         fields = [
-            'id', 'title', 'slug', 'company', 'category', 'description',
-            'responsibilities', 'requirements', 'benefits', 'salary_min',
-            'salary_max', 'currency', 'job_type', 'experience_level',
+            'id', 'title', 'slug', 'company', 'poste', 'description',
+            'responsibilities', 'requirements', 'benefits', 'salary',
+            'currency', 'job_type', 'experience_level',
             'location', 'remote_allowed', 'application_url', 'application_email',
             'status', 'featured', 'created_at', 'updated_at', 'published_at',
-            'expires_at', 'skills'
+            'expires_at', 'skills', 'attachments', 'required_documents'
         ]
 
 
@@ -64,20 +65,12 @@ class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
     class Meta:
         model = JobOffer
         fields = [
-            'title', 'category', 'description', 'responsibilities',
-            'requirements', 'benefits', 'salary_min', 'salary_max',
+            'title', 'poste', 'description', 'responsibilities',
+            'requirements', 'benefits', 'salary',
             'currency', 'job_type', 'experience_level', 'location',
             'remote_allowed', 'application_url', 'application_email',
-            'status', 'featured', 'expires_at', 'skills'
+            'status', 'featured', 'expires_at', 'skills', 'attachments', 'required_documents'
         ]
-
-    def validate(self, data):
-        if data.get('salary_min') and data.get('salary_max'):
-            if data['salary_min'] > data['salary_max']:
-                raise serializers.ValidationError(
-                    "Le salaire minimum ne peut pas être supérieur au salaire maximum"
-                )
-        return data
 
 
 class GenerateJobOfferSerializer(serializers.ModelSerializer):
@@ -101,7 +94,9 @@ class GenerateJobOfferSerializer(serializers.ModelSerializer):
 
 
 class JobApplicationSerializer(serializers.ModelSerializer):
-    use_profile = serializers.BooleanField(required=False)
+    use_profile = serializers.BooleanField(required=False, write_only=True)
+    profession = serializers.SerializerMethodField(read_only=True)
+    location = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = JobApplication
@@ -113,12 +108,24 @@ class JobApplicationSerializer(serializers.ModelSerializer):
             'user': {'required': False}
         }
 
+    def get_profession(self, obj):
+        """Retourne la profession du candidat depuis son profil"""
+        if obj.user and hasattr(obj.user, 'profile'):
+            return obj.user.profile.profession.title if obj.user.profile.profession else None
+        return None
+
+    def get_location(self, obj):
+        """Retourne l'adresse du candidat depuis son profil"""
+        if obj.user and hasattr(obj.user, 'profile'):
+            return obj.user.profile.location
+        return None
+
     def validate(self, attrs):
         if not attrs.get('use_profile') and not attrs.get('resume'):
             raise serializers.ValidationError('Vous devez fournir un cv ou un profil')
         if attrs.get('use_profile') and attrs.get('resume'):
             raise serializers.ValidationError('Vous ne pouvez pas fournir un cv et un profil')
-        attrs.pop('use_profile')
+        attrs.pop('use_profile', None)
         return attrs
 
 

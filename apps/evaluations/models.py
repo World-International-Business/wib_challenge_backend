@@ -64,6 +64,7 @@ class Evaluation(BaseModel, TitleSlugDescriptionModel):
     questions_order = models.IntegerField(_('Ordre des questions'), choices=QuestionOrder.choices,
                                           default=QuestionOrder.ADDED)
     archived = models.BooleanField(_('Archivé'), default=False, db_index=True)
+    is_active = models.BooleanField(_('Actif'), default=True, db_index=True, help_text=_('Indique si l\'évaluation est publiée et visible'))
 
     questions = models.ManyToManyField(Question, verbose_name=_('Questions'), blank=True, related_name='evaluations')
 

@@ -59,13 +59,20 @@ class GenerateEvaluationFromSpecsView(GenericAPIView):
         profession = serializer.validated_data['profession']
         experience_level = serializer.validated_data['experience_level']
         technologies = serializer.validated_data['technologies']
+        title = serializer.validated_data.get('title', f"Évaluation {profession.title} - {experience_level.capitalize()}")
+        description = serializer.validated_data.get('description', f"Évaluation automatique pour {profession.title} niveau {experience_level.capitalize()}")
+        is_active = serializer.validated_data.get('is_active', True)
+        questions_order = serializer.validated_data.get('questions_order', QuestionOrder.SKILL)
 
         evaluation = create_evaluation_from_techs(
             publisher=request.user,
-            title=f"Évaluation {profession.title} - {experience_level.capitalize()}",
-            description=f"Évaluation automatique pour {profession.title} niveau {experience_level.capitalize()}",
+            profession=profession,
+            title=title,
+            description=description,
             experience_level=experience_level,
-            technologies=technologies
+            technologies=technologies,
+            is_active=is_active,
+            questions_order=questions_order
         )
 
         response_data = EvaluationResponseSerializer(evaluation, context={
@@ -74,12 +81,22 @@ class GenerateEvaluationFromSpecsView(GenericAPIView):
         return Response(response_data, status=status.HTTP_201_CREATED)
 
 
-def create_evaluation_from_techs(publisher, title, description, experience_level, technologies):
+def create_evaluation_from_techs(publisher, profession, title, description, experience_level, technologies, is_active=True, questions_order=QuestionOrder.SKILL):
+    # Mapper experience_level vers difficulty
+    difficulty_mapping = {
+        ExperienceLevel.JUNIOR: Evaluation.Difficulty.BEGINNER,
+        ExperienceLevel.INTERMEDIATE: Evaluation.Difficulty.INTERMEDIATE,
+        ExperienceLevel.SENIOR: Evaluation.Difficulty.EXPERT
+    }
+    
     evaluation = Evaluation.objects.create(
         publisher=publisher,
+        profession=profession,
         title=title,
         description=description,
-        questions_order=QuestionOrder.SKILL
+        difficulty=difficulty_mapping.get(experience_level, Evaluation.Difficulty.BEGINNER),
+        questions_order=questions_order,
+        is_active=is_active
     )
     quotas = EXPERIENCE_QUOTAS[experience_level]
     questions_per_tech = QUESTIONS_PER_TECH[experience_level]
