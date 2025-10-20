@@ -36,7 +36,7 @@ from apps.accounts.models import User
 @extend_schema(tags=['Offres d\'emploi'])
 class JobCategoryViewSet(viewsets.ModelViewSet):
     """
-    ViewSet pour les catégories d'emploi (lecture seule)
+    ViewSet pour les catégories d'emploi (lecture seule uniquement)
     """
     queryset = JobCategory.objects.annotate(
         job_count=Count('job_offers', filter=Q(job_offers__status='published'))
@@ -53,7 +53,7 @@ class JobCategoryViewSet(viewsets.ModelViewSet):
 @extend_schema(tags=['Offres d\'emploi'])
 class JobOfferViewSet(viewsets.ModelViewSet):
     """
-    ViewSet pour les offres d'emploi avec toutes les opérations CRUD
+      ViewSet pour les offres d'emploi avec toutes les opérations CRUD
     """
     queryset = JobOffer.objects.select_related('company', 'category')
     permission_classes = [IsAuthenticatedOrReadOnly, IsCompanyOwnerOrReadOnly]
@@ -87,7 +87,7 @@ class JobOfferViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(company=self.request.user.organization)
-
+    
     @action(detail=False, methods=['get'], url_path='slug/<slug:slug>/')
     def get_by_slug(self, request, slug=None):
         """Récupérer une offre d'emploi par son slug"""

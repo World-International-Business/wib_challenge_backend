@@ -632,7 +632,7 @@ class ModuleAdmin(admin.ModelAdmin):
         rate = (completed_users_count / users_in_module_count) * 100
         color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 50 else '#dc3545'
         return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            '<span style="color: {}; font-weight: bold;">{}</span>',
             color, rate
         )
 
@@ -843,7 +843,7 @@ class QuizAdmin(admin.ModelAdmin):
         if avg:
             color = '#28a745' if avg >= 80 else '#ffc107' if avg >= 60 else '#dc3545'
             return format_html(
-                '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+                '<span style="color: {}; font-weight: bold;">{}</span>',
                 color, avg
             )
         return "N/A"
@@ -861,7 +861,7 @@ class QuizAdmin(admin.ModelAdmin):
 
         color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 60 else '#dc3545'
         return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            '<span style="color: {}; font-weight: bold;">{}</span>',
             color, rate
         )
 
@@ -958,7 +958,7 @@ class QuizQuestionAdmin(admin.ModelAdmin):
 
         color = '#28a745' if rate >= 80 else '#ffc107' if rate >= 60 else '#dc3545'
         return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            '<span style="color: {}; font-weight: bold;">{}</span>',
             color, rate
         )
 
@@ -1017,7 +1017,7 @@ class QuizChoiceAdmin(admin.ModelAdmin):
         color = '#28a745' if obj.is_correct else '#dc3545'
 
         return format_html(
-            '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+            '<span style="color: {}; font-weight: bold;">{}%</span>',
             color, rate
         )
 
@@ -1104,7 +1104,7 @@ class QuizResultAdmin(admin.ModelAdmin):
     def score_badge(self, obj):
         color = '#28a745' if obj.score >= 80 else '#ffc107' if obj.score >= 60 else '#dc3545'
         return format_html(
-            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 12px; font-weight: bold;">{:.1f}%</span>',
+            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 12px; font-weight: bold;">{}%</span>',
             color, obj.score
         )
 

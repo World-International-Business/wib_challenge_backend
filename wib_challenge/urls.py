@@ -34,6 +34,7 @@ urlpatterns = [
     path('health/', health_check, name='health_check'),
 ]
 
+
 if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls
 

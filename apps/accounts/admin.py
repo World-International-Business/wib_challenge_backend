@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.accounts.models import User
 
 admin.site.site_header = 'WIB Challenge Administration'
-admin.site.site_title = 'WIB Admin'
+admin.site.site_title  = 'WIB Admin'
 admin.site.index_title = 'Panneau d\'administration'
 
 
