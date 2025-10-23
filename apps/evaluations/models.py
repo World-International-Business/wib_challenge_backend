@@ -51,6 +51,8 @@ class Evaluation(BaseModel, TitleSlugDescriptionModel):
 
     technology = models.ForeignKey('core.Technology', related_name='evaluations', verbose_name=_('Technologie'),
                                    on_delete=models.CASCADE, null=True, blank=True, db_index=True)
+    technologies = models.ManyToManyField('core.Technology', related_name='evaluation_technologies', 
+                                          verbose_name=_('Technologies'), blank=True)
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE, related_name='evaluations',
                                    verbose_name=_('Profession'), null=True, blank=True, db_index=True)
     publisher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_('Créateur'),

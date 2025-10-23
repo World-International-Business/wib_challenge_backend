@@ -137,15 +137,20 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
                 'id': serializers.IntegerField(),
                 'name': serializers.CharField(),
                 'url': serializers.URLField(),
-                'question_count': serializers.IntegerField(),
-                'estimated_time': serializers.IntegerField(),
+                'questionCount': serializers.IntegerField(),
+                'estimatedTime': serializers.IntegerField(),
                 'proportions': EvaluationQuestionProportions,
                 'available': EvaluationQuestionProportions
             }
         )
     )
     def get_questions(self, obj):
-        technologies = Technology.objects.filter(questions__evaluations=obj).distinct()
+        # Utiliser les technologies sélectionnées lors de la création si disponibles
+        # Sinon, déduire les technologies à partir des questions existantes
+        if obj.technologies.exists():
+            technologies = obj.technologies.all()
+        else:
+            technologies = Technology.objects.filter(questions__evaluations=obj).distinct()
 
         result = []
         for tech in technologies:
@@ -176,10 +181,10 @@ class EvaluationResponseSerializer(serializers.ModelSerializer):
                 'id': tech.id,
                 'name': tech.name,
                 'url': self.context['request'].build_absolute_uri(tech.image.url) if tech.image else None,
-                'question_count': nb_questions,
+                'questionCount': nb_questions,  # camelCase pour le frontend
                 'proportions': proportions,
                 'available': available,
-                'estimated_time': estimated_time
+                'estimatedTime': estimated_time  # camelCase pour le frontend
             })
 
         return result

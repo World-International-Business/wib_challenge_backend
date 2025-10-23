@@ -98,6 +98,9 @@ def create_evaluation_from_techs(publisher, profession, title, description, expe
         questions_order=questions_order,
         is_active=is_active
     )
+    # Enregistrer les technologies sélectionnées
+    evaluation.technologies.set(technologies)
+    
     quotas = EXPERIENCE_QUOTAS[experience_level]
     questions_per_tech = QUESTIONS_PER_TECH[experience_level]
     all_questions = []

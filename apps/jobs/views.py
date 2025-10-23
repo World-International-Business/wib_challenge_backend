@@ -364,10 +364,11 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
     @action(detail=True, methods=['patch'], url_path='update-status')
     def update_status(self, request, pk=None):
         """
-        Met à jour le statut d'une candidature.
+        Met à jour le statut d'une candidature et optionnellement les détails de recrutement.
         """
         application = self.get_object()
         new_status = request.data.get('status')
+        recruitment_details = request.data.get('recruitment_details')
         
         if new_status not in dict(JobApplication.ApplicationStatus.choices):
             return Response(
@@ -376,7 +377,91 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             )
         
         application.status = new_status
-        application.save(update_fields=['status', 'updated_at'])
+        
+        # Si des détails de recrutement sont fournis (pour le statut 'accepted')
+        if recruitment_details:
+            application.recruitment_details = recruitment_details
+            application.save(update_fields=['status', 'recruitment_details', 'updated_at'])
+        else:
+            application.save(update_fields=['status', 'updated_at'])
+        
+        serializer = self.get_serializer(application)
+        return Response(serializer.data)
+
+    @extend_schema(
+        summary="Assigner une évaluation à une candidature",
+        request={
+            'application/json': {
+                'type': 'object',
+                'properties': {
+                    'evaluation_id': {'type': 'integer'},
+                }
+            }
+        },
+        responses={200: JobApplicationSerializer}
+    )
+    @action(detail=True, methods=['patch'], url_path='assign-evaluation')
+    def assign_evaluation(self, request, pk=None):
+        """
+        Assigne une évaluation à une candidature.
+        """
+        application = self.get_object()
+        evaluation_id = request.data.get('evaluation_id')
+        
+        if not evaluation_id:
+            return Response(
+                {'error': 'evaluation_id est requis'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            from apps.evaluations.models import Evaluation
+            evaluation = Evaluation.objects.get(id=evaluation_id)
+        except Evaluation.DoesNotExist:
+            return Response(
+                {'error': 'Évaluation non trouvée'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
+        application.assigned_evaluation = evaluation
+        application.save(update_fields=['assigned_evaluation', 'updated_at'])
+        
+        serializer = self.get_serializer(application)
+        return Response(serializer.data)
+
+    @extend_schema(
+        summary="Planifier un entretien pour une candidature",
+        request={
+            'application/json': {
+                'type': 'object',
+                'properties': {
+                    'interview_date': {'type': 'string', 'format': 'date-time'},
+                    'interview_duration': {'type': 'integer'},
+                    'interview_link': {'type': 'string'},
+                    'interview_type': {'type': 'string'},
+                    'interview_notes': {'type': 'string'},
+                }
+            }
+        },
+        responses={200: JobApplicationSerializer}
+    )
+    @action(detail=True, methods=['patch'], url_path='schedule-interview')
+    def schedule_interview(self, request, pk=None):
+        """
+        Planifie un entretien pour une candidature.
+        """
+        application = self.get_object()
+        
+        application.interview_date = request.data.get('interview_date')
+        application.interview_duration = request.data.get('interview_duration', 40)
+        application.interview_link = request.data.get('interview_link', '')
+        application.interview_type = request.data.get('interview_type', 'individuel')
+        application.interview_notes = request.data.get('interview_notes', '')
+        
+        application.save(update_fields=[
+            'interview_date', 'interview_duration', 'interview_link', 
+            'interview_type', 'interview_notes', 'updated_at'
+        ])
         
         serializer = self.get_serializer(application)
         return Response(serializer.data)

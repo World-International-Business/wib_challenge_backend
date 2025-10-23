@@ -31,6 +31,7 @@ class OrganizationBasicSerializer(serializers.ModelSerializer):
 class JobOfferListSerializer(serializers.ModelSerializer):
     company = OrganizationBasicSerializer(read_only=True)
     poste = JobCategoryListSerializer(read_only=True)
+    applicants_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = JobOffer
@@ -38,8 +39,12 @@ class JobOfferListSerializer(serializers.ModelSerializer):
             'id', 'title', 'slug', 'company', 'poste', 'job_type',
             'experience_level', 'location', 'remote_allowed', 'salary',
             'currency', 'featured', 'published_at','expires_at','status','updated_at','skills',
-            'attachments', 'required_documents'
+            'attachments', 'required_documents', 'applicants_count'
         ]
+
+    def get_applicants_count(self, obj):
+        """Retourne le nombre de candidatures pour cette offre"""
+        return obj.applications.count()
 
 
 class JobOfferDetailSerializer(serializers.ModelSerializer):

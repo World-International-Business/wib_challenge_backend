@@ -120,6 +120,19 @@ class JobApplication(BaseModel):
     ai_analysis = models.TextField(_("Analyse IA du CV"), blank=True)
     ai_decision = models.BooleanField(_("Décision IA"), null=True, blank=True)
     submitted_at = models.DateTimeField(_("Date de soumission"), auto_now_add=True)
+    
+    # Champs pour le workflow de recrutement
+    assigned_evaluation = models.ForeignKey('evaluations.Evaluation', on_delete=models.SET_NULL, 
+                                           null=True, blank=True, related_name='applications',
+                                           verbose_name=_("Évaluation assignée"))
+    evaluation_score = models.DecimalField(_("Score de l'évaluation"), max_digits=5, decimal_places=2, 
+                                          null=True, blank=True)
+    interview_date = models.DateTimeField(_("Date de l'entretien"), null=True, blank=True)
+    interview_duration = models.IntegerField(_("Durée de l'entretien (minutes)"), null=True, blank=True)
+    interview_link = models.URLField(_("Lien de visioconférence"), blank=True)
+    interview_type = models.CharField(_("Type d'entretien"), max_length=50, blank=True)
+    interview_notes = models.TextField(_("Notes de l'entretien"), blank=True)
+    recruitment_details = models.TextField(_("Détails de prise de poste"), blank=True)
 
     class Meta:
         verbose_name = _("Candidature")
