@@ -279,6 +279,57 @@ class JobOfferViewSet(viewsets.ModelViewSet):
             'applications': serializer.data
         })
 
+    @extend_schema(
+        summary="Statistiques globales des offres d'emploi",
+        description="Retourne les statistiques globales des offres d'emploi de l'organisation connectée",
+        responses={
+            200: OpenApiResponse(
+                description="Statistiques des offres d'emploi",
+                examples=[
+                    OpenApiExample(
+                        'Exemple de réponse',
+                        value={
+                            "total": 10,
+                            "published": 8,
+                            "draft": 2,
+                            "candidates": 25
+                        }
+                    )
+                ]
+            )
+        }
+    )
+    @action(detail=False, methods=['get'], url_path='my-stats')
+    def my_stats(self, request):
+        """
+        Retourne les statistiques globales des offres d'emploi de l'organisation connectée
+        """
+        # Vérifier que l'utilisateur a une organisation
+        if not hasattr(request.user, 'organization') or not request.user.organization:
+            return Response(
+                {'error': 'Utilisateur non associé à une organisation'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        # Statistiques des offres
+        job_offers = JobOffer.objects.filter(company=request.user.organization)
+        stats = job_offers.aggregate(
+            total=Count('id'),
+            published=Count('id', filter=Q(status='published')),
+            draft=Count('id', filter=Q(status='draft')),
+            expired=Count('id', filter=Q(status='expired')),
+            filled=Count('id', filter=Q(status='filled'))
+        )
+        
+        # Nombre total de candidatures
+        total_candidates = JobApplication.objects.filter(
+            job_offer__company=request.user.organization
+        ).count()
+        
+        stats['candidates'] = total_candidates
+        
+        return Response(stats)
+
 
 @extend_schema(tags=['Offres d\'emploi'])
 class MyJobOffersView(generics.ListAPIView):

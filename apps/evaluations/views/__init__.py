@@ -21,7 +21,7 @@ from apps.evaluations.filters import (
     EvaluationFilterSet
 )
 from apps.evaluations.models import (
-    Evaluation, EvaluationType, SubmissionAttempt, Submission, Answer, ExperienceLevel, SkillEvaluation
+    Evaluation, EvaluationType, SubmissionAttempt, Submission, Answer, ExperienceLevel, SkillEvaluation, EvaluationInvitation
 )
 from apps.evaluations.policy import EvaluationPolicy
 from apps.evaluations.serializers import (
@@ -38,6 +38,7 @@ from apps.evaluations.utils import send_reminder_email
 from apps.evaluations.views.generated import create_evaluation_from_techs
 from apps.questions.models import Question
 from apps.questions.serializers import AddQuestionSerializer, QuestionSerializer
+from apps.jobs.models import JobApplication
 from wib_challenge.pagination import paginated_response
 
 
@@ -565,6 +566,120 @@ class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIVie
         }
 
         return Response(stats, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        request=None,
+        responses={
+            200: {
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {"type": "integer"},
+                                "email": {"type": "string"},
+                                "fullName": {"type": "string"},
+                                "assignedAt": {"type": "string", "format": "date-time"},
+                                "status": {"type": "string", "enum": ["assigned", "started", "completed"]},
+                                "score": {"type": "number", "nullable": True},
+                                "expiresAt": {"type": "string", "format": "date-time"},
+                                "jobApplication": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {"type": "integer"},
+                                        "jobTitle": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        summary="Candidats assignés à une évaluation",
+        description="Récupère tous les candidats assignés à une évaluation (via offres d'emploi ou invitations directes)",
+        tags=["Évaluations"]
+    )
+    @action(detail=True, methods=['get'], url_path='assigned-candidates')
+    def assigned_candidates(self, request, pk=None):
+        """
+        Retourne tous les candidats assignés à une évaluation
+        """
+        evaluation = self.get_object()
+
+        # Récupérer les candidats depuis les applications d'emploi
+        job_applications = JobApplication.objects.filter(
+            assigned_evaluation=evaluation
+        ).select_related('job_offer').values(
+            'id', 'applicant_name', 'applicant_email', 'created_at',
+            'job_offer__title', 'evaluation_score'
+        )
+
+        # Récupérer les candidats depuis les invitations directes
+        invitations = EvaluationInvitation.objects.filter(
+            evaluation=evaluation
+        ).select_related('candidate').values(
+            'id', 'invited_at', 'expires_at', 'status',
+            'candidate__id', 'candidate__full_name', 'candidate__email'
+        )
+
+        # Récupérer les candidats qui ont commencé l'évaluation
+        attempts = SubmissionAttempt.objects.filter(
+            evaluation=evaluation
+        ).select_related('participant__candidate', 'submission').values(
+            'participant__candidate__id', 'submission__score', 'is_completed'
+        )
+
+        # Créer un mapping des scores par candidat
+        scores_map = {}
+        for attempt in attempts:
+            candidate_id = attempt['participant__candidate__id']
+            if candidate_id:
+                scores_map[candidate_id] = {
+                    'score': attempt['submission__score'],
+                    'status': 'completed' if attempt['is_completed'] else 'started'
+                }
+
+        # Combiner les données
+        assigned_candidates = []
+
+        # Ajouter les candidats depuis les applications d'emploi
+        for app in job_applications:
+            candidate_id = f"app_{app['id']}"
+            candidate_data = {
+                'id': app['id'],
+                'email': app['applicant_email'],
+                'fullName': app['applicant_name'],
+                'assignedAt': app['created_at'].isoformat(),
+                'status': scores_map.get(app['id'], {}).get('status', 'assigned'),
+                'score': scores_map.get(app['id'], {}).get('score') or app['evaluation_score'],
+                'expiresAt': None,  # Pas d'expiration pour les applications d'emploi
+                'jobApplication': {
+                    'id': app['id'],
+                    'jobTitle': app['job_offer__title']
+                }
+            }
+            assigned_candidates.append(candidate_data)
+
+        # Ajouter les candidats depuis les invitations directes
+        for invite in invitations:
+            candidate_data = {
+                'id': invite['candidate__id'],
+                'email': invite['candidate__email'],
+                'fullName': invite['candidate__full_name'],
+                'assignedAt': invite['invited_at'].isoformat(),
+                'status': scores_map.get(invite['candidate__id'], {}).get('status', 'assigned'),
+                'score': scores_map.get(invite['candidate__id'], {}).get('score'),
+                'expiresAt': invite['expires_at'].isoformat(),
+                'jobApplication': None
+            }
+            assigned_candidates.append(candidate_data)
+
+        return Response({
+            'results': assigned_candidates
+        }, status=status.HTTP_200_OK)
 
     def check_can_update(self, evaluation: Evaluation):
         if Evaluation.objects.filter(
