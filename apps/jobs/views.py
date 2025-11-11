@@ -330,6 +330,138 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         
         return Response(stats)
 
+    @extend_schema(
+        summary="Importer les candidats matchés",
+        description=(
+            "Appelle l'API de matching pour cette offre et crée automatiquement "
+            "des candidatures pour chaque candidat matché. Les candidatures sont marquées "
+            "avec source='matched' pour les différencier des candidatures spontanées."
+        ),
+        responses={
+            200: OpenApiResponse(
+                description="Liste des candidatures créées",
+                examples=[
+                    OpenApiExample(
+                        'Exemple de réponse',
+                        value={
+                            "created": 5,
+                            "skipped": 2,
+                            "errors": 0,
+                            "applications": []
+                        }
+                    )
+                ]
+            )
+        }
+    )
+    @action(detail=True, methods=['post'], url_path='import-matched-candidates')
+    def import_matched_candidates(self, request, pk=None):
+        """
+        Importe les candidats matchés pour cette offre en créant de vraies candidatures.
+        """
+        job_offer = self.get_object()
+        
+        # Préparer le payload pour l'API de matching
+        skills_list = list(job_offer.skills.values_list('name', flat=True))
+        payload = {
+            "id": str(job_offer.id),
+            "title": job_offer.title,
+            "description": job_offer.description or "",
+            "responsibilities": job_offer.responsibilities or "",
+            "requirements": job_offer.requirements or "",
+            "benefits": job_offer.benefits or "",
+            "jobType": job_offer.job_type or "",
+            "experienceLevel": job_offer.experience_level or "",
+            "location": job_offer.location or "",
+            "remoteAllowed": job_offer.remote_allowed,
+            "featured": job_offer.featured,
+            "skills": skills_list,
+            "required_skills": skills_list,
+        }
+        
+        # Appeler l'API de matching
+        match_service_url = os.getenv(
+            "JOB_MATCH_SERVICE_URL",
+            "http://api-celery-fastapi-213-32-91-101.traefik.me/",
+        )
+        
+        try:
+            resp = requests.post(
+                f"{match_service_url}/match",
+                json=payload,
+                timeout=200
+            )
+            resp.raise_for_status()
+            matched_candidates = resp.json()
+        except Exception as e:
+            return Response(
+                {'error': f'Erreur lors de l\'appel à l\'API de matching: {str(e)}'},
+                status=status.HTTP_502_BAD_GATEWAY
+            )
+        
+        # Statistiques d'import
+        created_count = 0
+        skipped_count = 0
+        error_count = 0
+        created_applications = []
+        
+        # Traiter les candidats matchés
+        items = matched_candidates if isinstance(matched_candidates, list) else matched_candidates.get("results", [])
+        
+        for item in items:
+            try:
+                # Récupérer l'ID du candidat
+                candidate_id = item.get("candidateId") or item.get("candidate_id")
+                if not candidate_id:
+                    error_count += 1
+                    continue
+                
+                # Récupérer l'utilisateur
+                try:
+                    user = User.objects.get(pk=candidate_id)
+                except User.DoesNotExist:
+                    error_count += 1
+                    continue
+                
+                # Vérifier si une candidature existe déjà pour cet utilisateur et cette offre
+                existing = JobApplication.objects.filter(
+                    job_offer=job_offer,
+                    user=user
+                ).first()
+                
+                if existing:
+                    skipped_count += 1
+                    continue
+                
+                # Créer la candidature avec source='matched'
+                application = JobApplication.objects.create(
+                    job_offer=job_offer,
+                    user=user,
+                    applicant_name=f"{user.first_name} {user.last_name}".strip() or user.email,
+                    applicant_email=user.email,
+                    source=JobApplication.ApplicationSource.MATCHED,
+                    status=JobApplication.ApplicationStatus.PENDING,
+                    cover_letter=f"Candidat matché automatiquement par le système de matching pour le poste {job_offer.title}.",
+                )
+                
+                created_applications.append(application)
+                created_count += 1
+                
+            except Exception as e:
+                error_count += 1
+                continue
+        
+        # Sérialiser les candidatures créées
+        serializer = JobApplicationSerializer(created_applications, many=True)
+        
+        return Response({
+            'created': created_count,
+            'skipped': skipped_count,
+            'errors': error_count,
+            'total_matched': len(items),
+            'applications': serializer.data
+        }, status=status.HTTP_201_CREATED)
+
 
 @extend_schema(tags=['Offres d\'emploi'])
 class MyJobOffersView(generics.ListAPIView):

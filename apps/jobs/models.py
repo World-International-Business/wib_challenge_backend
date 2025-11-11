@@ -102,9 +102,20 @@ class JobApplication(BaseModel):
         SHORTLISTED = 'shortlisted', _('Présélectionné')
         ACCEPTED = 'accepted', _('Retenu')
         REJECTED = 'rejected', _('Rejeté')
+    
+    class ApplicationSource(models.TextChoices):
+        SPONTANEOUS = 'spontaneous', _('Candidature Spontanée')
+        MATCHED = 'matched', _('Candidature Matchée')
 
     job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name='applications',
                                   verbose_name=_("Offre d'emploi"))
+    source = models.CharField(
+        _("Source de la candidature"),
+        max_length=20,
+        choices=ApplicationSource.choices,
+        default=ApplicationSource.SPONTANEOUS,
+        help_text=_("Indique si la candidature est spontanée ou issue du système de matching")
+    )
 
     applicant_name = models.CharField(_("Nom du candidat"), max_length=255)
     applicant_email = models.EmailField(_("Email du candidat"))
