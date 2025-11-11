@@ -1,4 +1,4 @@
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from django.db.models import Avg, Max
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,7 +18,7 @@ from .filters import (
 )
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
-    Progress, Certificate
+    Progress, Certificate, TrainingSelection
 )
 from .serializers import (
     CourseSerializer, CourseListSerializer, ModuleSerializer, ContentDetailSerializer, ContentListSerializer,
@@ -88,6 +88,64 @@ class CourseViewSet(viewsets.ModelViewSet):
     ordering_fields = ['title', 'level']
     ordering = ['title']
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        is_selected = self.request.query_params.get('is_selected', None)
+
+        if is_selected is not None and hasattr(self.request.user, 'organization'):
+            if is_selected.lower() == 'true':
+                return queryset.filter(selected_by_organizations=self.request.user.organization)
+            elif is_selected.lower() == 'false':
+                return queryset.exclude(selected_by_organizations=self.request.user.organization)
+
+        return queryset
+
+    @action(detail=True, methods=['POST'])
+    def select(self, request, pk=None):
+        """Sélectionner une formation"""
+        course = self.get_object()
+        if not hasattr(request.user, 'organization'):
+            return Response(
+                {'detail': 'Seules les organisations peuvent sélectionner des formations'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        try:
+            TrainingSelection.objects.get_or_create(
+                course=course,
+                organization=request.user.organization,
+                defaults={'is_active': True}
+            )
+            return Response({'message': 'Formation sélectionnée avec succès'})
+        except IntegrityError:
+            return Response(
+                {'detail': 'Formation déjà sélectionnée'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    @action(detail=True, methods=['POST'])
+    def unselect(self, request, pk=None):
+        """Désélectionner une formation"""
+        course = self.get_object()
+        if not hasattr(request.user, 'organization'):
+            return Response(
+                {'detail': 'Seules les organisations peuvent désélectionner des formations'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        selection = TrainingSelection.objects.filter(
+            course=course,
+            organization=request.user.organization
+        ).first()
+
+        if selection:
+            selection.delete()
+            return Response({'message': 'Formation désélectionnée avec succès'})
+        return Response(
+            {'detail': 'Formation non sélectionnée'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+
     def get_serializer_class(self):
         if self.action == 'list':
             return CourseListSerializer
@@ -104,6 +162,7 @@ class CourseViewSet(viewsets.ModelViewSet):
             200: CourseProgressSerializer,
         }
     )
+
     @action(detail=True, methods=['get'])
     def progress(self, request, pk=None):
         """Obtenir le progrès de l'utilisateur pour ce cours"""
@@ -136,6 +195,7 @@ class CourseViewSet(viewsets.ModelViewSet):
             201: CertificateSerializer,
         }
     )
+    
     @action(detail=True, methods=['post'])
     def generate_certificate(self, request, pk=None):
         """Générer un certificat pour ce cours si terminé"""
@@ -262,6 +322,8 @@ class ModuleViewSet(viewsets.ModelViewSet):
         tags=["Contenus"]
     )
 )
+
+
 class ContentViewSet(viewsets.ModelViewSet):
     """ViewSet pour la gestion des contenus"""
     queryset = Content.objects.all()

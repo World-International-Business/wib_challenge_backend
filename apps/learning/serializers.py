@@ -22,6 +22,25 @@ class CourseProgressSerializer(serializers.Serializer):
     is_completed = serializers.BooleanField()
 
 
+class CourseSelectionSerializer(serializers.ModelSerializer):
+    """Serializer pour la sélection des formations"""
+    is_selected = serializers.SerializerMethodField()
+    selected_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Course
+        fields = ['id', 'title', 'description', 'level', 'price', 'estimated_duration', 'is_selected', 'selected_count']
+
+    def get_is_selected(self, obj):
+        request = self.context.get('request')
+        if request and hasattr(request.user, 'organization'):
+            return obj.selected_by_organizations.filter(id=request.user.organization.id).exists()
+        return False
+
+    def get_selected_count(self, obj):
+        return obj.selected_by_organizations.count()
+
+
 class UserProgressStatsSerializer(serializers.Serializer):
     """Serializer pour les statistiques de progrès utilisateur"""
     total_contents = serializers.IntegerField()

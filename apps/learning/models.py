@@ -33,6 +33,12 @@ class Course(LearningModel):
     picture_cover = models.ImageField(_('Image'), upload_to='learning/courses/pictures/', null=True, blank=True)
     price = models.DecimalField(_('Prix (en euros)'), max_digits=10, decimal_places=2, null=True, blank=True)
     skills = models.ManyToManyField(Technology, blank=True, related_name='courses', verbose_name=_('Compétence'))
+    selected_by_organizations = models.ManyToManyField(
+        'organizations.Organization',
+        through='TrainingSelection',
+        related_name='selected_trainings',
+        verbose_name=_('Organisations ayant sélectionné')
+    )
 
     class Meta:
         verbose_name = _('Formation')
@@ -59,6 +65,31 @@ class Course(LearningModel):
     @property
     def total_quizzes(self):
         return Quiz.objects.filter(module__course=self).count()
+
+
+
+class TrainingSelection(models.Model):
+    class Meta:
+        verbose_name = _('Sélection de formation')
+        verbose_name_plural = _('Sélections de formations')
+        unique_together = ['organization', 'course']
+
+    organization = models.ForeignKey(
+            'organizations.Organization',
+            on_delete=models.CASCADE,
+            verbose_name=_('Organisation')
+        )
+    course = models.ForeignKey(
+            Course,
+            on_delete=models.CASCADE,
+            verbose_name=_('Formation')
+        )
+    selected_at = models.DateTimeField(_('Date de sélection'), auto_now_add=True)
+    is_active = models.BooleanField(_('Active'), default=True)
+
+    def __str__(self):
+        return f"{self.organization.name} - {self.course.title}"
+
 
 
 class Module(LearningModel):
