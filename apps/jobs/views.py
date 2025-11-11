@@ -187,12 +187,67 @@ class JobOfferViewSet(viewsets.ModelViewSet):
     def apply(self, request, pk=None):
         """
         Permet à un candidat de postuler une offre d'emploi.
+        Gère l'upload de documents dynamiques selon les required_documents de l'offre.
         """
+        from django.core.files.storage import default_storage
+        from rest_framework.exceptions import ValidationError as DRFValidationError
+        
         job_offer = self.get_object()
+        required_docs = job_offer.required_documents or []
+        
+        # Valider que tous les documents requis sont fournis
+        doc_labels = {
+            'portfolio': 'Portfolio',
+            'diploma': 'Diplôme',
+            'id_card': 'Pièce d\'identité',
+            'work_permit': 'Permis de travail',
+            'recommendation_letter': 'Lettre de recommandation',
+            'certificate': 'Certificat professionnel',
+            'transcript': 'Relevé de notes'
+        }
+        
+        missing_docs = []
+        for doc_type in required_docs:
+            # CV et cover_letter sont gérés séparément par le serializer
+            if doc_type in ['cv', 'cover_letter']:
+                continue
+            
+            file_key = f'document_{doc_type}'
+            if file_key not in request.FILES:
+                label = doc_labels.get(doc_type, doc_type)
+                missing_docs.append(label)
+        
+        if missing_docs:
+            raise DRFValidationError({
+                'detail': f'Documents manquants: {", ".join(missing_docs)}'
+            })
+        
+        # Créer l'application
         serializer = JobApplicationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = request.user if request.user.is_authenticated and hasattr(request.user, 'profile') else None
-        serializer.save(job_offer=job_offer, user=user)
+        application = serializer.save(job_offer=job_offer, user=user)
+        
+        # Uploader et sauvegarder les documents additionnels
+        documents_saved = {}
+        for doc_type in required_docs:
+            if doc_type in ['cv', 'cover_letter']:
+                continue
+                
+            file_key = f'document_{doc_type}'
+            if file_key in request.FILES:
+                uploaded_file = request.FILES[file_key]
+                # Sauvegarder le fichier dans le dossier job_documents
+                file_path = f'job_documents/{application.id}/{doc_type}_{uploaded_file.name}'
+                saved_path = default_storage.save(file_path, uploaded_file)
+                documents_saved[doc_type] = default_storage.url(saved_path)
+        
+        # Mettre à jour l'application avec les URLs des documents
+        if documents_saved:
+            application.documents = documents_saved
+            application.save(update_fields=['documents'])
+        
+        serializer = JobApplicationSerializer(instance=application)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @extend_schema(
@@ -329,6 +384,138 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         stats['candidates'] = total_candidates
         
         return Response(stats)
+
+    @extend_schema(
+        summary="Importer les candidats matchés",
+        description=(
+            "Appelle l'API de matching pour cette offre et crée automatiquement "
+            "des candidatures pour chaque candidat matché. Les candidatures sont marquées "
+            "avec source='matched' pour les différencier des candidatures spontanées."
+        ),
+        responses={
+            200: OpenApiResponse(
+                description="Liste des candidatures créées",
+                examples=[
+                    OpenApiExample(
+                        'Exemple de réponse',
+                        value={
+                            "created": 5,
+                            "skipped": 2,
+                            "errors": 0,
+                            "applications": []
+                        }
+                    )
+                ]
+            )
+        }
+    )
+    @action(detail=True, methods=['post'], url_path='import-matched-candidates')
+    def import_matched_candidates(self, request, pk=None):
+        """
+        Importe les candidats matchés pour cette offre en créant de vraies candidatures.
+        """
+        job_offer = self.get_object()
+        
+        # Préparer le payload pour l'API de matching
+        skills_list = list(job_offer.skills.values_list('name', flat=True))
+        payload = {
+            "id": str(job_offer.id),
+            "title": job_offer.title,
+            "description": job_offer.description or "",
+            "responsibilities": job_offer.responsibilities or "",
+            "requirements": job_offer.requirements or "",
+            "benefits": job_offer.benefits or "",
+            "jobType": job_offer.job_type or "",
+            "experienceLevel": job_offer.experience_level or "",
+            "location": job_offer.location or "",
+            "remoteAllowed": job_offer.remote_allowed,
+            "featured": job_offer.featured,
+            "skills": skills_list,
+            "required_skills": skills_list,
+        }
+        
+        # Appeler l'API de matching
+        match_service_url = os.getenv(
+            "JOB_MATCH_SERVICE_URL",
+            "http://api-celery-fastapi-213-32-91-101.traefik.me/",
+        )
+        
+        try:
+            resp = requests.post(
+                f"{match_service_url}/match",
+                json=payload,
+                timeout=200
+            )
+            resp.raise_for_status()
+            matched_candidates = resp.json()
+        except Exception as e:
+            return Response(
+                {'error': f'Erreur lors de l\'appel à l\'API de matching: {str(e)}'},
+                status=status.HTTP_502_BAD_GATEWAY
+            )
+        
+        # Statistiques d'import
+        created_count = 0
+        skipped_count = 0
+        error_count = 0
+        created_applications = []
+        
+        # Traiter les candidats matchés
+        items = matched_candidates if isinstance(matched_candidates, list) else matched_candidates.get("results", [])
+        
+        for item in items:
+            try:
+                # Récupérer l'ID du candidat
+                candidate_id = item.get("candidateId") or item.get("candidate_id")
+                if not candidate_id:
+                    error_count += 1
+                    continue
+                
+                # Récupérer l'utilisateur
+                try:
+                    user = User.objects.get(pk=candidate_id)
+                except User.DoesNotExist:
+                    error_count += 1
+                    continue
+                
+                # Vérifier si une candidature existe déjà pour cet utilisateur et cette offre
+                existing = JobApplication.objects.filter(
+                    job_offer=job_offer,
+                    user=user
+                ).first()
+                
+                if existing:
+                    skipped_count += 1
+                    continue
+                
+                # Créer la candidature avec source='matched'
+                application = JobApplication.objects.create(
+                    job_offer=job_offer,
+                    user=user,
+                    applicant_name=f"{user.first_name} {user.last_name}".strip() or user.email,
+                    applicant_email=user.email,
+                    source=JobApplication.ApplicationSource.MATCHED,
+                    status=JobApplication.ApplicationStatus.PENDING,
+                    cover_letter=f"Candidat matché automatiquement par le système de matching pour le poste {job_offer.title}.",
+                )
+                
+                created_applications.append(application)
+                created_count += 1
+                
+            except Exception as e:
+                error_count += 1
+                continue
+        
+        # Sérialiser les candidatures créées
+        serializer = JobApplicationSerializer(created_applications, many=True)
+        
+        return Response({
+            'created': created_count,
+            'skipped': skipped_count,
+            'errors': error_count,
+            'total_matched': len(items),
+            'applications': serializer.data
+        }, status=status.HTTP_201_CREATED)
 
 
 @extend_schema(tags=['Offres d\'emploi'])

@@ -27,7 +27,7 @@ class EvaluationPolicy(AccessPolicy):
         ),
         Statement(
             action=['update', 'partial_update', 'destroy', 'evaluation_statistics', 'invite_candidates',
-                    'update_by_proportion', 'add_question', 'add_from_scratch', 'grouped'],
+                    'update_by_proportion', 'add_question', 'add_from_scratch', 'grouped', 'assigned_candidates'],
             principal='authenticated',
             effect='allow',
             condition_expression='is_creator and is_publisher',
