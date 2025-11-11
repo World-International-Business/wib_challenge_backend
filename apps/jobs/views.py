@@ -187,12 +187,67 @@ class JobOfferViewSet(viewsets.ModelViewSet):
     def apply(self, request, pk=None):
         """
         Permet à un candidat de postuler une offre d'emploi.
+        Gère l'upload de documents dynamiques selon les required_documents de l'offre.
         """
+        from django.core.files.storage import default_storage
+        from rest_framework.exceptions import ValidationError as DRFValidationError
+        
         job_offer = self.get_object()
+        required_docs = job_offer.required_documents or []
+        
+        # Valider que tous les documents requis sont fournis
+        doc_labels = {
+            'portfolio': 'Portfolio',
+            'diploma': 'Diplôme',
+            'id_card': 'Pièce d\'identité',
+            'work_permit': 'Permis de travail',
+            'recommendation_letter': 'Lettre de recommandation',
+            'certificate': 'Certificat professionnel',
+            'transcript': 'Relevé de notes'
+        }
+        
+        missing_docs = []
+        for doc_type in required_docs:
+            # CV et cover_letter sont gérés séparément par le serializer
+            if doc_type in ['cv', 'cover_letter']:
+                continue
+            
+            file_key = f'document_{doc_type}'
+            if file_key not in request.FILES:
+                label = doc_labels.get(doc_type, doc_type)
+                missing_docs.append(label)
+        
+        if missing_docs:
+            raise DRFValidationError({
+                'detail': f'Documents manquants: {", ".join(missing_docs)}'
+            })
+        
+        # Créer l'application
         serializer = JobApplicationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = request.user if request.user.is_authenticated and hasattr(request.user, 'profile') else None
-        serializer.save(job_offer=job_offer, user=user)
+        application = serializer.save(job_offer=job_offer, user=user)
+        
+        # Uploader et sauvegarder les documents additionnels
+        documents_saved = {}
+        for doc_type in required_docs:
+            if doc_type in ['cv', 'cover_letter']:
+                continue
+                
+            file_key = f'document_{doc_type}'
+            if file_key in request.FILES:
+                uploaded_file = request.FILES[file_key]
+                # Sauvegarder le fichier dans le dossier job_documents
+                file_path = f'job_documents/{application.id}/{doc_type}_{uploaded_file.name}'
+                saved_path = default_storage.save(file_path, uploaded_file)
+                documents_saved[doc_type] = default_storage.url(saved_path)
+        
+        # Mettre à jour l'application avec les URLs des documents
+        if documents_saved:
+            application.documents = documents_saved
+            application.save(update_fields=['documents'])
+        
+        serializer = JobApplicationSerializer(instance=application)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @extend_schema(

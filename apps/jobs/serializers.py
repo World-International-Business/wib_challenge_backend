@@ -126,11 +126,16 @@ class JobApplicationSerializer(serializers.ModelSerializer):
         return None
 
     def validate(self, attrs):
+        # Validation CV/profil
         if not attrs.get('use_profile') and not attrs.get('resume'):
             raise serializers.ValidationError('Vous devez fournir un cv ou un profil')
         if attrs.get('use_profile') and attrs.get('resume'):
             raise serializers.ValidationError('Vous ne pouvez pas fournir un cv et un profil')
         attrs.pop('use_profile', None)
+        
+        # Note: La validation des documents additionnels est gérée dans la vue apply()
+        # car les fichiers ne sont pas dans attrs mais dans request.FILES
+        
         return attrs
 
 

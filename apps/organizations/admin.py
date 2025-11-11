@@ -6,19 +6,22 @@ from .models import Organization
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'account', 'website', 'city', 'country', 'created_at')
-    list_filter = ('country', 'city', 'created_at')
-    search_fields = ('name', 'account__email', 'city', 'country')
+    list_display = ('name', 'account', 'sector', 'company_size', 'city', 'country', 'created_at')
+    list_filter = ('country', 'city', 'company_size', 'created_at')
+    search_fields = ('name', 'account__email', 'sector', 'city', 'country', 'neighborhood')
     readonly_fields = ('created_at', 'updated_at')
     fieldsets = (
         (_('Informations générales'), {
-            'fields': ('name', 'description', 'account')
+            'fields': ('name', 'description', 'account', 'sector', 'company_size')
+        }),
+        (_('Contact'), {
+            'fields': ('email', 'phone', 'website')
         }),
         (_('Localisation'), {
-            'fields': ('address', 'city', 'country')
+            'fields': ('country', 'city', 'neighborhood')
         }),
         (_('Médias'), {
-            'fields': ('logo', 'website')
+            'fields': ('logo',)
         }),
         (_('Métadonnées'), {
             'fields': ('created_at', 'updated_at'),

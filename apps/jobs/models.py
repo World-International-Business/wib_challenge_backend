@@ -121,6 +121,8 @@ class JobApplication(BaseModel):
     applicant_email = models.EmailField(_("Email du candidat"))
     resume = models.FileField(_("CV"), upload_to='resumes/', blank=True, null=True)
     cover_letter = models.TextField(_("Lettre de motivation"), blank=True)
+    documents = models.JSONField(_("Documents additionnels"), default=dict, blank=True, 
+                                help_text=_("Stocke les URLs des documents additionnels requis (portfolio, diplôme, etc.)"))
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
     status = models.CharField(
         _("Statut"),
