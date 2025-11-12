@@ -18,11 +18,12 @@ from .filters import (
 )
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
-    Progress, Certificate
+    Progress, Certificate, CourseEnrollment
 )
 from .serializers import (
     CourseSerializer, CourseListSerializer, ModuleSerializer, ContentDetailSerializer, ContentListSerializer,
     QuizSerializer, QuizPublicSerializer, QuizListSerializer, QuizQuestionSerializer,
+    CourseEnrollmentSerializer, CourseAssignmentSerializer,
     QuizChoiceSerializer, QuizResultSerializer, ProgressSerializer, CertificateSerializer,
     CourseProgressSerializer, UserProgressStatsSerializer, QuizStatsSerializer,
     QuizSubmissionSerializer, CourseSuggestSerializer
@@ -136,6 +137,74 @@ class CourseViewSet(viewsets.ModelViewSet):
             201: CertificateSerializer,
         }
     )
+    @extend_schema(
+        summary="Assigner une formation à des utilisateurs",
+        description="Assigner une formation à un ou plusieurs utilisateurs avec création de notifications",
+        tags=["Cours"],
+        request=CourseAssignmentSerializer,
+        responses={201: CourseEnrollmentSerializer(many=True)}
+    )
+    @action(detail=True, methods=['post'], url_path='assign-to-users')
+    def assign_to_users(self, request, pk=None):
+        """Assigner une formation à plusieurs utilisateurs"""
+        course = self.get_object()
+        serializer = CourseAssignmentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        user_ids = serializer.validated_data['user_ids']
+        start_date = serializer.validated_data.get('start_date')
+        end_date = serializer.validated_data.get('end_date')
+        message = serializer.validated_data.get('message', '')
+
+        # Vérifier que les utilisateurs existent
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        users = User.objects.filter(id__in=user_ids)
+        if users.count() != len(user_ids):
+            return Response(
+                {'error': 'Un ou plusieurs utilisateurs n\'existent pas'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        enrollments = []
+        created_count = 0
+        updated_count = 0
+
+        for user in users:
+            enrollment, created = CourseEnrollment.objects.update_or_create(
+                user=user,
+                course=course,
+                defaults={
+                    'assigned_by': request.user,
+                    'start_date': start_date,
+                    'end_date': end_date,
+                    'message': message,
+                    'status': 'assigned'
+                }
+            )
+            enrollments.append(enrollment)
+            
+            if created:
+                created_count += 1
+                # Créer une notification pour l'utilisateur
+                from apps.organizations.models import UserNotification
+                UserNotification.objects.create(
+                    user=user,
+                    type='training_assigned',
+                    title=f"Nouvelle formation assignée : {course.title}",
+                    message=f"Une formation '{course.title}' vous a été assignée. {message}",
+                    related_training=course
+                )
+            else:
+                updated_count += 1
+
+        enrollment_serializer = CourseEnrollmentSerializer(enrollments, many=True)
+        return Response({
+            'created': created_count,
+            'updated': updated_count,
+            'enrollments': enrollment_serializer.data
+        }, status=status.HTTP_201_CREATED)
+
     @action(detail=True, methods=['post'])
     def generate_certificate(self, request, pk=None):
         """Générer un certificat pour ce cours si terminé"""

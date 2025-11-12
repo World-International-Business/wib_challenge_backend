@@ -6,7 +6,7 @@ from rest_framework import serializers
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
-    Progress, Certificate, ContentType
+    Progress, Certificate, ContentType, CourseEnrollment
 )
 from ..evaluations.models import SubmissionAttempt
 
@@ -586,6 +586,49 @@ class QuizAnswerSubmissionSerializer(serializers.Serializer):
         if not value:
             raise serializers.ValidationError(_("Au moins une réponse est requise"))
         return value
+
+
+class CourseEnrollmentSerializer(serializers.ModelSerializer):
+    """Serializer pour l'inscription/assignation à une formation"""
+    user_email = serializers.CharField(source='user.email', read_only=True)
+    user_name = serializers.SerializerMethodField()
+    course_title = serializers.CharField(source='course.title', read_only=True)
+    assigned_by_email = serializers.CharField(source='assigned_by.email', read_only=True, allow_null=True)
+
+    class Meta:
+        model = CourseEnrollment
+        fields = '__all__'
+        read_only_fields = ['assigned_at', 'updated_at']
+
+    def get_user_name(self, obj):
+        if hasattr(obj.user, 'first_name') and hasattr(obj.user, 'last_name'):
+            return f"{obj.user.first_name} {obj.user.last_name}".strip() or obj.user.email
+        return obj.user.email
+
+
+class CourseAssignmentSerializer(serializers.Serializer):
+    """Serializer pour assigner une formation à plusieurs utilisateurs"""
+    user_ids = serializers.ListField(
+        child=serializers.IntegerField(),
+        help_text="Liste des IDs des utilisateurs à qui assigner la formation"
+    )
+    start_date = serializers.DateField(required=False, allow_null=True)
+    end_date = serializers.DateField(required=False, allow_null=True)
+    message = serializers.CharField(required=False, allow_blank=True, max_length=1000)
+
+    def validate_user_ids(self, value):
+        if not value:
+            raise serializers.ValidationError("Au moins un utilisateur doit être sélectionné")
+        return value
+
+    def validate(self, attrs):
+        start_date = attrs.get('start_date')
+        end_date = attrs.get('end_date')
+        if start_date and end_date and end_date < start_date:
+            raise serializers.ValidationError(
+                {"end_date": "La date de fin doit être postérieure à la date de début"}
+            )
+        return attrs
 
 
 class CourseSuggestSerializer(serializers.Serializer):

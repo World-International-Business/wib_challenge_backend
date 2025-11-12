@@ -363,6 +363,37 @@ class Progress(models.Model):
         return f"{status} {self.user.username} - {self.content.title}"
 
 
+class CourseEnrollment(models.Model):
+    """Inscription/Assignation d'un utilisateur à une formation"""
+    class Status(models.TextChoices):
+        ASSIGNED = 'assigned', _('Assigné')
+        IN_PROGRESS = 'in_progress', _('En cours')
+        COMPLETED = 'completed', _('Terminé')
+        CANCELLED = 'cancelled', _('Annulé')
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_enrollments', 
+                            verbose_name=_('Utilisateur'))
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments',
+                              verbose_name=_('Formation'))
+    assigned_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
+                                   related_name='assigned_courses', verbose_name=_('Assigné par'))
+    status = models.CharField(_('Statut'), max_length=20, choices=Status.choices, default=Status.ASSIGNED)
+    start_date = models.DateField(_('Date de début'), null=True, blank=True)
+    end_date = models.DateField(_('Date de fin'), null=True, blank=True)
+    message = models.TextField(_('Message'), blank=True)
+    assigned_at = models.DateTimeField(_('Assigné le'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Modifié le'), auto_now=True)
+
+    class Meta:
+        verbose_name = _("Inscription à une formation")
+        verbose_name_plural = _("Inscriptions aux formations")
+        ordering = ['-assigned_at']
+        unique_together = ['user', 'course']
+
+    def __str__(self):
+        return f"{self.user.email} - {self.course.title} ({self.get_status_display()})"
+
+
 class Certificate(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Utilisateur'))
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name=_('Cours'))
