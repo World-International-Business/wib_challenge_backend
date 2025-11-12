@@ -67,3 +67,44 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"[{self.get_type_display()}] {self.title}"
+
+
+class UserNotification(models.Model):
+    """Notifications pour les candidats/utilisateurs"""
+    class Types(models.TextChoices):
+        EVALUATION_ASSIGNED = 'evaluation_assigned', _("Évaluation assignée")
+        INTERVIEW_SCHEDULED = 'interview_scheduled', _("Entretien programmé")
+        APPLICATION_ACCEPTED = 'application_accepted', _("Candidature acceptée - Recruté")
+        TRAINING_ASSIGNED = 'training_assigned', _("Formation assignée")
+        APPLICATION_REJECTED = 'application_rejected', _("Candidature rejetée")
+        APPLICATION_SHORTLISTED = 'application_shortlisted', _("Candidature présélectionnée")
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_notifications', verbose_name=_('Utilisateur')
+    )
+    type = models.CharField(_('Type de notification'), max_length=50, choices=Types.choices)
+    title = models.CharField(_('Titre'), max_length=255)
+    message = models.TextField(_('Message'))
+    is_read = models.BooleanField(_('Lu'), default=False)
+    created_at = models.DateTimeField(_('Date de création'), auto_now_add=True)
+
+    related_application = models.ForeignKey(
+        'jobs.JobApplication', on_delete=models.CASCADE, related_name='user_notifications', verbose_name=_('Candidature associée'),
+        null=True, blank=True
+    )
+    related_evaluation = models.ForeignKey(
+        'evaluations.Evaluation', on_delete=models.CASCADE, related_name='user_notifications', verbose_name=_('Évaluation associée'),
+        null=True, blank=True
+    )
+    related_training = models.ForeignKey(
+        'learning.Course', on_delete=models.CASCADE, related_name='user_notifications', verbose_name=_('Formation associée'),
+        null=True, blank=True
+    )
+
+    class Meta:
+        verbose_name = _('Notification Utilisateur')
+        verbose_name_plural = _('Notifications Utilisateur')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"[{self.get_type_display()}] {self.title} - {self.user.email}"

@@ -614,6 +614,7 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 status=status.HTTP_400_BAD_REQUEST
             )
         
+        old_status = application.status
         application.status = new_status
         
         # Si des détails de recrutement sont fournis (pour le statut 'accepted')
@@ -622,6 +623,35 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             application.save(update_fields=['status', 'recruitment_details', 'updated_at'])
         else:
             application.save(update_fields=['status', 'updated_at'])
+        
+        # Créer des notifications pour le candidat selon le nouveau statut
+        if application.user and old_status != new_status:
+            from apps.organizations.models import UserNotification
+            
+            if new_status == 'accepted':
+                UserNotification.objects.create(
+                    user=application.user,
+                    type='application_accepted',
+                    title=f"Félicitations ! Vous êtes recruté(e)",
+                    message=f"Votre candidature pour le poste de {application.job_offer.title} a été acceptée. Bienvenue dans l'équipe !",
+                    related_application=application
+                )
+            elif new_status == 'rejected':
+                UserNotification.objects.create(
+                    user=application.user,
+                    type='application_rejected',
+                    title=f"Candidature pour {application.job_offer.title}",
+                    message=f"Malheureusement, votre candidature pour le poste de {application.job_offer.title} n'a pas été retenue cette fois-ci.",
+                    related_application=application
+                )
+            elif new_status == 'shortlisted':
+                UserNotification.objects.create(
+                    user=application.user,
+                    type='application_shortlisted',
+                    title=f"Candidature présélectionnée",
+                    message=f"Bonne nouvelle ! Votre candidature pour le poste de {application.job_offer.title} a été présélectionnée.",
+                    related_application=application
+                )
         
         serializer = self.get_serializer(application)
         return Response(serializer.data)
@@ -664,6 +694,18 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
         application.assigned_evaluation = evaluation
         application.save(update_fields=['assigned_evaluation', 'updated_at'])
         
+        # Créer une notification pour le candidat
+        if application.user:
+            from apps.organizations.models import UserNotification
+            UserNotification.objects.create(
+                user=application.user,
+                type='evaluation_assigned',
+                title=f"Évaluation assignée pour {application.job_offer.title}",
+                message=f"Une évaluation '{evaluation.title}' vous a été assignée pour votre candidature au poste de {application.job_offer.title}.",
+                related_application=application,
+                related_evaluation=evaluation
+            )
+        
         serializer = self.get_serializer(application)
         return Response(serializer.data)
 
@@ -701,8 +743,34 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             'interview_type', 'interview_notes', 'updated_at'
         ])
         
+        # Créer une notification pour le candidat
+        if application.user and application.interview_date:
+            from apps.organizations.models import UserNotification
+            from datetime import datetime
+            interview_date_str = datetime.fromisoformat(str(application.interview_date).replace('Z', '+00:00')).strftime('%d/%m/%Y à %H:%M')
+            UserNotification.objects.create(
+                user=application.user,
+                type='interview_scheduled',
+                title=f"Entretien programmé pour {application.job_offer.title}",
+                message=f"Votre entretien pour le poste de {application.job_offer.title} est programmé le {interview_date_str}. Lien: {application.interview_link}",
+                related_application=application
+            )
+        
         serializer = self.get_serializer(application)
         return Response(serializer.data)
+
+    @extend_schema(
+        summary="Récupérer tous les candidats recrutés de l'organisation",
+        responses={200: JobApplicationSerializer(many=True)}
+    )
+    @action(detail=False, methods=['get'], url_path='recruited')
+    def recruited(self, request):
+        """
+        Récupère tous les candidats avec le statut 'accepted' (recrutés) pour l'organisation connectée.
+        """
+        recruited_applications = self.get_queryset().filter(status='accepted').order_by('-updated_at')
+        serializer = self.get_serializer(recruited_applications, many=True)
+        return Response({'results': serializer.data})
 
 
 @extend_schema(tags=["Offres d'emploi"], request=JobMatchRequestSerializer)
