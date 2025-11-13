@@ -10,6 +10,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
+
 from services.suggest_courses import suggest_courses_from_attempt
 from wib_challenge.pagination import paginated_response
 from .filters import (
@@ -18,8 +19,7 @@ from .filters import (
 )
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice, QuizAnswer, QuizResult,
-    Progress, Certificate, TrainingSelection
-    Progress, Certificate, CourseEnrollment
+    Progress, Certificate, TrainingSelection,CourseEnrollment
 )
 from .serializers import (
     CourseSerializer, CourseListSerializer, ModuleSerializer, ContentDetailSerializer, ContentListSerializer,
