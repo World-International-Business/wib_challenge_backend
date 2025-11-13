@@ -23,7 +23,7 @@ class IsCreator(permissions.BasePermission):
     def has_permission(self, request, view):
         User = get_user_model()
         return request.user.is_authenticated and (request.user.role in [User.Roles.EVALUATOR, User.Roles.ADMIN,
-                                                                        User.Roles.ORGANIZATION] or request.user.is_superuser)
+          User.Roles.ORGANIZATION] or request.user.is_superuser)
 
 
 class IsOrganization(permissions.BasePermission):
