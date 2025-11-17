@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.core.views import ProfessionViewSet, TechnologyViewSet, DomainViewSet, ContactView
+from apps.core.views import ProfessionViewSet, TechnologyViewSet, DomainViewSet, ContactView, global_stats
 from wib_challenge.routers import AppRouter
 
 router = AppRouter()
@@ -11,6 +11,7 @@ router.register('technologies', TechnologyViewSet, basename='technologies')
 
 urlpatterns = [
     path('contact/', ContactView.as_view(), name='contact'),
+    path('stats/global/', global_stats, name='global-stats'),
 ]
 
 urlpatterns += router.urls

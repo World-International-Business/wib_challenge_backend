@@ -7,8 +7,9 @@ from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
+from rest_framework.decorators import api_view
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.response import Response
 
 from apps.core.filters import TechnologyFilter, ProfessionFilter, DomainFilter
@@ -197,3 +198,38 @@ class ContactView(GenericAPIView):
             'message': 'Les données fournies ne sont pas valides.',
             'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    summary="Statistiques globales",
+    description="Récupère les statistiques globales de la plateforme (organisations, candidats, évaluateurs, formations)",
+    tags=["Statistiques"]
+)
+@api_view(['GET'])
+def global_stats(request):
+    """
+    Récupère les statistiques globales de la plateforme
+    """
+    from apps.organizations.models import Organization
+    from apps.candidates.models import CandidateProfile
+    from apps.accounts.models import User
+    from apps.learning.models import Course
+    
+    # Compter toutes les organisations
+    organizations_count = Organization.objects.count()
+    
+    # Compter les candidats (utilisateurs avec profil candidat)
+    candidates_count = CandidateProfile.objects.count()
+    
+    # Compter les évaluateurs (utilisateurs avec rôle evaluator)
+    evaluators_count = User.objects.filter(role=User.Roles.EVALUATOR).count()
+    
+    # Compter les formations disponibles
+    formations_count = Course.objects.count()
+    
+    return Response({
+        'organizations': organizations_count,
+        'candidates': candidates_count,
+        'evaluators': evaluators_count,
+        'formations': formations_count
+    })
