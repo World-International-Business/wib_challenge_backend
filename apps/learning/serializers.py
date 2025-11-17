@@ -418,6 +418,7 @@ class CourseSerializer(WritableNestedModelSerializer):
     module_count = serializers.SerializerMethodField()
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
+    participants_count = serializers.SerializerMethodField()
     user_progress = serializers.SerializerMethodField()
     skills = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
 
@@ -425,7 +426,7 @@ class CourseSerializer(WritableNestedModelSerializer):
         model = Course
         fields = [
             'id', 'title', 'description', 'level', 'is_free', 'skills',
-            'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'user_progress','picture_cover','price','estimated_duration','publisher'
+            'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'participants_count', 'user_progress','picture_cover','price','estimated_duration','publisher'
         ]
         read_only_fields = ['id']
 
@@ -437,6 +438,9 @@ class CourseSerializer(WritableNestedModelSerializer):
 
     def get_total_quiz_count(self, obj: Course) -> int:
         return Quiz.objects.filter(module__course=obj).count()
+
+    def get_participants_count(self, obj: Course) -> int:
+        return obj.enrollments.count()
 
     @extend_schema_field(UserProgressInlineSerializer)
     def get_user_progress(self, obj: Course):
@@ -487,12 +491,13 @@ class CourseListSerializer(serializers.ModelSerializer):
     module_count = serializers.SerializerMethodField()
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
+    participants_count = serializers.SerializerMethodField()
     skills = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
 
     class Meta:
         model = Course
         fields = ['id', 'title', 'description', 'level', 'is_free', 'picture_cover', 'price', 'estimated_duration', 'module_count', 'total_content_count', 'skills',
-                  'total_quiz_count']
+                  'total_quiz_count', 'participants_count']
         read_only_fields = ['id']
 
     def get_module_count(self, obj: Course) -> int:
@@ -503,6 +508,9 @@ class CourseListSerializer(serializers.ModelSerializer):
 
     def get_total_quiz_count(self, obj: Course) -> int:
         return Quiz.objects.filter(module__course=obj).count()
+
+    def get_participants_count(self, obj: Course) -> int:
+        return obj.enrollments.count()
 
 
 class ProgressSerializer(serializers.ModelSerializer):

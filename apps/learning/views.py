@@ -199,6 +199,44 @@ class CourseViewSet(viewsets.ModelViewSet):
     )
     
     @extend_schema(
+        summary="Récupérer les participants d'une formation",
+        description="Récupère la liste des participants (enrollments) pour cette formation",
+        tags=["Cours"],
+        responses={200: CourseEnrollmentSerializer(many=True)}
+    )
+    @action(detail=True, methods=['get'], url_path='participants')
+    def participants(self, request, pk=None):
+        """Récupérer les participants d'une formation"""
+        course = self.get_object()
+        enrollments = CourseEnrollment.objects.filter(course=course).select_related('user', 'assigned_by')
+        
+        # Calculer le progrès pour chaque participant
+        participants_data = []
+        for enrollment in enrollments:
+            total_contents = Content.objects.filter(module__course=course).count()
+            completed_contents = Progress.objects.filter(
+                user=enrollment.user,
+                content__module__course=course,
+                is_completed=True
+            ).count()
+            
+            progress_percentage = (completed_contents / total_contents * 100) if total_contents > 0 else 0
+            
+            participants_data.append({
+                'id': enrollment.user.id,
+                'name': f"{enrollment.user.first_name} {enrollment.user.last_name}".strip() or enrollment.user.email,
+                'post': getattr(enrollment.user, 'profession', 'Non spécifié'),
+                'invitationDate': enrollment.assigned_at.strftime('%d/%m/%Y') if enrollment.assigned_at else 'N/A',
+                'progress': round(progress_percentage, 0)
+            })
+        
+        return Response({
+            'id': course.id,
+            'title': course.title,
+            'participants': participants_data
+        })
+
+    @extend_schema(
         summary="Assigner une formation à des utilisateurs",
         description="Assigner une formation à un ou plusieurs utilisateurs avec création de notifications",
         tags=["Cours"],
