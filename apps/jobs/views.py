@@ -86,6 +86,92 @@ class JobOfferViewSet(viewsets.ModelViewSet):
             return JobOfferCreateUpdateSerializer
         return JobOfferDetailSerializer
 
+    def create(self, request, *args, **kwargs):
+        """Crée une offre d'emploi après vérification de la cohérence du contenu via le moteur sémantique."""
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        validated = serializer.validated_data
+
+        # Extraire les compétences sous forme de liste de chaînes depuis la requête brute
+        raw_skills = request.data.get('skills', [])
+        if isinstance(raw_skills, str):
+            # Au cas où le frontend enverrait une chaîne séparée par des virgules
+            raw_skills = [s.strip() for s in raw_skills.split(',') if s.strip()]
+        elif not isinstance(raw_skills, (list, tuple)):
+            raw_skills = []
+
+        skills_list = [str(s) for s in raw_skills]
+
+        # Préparer le payload pour le service d'analyse de cohérence (FastAPI)
+        coherence_payload = {
+            "title": validated.get('title', ''),
+            "description": validated.get('description', '') or "",
+            "responsibilities": validated.get('responsibilities', '') or "",
+            "requirements": validated.get('requirements', '') or "",
+            "benefits": validated.get('benefits', '') or "",
+            "jobType": validated.get('job_type', '') or "",
+            "experienceLevel": validated.get('experience_level', '') or "",
+            "location": validated.get('location', '') or "",
+            "remoteAllowed": bool(validated.get('remote_allowed', False)),
+            "featured": bool(validated.get('featured', False)),
+            "skills": skills_list,
+        }
+
+        match_service_url = os.getenv(
+            "JOB_MATCH_SERVICE_URL",
+            "http://api-celery-fastapi-213-32-91-101.traefik.me/",
+        )
+
+        try:
+            resp = requests.post(
+                f"{match_service_url.rstrip('/')}/job/coherence",
+                json=coherence_payload,
+                timeout=60,
+            )
+            resp.raise_for_status()
+            coherence_data = resp.json()
+        except Exception as e:
+            return Response(
+                {'error': f"Erreur lors de l'appel au service d'analyse de cohérence: {str(e)}"},
+                status=status.HTTP_502_BAD_GATEWAY,
+            )
+
+        global_score = float(coherence_data.get('global_score', 0.0))
+        is_consistent = bool(coherence_data.get('is_consistent', False))
+
+        # Construire un message de détail plus explicite à partir des issues retournées par le moteur de cohérence
+        issues = coherence_data.get('issues') or []
+        messages = [
+            str(item.get('message') or item.get('code'))
+            for item in issues
+            if isinstance(item, dict) and (item.get('message') or item.get('code'))
+        ]
+        if messages:
+            detail_message = (
+                "L'analyse de cohérence de l'offre a détecté les problèmes suivants : "
+                + " | ".join(messages)
+            )
+        else:
+            detail_message = (
+                "L'analyse de cohérence de l'offre a détecté des problèmes. Merci de corriger avant de publier."
+            )
+
+        # Bloquer la création si le score est inférieur au seuil ou si l'analyse indique une incohérence
+        if global_score < 0.4 or not is_consistent:
+            return Response(
+                {
+                    'detail': detail_message,
+                    'coherence': coherence_data,
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Si tout est cohérent, poursuivre la création normale
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
     def perform_create(self, serializer):
         serializer.save(company=self.request.user.organization)
     
