@@ -1,0 +1,1668 @@
+[
+  {
+    "choices": [
+      { "text": "Tenir uniquement la comptabilité", "isCorrect": false },
+      { "text": "Piloter la performance financière de l’entreprise", "isCorrect": true },
+      { "text": "Gérer les ressources humaines", "isCorrect": false },
+      { "text": "Superviser la production", "isCorrect": false }
+    ],
+    "title": "Le rôle principal du Directeur Financier est de :",
+    "description": "Rôle du Directeur Financier.",
+    "explanation": "Il pilote la performance financière de l’entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un exécutant", "isCorrect": false },
+      { "text": "Un décideur stratégique", "isCorrect": true },
+      { "text": "Un technicien comptable", "isCorrect": false },
+      { "text": "Un contrôleur administratif", "isCorrect": false }
+    ],
+    "title": "Le Directeur Financier est avant tout :",
+    "description": "Nature du rôle du Directeur Financier.",
+    "explanation": "C'est un décideur stratégique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La conformité uniquement", "isCorrect": false },
+      { "text": "La prise de décision stratégique", "isCorrect": true },
+      { "text": "La communication externe", "isCorrect": false },
+      { "text": "La production", "isCorrect": false }
+    ],
+    "title": "La fonction financière contribue directement à :",
+    "description": "Contributions de la fonction financière.",
+    "explanation": "Elle contribue à la prise de décision stratégique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Réduire les coûts", "isCorrect": false },
+      { "text": "Garantir la fiabilité des informations financières", "isCorrect": true },
+      { "text": "Augmenter le chiffre d’affaires", "isCorrect": false },
+      { "text": "Contrôler les employés", "isCorrect": false }
+    ],
+    "title": "La responsabilité fiduciaire du DAF signifie :",
+    "description": "Responsabilité fiduciaire du Directeur Financier.",
+    "explanation": "Cela signifie garantir la fiabilité des informations financières.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Aux clients", "isCorrect": false },
+      { "text": "À la Direction Générale", "isCorrect": true },
+      { "text": "Aux fournisseurs", "isCorrect": false },
+      { "text": "Aux employés", "isCorrect": false }
+    ],
+    "title": "Le DAF rend compte principalement :",
+    "description": "Rapport du DAF.",
+    "explanation": "Il rend compte principalement à la Direction Générale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’optimisation fiscale", "isCorrect": false },
+      { "text": "La production d’états financiers fiables", "isCorrect": true },
+      { "text": "Le contrôle budgétaire", "isCorrect": false },
+      { "text": "La gestion de trésorerie", "isCorrect": false }
+    ],
+    "title": "La comptabilité générale a pour objectif principal :",
+    "description": "Objectif de la comptabilité générale.",
+    "explanation": "Elle vise à produire des états financiers fiables.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les flux financiers", "isCorrect": false },
+      { "text": "La situation patrimoniale à une date donnée", "isCorrect": true },
+      { "text": "La performance sur une période", "isCorrect": false },
+      { "text": "Le budget annuel", "isCorrect": false }
+    ],
+    "title": "Le bilan représente :",
+    "description": "Définition du bilan.",
+    "explanation": "Il représente la situation patrimoniale à une date donnée.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La trésorerie", "isCorrect": false },
+      { "text": "La performance financière sur une période", "isCorrect": true },
+      { "text": "Le patrimoine", "isCorrect": false },
+      { "text": "Les investissements", "isCorrect": false }
+    ],
+    "title": "Le compte de résultat mesure :",
+    "description": "Fonction du compte de résultat.",
+    "explanation": "Il mesure la performance financière sur une période.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Augmenter le résultat", "isCorrect": false },
+      { "text": "Répartir le coût d’un actif dans le temps", "isCorrect": true },
+      { "text": "Réduire la trésorerie", "isCorrect": false },
+      { "text": "Financer les investissements", "isCorrect": false }
+    ],
+    "title": "Les amortissements servent à :",
+    "description": "Rôle des amortissements.",
+    "explanation": "Ils servent à répartir le coût d’un actif dans le temps.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un bénéfice certain", "isCorrect": false },
+      { "text": "Un risque probable et mesurable", "isCorrect": true },
+      { "text": "Une dette certaine", "isCorrect": false },
+      { "text": "Une charge déjà payée", "isCorrect": false }
+    ],
+    "title": "Une provision est comptabilisée lorsqu’il existe :",
+    "description": "Conditions pour comptabiliser une provision.",
+    "explanation": "Elle est comptabilisée lorsqu'il existe un risque probable et mesurable.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Supprimer l’impôt", "isCorrect": false },
+      { "text": "Respecter la loi tout en optimisant la charge fiscale", "isCorrect": true },
+      { "text": "Éviter les contrôles", "isCorrect": false },
+      { "text": "Augmenter les bénéfices", "isCorrect": false }
+    ],
+    "title": "L’objectif de la fiscalité d’entreprise est de :",
+    "description": "But de la fiscalité d'entreprise.",
+    "explanation": "Elle vise à respecter la loi tout en optimisant la charge fiscale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Agressive", "isCorrect": false },
+      { "text": "Légale et conforme", "isCorrect": true },
+      { "text": "Secrète", "isCorrect": false },
+      { "text": "Temporaire", "isCorrect": false }
+    ],
+    "title": "L’optimisation fiscale doit être :",
+    "description": "Nature de l'optimisation fiscale.",
+    "explanation": "Elle doit être légale et conforme.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Aucun impact", "isCorrect": false },
+      { "text": "Des pénalités financières et juridiques", "isCorrect": true },
+      { "text": "Une correction automatique", "isCorrect": false },
+      { "text": "Un simple avertissement", "isCorrect": false }
+    ],
+    "title": "Une erreur fiscale peut entraîner :",
+    "description": "Conséquences d'une erreur fiscale.",
+    "explanation": "Elle peut entraîner des pénalités financières et juridiques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’éviter les impôts", "isCorrect": false },
+      { "text": "D’anticiper les évolutions réglementaires", "isCorrect": true },
+      { "text": "De modifier les lois", "isCorrect": false },
+      { "text": "De réduire la comptabilité", "isCorrect": false }
+    ],
+    "title": "La veille fiscale permet :",
+    "description": "Importance de la veille fiscale.",
+    "explanation": "Elle permet d’anticiper les évolutions réglementaires.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les décisions commerciales", "isCorrect": false },
+      { "text": "La conformité des déclarations", "isCorrect": true },
+      { "text": "La stratégie marketing", "isCorrect": false },
+      { "text": "Les ressources humaines", "isCorrect": false }
+    ],
+    "title": "Le contrôle fiscal porte principalement sur :",
+    "description": "Focus du contrôle fiscal.",
+    "explanation": "Il porte principalement sur la conformité des déclarations.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Maximiser les dépenses", "isCorrect": false },
+      { "text": "Assurer la liquidité de l’entreprise", "isCorrect": true },
+      { "text": "Augmenter les stocks", "isCorrect": false },
+      { "text": "Réduire les ventes", "isCorrect": false }
+    ],
+    "title": "La gestion de trésorerie vise à :",
+    "description": "Objectif de la gestion de trésorerie.",
+    "explanation": "Elle vise à assurer la liquidité de l’entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’enregistrer les paiements passés", "isCorrect": false },
+      { "text": "D’anticiper les entrées et sorties de fonds", "isCorrect": true },
+      { "text": "De calculer les bénéfices", "isCorrect": false },
+      { "text": "De fixer les prix", "isCorrect": false }
+    ],
+    "title": "Le budget de trésorerie permet :",
+    "description": "Fonction du budget de trésorerie.",
+    "explanation": "Il permet d’anticiper les entrées et sorties de fonds.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une trésorerie excédentaire", "isCorrect": false },
+      { "text": "Une immobilisation importante de liquidités", "isCorrect": true },
+      { "text": "Une rentabilité élevée", "isCorrect": false },
+      { "text": "Une faible activité", "isCorrect": false }
+    ],
+    "title": "Un besoin en fonds de roulement (BFR) élevé signifie :",
+    "description": "Signification d'un BFR élevé.",
+    "explanation": "Cela signifie une immobilisation importante de liquidités.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’augmenter les coûts", "isCorrect": false },
+      { "text": "D’améliorer la trésorerie", "isCorrect": true },
+      { "text": "De réduire les ventes", "isCorrect": false },
+      { "text": "D’augmenter les impôts", "isCorrect": false }
+    ],
+    "title": "La négociation des délais fournisseurs permet :",
+    "description": "Avantages de la négociation des délais avec les fournisseurs.",
+    "explanation": "Elle permet d’améliorer la trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "La capacité de l’entreprise à générer de la trésorerie", "isCorrect": true },
+      { "text": "Le résultat comptable", "isCorrect": false },
+      { "text": "Les investissements", "isCorrect": false }
+    ],
+    "title": "Le cash-flow représente :",
+    "description": "Définition du cash-flow.",
+    "explanation": "Il représente la capacité de l’entreprise à générer de la trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’établir la comptabilité", "isCorrect": false },
+      { "text": "D’analyser la performance et les écarts", "isCorrect": true },
+      { "text": "De payer les fournisseurs", "isCorrect": false },
+      { "text": "De gérer les salaires", "isCorrect": false }
+    ],
+    "title": "Le contrôle de gestion a pour mission :",
+    "description": "Mission principale du contrôle de gestion.",
+    "explanation": "Il a pour mission d’analyser la performance et les écarts.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une prévision", "isCorrect": true },
+      { "text": "Un engagement chiffré", "isCorrect": false },
+      { "text": "Une obligation légale", "isCorrect": false },
+      { "text": "Un document fiscal", "isCorrect": false }
+    ],
+    "title": "Un budget est avant tout :",
+    "description": "Nature du budget.",
+    "explanation": "Un budget est avant tout une prévision.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "De sanctionner", "isCorrect": false },
+      { "text": "De corriger et ajuster les décisions", "isCorrect": true },
+      { "text": "De justifier les erreurs", "isCorrect": false },
+      { "text": "D’ignorer les résultats", "isCorrect": false }
+    ],
+    "title": "L’analyse des écarts permet :",
+    "description": "Fonction de l'analyse des écarts.",
+    "explanation": "Elle permet de corriger et ajuster les décisions.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Communiquer uniquement", "isCorrect": false },
+      { "text": "Piloter la performance", "isCorrect": true },
+      { "text": "Remplacer la stratégie", "isCorrect": false },
+      { "text": "Contrôler les employés", "isCorrect": false }
+    ],
+    "title": "Les indicateurs financiers servent à :",
+    "description": "Utilisation des indicateurs financiers.",
+    "explanation": "Ils servent à piloter la performance.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Au chiffre d’affaires maximal", "isCorrect": false },
+      { "text": "Au niveau d’activité où l’entreprise ne fait ni perte ni profit", "isCorrect": true },
+      { "text": "Au bénéfice net", "isCorrect": false },
+      { "text": "À la trésorerie disponible", "isCorrect": false }
+    ],
+    "title": "Le seuil de rentabilité correspond :",
+    "description": "Définition du seuil de rentabilité.",
+    "explanation": "Il correspond au niveau d’activité où l’entreprise ne fait ni perte ni profit.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Bloquer les opérations", "isCorrect": false },
+      { "text": "Sécuriser les processus et limiter les risques", "isCorrect": true },
+      { "text": "Augmenter la bureaucratie", "isCorrect": false },
+      { "text": "Remplacer l’audit", "isCorrect": false }
+    ],
+    "title": "Le contrôle interne vise à :",
+    "description": "Objectif du contrôle interne.",
+    "explanation": "Il vise à sécuriser les processus et limiter les risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une certitude", "isCorrect": false },
+      { "text": "Un événement incertain à impact financier", "isCorrect": true },
+      { "text": "Une dépense", "isCorrect": false },
+      { "text": "Un investissement", "isCorrect": false }
+    ],
+    "title": "Un risque financier est :",
+    "description": "Définition d'un risque financier.",
+    "explanation": "C'est un événement incertain à impact financier.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une forte activité", "isCorrect": false },
+      { "text": "Une faiblesse du contrôle interne", "isCorrect": true },
+      { "text": "Un excès de trésorerie", "isCorrect": false },
+      { "text": "Une bonne organisation", "isCorrect": false }
+    ],
+    "title": "Une fraude financière est souvent liée à :",
+    "description": "Causes potentielles d'une fraude financière.",
+    "explanation": "Elle est souvent liée à une faiblesse du contrôle interne.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Ralentir le travail", "isCorrect": false },
+      { "text": "Réduire les risques de fraude", "isCorrect": true },
+      { "text": "Multiplier les contrôles inutiles", "isCorrect": false },
+      { "text": "Augmenter les coûts", "isCorrect": false }
+    ],
+    "title": "La séparation des tâches vise à :",
+    "description": "Objectif de la séparation des tâches.",
+    "explanation": "Elle vise à réduire les risques de fraude.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Validant les décisions RH", "isCorrect": false },
+      { "text": "Fournissant des analyses financières fiables", "isCorrect": true },
+      { "text": "Dirigeant la production", "isCorrect": false },
+      { "text": "Gérant les ventes", "isCorrect": false }
+    ],
+    "title": "Le DAF participe à la stratégie en :",
+    "description": "Rôle du DAF dans la stratégie.",
+    "explanation": "Il participe en fournissant des analyses financières fiables.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’intuition", "isCorrect": false },
+      { "text": "Une analyse financière rigoureuse", "isCorrect": true },
+      { "text": "Le volume d’activité", "isCorrect": false },
+      { "text": "La concurrence uniquement", "isCorrect": false }
+    ],
+    "title": "Une décision d’investissement doit être basée sur :",
+    "description": "Base des décisions d'investissement.",
+    "explanation": "Elle doit être basée sur une analyse financière rigoureuse.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "La rentabilité d’un investissement", "isCorrect": true },
+      { "text": "La trésorerie", "isCorrect": false },
+      { "text": "Le résultat net", "isCorrect": false }
+    ],
+    "title": "Le retour sur investissement (ROI) mesure :",
+    "description": "Définition du retour sur investissement.",
+    "explanation": "Il mesure la rentabilité d’un investissement.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le contrôle strict", "isCorrect": false },
+      { "text": "La transparence et la responsabilité", "isCorrect": true },
+      { "text": "La centralisation", "isCorrect": false },
+      { "text": "La confidentialité excessive", "isCorrect": false }
+    ],
+    "title": "La gouvernance financière repose sur :",
+    "description": "Principes de la gouvernance financière.",
+    "explanation": "Elle repose sur la transparence et la responsabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une comptable", "isCorrect": false },
+      { "text": "Un partenaire stratégique", "isCorrect": true },
+      { "text": "Un contrôleur", "isCorrect": false },
+      { "text": "Un gestionnaire administratif", "isCorrect": false }
+    ],
+    "title": "Le DAF sénior est avant tout :",
+    "description": "Nature du rôle du DAF sénior.",
+    "explanation": "Il est avant tout un partenaire stratégique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Des chiffres", "isCorrect": false },
+      { "text": "De la performance durable de l’entreprise", "isCorrect": true },
+      { "text": "Des actionnaires uniquement", "isCorrect": false },
+      { "text": "Des autorités fiscales", "isCorrect": false }
+    ],
+    "title": "La fonction finance est au service :",
+    "description": "Service de la fonction finance.",
+    "explanation": "Elle est au service de la performance durable de l’entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Rapide", "isCorrect": false },
+      { "text": "Exacte, pertinente et vérifiable", "isCorrect": true },
+      { "text": "Confidentielle uniquement", "isCorrect": false },
+      { "text": "Complexe", "isCorrect": false }
+    ],
+    "title": "Une information financière de qualité est :",
+    "description": "Caractéristiques d'une information financière de qualité.",
+    "explanation": "Elle est exacte, pertinente et vérifiable.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les éliminer totalement", "isCorrect": false },
+      { "text": "Les identifier, mesurer et maîtriser", "isCorrect": true },
+      { "text": "Les ignorer", "isCorrect": false },
+      { "text": "Les transférer uniquement", "isCorrect": false }
+    ],
+    "title": "La gestion des risques financiers consiste à :",
+    "description": "Approche de gestion des risques financiers.",
+    "explanation": "Elle consiste à les identifier, mesurer et maîtriser.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "L’équilibre entre rentabilité, risque et trésorerie", "isCorrect": true },
+      { "text": "La réduction des coûts", "isCorrect": false },
+      { "text": "L’endettement", "isCorrect": false }
+    ],
+    "title": "La performance financière durable repose sur :",
+    "description": "Bases de la performance financière durable.",
+    "explanation": "Elle repose sur l’équilibre entre rentabilité, risque et trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L'ancienneté", "isCorrect": false },
+      { "text": "La vision, la rigueur et l’éthique", "isCorrect": true },
+      { "text": "La rapidité", "isCorrect": false },
+      { "text": "L'autorité", "isCorrect": false }
+    ],
+    "title": "L’excellence du Directeur Financier repose sur :",
+    "description": "Critères de l'excellence d'un Directeur Financier.",
+    "explanation": "Elle repose sur la vision, la rigueur et l’éthique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Calculer l’impôt", "isCorrect": false },
+      { "text": "Fournir une information financière fidèle, régulière et sincère", "isCorrect": true },
+      { "text": "Justifier les dépenses", "isCorrect": false },
+      { "text": "Faciliter les contrôles fiscaux", "isCorrect": false }
+    ],
+    "title": "Selon le SYSCOHADA révisé, l’objectif principal des états financiers est :",
+    "description": "Objectif des états financiers selon le SYSCOHADA.",
+    "explanation": "L’objectif principal est de fournir une information financière fidèle, régulière et sincère.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La forme juridique prime toujours", "isCorrect": false },
+      { "text": "La réalité économique prévaut sur la forme juridique", "isCorrect": true },
+      { "text": "Seule la fiscalité compte", "isCorrect": false },
+      { "text": "Les contrats sont prioritaires", "isCorrect": false }
+    ],
+    "title": "Le principe de prééminence de la réalité sur l’apparence signifie que :",
+    "description": "Définition de la prééminence de la réalité.",
+    "explanation": "Cela signifie que la réalité économique prévaut sur la forme juridique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "À leur valeur fiscale", "isCorrect": false },
+      { "text": "À leur coût historique", "isCorrect": true },
+      { "text": "À leur valeur de marché", "isCorrect": false },
+      { "text": "À leur valeur liquidative", "isCorrect": false }
+    ],
+    "title": "Les immobilisations incorporelles sont comptabilisées :",
+    "description": "Méthode de comptabilisation des immobilisations incorporelles.",
+    "explanation": "Elles sont comptabilisées à leur coût historique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une charge déjà payée mais non consommée", "isCorrect": true },
+      { "text": "Une charge future incertaine", "isCorrect": false },
+      { "text": "Une dette fournisseur", "isCorrect": false },
+      { "text": "Un produit différé", "isCorrect": false }
+    ],
+    "title": "Une charge constatée d’avance est :",
+    "description": "Définition d'une charge constatée d'avance.",
+    "explanation": "C'est une charge déjà payée mais non consommée.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "2 ans", "isCorrect": false },
+      { "text": "3 à 5 ans", "isCorrect": true },
+      { "text": "10 ans", "isCorrect": false },
+      { "text": "Non amortissable", "isCorrect": false }
+    ],
+    "title": "La durée normale d’amortissement d’un matériel informatique est généralement :",
+    "description": "Durée normale d'amortissement pour le matériel informatique.",
+    "explanation": "Elle est généralement de 3 à 5 ans.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Amortissements des immobilisations", "isCorrect": true },
+      { "text": "Provisions pour risques", "isCorrect": false },
+      { "text": "Dettes financières", "isCorrect": false },
+      { "text": "Charges exceptionnelles", "isCorrect": false }
+    ],
+    "title": "Le compte 281 correspond à :",
+    "description": "Définition du compte 281.",
+    "explanation": "Il correspond aux amortissements des immobilisations.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’ordre de liquidité", "isCorrect": true },
+      { "text": "L’ordre chronologique", "isCorrect": false },
+      { "text": "L’ordre juridique", "isCorrect": false },
+      { "text": "L’ordre fiscal", "isCorrect": false }
+    ],
+    "title": "Le bilan OHADA est présenté selon :",
+    "description": "Présentation du bilan OHADA.",
+    "explanation": "Il est présenté selon l’ordre de liquidité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Hypothétique", "isCorrect": false },
+      { "text": "Certain et chiffrable", "isCorrect": false },
+      { "text": "Probable et mesurable", "isCorrect": true },
+      { "text": "Fictif", "isCorrect": false }
+    ],
+    "title": "Une provision est justifiée si le risque est :",
+    "description": "Conditions pour justifier une provision.",
+    "explanation": "Elle est justifiée si le risque est probable et mesurable.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les emprunts bancaires", "isCorrect": false },
+      { "text": "Le résultat net", "isCorrect": true },
+      { "text": "Les dettes fournisseurs", "isCorrect": false },
+      { "text": "Les charges sociales", "isCorrect": false }
+    ],
+    "title": "Les capitaux propres incluent :",
+    "description": "Composantes des capitaux propres.",
+    "explanation": "Ils incluent le résultat net.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "En monnaie étrangère", "isCorrect": false },
+      { "text": "En devise de facturation", "isCorrect": false },
+      { "text": "En monnaie nationale", "isCorrect": true },
+      { "text": "En euro uniquement", "isCorrect": false }
+    ],
+    "title": "Le SYSCOHADA impose la tenue de la comptabilité :",
+    "description": "Conditions de tenue de la comptabilité.",
+    "explanation": "Elle doit être tenue en monnaie nationale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La trésorerie", "isCorrect": false },
+      { "text": "La rentabilité", "isCorrect": true },
+      { "text": "Le patrimoine", "isCorrect": false },
+      { "text": "La fiscalité", "isCorrect": false }
+    ],
+    "title": "Le compte de résultat mesure principalement :",
+    "description": "Fonction du compte de résultat.",
+    "explanation": "Il mesure principalement la rentabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le prix de vente", "isCorrect": false },
+      { "text": "Le coût d'acquisition ou de production", "isCorrect": true },
+      { "text": "La valeur fiscale", "isCorrect": false },
+      { "text": "La valeur boursière", "isCorrect": false }
+    ],
+    "title": "Les stocks sont évalués selon :",
+    "description": "Méthode d'évaluation des stocks.",
+    "explanation": "Ils sont évalués selon le coût d'acquisition ou de production.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Direct", "isCorrect": false },
+      { "text": "Progressif", "isCorrect": false },
+      { "text": "Indirect", "isCorrect": true },
+      { "text": "Local", "isCorrect": false }
+    ],
+    "title": "La TVA est un impôt :",
+    "description": "Nature de la TVA.",
+    "explanation": "La TVA est un impôt indirect.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’entreprise est déficitaire", "isCorrect": false },
+      { "text": "La facture est conforme", "isCorrect": true },
+      { "text": "Le client est solvable", "isCorrect": false },
+      { "text": "Le paiement est en espèces", "isCorrect": false }
+    ],
+    "title": "La TVA déductible est récupérable si :",
+    "description": "Conditions de récupération de la TVA déductible.",
+    "explanation": "La TVA déductible est récupérable si la facture est conforme.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "Le résultat comptable", "isCorrect": false },
+      { "text": "Le résultat fiscal", "isCorrect": true },
+      { "text": "La trésorerie", "isCorrect": false }
+    ],
+    "title": "L’IS est calculé sur :",
+    "description": "Base de calcul de l'impôt sur les sociétés.",
+    "explanation": "L'IS est calculé sur le résultat fiscal.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un salaire", "isCorrect": false },
+      { "text": "Une pénalité fiscale", "isCorrect": true },
+      { "text": "Une facture fournisseur", "isCorrect": false },
+      { "text": "Une dotation aux amortissements", "isCorrect": false }
+    ],
+    "title": "Une charge non déductible fiscalement est :",
+    "description": "Nature d'une charge non déductible.",
+    "explanation": "Une pénalité fiscale est une charge non déductible.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Quotidien", "isCorrect": false },
+      { "text": "Mensuel", "isCorrect": true },
+      { "text": "Trimestriel obligatoire", "isCorrect": false },
+      { "text": "Annuel", "isCorrect": false }
+    ],
+    "title": "Le délai normal de déclaration TVA est :",
+    "description": "Fréquence des déclarations de TVA.",
+    "explanation": "Le délai normal de déclaration de la TVA est mensuel.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un emprunt", "isCorrect": false },
+      { "text": "Une subvention", "isCorrect": false },
+      { "text": "Les ressources internes générées", "isCorrect": true },
+      { "text": "Une avance client", "isCorrect": false }
+    ],
+    "title": "L’autofinancement correspond à :",
+    "description": "Définition de l'autofinancement.",
+    "explanation": "C'est un autofinancement des ressources internes générées.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les dettes > actifs", "isCorrect": false },
+      { "text": "Les ressources stables couvrent les emplois stables", "isCorrect": true },
+      { "text": "L’entreprise est déficitaire", "isCorrect": false },
+      { "text": "La trésorerie est négative", "isCorrect": false }
+    ],
+    "title": "Le fonds de roulement positif signifie que :",
+    "description": "Signification d'un fonds de roulement positif.",
+    "explanation": "Cela signifie que les ressources stables couvrent les emplois stables.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les délais clients augmentent", "isCorrect": true },
+      { "text": "Les délais fournisseurs augmentent", "isCorrect": false },
+      { "text": "Les stocks diminuent", "isCorrect": false },
+      { "text": "Les ventes baissent", "isCorrect": false }
+    ],
+    "title": "Le BFR augmente lorsque :",
+    "description": "Conditions augmentant le besoin en fonds de roulement.",
+    "explanation": "Il augmente lorsque les délais clients augmentent.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "FR - BFR", "isCorrect": true },
+      { "text": "BFR - FR", "isCorrect": false },
+      { "text": "Actif - Passif", "isCorrect": false },
+      { "text": "Résultat - Impôt", "isCorrect": false }
+    ],
+    "title": "La trésorerie nette =",
+    "description": "Calcul de la trésorerie nette.",
+    "explanation": "La trésorerie nette est calculée comme FR - BFR.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "En produit immédiat", "isCorrect": false },
+      { "text": "En capitaux propres puis reprise", "isCorrect": true },
+      { "text": "En charge", "isCorrect": false },
+      { "text": "En dette bancaire", "isCorrect": false }
+    ],
+    "title": "Une subvention d’investissement est comptabilisée :",
+    "description": "Comptabilisation d'une subvention d'investissement.",
+    "explanation": "Elle est comptabilisée en capitaux propres puis reprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Déclarer l’impôt", "isCorrect": false },
+      { "text": "Comparer prévisions et réalisations", "isCorrect": true },
+      { "text": "Établir le bilan", "isCorrect": false },
+      { "text": "Calculer la TVA", "isCorrect": false }
+    ],
+    "title": "Le contrôle budgétaire sert à :",
+    "description": "Objectif du contrôle budgétaire.",
+    "explanation": "Il sert à comparer prévisions et réalisations.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Bonne solvabilité", "isCorrect": false },
+      { "text": "Risque de tension de trésorerie", "isCorrect": true },
+      { "text": "Forte rentabilité", "isCorrect": false },
+      { "text": "Surfinancement", "isCorrect": false }
+    ],
+    "title": "Un ratio de liquidité générale < 1 signifie :",
+    "description": "Interprétation d'un ratio de liquidité générale.",
+    "explanation": "Cela signifie un risque de tension de trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Banques", "isCorrect": true },
+      { "text": "Caisse", "isCorrect": false },
+      { "text": "Clients", "isCorrect": false },
+      { "text": "Fournisseurs", "isCorrect": false }
+    ],
+    "title": "Le compte 52 correspond à :",
+    "description": "Identification du compte 52.",
+    "explanation": "Le compte 52 correspond aux banques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "3 documents", "isCorrect": false },
+      { "text": "4 documents", "isCorrect": false },
+      { "text": "5 documents", "isCorrect": true },
+      { "text": "6 documents", "isCorrect": false }
+    ],
+    "title": "Les états financiers de synthèse comprennent :",
+    "description": "Nombre d'états financiers de synthèse.",
+    "explanation": "Ils comprennent 5 documents.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un amortissement", "isCorrect": false },
+      { "text": "Une dotation aux amortissements", "isCorrect": true },
+      { "text": "Un produit financier", "isCorrect": false },
+      { "text": "Un calcul comptable", "isCorrect": false }
+    ],
+    "title": "Une machine achetée 10 000 000 FCFA, amortie sur 5 ans linéaire. Dotation annuelle ?",
+    "description": "Calcul de la dotation annuelle d'amortissement.",
+    "explanation": "La dotation annuelle est 2 000 000 FCFA.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "1 000 000", "isCorrect": true },
+      { "text": "980 000", "isCorrect": false },
+      { "text": "1 180 000", "isCorrect": false },
+      { "text": "1 062 000", "isCorrect": false }
+    ],
+    "title": "Une facture client de 1 180 000 FCFA TTC (TVA 18%). Montant HT ?",
+    "description": "Calcul du montant HT d'une facture TTC.",
+    "explanation": "Le montant HT est de 1 000 000 FCFA.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une charge directe", "isCorrect": false },
+      { "text": "Une provision", "isCorrect": true },
+      { "text": "Une annulation", "isCorrect": false },
+      { "text": "Un produit", "isCorrect": false }
+    ],
+    "title": "Une créance douteuse doit entraîner :",
+    "description": "Gestion d'une créance douteuse.",
+    "explanation": "Elle doit entraîner une provision.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un produit", "isCorrect": false },
+      { "text": "Une charge provisionnée", "isCorrect": true },
+      { "text": "Non comptabilisée", "isCorrect": false },
+      { "text": "Un amortissement", "isCorrect": false }
+    ],
+    "title": "Une perte de change latente est :",
+    "description": "Définition d'une perte de change latente.",
+    "explanation": "C'est une charge provisionnée.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "–2M", "isCorrect": false },
+      { "text": "+2M", "isCorrect": true },
+      { "text": "0", "isCorrect": false },
+      { "text": "+12M", "isCorrect": false }
+    ],
+    "title": "Stock initial : 5M – Stock final : 7M. Variation ?",
+    "description": "Calcul de la variation de stock.",
+    "explanation": "La variation est de +2M.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "411", "isCorrect": false },
+      { "text": "419", "isCorrect": true },
+      { "text": "401", "isCorrect": false },
+      { "text": "512", "isCorrect": false }
+    ],
+    "title": "Une avance client est enregistrée au compte :",
+    "description": "Identification du compte pour une avance client.",
+    "explanation": "Elle est enregistrée au compte 419.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Ignorée", "isCorrect": false },
+      { "text": "Comptabilisée en charge à payer", "isCorrect": true },
+      { "text": "Comptabilisée en produit", "isCorrect": false },
+      { "text": "Annulée", "isCorrect": false }
+    ],
+    "title": "Une dette fournisseur non parvenue est :",
+    "description": "Gestion des dettes fournisseurs non parvenues.",
+    "explanation": "Elle est comptabilisée en charge à payer.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un emprunt", "isCorrect": false },
+      { "text": "Une subvention", "isCorrect": false },
+      { "text": "Les dettes financières", "isCorrect": true },
+      { "text": "Les produits", "isCorrect": false }
+    ],
+    "title": "Un emprunt bancaire augmente :",
+    "description": "Impact d'un emprunt bancaire sur les comptes.",
+    "explanation": "Il augmente les dettes financières.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Autorisé sans condition", "isCorrect": false },
+      { "text": "Strictement interdite", "isCorrect": false },
+      { "text": "Encadrée par le SYSCOHADA", "isCorrect": true },
+      { "text": "Obligatoire", "isCorrect": false }
+    ],
+    "title": "Une réévaluation libre d’actif est :",
+    "description": "Regles de réévaluation d'actifs.",
+    "explanation": "Elle est encadrée par le SYSCOHADA.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Au chiffre d’affaires maximal", "isCorrect": false },
+      { "text": "Au niveau d’activité où l’entreprise ne fait ni perte ni profit", "isCorrect": true },
+      { "text": "Au bénéfice net", "isCorrect": false },
+      { "text": "À la trésorerie disponible", "isCorrect": false }
+    ],
+    "title": "Le seuil de rentabilité correspond :",
+    "description": "Définition du seuil de rentabilité.",
+    "explanation": "Il correspond au niveau où l’entreprise ne fait ni perte ni profit.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’impact sur la trésorerie", "isCorrect": false },
+      { "text": "Les coûts d’opération", "isCorrect": false },
+      { "text": "La qualité des produits", "isCorrect": false },
+      { "text": "Le risque de non-conformité", "isCorrect": true }
+    ],
+    "title": "Les risques associés à un audit interne incluent :",
+    "description": "Identifications des risques liés à l'audit interne.",
+    "explanation": "Le risque de non-conformité est un risque associé à un audit interne.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une simple aide", "isCorrect": false },
+      { "text": "Une contribution à la stratégie", "isCorrect": true },
+      { "text": "Un coût", "isCorrect": false },
+      { "text": "Un impératif légal", "isCorrect": false }
+    ],
+    "title": "Le rôle du DAF est principalement :",
+    "description": "Fonction principale du DAF.",
+    "explanation": "Il contribue à la stratégie de l'entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’analyse de la situation actuelle", "isCorrect": true },
+      { "text": "Une évaluation systématique", "isCorrect": false },
+      { "text": "L’établissement de la réglementation", "isCorrect": false },
+      { "text": "La simple annonce des résultats", "isCorrect": false }
+    ],
+    "title": "Un reporting efficace implique :",
+    "description": "Éléments d'un reporting efficace.",
+    "explanation": "Il implique l’analyse de la situation actuelle.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La vente", "isCorrect": false },
+      { "text": "La gestion de trésorerie", "isCorrect": true },
+      { "text": "Un contrôle de qualité", "isCorrect": false },
+      { "text": "La conformité aux normes", "isCorrect": false }
+    ],
+    "title": "La finance d'entreprise est principalement liée à :",
+    "description": "Domaines d'intervention de la finance d'entreprise.",
+    "explanation": "Elle est surtout liée à la gestion de trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "A une seule stratégie", "isCorrect": false },
+      { "text": "À plusieurs options", "isCorrect": true },
+      { "text": "À la conformité uniquement", "isCorrect": false },
+      { "text": "À la gestion passive", "isCorrect": false }
+    ],
+    "title": "La gestion proactive des finances exige :",
+    "description": "Approche de la gestion proactive des finances.",
+    "explanation": "Elle exige une attention à plusieurs options.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "2 000 000", "isCorrect": false },
+      { "text": "2 400 000", "isCorrect": false },
+      { "text": "1 600 000", "isCorrect": true },
+      { "text": "10 000 000", "isCorrect": false }
+    ],
+    "title": "Une immobilisation acquise pour 12 000 000 FCFA, valeur résiduelle 2 000 000 FCFA, durée 5 ans. Amortissement annuel linéaire ?",
+    "description": "Calcul de l'amortissement annuel d'une immobilisation.",
+    "explanation": "La base amortissable est 10 000 000 sur 5 ans ce qui donne 1 600 000 par an.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Charge exceptionnelle immédiate", "isCorrect": false },
+      { "text": "Provision pour risques", "isCorrect": true },
+      { "text": "Dette fournisseur", "isCorrect": false },
+      { "text": "Aucune écriture", "isCorrect": false }
+    ],
+    "title": "Une entreprise enregistre une perte probable estimée à 3M FCFA liée à un litige. Traitement OHADA ?",
+    "description": "Traitement comptable d'une perte probable.",
+    "explanation": "Il s'agit d'une provision pour risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Provision uniquement", "isCorrect": false },
+      { "text": "Annulation + reprise de provision", "isCorrect": true },
+      { "text": "Produit exceptionnel", "isCorrect": false },
+      { "text": "Immobilisation", "isCorrect": false }
+    ],
+    "title": "Une créance client de 5M est jugée irrécouvrable après procédure. Écriture correcte ?",
+    "description": "Comptabilisation d'une créance irrécouvrable.",
+    "explanation": "Il faut annuler la créance et reprendre la provision.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une charge", "isCorrect": false },
+      { "text": "Une dette envers l’État", "isCorrect": true },
+      { "text": "Un produit définitif", "isCorrect": false },
+      { "text": "Une subvention", "isCorrect": false }
+    ],
+    "title": "La TVA collectée représente :",
+    "description": "Nature de la TVA collectée.",
+    "explanation": "Elle représente une dette envers l’État.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une diminution du résultat fiscal", "isCorrect": false },
+      { "text": "Une réintégration extra-comptable", "isCorrect": true },
+      { "text": "Une déduction fiscale", "isCorrect": false },
+      { "text": "Une exonération", "isCorrect": false }
+    ],
+    "title": "Une charge comptable fiscalement non déductible entraîne :",
+    "description": "Conséquence d'une charge non déductible.",
+    "explanation": "Elle entraîne une réintégration extra-comptable.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "+20M", "isCorrect": false },
+      { "text": "–20M", "isCorrect": true },
+      { "text": "+120M", "isCorrect": false },
+      { "text": "0", "isCorrect": false }
+    ],
+    "title": "Une entreprise a un FR = 50M et un BFR = 70M. Trésorerie nette ?",
+    "description": "Calcul de la trésorerie nette.",
+    "explanation": "La trésorerie nette est -20M (50M - 70M).",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Augmenter le BFR", "isCorrect": false },
+      { "text": "Réduire le BFR", "isCorrect": true },
+      { "text": "Augmenter le CA", "isCorrect": false },
+      { "text": "Réduire le FR", "isCorrect": false }
+    ],
+    "title": "Une augmentation du délai fournisseur a pour effet direct :",
+    "description": "Conséquences d'une augmentation du délai fournisseur.",
+    "explanation": "Cela réduit le BFR.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Toujours en charge", "isCorrect": false },
+      { "text": "Immobilisables sous conditions", "isCorrect": true },
+      { "text": "Interdits", "isCorrect": false },
+      { "text": "Des produits financiers", "isCorrect": false }
+    ],
+    "title": "Les intérêts d’emprunt liés à un actif en construction sont :",
+    "description": "Traitement des intérêts d'emprunt.",
+    "explanation": "Ils sont immobilisables sous conditions.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "En capitaux propres", "isCorrect": false },
+      { "text": "En produit d’exploitation", "isCorrect": true },
+      { "text": "En dette financière", "isCorrect": false },
+      { "text": "En charge", "isCorrect": false }
+    ],
+    "title": "Une subvention d’exploitation est enregistrée :",
+    "description": "Comptabilisation d'une subvention d’exploitation.",
+    "explanation": "Elle est enregistrée en produit d’exploitation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La trésorerie", "isCorrect": false },
+      { "text": "La création de richesse", "isCorrect": true },
+      { "text": "L’endettement", "isCorrect": false },
+      { "text": "Le capital social", "isCorrect": false }
+    ],
+    "title": "La valeur ajoutée permet principalement d’analyser :",
+    "description": "Utilité de la valeur ajoutée.",
+    "explanation": "Elle permet principalement d’analyser la création de richesse.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une amélioration financière", "isCorrect": false },
+      { "text": "Une tension de trésorerie", "isCorrect": true },
+      { "text": "Une hausse des fonds propres", "isCorrect": false },
+      { "text": "Une réduction du BFR", "isCorrect": false }
+    ],
+    "title": "Une baisse du ratio de liquidité immédiate traduit :",
+    "description": "Interprétation d'un ratio de liquidité.",
+    "explanation": "Cela traduit une tension de trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Résultat bénéficiaire", "isCorrect": true },
+      { "text": "Résultat déficitaire", "isCorrect": false },
+      { "text": "Provision", "isCorrect": false },
+      { "text": "Réserve légale", "isCorrect": false }
+    ],
+    "title": "Le compte 129 en fin d’exercice correspond à :",
+    "description": "Définition du compte 129.",
+    "explanation": "Il correspond au résultat bénéficiaire.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le stock augmente", "isCorrect": false },
+      { "text": "La valeur nette réalisable est inférieure au coût", "isCorrect": true },
+      { "text": "Le stock est ancien", "isCorrect": false },
+      { "text": "Le stock est invendu", "isCorrect": false }
+    ],
+    "title": "Une provision sur stock est justifiée lorsque :",
+    "description": "Conditions pour une provision sur stock.",
+    "explanation": "Elle est justifiée lorsque la valeur nette réalisable est inférieure au coût.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une charge", "isCorrect": false },
+      { "text": "Un produit", "isCorrect": true },
+      { "text": "Une immobilisation", "isCorrect": false },
+      { "text": "Une dette", "isCorrect": false }
+    ],
+    "title": "Une variation positive de stock de produits finis est :",
+    "description": "Impact d'une variation positive de stock.",
+    "explanation": "Cela est considéré comme un produit.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Déductible", "isCorrect": false },
+      { "text": "Amortissable", "isCorrect": false },
+      { "text": "Non déductible fiscalement", "isCorrect": true },
+      { "text": "Un produit", "isCorrect": false }
+    ],
+    "title": "Une pénalité douanière est :",
+    "description": "Classification d'une pénalité douanière.",
+    "explanation": "Elle est non déductible fiscalement.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le résultat comptable", "isCorrect": false },
+      { "text": "Les retraitements fiscaux", "isCorrect": true },
+      { "text": "La trésorerie", "isCorrect": false },
+      { "text": "Les amortissements uniquement", "isCorrect": false }
+    ],
+    "title": "Le résultat fiscal diffère du résultat comptable à cause :",
+    "description": "Raisons des différences entre résultats fiscaux et comptables.",
+    "explanation": "Cela est dû aux retraitements fiscaux.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Certifier les comptes", "isCorrect": false },
+      { "text": "Améliorer le contrôle interne", "isCorrect": true },
+      { "text": "Calculer l’impôt", "isCorrect": false },
+      { "text": "Gérer la paie", "isCorrect": false }
+    ],
+    "title": "Un audit interne vise prioritairement à :",
+    "description": "Objectif principal de l'audit interne.",
+    "explanation": "Il vise à améliorer le contrôle interne.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Bloquer les risques", "isCorrect": false },
+      { "text": "Réduire les risques", "isCorrect": true },
+      { "text": "Garantir le profit", "isCorrect": false },
+      { "text": "Éviter l’impôt", "isCorrect": false }
+    ],
+    "title": "Le contrôle interne efficace permet de :",
+    "description": "Bénéfices d'un contrôle interne efficace.",
+    "explanation": "Il permet de réduire les risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Aucune correction", "isCorrect": false },
+      { "text": "Une correction rétroactive", "isCorrect": true },
+      { "text": "Une modification des estimations", "isCorrect": false },
+      { "text": "Un changement de méthode", "isCorrect": false }
+    ],
+    "title": "Une fraude détectée après clôture entraîne :",
+    "description": "Conséquences d'une fraude détectée après clôture.",
+    "explanation": "Elle entraîne une correction rétroactive.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les immobilisations", "isCorrect": false },
+      { "text": "Les stocks", "isCorrect": true },
+      { "text": "Les créances", "isCorrect": false },
+      { "text": "Les provisions", "isCorrect": false }
+    ],
+    "title": "La méthode du coût moyen pondéré concerne :",
+    "description": "Application de la méthode du coût moyen pondéré.",
+    "explanation": "Elle concerne les stocks.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La production", "isCorrect": false },
+      { "text": "La stratégie financière globale", "isCorrect": true },
+      { "text": "Le marketing terrain", "isCorrect": false },
+      { "text": "La maintenance", "isCorrect": false }
+    ],
+    "title": "Le DFC est directement impliqué dans :",
+    "description": "Rôle du Directeur Financier et Comptable.",
+    "explanation": "Il est directement impliqué dans la stratégie financière globale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Augmenter les charges", "isCorrect": false },
+      { "text": "Rétablir l’équilibre financier", "isCorrect": true },
+      { "text": "Réduire le chiffre d’affaires", "isCorrect": false },
+      { "text": "Dissoudre l’entreprise", "isCorrect": false }
+    ],
+    "title": "Une restructuration financière vise principalement à :",
+    "description": "Objectif d'une restructuration financière.",
+    "explanation": "Elle vise à rétablir l’équilibre financier.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Capitaux propres / Total bilan", "isCorrect": true },
+      { "text": "Dettes / CA", "isCorrect": false },
+      { "text": "Trésorerie / Charges", "isCorrect": false },
+      { "text": "Résultat / Capitaux propres", "isCorrect": false }
+    ],
+    "title": "Le ratio d’autonomie financière mesure :",
+    "description": "Définition du ratio d’autonomie financière.",
+    "explanation": "Il mesure les capitaux propres par rapport au total bilan.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une bonne solvabilité", "isCorrect": false },
+      { "text": "Un risque financier élevé", "isCorrect": true },
+      { "text": "Une bonne liquidité", "isCorrect": false },
+      { "text": "Un excès de trésorerie", "isCorrect": false }
+    ],
+    "title": "Une forte dépendance bancaire indique :",
+    "description": "Interprétation de la dépendance bancaire.",
+    "explanation": "Cela indique un risque financier élevé.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’analyser la rentabilité", "isCorrect": false },
+      { "text": "De suivre les mouvements de cash", "isCorrect": true },
+      { "text": "De calculer l’impôt", "isCorrect": false },
+      { "text": "D’évaluer le patrimoine", "isCorrect": false }
+    ],
+    "title": "Le tableau des flux de trésorerie permet :",
+    "description": "Utilité du tableau des flux de trésorerie.",
+    "explanation": "Il permet de suivre les mouvements de cash.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le résultat comptable", "isCorrect": false },
+      { "text": "La VAN et le TRI", "isCorrect": true },
+      { "text": "La TVA", "isCorrect": false },
+      { "text": "Les charges fixes", "isCorrect": false }
+    ],
+    "title": "Une politique d’investissement doit être évaluée selon :",
+    "description": "Critères d'évaluation d'une politique d'investissement.",
+    "explanation": "Elle doit être évaluée selon la VAN et le TRI.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Bénéfice net", "isCorrect": false },
+      { "text": "Projet non rentable", "isCorrect": false },
+      { "text": "Projet créateur de valeur", "isCorrect": true },
+      { "text": "Déficit", "isCorrect": false }
+    ],
+    "title": "La VAN positive signifie :",
+    "description": "Interprétation d'une VAN positive.",
+    "explanation": "Cela signifie un projet créateur de valeur.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chef comptable", "isCorrect": false },
+      { "text": "Le DFC", "isCorrect": true },
+      { "text": "Le DRH", "isCorrect": false },
+      { "text": "Le DG uniquement", "isCorrect": false }
+    ],
+    "title": "La négociation bancaire relève du rôle :",
+    "description": "Responsabilité de la négociation bancaire.",
+    "explanation": "Elle relève du rôle du DFC.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’excès de contrôle", "isCorrect": false },
+      { "text": "La faiblesse du contrôle interne", "isCorrect": true },
+      { "text": "La fiscalité", "isCorrect": false },
+      { "text": "La rentabilité", "isCorrect": false }
+    ],
+    "title": "La fraude interne est souvent liée à :",
+    "description": "Causes de la fraude interne.",
+    "explanation": "Elle est souvent liée à la faiblesse du contrôle interne.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un CA élevé uniquement", "isCorrect": false },
+      { "text": "Un équilibre entre rentabilité, trésorerie et financement", "isCorrect": true },
+      { "text": "Un endettement fort", "isCorrect": false },
+      { "text": "Une réduction des fonds propres", "isCorrect": false }
+    ],
+    "title": "Une croissance saine suppose :",
+    "description": "Conditions pour une croissance saine.",
+    "explanation": "Elle suppose un équilibre entre rentabilité, trésorerie et financement.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Payer l’impôt", "isCorrect": false },
+      { "text": "Aider à la prise de décision", "isCorrect": true },
+      { "text": "Produire le bilan", "isCorrect": false },
+      { "text": "Gérer la paie", "isCorrect": false }
+    ],
+    "title": "Le reporting financier sert à :",
+    "description": "Fonction du reporting financier.",
+    "explanation": "Il sert à aider à la prise de décision.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La fraude", "isCorrect": false },
+      { "text": "Les options prévues par la loi", "isCorrect": true },
+      { "text": "La dissimulation", "isCorrect": false },
+      { "text": "La manipulation comptable", "isCorrect": false }
+    ],
+    "title": "Une optimisation fiscale légale repose sur :",
+    "description": "Critères de l'optimisation fiscale légale.",
+    "explanation": "Elle repose sur les options prévues par la loi.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Augmenter les charges", "isCorrect": false },
+      { "text": "Sécuriser la trésorerie", "isCorrect": true },
+      { "text": "Distribuer les dividendes", "isCorrect": false },
+      { "text": "Investir massivement", "isCorrect": false }
+    ],
+    "title": "Une entreprise en difficulté financière doit prioritairement :",
+    "description": "Action prioritaire en cas de difficulté financière.",
+    "explanation": "Elle doit prioritairement sécuriser la trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Transparence et responsabilité", "isCorrect": true },
+      { "text": "Secret absolu", "isCorrect": false },
+      { "text": "Centralisation excessive", "isCorrect": false },
+      { "text": "Absence de contrôle", "isCorrect": false }
+    ],
+    "title": "La gouvernance financière implique :",
+    "description": "Principes de la gouvernance financière.",
+    "explanation": "Elle implique transparence et responsabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Uniquement la comptabilité", "isCorrect": false },
+      { "text": "Comptabilité, finance, fiscalité et stratégie", "isCorrect": true },
+      { "text": "La production", "isCorrect": false },
+      { "text": "Le marketing digital", "isCorrect": false }
+    ],
+    "title": "Un DFC performant doit maîtriser :",
+    "description": "Compétences requises d'un DFC performant.",
+    "explanation": "Il doit maîtriser comptabilité, finance, fiscalité et stratégie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Réduire les charges", "isCorrect": false },
+      { "text": "Mettre en péril l’entreprise", "isCorrect": true },
+      { "text": "Augmenter les fonds propres", "isCorrect": false },
+      { "text": "Réduire les risques", "isCorrect": false }
+    ],
+    "title": "Une décision d’investissement mal analysée peut :",
+    "description": "Conséquences d'une mauvaise analyse d'investissement.",
+    "explanation": "Elle peut mettre en péril l’entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un manque de liquidité", "isCorrect": false },
+      { "text": "Des fonds propres excessifs non rentabilisés", "isCorrect": true },
+      { "text": "Un endettement élevé", "isCorrect": false },
+      { "text": "Une crise financière", "isCorrect": false }
+    ],
+    "title": "Une entreprise surcapitalisée présente :",
+    "description": "Conséquences d'une surcapitalisation.",
+    "explanation": "Elle présente des fonds propres excessifs non rentabilisés.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’intuition", "isCorrect": false },
+      { "text": "Les indicateurs de performance (KPI)", "isCorrect": true },
+      { "text": "Le volume d’écritures", "isCorrect": false },
+      { "text": "La fiscalité uniquement", "isCorrect": false }
+    ],
+    "title": "Le pilotage financier moderne repose sur :",
+    "description": "Principes du pilotage financier moderne.",
+    "explanation": "Il repose sur les KPI.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’enregistrement des charges", "isCorrect": false },
+      { "text": "L’organisation de la comptabilité", "isCorrect": true },
+      { "text": "L’établissement des prévisions", "isCorrect": false },
+      { "text": "L’évaluation de la performance", "isCorrect": false }
+    ],
+    "title": "Le rôle ultime du Directeur Financier est de :",
+    "description": "Fonction principale du Directeur Financier.",
+    "explanation": "Il s'occupe de l'organisation de la comptabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  }
+]

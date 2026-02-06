@@ -80,6 +80,7 @@ from ..evaluations.models import SubmissionAttempt
         }
     )
 )
+
 class CourseViewSet(viewsets.ModelViewSet):
     """ViewSet pour la gestion des cours"""
     queryset = Course.objects.all()

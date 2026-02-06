@@ -31,6 +31,8 @@ from .serializers import (
 from ..accounts.permissions import IsOrganization
 from ..accounts.serializers import UserSerializer
 from .serializers import JobMatchRequestSerializer
+from apps.evaluations.models import Candidate, EvaluationInvitation, SubmissionAttempt
+from apps.evaluations.utils import send_invitation_email
 from apps.accounts.models import User
 
 
@@ -693,8 +695,42 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
         
         application.assigned_evaluation = evaluation
         application.save(update_fields=['assigned_evaluation', 'updated_at'])
-        
-        # Créer une notification pour le candidat
+
+        # Créer ou récupérer un candidat externe à partir de la candidature
+        # Le candidat n'est pas forcément un utilisateur inscrit dans le système
+        if application.applicant_email and application.applicant_name:
+            candidate, _ = Candidate.objects.get_or_create(
+                email=application.applicant_email,
+                defaults={
+                    'full_name': application.applicant_name,
+                    'owner': request.user,
+                },
+            )
+
+            # Créer une invitation d'évaluation liée à ce candidat
+            # Expiration par défaut : 7 jours à partir de maintenant
+            from django.utils import timezone as dj_timezone
+            from datetime import timedelta
+
+            expires_at = dj_timezone.now() + timedelta(days=7)
+
+            invitation, _ = EvaluationInvitation.objects.get_or_create(
+                evaluation=evaluation,
+                candidate=candidate,
+                defaults={
+                    'expires_at': expires_at,
+                },
+            )
+
+            # Envoyer l'email d'invitation avec lien direct vers l'évaluation
+            # Le contenu de l'email inclut déjà : nom du candidat, organisation, nom du test et lien
+            try:
+                send_invitation_email(request, invitation)
+            except Exception:
+                # En cas d'échec d'envoi de mail, on ne doit pas bloquer l'API
+                pass
+
+        # Créer une notification interne pour le candidat si c'est un utilisateur
         if application.user:
             from apps.organizations.models import UserNotification
             UserNotification.objects.create(
@@ -705,9 +741,99 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 related_application=application,
                 related_evaluation=evaluation
             )
-        
+
         serializer = self.get_serializer(application)
         return Response(serializer.data)
+
+    @extend_schema(
+        summary="Résultats d'évaluation pour une candidature",
+        description=(
+            "Retourne, pour une candidature donnée, les informations sur l'évaluation assignée "
+            "et la dernière tentative du candidat (score, statut, etc.)."
+        ),
+        responses={200: JobApplicationSerializer}
+    )
+    @action(detail=True, methods=['get'], url_path='evaluation-results')
+    def evaluation_results(self, request, pk=None):
+        """Retourne les résultats d'évaluation d'une candidature (vue agrégée)."""
+        application = self.get_object()
+
+        evaluation = application.assigned_evaluation
+        if not evaluation:
+            return Response({
+                "applicationId": application.id,
+                "jobOfferId": application.job_offer_id,
+                "candidate": {
+                    "name": application.applicant_name,
+                    "email": application.applicant_email,
+                },
+                "evaluations": []
+            })
+
+        # Récupérer les tentatives de ce candidat externe pour cette évaluation
+        attempts_qs = SubmissionAttempt.objects.filter(
+            evaluation=evaluation,
+            participant__candidate__email=application.applicant_email,
+        ).select_related('submission', 'evaluation')
+
+        latest_attempt = attempts_qs.order_by('-started_at').first()
+
+        # Statut par défaut si aucune tentative
+        status_value = 'assigned'
+        score = None
+        max_score = evaluation.max_score
+        avg_on_20 = None
+        completed_at = None
+
+        if latest_attempt:
+            if latest_attempt.is_completed and latest_attempt.submission:
+                status_value = 'completed'
+                score = latest_attempt.submission.score
+                completed_at = latest_attempt.ended_at
+            else:
+                status_value = 'started'
+
+            if score is not None and max_score:
+                try:
+                    avg_on_20 = float(score) * 20.0 / float(max_score)
+                except Exception:
+                    avg_on_20 = None
+
+        # Mapping simple type -> label lisible
+        type_code = getattr(evaluation, 'evaluation_type', '') or ''
+        type_labels = {
+            'technical': "Évaluation technique",
+            'logical': "Évaluation logique",
+            'personality': "Évaluation de personnalité",
+            'psychotech': "Évaluation psychotechnique",
+            'competition': "Compétition",
+        }
+        type_label = type_labels.get(type_code, type_code or "Évaluation")
+
+        evaluation_data = {
+            "evaluationId": evaluation.id,
+            "attemptId": latest_attempt.id if latest_attempt else None,
+            "type": type_code,
+            "typeLabel": type_label,
+            "title": evaluation.title,
+            "status": status_value,
+            "score": float(score) if score is not None else None,
+            "maxScore": float(max_score) if max_score is not None else None,
+            "averageOn20": avg_on_20,
+            "completedAt": completed_at.isoformat() if completed_at else None,
+        }
+
+        payload = {
+            "applicationId": application.id,
+            "jobOfferId": application.job_offer_id,
+            "candidate": {
+                "name": application.applicant_name,
+                "email": application.applicant_email,
+            },
+            "evaluations": [evaluation_data],
+        }
+
+        return Response(payload, status=status.HTTP_200_OK)
 
     @extend_schema(
         summary="Planifier un entretien pour une candidature",

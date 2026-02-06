@@ -13,7 +13,10 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice,
-    QuizResult, QuizAnswer, Progress, Certificate
+    QuizResult, QuizAnswer, Progress, Certificate,
+    # Nouveaux modèles pour évaluations
+    Evaluation, EvaluationQuestion, EvaluationAnswer, 
+    CandidateProfile, EvaluationResult
 )
 
 
@@ -1341,3 +1344,233 @@ class CertificateAdmin(admin.ModelAdmin):
             avg_score,
             obj.issued_at.strftime('%d/%m/%Y à %H:%M')
         )
+
+
+# ==================== ÉVALUATIONS ====================
+
+class EvaluationQuestionInline(admin.TabularInline):
+    model = EvaluationQuestion
+    extra = 1
+    fields = ['title', 'question_type', 'order', 'is_active']
+    ordering = ['order']
+
+
+@admin.register(Evaluation)
+class EvaluationAdmin(admin.ModelAdmin):
+    list_display = [
+        'title', 'evaluation_type_badge', 'question_count', 
+        'candidates_count', 'is_active', 'created_at'
+    ]
+    list_filter = ['evaluation_type', 'is_active', 'created_at']
+    search_fields = ['title', 'description']
+    readonly_fields = ['question_count', 'candidates_count', 'created_at', 'updated_at']
+    inlines = [EvaluationQuestionInline]
+    
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['title', 'description', 'evaluation_type']
+        }),
+        (_('Configuration'), {
+            'fields': ['duration_minutes', 'passing_score', 'is_active']
+        }),
+        (_('Statistiques'), {
+            'fields': ['question_count', 'candidates_count', 'created_at', 'updated_at'],
+            'classes': ['collapse']
+        })
+    ]
+    
+    @admin.display(description=_('Type'), ordering='evaluation_type')
+    def evaluation_type_badge(self, obj):
+        colors = {
+            'technical': '#dc3545',
+            'psychometric': '#0d6efd',
+            'personality': '#198754'
+        }
+        labels = {
+            'technical': 'Technique',
+            'psychometric': 'Psychotechnique',
+            'personality': 'Personnalité'
+        }
+        color = colors.get(obj.evaluation_type, '#6c757d')
+        label = labels.get(obj.evaluation_type, obj.evaluation_type)
+        
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 12px;">{}</span>',
+            color, label
+        )
+    
+    @admin.display(description=_('Questions'))
+    def question_count(self, obj):
+        return obj.questions.count()
+    
+    @admin.display(description=_('Candidats'))
+    def candidates_count(self, obj):
+        return EvaluationResult.objects.filter(evaluation=obj).values('candidate').distinct().count()
+
+
+@admin.register(EvaluationResult)
+class EvaluationResultAdmin(admin.ModelAdmin):
+    list_display = [
+        'candidate_link', 'evaluation_link', 'score_badge', 
+        'status_badge', 'submitted_at', 'duration_display'
+    ]
+    list_filter = [
+        'evaluation__evaluation_type', 'evaluation', 
+        'status', 'submitted_at'
+    ]
+    search_fields = [
+        'candidate__user__username', 'candidate__user__email',
+        'evaluation__title'
+    ]
+    readonly_fields = [
+        'score', 'status', 'submitted_at', 'started_at', 
+        'duration_seconds', 'answers_summary'
+    ]
+    date_hierarchy = 'submitted_at'
+    
+    fieldsets = [
+        (_('Informations générales'), {
+            'fields': ['candidate', 'evaluation']
+        }),
+        (_('Résultats'), {
+            'fields': ['score', 'status', 'started_at', 'submitted_at', 'duration_seconds']
+        }),
+        (_('Détails'), {
+            'fields': ['answers_summary'],
+            'classes': ['collapse']
+        })
+    ]
+    
+    @admin.display(description=_('Candidat'))
+    def candidate_link(self, obj):
+        return format_html(
+            '<strong>{}</strong><br><small>{}</small>',
+            obj.candidate.user.get_full_name() or obj.candidate.user.username,
+            obj.candidate.user.email
+        )
+    
+    @admin.display(description=_('Évaluation'))
+    def evaluation_link(self, obj):
+        url = reverse('admin:learning_evaluation_change', args=[obj.evaluation.pk])
+        return format_html('<a href="{}">{}</a>', url, obj.evaluation.title)
+    
+    @admin.display(description=_('Score'), ordering='score')
+    def score_badge(self, obj):
+        if obj.score is not None:
+            color = '#28a745' if obj.score >= obj.evaluation.passing_score else '#dc3545'
+            return format_html(
+                '<span style="background-color: {}; color: white; padding: 3px 8px; border-radius: 12px; font-weight: bold;">{}%</span>',
+                color, obj.score
+            )
+        return "En attente"
+    
+    @admin.display(description=_('Statut'), ordering='status')
+    def status_badge(self, obj):
+        colors = {'completed': '#28a745', 'in_progress': '#ffc107', 'not_started': '#6c757d'}
+        labels = {'completed': 'Complété', 'in_progress': 'En cours', 'not_started': 'Non commencé'}
+        
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 2px 6px; border-radius: 8px;">{}</span>',
+            colors.get(obj.status), labels.get(obj.status)
+        )
+    
+    @admin.display(description=_('Durée'))
+    def duration_display(self, obj):
+        if obj.duration_seconds:
+            hours = obj.duration_seconds // 3600
+            minutes = (obj.duration_seconds % 3600) // 60
+            return f"{hours}h {minutes}m" if hours > 0 else f"{minutes}m"
+        return "-"
+    
+    @admin.display(description=_('Réponses'))
+    def answers_summary(self, obj):
+        answers = obj.answers.all()
+        return format_html(
+            '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+            '<strong>Résumé des réponses:</strong><br>'
+            'Nombre de réponses: {}<br>'
+            '</div>',
+            answers.count()
+        )
+
+
+@admin.register(CandidateProfile)
+class CandidateProfileAdmin(admin.ModelAdmin):
+    list_display = [
+        'user_link', 'position_applied', 'evaluations_completed',
+        'average_score', 'overall_status'
+    ]
+    list_filter = ['position_applied', 'created_at']
+    search_fields = ['user__username', 'user__email', 'position_applied']
+    readonly_fields = ['created_at', 'updated_at', 'evaluation_summary']
+    
+    fieldsets = [
+        (_('Informations personnelles'), {
+            'fields': ['user', 'position_applied']
+        }),
+        (_('Dates'), {
+            'fields': ['created_at', 'updated_at'],
+            'classes': ['collapse']
+        }),
+        (_('Résumé'), {
+            'fields': ['evaluation_summary'],
+            'classes': ['collapse']
+        })
+    ]
+    
+    @admin.display(description=_('Candidat'))
+    def user_link(self, obj):
+        return format_html(
+            '<strong>{}</strong><br><small>{}</small>',
+            obj.user.get_full_name() or obj.user.username,
+            obj.user.email
+        )
+    
+    @admin.display(description=_('Évaluations complétées'))
+    def evaluations_completed(self, obj):
+        return EvaluationResult.objects.filter(
+            candidate=obj, status='completed'
+        ).count()
+    
+    @admin.display(description=_('Score moyen'))
+    def average_score(self, obj):
+        avg = EvaluationResult.objects.filter(
+            candidate=obj, status='completed'
+        ).aggregate(avg=Avg('score'))['avg']
+        
+        if avg:
+            color = '#28a745' if avg >= 70 else '#ffc107' if avg >= 50 else '#dc3545'
+            return format_html(
+                '<span style="color: {}; font-weight: bold;">{:.1f}%</span>',
+                color, avg
+            )
+        return "N/A"
+    
+    @admin.display(description=_('Statut'))
+    def overall_status(self, obj):
+        results = EvaluationResult.objects.filter(candidate=obj, status='completed')
+        if not results.exists():
+            return format_html('<span style="color: #6c757d;">Non évalué</span>')
+        
+        all_passed = all(
+            r.score >= r.evaluation.passing_score for r in results
+        )
+        
+        if all_passed:
+            return format_html('<span style="color: #28a745;">✓ Qualifié</span>')
+        return format_html('<span style="color: #dc3545;">✗ Non qualifié</span>')
+    
+    @admin.display(description=_('Résumé des évaluations'))
+    def evaluation_summary(self, obj):
+        results = EvaluationResult.objects.filter(candidate=obj).select_related('evaluation')
+        
+        html = '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+        html += '<strong>Évaluations:</strong><br>'
+        
+        for result in results:
+            status_icon = '✅' if result.status == 'completed' else '⏳'
+            score_text = f"{result.score}%" if result.score else 'En attente'
+            html += f'{status_icon} {result.evaluation.title}: {score_text}<br>'
+        
+        html += '</div>'
+        return format_html(html)

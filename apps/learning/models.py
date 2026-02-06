@@ -449,3 +449,102 @@ class Certificate(models.Model):
 
     def __str__(self):
         return f"Certif: {self.user.username} - {self.course.title}"
+
+
+class CandidateProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='candidate_profile')
+    position_applied = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = _('Profil candidat')
+        verbose_name_plural = _('Profils candidats')
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.position_applied}"
+
+
+class Evaluation(models.Model):
+    EVALUATION_TYPES = [
+        ('technical', _('Technique')),
+        ('psychometric', _('Psychotechnique')),
+        ('personality', _('Personnalité'))
+    ]
+    
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    evaluation_type = models.CharField(max_length=20, choices=EVALUATION_TYPES)
+    duration_minutes = models.IntegerField(default=60)
+    passing_score = models.FloatField(default=70.0)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = _('Évaluation')
+        verbose_name_plural = _('Évaluations')
+    
+    def __str__(self):
+        return self.title
+
+
+class EvaluationQuestion(models.Model):
+    QUESTION_TYPES = [
+        ('multiple_choice', _('Choix multiples')),
+        ('scale', _('Échelle')),
+        ('text', _('Texte court'))
+    ]
+    
+    evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, related_name='questions')
+    title = models.CharField(max_length=500)
+    question_type = models.CharField(max_length=20, choices=QUESTION_TYPES)
+    description = models.TextField(blank=True)
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order']
+        verbose_name = _('Question d\'évaluation')
+        verbose_name_plural = _('Questions d\'évaluation')
+    
+    def __str__(self):
+        return self.title
+
+
+class EvaluationResult(models.Model):
+    STATUS_CHOICES = [
+        ('not_started', _('Non commencé')),
+        ('in_progress', _('En cours')),
+        ('completed', _('Complété'))
+    ]
+    
+    candidate = models.ForeignKey(CandidateProfile, on_delete=models.CASCADE, related_name='evaluation_results')
+    evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, related_name='results')
+    score = models.FloatField(null=True, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='not_started')
+    started_at = models.DateTimeField(null=True, blank=True)
+    submitted_at = models.DateTimeField(null=True, blank=True)
+    duration_seconds = models.IntegerField(null=True, blank=True)
+    
+    class Meta:
+        unique_together = ('candidate', 'evaluation')
+        verbose_name = _('Résultat d\'évaluation')
+        verbose_name_plural = _('Résultats d\'évaluations')
+    
+    def __str__(self):
+        return f"{self.candidate.user.username} - {self.evaluation.title}"
+
+
+class EvaluationAnswer(models.Model):
+    result = models.ForeignKey(EvaluationResult, on_delete=models.CASCADE, related_name='answers')
+    question = models.ForeignKey(EvaluationQuestion, on_delete=models.CASCADE)
+    selected_value = models.CharField(max_length=500, blank=True)
+    is_correct = models.BooleanField(null=True, blank=True)
+    
+    class Meta:
+        verbose_name = _('Réponse d\'évaluation')
+        verbose_name_plural = _('Réponses d\'évaluations')
+    
+    def __str__(self):
+        return f"{self.question.title} - {self.selected_value}"
