@@ -77,7 +77,7 @@ class QuestionAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
         (_('Métadonnées'), {
-            'fields': ('created_at', 'updated_at', 'slug'),
+            'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
     )

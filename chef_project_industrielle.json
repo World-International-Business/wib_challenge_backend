@@ -1,0 +1,527 @@
+[
+  {
+   
+    "title": "Le rôle principal d’un chef de projet industriel",
+    "difficulty": "easy",
+    "description": "Fondamentaux du management industriel",
+    "choices": [
+      { "text": "Exécuter uniquement les tâches techniques", "isCorrect": false },
+      { "text": "Piloter le projet selon QCDS", "isCorrect": true },
+      { "text": "Superviser seulement la production", "isCorrect": false },
+      { "text": "Gérer les congés", "isCorrect": false }
+    ],
+    "explanation": "Le chef de projet pilote Qualité, Coût, Délai et Sécurité.",
+    "duration": 120,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Le KPI TRS (OEE) mesure",
+    "difficulty": "medium",
+    "description": "Performance industrielle",
+    "choices": [
+      { "text": "La motivation des équipes", "isCorrect": false },
+      { "text": "La performance globale d’un équipement", "isCorrect": true },
+      { "text": "Le coût des matières", "isCorrect": false },
+      { "text": "La qualité administrative", "isCorrect": false }
+    ],
+    "explanation": "Le TRS (Taux de Rendement Synthétique) mesure disponibilité, performance et qualité.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+    
+    "title": "La maintenance préventive a pour objectif principal",
+    "difficulty": "easy",
+    "description": "Stratégies de maintenance",
+    "choices": [
+      { "text": "Réparer après panne", "isCorrect": false },
+      { "text": "Éviter les pannes futures", "isCorrect": true },
+      { "text": "Réduire le personnel", "isCorrect": false },
+      { "text": "Arrêter la production", "isCorrect": false }
+    ],
+    "explanation": "La maintenance préventive vise à anticiper les défaillances.",
+    "duration": 120,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Une analyse AMDEC permet de",
+    "difficulty": "hard",
+    "description": "Gestion des risques techniques",
+    "choices": [
+      { "text": "Calculer les salaires", "isCorrect": false },
+      { "text": "Identifier et hiérarchiser les risques", "isCorrect": true },
+      { "text": "Former les équipes", "isCorrect": false },
+      { "text": "Planifier les congés", "isCorrect": false }
+    ],
+    "explanation": "L’AMDEC identifie les modes de défaillance et leur criticité.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Le Lean Manufacturing vise principalement à",
+    "difficulty": "medium",
+    "description": "Optimisation des processus",
+    "choices": [
+      { "text": "Augmenter les stocks", "isCorrect": false },
+      { "text": "Éliminer les gaspillages", "isCorrect": true },
+      { "text": "Ajouter des contrôles", "isCorrect": false },
+      { "text": "Allonger les cycles", "isCorrect": false }
+    ],
+    "explanation": "Le Lean vise la suppression des activités sans valeur ajoutée.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+    
+    "title": "Une non-conformité critique doit être traitée par",
+    "difficulty": "hard",
+    "description": "Gestion qualité",
+    "choices": [
+      { "text": "Ignorer", "isCorrect": false },
+      { "text": "Action corrective immédiate", "isCorrect": true },
+      { "text": "Reporter", "isCorrect": false },
+      { "text": "Masquer", "isCorrect": false }
+    ],
+    "explanation": "Une non-conformité critique nécessite une action corrective immédiate.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Le stock de sécurité sert à",
+    "difficulty": "medium",
+    "description": "Gestion des stocks",
+    "choices": [
+      { "text": "Augmenter les coûts", "isCorrect": false },
+      { "text": "Éviter les ruptures", "isCorrect": true },
+      { "text": "Décorer l’entrepôt", "isCorrect": false },
+      { "text": "Remplacer la production", "isCorrect": false }
+    ],
+    "explanation": "Le stock de sécurité protège contre les aléas d’approvisionnement.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+    
+    "title": "La norme ISO 9001 concerne principalement",
+    "difficulty": "easy",
+    "description": "Systèmes de management",
+    "choices": [
+      { "text": "Sécurité incendie", "isCorrect": false },
+      { "text": "Management de la qualité", "isCorrect": true },
+      { "text": "Énergie", "isCorrect": false },
+      { "text": "Transport", "isCorrect": false }
+    ],
+    "explanation": "ISO 9001 définit les exigences du système de management de la qualité.",
+    "duration": 120,
+    "status": "active"
+  },
+
+  {
+    
+    "title": "Un incident HSE doit être traité par",
+    "difficulty": "hard",
+    "description": "Sécurité industrielle",
+    "choices": [
+      { "text": "Dissimulation", "isCorrect": false },
+      { "text": "Analyse des causes racines", "isCorrect": true },
+      { "text": "Sanction directe", "isCorrect": false },
+      { "text": "Ignorer", "isCorrect": false }
+    ],
+    "explanation": "L’analyse des causes racines permet d’éviter la récidive.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Le goulot d’étranglement dans un processus est",
+    "difficulty": "expert",
+    "description": "Optimisation industrielle",
+    "choices": [
+      { "text": "L’étape la plus rapide", "isCorrect": false },
+      { "text": "L’étape limitant le débit global", "isCorrect": true },
+      { "text": "L’étape finale", "isCorrect": false },
+      { "text": "Le stockage", "isCorrect": false }
+    ],
+    "explanation": "Le goulot limite la capacité globale du système.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+    
+    "title": "Le diagramme Ishikawa est utilisé pour",
+    "difficulty": "medium",
+    "description": "Outils qualité",
+    "choices": [
+      { "text": "Planifier les tâches", "isCorrect": false },
+      { "text": "Analyser les causes d’un problème", "isCorrect": true },
+      { "text": "Gérer le budget", "isCorrect": false },
+      { "text": "Former le personnel", "isCorrect": false }
+    ],
+    "explanation": "Le diagramme causes-effets sert à identifier les causes racines.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Une dérive de processus doit être corrigée par",
+    "difficulty": "expert",
+    "description": "Stabilité des processus",
+    "choices": [
+      { "text": "Une action corrective structurée", "isCorrect": true },
+      { "text": "Une sanction", "isCorrect": false },
+      { "text": "Une réunion", "isCorrect": false },
+      { "text": "Une attente", "isCorrect": false }
+    ],
+    "explanation": "Les dérives nécessitent des actions correctives basées sur données.",
+    "duration": 200,
+    "status": "active"
+  },
+  {
+   
+    "title": "La consignation électrique (LOTO) sert à",
+    "difficulty": "easy",
+    "description": "Sécurité électrique industrielle",
+    "choices": [
+      { "text": "Augmenter la tension", "isCorrect": false },
+      { "text": "Empêcher toute remise sous tension accidentelle", "isCorrect": true },
+      { "text": "Réparer le moteur", "isCorrect": false },
+      { "text": "Accélérer la maintenance", "isCorrect": false }
+    ],
+    "explanation": "La procédure LOTO évite les accidents lors des interventions.",
+    "duration": 120,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Un variateur de vitesse industriel permet de",
+    "difficulty": "medium",
+    "description": "Commande moteur",
+    "choices": [
+      { "text": "Changer la tension réseau", "isCorrect": false },
+      { "text": "Contrôler la vitesse du moteur", "isCorrect": true },
+      { "text": "Augmenter le bruit", "isCorrect": false },
+      { "text": "Supprimer le moteur", "isCorrect": false }
+    ],
+    "explanation": "Le variateur contrôle fréquence et vitesse du moteur.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+  
+    "title": "Le facteur de puissance faible entraîne",
+    "difficulty": "hard",
+    "description": "Optimisation énergétique",
+    "choices": [
+      { "text": "Baisse des pertes", "isCorrect": false },
+      { "text": "Surcoût énergétique et pénalités", "isCorrect": true },
+      { "text": "Hausse rendement", "isCorrect": false },
+      { "text": "Stabilité réseau", "isCorrect": false }
+    ],
+    "explanation": "Un faible cos φ augmente les pertes et pénalités réseau.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+   
+    "title": "Un automate programmable industriel (API/PLC) sert à",
+    "difficulty": "easy",
+    "description": "Contrôle industriel",
+    "choices": [
+      { "text": "Stocker des fichiers", "isCorrect": false },
+      { "text": "Commander automatiquement les machines", "isCorrect": true },
+      { "text": "Créer des sites web", "isCorrect": false },
+      { "text": "Former le personnel", "isCorrect": false }
+    ],
+    "explanation": "Le PLC automatise les processus industriels.",
+    "duration": 120,
+    "status": "active"
+  },
+
+  {
+  
+    "title": "La maintenance prédictive repose principalement sur",
+    "difficulty": "expert",
+    "description": "Industrie 4.0",
+    "choices": [
+      { "text": "L’intuition", "isCorrect": false },
+      { "text": "L’analyse de données capteurs", "isCorrect": true },
+      { "text": "Les rapports papier", "isCorrect": false },
+      { "text": "Le hasard", "isCorrect": false }
+    ],
+    "explanation": "Elle utilise données IoT et IA pour anticiper les pannes.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+
+    "title": "Un plan de prévention chantier sert à",
+    "difficulty": "medium",
+    "description": "Sécurité chantier",
+    "choices": [
+      { "text": "Planifier le budget", "isCorrect": false },
+      { "text": "Identifier les risques et mesures HSE", "isCorrect": true },
+      { "text": "Former les clients", "isCorrect": false },
+      { "text": "Accélérer les travaux", "isCorrect": false }
+    ],
+    "explanation": "Il définit les mesures de sécurité chantier.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+    "title": "La norme ISO 45001 concerne",
+    "difficulty": "easy",
+    "description": "Management sécurité",
+    "choices": [
+      { "text": "Qualité", "isCorrect": false },
+      { "text": "Santé et sécurité au travail", "isCorrect": true },
+      { "text": "Énergie", "isCorrect": false },
+      { "text": "Transport", "isCorrect": false }
+    ],
+    "explanation": "ISO 45001 concerne la sécurité des travailleurs.",
+    "duration": 120,
+    "status": "active"
+  },
+
+  {
+    "title": "Un réseau industriel SCADA permet",
+    "difficulty": "expert",
+    "description": "Supervision industrielle",
+    "choices": [
+      { "text": "De surveiller et contrôler à distance les installations", "isCorrect": true },
+      { "text": "Créer des documents", "isCorrect": false },
+      { "text": "Faire la comptabilité", "isCorrect": false },
+      { "text": "Gérer RH", "isCorrect": false }
+    ],
+    "explanation": "SCADA supervise les processus industriels en temps réel.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+    "title": "Un PERT est utilisé pour",
+    "difficulty": "medium",
+    "description": "Planification avancée",
+    "choices": [
+      { "text": "Analyser les chemins critiques", "isCorrect": true },
+      { "text": "Calculer les salaires", "isCorrect": false },
+      { "text": "Contrôler stocks", "isCorrect": false },
+      { "text": "Former équipes", "isCorrect": false }
+    ],
+    "explanation": "PERT identifie le chemin critique d’un projet.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+    "title": "Le SMED vise à",
+    "difficulty": "hard",
+    "description": "Réduction des temps d’arrêt",
+    "choices": [
+      { "text": "Augmenter le stock", "isCorrect": false },
+      { "text": "Réduire les temps de changement de série", "isCorrect": true },
+      { "text": "Former RH", "isCorrect": false },
+      { "text": "Ajouter machines", "isCorrect": false }
+    ],
+    "explanation": "SMED optimise les changements de production.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+    "title": "Un audit interne industriel permet",
+    "difficulty": "medium",
+    "description": "Amélioration continue",
+    "choices": [
+      { "text": "Sanctionner", "isCorrect": false },
+      { "text": "Vérifier conformité des processus", "isCorrect": true },
+      { "text": "Vendre produits", "isCorrect": false },
+      { "text": "Arrêter production", "isCorrect": false }
+    ],
+    "explanation": "Il vérifie la conformité aux normes.",
+    "duration": 150,
+    "status": "active"
+  },
+
+  {
+    "title": "Le Kaizen signifie",
+    "difficulty": "easy",
+    "description": "Culture industrielle",
+    "choices": [
+      { "text": "Innovation brutale", "isCorrect": false },
+      { "text": "Amélioration continue", "isCorrect": true },
+      { "text": "Automatisation totale", "isCorrect": false },
+      { "text": "Réduction RH", "isCorrect": false }
+    ],
+    "explanation": "Kaizen signifie amélioration progressive continue.",
+    "duration": 120,
+    "status": "active"
+  },
+  {
+    "title": "Lors du lancement d’un projet industriel, la première action critique du chef de projet est",
+    "difficulty": "hard",
+    "description": "Phase de démarrage projet",
+    "choices": [
+      { "text": "Commander les équipements", "isCorrect": false },
+      { "text": "Valider le périmètre, les objectifs et les parties prenantes", "isCorrect": true },
+      { "text": "Recruter l’équipe", "isCorrect": false },
+      { "text": "Démarrer le chantier", "isCorrect": false }
+    ],
+    "explanation": "Le cadrage projet est la base du succès.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+    "title": "Un glissement planning critique doit être traité en priorité par",
+    "difficulty": "expert",
+    "description": "Gestion des délais",
+    "choices": [
+      { "text": "Ajout immédiat de ressources", "isCorrect": false },
+      { "text": "Analyse du chemin critique et arbitrage", "isCorrect": true },
+      { "text": "Pression sur équipes", "isCorrect": false },
+      { "text": "Ignorer temporairement", "isCorrect": false }
+    ],
+    "explanation": "Le chemin critique détermine l’impact réel du retard.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+    "title": "Une dérive budgétaire progressive est généralement causée par",
+    "difficulty": "hard",
+    "description": "Finance projet",
+    "choices": [
+      { "text": "Un seul gros incident", "isCorrect": false },
+      { "text": "Des changements non maîtrisés (scope creep)", "isCorrect": true },
+      { "text": "La météo", "isCorrect": false },
+      { "text": "La formation", "isCorrect": false }
+    ],
+    "explanation": "Les dérives proviennent souvent de modifications non contrôlées.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+    "title": "Le document contractuel clé protégeant le chef de projet est",
+    "difficulty": "expert",
+    "description": "Gestion contractuelle",
+    "choices": [
+      { "text": "Planning interne", "isCorrect": false },
+      { "text": "Cahier des charges validé (Scope Statement)", "isCorrect": true },
+      { "text": "Compte rendu réunion", "isCorrect": false },
+      { "text": "Budget prévisionnel", "isCorrect": false }
+    ],
+    "explanation": "Le périmètre contractuel protège contre les dérives.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+    "title": "En phase exécution, l’indicateur le plus critique à suivre quotidiennement est",
+    "difficulty": "hard",
+    "description": "Pilotage terrain",
+    "choices": [
+      { "text": "Nombre de réunions", "isCorrect": false },
+      { "text": "Avancement réel vs planning (Earned Value / avancement physique)", "isCorrect": true },
+      { "text": "Emails reçus", "isCorrect": false },
+      { "text": "Présence au bureau", "isCorrect": false }
+    ],
+    "explanation": "Le suivi réel terrain est la base du pilotage.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+    "title": "Lors d’un conflit fournisseur critique, la meilleure stratégie est",
+    "difficulty": "expert",
+    "description": "Gestion fournisseurs",
+    "choices": [
+      { "text": "Résiliation immédiate", "isCorrect": false },
+      { "text": "Négociation contractuelle basée sur les pénalités et le planning", "isCorrect": true },
+      { "text": "Attente passive", "isCorrect": false },
+      { "text": "Transfert au service juridique uniquement", "isCorrect": false }
+    ],
+    "explanation": "La négociation technique-contractuelle est prioritaire.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+    "title": "Un projet industriel devient incontrôlable lorsque",
+    "difficulty": "expert",
+    "description": "Signaux faibles projet",
+    "choices": [
+      { "text": "Les équipes sont nombreuses", "isCorrect": false },
+      { "text": "Les décisions sont retardées malgré alertes terrain", "isCorrect": true },
+      { "text": "Le budget est élevé", "isCorrect": false },
+      { "text": "Le planning est serré", "isCorrect": false }
+    ],
+    "explanation": "Ignorer les signaux faibles mène à l’échec.",
+    "duration": 200,
+    "status": "active"
+  },
+
+  {
+    "title": "La compétence clé différenciant un chef de projet senior est",
+    "difficulty": "hard",
+    "description": "Leadership projet",
+    "choices": [
+      { "text": "La maîtrise Excel", "isCorrect": false },
+      { "text": "La capacité d’arbitrage rapide sous contrainte", "isCorrect": true },
+      { "text": "Le nombre de réunions", "isCorrect": false },
+      { "text": "La documentation", "isCorrect": false }
+    ],
+    "explanation": "Le senior sait décider sous pression.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+    "title": "Un chef de projet industriel performant doit passer le plus de temps",
+    "difficulty": "hard",
+    "description": "Management terrain",
+    "choices": [
+      { "text": "Au bureau", "isCorrect": false },
+      { "text": "Sur le terrain avec les équipes opérationnelles", "isCorrect": true },
+      { "text": "En réunion stratégique", "isCorrect": false },
+      { "text": "En reporting", "isCorrect": false }
+    ],
+    "explanation": "Le terrain révèle la réalité du projet.",
+    "duration": 180,
+    "status": "active"
+  },
+
+  {
+    "title": "L’erreur majeure lors d’un démarrage usine (commissioning) est",
+    "difficulty": "expert",
+    "description": "Mise en service industrielle",
+    "choices": [
+      { "text": "Documenter", "isCorrect": false },
+      { "text": "Négliger les tests fonctionnels et sécurité", "isCorrect": true },
+      { "text": "Former les opérateurs", "isCorrect": false },
+      { "text": "Planifier maintenance", "isCorrect": false }
+    ],
+    "explanation": "Les tests sont critiques pour éviter incidents graves.",
+    "duration": 200,
+    "status": "active"
+  }
+]

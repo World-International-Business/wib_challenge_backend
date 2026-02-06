@@ -90,7 +90,8 @@ EvaluationQuestionProportions = inline_serializer(
 
 class EvaluationResponseSerializer(serializers.ModelSerializer):
     """Sérialiseur pour la réponse après manipulation d'une évaluation"""
-
+    
+    type = serializers.CharField(source='evaluation_type',read_only = True)
     questions = serializers.SerializerMethodField()
     candidates_count = serializers.SerializerMethodField()
     others_count = serializers.SerializerMethodField()

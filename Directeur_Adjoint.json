@@ -1,0 +1,1514 @@
+[
+  {
+    "choices": [
+      { "text": "Exécuter uniquement les décisions du Conseil d’Administration", "isCorrect": false },
+      { "text": "Assister le DG et assurer la continuité de la direction", "isCorrect": true },
+      { "text": "Gérer uniquement les ressources humaines", "isCorrect": false },
+      { "text": "Contrôler les fournisseurs", "isCorrect": false }
+    ],
+    "title": "Quel est le rôle principal d’un Directeur Général Adjoint ?",
+    "description": "Rôle du DG Adjoint.",
+    "explanation": "Il assiste le DG et assure la continuité de la direction.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’employer le maximum de personnel", "isCorrect": false },
+      { "text": "De produire sans contrainte financière", "isCorrect": false },
+      { "text": "De créer de la valeur durable", "isCorrect": true },
+      { "text": "De dépendre de l’État", "isCorrect": false }
+    ],
+    "title": "Une entreprise a pour objectif principal :",
+    "description": "Objectif d'une entreprise.",
+    "explanation": "Son objectif principal est de créer de la valeur durable.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Résoudre les problèmes quotidiens", "isCorrect": false },
+      { "text": "Définir les objectifs à long terme et les moyens pour les atteindre", "isCorrect": true },
+      { "text": "Gérer la comptabilité", "isCorrect": false },
+      { "text": "Superviser les employés", "isCorrect": false }
+    ],
+    "title": "La stratégie d’entreprise consiste à :",
+    "description": "Définition de la stratégie d'entreprise.",
+    "explanation": "Elle consiste à définir les objectifs à long terme et les moyens pour les atteindre.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Augmenter les salaires", "isCorrect": false },
+      { "text": "Planifier et contrôler les ressources financières", "isCorrect": true },
+      { "text": "Supprimer les dépenses", "isCorrect": false },
+      { "text": "Remplacer la stratégie", "isCorrect": false }
+    ],
+    "title": "Le budget d’une entreprise sert principalement à :",
+    "description": "Fonction principale du budget d'une entreprise.",
+    "explanation": "Il sert à planifier et contrôler les ressources financières.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le contrat de travail", "isCorrect": false },
+      { "text": "Le business plan", "isCorrect": true },
+      { "text": "Le registre du personnel", "isCorrect": false },
+      { "text": "Le bulletin de paie", "isCorrect": false }
+    ],
+    "title": "Quel document présente la vision et les objectifs globaux d’une entreprise ?",
+    "description": "Importance du business plan.",
+    "explanation": "Le business plan présente la vision et les objectifs globaux.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’imposer l’autorité", "isCorrect": false },
+      { "text": "De structurer la prise de décision", "isCorrect": true },
+      { "text": "D’augmenter les conflits", "isCorrect": false },
+      { "text": "De ralentir le travail", "isCorrect": false }
+    ],
+    "title": "La hiérarchie permet principalement :",
+    "description": "Fonction de la hiérarchie dans une entreprise.",
+    "explanation": "Elle permet de structurer la prise de décision.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "À son chiffre d’affaires", "isCorrect": false },
+      { "text": "À sa raison d’être", "isCorrect": true },
+      { "text": "À son budget annuel", "isCorrect": false },
+      { "text": "À son organigramme", "isCorrect": false }
+    ],
+    "title": "La mission d’une entreprise correspond :",
+    "description": "Définition de la mission d'une entreprise.",
+    "explanation": "Elle correspond à sa raison d’être.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Sanctionner les employés", "isCorrect": false },
+      { "text": "Mesurer l’atteinte des objectifs", "isCorrect": true },
+      { "text": "Remplacer la stratégie", "isCorrect": false },
+      { "text": "Fixer les salaires", "isCorrect": false }
+    ],
+    "title": "Un indicateur de performance (KPI) sert à :",
+    "description": "Fonction d'un indicateur de performance.",
+    "explanation": "Il sert à mesurer l’atteinte des objectifs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "En opposition au DG", "isCorrect": false },
+      { "text": "En complément du DG", "isCorrect": true },
+      { "text": "En autonomie totale", "isCorrect": false },
+      { "text": "Sans responsabilité", "isCorrect": false }
+    ],
+    "title": "Le DGA agit principalement :",
+    "description": "Rôle du DGA dans l'organisation.",
+    "explanation": "Il agit en complément du DG.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les règles de gestion et de contrôle", "isCorrect": true },
+      { "text": "Les achats quotidiens", "isCorrect": false },
+      { "text": "La production uniquement", "isCorrect": false },
+      { "text": "Les clients externes", "isCorrect": false }
+    ],
+    "title": "La gouvernance d’entreprise concerne :",
+    "description": "Concept de gouvernance d’entreprise.",
+    "explanation": "Elle concerne les règles de gestion et de contrôle.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Imposer des tâches", "isCorrect": false },
+      { "text": "Responsabiliser les managers sur les résultats", "isCorrect": true },
+      { "text": "Réduire l’autonomie", "isCorrect": false },
+      { "text": "Éviter l’évaluation", "isCorrect": false }
+    ],
+    "title": "Le management par objectifs vise à :",
+    "description": "Objectifs du management par objectifs.",
+    "explanation": "Il vise à responsabiliser les managers sur les résultats.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un abandon total du contrôle", "isCorrect": false },
+      { "text": "Une confiance accompagnée de suivi", "isCorrect": true },
+      { "text": "Une absence d’objectifs", "isCorrect": false },
+      { "text": "Une surcharge du délégataire", "isCorrect": false }
+    ],
+    "title": "La délégation efficace suppose :",
+    "description": "Conditions pour une délégation efficace.",
+    "explanation": "Elle suppose une confiance accompagnée de suivi.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Produire", "isCorrect": false },
+      { "text": "D’optimiser la performance économique", "isCorrect": true },
+      { "text": "Recruter", "isCorrect": false },
+      { "text": "Sanctionner", "isCorrect": false }
+    ],
+    "title": "Le contrôle de gestion permet :",
+    "description": "Fonction du contrôle de gestion.",
+    "explanation": "Il permet d’optimiser la performance économique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Décorer le bureau", "isCorrect": false },
+      { "text": "Suivre les indicateurs clés", "isCorrect": true },
+      { "text": "Remplacer les réunions", "isCorrect": false },
+      { "text": "Gérer les congés", "isCorrect": false }
+    ],
+    "title": "Le tableau de bord stratégique sert à :",
+    "description": "Utilité du tableau de bord stratégique.",
+    "explanation": "Il sert à suivre les indicateurs clés.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’intuition uniquement", "isCorrect": false },
+      { "text": "L’analyse des données et des risques", "isCorrect": true },
+      { "text": "L’autorité hiérarchique", "isCorrect": false },
+      { "text": "L’urgence permanente", "isCorrect": false }
+    ],
+    "title": "La prise de décision efficace repose sur :",
+    "description": "Critères de prise de décision efficace.",
+    "explanation": "Elle repose sur l’analyse des données et des risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "À son chiffre d’affaires", "isCorrect": false },
+      { "text": "À sa raison d’être", "isCorrect": true },
+      { "text": "À son budget annuel", "isCorrect": false },
+      { "text": "À son organigramme", "isCorrect": false }
+    ],
+    "title": "La mission d’une entreprise correspond :",
+    "description": "Définition de la mission d'une entreprise.",
+    "explanation": "Elle correspond à sa raison d’être.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Sanctionner les employés", "isCorrect": false },
+      { "text": "Mesurer l’atteinte des objectifs", "isCorrect": true },
+      { "text": "Remplacer la stratégie", "isCorrect": false },
+      { "text": "Fixer les salaires", "isCorrect": false }
+    ],
+    "title": "Un indicateur de performance (KPI) sert à :",
+    "description": "Fonction d'un indicateur de performance.",
+    "explanation": "Il sert à mesurer l’atteinte des objectifs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "En opposition au DG", "isCorrect": false },
+      { "text": "En complément du DG", "isCorrect": true },
+      { "text": "En autonomie totale", "isCorrect": false },
+      { "text": "Sans responsabilité", "isCorrect": false }
+    ],
+    "title": "Le DGA agit principalement :",
+    "description": "Rôle du DGA dans l'organisation.",
+    "explanation": "Il agit en complément du DG.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les règles de gestion et de contrôle", "isCorrect": true },
+      { "text": "Les achats quotidiens", "isCorrect": false },
+      { "text": "La production uniquement", "isCorrect": false },
+      { "text": "Les clients externes", "isCorrect": false }
+    ],
+    "title": "La gouvernance d’entreprise concerne :",
+    "description": "Concept de gouvernance d’entreprise.",
+    "explanation": "Elle concerne les règles de gestion et de contrôle.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Imposer des tâches", "isCorrect": false },
+      { "text": "Responsabiliser les managers sur les résultats", "isCorrect": true },
+      { "text": "Réduire l’autonomie", "isCorrect": false },
+      { "text": "Éviter l’évaluation", "isCorrect": false }
+    ],
+    "title": "Le management par objectifs vise à :",
+    "description": "Objectifs du management par objectifs.",
+    "explanation": "Il vise à responsabiliser les managers sur les résultats.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un abandon total du contrôle", "isCorrect": false },
+      { "text": "Une confiance accompagnée de suivi", "isCorrect": true },
+      { "text": "Une absence d’objectifs", "isCorrect": false },
+      { "text": "Une surcharge du délégataire", "isCorrect": false }
+    ],
+    "title": "La délégation efficace suppose :",
+    "description": "Conditions pour une délégation efficace.",
+    "explanation": "Elle suppose une confiance accompagnée de suivi.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Produire", "isCorrect": false },
+      { "text": "D’optimiser la performance économique", "isCorrect": true },
+      { "text": "Recruter", "isCorrect": false },
+      { "text": "Sanctionner", "isCorrect": false }
+    ],
+    "title": "Le contrôle de gestion permet :",
+    "description": "Fonction du contrôle de gestion.",
+    "explanation": "Il permet d’optimiser la performance économique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Décorer le bureau", "isCorrect": false },
+      { "text": "Suivre les indicateurs clés", "isCorrect": true },
+      { "text": "Remplacer les réunions", "isCorrect": false },
+      { "text": "Gérer les congés", "isCorrect": false }
+    ],
+    "title": "Le tableau de bord stratégique sert à :",
+    "description": "Utilité du tableau de bord stratégique.",
+    "explanation": "Il sert à suivre les indicateurs clés.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’intuition uniquement", "isCorrect": false },
+      { "text": "L’analyse des données et des risques", "isCorrect": true },
+      { "text": "L’autorité hiérarchique", "isCorrect": false },
+      { "text": "L’urgence permanente", "isCorrect": false }
+    ],
+    "title": "La prise de décision efficace repose sur :",
+    "description": "Critères de prise de décision efficace.",
+    "explanation": "Elle repose sur l’analyse des données et des risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Vrai", "isCorrect": true },
+      { "text": "Faux", "isCorrect": false },
+      { "text": "Peut-être!", "isCorrect": false },
+      { "text": "Je ne sais pas!", "isCorrect": false }
+    ],
+    "title": "La gouvernance efficace repose sur :",
+    "description": "Principes de bonne gouvernance.",
+    "explanation": "C'est vrai, elle repose sur la transparence et la responsabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une compréhension de la technologie", "isCorrect": true },
+      { "text": "Une aptitude au contrôle", "isCorrect": false },
+      { "text": "Un savoir faire organisationnel", "isCorrect": false },
+      { "text": "L’autorité du DG", "isCorrect": false }
+    ],
+    "title": "Un DGA sénior se distingue par :",
+    "description": "Attributs d'un DGA sénior.",
+    "explanation": "Il se distingue par une maitrise et compréhension de la technologie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Plan d’action", "isCorrect": false },
+      { "text": "La pérennité et la performance durable de l’entreprise", "isCorrect": true },
+      { "text": "La croissance rapide", "isCorrect": false },
+      { "text": "La gestion de la communication", "isCorrect": false }
+    ],
+    "title": "La finalité ultime de la direction générale est :",
+    "description": "Objectif clé de la direction générale.",
+    "explanation": "C'est d'assurer la pérennité et la performance durable de l'entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Valider toutes les opérations comptables", "isCorrect": false },
+      { "text": "Garantir l’exécution de la stratégie sous contraintes réglementaires", "isCorrect": true },
+      { "text": "Superviser uniquement les équipes commerciales", "isCorrect": false },
+      { "text": "Assurer la relation client", "isCorrect": false }
+    ],
+    "title": "La mission principale d’un DGA dans une institution financière est de :",
+    "description": "Rôle principal du DGA.",
+    "explanation": "Il garantit l’exécution de la stratégie sous contraintes réglementaires.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une baisse de rentabilité", "isCorrect": false },
+      { "text": "L’incapacité à honorer ses engagements à court terme", "isCorrect": true },
+      { "text": "Une perte de clients", "isCorrect": false },
+      { "text": "Une fraude interne", "isCorrect": false }
+    ],
+    "title": "Le risque de liquidité correspond à :",
+    "description": "Définition du risque de liquidité.",
+    "explanation": "Il correspond à l’incapacité à honorer ses engagements à court terme.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La capacité à dégager du profit", "isCorrect": false },
+      { "text": "La capacité à couvrir les risques par les fonds propres", "isCorrect": true },
+      { "text": "Le volume des crédits", "isCorrect": false },
+      { "text": "Le niveau de trésorerie", "isCorrect": false }
+    ],
+    "title": "Le ratio de solvabilité mesure :",
+    "description": "Rôle du ratio de solvabilité.",
+    "explanation": "Il mesure la capacité à couvrir les risques par les fonds propres.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Limiter la croissance", "isCorrect": false },
+      { "text": "Réduire les coûts", "isCorrect": false },
+      { "text": "Assurer le respect des lois et normes financières", "isCorrect": true },
+      { "text": "Augmenter le chiffre d’affaires", "isCorrect": false }
+    ],
+    "title": "La conformité réglementaire vise principalement à :",
+    "description": "Objectif de la conformité réglementaire.",
+    "explanation": "Elle vise à assurer le respect des lois et des normes financières.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un risque opérationnel", "isCorrect": false },
+      { "text": "Un risque de solvabilité", "isCorrect": true },
+      { "text": "Un risque juridique", "isCorrect": false },
+      { "text": "Un risque commercial", "isCorrect": false }
+    ],
+    "title": "Un établissement financier trop endetté s’expose prioritairement à :",
+    "description": "Risque associé à un établissement financier endetté.",
+    "explanation": "Il s’expose à un risque de solvabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Servent uniquement aux audits", "isCorrect": false },
+      { "text": "Standardisent l’information financière", "isCorrect": true },
+      { "text": "Remplacent la fiscalité", "isCorrect": false },
+      { "text": "Sont facultatives", "isCorrect": false }
+    ],
+    "title": "Le DGA doit maîtriser les normes IFRS car elles :",
+    "description": "Importance des normes IFRS pour le DGA.",
+    "explanation": "Elles standardisent l’information financière.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Sanctionner les employés", "isCorrect": false },
+      { "text": "Sécuriser les opérations et limiter les risques", "isCorrect": true },
+      { "text": "Ralentir les processus", "isCorrect": false },
+      { "text": "Supprimer les audits externes", "isCorrect": false }
+    ],
+    "title": "Le contrôle interne vise à :",
+    "description": "Objectif du contrôle interne.",
+    "explanation": "Il vise à sécuriser les opérations et limiter les risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une croissance rapide", "isCorrect": false },
+      { "text": "Une perte de confiance des investisseurs", "isCorrect": true },
+      { "text": "Une hausse automatique des profits", "isCorrect": false },
+      { "text": "Une stabilité accrue", "isCorrect": false }
+    ],
+    "title": "Une mauvaise gouvernance financière entraîne souvent :",
+    "description": "Conséquences d'une mauvaise gouvernance financière.",
+    "explanation": "Elle entraîne souvent une perte de confiance des investisseurs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Valider les recrutements", "isCorrect": false },
+      { "text": "Identifier, suivre et limiter les risques majeurs", "isCorrect": true },
+      { "text": "Définir la stratégie commerciale", "isCorrect": false },
+      { "text": "Fixer les salaires", "isCorrect": false }
+    ],
+    "title": "Le rôle du comité des risques est de :",
+    "description": "Fonction du comité des risques.",
+    "explanation": "Il est chargé d’identifier, suivre et limiter les risques majeurs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’équilibre entre performance et maîtrise des risques", "isCorrect": true },
+      { "text": "La réduction des effectifs", "isCorrect": false },
+      { "text": "La centralisation absolue", "isCorrect": false },
+      { "text": "La conformité fiscale uniquement", "isCorrect": false }
+    ],
+    "title": "Le DGA agit comme garant de :",
+    "description": "Rôle de garant du DGA.",
+    "explanation": "Il garantit l’équilibre entre performance et maîtrise des risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La rentabilité des actifs", "isCorrect": false },
+      { "text": "La rentabilité des fonds propres", "isCorrect": true },
+      { "text": "Le niveau d’endettement", "isCorrect": false },
+      { "text": "Le chiffre d’affaires", "isCorrect": false }
+    ],
+    "title": "Le ROE mesure :",
+    "description": "Définition du ROE.",
+    "explanation": "Il mesure la rentabilité des fonds propres.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une amélioration automatique de la marge", "isCorrect": false },
+      { "text": "Une dégradation du résultat net", "isCorrect": true },
+      { "text": "Une meilleure solvabilité", "isCorrect": false },
+      { "text": "Une réduction du risque", "isCorrect": false }
+    ],
+    "title": "Une croissance du PNB sans maîtrise des coûts conduit à :",
+    "description": "Conséquences d'une croissance sans maîtrise des coûts.",
+    "explanation": "Cela conduit à une dégradation du résultat net.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "D’augmenter la performance", "isCorrect": false },
+      { "text": "De simuler des scénarios de crise", "isCorrect": true },
+      { "text": "De fixer les prix", "isCorrect": false },
+      { "text": "De réduire les charges", "isCorrect": false }
+    ],
+    "title": "Le stress testing permet :",
+    "description": "Importance du stress testing.",
+    "explanation": "Il permet de simuler des scénarios de crise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le coût historique", "isCorrect": false },
+      { "text": "Le couple risque / rendement", "isCorrect": true },
+      { "text": "L’intuition du dirigeant", "isCorrect": false },
+      { "text": "La pression concurrentielle uniquement", "isCorrect": false }
+    ],
+    "title": "Une décision d’investissement stratégique doit prioritairement intégrer :",
+    "description": "Critères d'une décision d'investissement.",
+    "explanation": "Elle doit intégrer le couple risque / rendement.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Conformité et innovation", "isCorrect": true },
+      { "text": "Rentabilité immédiate et solidité long terme", "isCorrect": false },
+      { "text": "Centralisation et anarchie", "isCorrect": false },
+      { "text": "Croissance et communication", "isCorrect": false }
+    ],
+    "title": "Le DGA doit arbitrer entre :",
+    "description": "Priorités à arbitrer par le DGA.",
+    "explanation": "Il doit arbitrer entre conformité et innovation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "La capacité de l’entreprise à générer des liquidités", "isCorrect": true },
+      { "text": "Le résultat comptable", "isCorrect": false },
+      { "text": "Les investissements", "isCorrect": false }
+    ],
+    "title": "Le cash-flow est important car il indique :",
+    "description": "Importance du cash-flow.",
+    "explanation": "Il indique la capacité de l’entreprise à générer des liquidités.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La concentration du pouvoir", "isCorrect": false },
+      { "text": "La transparence et la responsabilité", "isCorrect": true },
+      { "text": "Le secret", "isCorrect": false },
+      { "text": "L’improvisation", "isCorrect": false }
+    ],
+    "title": "La gouvernance efficace repose sur :",
+    "description": "Principes de la gouvernance efficace.",
+    "explanation": "Elle repose sur la transparence et la responsabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Sa maîtrise technique uniquement", "isCorrect": false },
+      { "text": "Sa vision globale et son leadership", "isCorrect": true },
+      { "text": "Son ancienneté", "isCorrect": false },
+      { "text": "Son autorité formelle", "isCorrect": false }
+    ],
+    "title": "Un DGA sénior se distingue par :",
+    "description": "Attributs d'un DGA sénior.",
+    "explanation": "Il se distingue par sa vision globale et son leadership.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La perception immédiate des résultats", "isCorrect": false },
+      { "text": "L’équilibre entre performance et conformité", "isCorrect": true },
+      { "text": "La centralisation du pouvoir", "isCorrect": false },
+      { "text": "La résistance au changement", "isCorrect": false }
+    ],
+    "title": "La création de valeur durable repose sur :",
+    "description": "Principes de création de valeur durable.",
+    "explanation": "Elle repose sur l’équilibre entre performance et conformité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Exécuter sans discussion", "isCorrect": false },
+      { "text": "Contribuer aux orientations stratégiques", "isCorrect": true },
+      { "text": "Pousser les décisions", "isCorrect": false },
+      { "text": "Centraliser toutes les décisions", "isCorrect": false }
+    ],
+    "title": "Le DGA contribue à la gouvernance en :",
+    "description": "Rôle du DGA dans la gouvernance.",
+    "explanation": "Il contribue aux orientations stratégiques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Maximiser la rentabilité", "isCorrect": false },
+      { "text": "Équilibrer performance, conformité et innovation", "isCorrect": true },
+      { "text": "Réduire les effectifs", "isCorrect": false },
+      { "text": "Observer passivement le marché", "isCorrect": false }
+    ],
+    "title": "Une institution financière pérenne est celle qui :",
+    "description": "Caractéristiques d'une institution financière pérenne.",
+    "explanation": "Elle équilibre performance, conformité et innovation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Transparence et responsabilité", "isCorrect": true },
+      { "text": "Opacité", "isCorrect": false },
+      { "text": "Rigidité", "isCorrect": false },
+      { "text": "Aucune de ces réponses", "isCorrect": false }
+    ],
+    "title": "La gouvernance financière implique :",
+    "description": "Principes de la gouvernance financière.",
+    "explanation": "Elle implique transparence et responsabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’autorité du DG", "isCorrect": false },
+      { "text": "Un savoir faire organisationnel", "isCorrect": false },
+      { "text": "Une bonne compréhension des outils", "isCorrect": true },
+      { "text": "La souplesse", "isCorrect": false }
+    ],
+    "title": "Un DGA performant doit maîtriser :",
+    "description": "Compétences requises d'un DGA performant.",
+    "explanation": "Il doit avoir une bonne compréhension des outils.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le volumineux des informations", "isCorrect": false },
+      { "text": "Des milliers de fichiers", "isCorrect": false },
+      { "text": "Une gestion stricte", "isCorrect": false },
+      { "text": "Les bonnes pratiques", "isCorrect": true }
+    ],
+    "title": "Les meilleures pratiques en gestion de projet conduisent à :",
+    "description": "Impact des meilleures pratiques en gestion de projet.",
+    "explanation": "Elles conduisent à des issues favorables.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Exécuter sans remettre en question", "isCorrect": false },
+      { "text": "Garantir la cohérence entre vision stratégique et exécution", "isCorrect": true },
+      { "text": "Superviser uniquement l’opérationnel", "isCorrect": false },
+      { "text": "Remplacer le DG", "isCorrect": false }
+    ],
+    "title": "Le rôle fondamental du DGA, tous secteurs confondus, est de :",
+    "description": "Rôle principal du DGA.",
+    "explanation": "Il garantit la cohérence entre vision stratégique et exécution.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La centralisation du pouvoir", "isCorrect": false },
+      { "text": "La clarté des responsabilités et des contre-pouvoirs", "isCorrect": true },
+      { "text": "La rapidité d’exécution", "isCorrect": false },
+      { "text": "Le contrôle permanent", "isCorrect": false }
+    ],
+    "title": "Une gouvernance mature se reconnaît principalement par :",
+    "description": "Critères de reconnaissance d'une gouvernance mature.",
+    "explanation": "Elle se reconnaît par la clarté des responsabilités et des contre-pouvoirs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’autorité hiérarchique", "isCorrect": false },
+      { "text": "La capacité à décider sous forte incertitude", "isCorrect": true },
+      { "text": "L’ancienneté", "isCorrect": false },
+      { "text": "La technicité sectorielle", "isCorrect": false }
+    ],
+    "title": "Le leadership exécutif se manifeste surtout par :",
+    "description": "Caractéristiques du leadership exécutif.",
+    "explanation": "Il se manifeste surtout par la capacité à décider sous forte incertitude.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Décider avec information incomplète", "isCorrect": false },
+      { "text": "Challenger le DG", "isCorrect": false },
+      { "text": "Reporter indéfiniment la décision", "isCorrect": true },
+      { "text": "Assumer le risque", "isCorrect": false }
+    ],
+    "title": "La pire posture d’un DGA en situation critique est :",
+    "description": "Comportement du DGA en situation critique.",
+    "explanation": "Reporter indéfiniment la décision est la pire posture.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’obéissance stricte", "isCorrect": false },
+      { "text": "La protection des intérêts à long terme de l’entreprise", "isCorrect": true },
+      { "text": "La discrétion absolue", "isCorrect": false },
+      { "text": "Le respect de la hiérarchie uniquement", "isCorrect": false }
+    ],
+    "title": "La responsabilité fiduciaire du DGA implique :",
+    "description": "Signification de la responsabilité fiduciaire.",
+    "explanation": "Elle implique la protection des intérêts à long terme de l’entreprise.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une performance saine", "isCorrect": false },
+      { "text": "Un risque structurel masqué", "isCorrect": true },
+      { "text": "Une création de valeur durable", "isCorrect": false },
+      { "text": "Une bonne gouvernance", "isCorrect": false }
+    ],
+    "title": "Une hausse du ROE liée uniquement à l’endettement traduit :",
+    "description": "Interprétation d'une hausse du ROE.",
+    "explanation": "Cela traduit un risque structurel masqué.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "Le couple risque / rendement", "isCorrect": true },
+      { "text": "La masse salariale", "isCorrect": false },
+      { "text": "La communication financière", "isCorrect": false }
+    ],
+    "title": "Le DGA doit prioritairement surveiller :",
+    "description": "Focus principal du DGA.",
+    "explanation": "Il doit surveiller le couple risque / rendement.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un problème commercial", "isCorrect": false },
+      { "text": "Une défaillance du pilotage financier", "isCorrect": true },
+      { "text": "Une mauvaise image", "isCorrect": false },
+      { "text": "Un excès d’innovation", "isCorrect": false }
+    ],
+    "title": "Une crise de liquidité révèle le plus souvent :",
+    "description": "Identification des causes d'une crise de liquidité.",
+    "explanation": "Elle révèle une défaillance du pilotage financier.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une contrainte coûteuse", "isCorrect": false },
+      { "text": "Un pilier de la pérennité financière", "isCorrect": true },
+      { "text": "Une obligation administrative", "isCorrect": false },
+      { "text": "Un frein stratégique", "isCorrect": false }
+    ],
+    "title": "La conformité réglementaire est avant tout :",
+    "description": "Rôle de la conformité réglementaire.",
+    "explanation": "Elle est un pilier de la pérennité financière.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une baisse temporaire", "isCorrect": false },
+      { "text": "Une destruction de valeur", "isCorrect": true },
+      { "text": "Une meilleure liquidité", "isCorrect": false },
+      { "text": "Une hausse du ROE", "isCorrect": false }
+    ],
+    "title": "Une mauvaise allocation du capital entraîne :",
+    "description": "Conséquences d'une mauvaise allocation de capital.",
+    "explanation": "Elle entraîne une destruction de valeur.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le surcoût uniquement", "isCorrect": false },
+      { "text": "La perte de contrôle opérationnel et de sécurité", "isCorrect": true },
+      { "text": "La lenteur des équipes", "isCorrect": false },
+      { "text": "L’obsolescence des outils", "isCorrect": false }
+    ],
+    "title": "Le risque majeur d’une transformation digitale mal gouvernée est :",
+    "description": "Risques associés à une transformation digitale.",
+    "explanation": "Il s'agit de la perte de contrôle opérationnel et de sécurité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un centre de coût", "isCorrect": false },
+      { "text": "Un levier stratégique de performance et de contrôle", "isCorrect": true },
+      { "text": "Un sujet purement technique", "isCorrect": false },
+      { "text": "Un outil de support secondaire", "isCorrect": false }
+    ],
+    "title": "Le DGA doit considérer l’IT comme :",
+    "description": "Perception de l'IT par le DGA.",
+    "explanation": "Il doit la considérer comme un levier stratégique de performance et de contrôle.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une meilleure agilité", "isCorrect": false },
+      { "text": "Un risque opérationnel croissant", "isCorrect": true },
+      { "text": "Une réduction des coûts", "isCorrect": false },
+      { "text": "Une innovation accélérée", "isCorrect": false }
+    ],
+    "title": "Une dette technique non maîtrisée entraîne :",
+    "description": "Impact d'une dette technique non maîtrisée.",
+    "explanation": "Elle entraîne un risque opérationnel croissant.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un problème IT", "isCorrect": false },
+      { "text": "Un enjeu stratégique et de gouvernance", "isCorrect": true },
+      { "text": "Une question opérationnelle", "isCorrect": false },
+      { "text": "Une contrainte réglementaire", "isCorrect": false }
+    ],
+    "title": "La cybersécurité est avant tout :",
+    "description": "Définition de la cybersécurité.",
+    "explanation": "C'est un enjeu stratégique et de gouvernance.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Innovation rapide et maîtrise des risques SI", "isCorrect": true },
+      { "text": "Sécurité absolue et immobilisme", "isCorrect": false },
+      { "text": "Technologie et ressources humaines", "isCorrect": false },
+      { "text": "Budget et conformité", "isCorrect": false }
+    ],
+    "title": "Le DGA doit arbitrer entre :",
+    "description": "Priorités d'arbitrage pour le DGA.",
+    "explanation": "Il doit arbitrer entre innovation rapide et maîtrise des risques SI.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La réduction des coûts", "isCorrect": false },
+      { "text": "La maîtrise des processus et de la qualité", "isCorrect": true },
+      { "text": "La productivité humaine uniquement", "isCorrect": false },
+      { "text": "L’automatisation totale", "isCorrect": false }
+    ],
+    "title": "La performance industrielle durable repose sur :",
+    "description": "Promotion de la performance industrielle.",
+    "explanation": "Elle repose sur la maîtrise des processus et de la qualité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une amélioration de la performance", "isCorrect": false },
+      { "text": "Une baisse globale de la performance", "isCorrect": true },
+      { "text": "Une meilleure qualité", "isCorrect": false },
+      { "text": "Une réduction des délais", "isCorrect": false }
+    ],
+    "title": "Un goulot d’étranglement non traité entraîne :",
+    "description": "Conséquences d'un goulot d'étranglement.",
+    "explanation": "Cela entraîne une baisse globale de la performance.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Coûts, qualité, délais et risques", "isCorrect": true },
+      { "text": "Production seule", "isCorrect": false },
+      { "text": "Les volumes uniquement", "isCorrect": false },
+      { "text": "Les équipements", "isCorrect": false }
+    ],
+    "title": "Le DGA doit piloter l’industrie en intégrant :",
+    "description": "Éléments à intégrer dans le pilotage industriel.",
+    "explanation": "Il doit intégrer les coûts, qualité, délais et risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un risque systémique de production", "isCorrect": true },
+      { "text": "Une meilleure négociation", "isCorrect": false },
+      { "text": "Une stabilité accrue", "isCorrect": false },
+      { "text": "Une baisse des coûts", "isCorrect": false }
+    ],
+    "title": "Une dépendance excessive à un fournisseur critique expose à :",
+    "description": "Risques liés à la dépendance à un fournisseur.",
+    "explanation": "Elle expose à un risque systémique de production.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une croissance rapide", "isCorrect": false },
+      { "text": "Une destruction de valeur", "isCorrect": true },
+      { "text": "Une meilleure image", "isCorrect": false },
+      { "text": "Une réduction des risques", "isCorrect": false }
+    ],
+    "title": "L’industrialisation sans contrôle qualité conduit à :",
+    "description": "Conséquences de l'industrialisation sans contrôle qualité.",
+    "explanation": "Cela conduit à une destruction de valeur.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les actifs matériels", "isCorrect": false },
+      { "text": "La qualité de l’expérience client", "isCorrect": true },
+      { "text": "Les équipements", "isCorrect": false },
+      { "text": "Les procédures", "isCorrect": false }
+    ],
+    "title": "Dans le secteur des services, la valeur est principalement créée par :",
+    "description": "Création de valeur dans le secteur des services.",
+    "explanation": "La valeur est principalement créée par la qualité de l’expérience client.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une meilleure personnalisation", "isCorrect": false },
+      { "text": "Une variabilité excessive et un risque qualité", "isCorrect": true },
+      { "text": "Une meilleure rentabilité", "isCorrect": false },
+      { "text": "Une fidélisation accrue", "isCorrect": false }
+    ],
+    "title": "Un service non standardisé entraîne :",
+    "description": "Conséquences d'un service non standardisé.",
+    "explanation": "Il entraîne une variabilité excessive et un risque qualité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’alignement promesse client – capacité opérationnelle", "isCorrect": true },
+      { "text": "La communication uniquement", "isCorrect": false },
+      { "text": "La croissance rapide", "isCorrect": false },
+      { "text": "La réduction des effectifs", "isCorrect": false }
+    ],
+    "title": "Le DGA doit veiller à :",
+    "description": "Priorités du DGA.",
+    "explanation": "Il doit veiller à l’alignement promesse client – capacité opérationnelle.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un impact limité", "isCorrect": false },
+      { "text": "Une dégradation directe de la performance", "isCorrect": true },
+      { "text": "Une baisse des coûts", "isCorrect": false },
+      { "text": "Une amélioration de la qualité", "isCorrect": false }
+    ],
+    "title": "Une mauvaise gestion des ressources humaines dans les services entraîne :",
+    "description": "Effets d'une mauvaise gestion des RH.",
+    "explanation": "Elle entraîne une dégradation directe de la performance.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Des indicateurs qualitatifs et quantitatifs", "isCorrect": true },
+      { "text": "Le chiffre d’affaires seul", "isCorrect": false },
+      { "text": "Le contrôle hiérarchique", "isCorrect": false },
+      { "text": "La réputation uniquement", "isCorrect": false }
+    ],
+    "title": "Le pilotage des services repose fortement sur :",
+    "description": "Fondements du pilotage des services.",
+    "explanation": "Il repose sur des indicateurs qualitatifs et quantitatifs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le manque d’opportunités", "isCorrect": false },
+      { "text": "La désorganisation interne", "isCorrect": true },
+      { "text": "L’excès de contrôle", "isCorrect": false },
+      { "text": "La standardisation", "isCorrect": false }
+    ],
+    "title": "Le principal risque d’une PME en forte croissance est :",
+    "description": "Risque en forte croissance dans une PME.",
+    "explanation": "C'est la désorganisation interne.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+ {
+    "choices": [
+      { "text": "Centraliser toutes les décisions", "isCorrect": false },
+      { "text": "Structurer sans brider l’agilité", "isCorrect": true },
+      { "text": "Formaliser excessivement", "isCorrect": false },
+      { "text": "Supprimer l’informel", "isCorrect": false }
+    ],
+    "title": "Le DGA en PME doit prioritairement :",
+    "description": "Approche du DGA en PME.",
+    "explanation": "Il doit structurer sans brider l’agilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une crise de trésorerie", "isCorrect": true },
+      { "text": "Une meilleure rentabilité", "isCorrect": false },
+      { "text": "Une réduction du risque", "isCorrect": false },
+      { "text": "Une croissance accélérée", "isCorrect": false }
+    ],
+    "title": "Une PME sans pilotage financier solide est exposée à :",
+    "description": "Risques pour une PME sans pilotage financier.",
+    "explanation": "Elle est exposée à une crise de trésorerie.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une transition des PME vers des structures plus formelles", "isCorrect": true },
+      { "text": "Un excès de bureaucratie", "isCorrect": false },
+      { "text": "Un unique processus décisionnel", "isCorrect": false },
+      { "text": "Une simple réduction de coûts", "isCorrect": false }
+    ],
+    "title": "Le passage PME → entreprise structurée exige :",
+    "description": "Conditions de transition pour une PME.",
+    "explanation": "Il exige une transition vers des structures plus formelles.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Un technicien", "isCorrect": false },
+      { "text": "Structurant stratégique", "isCorrect": true },
+      { "text": "Exécutant", "isCorrect": false },
+      { "text": "Contrôleur administratif", "isCorrect": false }
+    ],
+    "title": "Le DGA joue en PME le rôle de :",
+    "description": "Rôle du DGA dans une PME.",
+    "explanation": "Il joue le rôle de structurant stratégique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Acceptable à court terme", "isCorrect": false },
+      { "text": "Inacceptable stratégiquement", "isCorrect": true },
+      { "text": "Tolérable", "isCorrect": false },
+      { "text": "Ajustable après coup", "isCorrect": false }
+    ],
+    "title": "Une décision rentable mais non conforme est :",
+    "description": "Conséquences d'une décision rentable mais non conforme.",
+    "explanation": "Elle est inacceptable stratégiquement.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le pouvoir politique", "isCorrect": false },
+      { "text": "La création de valeur globale", "isCorrect": true },
+      { "text": "La visibilité médiatique", "isCorrect": false },
+      { "text": "Les préférences internes", "isCorrect": false }
+    ],
+    "title": "Le DGA doit arbitrer entre secteurs en fonction :",
+    "description": "Critères d'arbitrage du DGA.",
+    "explanation": "Il doit arbitrer en fonction de la création de valeur globale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Une expertise technique exhaustive", "isCorrect": false },
+      { "text": "Une capacité d’analyse systémique", "isCorrect": true },
+      { "text": "Une spécialisation unique", "isCorrect": false },
+      { "text": "Une centralisation forte", "isCorrect": false }
+    ],
+    "title": "La transversalité sectorielle exige du DGA :",
+    "description": "Compétences liées à la transversalité sectorielle.",
+    "explanation": "Elle exige une capacité d’analyse systémique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Durer plus de 24h", "isCorrect": false },
+      { "text": "Impacte clients, finances et réputation", "isCorrect": true },
+      { "text": "Affecte un service interne", "isCorrect": false },
+      { "text": "Nécessite un prestataire", "isCorrect": false }
+    ],
+    "title": "Une crise IT peut devenir stratégique lorsqu’elle :",
+    "description": "Situation critique de crise IT et son impact.",
+    "explanation": "Elle devient stratégique lorsqu'elle impacte clients, finances et réputation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "L’absence de vision globale", "isCorrect": true },
+      { "text": "Le manque de communication", "isCorrect": false },
+      { "text": "La concurrence", "isCorrect": false },
+      { "text": "L’innovation", "isCorrect": false }
+    ],
+    "title": "La destruction de valeur est souvent liée à :",
+    "description": "Causes de destruction de valeur dans une entreprise.",
+    "explanation": "Elle est souvent liée à l’absence de vision globale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Ses intentions", "isCorrect": false },
+      { "text": "Ses décisions et leurs conséquences", "isCorrect": true },
+      { "text": "Son expertise technique", "isCorrect": false },
+      { "text": "Son ancienneté", "isCorrect": false }
+    ],
+    "title": "Le DGA est jugé principalement sur :",
+    "description": "Critères de jugement pour le DGA.",
+    "explanation": "Il est jugé sur ses décisions et leurs conséquences.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Décider", "isCorrect": false },
+      { "text": "Ne pas décider", "isCorrect": true },
+      { "text": "Analyser", "isCorrect": false },
+      { "text": "Consulter", "isCorrect": false }
+    ],
+    "title": "La décision la plus risquée pour un DGA est :",
+    "description": "Risque associé à la décision d'un DGA.",
+    "explanation": "Ne pas décider est la plus risquée.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Rigide", "isCorrect": false },
+      { "text": "Adaptative et résiliente", "isCorrect": true },
+      { "text": "Défensive", "isCorrect": false },
+      { "text": "Opportuniste", "isCorrect": false }
+    ],
+    "title": "Une stratégie robuste est :",
+    "description": "Définition d'une stratégie robuste.",
+    "explanation": "Elle est adaptative et résiliente.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Résultats mensuels", "isCorrect": false },
+      { "text": "Cycles, scénarios et risques", "isCorrect": true },
+      { "text": "Tâches quotidiennes", "isCorrect": false },
+      { "text": "Conformité seule", "isCorrect": false }
+    ],
+    "title": "Le DGA sénior pense prioritairement en termes de :",
+    "description": "Perspectives d'un DGA sénior.",
+    "explanation": "Il pense en termes de cycles, scénarios et risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Maximiser le profit immédiat", "isCorrect": false },
+      { "text": "Assurer la performance durable sous contraintes multiples", "isCorrect": true },
+      { "text": "Centraliser le pouvoir", "isCorrect": false },
+      { "text": "Réduire les risques à zéro", "isCorrect": false }
+    ],
+    "title": "L’objectif ultime du DGA, tous secteurs confondus, est de :",
+    "description": "Objectif clé du DGA.",
+    "explanation": "Assurer la performance durable sous contraintes multiples.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Sa maîtrise technique", "isCorrect": false },
+      { "text": "Sa capacité à relier vision, exécution et risques", "isCorrect": true },
+      { "text": "Son autorité hiérarchique", "isCorrect": false },
+      { "text": "Son ancienneté", "isCorrect": false }
+    ],
+    "title": "Le DGA performant se distingue avant tout par :",
+    "description": "Attributs d'un DGA performant.",
+    "explanation": "Il se distingue par sa capacité à relier vision, exécution et risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Est plus rapide", "isCorrect": false },
+      { "text": "Engage durablement les ressources et l’avenir", "isCorrect": true },
+      { "text": "Est prise seul", "isCorrect": false },
+      { "text": "Est réversible facilement", "isCorrect": false }
+    ],
+    "title": "Une décision stratégique se différencie d’une décision opérationnelle car elle :",
+    "description": "Différence entre décision stratégique et opérationnelle.",
+    "explanation": "Elle engage durablement les ressources et l’avenir.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Se tromper", "isCorrect": false },
+      { "text": "Décider trop lentement", "isCorrect": false },
+      { "text": "Ne pas assumer ses décisions", "isCorrect": true },
+      { "text": "Manquer de compétences techniques", "isCorrect": false }
+    ],
+    "title": "Le plus grand risque pour un DGA est :",
+    "description": "Identification du principal risque pour un DGA.",
+    "explanation": "Ne pas assumer ses décisions est le plus grand risque.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "S’oppose systématiquement au DG", "isCorrect": false },
+      { "text": "Apporte une analyse structurée et factuelle", "isCorrect": true },
+      { "text": "Centralise l’information", "isCorrect": false },
+      { "text": "Délègue entièrement", "isCorrect": false }
+    ],
+    "title": "Un DGA est un contre-pouvoir efficace lorsqu’il :",
+    "description": "Rôle d'un DGA en tant que contre-pouvoir.",
+    "explanation": "Il est efficace lorsqu'il apporte une analyse structurée et factuelle.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le nombre de projets lancés", "isCorrect": false },
+      { "text": "La qualité de ses arbitrages difficiles", "isCorrect": true },
+      { "text": "Son style autoritaire", "isCorrect": false },
+      { "text": "Son exposition médiatique", "isCorrect": false }
+    ],
+    "title": "La maturité managériale d’un DGA se mesure par :",
+    "description": "Mesures de la maturité managériale.",
+    "explanation": "Elle se mesure par la qualité de ses arbitrages difficiles.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Plus d’autonomie", "isCorrect": false },
+      { "text": "Une désorganisation progressive", "isCorrect": true },
+      { "text": "Une innovation accrue", "isCorrect": false },
+      { "text": "Une meilleure performance individuelle", "isCorrect": false }
+    ],
+    "title": "Une vision stratégique non partagée entraîne :",
+    "description": "Conséquences d'une vision stratégique non partagée.",
+    "explanation": "Elle entraîne une désorganisation progressive.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Le chiffre d’affaires", "isCorrect": false },
+      { "text": "La rentabilité dépasse le coût du capital", "isCorrect": true },
+      { "text": "Les charges diminuent", "isCorrect": false },
+      { "text": "La trésorerie est positive", "isCorrect": false }
+    ],
+    "title": "La création de valeur économique existe lorsque :",
+    "description": "Définition de la création de valeur économique.",
+    "explanation": "Elle existe lorsque la rentabilité dépasse le coût du capital.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Solide", "isCorrect": false },
+      { "text": "Potentiellement en danger", "isCorrect": true },
+      { "text": "Performante durablement", "isCorrect": false },
+      { "text": "Bien gouvernée", "isCorrect": false }
+    ],
+    "title": "Une entreprise rentable mais non liquide est :",
+    "description": "Situation d’une entreprise rentable mais non liquide.",
+    "explanation": "Elle est potentiellement en danger.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Valider les écritures", "isCorrect": false },
+      { "text": "Challenger les hypothèses et arbitrages", "isCorrect": true },
+      { "text": "Produire les états financiers", "isCorrect": false },
+      { "text": "Réduire les audits", "isCorrect": false }
+    ],
+    "title": "Le rôle du DGA dans la gouvernance financière est de :",
+    "description": "Rôle du DGA en gouvernance financière.",
+    "explanation": "Il doit challenger les hypothèses et arbitrages.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Réduire le risque", "isCorrect": false },
+      { "text": "Amplifier la vulnérabilité en cas de choc", "isCorrect": true },
+      { "text": "Stabiliser la structure financière", "isCorrect": false },
+      { "text": "Augmenter la flexibilité", "isCorrect": false }
+    ],
+    "title": "Une croissance financée principalement par la dette :",
+    "description": "Conséquences d'une croissance financée par la dette.",
+    "explanation": "Elle amplifie la vulnérabilité en cas de choc.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Les indicateurs de performance (KPI)", "isCorrect": true },
+      { "text": "Les états financiers", "isCorrect": false },
+      { "text": "Le volume des ventes", "isCorrect": false },
+      { "text": "Les charges", "isCorrect": false }
+    ],
+    "title": "Le pilotage financier moderne repose sur :",
+    "description": "Principes de pilotage financier moderne.",
+    "explanation": "Il repose sur les indicateurs de performance (KPI).",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "La logique comptable", "isCorrect": false },
+      { "text": "Le bon sens", "isCorrect": false },
+      { "text": "L'intuition", "isCorrect": false },
+      { "text": "L'analyse des données", "isCorrect": true }
+    ],
+    "title": "La prise de décision efficace repose sur :",
+    "description": "Éléments cruciaux pour une décision efficace.",
+    "explanation": "Elle repose sur l'analyse des données.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Vrai", "isCorrect": true },
+      { "text": "Faux", "isCorrect": false },
+      { "text": "Peut-être!", "isCorrect": false },
+      { "text": "Je ne sais pas!", "isCorrect": false }
+    ],
+    "title": "Une gouvernance efficace repose sur :",
+    "description": "Critères d'une gouvernance efficace.",
+    "explanation": "C'est vrai, elle repose sur la transparence et la responsabilité.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Bénéfice uniquement", "isCorrect": false },
+      { "text": "Équilibre entre performance, conformité et innovation", "isCorrect": true },
+      { "text": "Maximiser le risque", "isCorrect": false },
+      { "text": "Diminuer les effectifs", "isCorrect": false }
+    ],
+    "title": "Une institution financière pérenne est celle qui :",
+    "description": "Caractéristiques d'une institution financière pérenne.",
+    "explanation": "Elle équilibre performance, conformité et innovation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Réaliser des économies", "isCorrect": false },
+      { "text": "Transmettre une vision stratégique", "isCorrect": true },
+      { "text": "Réduire l'autonomie des managers", "isCorrect": false },
+      { "text": "Avoir une approche paternaliste", "isCorrect": false }
+    ],
+    "title": "Le DGA doit contribuer à la gouvernance en :",
+    "description": "Contribution du DGA à la gouvernance.",
+    "explanation": "Il doit transmettre une vision stratégique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "Lors d'une bonne gestion", "isCorrect": false },
+      { "text": "Lors d'une forte concentration", "isCorrect": false },
+      { "text": "Lors d'une gouvernance défaillante", "isCorrect": true },
+      { "text": "Lors de décisions stratégiques claires", "isCorrect": false }
+    ],
+    "title": "Une gouvernance défaillante entraîne souvent :",
+    "description": "Conséquences d'une gouvernance défaillante.",
+    "explanation": "Elle entraîne souvent des pertes de confiance des investisseurs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  },
+  {
+    "choices": [
+      { "text": "A l’exécution", "isCorrect": false },
+      { "text": "B à une stratégie d’entreprise", "isCorrect": true },
+      { "text": "C à la bureaucratie", "isCorrect": false },
+      { "text": "D à l'innovation seulement", "isCorrect": false }
+    ],
+    "title": "La création de valeur durable repose sur :",
+    "description": "Conditions pour la création de valeur durable.",
+    "explanation": "Elle repose sur une stratégie d’entreprise alignée.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200
+  }
+]

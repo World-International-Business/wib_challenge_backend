@@ -25,6 +25,8 @@ class EvaluationType(models.TextChoices):
     TECHNICAL = 'technical', _('Technique')
     LOGICAL = 'logical', _('Logique')
     PERSONALITY = 'personality', _('Personnalité')
+    PSYCHOTECH = 'psychotech', _('Psychotechnique')
+  
 
 
 class QuestionOrder(models.IntegerChoices):

@@ -5,6 +5,7 @@ from apps.organizations.models import Organization
 from .models import JobCategory, JobOffer, JobApplication
 from ..core.models import Technology
 from ..core.serializers import TagsSerializerField
+from apps.evaluations.models import SubmissionAttempt
 
 
 class JobCategorySerializer(serializers.ModelSerializer):
@@ -102,6 +103,7 @@ class JobApplicationSerializer(serializers.ModelSerializer):
     use_profile = serializers.BooleanField(required=False, write_only=True)
     profession = serializers.SerializerMethodField(read_only=True)
     location = serializers.SerializerMethodField(read_only=True)
+    tech_test_status = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = JobApplication
@@ -124,6 +126,61 @@ class JobApplicationSerializer(serializers.ModelSerializer):
         if obj.user and hasattr(obj.user, 'profile'):
             return obj.user.profile.location
         return None
+
+    def get_tech_test_status(self, obj: JobApplication) -> str:
+        """Retourne le statut du test technique associé à cette candidature.
+
+        Valeurs possibles pour le frontend :
+        - not_sent    : aucun test assigné
+        - sent        : test assigné mais aucune tentative encore
+        - in_progress : tentative en cours, non terminée
+        - passed      : test terminé avec score jugé suffisant
+        - failed      : test terminé avec score insuffisant
+        """
+
+        evaluation = getattr(obj, 'assigned_evaluation', None)
+        if not evaluation:
+            return "not_sent"
+
+        # Récupérer les tentatives pour cette évaluation et ce candidat
+        from django.db.models import Q
+
+        attempts_qs = SubmissionAttempt.objects.filter(
+            evaluation=evaluation,
+        )
+
+        # Lier la tentative soit via le candidat externe (email), soit via l'utilisateur
+        candidate_filter = Q()
+        if obj.applicant_email:
+            candidate_filter |= Q(participant__candidate__email=obj.applicant_email)
+        if obj.user_id:
+            candidate_filter |= Q(participant__user=obj.user)
+
+        attempts_qs = attempts_qs.filter(candidate_filter).select_related('submission')
+
+        if not attempts_qs.exists():
+            # Test assigné mais aucune tentative encore
+            return "sent"
+
+        latest = attempts_qs.order_by('-started_at').first()
+
+        if not latest:
+            return "sent"
+
+        if latest.is_completed and latest.submission:
+            # Calculer une moyenne sur 20 pour décider passed / failed
+            score = latest.submission.score or 0
+            max_score = evaluation.max_score or 1
+            try:
+                avg_on_20 = float(score) * 20.0 / float(max_score)
+            except Exception:
+                avg_on_20 = 0.0
+
+            # Seuil simple : 10/20 et plus = réussite
+            return "passed" if avg_on_20 >= 10.0 else "failed"
+
+        # Une tentative existe mais n'est pas encore complétée
+        return "in_progress"
 
     def validate(self, attrs):
         # Validation CV/profil

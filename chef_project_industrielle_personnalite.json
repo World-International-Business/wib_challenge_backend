@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Réaction à un retard critique sur un projet",
+    "difficulty": "easy",
+    "description": "Style de gestion en cas d'imprévu.",
+    "choices": [
+      { "text": "Chercher un responsable et le sanctionner immédiatement", "isCorrect": false },
+      { "text": "Analyser calmement les causes et co-construire un plan de rattrapage", "isCorrect": true },
+      { "text": "Ignorer le retard et continuer comme prévu", "isCorrect": false },
+      { "text": "Transférer toute la responsabilité au client", "isCorrect": false }
+    ],
+    "explanation": "La réponse correcte évalue la capacité à gérer les crises de façon constructive.",
+    "duration": 120,
+    "status": "active"
+  },
+  {
+    "title": "Style de collaboration avec les équipes de terrain",
+    "difficulty": "medium",
+    "description": "Orientation coopération vs. contrôle.",
+    "choices": [
+      { "text": "Contrôler chaque tâche sans écouter les retours", "isCorrect": false },
+      { "text": "Fixer un cadre clair et intégrer les retours des opérateurs", "isCorrect": true },
+      { "text": "Laisser les équipes sans objectif précis", "isCorrect": false },
+      { "text": "Décider seul et informer ensuite", "isCorrect": false }
+    ],
+    "explanation": "On cherche un chef de projet qui sait cadrer tout en restant collaboratif.",
+    "duration": 150,
+    "status": "active"
+  }
+]
