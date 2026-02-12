@@ -6,13 +6,22 @@ from google.genai import types
 from google.genai.types import GenerateContentConfigDict
 from pydantic import BaseModel
 
-from apps.jobs.models import JobOffer, JobApplication
+from typing import Optional
+
+from django.utils import timezone
+
+from apps.jobs.models import JobOffer, JobApplication, JobApplicationAnalysis
 from services.utils import get_genai_client
 
 
 class Response(BaseModel):
     analyse: str
     accept: bool
+    skills: list[str] = []
+    years_experience: Optional[int] = None
+    location: Optional[str] = None
+    full_name: Optional[str] = None
+    email: Optional[str] = None
 
 
 def extract_text_native(pdf_path):
@@ -54,14 +63,68 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
 **Télétravail**: {"Oui" if job_offer.remote_allowed else "Non"}
 """
 
-    pdf_path = job_application.resume.path
+    analysis, _ = JobApplicationAnalysis.objects.get_or_create(application=job_application)
+    analysis.status = JobApplicationAnalysis.Status.PROCESSING
+    analysis.started_at = timezone.now()
+    analysis.error = ""
+    if save:
+        analysis.save()
+
+    resume = getattr(job_application, 'resume', None)
+    if not resume or not getattr(resume, 'name', None):
+        job_application.ai_analysis = "Aucun CV fourni: analyse impossible."
+        job_application.ai_decision = False
+
+        analysis.status = JobApplicationAnalysis.Status.FAILED
+        analysis.provider = JobApplicationAnalysis.Provider.LOCAL
+        analysis.analysis_markdown = job_application.ai_analysis
+        analysis.decision = job_application.ai_decision
+        analysis.error = "no_resume"
+        analysis.finished_at = timezone.now()
+
+        if save:
+            job_application.save()
+            analysis.save()
+        return job_application
+
+    pdf_path = resume.path
     response = analyze_cv_pdf(pdf_path, fiche_poste_text)
 
     job_application.ai_analysis = response.analyse
     job_application.ai_decision = response.accept
 
+    # Sauvegarder l'extraction structurée
+    analysis.extracted_data = {
+        'skills': response.skills or [],
+        'years_experience': response.years_experience,
+        'location': response.location,
+        'full_name': response.full_name,
+        'email': response.email,
+    }
+
+    # Calculer un score simple basé sur les compétences requises de l'offre
+    required_skills = list(job_offer.skills.values_list('name', flat=True))
+    required_set = {s.strip().lower() for s in required_skills if s}
+    candidate_set = {s.strip().lower() for s in (response.skills or []) if s}
+
+    if required_set:
+        matched = required_set.intersection(candidate_set)
+        score = round(len(matched) * 100 / max(len(required_set), 1))
+    else:
+        score = 100 if response.accept else 0
+
+    job_application.match_score = max(0, min(100, int(score)))
+    job_application.is_matched = bool(job_application.match_score >= 70 or response.accept)
+
+    analysis.status = JobApplicationAnalysis.Status.DONE
+    analysis.provider = JobApplicationAnalysis.Provider.GEMINI
+    analysis.analysis_markdown = response.analyse
+    analysis.decision = response.accept
+    analysis.finished_at = timezone.now()
+
     if save:
         job_application.save()
+        analysis.save()
 
     return job_application
 
@@ -74,7 +137,10 @@ Tu es un recruteur expert.
 
 Tu vas recevoir un CV sous forme d'images (pages PDF) + une fiche de poste en texte.
 
-Donne une analyse détaillée et structuré au format markdown du ce CV vis-à-vis de cette fiche de poste :
+1) Donne une analyse détaillée en markdown du CV vis-à-vis de cette fiche de poste.
+2) Extrait des informations structurées du candidat.
+
+Fiche de poste :
 {fiche_poste_text}
 """
 

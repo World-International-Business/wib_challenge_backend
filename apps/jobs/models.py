@@ -84,6 +84,31 @@ class JobOffer(TitleSlugDescriptionModel):
     published_at = models.DateTimeField(_("Date de publication"), null=True, blank=True)
     expires_at = models.DateTimeField(_("Date d'expiration"), null=True, blank=True)
 
+    technical_evaluation = models.ForeignKey(
+        'evaluations.Evaluation',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='job_offers_technical',
+        verbose_name=_("Évaluation technique"),
+    )
+    psychotech_evaluation = models.ForeignKey(
+        'evaluations.Evaluation',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='job_offers_psychotech',
+        verbose_name=_("Évaluation psychotechnique"),
+    )
+    personality_evaluation = models.ForeignKey(
+        'evaluations.Evaluation',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='job_offers_personality',
+        verbose_name=_("Évaluation de personnalité"),
+    )
+
     class Meta:
         verbose_name = _("Offre d'emploi")
         verbose_name_plural = _("Offres d'emploi")
@@ -106,6 +131,7 @@ class JobApplication(BaseModel):
     class ApplicationSource(models.TextChoices):
         SPONTANEOUS = 'spontaneous', _('Candidature Spontanée')
         MATCHED = 'matched', _('Candidature Matchée')
+        EMAIL = 'email', _('Candidature par Email')
 
     job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name='applications',
                                   verbose_name=_("Offre d'emploi"))
@@ -132,6 +158,10 @@ class JobApplication(BaseModel):
     )
     ai_analysis = models.TextField(_("Analyse IA du CV"), blank=True)
     ai_decision = models.BooleanField(_("Décision IA"), null=True, blank=True)
+
+    is_matched = models.BooleanField(_("Matchée"), default=False)
+    match_score = models.PositiveSmallIntegerField(_("Score de matching"), null=True, blank=True)
+
     submitted_at = models.DateTimeField(_("Date de soumission"), auto_now_add=True)
     
     # Champs pour le workflow de recrutement
@@ -147,6 +177,26 @@ class JobApplication(BaseModel):
     interview_notes = models.TextField(_("Notes de l'entretien"), blank=True)
     recruitment_details = models.TextField(_("Détails de prise de poste"), blank=True)
 
+    class ContractStatus(models.TextChoices):
+        NOT_PREPARED = 'not_prepared', _('Non préparé')
+        SENT = 'sent', _('Envoyé')
+        SIGNED = 'signed', _('Signé')
+        REJECTED = 'rejected', _('Refusé')
+        EXPIRED = 'expired', _('Expiré')
+
+    contract_status = models.CharField(
+        _("Statut du contrat"),
+        max_length=20,
+        choices=ContractStatus.choices,
+        default=ContractStatus.NOT_PREPARED,
+    )
+    contract_file = models.FileField(_("Contrat (PDF)"), upload_to='contracts/', blank=True, null=True)
+    signed_contract_file = models.FileField(_("Contrat signé (PDF)"), upload_to='contracts/signed/', blank=True, null=True)
+    contract_token = models.CharField(_("Token contrat"), max_length=128, blank=True, default='', db_index=True)
+    contract_token_expires_at = models.DateTimeField(_("Expiration token contrat"), null=True, blank=True)
+    contract_sent_at = models.DateTimeField(_("Envoyé le"), null=True, blank=True)
+    contract_signed_at = models.DateTimeField(_("Signé le"), null=True, blank=True)
+
     class Meta:
         verbose_name = _("Candidature")
         verbose_name_plural = _("Candidatures")
@@ -154,3 +204,93 @@ class JobApplication(BaseModel):
 
     def __str__(self):
         return f"{self.applicant_name} - {self.job_offer.title}"
+
+
+class JobApplicationEvaluation(BaseModel):
+    class Status(models.TextChoices):
+        ASSIGNED = 'assigned', _('Assignée')
+        STARTED = 'started', _('Commencée')
+        COMPLETED = 'completed', _('Terminée')
+
+    job_application = models.ForeignKey(
+        JobApplication,
+        on_delete=models.CASCADE,
+        related_name='evaluations',
+        verbose_name=_("Candidature"),
+    )
+    evaluation = models.ForeignKey(
+        'evaluations.Evaluation',
+        on_delete=models.CASCADE,
+        related_name='job_application_evaluations',
+        verbose_name=_("Évaluation"),
+    )
+    invitation = models.ForeignKey(
+        'evaluations.EvaluationInvitation',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='job_application_evaluations',
+        verbose_name=_("Invitation"),
+    )
+    status = models.CharField(
+        _("Statut"),
+        max_length=20,
+        choices=Status.choices,
+        default=Status.ASSIGNED,
+    )
+    score = models.DecimalField(_("Score"), max_digits=6, decimal_places=2, null=True, blank=True)
+    completed_at = models.DateTimeField(_("Terminé le"), null=True, blank=True)
+
+    class Meta:
+        unique_together = (('job_application', 'evaluation'),)
+        verbose_name = _("Évaluation de candidature")
+        verbose_name_plural = _("Évaluations de candidatures")
+        ordering = ['-created_at']
+
+
+class JobApplicationAnalysis(BaseModel):
+    class Status(models.TextChoices):
+        PENDING = 'pending', _('En attente')
+        PROCESSING = 'processing', _('En cours')
+        DONE = 'done', _('Terminé')
+        FAILED = 'failed', _('Échec')
+
+    class Provider(models.TextChoices):
+        GEMINI = 'gemini', _('Gemini')
+        LOCAL = 'local', _('Local')
+
+    application = models.OneToOneField(
+        JobApplication,
+        on_delete=models.CASCADE,
+        related_name='analysis',
+        verbose_name=_('Candidature'),
+    )
+
+    status = models.CharField(
+        _('Statut'),
+        max_length=20,
+        choices=Status.choices,
+        default=Status.PENDING,
+    )
+    provider = models.CharField(
+        _('Provider'),
+        max_length=20,
+        choices=Provider.choices,
+        null=True,
+        blank=True,
+    )
+
+    extracted_data = models.JSONField(_('Données extraites'), default=dict, blank=True)
+    analysis_markdown = models.TextField(_('Analyse (markdown)'), blank=True)
+    decision = models.BooleanField(_('Décision'), null=True, blank=True)
+    error = models.TextField(_('Erreur'), blank=True)
+
+    started_at = models.DateTimeField(_('Début'), null=True, blank=True)
+    finished_at = models.DateTimeField(_('Fin'), null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('Analyse de candidature')
+        verbose_name_plural = _('Analyses de candidatures')
+
+    def __str__(self):
+        return f"Analysis #{self.id} - application={self.application_id}"

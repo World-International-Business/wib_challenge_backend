@@ -61,7 +61,8 @@ class JobOfferDetailSerializer(serializers.ModelSerializer):
             'currency', 'job_type', 'experience_level',
             'location', 'remote_allowed', 'application_url', 'application_email',
             'status', 'featured', 'created_at', 'updated_at', 'published_at',
-            'expires_at', 'skills', 'attachments', 'required_documents'
+            'expires_at', 'skills', 'attachments', 'required_documents',
+            'technical_evaluation', 'psychotech_evaluation', 'personality_evaluation'
         ]
 
 
@@ -75,7 +76,8 @@ class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
             'requirements', 'benefits', 'salary',
             'currency', 'job_type', 'experience_level', 'location',
             'remote_allowed', 'application_url', 'application_email',
-            'status', 'featured', 'expires_at', 'skills', 'attachments', 'required_documents'
+            'status', 'featured', 'expires_at', 'skills', 'attachments', 'required_documents',
+            'technical_evaluation', 'psychotech_evaluation', 'personality_evaluation'
         ]
 
 
@@ -210,3 +212,44 @@ class JobMatchRequestSerializer(serializers.Serializer):
     remoteAllowed = serializers.BooleanField(required=False, default=False)
     featured = serializers.BooleanField(required=False, default=False)
     skills = serializers.ListField(child=serializers.CharField(), allow_empty=True, required=False, default=list)
+
+
+class JobOfferMiniSerializer(serializers.ModelSerializer):
+    category = serializers.SerializerMethodField()
+
+    class Meta:
+        model = JobOffer
+        fields = ['id', 'title', 'category']
+
+    def get_category(self, obj):
+        poste = getattr(obj, 'poste', None)
+        return poste.title if poste else None
+
+
+class OrganizationApplicationSerializer(serializers.ModelSerializer):
+    candidateName = serializers.CharField(source='applicant_name')
+    candidateEmail = serializers.EmailField(source='applicant_email')
+    resumeUrl = serializers.SerializerMethodField()
+    receivedAt = serializers.DateTimeField(source='submitted_at')
+    jobOffer = JobOfferMiniSerializer(source='job_offer', read_only=True)
+
+    class Meta:
+        model = JobApplication
+        fields = [
+            'id',
+            'candidateName',
+            'candidateEmail',
+            'resumeUrl',
+            'receivedAt',
+            'source',
+            'is_matched',
+            'match_score',
+            'jobOffer',
+        ]
+
+    def get_resumeUrl(self, obj: JobApplication):
+        resume = getattr(obj, 'resume', None)
+        try:
+            return resume.url if resume else None
+        except Exception:
+            return None

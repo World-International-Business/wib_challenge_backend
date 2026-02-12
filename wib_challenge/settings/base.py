@@ -31,6 +31,31 @@ ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
+import os
+
+IMAP_HOST = os.getenv('IMAP_HOST')
+IMAP_PORT = int(os.getenv('IMAP_PORT', '993'))
+IMAP_USERNAME = os.getenv('IMAP_USERNAME')
+IMAP_PASSWORD = os.getenv('IMAP_PASSWORD')
+IMAP_MAILBOX = os.getenv('IMAP_MAILBOX', 'INBOX')
+
+
+def _env_bool(key: str, default: bool = False) -> bool:
+    value = os.getenv(key)
+    if value is None:
+        return default
+    return str(value).strip().lower() in {'1', 'true', 'yes', 'y', 'on'}
+
+
+USE_CELERY_FOR_CV_ANALYSIS = _env_bool('USE_CELERY_FOR_CV_ANALYSIS', default=False)
+
+# Celery/Redis (optionnel)
+REDIS_URL = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/0')
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', REDIS_URL)
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', REDIS_URL)
+
+CELERY_TASK_ALWAYS_EAGER = _env_bool('CELERY_TASK_ALWAYS_EAGER', default=False)
+CELERY_TASK_EAGER_PROPAGATES = _env_bool('CELERY_TASK_EAGER_PROPAGATES', default=False)
 
 # Application definition
 
@@ -243,6 +268,22 @@ LOGGING = {
         },
     },
 }
+
+# Windows + dev: RotatingFileHandler provoque fréquemment WinError 32 (fichier verrouillé au moment de la rotation).
+# En environnement DEBUG sur Windows, on force le logging console uniquement.
+if os.name == 'nt' and DEBUG:
+    try:
+        LOGGING['handlers'].pop('file', None)
+        LOGGING['handlers'].pop('error_file', None)
+        LOGGING['root']['handlers'] = ['console']
+        if 'django' in LOGGING.get('loggers', {}):
+            LOGGING['loggers']['django']['handlers'] = ['console']
+        if 'django.request' in LOGGING.get('loggers', {}):
+            LOGGING['loggers']['django.request']['handlers'] = ['mail_admins']
+        if 'django.security' in LOGGING.get('loggers', {}):
+            LOGGING['loggers']['django.security']['handlers'] = ['mail_admins']
+    except Exception:
+        pass
 
 # Rest framework
 REST_FRAMEWORK = {

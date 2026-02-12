@@ -276,7 +276,7 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
                   'evaluation', 'status', 'expires_at']
         read_only_fields = ['id', 'status', 'evaluation']
 
-    def validate_expire_at(self, value):
+    def validate_expires_at(self, value):
         if timezone.now() > value:
             raise serializers.ValidationError(
                 "La date d'expiration doit être dans le futur.")
@@ -288,20 +288,25 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
         expire_at = validated_data.pop('expires_at', None)
         evaluation = validated_data.get('evaluation')
 
-        candidate = Candidate.objects.get_or_create(
+        candidate, _ = Candidate.objects.get_or_create(
             email=email,
             owner=evaluation.publisher,
-            full_name=full_name
-        )[0]
+            defaults={'full_name': full_name},
+        )
 
-        invitation = EvaluationInvitation.objects.create(
+        invitation, _ = EvaluationInvitation.objects.update_or_create(
             candidate=candidate,
             evaluation=evaluation,
-            expires_at=expire_at
+            defaults={'expires_at': expire_at},
         )
-        SubmissionAttempt.objects.create(
-            participant=Participant.objects.get_or_create(candidate=candidate)[0],
-            evaluation=evaluation
+
+        participant, _ = Participant.objects.get_or_create(
+            candidate=candidate,
+            defaults={'type': Participant.Type.CANDIDATE},
+        )
+        SubmissionAttempt.objects.get_or_create(
+            participant=participant,
+            evaluation=evaluation,
         )
 
         send_invitation_email(self.context['request'], invitation)

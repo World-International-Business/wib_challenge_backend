@@ -41,6 +41,8 @@ class Notification(models.Model):
         INTERVIEW_REMINDER = 'interview_reminder', _("Rappel d'entretien")
         TEST_COMPLETED = 'test_completed', _("Test terminé")
         NEW_APPLICATION = 'new_application', _("Nouvelle candidature")
+        CONTRACT_SENT = 'contract_sent', _("Contrat envoyé")
+        CONTRACT_SIGNED = 'contract_signed', _("Contrat signé")
 
     organization = models.ForeignKey(
         'organizations.Organization', on_delete=models.CASCADE, related_name='notifications', verbose_name=_('Organisation')
@@ -78,6 +80,8 @@ class UserNotification(models.Model):
         TRAINING_ASSIGNED = 'training_assigned', _("Formation assignée")
         APPLICATION_REJECTED = 'application_rejected', _("Candidature rejetée")
         APPLICATION_SHORTLISTED = 'application_shortlisted', _("Candidature présélectionnée")
+        CONTRACT_SENT = 'contract_sent', _("Contrat envoyé")
+        CONTRACT_SIGNED = 'contract_signed', _("Contrat signé")
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_notifications', verbose_name=_('Utilisateur')

@@ -1,3 +1,8 @@
+from datetime import timedelta
+import secrets
+
+from django.conf import settings
+from django.core.mail import send_mail
 from django.db.models import Count, Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
@@ -6,6 +11,7 @@ from rest_framework import generics, filters, status, mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
+from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser, AllowAny
 from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
@@ -21,19 +27,21 @@ from services.users_job_suggestions import get_users_suggestions_for_job
 from wib_challenge.pagination import paginated_response
 from wib_challenge.permissions import ReadOnly
 from .filters import JobOfferFilter, JobApplicationFilter
-from .models import JobCategory, JobOffer, JobApplication
+from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation
 from .permissions import IsCompanyOwnerOrReadOnly
 from .serializers import (
     JobCategorySerializer, JobCategoryListSerializer,
     JobOfferListSerializer, JobOfferDetailSerializer,
-    JobOfferCreateUpdateSerializer, GenerateJobOfferSerializer, JobApplicationSerializer
+    JobOfferCreateUpdateSerializer, GenerateJobOfferSerializer, JobApplicationSerializer,
+    OrganizationApplicationSerializer,
 )
 from ..accounts.permissions import IsOrganization
 from ..accounts.serializers import UserSerializer
 from .serializers import JobMatchRequestSerializer
-from apps.evaluations.models import Candidate, EvaluationInvitation, SubmissionAttempt
+from apps.evaluations.models import Candidate, EvaluationInvitation, SubmissionAttempt, Participant
 from apps.evaluations.utils import send_invitation_email
 from apps.accounts.models import User
+from apps.organizations.models import Notification, UserNotification
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -248,6 +256,16 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         if documents_saved:
             application.documents = documents_saved
             application.save(update_fields=['documents'])
+
+        # Analyse CV en arrière-plan (optionnel)
+        if getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
+            try:
+                from apps.jobs.tasks import analyze_job_application_task
+
+                analyze_job_application_task.delay(application.id)
+            except Exception:
+                # On ne bloque pas la candidature si Celery/Redis n'est pas disponible
+                pass
         
         serializer = JobApplicationSerializer(instance=application)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -335,6 +353,79 @@ class JobOfferViewSet(viewsets.ModelViewSet):
             'statistics': stats,
             'applications': serializer.data
         })
+
+    @extend_schema(
+        summary="(Re)lancer l'analyse CV / matching pour toutes les candidatures d'une offre",
+        description=(
+            "Déclenche l'analyse CV pour toutes les candidatures de l'offre. "
+            "Si Celery est activé, les analyses sont queue en arrière-plan. "
+            "Sinon, l'analyse est exécutée de manière synchrone (peut prendre du temps)."
+        ),
+        responses={
+            200: OpenApiResponse(description="Résultat du batch (queued ou processed)")
+        },
+    )
+    @action(detail=True, methods=['post'], url_path='applications/recompute')
+    def recompute_applications(self, request, pk=None):
+        job_offer = self.get_object()
+
+        applications = job_offer.applications.select_related('job_offer').all()
+        total = applications.count()
+
+        failures = []
+        queued = 0
+        processed = 0
+
+        if getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
+            try:
+                from apps.jobs.tasks import analyze_job_application_task
+
+                for application in applications:
+                    try:
+                        analyze_job_application_task.delay(application.id)
+                        queued += 1
+                    except Exception as e:
+                        failures.append({'application_id': application.id, 'error': str(e)})
+
+                return Response(
+                    {
+                        'status': 'queued',
+                        'total': total,
+                        'processed': 0,
+                        'queued': queued,
+                        'failed': len(failures),
+                        'failures': failures,
+                    },
+                    status=status.HTTP_200_OK,
+                )
+            except Exception as e:
+                return Response(
+                    {
+                        'status': 'celery_error',
+                        'detail': str(e),
+                    },
+                    status=status.HTTP_503_SERVICE_UNAVAILABLE,
+                )
+
+        # Fallback synchrone
+        for application in applications:
+            try:
+                analyze_job_application(application, job_offer, save=True)
+                processed += 1
+            except Exception as e:
+                failures.append({'application_id': application.id, 'error': str(e)})
+
+        return Response(
+            {
+                'status': 'processed',
+                'total': total,
+                'processed': processed,
+                'queued': 0,
+                'failed': len(failures),
+                'failures': failures,
+            },
+            status=status.HTTP_200_OK,
+        )
 
     @extend_schema(
         summary="Statistiques globales des offres d'emploi",
@@ -587,20 +678,109 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             return JobApplication.objects.none()
 
     @extend_schema(
-        request={
-            'application/json': {
-                'type': 'object',
-                'properties': {
-                    'status': {
-                        'type': 'string',
-                        'enum': ['pending', 'shortlisted', 'accepted', 'rejected']
-                    }
-                },
-                'required': ['status']
-            }
-        },
-        responses={200: JobApplicationSerializer}
+        summary="Lister toutes les candidatures de l'organisation",
+        description=(
+            "Retourne les candidatures de toutes les offres de l'organisation connectée, "
+            "avec possibilité de filtrer par offre, source et recherche sur le nom/email candidat."
+        ),
+        parameters=[
+            OpenApiParameter(name='organization', type=int, location=OpenApiParameter.QUERY),
+            OpenApiParameter(name='job_offer', type=int, location=OpenApiParameter.QUERY),
+            OpenApiParameter(name='source', type=str, location=OpenApiParameter.QUERY),
+            OpenApiParameter(name='search', type=str, location=OpenApiParameter.QUERY),
+        ],
+        responses={200: OrganizationApplicationSerializer(many=True)},
     )
+    @action(detail=False, methods=['get'], url_path='organization')
+    def list_by_organization(self, request):
+        """Endpoint `/jobs/applications/organization/` pour CvMails.
+
+        Utilise l'organisation de l'utilisateur connecté comme source de vérité
+        et applique les filtres demandés par le frontend.
+        """
+        from django.db.models import Q
+
+        # Sécurité : l'utilisateur doit être lié à une organisation
+        user_org = getattr(request.user, 'organization', None)
+        if not user_org:
+            return Response(
+                {'detail': 'Utilisateur non associé à une organisation'},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        org_param = request.query_params.get('organization')
+        if org_param and str(org_param) != str(user_org.id):
+            return Response(
+                {'detail': "Vous ne pouvez consulter que les candidatures de votre organisation."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        queryset = self.get_queryset()
+
+        # Filtres supplémentaires
+        job_offer_id = request.query_params.get('job_offer')
+        source = request.query_params.get('source')
+        search = request.query_params.get('search')
+
+        if job_offer_id:
+            queryset = queryset.filter(job_offer_id=job_offer_id)
+
+        if source:
+            queryset = queryset.filter(source=source)
+
+        if search:
+            queryset = queryset.filter(
+                Q(applicant_name__icontains=search)
+                | Q(applicant_email__icontains=search)
+            )
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = OrganizationApplicationSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = OrganizationApplicationSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @extend_schema(
+        summary="Lancer (ou relancer) l'analyse CV d'une candidature",
+        description=(
+            "Queue l'analyse CV en arrière-plan via Celery si activé. "
+            "Si Celery n'est pas activé/disponible, l'endpoint renvoie une réponse explicite."
+        ),
+        responses={200: OpenApiResponse(description="Analyse queue ou non disponible")},
+    )
+    @action(detail=True, methods=['post'], url_path='analyze')
+    def queue_analysis(self, request, pk=None):
+        application = self.get_object()
+
+        if not getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
+            try:
+                analyze_job_application(application, application.job_offer, save=True)
+                return Response({'status': 'processed'}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return Response(
+                    {
+                        'status': 'failed',
+                        'detail': str(e),
+                    },
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+
+        try:
+            from apps.jobs.tasks import analyze_job_application_task
+
+            analyze_job_application_task.delay(application.id)
+            return Response({'status': 'queued'}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response(
+                {
+                    'status': 'error',
+                    'detail': str(e),
+                },
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+
     @action(detail=True, methods=['patch'], url_path='update-status')
     def update_status(self, request, pk=None):
         """
@@ -657,6 +837,244 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
         
         serializer = self.get_serializer(application)
         return Response(serializer.data)
+
+    @extend_schema(
+        summary="Uploader / préparer le contrat (PDF) pour une candidature",
+        request=None,
+        responses={200: JobApplicationSerializer},
+    )
+    @action(detail=True, methods=['post'], url_path='contract/prepare', parser_classes=[MultiPartParser])
+    def contract_prepare(self, request, pk=None):
+        application = self.get_object()
+
+        contract_file = request.FILES.get('contract_file')
+        if not contract_file:
+            return Response(
+                {'error': 'contract_file est requis (multipart/form-data).'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        application.contract_file = contract_file
+        application.contract_status = JobApplication.ContractStatus.NOT_PREPARED
+        application.save(update_fields=['contract_file', 'contract_status', 'updated_at'])
+
+        serializer = self.get_serializer(application)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        summary="Envoyer le contrat par email au candidat (lien public tokenisé)",
+        request=None,
+        responses={200: OpenApiResponse(description="Contrat envoyé")},
+    )
+    @action(detail=True, methods=['post'], url_path='contract/send')
+    def contract_send(self, request, pk=None):
+        application = self.get_object()
+
+        if not application.applicant_email:
+            return Response(
+                {'error': "Cette candidature n'a pas applicant_email."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not application.contract_file:
+            return Response(
+                {'error': "Aucun contrat n'est attaché à cette candidature. Uploadez d'abord contract_file."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        token = secrets.token_urlsafe(32)
+        expires_at = timezone.now() + timedelta(days=7)
+
+        application.contract_token = token
+        application.contract_token_expires_at = expires_at
+        application.contract_sent_at = timezone.now()
+        application.contract_status = JobApplication.ContractStatus.SENT
+        application.save(
+            update_fields=[
+                'contract_token',
+                'contract_token_expires_at',
+                'contract_sent_at',
+                'contract_status',
+                'updated_at',
+            ]
+        )
+
+        frontend_base = os.getenv('FRONTEND_CONTRACT_URL', '').strip().rstrip('/')
+        if frontend_base:
+            contract_url = f"{frontend_base}/{token}"
+        else:
+            contract_url = request.build_absolute_uri(f"/api/jobs/contract/{token}/")
+
+        org_name = getattr(getattr(request.user, 'organization', None), 'name', None) or "Notre équipe RH"
+        job_title = application.job_offer.title
+        candidate_name = application.applicant_name or ""
+        deadline_str = expires_at.strftime('%d/%m/%Y à %H:%M')
+
+        subject = f"Signature du contrat – {org_name} – {job_title}"
+
+        text_message = (
+            f"Bonjour {candidate_name},\n\n"
+            f"Félicitations ! Suite à votre candidature, nous avons le plaisir de vous transmettre votre contrat pour le poste « {job_title} ».\n\n"
+            f"Merci de le consulter et de le signer en suivant ce lien :\n"
+            f"{contract_url}\n\n"
+            f"Date limite de signature : {deadline_str}.\n\n"
+            f"Si vous rencontrez la moindre difficulté (accès au lien, téléchargement, dépôt du document signé), répondez simplement à cet email et nous vous assisterons.\n\n"
+            f"Cordialement,\n"
+            f"{org_name}\n"
+        )
+
+        html_message = (
+            f"<div style=\"font-family:Arial,Helvetica,sans-serif;line-height:1.5;color:#111\">"
+            f"<p>Bonjour <strong>{candidate_name}</strong>,</p>"
+            f"<p>Félicitations ! Suite à votre candidature, nous avons le plaisir de vous transmettre votre contrat pour le poste <strong>« {job_title} »</strong>.</p>"
+            f"<p style=\"margin:20px 0\">"
+            f"<a href=\"{contract_url}\" style=\"display:inline-block;padding:12px 18px;background:#0ea5e9;color:#fff;text-decoration:none;border-radius:8px\">Consulter et signer le contrat</a>"
+            f"</p>"
+            f"<p><strong>Date limite de signature :</strong> {deadline_str}.</p>"
+            f"<p>En cas de difficulté (accès au lien, téléchargement, dépôt du document signé), répondez simplement à cet email et nous vous assisterons.</p>"
+            f"<p>Cordialement,<br/>{org_name}</p>"
+            f"</div>"
+        )
+
+        try:
+            send_mail(
+                subject,
+                text_message,
+                None,
+                [application.applicant_email],
+                html_message=html_message,
+            )
+        except Exception as e:
+            return Response(
+                {'error': 'Échec envoi email', 'detail': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+        org = getattr(request.user, 'organization', None)
+        if org:
+            try:
+                Notification.objects.create(
+                    organization=org,
+                    type=Notification.Types.CONTRACT_SENT,
+                    title="Contrat envoyé",
+                    message=(
+                        f"Le contrat pour « {application.job_offer.title} » a été envoyé à "
+                        f"{application.applicant_name} ({application.applicant_email})."
+                    ),
+                    related_application=application,
+                )
+            except Exception:
+                pass
+
+        if application.user_id:
+            try:
+                UserNotification.objects.create(
+                    user=application.user,
+                    type=UserNotification.Types.CONTRACT_SENT,
+                    title="Contrat envoyé",
+                    message=(
+                        f"Votre contrat pour « {application.job_offer.title} » vous a été envoyé par email. "
+                        f"Merci de le signer avant le {deadline_str}."
+                    ),
+                    related_application=application,
+                )
+            except Exception:
+                pass
+
+        return Response(
+            {
+                'status': 'sent',
+                'token': token,
+                'expiresAt': expires_at.isoformat(),
+                'contractUrl': contract_url,
+            },
+            status=status.HTTP_200_OK,
+        )
+
+    @extend_schema(
+        summary="Assigner les 3 évaluations obligatoires (technique/psychotechnique/personnalité) à une candidature",
+        request=None,
+        responses={200: JobApplicationSerializer},
+    )
+    @action(detail=True, methods=['post'], url_path='assign-evaluations')
+    def assign_evaluations(self, request, pk=None):
+        application = self.get_object()
+        job_offer = application.job_offer
+
+        evaluations = [
+            getattr(job_offer, 'technical_evaluation', None),
+            getattr(job_offer, 'psychotech_evaluation', None),
+            getattr(job_offer, 'personality_evaluation', None),
+        ]
+
+        if any(e is None for e in evaluations):
+            return Response(
+                {
+                    'error': 'Les 3 évaluations ne sont pas configurées sur cette offre (technical/psychotech/personality).',
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        if not application.applicant_email or not application.applicant_name:
+            return Response(
+                {
+                    'error': 'Cette candidature ne contient pas applicant_email/applicant_name.',
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        from django.utils import timezone as dj_timezone
+        from datetime import timedelta
+
+        expires_at = dj_timezone.now() + timedelta(days=7)
+
+        candidate, _ = Candidate.objects.get_or_create(
+            email=application.applicant_email,
+            defaults={
+                'full_name': application.applicant_name,
+                'owner': request.user,
+            },
+        )
+
+        participant, _ = Participant.objects.get_or_create(
+            candidate=candidate,
+            defaults={'type': Participant.Type.CANDIDATE},
+        )
+
+        created_or_updated = []
+
+        for evaluation in evaluations:
+            invitation, _ = EvaluationInvitation.objects.update_or_create(
+                evaluation=evaluation,
+                candidate=candidate,
+                defaults={
+                    'expires_at': expires_at,
+                },
+            )
+
+            SubmissionAttempt.objects.get_or_create(
+                participant=participant,
+                evaluation=evaluation,
+            )
+
+            jae, _ = JobApplicationEvaluation.objects.update_or_create(
+                job_application=application,
+                evaluation=evaluation,
+                defaults={
+                    'invitation': invitation,
+                    'status': JobApplicationEvaluation.Status.ASSIGNED,
+                },
+            )
+
+            created_or_updated.append(jae.id)
+
+            try:
+                send_invitation_email(request, invitation)
+            except Exception:
+                pass
+
+        serializer = self.get_serializer(application)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     @extend_schema(
         summary="Assigner une évaluation à une candidature",
@@ -758,8 +1176,15 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
         """Retourne les résultats d'évaluation d'une candidature (vue agrégée)."""
         application = self.get_object()
 
-        evaluation = application.assigned_evaluation
-        if not evaluation:
+        job_offer = application.job_offer
+        evaluations = [
+            getattr(job_offer, 'technical_evaluation', None),
+            getattr(job_offer, 'psychotech_evaluation', None),
+            getattr(job_offer, 'personality_evaluation', None),
+        ]
+
+        evaluations = [e for e in evaluations if e is not None]
+        if not evaluations:
             return Response({
                 "applicationId": application.id,
                 "jobOfferId": application.job_offer_id,
@@ -767,40 +1192,12 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                     "name": application.applicant_name,
                     "email": application.applicant_email,
                 },
-                "evaluations": []
+                "evaluations": [],
+                "globalScore": None,
             })
 
-        # Récupérer les tentatives de ce candidat externe pour cette évaluation
-        attempts_qs = SubmissionAttempt.objects.filter(
-            evaluation=evaluation,
-            participant__candidate__email=application.applicant_email,
-        ).select_related('submission', 'evaluation')
+        from django.db.models import Q
 
-        latest_attempt = attempts_qs.order_by('-started_at').first()
-
-        # Statut par défaut si aucune tentative
-        status_value = 'assigned'
-        score = None
-        max_score = evaluation.max_score
-        avg_on_20 = None
-        completed_at = None
-
-        if latest_attempt:
-            if latest_attempt.is_completed and latest_attempt.submission:
-                status_value = 'completed'
-                score = latest_attempt.submission.score
-                completed_at = latest_attempt.ended_at
-            else:
-                status_value = 'started'
-
-            if score is not None and max_score:
-                try:
-                    avg_on_20 = float(score) * 20.0 / float(max_score)
-                except Exception:
-                    avg_on_20 = None
-
-        # Mapping simple type -> label lisible
-        type_code = getattr(evaluation, 'evaluation_type', '') or ''
         type_labels = {
             'technical': "Évaluation technique",
             'logical': "Évaluation logique",
@@ -808,20 +1205,69 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             'psychotech': "Évaluation psychotechnique",
             'competition': "Compétition",
         }
-        type_label = type_labels.get(type_code, type_code or "Évaluation")
 
-        evaluation_data = {
-            "evaluationId": evaluation.id,
-            "attemptId": latest_attempt.id if latest_attempt else None,
-            "type": type_code,
-            "typeLabel": type_label,
-            "title": evaluation.title,
-            "status": status_value,
-            "score": float(score) if score is not None else None,
-            "maxScore": float(max_score) if max_score is not None else None,
-            "averageOn20": avg_on_20,
-            "completedAt": completed_at.isoformat() if completed_at else None,
-        }
+        evaluation_payloads = []
+        percent_scores = []
+
+        for evaluation in evaluations:
+            attempts_qs = SubmissionAttempt.objects.filter(evaluation=evaluation).select_related('submission', 'evaluation')
+            candidate_filter = Q()
+            if application.applicant_email:
+                candidate_filter |= Q(participant__candidate__email=application.applicant_email)
+            if application.user_id:
+                candidate_filter |= Q(participant__user=application.user)
+            attempts_qs = attempts_qs.filter(candidate_filter)
+
+            latest_attempt = attempts_qs.order_by('-started_at').first()
+
+            status_value = 'assigned'
+            score = None
+            max_score = evaluation.max_score
+            avg_on_20 = None
+            completed_at = None
+
+            if latest_attempt:
+                if latest_attempt.is_completed and latest_attempt.submission:
+                    status_value = 'completed'
+                    score = latest_attempt.submission.score
+                    completed_at = latest_attempt.ended_at
+                else:
+                    status_value = 'started'
+
+                if score is not None and max_score:
+                    try:
+                        avg_on_20 = float(score) * 20.0 / float(max_score)
+                    except Exception:
+                        avg_on_20 = None
+
+            if score is not None and max_score:
+                try:
+                    percent_scores.append(float(score) * 100.0 / float(max_score))
+                except Exception:
+                    pass
+
+            type_code = getattr(evaluation, 'evaluation_type', '') or ''
+            type_label = type_labels.get(type_code, type_code or "Évaluation")
+
+            evaluation_payloads.append({
+                "evaluationId": evaluation.id,
+                "attemptId": latest_attempt.id if latest_attempt else None,
+                "type": type_code,
+                "typeLabel": type_label,
+                "title": evaluation.title,
+                "status": status_value,
+                "score": float(score) if score is not None else None,
+                "maxScore": float(max_score) if max_score is not None else None,
+                "averageOn20": avg_on_20,
+                "completedAt": completed_at.isoformat() if completed_at else None,
+            })
+
+        global_score = None
+        if len(percent_scores) == 3:
+            try:
+                global_score = sum(percent_scores) / 3.0
+            except Exception:
+                global_score = None
 
         payload = {
             "applicationId": application.id,
@@ -830,7 +1276,8 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 "name": application.applicant_name,
                 "email": application.applicant_email,
             },
-            "evaluations": [evaluation_data],
+            "evaluations": evaluation_payloads,
+            "globalScore": global_score,
         }
 
         return Response(payload, status=status.HTTP_200_OK)
@@ -1075,6 +1522,119 @@ class JobMatchView(GenericAPIView):
                 })
 
         return Response(results, status=status.HTTP_200_OK)
+
+
+@extend_schema(tags=["Contrats"], exclude=False)
+class PublicContractView(APIView):
+    permission_classes = [AllowAny]
+
+    @extend_schema(
+        summary="Récupérer les informations du contrat via un token public",
+        responses={200: OpenApiResponse(description="Contrat trouvé"), 404: OpenApiResponse(description="Token invalide")},
+    )
+    def get(self, request, token: str):
+        application = JobApplication.objects.filter(contract_token=token).select_related('job_offer').first()
+        if not application:
+            return Response({'detail': 'Token invalide'}, status=status.HTTP_404_NOT_FOUND)
+
+        expires_at = application.contract_token_expires_at
+        if expires_at and timezone.now() > expires_at:
+            return Response({'detail': 'Token expiré'}, status=status.HTTP_410_GONE)
+
+        contract_url = None
+        try:
+            contract_url = application.contract_file.url if application.contract_file else None
+        except Exception:
+            contract_url = None
+
+        return Response(
+            {
+                'applicationId': application.id,
+                'jobOfferId': application.job_offer_id,
+                'jobTitle': application.job_offer.title,
+                'candidate': {
+                    'name': application.applicant_name,
+                    'email': application.applicant_email,
+                },
+                'contractStatus': application.contract_status,
+                'expiresAt': expires_at.isoformat() if expires_at else None,
+                'contractFileUrl': contract_url,
+            },
+            status=status.HTTP_200_OK,
+        )
+
+
+@extend_schema(tags=["Contrats"], exclude=False)
+class PublicContractUploadSignedView(APIView):
+    permission_classes = [AllowAny]
+    parser_classes = [MultiPartParser]
+
+    @extend_schema(
+        summary="Uploader le contrat signé (PDF) via token public",
+        request=None,
+        responses={200: OpenApiResponse(description="Contrat signé reçu")},
+    )
+    def post(self, request, token: str):
+        application = JobApplication.objects.filter(contract_token=token).select_related('job_offer').first()
+        if not application:
+            return Response({'detail': 'Token invalide'}, status=status.HTTP_404_NOT_FOUND)
+
+        expires_at = application.contract_token_expires_at
+        if expires_at and timezone.now() > expires_at:
+            return Response({'detail': 'Token expiré'}, status=status.HTTP_410_GONE)
+
+        signed_file = request.FILES.get('signed_contract_file')
+        if not signed_file:
+            return Response(
+                {'detail': 'signed_contract_file est requis (multipart/form-data).'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        application.signed_contract_file = signed_file
+        application.contract_status = JobApplication.ContractStatus.SIGNED
+        application.contract_signed_at = timezone.now()
+        application.save(
+            update_fields=['signed_contract_file', 'contract_status', 'contract_signed_at', 'updated_at']
+        )
+
+        org = getattr(application.job_offer, 'company', None)
+        if org:
+            try:
+                Notification.objects.create(
+                    organization=org,
+                    type=Notification.Types.CONTRACT_SIGNED,
+                    title="Contrat signé reçu",
+                    message=(
+                        f"{application.applicant_name} ({application.applicant_email}) a déposé le contrat signé "
+                        f"pour « {application.job_offer.title} »."
+                    ),
+                    related_application=application,
+                )
+            except Exception:
+                pass
+
+        if application.user_id:
+            try:
+                UserNotification.objects.create(
+                    user=application.user,
+                    type=UserNotification.Types.CONTRACT_SIGNED,
+                    title="Contrat signé envoyé",
+                    message=(
+                        f"Votre contrat signé pour « {application.job_offer.title} » a bien été reçu par l'équipe RH."
+                    ),
+                    related_application=application,
+                )
+            except Exception:
+                pass
+
+        return Response(
+            {
+                'status': 'signed',
+                'applicationId': application.id,
+                'signedAt': application.contract_signed_at.isoformat() if application.contract_signed_at else None,
+            },
+            status=status.HTTP_200_OK,
+        )
 
 
 @extend_schema(tags=['Métadonnées'])

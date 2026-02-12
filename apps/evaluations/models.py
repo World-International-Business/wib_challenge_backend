@@ -264,8 +264,8 @@ class EvaluationInvitation(BaseModel):
 
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE, verbose_name=_('Évaluation'),
                                    related_name='invitations')
-    candidate = models.OneToOneField(Candidate, on_delete=models.CASCADE, verbose_name=_('Candidat'),
-                                     related_name='invitation')
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, verbose_name=_('Candidat'),
+                                  related_name='invitations')
     token = models.CharField(_('Token d\'invitation'),
                              max_length=64, unique=True)
     invited_at = models.DateTimeField(_('Invité le'), auto_now_add=True)
