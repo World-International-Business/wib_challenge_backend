@@ -1,0 +1,818 @@
+[
+    {
+    "title": "Lequel des éléments suivants n’est pas un objectif de la gestion de projet ?",
+    "description": "Objectifs de la gestion de projet.",
+    "explanation": "Éviter les plaintes des clients n'est pas un objectif formel de gestion de projet.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Maintenir les coûts globaux dans les limites du budget", "isCorrect": false },
+    { "text": "Livrer le logiciel au client dans les délais convenus.", "isCorrect": false },
+    { "text": "Maintenir une équipe de développement heureuse et performante", "isCorrect": false },
+    { "text": "Éviter les plaintes des clients", "isCorrect": true }
+    ]
+    },
+    {
+    "title": "Les chefs de projet doivent évaluer les risques qui peuvent affecter un projet.",
+    "description": "Évaluation des risques en gestion de projet.",
+    "explanation": "C'est vrai, les chefs de projet doivent évaluer les risques.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Vrai", "isCorrect": true },
+    { "text": "Faux", "isCorrect": false },
+    { "text": "Peut-être!", "isCorrect": false },
+    { "text": "Je ne sais pas!", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Lequel des éléments suivants n’est pas considéré comme un risque dans la gestion de projet ?",
+    "description": "Identification des risques en gestion de projet.",
+    "explanation": "Les tests ne sont pas considérés comme un risque, mais comme une phase du projet.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Les retards dans les spécifications", "isCorrect": false },
+    { "text": "La concurrence entre les produits", "isCorrect": false },
+    { "text": "Les tests", "isCorrect": true },
+    { "text": "La mobilité du personnel", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le processus que chaque chef de projet suit durant le projet est connu sous le nom de __________",
+    "description": "Identification du cadre processus du projet.",
+    "explanation": "C'est le cycle de vie du projet.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Gestion de projet", "isCorrect": false },
+    { "text": "Cycle de vie du chef de projet", "isCorrect": false },
+    { "text": "Cycle de vie du projet", "isCorrect": true },
+    { "text": "Toutes les réponses sont vraies", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Lequel/lesquels des éléments suivants est/sont les principaux paramètres que vous devez utiliser lors du calcul des coûts d’un projet de développement de logiciels ?",
+    "description": "Paramètres de coût pour le développement logiciel.",
+    "explanation": "Tous ces paramètres doivent être pris en compte pour le calcul des coûts.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Les frais de déplacement et de formation", "isCorrect": false },
+    { "text": "Les coûts du matériel et des logiciels", "isCorrect": false },
+    { "text": "Les coûts de l’effort (coûts de rémunération des ingénieurs et des chefs de projet)", "isCorrect": false },
+    { "text": "Tous les paramètres mentionnés", "isCorrect": true }
+    ]
+    },
+    {
+    "title": "La planification de la qualité est le processus d’élaboration d’un plan de qualité pour ________",
+    "description": "Planification de la qualité dans la gestion de projet.",
+    "explanation": "Elle est élaborée pour un projet.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une équipe", "isCorrect": false },
+    { "text": "Un projet", "isCorrect": true },
+    { "text": "Les clients", "isCorrect": false },
+    { "text": "Le chef de projet", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Chaque tâche programmée doit être assignée à un membre spécifique de l’équipe, c’est ce qu’on appelle __________.",
+    "description": "Concept de responsabilité des tâches en gestion de projet.",
+    "explanation": "C'est ce qu'on appelle les responsabilités définies.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Compartimentage", "isCorrect": false },
+    { "text": "Responsabilités définies", "isCorrect": true },
+    { "text": "Résultats définis", "isCorrect": false },
+    { "text": "Résultats définis", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un calendrier qui a été défini à un degré de résolution permettant de suivre l’avancement et de contrôler le projet est appelé _________.",
+    "description": "Terminologie pour un calendrier de projet.",
+    "explanation": "C'est appelé la planification de projet.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le suivi du projet", "isCorrect": false },
+    { "text": "Planification de projet", "isCorrect": true },
+    { "text": "Réseau de projet", "isCorrect": false },
+    { "text": "Suivi de projet", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Qu’est-ce qui évalue le risque associé à la technologie à mettre en œuvre dans le cadre de la portée du projet ?",
+    "description": "Évaluation des risques technologiques.",
+    "explanation": "C'est l’évaluation du risque technologique.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Définition de la portée du concept", "isCorrect": false },
+    { "text": "Planification préliminaire du concept", "isCorrect": false },
+    { "text": "L’évaluation du risque technologique", "isCorrect": true },
+    { "text": "La réaction du client au concept", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Parmi les éléments suivants, quels sont ceux qui permettent d’établir le calendrier des projets de génie logiciel ?",
+    "description": "Établissement du calendrier des projets.",
+    "explanation": "Une date de fin a été établie aide à fixer le calendrier.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une date de fin pour le lancement d’un système informatique a déjà été établie.", "isCorrect": true },
+    { "text": "Les efforts sont répartis de manière à utiliser au mieux les ressources, et une date de fin est définie après une analyse minutieuse.", "isCorrect": false },
+    { "text": "Les deux A et B", "isCorrect": false },
+    { "text": "Aucune de ces réponses", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Parmi les éléments suivants, lequel/lesquels est/sont les principes de base de la planification des projets logiciels ?",
+    "description": "Principes de planification des projets.",
+    "explanation": "Ils incluent les responsabilités définies, résultats définis, étapes définies.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Compartimentage, interdépendance, allocation de temps", "isCorrect": false },
+    { "text": "Validation de l’effort", "isCorrect": false },
+    { "text": "Responsabilités définies, résultats définis, étapes définies.", "isCorrect": true },
+    { "text": "Tout ce qui est mentionné ci-dessus", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel que soit le modèle de processus choisi, le travail effectué par une équipe logicielle est réalisé par le biais d’un .",
+    "description": "Définition du travail effectué par l'équipe logicielle.",
+    "explanation": "Il est réalisé par un ensemble de tâches.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un ensemble de systèmes", "isCorrect": false },
+    { "text": "Un ensemble de tâches", "isCorrect": true },
+    { "text": "Un ensemble de développement", "isCorrect": false },
+    { "text": "Tout ce qui est mentionné ci-dessus", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Afin de développer un calendrier de projet, un ensemble de tâches doit être distribué sur la ligne de temps du projet.",
+    "description": "Importance de la distribution des tâches.",
+    "explanation": "C'est vrai, un ensemble de tâches doit être distribué.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Vrai", "isCorrect": true },
+    { "text": "Faux", "isCorrect": false },
+    { "text": "Peut-être!", "isCorrect": false },
+    { "text": "Je ne sais pas!", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Les projets de développement de concepts sont lancés lorsque le potentiel d’une nouvelle technologie doit être exploré.",
+    "description": "Définition des projets de développement de concepts.",
+    "explanation": "C'est vrai, ils sont lancés pour explorer de nouvelles technologies.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Vrai", "isCorrect": true },
+    { "text": "Faux", "isCorrect": false },
+    { "text": "Peut-être!", "isCorrect": false },
+    { "text": "Je ne sais pas!", "isCorrect": false }
+    ]
+    },
+    {
+    "title": " détermine la portée globale du projet.",
+    "description": "Facteurs déterminant la portée d'un projet.",
+    "explanation": "Aucun des éléments mentionnés ne détermine la portée globale.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Aucun des éléments mentionnés", "isCorrect": true },
+    { "text": "Définition du concept", "isCorrect": false },
+    { "text": "Évaluation des risques technologiques", "isCorrect": false },
+    { "text": "Preuve du concept", "isCorrect": false }
+    ]
+    },
+    {
+    "title": " met en œuvre la représentation du concept d’une manière qui peut être examinée par un client.",
+    "description": "Création de la représentation du concept.",
+    "explanation": "Cela se réfère à la définition de la portée du concept.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Mise en œuvre d’une idée", "isCorrect": false },
+    { "text": "Définition de la portée du concept", "isCorrect": true },
+    { "text": "Évaluation des risques technologiques", "isCorrect": false },
+    { "text": "Tous les éléments mentionnés ci-dessus", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Les risques sont ceux qui peuvent être découverts après une évaluation minutieuse du plan du projet ?",
+    "description": "Nature des risques en gestion de projet.",
+    "explanation": "C'est vrai, ils peuvent être découverts après évaluation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Vrai", "isCorrect": true },
+    { "text": "Faux", "isCorrect": false },
+    { "text": "Peut-être!", "isCorrect": false },
+    { "text": "Je ne sais pas!", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Lequel des éléments suivants n’est pas un critère d’adaptation pour les projets logiciels ?",
+    "description": "Critères d'adaptation des projets logiciels.",
+    "explanation": "Les plaintes des clients ne sont pas un critère d'adaptation.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La taille du projet", "isCorrect": false },
+    { "text": "Plaintes des clients", "isCorrect": true },
+    { "text": "Personnel du projet", "isCorrect": false },
+    { "text": "Criticité de la mission", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "L’analyse et la gestion des risques sont une série d’étapes qui aident une équipe logicielle à comprendre et à gérer l’incertitude ?",
+    "description": "Nature de l'analyse et de la gestion des risques.",
+    "explanation": "C'est vrai, cela aide à comprendre et à gérer l'incertitude.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Vrai", "isCorrect": true },
+    { "text": "Faux", "isCorrect": false },
+    { "text": "Peut-être!", "isCorrect": false },
+    { "text": "Je ne sais pas!", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Les risques liés au projet menacent le ____.",
+    "description": "Identifications des risques dans le projet.",
+    "explanation": "Ils menacent le plan du projet.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Plan du projet", "isCorrect": true },
+    { "text": "Développement du projet", "isCorrect": false },
+    { "text": "Suivi du projet", "isCorrect": false },
+    { "text": "Aucun des éléments mentionnés ci-dessus", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un risque est un problème potentiel – il peut se produire ou non.",
+    "description": "Définition d'un risque.",
+    "explanation": "C'est vrai, un risque est un problème potentiel.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Vrai", "isCorrect": true },
+    { "text": "Faux", "isCorrect": false },
+    { "text": "Peut-être!", "isCorrect": false },
+    { "text": "Je ne sais pas!", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le rôle principal d’un chef de projet IT est de :",
+    "description": "Principaux rôles du chef de projet IT.",
+    "explanation": "Il pilote le projet pour atteindre les objectifs.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Développer le code", "isCorrect": false },
+    { "text": "Installer les serveurs", "isCorrect": false },
+    { "text": "Piloter le projet pour atteindre les objectifs", "isCorrect": true },
+    { "text": "Gérer uniquement le budget", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "jalon représente :",
+    "description": "Définition d'un jalon en gestion de projet.",
+    "explanation": "C'est un point clé sans durée.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une tâche longue", "isCorrect": false },
+    { "text": "Un point clé sans durée", "isCorrect": true },
+    { "text": "Une ressource", "isCorrect": false },
+    { "text": "Un risque", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La documentation des besoins se fait dans :",
+    "description": "Documentation des besoins en gestion de projet.",
+    "explanation": "Elle se fait dans le cahier des charges.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le planning", "isCorrect": false },
+    { "text": "Le cahier des charges", "isCorrect": true },
+    { "text": "Le budget", "isCorrect": false },
+    { "text": "Le contrat de travail", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le sponsor d’un projet est :",
+    "description": "Rôle du sponsor dans un projet.",
+    "explanation": "C'est le décideur et financeur.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le développeur", "isCorrect": false },
+    { "text": "Le client final", "isCorrect": false },
+    { "text": "Le décideur et financeur", "isCorrect": true },
+    { "text": "L’utilisateur", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une dérive de périmètre est appelée :",
+    "description": "Terminologie pour dérive de périmètre.",
+    "explanation": "C'est appelée scope creep.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Bug", "isCorrect": false },
+    { "text": "Scope creep", "isCorrect": true },
+    { "text": "Sprint", "isCorrect": false },
+    { "text": "Incident", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le chef de projet IT doit avant tout maîtriser :",
+    "description": "Compétences essentielles d'un chef de projet IT.",
+    "explanation": "Il doit maîtriser la coordination et la communication.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un langage de programmation", "isCorrect": false },
+    { "text": "La coordination et la communication", "isCorrect": true },
+    { "text": "Le design graphique", "isCorrect": false },
+    { "text": "Le support utilisateur", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le cycle en V est particulièrement adapté :",
+    "description": "Application du cycle en V en gestion de projet.",
+    "explanation": "Il est adapté aux projets avec exigences stables.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Bénéfique", "isCorrect": false },
+    { "text": "Avantageux", "isCorrect": false },
+    { "text": "Performant", "isCorrect": true },
+    { "text": "Efficace", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Scrum est une méthode :",
+    "description": "Nature de la méthode Scrum.",
+    "explanation": "C'est une méthode Agile.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Prédictive", "isCorrect": false },
+    { "text": "Hybride", "isCorrect": false },
+    { "text": "Agile", "isCorrect": true },
+    { "text": "Cascade", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le Product Owner est responsable :",
+    "description": "Rôle du Product Owner dans un projet.",
+    "explanation": "Il est responsable de la valeur du produit.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Du développement", "isCorrect": false },
+    { "text": "Du budget global", "isCorrect": false },
+    { "text": "De la valeur du produit", "isCorrect": true },
+    { "text": "De l’infrastructure", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un sprint dure généralement :",
+    "description": "Durée typique d'un sprint.",
+    "explanation": "Il dure généralement de 1 à 4 semaines.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "1 jour", "isCorrect": false },
+    { "text": "1 à 4 semaines", "isCorrect": true },
+    { "text": "3 mois", "isCorrect": false },
+    { "text": "1 an", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le backlog produit contient :",
+    "description": "Contenu du backlog produit.",
+    "explanation": "Il contient les besoins fonctionnels priorisés.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Les bugs système", "isCorrect": false },
+    { "text": "Les besoins fonctionnels priorisés", "isCorrect": true },
+    { "text": "Les contrats", "isCorrect": false },
+    { "text": "Le planning financier", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le daily meeting a pour objectif :",
+    "description": "Objectif de la réunion quotidienne.",
+    "explanation": "Il vise à synchroniser l’équipe.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Former l’équipe", "isCorrect": false },
+    { "text": "Synchroniser l’équipe", "isCorrect": true },
+    { "text": "Présenter le budget", "isCorrect": false },
+    { "text": "Tester l’application", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le diagramme de Gantt sert à :",
+    "description": "Utilité du diagramme de Gantt.",
+    "explanation": "Il sert à visualiser le planning.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Identifier les risques", "isCorrect": false },
+    { "text": "Visualiser le planning", "isCorrect": true },
+    { "text": "Calculer les coûts", "isCorrect": false },
+    { "text": "Tester la qualité", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La méthode Kanban repose sur :",
+    "description": "Principes de la méthode Kanban.",
+    "explanation": "Elle repose sur un flux continu.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Des cycles fixes", "isCorrect": false },
+    { "text": "Un flux continu", "isCorrect": true },
+    { "text": "Des phases rigides", "isCorrect": false },
+    { "text": "Un planning annuel", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une user story est :",
+    "description": "Définition d'une user story.",
+    "explanation": "C'est un besoin exprimé du point de vue utilisateur.",
+    "difficulty": "easy",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un besoin exprimé du point de vue utilisateur", "isCorrect": true },
+    { "text": "Une ligne de code", "isCorrect": false },
+    { "text": "Un test technique", "isCorrect": false },
+    { "text": "Un livrable contractuel", "isCorrect": false }
+    ]
+    },
+
+    {
+    "title": "La gouvernance IT vise principalement à",
+    "description": "Pilotage stratégique des SI",
+    "explanation": "La gouvernance IT vise à aligner l’IT sur la stratégie business.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Développer des applications", "isCorrect": false },
+    { "text": "Aligner l’IT sur la stratégie business", "isCorrect": true },
+    { "text": "Réduire les coûts uniquement", "isCorrect": false },
+    { "text": "Externaliser les projets", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le framework COBIT est utilisé pour",
+    "description": "Outils de gouvernance IT",
+    "explanation": "COBIT est un framework de gouvernance et de contrôle des systèmes d’information.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le développement logiciel", "isCorrect": false },
+    { "text": "La gouvernance et le contrôle des SI", "isCorrect": true },
+    { "text": "La cybersécurité uniquement", "isCorrect": false },
+    { "text": "Le cloud computing", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un programme se distingue d’un projet par",
+    "description": "Différence programme vs projet",
+    "explanation": "Un programme coordonne plusieurs projets liés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Sa durée plus courte", "isCorrect": false },
+    { "text": "La coordination de plusieurs projets liés", "isCorrect": true },
+    { "text": "Son budget plus faible", "isCorrect": false },
+    { "text": "L’absence de livrables", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le comité de pilotage a pour rôle principal",
+    "description": "Gouvernance projet",
+    "explanation": "Le comité de pilotage prend les décisions stratégiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Exécuter les tâches", "isCorrect": false },
+    { "text": "Prendre les décisions stratégiques", "isCorrect": true },
+    { "text": "Tester l’application", "isCorrect": false },
+    { "text": "Former les utilisateurs", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un projet IT sans sponsor identifié présente surtout un risque de",
+    "description": "Pilotage et sponsor",
+    "explanation": "Sans sponsor, le projet risque un blocage décisionnel.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Bug technique", "isCorrect": false },
+    { "text": "Blocage décisionnel", "isCorrect": true },
+    { "text": "Problème réseau", "isCorrect": false },
+    { "text": "Surqualité", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La meilleure réponse face à un échec partiel",
+    "description": "Gestion des échecs et apprentissage",
+    "explanation": "Un échec partiel doit être analysé pour en tirer des leçons et améliorer les pratiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Chercher un coupable", "isCorrect": false },
+    { "text": "Capitaliser sur les leçons apprises", "isCorrect": true },
+    { "text": "Annuler tous les projets", "isCorrect": false },
+    { "text": "Ignorer", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un chef de projet senior est jugé principalement sur",
+    "description": "Critères d’évaluation du chef de projet",
+    "explanation": "Il est jugé sur les résultats et la valeur créée, pas sur la technique seule.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La technique", "isCorrect": false },
+    { "text": "Les résultats et la valeur créée", "isCorrect": true },
+    { "text": "Le nombre de réunions", "isCorrect": false },
+    { "text": "Le nombre d’outils utilisés", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une communication trop technique avec la direction entraîne",
+    "description": "Communication managériale",
+    "explanation": "Un langage trop technique peut entraîner une perte d’adhésion de la direction.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une meilleure compréhension", "isCorrect": false },
+    { "text": "Une perte d’adhésion", "isCorrect": true },
+    { "text": "Une meilleure décision", "isCorrect": false },
+    { "text": "Une accélération", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "En situation de crise, le chef de projet doit",
+    "description": "Leadership en crise",
+    "explanation": "Il doit décider, communiquer et rassurer pour maintenir la confiance.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Disparaître", "isCorrect": false },
+    { "text": "Décider, communiquer et rassurer", "isCorrect": true },
+    { "text": "Attendre les ordres", "isCorrect": false },
+    { "text": "Blâmer l’équipe", "isCorrect": false }
+    ]
+    },
+
+
+
+    {
+    "title": "La valeur d’un chef de projet IT senior réside dans",
+    "description": "Valeur ajoutée du chef de projet",
+    "explanation": "Sa valeur réside dans sa capacité à arbitrer et décider.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le code", "isCorrect": false },
+    { "text": "La capacité à arbitrer et décider", "isCorrect": true },
+    { "text": "La vitesse", "isCorrect": false },
+    { "text": "Le contrôle", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une transformation digitale échoue souvent à cause",
+    "description": "Facteurs d’échec des transformations digitales",
+    "explanation": "Le facteur humain est souvent la cause principale d’échec.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "De la technologie", "isCorrect": false },
+    { "text": "Du facteur humain", "isCorrect": true },
+    { "text": "Du cloud", "isCorrect": false },
+    { "text": "Des API", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le succès durable d’un projet IT repose sur",
+    "description": "Facteurs de succès durable",
+    "explanation": "Il repose sur l’équilibre entre stratégie, humain et technique.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La technologie seule", "isCorrect": false },
+    { "text": "L’équilibre stratégie – humain – technique", "isCorrect": true },
+    { "text": "Le budget", "isCorrect": false },
+    { "text": "Le délai", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un projet rentable mais non aligné à la stratégie. Décision la plus pertinente ?",
+    "description": "Décision managériale stratégique",
+    "explanation": "Un projet doit être aligné à la stratégie, sinon il doit être réévalué ou arrêté.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Continuer", "isCorrect": false },
+    { "text": "Réévaluer ou arrêter", "isCorrect": true },
+    { "text": "Accélérer", "isCorrect": false },
+    { "text": "Ignorer", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une équipe technique performante mais conflictuelle entraîne",
+    "description": "Gestion des équipes",
+    "explanation": "Les conflits internes génèrent un risque élevé à moyen terme malgré la performance technique.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un succès durable", "isCorrect": false },
+    { "text": "Un risque élevé à moyen terme", "isCorrect": true },
+    { "text": "Aucun impact", "isCorrect": false },
+    { "text": "Une meilleure qualité", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un dépassement budgétaire non justifié doit être",
+    "description": "Gestion budgétaire",
+    "explanation": "Il doit être signalé et faire l’objet d’un arbitrage.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Caché", "isCorrect": false },
+    { "text": "Signalé et arbitrée", "isCorrect": true },
+    { "text": "Accepté", "isCorrect": false },
+    { "text": "Répercuté au client sans accord", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La meilleure réponse face à un échec partiel",
+    "description": "Gestion des échecs et apprentissage",
+    "explanation": "Un échec partiel doit être analysé pour en tirer des leçons et améliorer les pratiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Chercher un coupable", "isCorrect": false },
+    { "text": "Capitaliser sur les leçons apprises", "isCorrect": true },
+    { "text": "Annuler tous les projets", "isCorrect": false },
+    { "text": "Ignorer", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Un chef de projet senior est jugé principalement sur",
+    "description": "Critères d’évaluation du chef de projet",
+    "explanation": "Il est jugé sur les résultats et la valeur créée, pas sur la technique seule.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La technique", "isCorrect": false },
+    { "text": "Les résultats et la valeur créée", "isCorrect": true },
+    { "text": "Le nombre de réunions", "isCorrect": false },
+    { "text": "Le nombre d’outils utilisés", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une communication trop technique avec la direction entraîne",
+    "description": "Communication managériale",
+    "explanation": "Un langage trop technique peut entraîner une perte d’adhésion de la direction.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une meilleure compréhension", "isCorrect": false },
+    { "text": "Une perte d’adhésion", "isCorrect": true },
+    { "text": "Une meilleure décision", "isCorrect": false },
+    { "text": "Une accélération", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "En situation de crise, le chef de projet doit",
+    "description": "Leadership en crise",
+    "explanation": "Il doit décider, communiquer et rassurer pour maintenir la confiance.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Disparaître", "isCorrect": false },
+    { "text": "Décider, communiquer et rassurer", "isCorrect": true },
+    { "text": "Attendre les ordres", "isCorrect": false },
+    { "text": "Blâmer l’équipe", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La valeur d’un chef de projet IT senior réside dans",
+    "description": "Valeur ajoutée du chef de projet",
+    "explanation": "Sa valeur réside dans sa capacité à arbitrer et décider.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le code", "isCorrect": false },
+    { "text": "La capacité à arbitrer et décider", "isCorrect": true },
+    { "text": "La vitesse", "isCorrect": false },
+    { "text": "Le contrôle", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Une transformation digitale échoue souvent à cause",
+    "description": "Facteurs d’échec des transformations digitales",
+    "explanation": "Le facteur humain est souvent la cause principale d’échec.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "De la technologie", "isCorrect": false },
+    { "text": "Du facteur humain", "isCorrect": true },
+    { "text": "Du cloud", "isCorrect": false },
+    { "text": "Des API", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le succès durable d’un projet IT repose sur",
+    "description": "Facteurs de succès durable",
+    "explanation": "Il repose sur l’équilibre entre stratégie, humain et technique.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La technologie seule", "isCorrect": false },
+    { "text": "L’équilibre stratégie – humain – technique", "isCorrect": true },
+    { "text": "Le budget", "isCorrect": false },
+    { "text": "Le délai", "isCorrect": false }
+    ]
+    }
+]    
