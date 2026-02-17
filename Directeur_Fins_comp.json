@@ -1,0 +1,1108 @@
+[
+    {
+    "title": "Dans un contexte de pilotage stratégique, quel est le rôle principal attendu d’un Directeur Financier ?",
+    "description": "Rôle stratégique et responsabilités du Directeur Financier.",
+    "explanation": "Au-delà de la tenue comptable, le Directeur Financier pilote la performance financière et aligne la finance sur la stratégie de l’entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Tenir uniquement la comptabilité", "isCorrect": false },
+    { "text": "Piloter la performance financière de l’entreprise", "isCorrect": true },
+    { "text": "Gérer les ressources humaines", "isCorrect": false },
+    { "text": "Superviser la production", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel profil décrit le mieux un Directeur Financier opérationnel intervenant au comité de direction ?",
+    "description": "Positionnement stratégique du Directeur Financier au sein du comité de direction.",
+    "explanation": "Le Directeur Financier est avant tout un décideur stratégique, participant aux choix structurants de l'entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un exécutant", "isCorrect": false },
+    { "text": "Un décideur stratégique", "isCorrect": true },
+    { "text": "Un technicien comptable", "isCorrect": false },
+    { "text": "Un contrôleur administratif", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comment la fonction financière doit-elle contribuer à la gouvernance et aux décisions stratégiques ?",
+    "description": "Impact de la fonction financière sur la prise de décision au niveau stratégique.",
+    "explanation": "La fonction financière apporte des analyses et scénarios pour la prise de décision stratégique, pas seulement des obligations de conformité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La conformité uniquement", "isCorrect": false },
+    { "text": "La prise de décision stratégique", "isCorrect": true },
+    { "text": "La communication externe", "isCorrect": false },
+    { "text": "La production", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Dans un contexte de contrôle externe et d’investisseurs, que signifie la responsabilité fiduciaire du DAF ?",
+    "description": "Obligations fiduciaires et qualité de l’information financière.",
+    "explanation": "La responsabilité fiduciaire implique de garantir la fiabilité des informations financières transmises aux parties prenantes.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Réduire les coûts", "isCorrect": false },
+    { "text": "Garantir la fiabilité des informations financières", "isCorrect": true },
+    { "text": "Augmenter le chiffre d’affaires", "isCorrect": false },
+    { "text": "Contrôler les employés", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "À qui le Directeur Administratif et Financier rend-il principalement compte pour la tenue de la stratégie financière ?",
+    "description": "Hiérarchie et reporting du Directeur Financier.",
+    "explanation": "Le DAF rend compte principalement à la Direction Générale, qui définit la stratégie et valide les orientations financières.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Aux clients", "isCorrect": false },
+    { "text": "À la Direction Générale", "isCorrect": true },
+    { "text": "Aux fournisseurs", "isCorrect": false },
+    { "text": "Aux employés", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’objectif fondamental de la comptabilité générale pour un groupe soumis à contrôle externe ?",
+    "description": "But fondamental de la comptabilité générale dans un cadre de fiabilité de l’information.",
+    "explanation": "La comptabilité générale vise principalement à produire des états financiers fiables, utiles au pilotage et au contrôle externe.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "L’optimisation fiscale", "isCorrect": false },
+    { "text": "La production d’états financiers fiables", "isCorrect": true },
+    { "text": "Le contrôle budgétaire", "isCorrect": false },
+    { "text": "La gestion de trésorerie", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Que représente le bilan pour un analyste financier souhaitant évaluer la solvabilité à court terme ?",
+    "description": "Interprétation du bilan selon la perspective patrimoniale et de liquidité.",
+    "explanation": "Le bilan représente la situation patrimoniale à une date donnée, base de l’analyse de solvabilité et de structure financière.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Les flux financiers", "isCorrect": false },
+    { "text": "La situation patrimoniale à une date donnée", "isCorrect": true },
+    { "text": "La performance sur une période", "isCorrect": false },
+    { "text": "Le budget annuel", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Pour évaluer la rentabilité opérationnelle d’un exercice, quel document est prioritairement analysé ?",
+    "description": "Rôle du compte de résultat dans l’évaluation de la performance sur période.",
+    "explanation": "Le compte de résultat mesure la performance financière sur une période et permet d’évaluer la rentabilité opérationnelle.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La trésorerie", "isCorrect": false },
+    { "text": "La performance financière sur une période", "isCorrect": true },
+    { "text": "Le patrimoine", "isCorrect": false },
+    { "text": "Les investissements", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Dans la construction d’un business plan, quel rôle technique jouent les amortissements ?",
+    "description": "Impact comptable des amortissements sur le résultat et sur le cash-flow.",
+    "explanation": "Les amortissements répartissent le coût d’un actif dans le temps, affectant le résultat comptable sans mouvement de trésorerie immédiat.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Augmenter le résultat", "isCorrect": false },
+    { "text": "Répartir le coût d’un actif dans le temps", "isCorrect": true },
+    { "text": "Réduire la trésorerie", "isCorrect": false },
+    { "text": "Financer les investissements", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Sur quelle probabilité et caractéristique se base la comptabilisation d’une provision selon les principes prudentiels ?",
+    "description": "Critères de reconnaissance des provisions en comptabilité d’entreprise.",
+    "explanation": "Une provision est comptabilisée lorsqu’il existe un risque probable et mesurable entraînant une sortie de ressources.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un bénéfice certain", "isCorrect": false },
+    { "text": "Un risque probable et mesurable", "isCorrect": true },
+    { "text": "Une dette certaine", "isCorrect": false },
+    { "text": "Une charge déjà payée", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle doit être l’approche fiscale d’un groupe cherchant à rester conforme tout en optimisant son résultat après impôt ?",
+    "description": "Bonnes pratiques de fiscalité d’entreprise entre conformité et optimisation.",
+    "explanation": "L’objectif est de respecter la loi tout en optimisant la charge fiscale de façon légale et documentée.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Supprimer l’impôt", "isCorrect": false },
+    { "text": "Respecter la loi tout en optimisant la charge fiscale", "isCorrect": true },
+    { "text": "Éviter les contrôles", "isCorrect": false },
+    { "text": "Augmenter les bénéfices", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle condition essentielle caractérise une optimisation fiscale acceptable ?",
+    "description": "Limites et nature de l’optimisation fiscale responsable.",
+    "explanation": "L’optimisation fiscale doit rester légale et conforme aux normes et contrôles en vigueur.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Agressive", "isCorrect": false },
+    { "text": "Légale et conforme", "isCorrect": true },
+    { "text": "Secrète", "isCorrect": false },
+    { "text": "Temporaire", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelles sont les conséquences possibles d’erreurs fiscales significatives pour une entreprise multinationale ?",
+    "description": "Risques juridiques et financiers liés aux erreurs fiscales.",
+    "explanation": "Une erreur fiscale peut entraîner des pénalités financières et des risques juridiques, impactant la réputation et la trésorerie.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Aucun impact", "isCorrect": false },
+    { "text": "Des pénalités financières et juridiques", "isCorrect": true },
+    { "text": "Une correction automatique", "isCorrect": false },
+    { "text": "Un simple avertissement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’intérêt d’une veille fiscale proactive pour un groupe opérant dans plusieurs juridictions ?",
+    "description": "Rôle de la veille fiscale dans l’anticipation des changements réglementaires.",
+    "explanation": "La veille fiscale permet d’anticiper les évolutions réglementaires et d’adapter les politiques et pratiques fiscales en conséquence.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "D’éviter les impôts", "isCorrect": false },
+    { "text": "D’anticiper les évolutions réglementaires", "isCorrect": true },
+    { "text": "De modifier les lois", "isCorrect": false },
+    { "text": "De réduire la comptabilité", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Lors d’un contrôle fiscal, quel est l’objet principal de la vérification ?",
+    "description": "Objectifs et périmètre du contrôle fiscal.",
+    "explanation": "Le contrôle fiscal porte principalement sur la conformité des déclarations et la sincérité des informations transmises.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Les décisions commerciales", "isCorrect": false },
+    { "text": "La conformité des déclarations", "isCorrect": true },
+    { "text": "La stratégie marketing", "isCorrect": false },
+    { "text": "Les ressources humaines", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’objectif central de la gestion de trésorerie dans une PME en phase de croissance ?",
+    "description": "Priorités opérationnelles de la gestion de trésorerie.",
+    "explanation": "La gestion de trésorerie vise à assurer la liquidité de l’entreprise pour faire face aux obligations à court terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Maximiser les dépenses", "isCorrect": false },
+    { "text": "Assurer la liquidité de l’entreprise", "isCorrect": true },
+    { "text": "Augmenter les stocks", "isCorrect": false },
+    { "text": "Réduire les ventes", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel usage stratégique fait-on du budget de trésorerie pour arbitrer des décisions d’investissement à court terme ?",
+    "description": "Utilité du budget de trésorerie dans la planification opérationnelle.",
+    "explanation": "Le budget de trésorerie permet d’anticiper les entrées et sorties de fonds et d’évaluer la capacité à financer des opérations à court terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "D’enregistrer les paiements passés", "isCorrect": false },
+    { "text": "D’anticiper les entrées et sorties de fonds", "isCorrect": true },
+    { "text": "De calculer les bénéfices", "isCorrect": false },
+    { "text": "De fixer les prix", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Qu’indique un BFR (besoin en fonds de roulement) élevé pour la stratégie de financement ?",
+    "description": "Interprétation financière d’un BFR élevé et conséquences pour la trésorerie.",
+    "explanation": "Un BFR élevé signifie une immobilisation importante de liquidités, nécessitant des choix de financement ou d’optimisation du cycle d’exploitation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une trésorerie excédentaire", "isCorrect": false },
+    { "text": "Une immobilisation importante de liquidités", "isCorrect": true },
+    { "text": "Une rentabilité élevée", "isCorrect": false },
+    { "text": "Une faible activité", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle conséquence opérationnelle vise la négociation des délais fournisseurs ?",
+    "description": "Effet de la renégociation des conditions fournisseurs sur la liquidité.",
+    "explanation": "La négociation des délais fournisseurs vise à améliorer la trésorerie en décalant les sorties de fonds.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "D’augmenter les coûts", "isCorrect": false },
+    { "text": "D’améliorer la trésorerie", "isCorrect": true },
+    { "text": "De réduire les ventes", "isCorrect": false },
+    { "text": "D’augmenter les impôts", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comment définissez-vous le cash‑flow dans l’analyse de la capacité de l’entreprise à autofinancer ses projets ?",
+    "description": "Interprétation financière du cash‑flow dans la génération de liquidités.",
+    "explanation": "Le cash‑flow représente la capacité de l’entreprise à générer de la trésorerie à partir de ses activités opérationnelles.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le chiffre d’affaires", "isCorrect": false },
+    { "text": "La capacité de l’entreprise à générer de la trésorerie", "isCorrect": true },
+    { "text": "Le résultat comptable", "isCorrect": false },
+    { "text": "Les investissements", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle mission principale distingue le contrôle de gestion au sein d’un groupe multinational ?",
+    "description": "Rôle stratégique du contrôle de gestion pour le pilotage des filiales.",
+    "explanation": "Le contrôle de gestion a pour mission d’analyser la performance et les écarts afin d’éclairer les décisions opérationnelles et stratégiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "D’établir la comptabilité", "isCorrect": false },
+    { "text": "D’analyser la performance et les écarts", "isCorrect": true },
+    { "text": "De payer les fournisseurs", "isCorrect": false },
+    { "text": "De gérer les salaires", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "L’analyse des écarts sert principalement à :",
+    "description": "Utilité de l’analyse des écarts pour l’ajustement des décisions opérationnelles.",
+    "explanation": "L’analyse des écarts permet de corriger et ajuster les décisions en identifiant les causes des variations entre prévisions et réalisations.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "De sanctionner", "isCorrect": false },
+    { "text": "De corriger et ajuster les décisions", "isCorrect": true },
+    { "text": "De justifier les erreurs", "isCorrect": false },
+    { "text": "D’ignorer les résultats", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "À quoi servent principalement les indicateurs financiers dans un tableau de bord exécutif ?",
+    "description": "Rôle des KPI financiers dans le pilotage de la performance.",
+    "explanation": "Les indicateurs financiers servent à piloter la performance et à alerter sur les écarts par rapport aux objectifs.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Communiquer uniquement", "isCorrect": false },
+    { "text": "Piloter la performance", "isCorrect": true },
+    { "text": "Remplacer la stratégie", "isCorrect": false },
+    { "text": "Contrôler les employés", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Le seuil de rentabilité permet de déterminer :",
+    "description": "Interprétation avancée du seuil de rentabilité pour la prise de décision.",
+    "explanation": "Le seuil de rentabilité correspond au niveau d’activité où l’entreprise ne réalise ni perte ni profit, et sert de référence pour décisions commerciales et prix.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Au chiffre d’affaires maximal", "isCorrect": false },
+    { "text": "Au niveau d’activité où l’entreprise ne fait ni perte ni profit", "isCorrect": true },
+    { "text": "Au bénéfice net", "isCorrect": false },
+    { "text": "À la trésorerie disponible", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’objectif principal d’un dispositif de contrôle interne bien conçu ?",
+    "description": "Finalité du contrôle interne pour la gouvernance et la fiabilité des opérations.",
+    "explanation": "Le contrôle interne vise à sécuriser les processus et limiter les risques opérationnels et financiers.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Bloquer les opérations", "isCorrect": false },
+    { "text": "Sécuriser les processus et limiter les risques", "isCorrect": true },
+    { "text": "Augmenter la bureaucratie", "isCorrect": false },
+    { "text": "Remplacer l’audit", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comment définiriez‑vous un risque financier pour le comité d’audit ?",
+    "description": "Concept et portée d’un risque financier dans l’entreprise.",
+    "explanation": "Un risque financier est un événement incertain susceptible d’avoir un impact financier défini ou estimable.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une certitude", "isCorrect": false },
+    { "text": "Un événement incertain à impact financier", "isCorrect": true },
+    { "text": "Une dépense", "isCorrect": false },
+    { "text": "Un investissement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’objectif d’un audit interne performant au sein du service finance ?",
+    "description": "Rôle et résultats attendus d’un audit interne efficace.",
+    "explanation": "L’audit interne permet d’évaluer l’efficacité des processus et de proposer des améliorations pour réduire les risques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "De réduire les coûts automatiquement", "isCorrect": false },
+    { "text": "D’évaluer l’efficacité des processus", "isCorrect": true },
+    { "text": "D’augmenter la charge administrative", "isCorrect": false },
+    { "text": "De remplacer le contrôle externe", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La faiblesse du contrôle interne est souvent à l’origine de :",
+    "description": "Liens entre contrôle interne et fraude financière.",
+    "explanation": "Une faiblesse du contrôle interne est fréquemment associée à des fraudes financières ou des erreurs non détectées.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une forte activité", "isCorrect": false },
+    { "text": "Une faiblesse du contrôle interne", "isCorrect": true },
+    { "text": "Un excès de trésorerie", "isCorrect": false },
+    { "text": "Une bonne organisation", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’effet attendu de la séparation des tâches sur le pilotage des risques ?",
+    "description": "Impact de la séparation des tâches sur la prévention de la fraude et des erreurs.",
+    "explanation": "La séparation des tâches vise à réduire les risques de fraude en évitant la concentration des responsabilités critiques sur une seule personne.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Ralentir le travail", "isCorrect": false },
+    { "text": "Réduire les risques de fraude", "isCorrect": true },
+    { "text": "Multiplier les contrôles inutiles", "isCorrect": false },
+    { "text": "Augmenter les coûts", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comment le DAF contribue‑t‑il concrètement à la stratégie d’entreprise ?",
+    "description": "Apport du Directeur Financier dans l’élaboration et l’exécution de la stratégie.",
+    "explanation": "Le DAF fournit des analyses financières fiables et des scénarios permettant d’éclairer les décisions stratégiques du comité exécutif.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Validant les décisions RH", "isCorrect": false },
+    { "text": "Fournissant des analyses financières fiables", "isCorrect": true },
+    { "text": "Dirigeant la production", "isCorrect": false },
+    { "text": "Gérant les ventes", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Sur quelle base doit reposer une décision d’investissement rationnelle ?",
+    "description": "Critères financiers et non‑financiers pour la décision d’investissement.",
+    "explanation": "Une décision d’investissement doit reposer sur une analyse financière rigoureuse incluant VAN, TRI et impacts sur la trésorerie et le risque.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "L’intuition", "isCorrect": false },
+    { "text": "Une analyse financière rigoureuse", "isCorrect": true },
+    { "text": "Le volume d’activité", "isCorrect": false },
+    { "text": "La concurrence uniquement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Que mesure précisément le retour sur investissement (ROI) dans une décision de financement ?",
+    "description": "Interprétation avancée du ROI comme indicateur de performance.",
+    "explanation": "Le ROI mesure la rentabilité d’un investissement en comparant les gains attendus aux coûts engagés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le chiffre d’affaires", "isCorrect": false },
+    { "text": "La rentabilité d’un investissement", "isCorrect": true },
+    { "text": "La trésorerie", "isCorrect": false },
+    { "text": "Le résultat net", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Parmi les facteurs suivants, lequel est une cause fréquente d’une crise de trésorerie ?",
+    "description": "Identification des facteurs à risque pouvant conduire à une crise de liquidité.",
+    "explanation": "Une croissance mal financée (expansion rapide sans financement adéquat) est une cause fréquente de crise de trésorerie.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une croissance mal financée", "isCorrect": true },
+    { "text": "Une baisse des stocks", "isCorrect": false },
+    { "text": "Une réduction des créances", "isCorrect": false },
+    { "text": "Une hausse des marges", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Qui est généralement responsable de la négociation des conditions bancaires au sein d’un groupe ?",
+    "description": "Responsabilités liées aux relations bancaires et financement.",
+    "explanation": "La négociation bancaire relève du Directeur Financier / Directeur Financier et Comptable (DFC), responsable des relations avec les établissements financiers.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le chef comptable", "isCorrect": false },
+    { "text": "Le DFC", "isCorrect": true },
+    { "text": "Le DRH", "isCorrect": false },
+    { "text": "Le DG uniquement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La fraude interne est souvent corrélée à quel problème organisationnel ?",
+    "description": "Causes organisationnelles de la fraude interne dans les services financiers.",
+    "explanation": "La faiblesse du contrôle interne est souvent liée à l’émergence de fraudes internes ou d’erreurs significatives.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "L’excès de contrôle", "isCorrect": false },
+    { "text": "La faiblesse du contrôle interne", "isCorrect": true },
+    { "text": "La fiscalité", "isCorrect": false },
+    { "text": "La rentabilité", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelles conditions caractérisent une croissance d’entreprise saine ?",
+    "description": "Équilibre financier nécessaire pour une croissance durable.",
+    "explanation": "Une croissance saine suppose un équilibre entre rentabilité, trésorerie et financement afin d’éviter les tensions de trésorerie ou l’inefficience du capital.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un CA élevé uniquement", "isCorrect": false },
+    { "text": "Un équilibre entre rentabilité, trésorerie et financing", "isCorrect": true },
+    { "text": "Un endettement fort", "isCorrect": false },
+    { "text": "Une réduction des fonds propres", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’objectif premier du reporting financier pour les dirigeants ?",
+    "description": "Fonction du reporting dans l’aide à la décision stratégique.",
+    "explanation": "Le reporting financier sert à aider à la prise de décision en fournissant une vision consolidée et analysée de la performance.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Payer l’impôt", "isCorrect": false },
+    { "text": "Aider à la prise de décision", "isCorrect": true },
+    { "text": "Produire le bilan", "isCorrect": false },
+    { "text": "Gérer la paie", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Sur quoi repose une optimisation fiscale légale et défendable devant l’administration ?",
+    "description": "Principes d’une optimisation fiscale qui respecte le droit et les contrôles.",
+    "explanation": "Une optimisation fiscale légale repose sur l’utilisation des options prévues par la loi et une documentation rigoureuse des choix retenus.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La fraude", "isCorrect": false },
+    { "text": "Les options prévues par la loi", "isCorrect": true },
+    { "text": "La dissimulation", "isCorrect": false },
+    { "text": "La manipulation comptable", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle action prioritaire doit prendre une entreprise confrontée à une difficulté financière majeure ?",
+    "description": "Mesure d’urgence et priorités en période de stress financier.",
+    "explanation": "Une entreprise en difficulté financière doit prioritairement sécuriser la trésorerie pour garantir la continuité d’activité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Augmenter les charges", "isCorrect": false },
+    { "text": "Sécuriser la trésorerie", "isCorrect": true },
+    { "text": "Distribuer les dividendes", "isCorrect": false },
+    { "text": "Investir massivement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quels principes doivent guider la gouvernance financière d’un groupe ?",
+    "description": "Valeurs et pratiques attendues en matière de gouvernance financière.",
+    "explanation": "La gouvernance financière implique transparence et responsabilité pour garantir la confiance des parties prenantes.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Transparence et responsabilité", "isCorrect": true },
+    { "text": "Secret absolu", "isCorrect": false },
+    { "text": "Centralisation excessive", "isCorrect": false },
+    { "text": "Absence de contrôle", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelles compétences transversales doit maîtriser un Directeur Financier et Comptable performant ?",
+    "description": "Compétences techniques et stratégiques attendues d’un DFC senior.",
+    "explanation": "Un DFC performant doit maîtriser la comptabilité, la finance, la fiscalité et la stratégie pour assurer l’efficacité du pilotage financier.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Uniquement la comptabilité", "isCorrect": false },
+    { "text": "Comptabilité, finance, fiscalité et stratégie", "isCorrect": true },
+    { "text": "La production", "isCorrect": false },
+    { "text": "Le marketing digital", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle peut être la conséquence d’une décision d’investissement insuffisamment analysée ?",
+    "description": "Risques et impacts d’une mauvaise évaluation d’investissement sur la santé financière.",
+    "explanation": "Une décision d’investissement mal analysée peut mettre en péril l’entreprise en consommant des ressources sans créer de valeur suffisante.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Réduire les charges", "isCorrect": false },
+    { "text": "Mettre en péril l’entreprise", "isCorrect": true },
+    { "text": "Augmenter les fonds propres", "isCorrect": false },
+    { "text": "Réduire les risques", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Qu’indique une surcapitalisation pour la rentabilité d’une entreprise ?",
+    "description": "Interprétation financière d’une situation de surcapitalisation.",
+    "explanation": "Une entreprise surcapitalisée présente des fonds propres excessifs non rentabilisés, ce qui peut réduire la performance financière relative du capital.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Un manque de liquidité", "isCorrect": false },
+    { "text": "Des fonds propres excessifs non rentabilisés", "isCorrect": true },
+    { "text": "Un endettement élevé", "isCorrect": false },
+    { "text": "Une crise financière", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Sur quoi repose le pilotage financier moderne pour garantir une prise de décision factuelle ?",
+    "description": "Outils et pratiques pour un pilotage financier efficace et data‑driven.",
+    "explanation": "Le pilotage financier moderne repose sur des indicateurs de performance (KPI) et des tableaux de bord analytiques, pas seulement sur l’intuition.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "L’intuition", "isCorrect": false },
+    { "text": "Les indicateurs de performance (KPI)", "isCorrect": true },
+    { "text": "Le volume d’écritures", "isCorrect": false },
+    { "text": "La fiscalité uniquement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel rôle organisationnel ultime doit assumer le Directeur Financier pour garantir la fiabilité et la conformité de la comptabilité ?",
+    "description": "Responsabilités managériales et d’organisation du Directeur Financier.",
+    "explanation": "Le rôle ultime inclut l’organisation de la comptabilité pour garantir qualité, traçabilité et conformité des informations financières.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "L’enregistrement des charges", "isCorrect": false },
+    { "text": "L’organisation de la comptabilité", "isCorrect": true },
+    { "text": "L’établissement des prévisions", "isCorrect": false },
+    { "text": "L’évaluation de la performance", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Calcul complexe d’amortissement : une immobilisation acquise 12 000 000 FCFA, valeur résiduelle 2 000 000 FCFA, durée 5 ans. Amortissement annuel linéaire ?",
+    "description": "Calculs avancés d’amortissement sur base de la durée et de la valeur résiduelle.",
+    "explanation": "Base amortissable = 12 000 000 - 2 000 000 = 10 000 000. Amortissement annuel linéaire = 10 000 000 / 5 = 1 600 000.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "2 000 000", "isCorrect": false },
+    { "text": "2 400 000", "isCorrect": false },
+    { "text": "1 600 000", "isCorrect": true },
+    { "text": "10 000 000", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Dans le traitement OHADA, quelle écriture correspond le mieux à une perte probable estimée à 3M FCFA liée à un litige ?",
+    "description": "Approche comptable prudente pour pertes probables et provisionnement selon OHADA.",
+    "explanation": "Une perte probable doit donner lieu à une provision pour risques afin de refléter fidèlement l’obligation probable.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Charge exceptionnelle immédiate", "isCorrect": false },
+    { "text": "Provision pour risques", "isCorrect": true },
+    { "text": "Dette fournisseur", "isCorrect": false },
+    { "text": "Aucune écriture", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comptabilisation d’une créance irrécouvrable de 5M après procédure : quelle écriture respecte le principe de sincérité ?",
+    "description": "Traitement comptable d’une créance irrécouvrable avec reprise de provision éventuelle.",
+    "explanation": "La bonne pratique consiste à annuler la créance et reprendre la provision constituée antérieurement si elle couvre la perte.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Provision uniquement", "isCorrect": false },
+    { "text": "Annulation + reprise de provision", "isCorrect": true },
+    { "text": "Produit exceptionnel", "isCorrect": false },
+    { "text": "Immobilisation", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "La TVA collectée par l’entreprise correspond-elle à :",
+    "description": "Nature comptable et juridique de la TVA collectée.",
+    "explanation": "La TVA collectée est une dette envers l’État (obligation de reversement), pas une charge.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une charge", "isCorrect": false },
+    { "text": "Une dette envers l’État", "isCorrect": true },
+    { "text": "Un produit définitif", "isCorrect": false },
+    { "text": "Une subvention", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Conséquence d’une charge comptable non déductible fiscalement lors du calcul du résultat fiscal ?",
+    "description": "Impact des charges non déductibles sur l’assiette fiscale et le résultat fiscal.",
+    "explanation": "Une charge non déductible entraîne une réintégration extra‑comptable qui augmente la base imposable.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une diminution du résultat fiscal", "isCorrect": false },
+    { "text": "Une réintégration extra-comptable", "isCorrect": true },
+    { "text": "Une déduction fiscale", "isCorrect": false },
+    { "text": "Une exonération", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Calcul de trésorerie nette : FR = 50M, BFR = 70M. Quelle est la trésorerie nette et son interprétation ?",
+    "description": "Calcul et interprétation de la trésorerie nette en gestion financière.",
+    "explanation": "Trésorerie nette = FR - BFR = 50M - 70M = -20M, indiquant un besoin de financement à court terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "+20M", "isCorrect": false },
+    { "text": "–20M", "isCorrect": true },
+    { "text": "+120M", "isCorrect": false },
+    { "text": "0", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’effet direct d’une augmentation du délai fournisseur sur le BFR ?",
+    "description": "Relation entre conditions fournisseurs et besoin en fonds de roulement.",
+    "explanation": "Allonger les délais fournisseurs réduit le besoin en fonds de roulement car les sorties sont différées.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Augmenter le BFR", "isCorrect": false },
+    { "text": "Réduire le BFR", "isCorrect": true },
+    { "text": "Augmenter le CA", "isCorrect": false },
+    { "text": "Réduire le FR", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Traitement des intérêts d’emprunt liés à un actif en construction : quelle option comptable ?",
+    "description": "Règles de capitalisation des intérêts selon la norme applicable.",
+    "explanation": "Les intérêts d’emprunt peuvent être immobilisés (capitalisés) sous conditions lorsque liés directement à la construction d’un actif éligible.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Toujours en charge", "isCorrect": false },
+    { "text": "Immobilisables sous conditions", "isCorrect": true },
+    { "text": "Interdits", "isCorrect": false },
+    { "text": "Des produits financiers", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comptabilisation d’une subvention d’exploitation : quelle classification ?",
+    "description": "Traitement comptable des subventions d’exploitation versus d’investissement.",
+    "explanation": "Une subvention d’exploitation est enregistrée en produit d’exploitation, affectant le résultat opérationnel.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "En capitaux propres", "isCorrect": false },
+    { "text": "En produit d’exploitation", "isCorrect": true },
+    { "text": "En dette financière", "isCorrect": false },
+    { "text": "En charge", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle information principale permet d’évaluer la création de richesse d’une entreprise ?",
+    "description": "Utilité économique de la valeur ajoutée dans l’analyse financière.",
+    "explanation": "La valeur ajoutée permet principalement d’analyser la création de richesse par l’entreprise au regard de ses consommations intermédiaires.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La trésorerie", "isCorrect": false },
+    { "text": "La création de richesse", "isCorrect": true },
+    { "text": "L’endettement", "isCorrect": false },
+    { "text": "Le capital social", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Interprétation d’une baisse du ratio de liquidité immédiate : quelle signalisation ?",
+    "description": "Signification financière d’une détérioration des ratios de liquidité.",
+    "explanation": "Une baisse du ratio de liquidité immédiate traduit généralement une tension de trésorerie, nécessitant actions de gestion.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une amélioration financière", "isCorrect": false },
+    { "text": "Une tension de trésorerie", "isCorrect": true },
+    { "text": "Une hausse des fonds propres", "isCorrect": false },
+    { "text": "Une réduction du BFR", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Identification du compte 129 en fin d’exercice : que représente‑t‑il ?",
+    "description": "Compréhension des comptes de résultats et de leur affectation en clôture.",
+    "explanation": "Le compte 129 correspond au résultat bénéficiaire (sous réserve des règles locales de plan comptable).",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Résultat bénéficiaire", "isCorrect": true },
+    { "text": "Résultat déficitaire", "isCorrect": false },
+    { "text": "Provision", "isCorrect": false },
+    { "text": "Réserve légale", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Justification d’une provision sur stock : dans quel cas l’enregistrer ?",
+    "description": "Critères pour la constitution d’une provision pour dépréciation des stocks.",
+    "explanation": "Une provision sur stock est justifiée lorsque la valeur nette réalisable est inférieure au coût d’acquisition ou de production.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le stock augmente", "isCorrect": false },
+    { "text": "La valeur nette réalisable est inférieure au coût", "isCorrect": true },
+    { "text": "Le stock est ancien", "isCorrect": false },
+    { "text": "Le stock est invendu", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Traitement comptable d’une variation positive de stock de produits finis : quelle nature ?",
+    "description": "Impact comptable d’une augmentation des stocks de produits finis sur le compte de résultat.",
+    "explanation": "Une variation positive de stock de produits finis est comptabilisée comme un produit (augmentation de la production stockée).",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une charge", "isCorrect": false },
+    { "text": "Un produit", "isCorrect": true },
+    { "text": "Une immobilisation", "isCorrect": false },
+    { "text": "Une dette", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Qualification fiscale d’une pénalité douanière : comment la traiter ?",
+    "description": "Caractérisation fiscale des pénalités et impact sur la base imposable.",
+    "explanation": "Une pénalité douanière est généralement non déductible fiscalement et doit être traitée en conséquence lors du calcul du résultat fiscal.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Déductible", "isCorrect": false },
+    { "text": "Amortissable", "isCorrect": false },
+    { "text": "Non déductible fiscalement", "isCorrect": true },
+    { "text": "Un produit", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Pourquoi le résultat fiscal diffère‑t‑il du résultat comptable ?",
+    "description": "Sources des écarts entre résultat comptable et résultat fiscal.",
+    "explanation": "Les différences proviennent des retraitements fiscaux (réintégrations et déductions) nécessaires pour établir la base imposable.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le résultat comptable", "isCorrect": false },
+    { "text": "Les retraitements fiscaux", "isCorrect": true },
+    { "text": "La trésorerie", "isCorrect": false },
+    { "text": "Les amortissements uniquement", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel objectif prioritaire doit viser un audit interne au sein du service finance ?",
+    "description": "Résultats attendus d’un audit interne efficace.",
+    "explanation": "Un audit interne vise prioritairement à améliorer le contrôle interne et les processus pour réduire les risques et accroître la fiabilité des informations.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Certifier les comptes", "isCorrect": false },
+    { "text": "Améliorer le contrôle interne", "isCorrect": true },
+    { "text": "Calculer l’impôt", "isCorrect": false },
+    { "text": "Gérer la paie", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’effet attendu d’un contrôle interne efficace sur les risques opérationnels ?",
+    "description": "Bénéfices tangibles d’un dispositif de contrôle interne performant.",
+    "explanation": "Un contrôle interne efficace permet de réduire les risques, erreurs et fraudes au sein de l’organisation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Bloquer les risques", "isCorrect": false },
+    { "text": "Réduire les risques", "isCorrect": true },
+    { "text": "Garantir le profit", "isCorrect": false },
+    { "text": "Éviter l’impôt", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Conséquence d’une fraude détectée après clôture : quelle approche comptable ?",
+    "description": "Traitement des fraudes découvertes après la clôture et obligations de correction.",
+    "explanation": "La découverte d’une fraude après clôture nécessite souvent une correction rétroactive des états financiers et des écritures d’ajustement conformes aux normes.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Aucune correction", "isCorrect": false },
+    { "text": "Une correction rétroactive", "isCorrect": true },
+    { "text": "Une modification des estimations", "isCorrect": false },
+    { "text": "Un changement de méthode", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "À quel poste s’applique principalement la méthode du coût moyen pondéré (CMP) ?",
+    "description": "Application pratique de la méthode CMP en comptabilité d’inventaire.",
+    "explanation": "La méthode du coût moyen pondéré concerne l’évaluation des stocks en rationnalisant le coût unitaire moyen des entrées.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Les immobilisations", "isCorrect": false },
+    { "text": "Les stocks", "isCorrect": true },
+    { "text": "Les créances", "isCorrect": false },
+    { "text": "Les provisions", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Dans quelles dimensions le Directeur Financier et Comptable (DFC) intervient‑il directement ?",
+    "description": "Portée opérationnelle et stratégique du rôle du DFC.",
+    "explanation": "Le DFC intervient dans la stratégie financière globale, le pilotage, la gouvernance, la fiscalité et la comptabilité, assurant cohérence et performance.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "La production", "isCorrect": false },
+    { "text": "La stratégie financière globale", "isCorrect": true },
+    { "text": "Le marketing terrain", "isCorrect": false },
+    { "text": "La maintenance", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est l’objectif premier d’une restructuration financière dans une entreprise en difficulté ?",
+    "description": "Finalité et priorités d’une opération de restructuration financière.",
+    "explanation": "Une restructuration vise principalement à rétablir l’équilibre financier et la viabilité à moyen terme de l’entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Augmenter les charges", "isCorrect": false },
+    { "text": "Rétablir l’équilibre financier", "isCorrect": true },
+    { "text": "Réduire le chiffre d’affaires", "isCorrect": false },
+    { "text": "Dissoudre l’entreprise", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Comment calcule‑t‑on classiquement le ratio d’autonomie financière et que signifie‑t‑il ?",
+    "description": "Interprétation et calcul du ratio d’autonomie financière pour l’analyse structurelle.",
+    "explanation": "Le ratio d’autonomie financière est généralement calculé Capitaux propres / Total bilan et mesure la part des ressources propres dans le financement du bilan.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Capitaux propres / Total bilan", "isCorrect": true },
+    { "text": "Dettes / CA", "isCorrect": false },
+    { "text": "Trésorerie / Charges", "isCorrect": false },
+    { "text": "Résultat / Capitaux propres", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Que révèle une forte dépendance bancaire sur la structure financière d’une entreprise ?",
+    "description": "Risques associés à une dépendance élevée au financement bancaire.",
+    "explanation": "Une forte dépendance bancaire indique un risque financier élevé lié à l’exposition aux conditions de crédit et à la sensibilité aux taux et liquidité bancaire.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une bonne solvabilité", "isCorrect": false },
+    { "text": "Un risque financier élevé", "isCorrect": true },
+    { "text": "Une bonne liquidité", "isCorrect": false },
+    { "text": "Un excès de trésorerie", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel usage stratégique du tableau des flux de trésorerie est attendu pour la direction générale ?",
+    "description": "Valeur attendue du tableau des flux pour le pilotage stratégique.",
+    "explanation": "Le tableau des flux de trésorerie permet de suivre les mouvements de cash, d’anticiper les besoins de financement et d’évaluer la capacité d’autofinancement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "D’analyser la rentabilité", "isCorrect": false },
+    { "text": "De suivre les mouvements de cash", "isCorrect": true },
+    { "text": "De calculer l’impôt", "isCorrect": false },
+    { "text": "D’évaluer le patrimoine", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quels indicateurs financiers sont prioritaires pour évaluer une politique d’investissement ?",
+    "description": "Critères financiers pour juger la valeur d’un projet d’investissement.",
+    "explanation": "Les indicateurs prioritaires sont la Valeur Actuelle Nette (VAN) et le Taux de Rendement Interne (TRI), car ils mesurent la création de valeur et la rentabilité relative.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le résultat comptable", "isCorrect": false },
+    { "text": "La VAN et le TRI", "isCorrect": true },
+    { "text": "La TVA", "isCorrect": false },
+    { "text": "Les charges fixes", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Que signifie une VAN positive dans l’évaluation d’un projet ?",
+    "description": "Interprétation financière de la VAN pour la sélection des projets.",
+    "explanation": "Une VAN positive signifie que le projet est créateur de valeur, les flux actualisés excédant l’investissement initial.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Bénéfice net", "isCorrect": false },
+    { "text": "Projet non rentable", "isCorrect": false },
+    { "text": "Projet créateur de valeur", "isCorrect": true },
+    { "text": "Déficit", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Parmi les causes suivantes, laquelle est la plus fréquemment à l’origine d’une crise de trésorerie ?",
+    "description": "Analyse des facteurs structurels conduisant à des tensions de trésorerie.",
+    "explanation": "Une croissance mal financée, c’est‑à‑dire une expansion des activités sans moyens financiers suffisants, provoque souvent une crise de trésorerie.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Une croissance mal financée", "isCorrect": true },
+    { "text": "Une baisse des stocks", "isCorrect": false },
+    { "text": "Une réduction des créances", "isCorrect": false },
+    { "text": "Une hausse des marges", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "En cas de faiblesse avérée du contrôle interne, quelle mesure prioritaire doit engager le DFC ?",
+    "description": "Action prioritaire pour restaurer la fiabilité des processus financiers.",
+    "explanation": "Le DFC doit renforcer les procédures (séparation des tâches, contrôles clés, surveillance) et initier des actions correctives et formations pour réduire le risque.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Renforcer la documentation des ventes", "isCorrect": false },
+    { "text": "Renforcer les procédures et contrôles", "isCorrect": true },
+    { "text": "Augmenter les effectifs sans contrôle", "isCorrect": false },
+    { "text": "Déléguer le contrôle externe", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quelle démarche doit accompagner l’optimisation fiscale pour qu’elle soit durable et défendable ?",
+    "description": "Bonnes pratiques pour rendre l’optimisation fiscale robuste et auditée.",
+    "explanation": "L’optimisation fiscale durable doit s’appuyer sur une documentation complète, une revue juridique, et des solutions conformes aux options légales et aux règles de prix de transfert si applicable.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "S’appuyer sur des montages opaques", "isCorrect": false },
+    { "text": "Documenter, valider juridiquement et respecter les règles", "isCorrect": true },
+    { "text": "Transférer le risque au client", "isCorrect": false },
+    { "text": "Ignorer les risques fiscaux", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel est le rôle du DFC dans l’évaluation des performances des filiales internationales ?",
+    "description": "Responsabilités du DFC dans le pilotage d’un réseau de filiales.",
+    "explanation": "Le DFC coordonne les reportings, standardise les KPI, analyse les performances consolidées et propose des arbitrages financiers au niveau groupe.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Gérer uniquement la paie locale", "isCorrect": false },
+    { "text": "Coordonner reporting et analyser la performance consolidée", "isCorrect": true },
+    { "text": "Réaliser des audits terrain", "isCorrect": false },
+    { "text": "Superviser uniquement les achats", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "En consolidation, quel ajustement est souvent nécessaire pour rapprocher les comptes locaux des états consolidés ?",
+    "description": "Principaux retraitements appliqués en consolidation pour assurer comparabilité et transparence.",
+    "explanation": "Les retraitements fiscaux, éliminations des transactions intragroupe et harmonisation des méthodes comptables sont souvent nécessaires en consolidation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Augmentation automatique des revenus", "isCorrect": false },
+    { "text": "Élimination des transactions intragroupe et retraitements", "isCorrect": true },
+    { "text": "Suppression des provisions", "isCorrect": false },
+    { "text": "Transformation des actifs en liquidités", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Quel indicateur privilégieriez‑vous pour évaluer l’efficacité du BFR management ?",
+    "description": "KPI pertinents pour mesurer la gestion du besoin en fonds de roulement.",
+    "explanation": "Le nombre de jours de BFR (DSO + DIO - DPO) ou le ratio BFR/CA sont des indicateurs permettant d’évaluer l’efficacité du management du BFR.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Le nombre de jours de BFR ou le ratio BFR/CA", "isCorrect": true },
+    { "text": "Le volume d’écritures comptables", "isCorrect": false },
+    { "text": "Le nombre d’employés", "isCorrect": false },
+    { "text": "La durée des audits", "isCorrect": false }
+    ]
+    },
+    {
+    "title": "Fin de fichier : quelles actions souhaitez‑vous maintenant ?",
+    "description": "Options après génération du fichier JSON structuré et nivelé 'hard'.",
+    "explanation": "Vous pouvez télécharger, modifier le format des choices (index au lieu de isCorrect), ajouter des ids, ou demander une version anglaise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+    { "text": "Télécharger le JSON généré", "isCorrect": true },
+    { "text": "Ajouter des ids", "isCorrect": false },
+    { "text": "Convertir les choices en indices", "isCorrect": false },
+    { "text": "Traduire en anglais", "isCorrect": false }
+    ]
+    }
+]
