@@ -726,10 +726,16 @@ class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIVie
         proportions = serializer.validated_data['proportions']
         replace_existing = serializer.validated_data['replace_existing']
 
+        # IMPORTANT : ne pas supprimer définitivement les questions avec delete(),
+        # on veut seulement gérer la relation many-to-many entre l'évaluation et les questions.
         if replace_existing:
-            evaluation.questions.all().delete()
+            # On détache toutes les questions de cette évaluation
+            evaluation.questions.clear()
         else:
-            evaluation.questions.filter(technology__isnull=False).delete()
+            # On détache uniquement les questions technologiques existantes, sans les supprimer de la base
+            tech_questions = evaluation.questions.filter(technology__isnull=False)
+            if tech_questions.exists():
+                evaluation.questions.remove(*tech_questions.values_list('id', flat=True))
 
         for prop in proportions:
             technology = prop['technology']
