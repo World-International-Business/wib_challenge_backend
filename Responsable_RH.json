@@ -1,0 +1,1251 @@
+[
+   {
+    "title": "Quel est le principal objectif de la gestion des talents dans une entreprise ?",
+    "description": "Importance de la gestion des talents.",
+    "explanation": "L'objectif principal est d'attirer, développer et retenir les employés performants pour atteindre les objectifs stratégiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réduire les coûts de recrutement", "isCorrect": false },
+      { "text": "Maximiser la productivité et engagement", "isCorrect": true },
+      { "text": "Remplacer les employés", "isCorrect": false },
+      { "text": "Éliminer les évaluations de performances", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel outil est essentiel pour évaluer l'adéquation entre compétences et postes ?",
+    "description": "Évaluation des compétences et des exigences du poste.",
+    "explanation": "La gestion des compétences permet d'aligner les capacités des employés avec les besoins de l'organisation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le plan de formation", "isCorrect": false },
+      { "text": "La cartographie des compétences", "isCorrect": true },
+      { "text": "Le rapport de performance", "isCorrect": false },
+      { "text": "Le budget salarial", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment l'analyse des données peut-elle influencer la stratégie RH ?",
+    "description": "Rôle de l'analyse des données en ressources humaines.",
+    "explanation": "L'analyse des données permet d'identifier les tendances, de prédire les besoins futurs et de prendre des décisions éclairées.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "En réduisant la prise de décision humaine", "isCorrect": false },
+      { "text": "En fournissant des informations sur la démographie des employés", "isCorrect": false },
+      { "text": "En facilitant des recrutements rapides", "isCorrect": false },
+      { "text": "En éclairant la stratégie RH avec des insights basés sur des données", "isCorrect": true }
+    ]
+  },
+  {
+    "title": "Quel est l'impact des politiques de diversité sur la performance d'une entreprise ?",
+    "description": "Importance des politiques de diversité.",
+    "explanation": "Des politiques de diversité efficaces favorisent la créativité, l'innovation et l'amélioration de la performance globale de l'équipe.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elles augmentent les conflits internes", "isCorrect": false },
+      { "text": "Elles améliorent la réputation de l'entreprise", "isCorrect": true },
+      { "text": "Elles n'ont aucun effet mesurable", "isCorrect": false },
+      { "text": "Elles diminuent la productivité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment un responsable RH peut-il mesurer l'engagement des employés ?",
+    "description": "Évaluation de l'engagement au travail.",
+    "explanation": "L'engagement des employés peut être mesuré par le biais de sondages réguliers, d'entretiens et de la rétention du personnel.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "En observant le nombre de jours d'absence", "isCorrect": false },
+      { "text": "En analysant les résultats des sondages d'engagement", "isCorrect": true },
+      { "text": "Par la productivité uniquement", "isCorrect": false },
+      { "text": "En réduisant les salaires", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le rôle du feedback dans la gestion des performances ?",
+    "description": "Importance du feedback dans la stratégie de gestion des talents.",
+    "explanation": "Le feedback régulier permet d'ajuster les performances, de motiver les employés et d'améliorer les processus.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il n'est pas essentiel", "isCorrect": false },
+      { "text": "Il constitue un élément clé pour le développement des employés", "isCorrect": true },
+      { "text": "Il est uniquement nécessaire lors des évaluations annuelles", "isCorrect": false },
+      { "text": "Il est réservé aux managers", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Qu'est-ce qui caractérise une politique de formation efficace dans l'entreprise ?",
+    "description": "Critères de réussite des programmes de formation.",
+    "explanation": "Une politique de formation efficace s'adapte aux besoins des employés et à ceux de l'organisation, favorisant le développement continu.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle se concentre uniquement sur l'onboarding", "isCorrect": false },
+      { "text": "Elle est réactive aux besoins immédiats", "isCorrect": false },
+      { "text": "Elle est en adéquation avec la stratégie globale de l'entreprise", "isCorrect": true },
+      { "text": "Elle est imposée sans évaluation des besoins", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle stratégie peut renforcer l'adhésion des employés aux changements organisationnels ?",
+    "description": "Gestion du changement en ressources humaines.",
+    "explanation": "Communiquer clairement et régulièrement tout en impliquant les employés dans le processus de changement granulaire aide à renforcer l'adhésion.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Imposer les changements sans consultation", "isCorrect": false },
+      { "text": "Impliquer les employés dans le processus de changement", "isCorrect": true },
+      { "text": "Réduire la communication", "isCorrect": false },
+      { "text": "Déléguer entièrement aux consultants externes", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel défi majeur les responsables RH rencontrent-ils lors de la gestion d'une main-d'œuvre dispersée ?",
+    "description": "Gestion des ressources humaines à distance.",
+    "explanation": "Le principal défi est de maintenir l'engagement et la collaboration parmi les employés dispersés géographiquement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "La communication", "isCorrect": true },
+      { "text": "La bureaucratie", "isCorrect": false },
+      { "text": "Les coûts", "isCorrect": false },
+      { "text": "La production", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal indicateur de la culture organisationnelle ?",
+    "description": "Mesures de la culture au sein de l'entreprise.",
+    "explanation": "L'indicateur principal de la culture organisationnelle est le niveau d'engagement des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le turnover du personnel", "isCorrect": false },
+      { "text": "Le niveau d'engagement des employés", "isCorrect": true },
+      { "text": "Les absences", "isCorrect": false },
+      { "text": "Les bénéfices", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment la technologie influence-t-elle les pratiques de gestion des ressources humaines ?",
+    "description": "Impact de la technologie sur la gestion des RH.",
+    "explanation": "La technologie facilite le recrutement, la gestion des performances et l'analyse des données RH, rendant les processus plus efficaces et transparents.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle complique les tâches administratives", "isCorrect": false },
+      { "text": "Elle facilite l'automatisation et la collecte de données", "isCorrect": true },
+      { "text": "Elle réduit l'implication des employés", "isCorrect": false },
+      { "text": "Elle est sans impact mesurable", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quels éléments doivent figurer dans un plan de succession efficace ?",
+    "description": "Importance de la planification de la succession.",
+    "explanation": "Un plan de succession efficace doit inclure l'évaluation des compétences, des programmes de mentorat et des critères de performance adaptés à chaque rôle critique.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Un simple document écrit", "isCorrect": false },
+      { "text": "Une évaluation dynamique des compétences et potentiels", "isCorrect": true },
+      { "text": "Une liste de noms", "isCorrect": false },
+      { "text": "Un budget", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel rôle joue l'évaluation des performances dans le développement des employés ?",
+    "description": "Importance de l'évaluation des performances.",
+    "explanation": "L'évaluation des performances est essentielle pour identifier les forces, les faiblesses et les axes de développement, favorisant ainsi la progression de carrière.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il n'a pas d'impact", "isCorrect": false },
+      { "text": "Il permet de justifier les augmentations de salaires", "isCorrect": false },
+      { "text": "Il guide le développement des compétences", "isCorrect": true },
+      { "text": "Il impose des sanctions", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment l'intelligence artificielle peut-elle améliorer le recrutement ?",
+    "description": "Rôle de l'IA dans le processus de recrutement.",
+    "explanation": "L'IA peut faciliter le tri des candidatures, analyser les compétences et même prédire la compatibilité culturelle, rendant le processus plus efficace.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'a pas d'impact", "isCorrect": false },
+      { "text": "Elle remplace totalement les recruteurs", "isCorrect": false },
+      { "text": "Elle optimise la sélection des candidats", "isCorrect": true },
+      { "text": "Elle augmente le temps de recrutement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle est l'importance de la culture d'entreprise dans la rétention des talents ?",
+    "description": "Impact de la culture sur la rétention des employés.",
+    "explanation": "Une culture d'entreprise forte et positive favorise l'engagement et réduit le turnover, ce qui aide à retenir les talents.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'a aucune importance", "isCorrect": false },
+      { "text": "Elle est cruciale pour l'engagement", "isCorrect": true },
+      { "text": "Elle complique la gestion des employés", "isCorrect": false },
+      { "text": "Elle est secondaire par rapport à la rémunération", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal objectif d'un programme de mentorat en entreprise ?",
+    "description": "Fonction du mentorat pour le développement des employés.",
+    "explanation": "Le programme de mentorat vise à faciliter le transfert de compétences et l'intégration des nouveaux employés tout en développant leur potentiel.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Former les employés rapidement", "isCorrect": false },
+      { "text": "Établir un réseau de contacts", "isCorrect": true },
+      { "text": "Assurer le contrôle des performances", "isCorrect": false },
+      { "text": "Réduire le nombre de promotions", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment la gestion de la diversité et de l'inclusion peut-elle influencer la performance globale d'une équipe ?",
+    "description": "Impact de la diversité sur la performance.",
+    "explanation": "Une équipe diverse et inclusive favorise l'innovation, la créativité et améliore la performance en tirant parti de différentes perspectives.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle entraîne des conflits", "isCorrect": false },
+      { "text": "Elle améliore la performance et l'innovation", "isCorrect": true },
+      { "text": "Elle complique la communication", "isCorrect": false },
+      { "text": "Elle n'a pas d'impact mesurable", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact des évaluations à 360 degrés dans le développement du leadership ?",
+    "description": "Utilisation des évaluations à 360 degrés.",
+    "explanation": "Les évaluations à 360 degrés fournissent des retours complets sur le style de leadership, permettant aux leaders de s'améliorer de manière ciblée.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elles n'ont pas d'impact significatif", "isCorrect": false },
+      { "text": "Elles créent de la confusion chez les leaders", "isCorrect": false },
+      { "text": "Elles offrent des informations précieuses pour le développement", "isCorrect": true },
+      { "text": "Elles sont uniquement pour les employés subalternes", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle stratégie RH est la plus efficace pour promouvoir un environnement de travail sain ?",
+    "description": "Rôle de la stratégie RH dans l'amélioration de l'environnement de travail.",
+    "explanation": "Promouvoir la santé mentale et physique par des programmes de bien-être améliorés est essentiel pour créer un environnement de travail sain.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Encadrer strictement les horaires de travail", "isCorrect": false },
+      { "text": "Promouvoir des programmes de bien-être", "isCorrect": true },
+      { "text": "Réduire les espaces de travail collaboratifs", "isCorrect": false },
+      { "text": "Augmenter le nombre d'heures de travail", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel aspect clé doit être évalué lors de l'intégration d'un nouveau leader dans une équipe ?",
+    "description": "Importance de l'intégration dans la gestion du changement.",
+    "explanation": "Évaluer l'adéquation culturelle et la compatibilité avec l'équipe existante est fondamental pour une intégration réussie.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Son expérience professionnelle", "isCorrect": false },
+      { "text": "Son adaptabilité à la culture d'entreprise", "isCorrect": true },
+      { "text": "Ses diplômes", "isCorrect": false },
+      { "text": "Le poste précédent", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il important de suivre les tendances du marché du travail pour le département RH ?",
+    "description": "Impact des tendances sur la gestion des talents.",
+    "explanation": "Suivre ces tendances permet d'adapter les stratégies de recrutement et de rétention pour attirer les meilleurs talents et rester compétitif.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour réduire le coût de recrutement uniquement", "isCorrect": false },
+      { "text": "Pour rester compétitif et attirer les talents", "isCorrect": true },
+      { "text": "Pour imposer une culture d'entreprise", "isCorrect": false },
+      { "text": "Pour éviter les changements de personnel", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'un des avantages de l'analyse prédictive en ressources humaines ?",
+    "description": "Rôle de l'analyse prédictive dans les RH.",
+    "explanation": "L'analyse prédictive permet d'anticiper les besoins en personnel et d'ajuster les stratégies de talent en conséquence.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'a pas d'utilité dans la gestion des RH", "isCorrect": false },
+      { "text": "Elle permet de réduire les coûts liés aux formations", "isCorrect": false },
+      { "text": "Elle aide à anticiper les besoins en personnel", "isCorrect": true },
+      { "text": "Elle ne remplace pas la gestion humaine", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le rôle de la culture organisationnelle dans la gestion du changement ?",
+    "description": "Impact de la culture sur le changement organisationnel.",
+    "explanation": "Une culture organisationnelle forte facilite l'acceptation du changement et l'engagement des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'a pas d'impact", "isCorrect": false },
+      { "text": "Elle complique le processus", "isCorrect": false },
+      { "text": "Elle favorise l'engagement des employés", "isCorrect": true },
+      { "text": "Elle doit être ignorée pendant le changement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment une politique de rémunération équitable affecte-t-elle l'engagement des employés ?",
+    "description": "Rôle de la rémunération dans l'engagement.",
+    "explanation": "Une politique de rémunération équitable contribue à la motivation et à la satisfaction des employés, favorisant leur engagement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle ne joue aucun rôle", "isCorrect": false },
+      { "text": "Elle crée des inégalités", "isCorrect": false },
+      { "text": "Elle renforce la motivation", "isCorrect": true },
+      { "text": "Elle est uniquement réglementaire", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact d'un feedback constructif sur la performance des employés ?",
+    "description": "Importance du feedback dans la performance.",
+    "explanation": "Le feedback constructif aide à identifier les domaines d'amélioration et à motiver les employés à atteindre leurs objectifs.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il cause du stress", "isCorrect": false },
+      { "text": "Il améliore la rétention des employés", "isCorrect": true },
+      { "text": "Il est réservé aux cadres", "isCorrect": false },
+      { "text": "Il n'affecte pas la performance", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il crucial d'intégrer la gestion des compétences dans la formation des employés ?",
+    "description": "Role de la gestion des compétences en formation.",
+    "explanation": "L’intégration de la gestion des compétences permet de cibler les formations sur les besoins réels des employés et de l'organisation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour respecter les réglementations", "isCorrect": false },
+      { "text": "Pour répondre aux besoins stratégiques", "isCorrect": true },
+      { "text": "Pour augmenter les coûts de formation", "isCorrect": false },
+      { "text": "Pour réduire le temps de formation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment gérer efficacement le talent dans une entreprise en pleine croissance ?",
+    "description": "Stratégies pour la gestion des talents en période de croissance.",
+    "explanation": "Il est essentiel de mettre en place des processus de rétention et de développement des talents pour soutenir la croissance.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Augmenter la pression sur les employés", "isCorrect": false },
+      { "text": "Mettre en place des programmes de développement", "isCorrect": true },
+      { "text": "Éliminer les programmes de formation", "isCorrect": false },
+      { "text": "Ignorer les feedbacks des employés", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle stratégie peut renforcer la cohésion d'équipe dans une entreprise ?",
+    "description": "Importance de la cohésion d’équipe.",
+    "explanation": "Des activités d'équipe régulières et des espaces de collaboration améliorent la cohésion et renforcent les relations interpersonnelles.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réduire les interactions entre les employés", "isCorrect": false },
+      { "text": "Organiser des Team Building et des activités collectives", "isCorrect": true },
+      { "text": "Imposer des règles strictes", "isCorrect": false },
+      { "text": "Éliminer les réunions d’équipe", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel type de formation est essentiel lors de l'intégration d'un nouvel employé ?",
+    "description": "Importance de l'intégration et formation des nouveaux employés.",
+    "explanation": "Une formation d'onboarding efficace permet de familiariser le nouvel employé avec la culture et les processus de l'entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucune formation n'est nécessaire", "isCorrect": false },
+      { "text": "Une formation d'onboarding complète", "isCorrect": true },
+      { "text": "Une simple visite des bureaux", "isCorrect": false },
+      { "text": "Des formations techniques spécifiques uniquement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le droit fondamental d'un employé dans une entreprise ?",
+    "description": "Énumération des droits des employés.",
+    "explanation": "Le droit à un environnement de travail respectueux et non discriminatoire est fondamental pour tous les employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le droit à la non-discrimination", "isCorrect": true },
+      { "text": "Le droit à un salaire maximum", "isCorrect": false },
+      { "text": "Le droit à un patron indulgent", "isCorrect": false },
+      { "text": "Le droit à des heures supplémentaires non rémunérées", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment un responsable RH peut-il contribuer à l'innovation dans l'entreprise ?",
+    "description": "Rôle du responsable RH dans l'innovation.",
+    "explanation": "Le responsable RH peut favoriser un environnement d'innovation en promouvant des équipes diversifiées et en permettant une culture de créativité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "En évitant les formations", "isCorrect": false },
+      { "text": "En favorisant un environnement créatif et diversifié", "isCorrect": true },
+      { "text": "En restreignant la communication", "isCorrect": false },
+      { "text": "En centralisant toutes les décisions", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact de l'équilibre travail-vie personnelle sur les performances des employés ?",
+    "description": "Vision de l'équilibre et de la performance.",
+    "explanation": "Un bon équilibre travail-vie personnelle favorise la productivité, réduit le stress et améliore la satisfaction au travail.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucun impact", "isCorrect": false },
+      { "text": "Il favorise l'épuisement professionnel", "isCorrect": false },
+      { "text": "Il améliore la satisfaction et la performance", "isCorrect": true },
+      { "text": "Il complique la gestion des ressources", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment le développement de programmes de formation continue affecte-t-il la rétention des employés ?",
+    "description": "Impact des programmes de formation sur la fidélisation.",
+    "explanation": "Les programmes de formation continue augmentent les compétences, renforcent l'engagement et permettent le développement de carrière, contribuant ainsi à la rétention.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ils n'ont pas un rôle déterminant", "isCorrect": false },
+      { "text": "Ils augmentent le turnover", "isCorrect": false },
+      { "text": "Ils favorisent l'engagement des employés et leur fidélité", "isCorrect": true },
+      { "text": "Ils sont réservés aux cadres dirigeants", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel rôle joue la reconnaissance dans la motivation des employés ?",
+    "description": "Importance de la reconnaissance dans le cadre RH.",
+    "explanation": "La reconnaissance des efforts et contributions des employés est essentielle pour maintenir leur motivation et engagement à long terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle est accessoire", "isCorrect": false },
+      { "text": "Elle renforce la motivation et l'engagement", "isCorrect": true },
+      { "text": "Elle crée des rivalités", "isCorrect": false },
+      { "text": "Elle doit être évitée", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle est la principale méthode pour recueillir des feedbacks des employés ?",
+    "description": "Stratégies pour évaluer la satisfaction et l'engagement.",
+    "explanation": "Utiliser des sondages anonymes et des entretiens réguliers permet de recueillir des retours francs et constructifs des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Commenter les performances uniquement", "isCorrect": false },
+      { "text": "Sondages et feedbacks directs", "isCorrect": true },
+      { "text": "Aucune méthode n'est nécessaire", "isCorrect": false },
+      { "text": "Organiser des réunions mensuelles sans structure", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal indicateur de succès dans un programme de diversité et d'inclusion ?",
+    "description": "Mesure du succès des initiatives de diversité.",
+    "explanation": "Le principal indicateur de succès est l'amélioration de la satisfaction des employés et la diversité dans les postes de leadership.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le nombre de formations offertes", "isCorrect": false },
+      { "text": "L'amélioration des scores de satisfaction des employés", "isCorrect": true },
+      { "text": "Le nombre d'employés présents", "isCorrect": false },
+      { "text": "La réduction des coûts d'exploitation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment une approche participative influence-t-elle la prise de décision RH ?",
+    "description": "Impact de l'implication des employés dans le processus de décision.",
+    "explanation": "Une approche participative augmente la collaboration, l'adhésion des employés et favorise des décisions mieux informées.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle complique le processus", "isCorrect": false },
+      { "text": "Elle augmente l'adhésion des employés", "isCorrect": true },
+      { "text": "Elle n'a aucun effet", "isCorrect": false },
+      { "text": "Elle réduit la productivité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle méthode peut favoriser des relations interpersonnelles positives dans une équipe ?",
+    "description": "Stratégies pour améliorer les relations au sein des équipes.",
+    "explanation": "La promotion de la collaboration, des activités de groupe et des formations sur la communication efficace favorise des relations interpersonnelles positives.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Encourager la compétition entre collègues", "isCorrect": false },
+      { "text": "Promouvoir des activités de groupe et de la formation en communication", "isCorrect": true },
+      { "text": "Limite les interactions sociales", "isCorrect": false },
+      { "text": "Réduire le temps de travail en équipe", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le défi majeur en matière de conformité pour les responsables RH ?",
+    "description": "Gestion des obligations légales et réglementaires.",
+    "explanation": "Le principal défi est de rester à jour avec les lois du travail, la législation anti-discrimination et d'autres réglementations spécifiques au secteur.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réduire les coûts de formation", "isCorrect": false },
+      { "text": "Rester à jour avec les lois et les règlements", "isCorrect": true },
+      { "text": "Réduire le personnel", "isCorrect": false },
+      { "text": "Mettre en pause les programmes de diversité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact d'une stratégie de gestion des performances sur le moral des employés ?",
+    "description": "Lien entre gestion des performances et moral au travail.",
+    "explanation": "Une gestion des performances efficace peut augmenter le moral en fournissant des retours positifs et des opportunités de développement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'influence pas le moral", "isCorrect": false },
+      { "text": "Elle peut avoir un effet négatif sur le moral", "isCorrect": false },
+      { "text": "Elle améliore le moral et l'engagement", "isCorrect": true },
+      { "text": "Elle crée de la confusion", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il important d'évaluer les compétences des employés régulièrement ?",
+    "description": "Importance des évaluations de compétences pour le développement.",
+    "explanation": "Les évaluations régulières permettent d'identifier les besoins en formation et de planifier le développement des carrières.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour diminuer les coûts,", "isCorrect": false },
+      { "text": "Pour justifier les licenciements", "isCorrect": false },
+      { "text": "Pour anticiper les besoins de formation", "isCorrect": true },
+      { "text": "Pour évincer les employés", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel rôle joue la transparence dans la gestion RH ?",
+    "description": "Impact de la transparence dans le cadre des RH.",
+    "explanation": "La transparence dans les processus RH favorise la confiance et la collaboration au sein de l'équipe.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle diminue l'autorité des managers", "isCorrect": false },
+      { "text": "Elle renforce la confiance et l'engagement", "isCorrect": true },
+      { "text": "Elle complique les processus", "isCorrect": false },
+      { "text": "Elle n'a pas d'impact", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle est la principale fonction de la formation en leadership pour les RH ?",
+    "description": "Objectifs de la formation en leadership.",
+    "explanation": "La formation en leadership aide à développer des compétences de gestion et à préparer des employés à des rôles de gestion.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Augmenter la productivité", "isCorrect": false },
+      { "text": "Préparer les employés pour les rôles futurs", "isCorrect": true },
+      { "text": "Réduire les coûts de main-d'œuvre", "isCorrect": false },
+      { "text": "Éliminer les besoins en formation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment un environnement de travail inclusif influence-t-il la créativité ?",
+    "description": "Impact de l'inclusion sur la créativité au travail.",
+    "explanation": "Un environnement inclusif favorise la diversité des idées et perspectives, ce qui stimule la créativité et l'innovation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il la diminue", "isCorrect": false },
+      { "text": "Il favorise la créativité", "isCorrect": true },
+      { "text": "Il ne fait aucune différence", "isCorrect": false },
+      { "text": "Il complique la communication", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment évaluer l'efficacité d'un programme de gestion des performances ?",
+    "description": "Mesures de l'efficacité du programme.",
+    "explanation": "L'efficacité d'un programme de gestion des performances est mesurée par l'amélioration des performances des employés et la satisfaction au travail.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Par le nombre d'évaluations effectuées", "isCorrect": false },
+      { "text": "Par l'amélioration des performances et la satisfaction", "isCorrect": true },
+      { "text": "Par la réduction des effectifs", "isCorrect": false },
+      { "text": "Par le montant des salaires infligés", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le rôle des entretiens de sortie dans une stratégie RH ?",
+    "description": "Importance des entretiens de sortie.",
+    "explanation": "Les entretiens de sortie permettent de recueillir des informations précieuses sur les raisons du départ et d'améliorer la satisfaction des employés restants.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucun rôle", "isCorrect": false },
+      { "text": "Ils aident à réduire le turnover", "isCorrect": true },
+      { "text": "Ils coûtent trop de temps aux ressources", "isCorrect": false },
+      { "text": "Ils sont uniquement pour des statistiques", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il essentiel de former les gestionnaires sur la gestion de la diversité ?",
+    "description": "Impact de la formation à la diversité.",
+    "explanation": "Former les gestionnaires à la diversité leur permet de gérer efficacement les équipes diversifiées et d'exploiter les avantages d'une main-d'œuvre hétérogène.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour éviter les plaintes", "isCorrect": false },
+      { "text": "Pour maximiser le potentiel de l'équipe", "isCorrect": true },
+      { "text": "Pour se conformer aux lois", "isCorrect": false },
+      { "text": "Pour formaliser le procés de recrutement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact d'une communication claire sur créer un climat de confiance ?",
+    "description": "Importance d'une communication efficace.",
+    "explanation": "Une communication claire renforce la confiance et la transparence, favorisant un environnement de travail positif et collaboratif.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle crée des malentendus", "isCorrect": false },
+      { "text": "Elle augmente la productivité", "isCorrect": true },
+      { "text": "Elle est secondaire par rapport aux résultats", "isCorrect": false },
+      { "text": "Elle n'a pas d'impact mesurable", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment l'engagement des employés peut-il influencer la performance opérationnelle ?",
+    "description": "Lien entre engagement et performance.",
+    "explanation": "L'engagement des employés est directement lié à une augmentation de la productivité, de la qualité du travail et de la satisfaction des clients.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il n'a pas d'impact", "isCorrect": false },
+      { "text": "Il favorise la rétention et la satisfaction client", "isCorrect": true },
+      { "text": "Il est inconsolable", "isCorrect": false },
+      { "text": "Il peut créer des problèmes de motivation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment une politique de congés payés bien établie contribue-t-elle à la satisfaction des employés ?",
+    "description": "Importance des congés payés.",
+    "explanation": "Une politique de congés pays dédiée favorise l'équilibre travail-vie personnelle, améliorant ainsi le moral et la productivité des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle est sans importance", "isCorrect": false },
+      { "text": "Elle crée des tensions dans l'équipe", "isCorrect": false },
+      { "text": "Elle est essentielle pour le moral des employés", "isCorrect": true },
+      { "text": "Elle augmente les coûts de l'entreprise", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le rôle des programmes de reconnaissance des employés dans le développement de la culture d'entreprise ?",
+    "description": "Impact de la reconnaissance sur la culture.",
+    "explanation": "Les programmes de reconnaissance renforcent la culture d'entreprise en valorisant les réalisations et en motivant les employés dans leur travail.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ils créent de la rivalité", "isCorrect": false },
+      { "text": "Ils renforcent les comportements positifs", "isCorrect": true },
+      { "text": "Ils sont réservés aux cadres supérieurs", "isCorrect": false },
+      { "text": "Ils n'ont pas d'effet significatif", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment un responsable RH peut-il gérer efficacement les conflits au travail ?",
+    "description": "Stratégies de gestion des conflits.",
+    "explanation": "Il est essentiel de faciliter la communication ouverte, de comprendre les positions de chaque partie et de chercher des solutions mutuellement bénéfiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ignorer le conflit à moins qu'il ne s'aggrave", "isCorrect": false },
+      { "text": "Faciliter une communication ouverte et négocier", "isCorrect": true },
+      { "text": "Punir le plus faible", "isCorrect": false },
+      { "text": "Éviter de prendre parti", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact d'une mauvaise gestion du changement organisationnel sur les ressources humaines ?",
+    "description": "Conséquences de la gestion du changement.",
+    "explanation": "Une gestion inadéquate peut entraîner une résistance au changement, une baisse de moral et une augmentation du turnover.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucune conséquence", "isCorrect": false },
+      { "text": "Amélioration de l'engagement", "isCorrect": false },
+      { "text": "Résistance au changement et turnover accru", "isCorrect": true },
+      { "text": "Augmentation de la productivité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment une communication efficace peut-elle faciliter la gestion des crises en entreprise ?",
+    "description": "Importance de la communication en temps de crise.",
+    "explanation": "Une communication claire et transparente permet de désamorcer les tensions, de maintenir la confiance et de mobiliser les équipes autour des solutions.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle ne joue pas de rôle", "isCorrect": false },
+      { "text": "Elle peut aggraver la situation", "isCorrect": false },
+      { "text": "Elle aide à désamorcer les tensions", "isCorrect": true },
+      { "text": "Elle complique la gestion des crises", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quels KPI peuvent quantifier l'impact des initiatives de diversité ?",
+    "description": "Mesures des résultats des programmes de diversité.",
+    "explanation": "Les KPI tels que la diversité dans les postes de direction et les scores d'engagement des employés aident à mesurer l'impact des initiatives de diversité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le nombre de réunions", "isCorrect": false },
+      { "text": "Les données de diversité et les enquêtes d'engagement", "isCorrect": true },
+      { "text": "Le chiffre d'affaires", "isCorrect": false },
+      { "text": "Le taux de turnover seulement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le rôle clé du Directeur des Ressources Humaines dans la mise en œuvre de la transformation numérique ?",
+    "description": "Rôle stratégique du DRH dans la transformation numérique.",
+    "explanation": "Le DRH doit aligner les initiatives numériques avec les objectifs RH et accompagner le changement culturel nécessaire pour une adoption réussie.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Se concentrer sur la technologie uniquement", "isCorrect": false },
+      { "text": "Favoriser une culture d'ouverture au changement", "isCorrect": true },
+      { "text": "Éliminer les processus traditionnels sans transition", "isCorrect": false },
+      { "text": "Déléguer entièrement aux départements informatiques", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il essentiel d'inclure des formations sur la gestion du changement pour les cadres ?",
+    "description": "Importance des formations pour les manageurs.",
+    "explanation": "Les formations sur la gestion du changement aident les gestionnaires à diriger efficacement les équipes lors de la mise en œuvre de nouvelles initiatives, réduisant ainsi la résistance et augmentant l'adhésion.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour compromettre le changement", "isCorrect": false },
+      { "text": "Pour réduire les coûts de formation", "isCorrect": false },
+      { "text": "Pour renforcer la capacité de gestion des changements", "isCorrect": true },
+      { "text": "Pour ignorer le retour des employés", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact d'une culture de feedback ouverte sur l'innovation ?",
+    "description": "Lien entre culture de feedback et innovation.",
+    "explanation": "Une culture de feedback ouverte encourage les employés à partager des idées novatrices et à expérimenter, ce qui favorise l'innovation et la créativité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle limite les idées nouvelles", "isCorrect": false },
+      { "text": "Elle accorde trop de pouvoir aux employés", "isCorrect": false },
+      { "text": "Elle favorise l'innovation", "isCorrect": true },
+      { "text": "Elle n'a pas d'effet sur la créativité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal objectif d'une politique de responsabilité sociale d'entreprise (RSE) en matière de ressources humaines ?",
+    "description": "Objectifs de la RSE dans les RH.",
+    "explanation": "L'objectif est de promouvoir le bien-être des employés et d'assurer une contribution positive à la communauté, tout en renforçant l'image de marque de l'entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réduire les coûts", "isCorrect": false },
+      { "text": "Améliorer la satisfaction des employés et l'image de marque", "isCorrect": true },
+      { "text": "Aucun objectif réel", "isCorrect": false },
+      { "text": "Se conformer uniquement à la loi", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment un responsable RH peut-il maintenir un équilibre entre les exigences de l'équipe et les objectifs de l'entreprise ?",
+    "description": "Stratégies d'équilibre RH.",
+    "explanation": "Il doit s'assurer que les besoins des employés sont pris en compte dans les stratégies de l'entreprise, créant ainsi un alignement favorable à la fois pour l'équipe et les objectifs organisationnels.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Prioriser les objectifs de l'entreprise en ignorant l'équipe", "isCorrect": false },
+      { "text": "Foster a positive working environment", "isCorrect": true },
+      { "text": "Éviter toute intervention dans les demandes des employés", "isCorrect": false },
+      { "text": "Communiquer uniquement sur les résultats", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel élément de la formation des employés est le plus souvent négligé mais crucial pour leur développement ?",
+    "description": "Importance des compétences non techniques.",
+    "explanation": "Le développement des compétences interpersonnelles, comme la communication et le leadership, est crucial pour le développement personnel et professionnel, mais souvent négligé.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Les compétences techniques uniquement", "isCorrect": false },
+      { "text": "Le développement de compétences interpersonnelles", "isCorrect": true },
+      { "text": "Les certifications", "isCorrect": false },
+      { "text": "La mise à jour des connaissances techniques", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel facteur est essentiel à considérer lors de l'élaboration d'un plan de succession ?",
+    "description": "Critères pour un plan de succession efficace.",
+    "explanation": "Il est essentiel de considérer les compétences clés requises pour les postes futurs et de préparer les candidats en conséquence.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "La longévité des employés", "isCorrect": false },
+      { "text": "Les compétences clés et le développement potentiel", "isCorrect": true },
+      { "text": "Un simple remplacement", "isCorrect": false },
+      { "text": "Les souhaits des employés uniquement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal objectif de mettre en place un programme de bien-être au travail ?",
+    "description": "Objectifs du bien-être en entreprise.",
+    "explanation": "Le programme de bien-être vise à améliorer la santé mentale et physique des employés, augmentant ainsi leur satisfaction et productivité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réduire le temps de travail", "isCorrect": false },
+      { "text": "Améliorer la santé et le moral des employés", "isCorrect": true },
+      { "text": "Augmenter le contrôle des heures de travail", "isCorrect": false },
+      { "text": "Créer des coûts supplémentaires", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment une politique de télétravail flexible peut-elle influencer le recrutement ?",
+    "description": "Impact du télétravail sur l'attractivité de l'entreprise.",
+    "explanation": "Une politique de télétravail performant rend l'entreprise plus attractive pour de nombreux candidats, favorisant ainsi un plus large bassin de talents.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle ne joue aucun rôle", "isCorrect": false },
+      { "text": "Elle augmente l'attractivité pour les talents", "isCorrect": true },
+      { "text": "Elle cause des problèmes d'engagement", "isCorrect": false },
+      { "text": "Elle n'affecte pas le processus de sélection", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi l'alignement des valeurs d'entreprise avec celles des employés est-il crucial ?",
+    "description": "Alignement des valeurs pour une efficacité opérationnelle.",
+    "explanation": "Cet alignement favorise une culture forte, améliore l'engagement des employés et réduit le turnover.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour respecter les lois du travail", "isCorrect": false },
+      { "text": "Pour renforcer l'engagement", "isCorrect": true },
+      { "text": "Pour réduire les coûts de personnel", "isCorrect": false },
+      { "text": "Pour simplifier les processus", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quels sont les principaux défis pour un responsable RH en matière de compréhension des besoins des équipes ?",
+    "description": "Défis de l'écoute active en management.",
+    "explanation": "Les principaux défis incluent la diversité des voix, le partage d'informations et la gestion des conflits d'intérêts.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ils n'existent pas", "isCorrect": false },
+      { "text": "La diversité des perspectives", "isCorrect": true },
+      { "text": "L'absence de feedback", "isCorrect": false },
+      { "text": "Le manque d'expérience des employés", "isCorrect": false }
+    ]
+  },
+ 
+  {
+    "title": "Quel est le rôle d'un représentant syndical dans une entreprise ?",
+    "description": "Rôle et responsabilité des représentants syndicaux.",
+    "explanation": "Le représentant syndical défend les droits des employés, négocie avec la direction et promeut le dialogue social.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Justifier les licenciements", "isCorrect": false },
+      { "text": "Représenter et défendre les intérêts des employés", "isCorrect": true },
+      { "text": "Conduire les entretiens d'embauche", "isCorrect": false },
+      { "text": "Fixer les salaires", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment la gestion des conflits influence-t-elle la culture d'entreprise ?",
+    "description": "Impact de la gestion des conflits sur la culture organisationnelle.",
+    "explanation": "Une gestion efficace des conflits contribue à une culture d'entreprise positive, réduisant la résistance et améliorant la collaboration.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle crée plus de tensions", "isCorrect": false },
+      { "text": "Elle favorise une culture collaborative", "isCorrect": true },
+      { "text": "Elle est sans impact", "isCorrect": false },
+      { "text": "Elle complique la communication", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact d'une politique de congés sabbatiques sur l'engagement des employés ?",
+    "description": "Importance des congés sabbatiques en RH.",
+    "explanation": "Les congés sabbatiques permettent aux employés de se recharger, ce qui augmente leur satisfaction et leur engagement à long terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ils n'ont aucun impact", "isCorrect": false },
+      { "text": "Ils favorisent l'engagement", "isCorrect": true },
+      { "text": "Ils diminuent la productivité", "isCorrect": false },
+      { "text": "Ils sont réservés aux cadres seulement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment un responsable RH peut-il impliquer les employés dans la prise de décision ?",
+    "description": "Stratégies de participation des employés.",
+    "explanation": "En organisant des assemblées régulières et en encourageant le feedback, le responsable RH favorise l'implication et la collaboration.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "En centralisant toutes les décisions", "isCorrect": false },
+      { "text": "En favorisant le feedback et la discussion", "isCorrect": true },
+      { "text": "Par la contrainte", "isCorrect": false },
+      { "text": "En évitant les réunions", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'effet d'un leadership transformationnel sur la culture d'entreprise ?",
+    "description": "Impact du leadership transformationnel.",
+    "explanation": "Un leadership transformationnel inspire et motive les employés, créant une culture dynamique d'innovation et d'engagement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il ne pose aucun défi", "isCorrect": false },
+      { "text": "Il peut inspirer une culture positive", "isCorrect": true },
+      { "text": "Il complique la gestion", "isCorrect": false },
+      { "text": "Il est uniquement axé sur le profit", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il crucial de mesurer le taux de satisfaction des employés ?",
+    "description": "Importance de la mesure de la satisfaction au travail.",
+    "explanation": "Mesurer la satisfaction aide à identifier les problèmes potentiels et à améliorer les conditions de travail, ce qui favorise la rétention.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Pour justifier le budget", "isCorrect": false },
+      { "text": "Pour détecter les problèmes d'engagement", "isCorrect": true },
+      { "text": "Pour réduire le temps de travail", "isCorrect": false },
+      { "text": "Pour augmenter les salaires", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'impact des formations en leadership sur la performance des managers ?",
+    "description": "Importance des formations pour les managers.",
+    "explanation": "Les formations en leadership améliorent la compétence des managers à diriger, motivant ainsi leurs équipes et augmentant la productivité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elles ne sont pas nécessaires", "isCorrect": false },
+      { "text": "Elles augmentent la motivation et l'engagement des équipes", "isCorrect": true },
+      { "text": "Elles sont uniquement pour les nouveaux employés", "isCorrect": false },
+      { "text": "Elles ont peu d'impact sur la performance", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal avantage de la gestion des conflits en entreprise ?",
+    "description": "Résolution des conflits en milieu professionnel.",
+    "explanation": "La gestion des conflits permet de maintenir un environnement de travail positif, d'améliorer la collaboration et de diminuer le turnover.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Augmenter la tension", "isCorrect": false },
+      { "text": "Favoriser un environnement de travail sain", "isCorrect": true },
+      { "text": "Ignorer les problèmes", "isCorrect": false },
+      { "text": "Réduire la productivité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel rôle joue le mentorat dans le développement des employés ?",
+    "description": "Importance du mentorat en ressources humaines.",
+    "explanation": "Le mentorat favorise le partage d'expérience et le développement des compétences, ce qui aide les employés à progresser dans leur carrière.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Un soutien limité", "isCorrect": false },
+      { "text": "Un catalyseur pour le développement personnel", "isCorrect": true },
+      { "text": "Une simple formalité", "isCorrect": false },
+      { "text": "Un luxe", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment les équipes diversifiées affectent-elles la performance ?",
+    "description": "Impact de la diversité sur les équipes.",
+    "explanation": "La diversité au sein des équipes favorise des perspectives variées et stimule l'innovation, ce qui améliore la performance globale.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle crée des conflits", "isCorrect": false },
+      { "text": "Elle améliore l'innovation", "isCorrect": true },
+      { "text": "Elle ne fait aucune différence", "isCorrect": false },
+      { "text": "Elle complique la communication", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel type de leadership est le plus efficace pour gérer des équipes dans des environnements changeants ?",
+    "description": "Styles de leadership dans des contextes dynamiques.",
+    "explanation": "Le leadership transformationnel est efficace, car il inspire et motive les employés à s'adapter aux changements et à innover.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Autocratique", "isCorrect": false },
+      { "text": "Laissez-faire", "isCorrect": false },
+      { "text": "Transformationnel", "isCorrect": true },
+      { "text": "Transactionnel", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle est une erreur fréquente dans la gestion de la performance des employés ?",
+    "description": "Erreurs dans le processus de gestion de la performance.",
+    "explanation": "Une erreur fréquente est de ne fournir des retours que lors des évaluations annuelles, négligeant le feedback continu nécessaire pour le développement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Fournir un feedback continu", "isCorrect": false },
+      { "text": "Attendre les évaluations annuelles", "isCorrect": true },
+      { "text": "Mesurer uniquement les résultats financiers", "isCorrect": false },
+      { "text": "Éviter les discussions ouvertes", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal défi des responsables des RH lors de la gestion du travail à distance ?",
+    "description": "Ressources humaines et travail à distance.",
+    "explanation": "Le principal défi est de maintenir la communication, l'engagement et la culture d'entreprise dans un environnement virtuel.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réduire le nombre de réunions", "isCorrect": false },
+      { "text": "Imposer des règles strictes", "isCorrect": false },
+      { "text": "Maintenir la communication et l'engagement", "isCorrect": true },
+      { "text": "Ignorer les problèmes de communication", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment la reconnaissance des employés contribue-t-elle à la culture d'entreprise ?",
+    "description": "Rôle de la reconnaissance dans la culture d'entreprise.",
+    "explanation": "La reconnaissance favorise un environnement de travail positif, augmente l'engagement et renforce la culture de l'entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle crée des inégalités", "isCorrect": false },
+      { "text": "Elle renforce la culture d'entreprise", "isCorrect": true },
+      { "text": "Elle complique les relations interpersonnelles", "isCorrect": false },
+      { "text": "Elle est réservée aux cadres", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel type d'évaluation est le plus efficace pour mesurer la satisfaction des employés ?",
+    "description": "Méthodes d'évaluation de la satisfaction.",
+    "explanation": "Des sondages anonymes, des discussions en groupe et des évaluations de performance régulières sont des moyens efficaces de mesurer la satisfaction des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le nombre d'absences", "isCorrect": false },
+      { "text": "Surveys anonymes et discussions de groupe", "isCorrect": true },
+      { "text": "Les résultats financiers", "isCorrect": false },
+      { "text": "Les rapports de performance uniquement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Pourquoi est-il important d'intégrer la gestion de la santé mentale dans la stratégie RH ?",
+    "description": "Intégration de la santé mentale en RH.",
+    "explanation": "La gestion de la santé mentale crée un environnement de travail sain et améliore la productivité, ce qui est essentiel pour la performance globale de l'entreprise.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'est pas nécessaire", "isCorrect": false },
+      { "text": "Elle favorise un environnement de travail sain", "isCorrect": true },
+      { "text": "Elle est réservée aux entreprises grandes uniquement", "isCorrect": false },
+      { "text": "Elle augmente les coûts uniquement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle stratégie est essentielle pour adapter l'organisation pendant les périodes de changement radical ?",
+    "description": "Gestion du changement organisationnel.",
+    "explanation": "Une communication transparente et une planification minutieuse des étapes de changement sont essentielles pour minimiser l'impact et le stress des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Éviter de communiquer", "isCorrect": false },
+      { "text": "Planifier et communiquer clairement", "isCorrect": true },
+      { "text": "Attendre que les problèmes se manifestent", "isCorrect": false },
+      { "text": "Imposer les changements sans consultation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment garantir la transparence des processus RH dans l'organisation ?",
+    "description": "Mesures pour une transparence efficace.",
+    "explanation": "Mettre en place des canaux de communication clairs et accessibles et informer régulièrement les employés des politiques et décisions RH garantit la transparence.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ignorer les préoccupations des employés", "isCorrect": false },
+      { "text": "Établir des canaux de communication clairs", "isCorrect": true },
+      { "text": "Faire des communications occasionnelles", "isCorrect": false },
+      { "text": "Réduire le temps de communication", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle est la conséquence d’une culture d’entreprise peu intégrée sur la performance ?",
+    "description": "Impact négatif d'une culture fragmentée.",
+    "explanation": "Une culture d'entreprise peu intégrée entraîne des conflits, de la confusion dans les rôles et un désengagement des employés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucun résultat, les employés restent motivés", "isCorrect": false },
+      { "text": "Elle augmente le turnover et désengage les employés", "isCorrect": true },
+      { "text": "Elle améliore la définition des rôles", "isCorrect": false },
+      { "text": "Elle réduit les coûts opérationnels", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel type d’analyse est primordial pour aligner la stratégie RH avec les objectifs de l’entreprise ?",
+    "description": "Importance de l'analyse stratégique.",
+    "explanation": "Une analyse SWOT permet d'évaluer les forces, les faiblesses, les opportunités et les menaces, afin d’aligner les ressources humaines sur les objectifs stratégiques.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Une analyse financière uniquement", "isCorrect": false },
+      { "text": "Une analyse SWOT", "isCorrect": true },
+      { "text": "Un audit externe", "isCorrect": false },
+      { "text": "Une évaluation annuelle des performances", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment la formation continue influence-t-elle la fidélisation des employés ?",
+    "description": "Lien entre formation continue et rétention des talents.",
+    "explanation": "La formation continue montre que l'entreprise investit dans le développement des employés, augmentant ainsi leur satisfaction et leur fidélité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle n'a aucun impact", "isCorrect": false },
+      { "text": "Elle réduit les coûts de personnel", "isCorrect": false },
+      { "text": "Elle favorise l'engagement et la fidélisation", "isCorrect": true },
+      { "text": "Elle n'est pas nécessaire dans les petites entreprises", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le principal défi d'une approche de feedback en temps réel ?",
+    "description": "Difficultés de mise en œuvre du feedback continu.",
+    "explanation": "Le principal défi est de maintenir la qualité et la pertinence des feedbacks tout en assurant qu'ils encouragent la croissance et le développement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Il n'y a pas de défi", "isCorrect": false },
+      { "text": "Maintenir un feedback constructif et fréquent", "isCorrect": true },
+      { "text": "Éviter la surcommunication", "isCorrect": false },
+      { "text": "Imposer des feedbacks sans discussion", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l'efficacité de la formation en sensibilisation à la diversité ?",
+    "description": "Rôle de la formation à la diversité.",
+    "explanation": "Cette formation améliore la compréhension culturelle et réduit les préjugés, augmentant ainsi l'inclusion dans le lieu de travail.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Elle est souvent inefficace", "isCorrect": false },
+      { "text": "Elle favorise une meilleure inclusion", "isCorrect": true },
+      { "text": "Elle n'est pas nécessaire", "isCorrect": false },
+      { "text": "Elle complique les relations interpersonnelles", "isCorrect": false }
+    ]
+  },
+ 
+]
+ 

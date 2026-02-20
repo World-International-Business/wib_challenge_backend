@@ -1,0 +1,437 @@
+[
+  {
+    "title": "Quel est le rôle principal d’un chef de projet industriel ?",
+    "description": "Pilotage stratégique industriel",
+    "explanation": "Le chef de projet industriel pilote la réalisation industrielle en respectant les critères de qualité, coût, délai et sécurité (QCDS).",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Exécuter les travaux", "isCorrect": false },
+      { "text": "Piloter la réalisation industrielle dans le respect QCDS", "isCorrect": true },
+      { "text": "Gérer uniquement la production", "isCorrect": false },
+      { "text": "Superviser les opérateurs", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Que signifie le triptyque QCDS ?",
+    "description": "Fondamentaux du pilotage industriel",
+    "explanation": "Le triptyque QCDS signifie Qualité, Coût, Délai et Sécurité, essentielles pour une gestion de projet efficace.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Qualité – Coût – Délai – Sécurité", "isCorrect": true },
+      { "text": "Quantité – Coût – Développement – Sécurité", "isCorrect": false },
+      { "text": "Qualité – Contrôle – Délai – Stock", "isCorrect": false },
+      { "text": "Qualité – Communication – Délai – Service", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment se distingue un projet industriel d’une activité récurrente ?",
+    "description": "Différence projet vs activité récurrente",
+    "explanation": "Un projet industriel se caractérise par sa finalité unique et temporaire, ce qui le distingue des opérations répétitives.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Son caractère répétitif", "isCorrect": false },
+      { "text": "Sa finalité unique et temporaire", "isCorrect": true },
+      { "text": "Son absence de risques", "isCorrect": false },
+      { "text": "Son faible budget", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l’organe central de décision dans un projet industriel ?",
+    "description": "Gouvernance projet industriel",
+    "explanation": "Le comité de pilotage industriel est chargé de prendre des décisions stratégiques clés pour le projet.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Des méthodes de production", "isCorrect": false },
+      { "text": "Des arbitrages stratégiques du projet", "isCorrect": true },
+      { "text": "Des horaires de travail", "isCorrect": false },
+      { "text": "Des procédures qualité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quels sont les principaux risques d’un projet industriel sans étude de faisabilité préalable ?",
+    "description": "Gestion des risques industriels",
+    "explanation": "Sans étude de faisabilité, le risque majeur est un dépassement de coûts et délais, nuisant à la rentabilité du projet.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Surqualité", "isCorrect": false },
+      { "text": "Dépassement coûts et délais", "isCorrect": true },
+      { "text": "Excès de documentation", "isCorrect": false },
+      { "text": "Sous-charge", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Face à un fournisseur clé accusant un retard critique, quelle action prioritaire devez-vous prendre ?",
+    "description": "Gestion des fournisseurs et retards",
+    "explanation": "Il est essentiel d'analyser l'impact du retard et de mettre en place un plan de rattrapage pour minimiser les effets négatifs.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Résilier immédiatement", "isCorrect": false },
+      { "text": "Analyser impact et plan de rattrapage", "isCorrect": true },
+      { "text": "Ignorer", "isCorrect": false },
+      { "text": "Attendre", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment gérer la pression du planning sans mettre en danger la sécurité ?",
+    "description": "Arbitrage sécurité vs planning",
+    "explanation": "La sécurité doit toujours être priorisée ; aucune date de livraison ne justifie de compromettre la sécurité des opérations.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Accélérer", "isCorrect": false },
+      { "text": "Prioriser la sécurité", "isCorrect": true },
+      { "text": "Ignorer", "isCorrect": false },
+      { "text": "Réduire les contrôles", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quels sont les bons réflexes à adopter face à un conflit entre ingénierie et production ?",
+    "description": "Gestion des conflits inter-métiers",
+    "explanation": "Il est crucial d'arbitrer le conflit sur la base de faits techniques pour trouver une solution objective et pragmatique.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Laisser durer", "isCorrect": false },
+      { "text": "Arbitrer sur des faits techniques", "isCorrect": true },
+      { "text": "Ignorer", "isCorrect": false },
+      { "text": "Transférer au RH", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est le traitement approprié pour un dépassement budgétaire non anticipé ?",
+    "description": "Gestion budgétaire industrielle",
+    "explanation": "Il est essentiel d'analyser la cause du dépassement et de décider d'une action corrective ou d'un arbitrage.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Dissimulation", "isCorrect": false },
+      { "text": "Analyse cause racine et arbitrage", "isCorrect": true },
+      { "text": "Acceptation automatique", "isCorrect": false },
+      { "text": "Facturation interne", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Sur quels résultats doit être jugé un chef de projet industriel ?",
+    "description": "Critères d’évaluation",
+    "explanation": "Il doit être principalement jugé sur les résultats en Qualité, Coût, Délai et Sécurité (QCDS).",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Sa présence terrain", "isCorrect": false },
+      { "text": "Les résultats QCDS", "isCorrect": true },
+      { "text": "La documentation", "isCorrect": false },
+      { "text": "Les réunions", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l’impact d’un arrêt non planifié en phase critique d’un projet ?",
+    "description": "Gestion des arrêts critiques",
+    "explanation": "Un arrêt non planifié en phase critique entraîne un risque majeur sur coûts et délais, pouvant compromettre la réussite du projet.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucun impact", "isCorrect": false },
+      { "text": "Un risque majeur coût/délai", "isCorrect": true },
+      { "text": "Une amélioration", "isCorrect": false },
+      { "text": "Une optimisation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelles conséquences d’une communication terrain inefficace dans un projet ?",
+    "description": "Communication industrielle",
+    "explanation": "Une communication inefficace engendre des erreurs et des accidents au sein des équipes, affectant la sécurité et la productivité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Une meilleure coordination", "isCorrect": false },
+      { "text": "Des erreurs et accidents", "isCorrect": true },
+      { "text": "Une accélération", "isCorrect": false },
+      { "text": "Une qualité supérieure", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel comportement caractérise un leadership efficace dans un environnement industriel ?",
+    "description": "Leadership multisectoriel",
+    "explanation": "Le leadership se manifeste par l’exemplarité et la capacité de décision, favorisant l’engagement et la motivation des équipes.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "L’autorité seule", "isCorrect": false },
+      { "text": "L’exemplarité et la décision", "isCorrect": true },
+      { "text": "Le contrôle strict", "isCorrect": false },
+      { "text": "La distance", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Une montée en charge industrielle doit être :",
+    "description": "Gestion de la montée en charge",
+    "explanation": "Une montée en charge doit être progressive et maîtrisée pour éviter des risques d'accidents et de non-conformité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Brutale", "isCorrect": false },
+      { "text": "Progressive et maîtrisée", "isCorrect": true },
+      { "text": "Improvisée", "isCorrect": false },
+      { "text": "Non planifiée", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelles dimensions un projet réussi durablement doit-il respecter ?",
+    "description": "Facteurs de succès durable",
+    "explanation": "Un projet réussi doit être profitable, exploitable, sûr, et respecter les contraintes de time-to-market.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "L’autorité", "isCorrect": false },
+      { "text": "Est exploitable, sûr et rentable", "isCorrect": true },
+      { "text": "Consomme tout le budget", "isCorrect": false },
+      { "text": "Est innovant", "isCorrect": false }
+    ]
+  },{
+    "title": "Quelle doit être l’approche fiscale d’un groupe cherchant à rester conforme tout en optimisant son résultat après impôt ?",
+    "description": "Bonnes pratiques de fiscalité d’entreprise entre conformité et optimisation.",
+    "explanation": "L’objectif est de respecter la loi tout en optimisant la charge fiscale de façon légale et documentée.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Supprimer l’impôt", "isCorrect": false },
+      { "text": "Respecter la loi tout en optimisant la charge fiscale", "isCorrect": true },
+      { "text": "Éviter les contrôles", "isCorrect": false },
+      { "text": "Augmenter les bénéfices", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelle condition essentielle caractérise une optimisation fiscale acceptable ?",
+    "description": "Limites et nature de l’optimisation fiscale responsable.",
+    "explanation": "L’optimisation fiscale doit rester légale et conforme aux normes et contrôles en vigueur.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Agressive", "isCorrect": false },
+      { "text": "Légale et conforme", "isCorrect": true },
+      { "text": "Secrète", "isCorrect": false },
+      { "text": "Temporaire", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelles sont les conséquences possibles d’erreurs fiscales significatives pour une entreprise multinationale ?",
+    "description": "Risques juridiques et financiers liés aux erreurs fiscales.",
+    "explanation": "Une erreur fiscale peut entraîner des pénalités financières et des risques juridiques, impactant la réputation et la trésorerie.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Aucun impact", "isCorrect": false },
+      { "text": "Des pénalités financières et juridiques", "isCorrect": true },
+      { "text": "Une correction automatique", "isCorrect": false },
+      { "text": "Un simple avertissement", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l’intérêt d’une veille fiscale proactive pour un groupe opérant dans plusieurs juridictions ?",
+    "description": "Rôle de la veille fiscale dans l’anticipation des changements réglementaires.",
+    "explanation": "La veille fiscale permet d’anticiper les évolutions réglementaires et d’adapter les politiques et pratiques fiscales en conséquence.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "D’éviter les impôts", "isCorrect": false },
+      { "text": "D’anticiper les évolutions réglementaires", "isCorrect": true },
+      { "text": "De modifier les lois", "isCorrect": false },
+      { "text": "De réduire la comptabilité", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Lors d’un contrôle fiscal, quel est l’objet principal de la vérification ?",
+    "description": "Objectifs et périmètre du contrôle fiscal.",
+    "explanation": "Le contrôle fiscal porte principalement sur la conformité des déclarations et la sincérité des informations transmises.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Les décisions commerciales", "isCorrect": false },
+      { "text": "La conformité des déclarations", "isCorrect": true },
+      { "text": "La stratégie marketing", "isCorrect": false },
+      { "text": "Les ressources humaines", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel est l’objectif central de la gestion de trésorerie dans une PME en phase de croissance ?",
+    "description": "Priorités opérationnelles de la gestion de trésorerie.",
+    "explanation": "La gestion de trésorerie vise à assurer la liquidité de l’entreprise pour faire face aux obligations à court terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Maximiser les dépenses", "isCorrect": false },
+      { "text": "Assurer la liquidité de l’entreprise", "isCorrect": true },
+      { "text": "Augmenter les stocks", "isCorrect": false },
+      { "text": "Réduire les ventes", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel usage stratégique fait-on du budget de trésorerie pour arbitrer des décisions d’investissement à court terme ?",
+    "description": "Utilité du budget de trésorerie dans la planification opérationnelle.",
+    "explanation": "Le budget de trésorerie permet d’anticiper les entrées et sorties de fonds et d’évaluer la capacité à financer des opérations à court terme.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "D’enregistrer les paiements passés", "isCorrect": false },
+      { "text": "D’anticiper les entrées et sorties de fonds", "isCorrect": true },
+      { "text": "De calculer les bénéfices", "isCorrect": false },
+      { "text": "De fixer les prix", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Qu’indique un BFR (besoin en fonds de roulement) élevé pour la stratégie de financement ?",
+    "description": "Interprétation financière d’un BFR élevé et conséquences pour la trésorerie.",
+    "explanation": "Un BFR élevé signifie une immobilisation importante de liquidités, nécessitant des choix de financement ou d’optimisation du cycle d’exploitation.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Une trésorerie excédentaire", "isCorrect": false },
+      { "text": "Une immobilisation importante de liquidités", "isCorrect": true },
+      { "text": "Une rentabilité élevée", "isCorrect": false },
+      { "text": "Une faible activité", "isCorrect": false }
+    ]
+  },
+
+  {
+    "title": "Quel aspect critique doit être surveillé dans un projet industriel pour éviter les dérives de périmètre ?",
+    "description": "Gestion du périmètre dans le projet.",
+    "explanation": "Il est essentiel d'identifier et de gérer rigoureusement les modifications et les ajouts au périmètre afin de éviter les dérives coûteuses.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Le respect des délais", "isCorrect": false },
+      { "text": "Les changements de spécifications", "isCorrect": true },
+      { "text": "La gestion des ressources", "isCorrect": false },
+      { "text": "Les relations avec les sous-traitants", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "En cas de changement de technologie en cours de projet, quelle décision stratégique doit être prise ?",
+    "description": "Gestion des changements technologiques en projet.",
+    "explanation": "Il est impératif de réévaluer l’impact sur les délais et le budget, et d’engager tous les stakeholders dans le processus de décision.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ignorer les impacts", "isCorrect": false },
+      { "text": "Réévaluer le planning et le budget", "isCorrect": true },
+      { "text": "Continuer sans ajustements", "isCorrect": false },
+      { "text": "Déléguer aux équipes techniques", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment évaluer l’efficacité d’une méthode Agile dans un projet industriel ?",
+    "description": "Mesure de l’efficacité des processus Agiles.",
+    "explanation": "L’efficacité peut être mesurée par la satisfaction des clients, la capacité d’adaptation aux changements, et la rapidité de livraison des fonctionnalités.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Sur la base du budget", "isCorrect": false },
+      { "text": "Par le nombre de réunions tenues", "isCorrect": false },
+      { "text": "En fonction des retours clients et des livrables", "isCorrect": true },
+      { "text": "Selon le temps passé sur le projet", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel outil est crucial pour assurer la traçabilité des décisions dans un projet complexe ?",
+    "description": "Importance de la traçabilité dans les projets.",
+    "explanation": "Un registre des décisions permet de documenter les différents choix effectués, facilitant ainsi la transparence et la responsabilité.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Un logiciel de messagerie", "isCorrect": false },
+      { "text": "Un registre des décisions", "isCorrect": true },
+      { "text": "Un outil de gestion de tâches", "isCorrect": false },
+      { "text": "Une plateforme de reporting", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Dans un projet industriel, quelle approche devrait être adoptée pour la gestion des risques ?",
+    "description": "Stratégie de gestion des risques dans le projet.",
+    "explanation": "Une approche proactive doit être adoptée, comprenant l’identification, l’analyse et la planification des réponses aux risques avant qu’ils ne se matérialisent.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Réagir uniquement à postériori", "isCorrect": false },
+      { "text": "Adopter une approche proactive", "isCorrect": true },
+      { "text": "Ignorer les risques purs", "isCorrect": false },
+      { "text": "Report des décisions", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Comment le DAF doit-il équilibrer ses fonctions entre gestion des coûts et investissement stratégique ?",
+    "description": "Rôle du DAF dans la priorisation des ressources.",
+    "explanation": "Le DAF doit collaborer étroitement avec le chef de projet pour aligner les coûts avec les priorités stratégiques tout en maintenant la santé financière.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Se concentrer uniquement sur la réduction des coûts", "isCorrect": false },
+      { "text": "Équilibrer coûts et investissements avec la stratégie", "isCorrect": true },
+      { "text": "Ignorer les recommandations des projets", "isCorrect": false },
+      { "text": "Déléguer totalement la prise de décision", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quel indicateur faut-il privilégier pour évaluer la viabilité d’un projet industriel ?",
+    "description": "KPI d'évaluation de viabilité de projet.",
+    "explanation": "L’analyse de la Valeur Actuelle Nette (VAN) est cruciale pour estimer la rentabilité future du projet basé sur des flux de trésorerie actualisés.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Taux de retour sur investissement", "isCorrect": false },
+      { "text": "Valeur Actuelle Nette (VAN)", "isCorrect": true },
+      { "text": "Coût du projet", "isCorrect": false },
+      { "text": "Temps de réalisation", "isCorrect": false }
+    ]
+  },
+  {
+    "title": "Quelles sont les meilleures pratiques pour intégrer la durabilité dans un projet industriel ?",
+    "description": "Intégration de la durabilité dans les processus de projet.",
+    "explanation": "La durabilité doit être intégrée dès la phase de conception en utilisant des matériaux écologiques et des processus efficaces énergétiquement.",
+    "difficulty": "hard",
+    "status": "pending",
+    "duration": 200,
+    "choices": [
+      { "text": "Ne pas inclure des critères de durabilité", "isCorrect": false },
+      { "text": "Intégrer des matériaux et processus durables dans la conception", "isCorrect": true },
+      { "text": "Évaluer la durabilité après le projet", "isCorrect": false },
+      { "text": "Réduire seulement les coûts", "isCorrect": false }
+    ]
+  }
+]
+
