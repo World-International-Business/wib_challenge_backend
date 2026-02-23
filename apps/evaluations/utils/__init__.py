@@ -2,8 +2,11 @@ from decouple import config
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils import timezone
+import logging
 
 from apps.evaluations.models import EvaluationInvitation
+
+logger = logging.getLogger(__name__)
 
 
 def send_invitation_email(request, invitation: EvaluationInvitation):
