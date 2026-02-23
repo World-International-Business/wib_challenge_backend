@@ -32,12 +32,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 import os
+from decouple import config
 
-IMAP_HOST = os.getenv('IMAP_HOST')
-IMAP_PORT = int(os.getenv('IMAP_PORT', '993'))
-IMAP_USERNAME = os.getenv('IMAP_USERNAME')
-IMAP_PASSWORD = os.getenv('IMAP_PASSWORD')
-IMAP_MAILBOX = os.getenv('IMAP_MAILBOX', 'INBOX')
+IMAP_HOST = config('IMAP_HOST', default=None)
+IMAP_PORT = config('IMAP_PORT', cast=int, default=993)
+IMAP_USERNAME = config('IMAP_USERNAME', default=None)
+IMAP_PASSWORD = config('IMAP_PASSWORD', default=None)
+IMAP_MAILBOX = config('IMAP_MAILBOX', default='INBOX')
 
 
 def _env_bool(key: str, default: bool = False) -> bool:

@@ -219,13 +219,30 @@ class EvaluationViewSet(AccessViewSetMixin, generics.RetrieveUpdateDestroyAPIVie
         candidates = request.data.get('candidates', [])
         expires_at = request.data.get('expires_at')
 
-        for candidate in candidates:
-            serializer = EvaluationInvitationSerializer(
-                data={**candidate, 'expires_at': expires_at}, context={'request': request})
-            serializer.is_valid(raise_exception=True)
-            serializer.save(evaluation=evaluation)
+        sent = []
+        failed = []
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        for candidate in candidates:
+            payload = {**candidate, 'expires_at': expires_at}
+            serializer = EvaluationInvitationSerializer(data=payload, context={'request': request})
+
+            try:
+                serializer.is_valid(raise_exception=True)
+                serializer.save(evaluation=evaluation)
+                sent.append(candidate.get('email'))
+            except ValidationError as e:
+                failed.append({
+                    'email': candidate.get('email'),
+                    'reason': e.detail,
+                })
+            except Exception as e:
+                failed.append({
+                    'email': candidate.get('email'),
+                    'reason': str(e),
+                })
+
+        status_code = status.HTTP_200_OK if not failed else status.HTTP_207_MULTI_STATUS
+        return Response({'sent': sent, 'failed': failed}, status=status_code)
 
     @extend_schema(
         request=None,
