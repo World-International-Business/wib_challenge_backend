@@ -22,12 +22,13 @@ from urllib.parse import quote
 import requests
 
 from services.cv_analyzer import analyze_job_application
+from services.email_applications import import_email_applications_from_imap
 from services.generate_offer import generate_offer
 from services.users_job_suggestions import get_users_suggestions_for_job
 from wib_challenge.pagination import paginated_response
 from wib_challenge.permissions import ReadOnly
 from .filters import JobOfferFilter, JobApplicationFilter
-from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation
+from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation, JobApplicationAnalysis
 from .permissions import IsCompanyOwnerOrReadOnly
 from .serializers import (
     JobCategorySerializer, JobCategoryListSerializer,
@@ -505,110 +506,39 @@ class JobOfferViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'], url_path='import-matched-candidates')
     def import_matched_candidates(self, request, pk=None):
         """
-        Importe les candidats matchés pour cette offre en créant de vraies candidatures.
+        Analyse les CV des candidats pour cette offre et met à jour le score de matching.
+
+        Cette implémentation n'appelle plus le service externe de matching, mais utilise
+        le module local `services.cv_analyzer.analyze_job_application` pour chaque
+        candidature existante liée à cette offre.
         """
         job_offer = self.get_object()
-        
-        # Préparer le payload pour l'API de matching
-        skills_list = list(job_offer.skills.values_list('name', flat=True))
-        payload = {
-            "id": str(job_offer.id),
-            "title": job_offer.title,
-            "description": job_offer.description or "",
-            "responsibilities": job_offer.responsibilities or "",
-            "requirements": job_offer.requirements or "",
-            "benefits": job_offer.benefits or "",
-            "jobType": job_offer.job_type or "",
-            "experienceLevel": job_offer.experience_level or "",
-            "location": job_offer.location or "",
-            "remoteAllowed": job_offer.remote_allowed,
-            "featured": job_offer.featured,
-            "skills": skills_list,
-            "required_skills": skills_list,
-        }
-        
-        # Appeler l'API de matching
-        match_service_url = os.getenv(
-            "JOB_MATCH_SERVICE_URL",
-            "http://api-celery-fastapi-213-32-91-101.traefik.me/",
-        )
-        
-        try:
-            resp = requests.post(
-                f"{match_service_url}/match",
-                json=payload,
-                timeout=200
-            )
-            resp.raise_for_status()
-            matched_candidates = resp.json()
-        except Exception as e:
-            return Response(
-                {'error': f'Erreur lors de l\'appel à l\'API de matching: {str(e)}'},
-                status=status.HTTP_502_BAD_GATEWAY
-            )
-        
-        # Statistiques d'import
-        created_count = 0
-        skipped_count = 0
+
+        # Récupérer toutes les candidatures existantes pour cette offre
+        applications = job_offer.applications.select_related('job_offer').all()
+
+        analyzed_count = 0
         error_count = 0
-        created_applications = []
-        
-        # Traiter les candidats matchés
-        items = matched_candidates if isinstance(matched_candidates, list) else matched_candidates.get("results", [])
-        
-        for item in items:
+        analyzed_applications = []
+
+        for application in applications:
             try:
-                # Récupérer l'ID du candidat
-                candidate_id = item.get("candidateId") or item.get("candidate_id")
-                if not candidate_id:
-                    error_count += 1
-                    continue
-                
-                # Récupérer l'utilisateur
-                try:
-                    user = User.objects.get(pk=candidate_id)
-                except User.DoesNotExist:
-                    error_count += 1
-                    continue
-                
-                # Vérifier si une candidature existe déjà pour cet utilisateur et cette offre
-                existing = JobApplication.objects.filter(
-                    job_offer=job_offer,
-                    user=user
-                ).first()
-                
-                if existing:
-                    skipped_count += 1
-                    continue
-                
-                # Créer la candidature avec source='matched'
-                application = JobApplication.objects.create(
-                    job_offer=job_offer,
-                    user=user,
-                    applicant_name=f"{user.first_name} {user.last_name}".strip() or user.email,
-                    applicant_email=user.email,
-                    source=JobApplication.ApplicationSource.MATCHED,
-                    status=JobApplication.ApplicationStatus.PENDING,
-                    cover_letter=f"Candidat matché automatiquement par le système de matching pour le poste {job_offer.title}.",
-                )
-                
-                created_applications.append(application)
-                created_count += 1
-                
-            except Exception as e:
+                # Utilise le module local d'analyse de CV pour mettre à jour
+                # ai_analysis, ai_decision, match_score, is_matched, etc.
+                analyze_job_application(application, job_offer, save=True)
+                analyzed_applications.append(application)
+                analyzed_count += 1
+            except Exception:
                 error_count += 1
-                continue
-        
-        # Sérialiser les candidatures créées
-        serializer = JobApplicationSerializer(created_applications, many=True)
-        
+
+        serializer = JobApplicationSerializer(analyzed_applications, many=True)
+
         return Response({
-            'created': created_count,
-            'skipped': skipped_count,
+            'processed': applications.count(),
+            'analyzed': analyzed_count,
             'errors': error_count,
-            'total_matched': len(items),
-            'applications': serializer.data
-        }, status=status.HTTP_201_CREATED)
+            'applications': serializer.data,
+        }, status=status.HTTP_200_OK)
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -741,6 +671,96 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
 
         serializer = OrganizationApplicationSerializer(queryset, many=True)
         return Response(serializer.data)
+
+    @extend_schema(
+        summary="Synchroniser les candidatures email depuis la boîte IMAP",
+        description=(
+            "Connecte la boîte email RH IMAP configurée, importe les nouveaux emails UNSEEN "
+            "en tant que JobApplication (source='email') et retourne un résumé."
+        ),
+        responses={
+            200: OpenApiResponse(
+                description="Résumé de la synchronisation IMAP",
+            )
+        },
+    )
+    @action(detail=False, methods=['post'], url_path='sync-email-applications')
+    def sync_email_applications(self, request):
+        """Endpoint pour déclencher l'import des candidatures email (IMAP).
+
+        À utiliser depuis le frontend via un bouton "Actualiser les candidatures email".
+        Seuls les utilisateurs liés à une organisation peuvent l'appeler.
+        """
+        if not hasattr(request.user, 'organization') or not request.user.organization:
+            return Response(
+                {'detail': 'Accès réservé aux comptes organisation.'},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        result = import_email_applications_from_imap()
+        return Response(result, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        summary="Données extraites et analyse IA pour une candidature",
+        description=(
+            "Retourne les données structurées extraites du CV ou du profil candidat, "
+            "ainsi que l'analyse IA associée à une candidature donnée."
+        ),
+        responses={
+            200: OpenApiResponse(
+                description="Données d'analyse de la candidature",
+            )
+        },
+    )
+    @action(detail=True, methods=['get'], url_path='extracted-data')
+    def extracted_data(self, request, pk=None):
+        """Expose JobApplicationAnalysis.extracted_data et analysis_markdown pour le frontend.
+
+        Permet d'afficher proprement les informations extraites du CV ou du profil
+        du candidat, sans avoir à reparser le CV côté frontend.
+        """
+        application = self.get_object()
+
+        try:
+            analysis = JobApplicationAnalysis.objects.get(application=application)
+        except JobApplicationAnalysis.DoesNotExist:
+            # Si aucune analyse n'existe encore, tenter de la lancer immédiatement
+            try:
+                analyze_job_application(application, application.job_offer, save=True)
+                analysis = JobApplicationAnalysis.objects.get(application=application)
+            except Exception as e:
+                return Response(
+                    {
+                        'detail': "Aucune analyse disponible pour cette candidature et l'analyse automatique a échoué.",
+                        'error': str(e),
+                    },
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+
+        return Response(
+            {
+                'id': application.id,
+                'applicant_name': application.applicant_name,
+                'applicant_email': application.applicant_email,
+                'source': application.source,
+                'job_offer': application.job_offer_id,
+                'status': application.status,
+                'match_score': application.match_score,
+                'is_matched': application.is_matched,
+                'ai_decision': application.ai_decision,
+                'ai_analysis': application.ai_analysis,
+                'analysis': {
+                    'status': analysis.status,
+                    'provider': analysis.provider,
+                    'extracted_data': analysis.extracted_data,
+                    'analysis_markdown': analysis.analysis_markdown,
+                    'decision': analysis.decision,
+                    'error': analysis.error,
+                    'started_at': analysis.started_at,
+                    'finished_at': analysis.finished_at,
+                },
+            }
+        )
 
     @extend_schema(
         summary="Lancer (ou relancer) l'analyse CV d'une candidature",

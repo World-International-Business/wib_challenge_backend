@@ -47,8 +47,8 @@ def _env_bool(key: str, default: bool = False) -> bool:
         return default
     return str(value).strip().lower() in {'1', 'true', 'yes', 'y', 'on'}
 
-
 USE_CELERY_FOR_CV_ANALYSIS = _env_bool('USE_CELERY_FOR_CV_ANALYSIS', default=False)
+LOCAL_MATCHING_FALLBACK = _env_bool('LOCAL_MATCHING_FALLBACK', default=False)
 
 # Celery/Redis (optionnel)
 REDIS_URL = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/0')
@@ -183,7 +183,7 @@ STATICFILES_DIRS = [
 WHITENOISE_MANIFEST_STRICT = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = 'media/'
+MEDIA_URL = '/api/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type

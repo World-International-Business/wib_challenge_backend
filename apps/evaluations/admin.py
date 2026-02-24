@@ -47,6 +47,16 @@ class CompletionStatusFilter(admin.SimpleListFilter):
             ('not_started', _('Non commencées')),
         )
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        user = request.user
+        # Les superusers voient tout. Les utilisateurs liés à une organisation
+        # voient uniquement les évaluations publiées par leur organisation.
+        org = getattr(user, 'organization', None)
+        if not user.is_superuser and org is not None:
+            return qs.filter(publisher__organization=org)
+        return qs
+
     def queryset(self, request, queryset):
         if self.value() == 'completed':
             return queryset.filter(submission__isnull=False, ended_at__isnull=False)
@@ -199,7 +209,7 @@ class CandidateAdmin(admin.ModelAdmin):
 
 @admin.register(Participant)
 class ParticipantAdmin(admin.ModelAdmin):
-    list_display = ['id', 'participant_display', 'type', 'email', 'attempts_count', 'avg_score', 'created_at']
+    list_display = ['id', 'participant_display', 'type', 'email', 'attempts_count', 'avg_score', 'tests_summary', 'created_at']
     search_fields = ['user__username', 'user__email', 'candidate__full_name', 'candidate__email']
     list_filter = ['type', 'created_at']
     readonly_fields = ['created_at']
@@ -220,6 +230,38 @@ class ParticipantAdmin(admin.ModelAdmin):
     def avg_score(self, obj):
         avg = obj.attempts.filter(submission__isnull=False).aggregate(avg=Avg('submission__score'))['avg']
         return f"{avg:.1f}" if avg else "-"
+
+    @admin.display(description=_("Tests réussis (tech/log/pers)"))
+    def tests_summary(self, obj):
+        """Affiche combien de types de tests l'utilisateur a réussis parmi technique/logique/personnalité.
+
+        Un test est considéré comme réussi si au moins une tentative terminée a un score >= 60.
+        """
+        attempts = obj.attempts.filter(submission__isnull=False)
+
+        required_types = [
+            EvaluationType.TECHNICAL,
+            EvaluationType.LOGICAL,
+            EvaluationType.PERSONALITY,
+        ]
+
+        passed_count = 0
+        for etype in required_types:
+            if attempts.filter(evaluation__evaluation_type=etype, submission__score__gte=60).exists():
+                passed_count += 1
+
+        total_required = len(required_types)
+        if passed_count == total_required:
+            color = 'green'
+            icon = '✅'
+        elif passed_count > 0:
+            color = 'orange'
+            icon = '🟡'
+        else:
+            color = 'red'
+            icon = '🔴'
+
+        return format_html('<span style="color: {}">{} {}/{}</span>', color, icon, passed_count, total_required)
 
 
 @admin.register(Evaluation)
@@ -459,8 +501,15 @@ class SubmissionAttemptAdmin(admin.ModelAdmin):
                     'duration', 'is_finished', 'score_display', 'answers_count']
     search_fields = ['participant__user__username', 'participant__user__email',
                      'participant__candidate__full_name', 'participant__candidate__email', 'evaluation__title']
-    list_filter = [IsFinishedFilter, ScoreRangeFilter, 'evaluation__difficulty',
-                   'evaluation__evaluation_type', 'evaluation', 'started_at']
+    list_filter = [
+        IsFinishedFilter,
+        ScoreRangeFilter,
+        'evaluation__difficulty',
+        'evaluation__evaluation_type',
+        'evaluation__publisher__organization',  # filtrer par organisation de l'évaluation
+        'evaluation',
+        'started_at',
+    ]
     readonly_fields = ['started_at', 'answers_preview', 'attempt_summary']
     inlines = [AnswerInline]
     list_per_page = 25
@@ -476,6 +525,14 @@ class SubmissionAttemptAdmin(admin.ModelAdmin):
             'fields': ('submission', 'attempt_summary', 'answers_preview')
         }),
     )
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        user = request.user
+        org = getattr(user, 'organization', None)
+        if not user.is_superuser and org is not None:
+            return qs.filter(evaluation__publisher__organization=org)
+        return qs
 
     @admin.display(description=_("Participant"))
     def participant_display(self, obj):
@@ -525,7 +582,14 @@ class SubmissionAttemptAdmin(admin.ModelAdmin):
             else:
                 color = 'red'
                 icon = '🔴'
-            return format_html('<span style="color: {};">{} {:.1f}</span>', color, icon, score)
+            try:
+                score_value = float(score)
+                score_str = f"{score_value:.1f}"
+            except (TypeError, ValueError):
+                # Si le score ne peut pas être converti proprement en float, on l'affiche tel quel sans formatage décimal
+                score_str = str(score)
+
+            return format_html('<span style="color: {};">{} {}</span>', color, icon, score_str)
         return "-"
 
     @admin.display(description=_("Réponses"))
@@ -627,7 +691,10 @@ class SubmissionAdmin(admin.ModelAdmin):
     list_display = ['id', 'participant_name', 'evaluation_name', 'score_badge', 'submitted_at']
     search_fields = ['attempt__participant__user__username', 'attempt__participant__candidate__full_name',
                      'attempt__evaluation__title']
-    list_filter = ['submitted_at']
+    list_filter = [
+        'attempt__evaluation__publisher__organization',  # filtrer les soumissions par organisation
+        'submitted_at',
+    ]
     readonly_fields = ['submitted_at', 'participant_name', 'evaluation_name', 'attempt_link']
 
     fieldsets = (
@@ -641,6 +708,14 @@ class SubmissionAdmin(admin.ModelAdmin):
             'fields': ('submitted_at',)
         }),
     )
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        user = request.user
+        org = getattr(user, 'organization', None)
+        if not user.is_superuser and org is not None:
+            return qs.filter(attempt__evaluation__publisher__organization=org)
+        return qs
 
     @admin.display(description=_("Participant"))
     def participant_name(self, obj):
