@@ -1091,7 +1091,9 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             try:
                 send_invitation_email(request, invitation)
             except Exception:
-                pass
+                # En cas d'échec, on supprime l'invitation pour ne pas la voir dans les résultats
+                invitation.delete()
+                continue
 
         serializer = self.get_serializer(application)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -1165,8 +1167,8 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             try:
                 send_invitation_email(request, invitation)
             except Exception:
-                # En cas d'échec d'envoi de mail, on ne doit pas bloquer l'API
-                pass
+                # En cas d'échec d'envoi de mail, on supprime l'invitation pour ne pas l'afficher côté résultats
+                invitation.delete()
 
         # Créer une notification interne pour le candidat si c'est un utilisateur
         if application.user:

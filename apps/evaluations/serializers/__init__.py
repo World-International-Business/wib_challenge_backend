@@ -7,6 +7,7 @@ from rest_framework import serializers
 
 from apps.accounts.serializers import PublisherSerializer
 from apps.core.serializers import TechnologySerializer, ProfessionSerializer
+from django.db import transaction
 from apps.evaluations.models import Evaluation, SubmissionAttempt, Answer, Competition, EvaluationType, \
     Candidate, Participant, EvaluationInvitation, QuestionOrder, SkillEvaluation
 from apps.evaluations.utils import send_invitation_email
@@ -282,6 +283,7 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
                 "La date d'expiration doit être dans le futur.")
         return value
 
+    @transaction.atomic
     def create(self, validated_data):
         email = validated_data.pop('email', '')
         full_name = validated_data.pop('full_name', '')
@@ -309,7 +311,15 @@ class EvaluationInvitationSerializer(serializers.ModelSerializer):
             evaluation=evaluation,
         )
 
-        send_invitation_email(self.context['request'], invitation)
+        try:
+            send_invitation_email(self.context['request'], invitation)
+        except Exception as exc:
+            # En cas d'échec d'envoi, on annule toute la transaction
+            raise serializers.ValidationError({
+                'detail': "Échec d'envoi de l'email d'invitation. Aucun candidat n'a été invité.",
+                'error': str(exc),
+            })
+
         return invitation
 
 
