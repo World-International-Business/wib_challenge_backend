@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.db.models import Count, Q
+from django.utils.html import format_html
 
 from questions.models import Domain, Category, Criteria, Tag, Choice, Question
 
@@ -195,7 +196,7 @@ class ChoiceAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ['title', 'category', 'domain_name', 'question_type', 'question_category_display', 'level', 'created_at', 'choices_count',
+    list_display = ['title', 'category', 'domain_name', 'question_type', 'question_category_badge', 'level', 'created_at', 'choices_count',
                     'correct_choices_count', 'tags_display']
     search_fields = ['title', 'description', 'category__name', 'category__domain__name', 'tags__name']
     list_filter = ['level', 'question_type', 'question_category', 'category__domain', 'category', 'tags']
@@ -245,8 +246,13 @@ class QuestionAdmin(admin.ModelAdmin):
         return obj.category.domain.name
         
     @admin.display(description='Catégorie de question')
-    def question_category_display(self, obj):
-        return obj.get_question_category_display()
+    def question_category_badge(self, obj):
+        colors = {
+            Question.QuestionCategory.NORMAL: 'style="background:#2563eb;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;"',
+            Question.QuestionCategory.PERSONALITY: 'style="background:#10b981;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;"',
+            Question.QuestionCategory.LOGICAL: 'style="background:#06b6d4;color:#fff;padding:2px 8px;border-radius:12px;font-size:12px;"',
+        }
+        return format_html(f'<span {colors.get(obj.question_category, colors[Question.QuestionCategory.NORMAL])}>{obj.get_question_category_display()}</span>')
 
     @admin.display(description='Nombre de choix', ordering='choices_count')
     def choices_count(self, obj):
