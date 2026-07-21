@@ -2,13 +2,24 @@
 {% load i18n %}
 {% load static %}
 
+{% block title %}Test de personnalité - {{ challenge.title|default:"WIB" }}{% endblock %}
 
 {% block content %}
-    <div class="container mt-4">
-        <div class="row mb-4">
-            <div class="col">
-                <h2>Évaluation {{ challenge.title|default:"" }}</h2>
-                <p>{{ challenge.description|default:"" }}</p>
+    <div class="container py-4">
+        <!-- Header -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-success-subtle border-success-subtle">
+            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
+                <div class="icon-circle bg-success bg-opacity-10 text-success flex-shrink-0">
+                    <i class="fas fa-user-check fa-2x"></i>
+                </div>
+                <div>
+                    <h2 class="h4 fw-bold mb-1">{{ challenge.title|default:"Test de personnalité" }}</h2>
+                    <p class="text-secondary mb-0">
+                        Ce test nous aide à mieux vous connaître : votre façon de travailler,
+                        votre adaptabilité et votre compatibilité avec l'équipe.
+                        Il n'y a pas de bonnes ou de mauvaises réponses, soyez sincère.
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -17,77 +28,53 @@
             <input type="hidden" name="challenge_id" value="{{ challenge.id }}">
             <input type="hidden" name="personality" value="true">
 
-            <!-- Questions QCM -->
+            <!-- Questions à choix -->
             {% if choices_questions %}
-                <div class="container">
-                    <h2 class="mb-3">Questions à choix</h2>
+                <div class="mb-5">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="icon-circle-sm bg-success bg-opacity-10 text-success">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-0">Questions à choix</h3>
+                    </div>
                     {% for question in choices_questions %}
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5>{{ question.title }}</h5>
-                                {{ question.description }}<br>
-                                {% if question.is_multiple_choice %}
-                                    <small class="text-muted">Sélectionnez toutes les réponses correctes</small>
-                                {% else %}
-                                    <small class="text-muted">Sélectionnez au moins une réponse</small>
-                                {% endif %}
-                            </div>
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <ul class="list-group">
-                                            {% for choice in question.choices.all %}
-                                                <label class="form-check-label"
-                                                       for="choice_{{ question.id }}_{{ forloop.counter }}">
-                                                    <li class="list-group-item list-group-item-action rounded-2 mb-2">
-                                                        <input class="form-check-input question-{{ question.id }}"
-                                                               type="{% if question.is_multiple_choice %}checkbox{% else %}radio{% endif %}"
-                                                               name="answer_{{ question.id }}"
-                                                               id="choice_{{ question.id }}_{{ forloop.counter }}"
-                                                               value="{{ choice.id }}"
-                                                        />
-                                                        {{ choice.text }}
-                                                    </li>
-                                                </label>
-                                            {% endfor %}
-                                        </ul>
-                                        <div class="error-message text-danger mt-2" id="error-{{ question.id }}"
-                                             style="display: none;">
-                                            Veuillez sélectionner au moins une réponse pour cette question.
-                                        </div>
+                        <div class="card border-0 shadow-sm rounded-4 mb-3">
+                            <div class="card-header bg-white border-0 pt-3 px-4">
+                                <div class="d-flex align-items-start gap-2">
+                                    <span class="badge bg-success rounded-pill mt-1">{{ forloop.counter }}</span>
+                                    <div>
+                                        <h5 class="h6 fw-bold mb-1">{{ question.title }}</h5>
+                                        {% if question.description %}
+                                            <p class="text-secondary small mb-1">{{ question.description }}</p>
+                                        {% endif %}
+                                        <small class="text-muted">
+                                            {% if question.is_multiple_choice %}
+                                                <i class="bi bi-check-all me-1"></i>Sélectionnez toutes les réponses qui vous correspondent
+                                            {% else %}
+                                                <i class="bi bi-check-circle me-1"></i>Une seule réponse possible
+                                            {% endif %}
+                                        </small>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-
-            <!-- Questions Textuelles -->
-            {% if open_answer_questions %}
-                <div class="container">
-                    <h2 class="mb-3">Questions ouvertes</h2>
-                    {% for question in open_answer_questions %}
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5>{{ question.title }}</h5>
-                                {{ question.description }}
-                            </div>
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-floating">
-                                                            <textarea class="form-control"
-                                                                      name="answer_{{ question.id }}"
-                                                                      id="answer_{{ question.id }}"
-                                                                      placeholder="Réponse"
-                                                                      style="height: 100px" required
-                                                            ></textarea>
-                                                <label for="answer_{{ question.id }}">Réponse</label>
+                            <div class="card-body px-4 pb-4">
+                                <div class="list-group">
+                                    {% for choice in question.choices.all %}
+                                        <label class="list-group-item list-group-item-action rounded-3 mb-2 border choice-label"
+                                               for="choice_{{ question.id }}_{{ forloop.counter }}">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <input class="form-check-input flex-shrink-0 question-{{ question.id }}"
+                                                       type="{% if question.is_multiple_choice %}checkbox{% else %}radio{% endif %}"
+                                                       name="answer_{{ question.id }}"
+                                                       id="choice_{{ question.id }}_{{ forloop.counter }}"
+                                                       value="{{ choice.id }}">
+                                                <span class="small">{{ choice.text }}</span>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </label>
+                                    {% endfor %}
+                                </div>
+                                <div class="error-message text-danger small mt-2" id="error-{{ question.id }}" style="display: none;">
+                                    <i class="bi bi-exclamation-circle me-1"></i>Veuillez sélectionner au moins une réponse pour cette question.
                                 </div>
                             </div>
                         </div>
@@ -95,12 +82,83 @@
                 </div>
             {% endif %}
 
-            <div class="text-center mb-4">
-                <button type="submit" class="btn btn-primary btn-lg">Soumettre le Test</button>
+            <!-- Questions ouvertes -->
+            {% if open_answer_questions %}
+                <div class="mb-5">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="icon-circle-sm bg-warning bg-opacity-10 text-warning">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-0">Questions ouvertes</h3>
+                    </div>
+                    {% for question in open_answer_questions %}
+                        <div class="card border-0 shadow-sm rounded-4 mb-3">
+                            <div class="card-header bg-white border-0 pt-3 px-4">
+                                <div class="d-flex align-items-start gap-2">
+                                    <span class="badge bg-success rounded-pill mt-1">{{ forloop.counter }}</span>
+                                    <div>
+                                        <h5 class="h6 fw-bold mb-1">{{ question.title }}</h5>
+                                        {% if question.description %}
+                                            <p class="text-secondary small mb-0">{{ question.description }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body px-4 pb-4">
+                                <div class="form-floating">
+                                    <textarea class="form-control rounded-3"
+                                              name="answer_{{ question.id }}"
+                                              id="answer_{{ question.id }}"
+                                              placeholder="Réponse"
+                                              style="height: 140px; min-height: 120px;" required></textarea>
+                                    <label for="answer_{{ question.id }}">Votre réponse</label>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                    <p class="text-secondary small mb-0">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Vos réponses serviront à établir un profil de personnalité.
+                    </p>
+                    <button type="submit" class="btn btn-success btn-lg rounded-pill px-5 shadow-sm">
+                        <i class="bi bi-check-lg me-2"></i>Soumettre le test
+                    </button>
+                </div>
             </div>
         </form>
     </div>
+{% endblock %}
 
+{% block extra_css %}
+<style>
+    .icon-circle {
+        width: 72px; height: 72px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .icon-circle-sm {
+        width: 38px; height: 38px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.85rem;
+    }
+    .choice-label {
+        cursor: pointer;
+        transition: border-color .15s ease, background-color .15s ease;
+    }
+    .choice-label:hover {
+        border-color: var(--success) !important;
+        background-color: #f8fafc;
+    }
+    .bg-success-subtle { background-color: rgba(16, 185, 129, 0.08) !important; }
+    .border-success-subtle { border: 1px solid rgba(16, 185, 129, 0.2) !important; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('evaluationForm');
@@ -109,7 +167,6 @@
                 let isValid = true;
                 let firstErrorElement = null;
 
-                // Masquer tous les messages d'erreur
                 document.querySelectorAll('.error-message').forEach(el => {
                     el.style.display = 'none';
                 });
@@ -129,13 +186,11 @@
 
                 if (!isValid) {
                     event.preventDefault();
-
-                    // Scroll jusqu'à la première erreur
                     if (firstErrorElement) {
                         firstErrorElement.scrollIntoView({behavior: 'smooth', block: 'center'});
                     }
-                }else {
-                    if (!confirm("Êtes-vous sûr de vouloir soumettre ce test ?")) {
+                } else {
+                    if (!confirm("Êtes-vous sûr de vouloir soumettre ce test de personnalité ?")) {
                         event.preventDefault();
                     }
                 }

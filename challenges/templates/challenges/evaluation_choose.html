@@ -1,184 +1,230 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Choisir une évaluation - WIB{% endblock %}
+
 {% block content %}
-    <div class="container mt-4">
-        <div class="row mb-4">
-            <h2 class="text-center">Choisissez une évaluation</h2>
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-3">
+                <i class="bi bi-clipboard-check me-1"></i> Centre d'évaluation
+            </span>
+            <h2 class="fw-bold display-6">Lancer une évaluation</h2>
+            <p class="text-secondary mx-auto" style="max-width: 650px;">
+                Depuis cette page, vous pouvez générer un <strong>test technique</strong>, un <strong>test psychotechnique</strong>
+                ou un <strong>test de personnalité</strong>. Vous pouvez aussi reprendre un test technique déjà généré.
+            </p>
         </div>
+
         {% if not user.has_skill_infos %}
-            <div class="alert alert-warning text-center shadow-sm p-3" role="alert">
-                <strong> Avant de continuer !</strong>
-                Pour accéder aux évaluations, veuillez <a href="{% url 'update_profile' %}" class="alert-link">mettre à
-                jour
-                votre profil</a>
-                en renseignant votre niveau d'expérience, vos années d'expérience et vos compétences.
+            <div class="alert alert-warning border-0 rounded-4 shadow-sm text-center p-4 mb-5" role="alert">
+                <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-warning bg-opacity-10 text-warning mb-3"
+                     style="width: 56px; height: 56px;">
+                    <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Profil incomplet</h5>
+                <p class="mb-0">Pour accéder aux évaluations, veuillez <a href="{% url 'update_profile' %}" class="alert-link fw-bold">mettre à jour votre profil</a> en renseignant votre niveau, vos années d'expérience et vos compétences.</p>
             </div>
         {% endif %}
 
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Évaluations techniques</h3>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            {% for challenge in challenges %}
-                                <a class="text-decoration-none mb-2"
-                                   href="{% url 'challenge_evaluation_detail' challenge.slug challenge.id %}">
-                                    <li class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
-                                        <span>{{ challenge.title }}</span>
-                                    </li>
-                                </a>
-                                {% empty %}
-                                <li class="list-group-item">
-                                    Aucune évaluation disponible
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        {% if challenges|length > 0 %}
-                            <div class="d-flex justify-content-center mt-4">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        {% if challenges.has_previous %}
-                                            <li class="page-item">
-                                                <a class="page-link"
-                                                   href="?page={{ challenges.previous_page_number }}">Previous</a>
-                                            </li>
-                                        {% endif %}
-                                        {% for page_number in challenges.paginator.page_range %}
-                                            {% if challenges.number == page_number %}
-                                                <li class="page-item active">
-                                                    <a class="page-link"
-                                                       href="?page={{ page_number }}">{{ page_number }}</a>
-                                                </li>
-                                            {% else %}
-                                                <li class="page-item">
-                                                    <a class="page-link"
-                                                       href="?page={{ page_number }}">{{ page_number }}</a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                        {% if challenges.has_next %}
-                                            <li class="page-item">
-                                                <a class="page-link"
-                                                   href="?page={{ challenges.next_page_number }}">Next</a>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </nav>
+        {% if user.has_skill_infos and not user.is_staff %}
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="icon-circle-sm bg-primary bg-opacity-10 text-primary flex-shrink-0">
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+                <div>
+                    <h3 class="h5 fw-bold mb-0">Générer un nouveau test</h3>
+                    <p class="text-secondary small mb-0">Choisissez le type d'évaluation que vous souhaitez passer.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-5 g-4" id="generer-tests">
+                <div class="col-lg-4 col-md-6" id="section-technique">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center hover-card p-3 {% if challenges.paginator.count > 0 %}opacity-50{% endif %}">
+                        <div class="card-body p-4">
+                            <div class="icon-circle bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                                <i class="fas fa-code fa-2x"></i>
                             </div>
-                        {% endif %}
-
-                        {% if user.has_skill_infos and not user.is_staff %}
-                            <div class="text-center mt-4">
-                                {% if not challenges %}
-                                    <button type="button" class="btn btn-primary mb-3" id="create-challenge-button">
-                                        Créer un Test
-                                    </button>
-                                {% endif %}
-                                <div class="row justify-content-center">
-                                    {% if not has_logical_test %}
-                                        <div class="col-auto mb-2">
-                                            <button type="button" class="btn btn-info" id="create-logical-button">
-                                                Créer un test Psychotechnique
-                                            </button>
-                                        </div>
-                                    {% endif %}
-
-                                    {% if not has_personality_test %}
-                                        <div class="col-auto mb-2">
-                                            <button type="button" class="btn btn-success"
-                                                    id="create-personality-button">
-                                                Créer un test de personnalité
-                                            </button>
-                                        </div>
-                                    {% endif %}
-                                </div>
-
-                                <p class="text-muted mt-2">
-                                    <small>Les tests générés seront adaptés à votre profil et à votre domaine
-                                        d'expertise.</small>
-                                </p>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <div class="card-footer text-muted fst-italic">
-                        Une fois que vous avez cliqué sur le challenge, le chrono se lancera et vous ne pourrez pas
-                        faire d'arrêt.
+                            <h4 class="h5 fw-bold mb-2">Test technique</h4>
+                            <p class="text-secondary small mb-3">Mesurez vos compétences en programmation, frameworks et bases de données.</p>
+                            {% if challenges.paginator.count > 0 %}
+                                <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà généré</span>
+                            {% endif %}
+                            <button type="button" class="btn btn-outline-primary w-100 rounded-pill" id="create-challenge-button" {% if challenges.paginator.count > 0 %}disabled{% endif %}>
+                                <i class="bi bi-plus-lg me-2"></i>{% if challenges.paginator.count > 0 %}Test en cours{% else %}Générer{% endif %}
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <div class="col-lg-4 col-md-6" id="section-psychotechnique">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center hover-card p-3 {% if logical_passed %}opacity-50{% endif %}">
+                        <div class="card-body p-4">
+                            <div class="icon-circle bg-info bg-opacity-10 text-info mb-3 mx-auto">
+                                <i class="fas fa-puzzle-piece fa-2x"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-2">Test psychotechnique</h4>
+                            <p class="text-secondary small mb-3">Évaluez votre logique, votre raisonnement abstrait et votre rapidité.</p>
+                            {% if logical_passed %}
+                                <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà passé</span>
+                            {% elif has_logical_test %}
+                                <span class="badge rounded-pill bg-info mb-2"><i class="bi bi-hourglass-split me-1"></i>En cours</span>
+                            {% endif %}
+                            {% if logical_passed %}
+                                <button type="button" class="btn btn-outline-secondary w-100 rounded-pill" disabled>
+                                    <i class="bi bi-check-lg me-2"></i>Test déjà passé
+                                </button>
+                            {% elif has_logical_test %}
+                                <a href="{% url 'challenge_evaluation_detail' logical_challenge.slug logical_challenge.id %}" class="btn btn-info text-white w-100 rounded-pill">
+                                    <i class="bi bi-play-fill me-2"></i>Continuer le test
+                                </a>
+                            {% else %}
+                                <button type="button" class="btn btn-outline-info w-100 rounded-pill" id="create-logical-button">
+                                    <i class="bi bi-plus-lg me-2"></i>Générer
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" id="section-personnalite">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center hover-card p-3 {% if personality_passed %}opacity-50{% endif %}">
+                        <div class="card-body p-4">
+                            <div class="icon-circle bg-success bg-opacity-10 text-success mb-3 mx-auto">
+                                <i class="fas fa-user-check fa-2x"></i>
+                            </div>
+                            <h4 class="h5 fw-bold mb-2">Test de personnalité</h4>
+                            <p class="text-secondary small mb-3">Découvrez votre profil comportemental et votre compatibilité équipe.</p>
+                            {% if personality_passed %}
+                                <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà passé</span>
+                            {% elif has_personality_test %}
+                                <span class="badge rounded-pill bg-success mb-2"><i class="bi bi-hourglass-split me-1"></i>En cours</span>
+                            {% endif %}
+                            {% if personality_passed %}
+                                <button type="button" class="btn btn-outline-secondary w-100 rounded-pill" disabled>
+                                    <i class="bi bi-check-lg me-2"></i>Test déjà passé
+                                </button>
+                            {% elif has_personality_test %}
+                                <a href="{% url 'personality_evaluation' %}" class="btn btn-success text-white w-100 rounded-pill">
+                                    <i class="bi bi-play-fill me-2"></i>Continuer le test
+                                </a>
+                            {% else %}
+                                <button type="button" class="btn btn-outline-success w-100 rounded-pill" id="create-personality-button">
+                                    <i class="bi bi-plus-lg me-2"></i>Générer
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="icon-circle-sm bg-primary bg-opacity-10 text-primary flex-shrink-0">
+                <i class="bi bi-list-check"></i>
+            </div>
+            <div>
+                <h3 class="h5 fw-bold mb-0">Reprendre un test technique</h3>
+                <p class="text-secondary small mb-0">Vos tests techniques générés et non encore passés apparaissent ici.</p>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-header border-0 pt-4 px-4 d-none d-md-block">
+                <h4 class="h6 fw-bold text-muted mb-0">Évaluations techniques disponibles</h4>
+            </div>
+            <div class="card-body p-4">
+                {% if challenges %}
+                    <div class="list-group list-group-flush">
+                        {% for challenge in challenges %}
+                            <a href="{% url 'challenge_evaluation_detail' challenge.slug challenge.id %}"
+                               class="list-group-item list-group-item-action rounded-3 mb-2 border d-flex justify-content-between align-items-center py-3 px-4 hover-list-item">
+                                <div>
+                                    <h6 class="fw-bold mb-1">{{ challenge.title }}</h6>
+                                    <small class="text-muted">{{ challenge.get_level_display }}</small>
+                                </div>
+                                <span class="btn btn-sm btn-primary rounded-pill">Démarrer</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox display-4 text-muted"></i>
+                        <p class="text-muted mt-3 mb-0">Aucune évaluation technique disponible. Générez-en une ci-dessus.</p>
+                    </div>
+                {% endif %}
+
+                {% if challenges.has_other_pages %}
+                    <nav aria-label="Pagination" class="mt-4">
+                        <ul class="pagination justify-content-center mb-0">
+                            {% if challenges.has_previous %}
+                                <li class="page-item"><a class="page-link rounded-start-pill" href="?page={{ challenges.previous_page_number }}">Précédent</a></li>
+                            {% else %}
+                                <li class="page-item disabled"><span class="page-link rounded-start-pill">Précédent</span></li>
+                            {% endif %}
+                            {% for page_number in challenges.paginator.page_range %}
+                                {% if challenges.number == page_number %}
+                                    <li class="page-item active"><span class="page-link">{{ page_number }}</span></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if challenges.has_next %}
+                                <li class="page-item"><a class="page-link rounded-end-pill" href="?page={{ challenges.next_page_number }}">Suivant</a></li>
+                            {% else %}
+                                <li class="page-item disabled"><span class="page-link rounded-end-pill">Suivant</span></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+            <div class="card-footer bg-light border-0 rounded-bottom-4 text-muted fst-italic small p-3">
+                <i class="bi bi-info-circle me-1"></i> Une fois le challenge lancé, le chronomètre démarre et ne peut pas être interrompu.
             </div>
         </div>
     </div>
 {% endblock %}
+
+{% block extra_css %}
+<style>
+    .icon-circle {
+        width: 72px; height: 72px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .icon-circle-sm {
+        width: 42px; height: 42px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.9rem;
+    }
+    .bg-primary-subtle { background-color: rgba(37, 99, 235, 0.1) !important; }
+    .text-primary-emphasis { color: #1d4ed8 !important; }
+</style>
+{% endblock %}
+
 {% block extra_js %}
     <script>
-        // Bouton pour créer tous les tests
-        const createChallengeButton = document.getElementById('create-challenge-button');
-        if (createChallengeButton) {
-            createChallengeButton.addEventListener('click', () => {
-                createChallengeButton.disabled = true;
-                createChallengeButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création en cours...';
-
-                fetch('{% url 'challenge_create' %}', {
+        function setupCreateButton(id, url, redirect) {
+            const button = document.getElementById(id);
+            if (!button || button.disabled) return;
+            button.addEventListener('click', () => {
+                button.disabled = true;
+                const original = button.innerHTML;
+                button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création...';
+                fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': '{{ csrf_token }}'
                     },
                 }).then(() => {
-                    window.location.reload()
+                    window.location.href = redirect || window.location.href;
                 }).catch(() => {
-                    createChallengeButton.disabled = false;
-                    createChallengeButton.innerHTML = 'Erreur - Réessayer';
-                })
+                    button.disabled = false;
+                    button.innerHTML = 'Erreur - Réessayer';
+                });
             });
         }
 
-        // Bouton pour créer un test de personnalité
-        const createPersonalityButton = document.getElementById('create-personality-button');
-        if (createPersonalityButton) {
-            createPersonalityButton.addEventListener('click', () => {
-                createPersonalityButton.disabled = true;
-                createPersonalityButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création en cours...';
-
-                fetch('{% url 'personality_challenge_create' %}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}'
-                    },
-                }).then(() => {
-                    window.location.href = '{% url 'personality_evaluation' %}'
-                }).catch(() => {
-                    createPersonalityButton.disabled = false;
-                    createPersonalityButton.innerHTML = 'Erreur - Réessayer';
-                })
-            });
-        }
-
-        // Bouton pour créer un test logique
-        const createLogicalButton = document.getElementById('create-logical-button');
-        if (createLogicalButton) {
-            createLogicalButton.addEventListener('click', () => {
-                createLogicalButton.disabled = true;
-                createLogicalButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Création en cours...';
-
-                fetch('{% url 'logical_challenge_create' %}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}'
-                    },
-                }).then(() => {
-                    window.location.reload()
-                }).catch(() => {
-                    createLogicalButton.disabled = false;
-                    createLogicalButton.innerHTML = 'Erreur - Réessayer';
-                })
-            });
-        }
+        setupCreateButton('create-challenge-button', "{% url 'challenge_create' %}", window.location.href);
+        setupCreateButton('create-logical-button', "{% url 'logical_challenge_create' %}", window.location.href);
+        setupCreateButton('create-personality-button', "{% url 'personality_challenge_create' %}", "{% url 'personality_evaluation' %}");
     </script>
 {% endblock %}

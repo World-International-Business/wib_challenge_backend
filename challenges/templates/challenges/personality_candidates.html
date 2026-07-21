@@ -3,111 +3,115 @@
 {% block title %}Détails de personnalité des candidats{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1 class="mb-4">Détails de personnalité des candidats</h1>
-    
-    <div class="card shadow-sm">
-        <div class="card-body">
+<div class="container py-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+        <div>
+            <span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3 py-2 mb-2">
+                <i class="bi bi-person-bounding-box me-1"></i> Profils de personnalité
+            </span>
+            <h2 class="fw-bold mb-1">Candidats ayant passé le test</h2>
+            <p class="text-muted mb-0">{{ page_obj.paginator.count }} candidat{{ page_obj.paginator.count|pluralize }} trouvé{{ page_obj.paginator.count|pluralize }}</p>
+        </div>
+    </div>
+
+    <div class="alert alert-success border-0 rounded-4 mb-4">
+        <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-success bg-opacity-10 text-success d-flex align-items-center justify-content-center flex-shrink-0"
+                 style="width: 48px; height: 48px;">
+                <i class="bi bi-info-circle fs-4"></i>
+            </div>
+            <div>
+                <h5 class="fw-bold mb-1">Profils de personnalité</h5>
+                <p class="mb-0 text-success-emphasis">Cette page liste les candidats ayant complété le test de personnalité. Cliquez sur "Voir" pour lire l'analyse complète du profil.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead class="thead-light">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
                         <tr>
-                            <th>Nom</th>
+                            <th class="ps-4">Candidat</th>
                             <th>Email</th>
-                            <th>Statut des tests</th>
-                            <th>Actions</th>
+                            <th>Statut</th>
+                            <th class="pe-4">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for user in page_obj %}
                         <tr>
-                            <td>{{ user.get_full_name }}</td>
-                            <td>{{ user.email }}</td>
-                            <td>
-                                <span class="badge text-black {% if user.has_corrected_challenge %}badge-success{% else %}badge-warning{% endif %}">
-                                    {{ user.corrected_challenges }}/{{ user.total_challenges }} corrigé(s)
-                                </span>
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                        {{ user.first_name|first|default:'?'|upper }}{{ user.last_name|first|default:'?'|upper }}
+                                    </div>
+                                    <div class="fw-semibold">{{ user.get_full_name|default:user.email }}</div>
+                                </div>
                             </td>
+                            <td><span class="text-muted">{{ user.email }}</span></td>
                             <td>
                                 {% if user.has_corrected_challenge %}
-                                    <a href="{% url 'personality_details' user.id %}" class="btn btn-primary btn-sm">
-                                        Voir les détails
+                                    <span class="badge rounded-pill bg-success"><i class="bi bi-check-circle me-1"></i>{{ user.corrected_challenges }}/{{ user.total_challenges }} corrigé(s)</span>
+                                {% else %}
+                                    <span class="badge rounded-pill bg-warning text-dark"><i class="bi bi-hourglass me-1"></i>{{ user.corrected_challenges }}/{{ user.total_challenges }} corrigé(s)</span>
+                                {% endif %}
+                            </td>
+                            <td class="pe-4">
+                                {% if user.has_corrected_challenge %}
+                                    <a href="{% url 'personality_details' user.id %}" class="btn btn-primary btn-sm rounded-pill">
+                                        <i class="bi bi-eye me-1"></i>Voir
                                     </a>
                                 {% elif not user.has_passed_challenge %}
-                                    <button class="btn btn-secondary btn-sm" disabled>Pas encore passé</button>
+                                    <button class="btn btn-outline-secondary btn-sm rounded-pill" disabled><i class="bi bi-clock me-1"></i>Non passé</button>
                                 {% else %}
-                                    <button class="btn btn-secondary btn-sm" disabled>En attente de correction</button>
+                                    <button class="btn btn-outline-warning btn-sm rounded-pill" disabled><i class="bi bi-hourglass me-1"></i>En attente</button>
                                 {% endif %}
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="4" class="text-center">Aucun candidat avec test de personnalité</td>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="bi bi-inbox display-4 d-block mb-2"></i>
+                                Aucun candidat avec test de personnalité
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-            
-            <!-- Pagination -->
-            {% if page_obj.has_other_pages %}
-            <nav aria-label="Navigation des pages">
-                <ul class="pagination justify-content-center">
-                    {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page=1" aria-label="Première">
-                            <span aria-hidden="true">&laquo;&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Précédente">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">&laquo;&laquo;</span>
-                    </li>
-                    <li class="page-item disabled">
-                        <span class="page-link">&laquo;</span>
-                    </li>
-                    {% endif %}
-                    
-                    {% for i in page_obj.paginator.page_range %}
-                        {% if page_obj.number == i %}
-                            <li class="page-item active">
-                                <span class="page-link">{{ i }}</span>
-                            </li>
-                        {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
-                            <li class="page-item">
-                                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                    
-                    {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Suivante">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Dernière">
-                            <span aria-hidden="true">&raquo;&raquo;</span>
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">&raquo;</span>
-                    </li>
-                    <li class="page-item disabled">
-                        <span class="page-link">&raquo;&raquo;</span>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
         </div>
     </div>
+
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="Navigation des pages" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link rounded-start-pill" href="?page=1" aria-label="Première"><span aria-hidden="true">&laquo;&laquo;</span></a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Précédente"><span aria-hidden="true">&laquo;</span></a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link rounded-start-pill">&laquo;&laquo;</span></li>
+            <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+
+            {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Suivante"><span aria-hidden="true">&raquo;</span></a></li>
+            <li class="page-item"><a class="page-link rounded-end-pill" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Dernière"><span aria-hidden="true">&raquo;&raquo;</span></a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+            <li class="page-item disabled"><span class="page-link rounded-end-pill">&raquo;&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
 {% endblock %}

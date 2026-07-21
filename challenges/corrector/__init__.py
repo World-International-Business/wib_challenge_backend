@@ -39,7 +39,6 @@ def correct_answer_choice(answer: Answer):
         )
 
 
-@transaction.atomic
 def correct_submission(submission: Submission):
     client = get_genai_client()
     answers = list(submission.answers.all())
@@ -74,7 +73,6 @@ def correct_submission(submission: Submission):
     return answers
 
 
-@transaction.atomic
 def correct_personality_challenge(challenge: PersonalityChallenge):
     client = get_genai_client()
     answers = list(challenge.answers.all())

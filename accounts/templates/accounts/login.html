@@ -3,69 +3,47 @@
 {% block title %}Connexion - Plateforme de Challenge{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
+        <div class="col-md-5">
+            <div class="card border-0 shadow-lg rounded-4">
                 <div class="card-body p-5">
-                    <h2 class="text-center mb-4">Connexion</h2>
+                    <div class="text-center mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary mb-3" style="width: 64px; height: 64px;">
+                            <i class="bi bi-person-lock fs-2"></i>
+                        </div>
+                        <h2 class="fw-bold">Connexion</h2>
+                        <p class="text-secondary mb-0">Accédez à votre espace candidat</p>
+                    </div>
                     <form method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="username" class="form-label">Nom d'utilisateur ( Email )</label>
-                            <input type="text" name="username" class="form-control" id="username" required>
+                            <label for="username" class="form-label fw-semibold small text-muted">Adresse email</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-envelope text-muted"></i></span>
+                                <input type="text" name="username" class="form-control border-start-0 ps-0" id="username" placeholder="nom@exemple.com" required>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Mot de passe</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-semibold small text-muted">Mot de passe</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock text-muted"></i></span>
+                                <input type="password" name="password" class="form-control border-start-0 ps-0" id="password" placeholder="••••••••" required>
+                            </div>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                            <button type="submit" class="btn btn-primary rounded-pill py-2 fw-semibold">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+                            </button>
                         </div>
                     </form>
-                    <div class="text-center mt-3">
-                        <p>Pas encore de compte ? <a href="{% url 'register' %}">Inscrivez-vous</a></p>
-                        <p><a href="{% url 'password_reset' %}">Mot de passe oublié ?</a></p>
-{#                        <a class="btn btn-danger" href="{% provider_login_url 'google' %}" >#}
-{#    <i class="bi bi-google"></i> Se connecter avec Google#}
-{#</a>#}
+                    <div class="text-center mt-4">
+                        <p class="mb-1 small">Pas encore de compte ? <a href="{% url 'register' %}" class="text-decoration-none fw-semibold">Inscrivez-vous</a></p>
+                        <p class="mb-0 small"><a href="{% url 'password_reset' %}" class="text-decoration-none">Mot de passe oublié ?</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-{#<script>#}
-{#function openGooglePopup() {#}
-{#    var width = 600;#}
-{#    var height = 600;#}
-{#    var left = (screen.width - width) / 2;#}
-{#    var top = (screen.height - height) / 2;#}
-{##}
-{#    var googleLoginUrl = "{% provider_login_url 'google' %}";#}
-{##}
-{#    var popup = window.open(googleLoginUrl, "Google Login", `width=${width}, height=${height}, top=${top}, left=${left}`);#}
-{##}
-{#    if (!popup || popup.closed || typeof popup.closed == 'undefined') {#}
-{#        alert("Veuillez autoriser les popups pour ce site.");#}
-{#        return;#}
-{#    }#}
-{##}
-{#    // Écouteur pour recevoir le message de la popup#}
-{#    window.addEventListener("message", function(event) {#}
-{#        if (event.data === "login_success") {#}
-{#            window.location.href = "/";  // Redirige vers l'accueil#}
-{#        }#}
-{#    });#}
-{##}
-{#    // Vérifie toutes les 500ms si la popup est fermée#}
-{#    var timer = setInterval(function() {#}
-{#        if (popup.closed) {#}
-{#            clearInterval(timer);#}
-{#        }#}
-{#    }, 500);#}
-{#}#}
-{#</script>#}
-
 {% endblock %}

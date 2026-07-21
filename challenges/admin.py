@@ -65,6 +65,50 @@ class ExperienceLevelFilter(admin.SimpleListFilter):
         return queryset
 
 
+class ActiveCandidateFilter(admin.SimpleListFilter):
+    title = 'Candidat actif'
+    parameter_name = 'active_candidate'
+
+    def lookups(self, request, model_admin):
+        return (('1', 'Oui'), ('0', 'Non'),)
+
+    def queryset(self, request, queryset):
+        if self.value() == '1':
+            return queryset.filter(candidate__is_active=True)
+        if self.value() == '0':
+            return queryset.filter(candidate__is_active=False)
+        return queryset
+
+
+class CandidateDateJoinedFilter(admin.SimpleListFilter):
+    title = 'Date d\'inscription du candidat'
+    parameter_name = 'candidate_date_joined'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('today', 'Aujourd\'hui'),
+            ('week', '7 derniers jours'),
+            ('month', 'Ce mois'),
+            ('year', 'Cette année'),
+        )
+
+    def queryset(self, request, queryset):
+        from django.utils.timezone import now
+        from datetime import timedelta
+
+        today = now().date()
+        value = self.value()
+        if value == 'today':
+            return queryset.filter(candidate__date_joined__date=today)
+        if value == 'week':
+            return queryset.filter(candidate__date_joined__date__gte=today - timedelta(days=7))
+        if value == 'month':
+            return queryset.filter(candidate__date_joined__year=today.year, candidate__date_joined__month=today.month)
+        if value == 'year':
+            return queryset.filter(candidate__date_joined__year=today.year)
+        return queryset
+
+
 class QuestionCategoryFilter(admin.SimpleListFilter):
     title = 'Catégorie de question'
     parameter_name = 'question_category'
@@ -180,7 +224,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 class SubmissionAttemptAdmin(admin.ModelAdmin):
     list_display = ['candidate', 'challenge', 'started_at', 'ended_at', 'is_finished_display', 'performance_display',
                     'remaining_time_display']
-    list_filter = ['started_at', 'ended_at', 'challenge', 'candidate']
+    list_filter = ['started_at', 'ended_at', 'challenge', 'candidate', ActiveCandidateFilter, CandidateDateJoinedFilter]
     search_fields = ['candidate__email', 'candidate__first_name', 'candidate__last_name', 'challenge__title']
     autocomplete_fields = ['candidate', 'challenge', 'submission']
     readonly_fields = ['started_at', 'ended_at', 'performance_display', 'remaining_time_display', 'questions_count',
@@ -283,7 +327,7 @@ class SubmissionAdmin(admin.ModelAdmin):
                     'correct_answers_display', 'submitted_at']
     search_fields = ['candidate__email', 'candidate__first_name', 'candidate__last_name', 'challenge__title',
                      'challenge__questions__tags__name']
-    list_filter = ['status', 'submitted_at', LogicalTestFilter, TagFilter, 'challenge', 'candidate']
+    list_filter = ['status', 'submitted_at', LogicalTestFilter, TagFilter, 'challenge', 'candidate', ActiveCandidateFilter, CandidateDateJoinedFilter]
     ordering = ['-submitted_at']
     readonly_fields = ['submitted_at', 'result', 'get_challenge_tags', 'is_logical_test', 'answers_count',
                        'correct_answers_count', 'attempt_duration']
@@ -487,7 +531,7 @@ class PersonalityAnswerInline(admin.TabularInline):
 class PersonalityChallengeAdmin(admin.ModelAdmin):
     list_display = ['title', 'candidate_display', 'questions_count', 'answers_count', 'is_passed', 'corrected']
     search_fields = ['title', 'description', 'candidate__first_name', 'candidate__last_name', 'candidate__email']
-    list_filter = ['is_passed', 'corrected']
+    list_filter = ['is_passed', 'corrected', ActiveCandidateFilter, CandidateDateJoinedFilter]
     readonly_fields = ['slug', 'questions_count', 'answers_count', 'completion_rate']
     inlines = [PersonalityAnswerInline]
     autocomplete_fields = ['candidate', 'questions']

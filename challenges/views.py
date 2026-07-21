@@ -1,3 +1,4 @@
+import logging
 import math
 
 from django.contrib import messages
@@ -12,6 +13,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 
 from accounts.models import User
 from challenges.challenge_gen import generate_challenge_for_user, generate_personality_challenge_for_user, \
@@ -19,6 +21,8 @@ from challenges.challenge_gen import generate_challenge_for_user, generate_perso
 from challenges.corrector import correct_submission, correct_personality_challenge
 from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, PersonalityChallenge, PersonalityAnswer
 from questions.models import Question
+
+logger = logging.getLogger(__name__)
 
 
 def home_view(request):
@@ -37,17 +41,28 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
     if request.user.is_staff and request.GET.get('user_id', None):
         candidate = get_object_or_404(User, pk=request.GET.get('user_id'))
     if not slug or not challenge_id:
-        if request.user.is_staff and candidate == request.user:
+        is_admin = request.user.is_staff and candidate == request.user
+        if is_admin:
             submissions = Submission.objects.all()
         else:
             submissions = User.objects.get(id=candidate.id).submissions.all()
-        submissions = submissions.prefetch_related('challenge').select_related('candidate').order_by(
-            '-submitted_at').all()
 
-        if submissions.count() == 1:
-            submission = submissions.first()
-            return redirect('result-detail', submission_id=submission.id, slug=submission.challenge.slug,
-                            challenge_id=submission.challenge.id)
+        submissions = submissions.prefetch_related('challenge').select_related('candidate').order_by('-submitted_at')
+
+        # Filtres admin
+        date_from = request.GET.get('date_from')
+        date_to = request.GET.get('date_to')
+        challenge_id_filter = request.GET.get('challenge')
+        candidate_id_filter = request.GET.get('candidate')
+
+        if date_from:
+            submissions = submissions.filter(submitted_at__date__gte=date_from)
+        if date_to:
+            submissions = submissions.filter(submitted_at__date__lte=date_to)
+        if challenge_id_filter:
+            submissions = submissions.filter(challenge_id=challenge_id_filter)
+        if candidate_id_filter:
+            submissions = submissions.filter(candidate_id=candidate_id_filter)
 
         # paginate
         page = request.GET.get('page', 1)
@@ -62,6 +77,15 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
         context = {
             'submissions': submissions,
             'add_id': request.user.is_staff,
+            'is_admin': is_admin,
+            'challenges': Challenge.objects.all().order_by('title') if is_admin else [],
+            'candidates': User.objects.filter(is_staff=False, is_superuser=False).order_by('last_name', 'first_name') if is_admin else [],
+            'filters': {
+                'date_from': date_from or '',
+                'date_to': date_to or '',
+                'challenge': challenge_id_filter or '',
+                'candidate': candidate_id_filter or '',
+            },
         }
         return render(request, 'challenges/result_choose.html', context)
 
@@ -165,7 +189,7 @@ def personality_evaluation_view(request):
             messages.info(request, 'Veuillez sélectionner un domaine avant de continuer.')
             return redirect('update_profile')
 
-    if challenge.corrected or challenge.is_passed:
+    if challenge.corrected or challenge.is_passed or challenge.answers.exists():
         messages.info(request, 'Vous avez déjà passé cette évaluation.')
         return redirect('home')
 
@@ -187,9 +211,13 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         messages.warning(request, 'Veuillez renseigner vos compétences avant de continuer.')
         return redirect('update_profile')
     if not slug or not challenge_id:
-        challenges = User.objects.get(id=request.user.id).challenges.exclude(submissions__candidate_id=request.user.id)
+        challenges = User.objects.get(id=request.user.id).challenges.filter(
+            is_logical=False
+        ).exclude(submissions__candidate_id=request.user.id)
         if challenges.count() == 0:
-            challenges = Challenge.objects.filter(attempts__candidate=request.user, attempts__ended_at__isnull=True)
+            challenges = Challenge.objects.filter(
+                is_logical=False, attempts__candidate=request.user, attempts__ended_at__isnull=True
+            )
 
         challenges = challenges.order_by('title')
 
@@ -202,18 +230,32 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         except EmptyPage:
             challenges = paginator.page(paginator.num_pages)
 
-        has_personality_test = PersonalityChallenge.objects.filter(candidate=request.user).exists()
+        personality_challenge = PersonalityChallenge.objects.filter(candidate=request.user).first()
+        has_personality_test = personality_challenge is not None
+        personality_passed = has_personality_test and (
+            personality_challenge.corrected or
+            personality_challenge.is_passed or
+            personality_challenge.answers.exists()
+        )
 
-        has_logical_test = Challenge.objects.filter(
+        logical_challenge = Challenge.objects.filter(
             is_logical=True,
             users=request.user
+        ).first()
+        has_logical_test = logical_challenge is not None
+        logical_passed = has_logical_test and logical_challenge.submissions.filter(
+            candidate=request.user
         ).exists()
 
         context = {
             'domain': request.user.domain.name,
             'challenges': challenges,
+            'personality_challenge': personality_challenge,
             'has_personality_test': has_personality_test,
+            'personality_passed': personality_passed,
+            'logical_challenge': logical_challenge,
             'has_logical_test': has_logical_test,
+            'logical_passed': logical_passed,
         }
         return render(request, 'challenges/evaluation_choose.html', context)
 
@@ -237,7 +279,6 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
 
 
 @login_required
-@transaction.atomic
 def submit_evaluation_view(request):
     if request.method != 'POST':
         return redirect('home')
@@ -287,6 +328,8 @@ def submit_evaluation_view(request):
                 answers.append(answer)
     if hasattr(submission, 'is_passed'):
         submission.is_passed = True
+    if not is_challenge:
+        challenge.is_passed = True
     submission.save()
     mail_managers(
         subject=f"Nouvelle soumission pour le {'challenge' if is_challenge else 'personality_challenge'} {challenge.title}",
@@ -294,22 +337,27 @@ def submit_evaluation_view(request):
                 f'par le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
                 f' Soumission ID: {submission.id}.'
                 f'Voir dans admin: {request.build_absolute_uri(reverse(admin_url, args=[submission.id]))}',
-        fail_silently=False,
+        fail_silently=True,
     )
-    try:
-        _correct_submission(submission)
-        result_url = request.build_absolute_uri(reverse(
-            'result-detail',
-            kwargs={
-                'submission_id': submission.id,
-                'slug': challenge.slug,
-                'challenge_id': challenge.id
-            }
-        ))
-        messages.success(request,
-                         'Réponses envoyées avec success' + ('\n Result: ' + result_url if is_challenge else ''))
+    result_url = request.build_absolute_uri(reverse(
+        'result-detail',
+        kwargs={
+            'submission_id': submission.id,
+            'slug': challenge.slug,
+            'challenge_id': challenge.id
+        }
+    ))
+    success_msg = 'Vos réponses ont bien été enregistrées.'
+    if is_challenge:
+        success_msg += f' <a href="{result_url}" class="alert-link">Voir le résultat</a>'
+    messages.success(request, mark_safe(success_msg))
 
-    except:
+    # La correction est lancée après le commit de la requête afin de ne pas
+    # bloquer l'enregistrement si l'API Gemini rencontre un problème.
+    try:
+        transaction.on_commit(lambda: _correct_submission(submission))
+    except Exception as e:
+        logger.exception('Erreur lors de la planification de la correction %s', submission.id)
         url = request.build_absolute_uri(reverse(admin_url, args=[submission.id]))
         mail_managers(
             subject=f'Erreur lors de la correction de la soumission {submission.id}',
@@ -317,7 +365,12 @@ def submit_evaluation_view(request):
                     f'pour le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
                     f' Challenge: {submission.challenge.title if is_challenge else submission.title}.'
                     f'Voir dans admin: {url}',
-            fail_silently=False,
+            fail_silently=True,
+        )
+        messages.info(
+            request,
+            'Vos réponses ont bien été enregistrées. Elles seront corrigées sous peu. '
+            'Merci de votre patience.'
         )
     return render(request, 'challenges/home.html')
 

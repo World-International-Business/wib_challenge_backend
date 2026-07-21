@@ -1,0 +1,731 @@
+{
+    "domain": "Test psychotechnique",
+    "category": "Test psychotechnique",
+    "criteria": "Test psychotechnique",
+    "tags": [
+        "Test de personnalité"
+    ],
+    "questions": [
+        {
+            "title": "Importance accordée au succès",
+            "description": "Quelle importance accordez-vous au succès ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Une importance moyenne.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Une très grande importance.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Le succès ne me préoccupe pas beaucoup.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Jours de congé pour stress",
+            "description": "Vous est-il déjà arrivé de prendre des jours de congé parce que vous étiez stressé(e) ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Une ou deux fois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Plus de deux fois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Jamais.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Sang-froid en crise",
+            "description": "Vous considère-t-on comme une personne sachant conserver son sang-froid en période de crise ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois, mais ceux qui gardent leur calme n'ont pas saisi la gravité.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pas vraiment.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui, je pense être perçu(e) ainsi.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Méthode de relaxation",
+            "description": "Quelle méthode vous détend le plus après une journée stressante ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quelques heures de sommeil dans ma chaise longue.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Une bonne rasade d'alcool.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Une barre chocolatée.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Réaction aux délais",
+            "description": "Les délais vous stimulent-ils ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Non, c'est un mal nécessaire.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non, ils me stressent.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui, je travaille mieux sous pression.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Stress moderne",
+            "description": "Pensez-vous que la vie actuelle génère plus de stress qu'il y a 40 ans ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Peut-être.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Garde d'enfants turbulents",
+            "description": "Comment réagiriez-vous à garder trois enfants turbulents ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Cela m'inquiète terriblement.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Je chercherais à éviter.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Un défi que je relèverais avec plaisir.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Stress et dommages matériels",
+            "description": "Le stress vous a-t-il déjà poussé à endommager des objets ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Non, juste raccrocher brutalement.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Réaction aux tracas quotidiens",
+            "description": "Êtes-vous souvent ennuyé(e) par des détails insignifiants ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Oui, parfois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Assez souvent.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Rarement voire jamais.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Adaptation aux nouvelles technologies",
+            "description": "Que ressentiriez-vous en apprenant une nouvelle technologie ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Je m'adapterais sans problème.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Cela m'inquiéterait un peu.",
+                    "is_correct": false
+                },
+                {
+                    "text": "J'aime apprendre des choses nouvelles.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Objectif des week-ends",
+            "description": "Quel est selon vous l'objectif principal des week-ends ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Passer du temps avec ses proches.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Ne pas travailler aussi dur.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Se détendre et oublier le travail.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Réaction aux travaux domestiques",
+            "description": "Que ressentez-vous lors de travaux chez vous ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Cela ne me dérange pas.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Je suis tendu(e) car cela perturbe ma routine.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Je suis content(e) voire excité(e).",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Réseau de soutien",
+            "description": "Avez-vous des amis de confiance vers qui vous tourner ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Peut-être.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pas vraiment.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Perception de la compétitivité",
+            "description": "Vivons-nous dans un monde plus compétitif qu'avant ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Un peu plus compétitif.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui, clairement.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non, c'est pareil.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Communication des émotions",
+            "description": "Parlez-vous de ce que vous ressentez avec les autres ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Rarement voire jamais.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Assez souvent.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Poussée vers l'avant",
+            "description": "Faut-il toujours s'efforcer d'avancer ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui, c'est nécessaire pour réussir.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non, la vie est trop courte.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Multitâche",
+            "description": "Travailler sur plusieurs projets vous dérange-t-il ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Non.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui, je préfère me concentrer sur une chose.",
+                    "is_correct": false
+                },
+                {
+                    "text": "J'aime cela.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Réaction aux erreurs",
+            "description": "Vous en voulez-vous après une erreur ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois, comme tout le monde.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Plus souvent que les autres.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Moins souvent que la plupart.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Traitement contre le stress",
+            "description": "Avez-vous déjà pris des médicaments contre le stress ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Assez souvent.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Jamais.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Impact des traumatismes",
+            "description": "Votre santé a-t-elle été affectée par un deuil ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Non, mais c'est possible.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non, malgré la souffrance.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Stress des examens",
+            "description": "Avez-vous souffert du stress des examens ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Un peu, comme la plupart.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Traitements alternatifs",
+            "description": "Que pensez-vous de l'acupuncture contre le stress ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Je ne sais pas trop.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Je n'essaierai jamais.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Cela peut être bénéfique.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Stress des corvées ménagères",
+            "description": "Les tâches ménagères vous stressent-elles ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Non, même si c'est pénible.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Jamais.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Capacité à se détendre",
+            "description": "Pouvez-vous facilement faire le vide ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Cela dépend.",
+                    "is_correct": false
+                },
+                {
+                    "text": "C'est presque impossible.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui, assez facilement.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Immersion dans le travail",
+            "description": "Combattre le stress en travaillant plus ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Souvent.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Rarement.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Réaction aux embouteillages",
+            "description": "Que ressentez-vous dans un embouteillage ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "De la colère.",
+                    "is_correct": false
+                },
+                {
+                    "text": "De la frustration.",
+                    "is_correct": false
+                },
+                {
+                    "text": "De l'ennui.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Évolution du stress avec l'âge",
+            "description": "Ressentez-vous plus de pression avec l'âge ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Pareil.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Plus.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Moins.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Attitude face au déménagement",
+            "description": "Que ressentiriez-vous en déménageant ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Certains avantages.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Je préfère éviter.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Un événement plaisant à planifier.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Stress et vie sexuelle",
+            "description": "Le stress a-t-il affecté votre vie sexuelle ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Parfois.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Souvent.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Jamais.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        },
+        {
+            "title": "Stress post-sevrage",
+            "description": "Stress après arrêt de café/thé/tabac ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Non, juste des manques.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Oui.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Non.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test de personnalité"
+            ],
+            "question_category": "PERSONALITY"
+        }
+    ],
+    "question_category": "PERSONALITY"
+}

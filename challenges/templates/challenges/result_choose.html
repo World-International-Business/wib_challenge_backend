@@ -2,76 +2,152 @@
 {% load static %}
 
 {% block content %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Choisissez une evaluation</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="list-group">
-                            {% for submission in submissions %}
-                                <a class="text-decoration-none mb-2"
-                                   href="{% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}{% if add_id %}?user_id={{ submission.candidate.id }}{% endif %}">
-                                    <div class="list-group-item list-group-item-action list-group-item-primary rounded d-flex justify-content-between">
-                                        <div class="w-50 nowrap text-truncate">{{ submission.challenge.title }}</div>
-                                        <div class="text-end me-5 w-25">{{ submission.submitted_at }}</div>
-                                        <div class="flex-grow-1 text-center">
-                                            {% if submission.result is not None %}
-                                                <span class="badge bg-primary text-white">
-                                                    {{ submission.result_percent|floatformat:'2' }}%
-                                                </span>
-                                            {% else %}
-                                                <span class="badge bg-secondary text-white">
-                                                    Non corrigé
-                                                </span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </a>
-                                {% empty %}
-                                <li class="list-group-item">
-                                    Aucun résultat disponible
-                                </li>
-                            {% endfor %}
+    <div class="container py-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+            <div>
+                <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-2">
+                    <i class="bi bi-graph-up me-1"></i> Historique
+                </span>
+                <h2 class="fw-bold mb-1">Résultats de vos évaluations</h2>
+                <p class="text-muted mb-0">
+                    Vous avez passé <strong>{{ submissions.paginator.count }}</strong> évaluation{{ submissions.paginator.count|pluralize }}.
+                    Cliquez sur le titre d'une évaluation pour voir le détail complet.
+                </p>
+            </div>
+            {% if is_admin %}
+                <a href="?" class="btn btn-outline-secondary rounded-pill"><i class="bi bi-arrow-counterclockwise me-1"></i>Réinitialiser</a>
+            {% endif %}
+        </div>
+
+        {% if is_admin %}
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body bg-white">
+                    <form method="get" class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label for="date_from" class="form-label text-muted small fw-semibold">Du</label>
+                            <input type="date" id="date_from" name="date_from" value="{{ filters.date_from }}" class="form-control">
                         </div>
-                        {% if submissions|length > 0 %}
-                            <div class="d-flex justify-content-center mt-4">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        {% if submissions.has_previous %}
-                                            <li class="page-item">
-                                                <a class="page-link"
-                                                   href="?page={{ submissions.previous_page_number }}">Previous</a>
-                                            </li>
-                                        {% endif %}
-                                        {% for page_number in submissions.paginator.page_range %}
-                                            {% if submissions.number == page_number %}
-                                                <li class="page-item active">
-                                                    <a class="page-link"
-                                                       href="?page={{ page_number }}">{{ page_number }}</a>
-                                                </li>
-                                            {% else %}
-                                                <li class="page-item">
-                                                    <a class="page-link"
-                                                       href="?page={{ page_number }}">{{ page_number }}</a>
-                                                </li>
-                                            {% endif %}
-                                        {% endfor %}
-                                        {% if submissions.has_next %}
-                                            <li class="page-item">
-                                                <a class="page-link"
-                                                   href="?page={{ submissions.next_page_number }}">Next</a>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </nav>
-                            </div>
-                        {% endif %}
-                    </div>
+                        <div class="col-md-3">
+                            <label for="date_to" class="form-label text-muted small fw-semibold">Au</label>
+                            <input type="date" id="date_to" name="date_to" value="{{ filters.date_to }}" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="challenge" class="form-label text-muted small fw-semibold">Challenge</label>
+                            <select id="challenge" name="challenge" class="form-select">
+                                <option value="">Tous les challenges</option>
+                                {% for ch in challenges %}
+                                    <option value="{{ ch.id }}" {% if filters.challenge == ch.id|stringformat:'s' %}selected{% endif %}>{{ ch.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="candidate" class="form-label text-muted small fw-semibold">Candidat</label>
+                            <select id="candidate" name="candidate" class="form-select">
+                                <option value="">Tous les candidats</option>
+                                {% for c in candidates %}
+                                    <option value="{{ c.id }}" {% if filters.candidate == c.id|stringformat:'s' %}selected{% endif %}>{{ c.get_full_name|default:c.email }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12 d-flex gap-2">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-funnel me-1"></i>Filtrer</button>
+                            <a href="?" class="btn btn-outline-secondary">Effacer</a>
+                        </div>
+                    </form>
                 </div>
             </div>
+        {% endif %}
+
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                {% if submissions %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-4">Candidat</th>
+                                    <th>Évaluation</th>
+                                    <th>Date de soumission</th>
+                                    <th class="text-end pe-4">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for submission in submissions %}
+                                    <tr>
+                                        <td class="ps-4">
+                                            <div class="d-flex align-items-center">
+                                                <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                                    {{ submission.candidate.first_name|first|default:'?'|upper }}{{ submission.candidate.last_name|first|default:'?'|upper }}
+                                                </div>
+                                                <div>
+                                                    <div class="fw-semibold">{{ submission.candidate.get_full_name|default:submission.candidate.email }}</div>
+                                                    <div class="small text-muted">{{ submission.candidate.email }}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="text-decoration-none fw-medium" href="{% url 'result-detail' submission.id submission.challenge.slug submission.challenge.id %}{% if add_id %}?user_id={{ submission.candidate.id }}{% endif %}">
+                                                {{ submission.challenge.title }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span class="text-muted"><i class="bi bi-calendar-event me-1"></i>{{ submission.submitted_at|date:'d/m/Y H:i' }}</span>
+                                        </td>
+                                        <td class="text-end pe-4">
+                                            {% if submission.result is not None %}
+                                                {% if submission.result_percent >= 80 %}
+                                                    <span class="badge rounded-pill bg-success">{{ submission.result_percent|floatformat:'2' }}%</span>
+                                                {% elif submission.result_percent >= 50 %}
+                                                    <span class="badge rounded-pill bg-warning text-dark">{{ submission.result_percent|floatformat:'2' }}%</span>
+                                                {% else %}
+                                                    <span class="badge rounded-pill bg-danger">{{ submission.result_percent|floatformat:'2' }}%</span>
+                                                {% endif %}
+                                            {% else %}
+                                                <span class="badge rounded-pill bg-secondary">Non corrigé</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox display-4 text-muted"></i>
+                        <p class="text-muted mt-3 mb-0">Aucun résultat ne correspond à vos critères.</p>
+                    </div>
+                {% endif %}
+            </div>
         </div>
+
+        {% if submissions.has_other_pages %}
+            <nav aria-label="Pagination" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if submissions.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ submissions.previous_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Précédent</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Précédent</span></li>
+                    {% endif %}
+                    {% for page_number in submissions.paginator.page_range %}
+                        {% if submissions.number == page_number %}
+                            <li class="page-item active"><span class="page-link">{{ page_number }}</span></li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">{{ page_number }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if submissions.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ submissions.next_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Suivant</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Suivant</span></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
     </div>
 {% endblock %}

@@ -1,22 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ question_category|title }} Questions JSON Processor</title>
-</head>
-<body>
-<h2>Upload JSON Data</h2>
-<form method="post">
-    {% csrf_token %}
-    {% if n %}
-        <p style="color: green;">{{ n }} Questions added</p>
-    {% endif %}
-    <label>
-        <textarea name="json" rows="20" cols="80"
-                  placeholder='{"tags": ["example"], "questions": [{"title": "Example?", "question_type": "OA"}]}'></textarea>
-    </label><br>
-    <input type="submit" value="Submit">
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Ajouter des questions - {{ question_category|title }}{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-2">
+                        <i class="bi bi-database-add me-1"></i> Administration
+                    </span>
+                    <h2 class="fw-bold display-6">Ajouter des questions</h2>
+                    <p class="text-muted mx-auto" style="max-width: 600px;">
+                        Catégorie : <strong>{{ question_category|title }}</strong>. Collez un JSON valide pour importer les questions en base.
+                    </p>
+                </div>
+
+                {% if n is not None %}
+                    <div class="alert alert-success border-0 rounded-4 shadow-sm d-flex align-items-center gap-3 mb-4">
+                        <div class="rounded-circle bg-success bg-opacity-10 text-success d-flex align-items-center justify-content-center flex-shrink-0"
+                             style="width: 48px; height: 48px;">
+                            <i class="bi bi-check-lg fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Import réussi</h5>
+                            <p class="mb-0">{{ n }} question{{ n|pluralize }} ajoutée{{ n|pluralize }} dans la catégorie <strong>{{ question_category|title }}</strong>.</p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle-sm bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-filetype-json"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-0">Données JSON</h5>
+                                <p class="text-muted small mb-0">Respectez le format attendu par la commande d'import.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_json" class="form-label fw-semibold small text-muted">JSON des questions</label>
+                                <textarea name="json" id="id_json" rows="16" class="form-control font-monospace rounded-3"
+                                          placeholder='{"tags": ["example"], "questions": [{"title": "Example?", "question_type": "OA"}]}'
+                                          style="font-size: 0.9rem;">{{ form.json.value|default:"" }}</textarea>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
+                                <button type="submit" class="btn btn-primary rounded-pill px-4">
+                                    <i class="bi bi-upload me-2"></i>Importer les questions
+                                </button>
+                                <a href="{% url 'home' %}" class="btn btn-outline-secondary rounded-pill px-4">
+                                    <i class="bi bi-arrow-left me-1"></i>Retour
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .icon-circle-sm {
+        width: 42px; height: 42px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.9rem;
+    }
+    .bg-primary-subtle { background-color: rgba(37, 99, 235, 0.1) !important; }
+    .text-primary-emphasis { color: #1d4ed8 !important; }
+</style>
+{% endblock %}

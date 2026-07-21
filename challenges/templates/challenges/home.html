@@ -1,81 +1,211 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}Accueil - Plateforme de Challenge{% endblock %}
+{% block title %}Accueil - Plateforme WIB{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container py-5">
         <!-- Hero Section -->
-        <div class="row align-items-center py-5">
+        <div class="row align-items-center g-5 py-4">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold">Bienvenue sur la Plateforme de Challenge</h1>
-                <p class="lead">Testez vos compétences, relevez des défis et montrez votre expertise dans différents
-                    domaines de la programmation.</p>
+                <div class="pe-lg-4">
+                    <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-3">
+                        <i class="bi bi-stars me-1"></i> Évaluez vos talents tech
+                    </span>
+                    <h1 class="display-4 fw-bold mb-3 lh-sm">
+                        Bienvenue sur <span class="text-primary">WIB Challenge</span>
+                    </h1>
+                    <p class="lead text-secondary mb-4">
+                        Plateforme d'évaluation complète pour développeurs : testez vos compétences techniques
+                        (programmation, frameworks, bases de données), votre raisonnement logique avec nos tests
+                        psychotechniques, et découvrez votre profil comportemental grâce au test de personnalité.
+                    </p>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'challenge_evaluation' %}" class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Passer une évaluation
+                        </a>
+                    {% else %}
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{% url 'register' %}" class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
+                                <i class="bi bi-person-plus me-2"></i>Créer un compte
+                            </a>
+                            <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg px-4 rounded-pill">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
             <div class="col-lg-6">
-                <img src="{% static 'images/acceuil.jpg' %}" alt="Hero Image" class="img-fluid">
+                <div class="rounded-4 overflow-hidden shadow-lg">
+                    <img src="{% static 'images/acceuil.jpg' %}" alt="Illustration plateforme WIB" class="img-fluid">
+                </div>
             </div>
         </div>
 
-        <!-- Features Section -->
+        <!-- Tests Types Section -->
         <div class="row py-5">
             <div class="col-12 text-center mb-5">
-                <h2 class="display-5">Pourquoi choisir notre plateforme ?</h2>
+                <h2 class="display-6 fw-bold">Trois types d'évaluation</h2>
+                <p class="text-secondary mx-auto" style="max-width: 700px;">
+                    Notre plateforme combine trois évaluations complémentaires pour dresser un portrait complet de votre profil :
+                    compétences techniques, logique de raisonnement et traits de personnalité.
+                </p>
             </div>
+
             <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fas fa-code fa-3x text-primary mb-3"></i>
-                        <h3 class="card-title h4">Challenges Techniques</h3>
-                        <p class="card-text">Des défis adaptés à tous les niveaux, du débutant à l'expert.</p>
+                <div class="card h-100 border-0 shadow-sm rounded-4 hover-card p-3 overflow-hidden position-relative">
+                    <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor" class="text-primary">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center p-4 position-relative">
+                        <div class="icon-circle bg-gradient-primary text-white mb-4 mx-auto">
+                            <i class="fas fa-code fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5 fw-bold mb-2">Test technique</h3>
+                        <p class="card-text text-secondary small">
+                            Mesurez vos compétences en programmation, frameworks et bases de données
+                            à travers des QCM et des questions ouvertes corrigées automatiquement.
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
-                        <h3 class="card-title h4">Progression</h3>
-                        <p class="card-text">Suivez votre évolution et améliorez vos compétences.</p>
+                <div class="card h-100 border-0 shadow-sm rounded-4 hover-card p-3 overflow-hidden position-relative">
+                    <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor" class="text-info">
+                            <path d="M20.5 11H19V7c0-1.1-.9-2-2-2h-4V3.5C13 2.12 11.88 1 10.5 1S8 2.12 8 3.5V5H4c-1.1 0-1.99.9-1.99 2v3.8H3.5c1.49 0 2.7 1.21 2.7 2.7s-1.21 2.7-2.7 2.7H2V20c0 1.1.9 2 2 2h3.8v-1.5c0-1.49 1.21-2.7 2.7-2.7s2.7 1.21 2.7 2.7V22H17c1.1 0 2-.9 2-2v-4h1.5c1.38 0 2.5-1.12 2.5-2.5S21.88 11 20.5 11z"/>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center p-4 position-relative">
+                        <div class="icon-circle bg-gradient-info text-white mb-4 mx-auto">
+                            <i class="fas fa-puzzle-piece fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5 fw-bold mb-2">Test psychotechnique</h3>
+                        <p class="card-text text-secondary small">
+                            Évaluez votre logique, votre raisonnement abstrait et votre capacité à résoudre
+                            des problèmes sous pression, comme dans un entretien d'aptitudes.
+                        </p>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <i class="fas fa-certificate fa-3x text-primary mb-3"></i>
-                        <h3 class="card-title h4">Certification</h3>
-                        <p class="card-text">Obtenez des certificats pour valider vos compétences.</p>
+                <div class="card h-100 border-0 shadow-sm rounded-4 hover-card p-3 overflow-hidden position-relative">
+                    <div class="position-absolute top-0 end-0 p-3 opacity-10">
+                        <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor" class="text-success">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <div class="card-body text-center p-4 position-relative">
+                        <div class="icon-circle bg-gradient-success text-white mb-4 mx-auto">
+                            <i class="fas fa-user-check fa-2x"></i>
+                        </div>
+                        <h3 class="card-title h5 fw-bold mb-2">Test de personnalité</h3>
+                        <p class="card-text text-secondary small">
+                            Découvrez votre profil comportemental : façon de travailler, adaptabilité,
+                            communication et compatibilité avec une équipe tech.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Comment ça marche -->
+        <div class="row py-4">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-6 fw-bold">Comment ça marche ?</h2>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center"
+                     style="width: 56px; height: 56px; font-size: 1.25rem;">1</div>
+                <h5 class="fw-bold">Créez votre profil</h5>
+                <p class="text-secondary small">Renseignez votre niveau, vos années d'expérience et vos compétences.</p>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center"
+                     style="width: 56px; height: 56px; font-size: 1.25rem;">2</div>
+                <h5 class="fw-bold">Passez les tests</h5>
+                <p class="text-secondary small">Réalisez les évaluations techniques, psychotechniques et de personnalité.</p>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold mx-auto mb-3 d-flex align-items-center justify-content-center"
+                     style="width: 56px; height: 56px; font-size: 1.25rem;">3</div>
+                <h5 class="fw-bold">Consultez vos résultats</h5>
+                <p class="text-secondary small">Obtenez un bilan détaillé avec scores et analyse de personnalité.</p>
+            </div>
+        </div>
+
         {% if latest_challenges %}
             <!-- Latest Challenges Section -->
-            <div class="row py-5">
+            <div class="row py-4">
                 <div class="col-12 text-center mb-5">
-                    <h2 class="display-5">Derniers Challenges</h2>
+                    <h2 class="display-6 fw-bold">Vos derniers résultats</h2>
+                    <p class="text-secondary">Consultez les évaluations que vous avez déjà passées.</p>
                 </div>
                 {% for challenge in latest_challenges %}
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 border-0 shadow-sm">
-                            <div class="card-body">
-                                <h3 class="card-title h5">{{ challenge.title }}</h3>
-                                <p class="card-text">{{ challenge.description|truncatewords:20 }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="badge bg-primary">{{ challenge.get_level_display }}</span>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 border-0 shadow-sm rounded-4 hover-card p-2">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="icon-circle-sm bg-primary bg-opacity-10 text-primary">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <h3 class="card-title h6 fw-bold mb-0">{{ challenge.title }}</h3>
+                                </div>
+                                <p class="card-text text-secondary small">{{ challenge.description|truncatewords:15 }}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="badge rounded-pill bg-primary">{{ challenge.get_level_display }}</span>
                                     <a href="{% url 'result-detail' challenge.submissions.first.id challenge.slug challenge.id %}"
-                                       class="btn btn-outline-primary btn-sm">Voir plus</a>
+                                       class="btn btn-outline-primary btn-sm rounded-pill">Voir le résultat</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 {% empty %}
                     <div class="col-12 text-center">
-                        <p>Aucun challenge disponible pour le moment.</p>
+                        <p class="text-muted">Aucun challenge disponible pour le moment.</p>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
     </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .icon-circle {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .icon-circle-sm {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+    .hover-card {
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .hover-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+    }
+    .bg-primary-subtle { background-color: rgba(37, 99, 235, 0.1) !important; }
+    .text-primary-emphasis { color: #1d4ed8 !important; }
+    .bg-gradient-primary { background: linear-gradient(135deg, #2563eb, #1d4ed8) !important; }
+    .bg-gradient-info { background: linear-gradient(135deg, #06b6d4, #0891b2) !important; }
+    .bg-gradient-success { background: linear-gradient(135deg, #10b981, #059669) !important; }
+    .opacity-10 { opacity: 0.10; }
+</style>
 {% endblock %}

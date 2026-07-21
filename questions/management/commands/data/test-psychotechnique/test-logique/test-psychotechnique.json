@@ -1,0 +1,2115 @@
+{
+    "domain": "Test psychotechnique",
+    "category": "Test logique",
+    "criteria": "Test psychotechnique",
+    "tags": [
+        "Test logique"
+    ],
+    "questions": [
+        {
+            "title": "Complétez la suite suivante : 54, 48, 42, ?, 30, 24",
+            "description": "Suite numérique décroissante par pas de 6",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "38",
+                    "is_correct": false
+                },
+                {
+                    "text": "36",
+                    "is_correct": true
+                },
+                {
+                    "text": "40",
+                    "is_correct": false
+                },
+                {
+                    "text": "33",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite alphabétique : A, B, D, G, K, ?",
+            "description": "Suite de lettres basée sur un incrément variable",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "M",
+                    "is_correct": false
+                },
+                {
+                    "text": "N",
+                    "is_correct": false
+                },
+                {
+                    "text": "P",
+                    "is_correct": true
+                },
+                {
+                    "text": "O",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite : A – 1/D – 4/H – 8/M – 13/S – 19/?",
+            "description": "Suite croissante de nombres et de lettres associées",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "V",
+                    "is_correct": false
+                },
+                {
+                    "text": "Y",
+                    "is_correct": false
+                },
+                {
+                    "text": "Z",
+                    "is_correct": false
+                },
+                {
+                    "text": "X",
+                    "is_correct": true
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite alphabétique : A, C, H, J, O, ?",
+            "description": "Suite irrégulière de lettres",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "P",
+                    "is_correct": false
+                },
+                {
+                    "text": "Q",
+                    "is_correct": true
+                },
+                {
+                    "text": "R",
+                    "is_correct": false
+                },
+                {
+                    "text": "S",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite numérique : 2, 5, 12, 27, 58, ?",
+            "description": "Suite avec un motif multiplicatif ou additionnel",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "100",
+                    "is_correct": false
+                },
+                {
+                    "text": "115",
+                    "is_correct": false
+                },
+                {
+                    "text": "120",
+                    "is_correct": true
+                },
+                {
+                    "text": "130",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite : 5, 8, 16, 19, 38, 41, 82, 85, 170, ?",
+            "description": "Suite alternée avec sauts réguliers",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "173",
+                    "is_correct": false
+                },
+                {
+                    "text": "180",
+                    "is_correct": false
+                },
+                {
+                    "text": "85",
+                    "is_correct": true
+                },
+                {
+                    "text": "172",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite : 63, 58, 49, 44, 35, ?",
+            "description": "Suite décroissante avec intervalles alternés",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "30",
+                    "is_correct": true
+                },
+                {
+                    "text": "33",
+                    "is_correct": false
+                },
+                {
+                    "text": "28",
+                    "is_correct": false
+                },
+                {
+                    "text": "32",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite de lettres groupées : A–C–D / D–G–K / E–M–R / B–J–L / ?–O–R",
+            "description": "Suite de groupes de lettres suivant un motif",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "C",
+                    "is_correct": true
+                },
+                {
+                    "text": "D",
+                    "is_correct": false
+                },
+                {
+                    "text": "E",
+                    "is_correct": false
+                },
+                {
+                    "text": "F",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite numérique : 2, 9, 35, 141, ?, 2253",
+            "description": "Suite croissante rapide, probablement exponentielle",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "263",
+                    "is_correct": true
+                },
+                {
+                    "text": "280",
+                    "is_correct": false
+                },
+                {
+                    "text": "300",
+                    "is_correct": false
+                },
+                {
+                    "text": "254",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la suite de lettres : A – J – C – H – E – ? – G – D – I – B",
+            "description": "Séquence alphabétique à motif caché",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "F",
+                    "is_correct": true
+                },
+                {
+                    "text": "K",
+                    "is_correct": false
+                },
+                {
+                    "text": "L",
+                    "is_correct": false
+                },
+                {
+                    "text": "M",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez les nombres manquants",
+            "description": "3/6 - 3/4 - 4/7 - 5/8 - 6/10 - 9/32 - 9/15 - 15/192 - ?/?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "13/22 et 23/1536",
+                    "is_correct": true
+                },
+                {
+                    "text": "12/18 et 24/2048",
+                    "is_correct": false
+                },
+                {
+                    "text": "10/15 et 20/1000",
+                    "is_correct": false
+                },
+                {
+                    "text": "11/20 et 22/1200",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "17/41 - 23/47 - 31/55 - 49/?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "73",
+                    "is_correct": true
+                },
+                {
+                    "text": "68",
+                    "is_correct": false
+                },
+                {
+                    "text": "82",
+                    "is_correct": false
+                },
+                {
+                    "text": "91",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "99 - 18 - 11 - ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "8",
+                    "is_correct": true
+                },
+                {
+                    "text": "9",
+                    "is_correct": false
+                },
+                {
+                    "text": "10",
+                    "is_correct": false
+                },
+                {
+                    "text": "7",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "51 - 18 - 17 - ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "12",
+                    "is_correct": true
+                },
+                {
+                    "text": "15",
+                    "is_correct": false
+                },
+                {
+                    "text": "10",
+                    "is_correct": false
+                },
+                {
+                    "text": "8",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "13 - 22 - ? - 31",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "29",
+                    "is_correct": true
+                },
+                {
+                    "text": "25",
+                    "is_correct": false
+                },
+                {
+                    "text": "28",
+                    "is_correct": false
+                },
+                {
+                    "text": "26",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "28 - 35 - 42 - 44 - ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "29",
+                    "is_correct": false
+                },
+                {
+                    "text": "35",
+                    "is_correct": false
+                },
+                {
+                    "text": "42",
+                    "is_correct": false
+                },
+                {
+                    "text": "44",
+                    "is_correct": true
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez les nombres manquants",
+            "description": "? - 1 - ? - 4",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "0 et 2",
+                    "is_correct": false
+                },
+                {
+                    "text": "0 et 3",
+                    "is_correct": true
+                },
+                {
+                    "text": "1 et 2",
+                    "is_correct": false
+                },
+                {
+                    "text": "2 et 3",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "3 - 9 - 49 - 7 - ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "97",
+                    "is_correct": true
+                },
+                {
+                    "text": "81",
+                    "is_correct": false
+                },
+                {
+                    "text": "64",
+                    "is_correct": false
+                },
+                {
+                    "text": "25",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite logique : Trouvez le nombre manquant",
+            "description": "1 - 5 - 25 - 13 - ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "25",
+                    "is_correct": false
+                },
+                {
+                    "text": "97",
+                    "is_correct": false
+                },
+                {
+                    "text": "65",
+                    "is_correct": false
+                },
+                {
+                    "text": "169",
+                    "is_correct": true
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite numérique : 1, 4, 9, 16, ?",
+            "description": "Trouvez le nombre manquant dans la suite.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "20",
+                    "is_correct": false
+                },
+                {
+                    "text": "25",
+                    "is_correct": true
+                },
+                {
+                    "text": "24",
+                    "is_correct": false
+                },
+                {
+                    "text": "18",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite alphabétique : D, H, L, P, ?",
+            "description": "Trouvez la lettre manquante dans la suite.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "R",
+                    "is_correct": false
+                },
+                {
+                    "text": "S",
+                    "is_correct": false
+                },
+                {
+                    "text": "T",
+                    "is_correct": true
+                },
+                {
+                    "text": "U",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Code : RAVIOLI → 1324564 ; LOI → 765. Appliquez la même logique à RIVAL → 37458 ; VOL → ?",
+            "description": "Trouvez le code manquant.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "589",
+                    "is_correct": true
+                },
+                {
+                    "text": "576",
+                    "is_correct": false
+                },
+                {
+                    "text": "678",
+                    "is_correct": false
+                },
+                {
+                    "text": "495",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Conversion temporelle",
+            "description": "Dans la multiplication ci-dessous, convertir les heures, les minutes et les secondes : 6h 78min 162s",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Calcul temporel",
+            "description": "Calculer : 2h 48min 52s + 4h 36min 15s = ?",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Conversion d'heures",
+            "description": "Convertir : 4,48h = ?",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Conversion en secondes",
+            "description": "Convertir 3h 34min 52s en secondes :",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Transformation en notations sexagésimales",
+            "description": "Transformer 3,0572h en notations sexagésimales (base 60) : …………h …………min …………s",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouvez l'intrus",
+            "description": "Bar – Requin – Carpe – Cabillaud – Baleine",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouvez l'intrus",
+            "description": "Gros – Ferme – Solide – Rigide – Résistant",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouvez l'intrus",
+            "description": "Ingénu – Crédule – Grossier – Innocent – Niais",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouvez l'intrus",
+            "description": "Hot-dog - Tarte aux pommes - Pâté chinois – Tourtière",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Inculper' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Accuser",
+                    "is_correct": true
+                },
+                {
+                    "text": "Agiter",
+                    "is_correct": false
+                },
+                {
+                    "text": "Briller",
+                    "is_correct": false
+                },
+                {
+                    "text": "Carillonner",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Neutraliser' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Cacher",
+                    "is_correct": false
+                },
+                {
+                    "text": "Paralyser",
+                    "is_correct": true
+                },
+                {
+                    "text": "Engager",
+                    "is_correct": false
+                },
+                {
+                    "text": "Détacher",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Embaucher' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Crier",
+                    "is_correct": false
+                },
+                {
+                    "text": "Engager",
+                    "is_correct": true
+                },
+                {
+                    "text": "Administrer",
+                    "is_correct": false
+                },
+                {
+                    "text": "Briller",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Abriter' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Cacher",
+                    "is_correct": true
+                },
+                {
+                    "text": "Agiter",
+                    "is_correct": false
+                },
+                {
+                    "text": "Carillonner",
+                    "is_correct": false
+                },
+                {
+                    "text": "Paralyser",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Rugir' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Détacher",
+                    "is_correct": false
+                },
+                {
+                    "text": "Crier",
+                    "is_correct": true
+                },
+                {
+                    "text": "Accuser",
+                    "is_correct": false
+                },
+                {
+                    "text": "Briller",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Séparer' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Détacher",
+                    "is_correct": true
+                },
+                {
+                    "text": "Engager",
+                    "is_correct": false
+                },
+                {
+                    "text": "Agiter",
+                    "is_correct": false
+                },
+                {
+                    "text": "Cacher",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Tinter' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Carillonner",
+                    "is_correct": true
+                },
+                {
+                    "text": "Paralyser",
+                    "is_correct": false
+                },
+                {
+                    "text": "Administrer",
+                    "is_correct": false
+                },
+                {
+                    "text": "Crier",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Troubler' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Briller",
+                    "is_correct": false
+                },
+                {
+                    "text": "Agiter",
+                    "is_correct": true
+                },
+                {
+                    "text": "Accuser",
+                    "is_correct": false
+                },
+                {
+                    "text": "Cacher",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Gouverner' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Administrer",
+                    "is_correct": true
+                },
+                {
+                    "text": "Engager",
+                    "is_correct": false
+                },
+                {
+                    "text": "Détacher",
+                    "is_correct": false
+                },
+                {
+                    "text": "Carillonner",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel mot est synonyme de 'Miroiter' ?",
+            "description": "Choisissez le synonyme correct.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Paralyser",
+                    "is_correct": false
+                },
+                {
+                    "text": "Briller",
+                    "is_correct": true
+                },
+                {
+                    "text": "Agiter",
+                    "is_correct": false
+                },
+                {
+                    "text": "Crier",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : …………………………………… soient tes résultats, tu arrêteras tes études.",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quels que",
+                    "is_correct": true
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : Tu as de jolies tomates, peux-tu m'en donner …………………………………… -unes ?",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelqu’",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : …………………………………… que puisse être le temps, je ne changerai pas d'avis.",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quels que",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : …………………………………… que puissent être vos suggestions, elles seront refusées.",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : …………………………………… élèves empêchent les autres de travailler.",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : Ce cadeau m'a coûté …………………………………… 20€ !",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : …………………………………… que soit ta volonté, il y a un moment où tu devras céder.",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : Y aura-t-il …………………………………… un pour porter mes bagages ?",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelqu’",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Complétez la phrase avec le mot approprié : Il y a …………………………………… 10 ans que tu es partie vivre en France.",
+            "description": "Complétez la phrase avec le mot approprié.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Quel",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelque",
+                    "is_correct": true
+                },
+                {
+                    "text": "Quelles",
+                    "is_correct": false
+                },
+                {
+                    "text": "Quelques",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Conversion temporelle",
+            "description": "Dans la conversion ci-dessous, convertir les heures, les minutes et les secondes : 6h 78min 162s.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Ensemble de 500 feuilles de papier / pagaye …………………………………… ( E A M R )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Qui concerne l’intérieur / élève logé et nourri …………………………………… ( I T R E N N E )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Grade dans l’armée / qui concerne la majorité …………………………………… ( A É R É L N G )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Ancienne assemblée politique / régime …………………………………… ( D È E I T )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Ensemble de chanteurs / partie d’une église …………………………………… ( R H E O C U )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Domaine agricole / qui offre une certaine résistance à la pression …………………………………… ( R M E E F )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Période de froid / produit translucide de consistance molle …………………………………… ( E G L )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Militaire / saucisse sèche et plate …………………………………… ( E R E M N G D A )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Reconstituer le mot manquant",
+            "description": "Total d’un compte / élément vertical de renfort …………………………………… ( N T A N T O M )",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Identifier les mots mal orthographiés",
+            "description": "Dans la liste ci-dessous, quels sont les mots mal orthographiés ? Souligner vos réponses.\n\na) Forsytia\nb) Exhausser\nc) Haume\nd) Sculture\ne) Tésauriser\nf) Maccabée\ng) Rétorique\nh) Ecchimose\ni) Abhorer\nj) Gothique\nk) Brouaha\nl) Peignoire\nm) Purgatoir\nn) Commotion\no) Digrecion\np) Absolussion\nq) Etymologie\nr) Gérontologie\ns) Nulité\nt) Barique",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouver la syllabe commune",
+            "description": "Trouver la syllabe commune permettant de composer trois mots : ……………………………. TRIQUE\nTRO ...\nTÉROPODE",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouver la syllabe commune",
+            "description": "Trouver la syllabe commune permettant de composer trois mots : ……………………………. LIE\nLIO\nIRE",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouver la syllabe commune",
+            "description": "Trouver la syllabe commune permettant de composer trois mots : ……………………………. SE\nRCIR\nRAUD",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouver la syllabe commune",
+            "description": "Trouver la syllabe commune permettant de composer trois mots : PÉNIT …………………………….\nSOMNOL\nNÉGLIG",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouver la syllabe commune",
+            "description": "Trouver la syllabe commune permettant de composer trois mots : RA ……………………………. DAN\nGE\nSSIS",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel est le nombre manquant ?",
+            "description": "56 63 – 36 65 – 49 86 – 68 ..",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "86",
+                    "is_correct": false
+                },
+                {
+                    "text": "94",
+                    "is_correct": true
+                },
+                {
+                    "text": "59",
+                    "is_correct": false
+                },
+                {
+                    "text": "68",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Relation analogique",
+            "description": "Maçon est à la maison ce que boulanger est à :",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Farine",
+                    "is_correct": false
+                },
+                {
+                    "text": "Levure",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pain",
+                    "is_correct": true
+                },
+                {
+                    "text": "Four",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Déduction logique",
+            "description": "Les enfants bruns aiment le chocolat. Il n’existe pas d’enfant qui n’aime pas les bonbons. Que peut-on en déduire ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Patrick n’aime pas les bonbons, donc il est brun.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Si Alain est un enfant brun, alors il aime les bonbons et le chocolat.",
+                    "is_correct": true
+                },
+                {
+                    "text": "Un enfant brun n’aime pas forcément le chocolat.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pierre aime les bonbons, donc il est brun.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Heure de rendez-vous",
+            "description": "Vincent a rendez-vous chaque jour de la semaine à 14 heures avec son dentiste mais ce dernier est systématiquement en retard. Le lundi, Vincent a été reçu à 14 h 30, le mardi à 15 h 20, le mercredi à 16 h 30. A quelle heure sera reçu Vincent le jeudi ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "18 h 00",
+                    "is_correct": false
+                },
+                {
+                    "text": "17 h 00",
+                    "is_correct": false
+                },
+                {
+                    "text": "19 h 30",
+                    "is_correct": true
+                },
+                {
+                    "text": "20 h 10",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quelle lettre vient à la place du point d’interrogation ?",
+            "description": "U – D – T – Q – C – S – S – H – ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "N",
+                    "is_correct": false
+                },
+                {
+                    "text": "D",
+                    "is_correct": false
+                },
+                {
+                    "text": "O",
+                    "is_correct": true
+                },
+                {
+                    "text": "T",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Contradiction logique",
+            "description": "Tous les curieux sont avides. Aucun gourmand n’échappe aux sarcasmes. Certains gourmands sont curieux. Quelle phrase ci-après contredit ces affirmations ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Certains gourmands sont avides.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Certains êtres avides échappent aux sarcasmes.",
+                    "is_correct": true
+                },
+                {
+                    "text": "Certains curieux sont gourmands.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Tous les avides échappent aux sarcasmes.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Capitale de la France",
+            "description": "Quelle est la capitale de la France ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Berlin",
+                    "is_correct": false
+                },
+                {
+                    "text": "Madrid",
+                    "is_correct": false
+                },
+                {
+                    "text": "Paris",
+                    "is_correct": true
+                },
+                {
+                    "text": "Londres",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Auteur de 'Roméo et Juliette'",
+            "description": "Qui a écrit 'Roméo et Juliette' ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Victor Hugo",
+                    "is_correct": false
+                },
+                {
+                    "text": "William Shakespeare",
+                    "is_correct": true
+                },
+                {
+                    "text": "Jane Austen",
+                    "is_correct": false
+                },
+                {
+                    "text": "Mark Twain",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Plus grand océan du monde",
+            "description": "Quel est le plus grand océan du monde ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "L'océan Atlantique",
+                    "is_correct": false
+                },
+                {
+                    "text": "L'océan Indien",
+                    "is_correct": false
+                },
+                {
+                    "text": "L'océan Arctique",
+                    "is_correct": false
+                },
+                {
+                    "text": "L'océan Pacifique",
+                    "is_correct": true
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Peintre de la 'Joconde'",
+            "description": "Qui a peint la 'Joconde' ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Vincent Van Gogh",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pablo Picasso",
+                    "is_correct": false
+                },
+                {
+                    "text": "Leonardo da Vinci",
+                    "is_correct": true
+                },
+                {
+                    "text": "Claude Monet",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de nombres",
+            "description": "Quel est le nombre manquant dans la suite suivante : 54, 48, 42, ? , 30, 24.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de lettres",
+            "description": "Quel est le caractère manquant dans la suite suivante : A, B, D, G, K, ?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite alphanumérique",
+            "description": "Quel est le terme manquant dans la suite suivante : A, -, 1/D, -, 4/H, -, 8/M, -, 13/S, -, 19/?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de lettres",
+            "description": "Quel est le caractère manquant dans la suite suivante : A, C, H, J, O, ?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de nombres",
+            "description": "Quel est le nombre manquant dans la suite suivante : 2, 5, 12, 27, 58, ?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de nombres",
+            "description": "Quel est le terme manquant dans la suite suivante : 5, 8, 16, 19, 38, 41, 82, 85, 170, ?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de nombres",
+            "description": "Quel est le nombre manquant dans la suite suivante : 63, 58, 49, 44, 35, ?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de lettres",
+            "description": "Quel est le terme manquant dans la suite suivante : A – C – D / D – G – K / E – M – R / B – J – L / ? – O – R.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de nombres",
+            "description": "Quel est le nombre manquant dans la suite suivante : 2, 9, 35, 141, ? , 2 253.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Suite de lettres",
+            "description": "Quel est le terme manquant dans la suite suivante : A – J – C – H – E – ? – G – D – I – B.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Logique alphanumérique",
+            "description": "Quel est le terme manquant dans la suite suivante : 1, D; 4, H; 9, L; 16, P; ?.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Quel est le nombre manquant ?",
+            "description": "56, 63 – 36, 65 – 49, 86 – 68 …",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "86",
+                    "is_correct": false
+                },
+                {
+                    "text": "94",
+                    "is_correct": true
+                },
+                {
+                    "text": "59",
+                    "is_correct": false
+                },
+                {
+                    "text": "68",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Relation analogique",
+            "description": "Maçon est à la maison ce que boulanger est à :",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Farine",
+                    "is_correct": false
+                },
+                {
+                    "text": "Levure",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pain",
+                    "is_correct": true
+                },
+                {
+                    "text": "Four",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Déduction logique",
+            "description": "Les enfants bruns aiment le chocolat. Il n’existe pas d’enfant qui n’aime pas les bonbons. Que peut-on en déduire ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Patrick n’aime pas les bonbons, donc il est brun.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Si Alain est un enfant brun, alors il aime les bonbons et le chocolat.",
+                    "is_correct": true
+                },
+                {
+                    "text": "Un enfant brun n’aime pas forcément le chocolat.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pierre aime les bonbons, donc il est brun.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Heure de rendez-vous",
+            "description": "Vincent a rendez-vous chaque jour de la semaine à 14 heures avec son dentiste mais ce dernier est systématiquement en retard. Le lundi, Vincent a été reçu à 14 h 30, le mardi à 15 h 20, le mercredi à 16 h 30. A quelle heure sera reçu Vincent le jeudi ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "18 h 00",
+                    "is_correct": false
+                },
+                {
+                    "text": "17 h 00",
+                    "is_correct": false
+                },
+                {
+                    "text": "19 h 30",
+                    "is_correct": true
+                },
+                {
+                    "text": "20 h 10",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Trouver la lettre manquante",
+            "description": "Quelle lettre vient à la place du point d’interrogation ? U – D – T – Q – C – S – S – H – ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "N",
+                    "is_correct": false
+                },
+                {
+                    "text": "D",
+                    "is_correct": false
+                },
+                {
+                    "text": "O",
+                    "is_correct": true
+                },
+                {
+                    "text": "T",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Contradiction logique",
+            "description": "Tous les curieux sont avides. Aucun gourmand n’échappe aux sarcasmes. Certains gourmands sont curieux. Quelle phrase ci-après contredit ces affirmations ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Certains gourmands sont avides.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Certains êtres avides échappent aux sarcasmes.",
+                    "is_correct": true
+                },
+                {
+                    "text": "Certains curieux sont gourmands.",
+                    "is_correct": false
+                },
+                {
+                    "text": "Tous les avides échappent aux sarcasmes.",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Capitale du Cap-Vert",
+            "description": "Quelle est la capitale du Cap-Vert ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Maseru",
+                    "is_correct": false
+                },
+                {
+                    "text": "Moroni",
+                    "is_correct": false
+                },
+                {
+                    "text": "Praia",
+                    "is_correct": true
+                },
+                {
+                    "text": "Victoria",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Auteur de 'Roméo et Juliette'",
+            "description": "Qui a écrit 'Roméo et Juliette' ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Victor Hugo",
+                    "is_correct": false
+                },
+                {
+                    "text": "William Shakespeare",
+                    "is_correct": true
+                },
+                {
+                    "text": "Jane Austen",
+                    "is_correct": false
+                },
+                {
+                    "text": "Mark Twain",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Plus grand océan du monde",
+            "description": "Quel est le plus grand océan du monde ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "L'océan Atlantique",
+                    "is_correct": false
+                },
+                {
+                    "text": "L'océan Indien",
+                    "is_correct": false
+                },
+                {
+                    "text": "L'océan Arctique",
+                    "is_correct": false
+                },
+                {
+                    "text": "L'océan Pacifique",
+                    "is_correct": true
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        },
+        {
+            "title": "Peintre de la 'Joconde'",
+            "description": "Qui a peint la 'Joconde' ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {
+                    "text": "Vincent Van Gogh",
+                    "is_correct": false
+                },
+                {
+                    "text": "Pablo Picasso",
+                    "is_correct": false
+                },
+                {
+                    "text": "Leonardo da Vinci",
+                    "is_correct": true
+                },
+                {
+                    "text": "Claude Monet",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "Test logique"
+            ],
+            "question_category": "LOGICAL"
+        }
+    ],
+    "question_category": "LOGICAL"
+}
