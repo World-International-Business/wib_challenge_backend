@@ -194,10 +194,13 @@ def personality_evaluation_view(request):
         messages.info(request, 'Vous avez déjà passé cette évaluation.')
         return redirect('home')
 
+    time_left = max(challenge.duration.total_seconds(), 0) if challenge.duration else 0
+
     context = {
         'challenge': challenge,
         'open_answer_questions': challenge.questions.filter(question_type=Question.QuestionType.OPEN_ANSWER),
         'choices_questions': challenge.questions.exclude(question_type=Question.QuestionType.OPEN_ANSWER),
+        'time_left': math.ceil(time_left),
     }
     return render(request, 'challenges/personallity_evaluation.html', context)
 

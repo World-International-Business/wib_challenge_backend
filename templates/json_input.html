@@ -47,8 +47,35 @@
                             <div class="mb-3">
                                 <label for="id_json" class="form-label fw-semibold small text-muted">JSON des questions</label>
                                 <textarea name="json" id="id_json" rows="16" class="form-control font-monospace rounded-3"
-                                          placeholder='{"tags": ["example"], "questions": [{"title": "Example?", "question_type": "OA"}]}'
-                                          style="font-size: 0.9rem;">{{ form.json.value|default:"" }}</textarea>
+                                          style="font-size: 0.9rem;">{% if form.json.value %}{{ form.json.value }}{% elif question_category == 'PERSONALITY' %}{
+  "domain": "Général",
+  "category": "Personnalité",
+  "criteria": "Personnalité",
+  "tags": ["personnalite"],
+  "question_category": "PERSONALITY",
+  "questions": [
+    {"title": "Je reste calme sous pression", "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)", "level": 1, "question_type": "UCQ", "choices": [{"text": "1", "is_correct": false}, {"text": "2", "is_correct": false}, {"text": "3", "is_correct": false}, {"text": "4", "is_correct": false}, {"text": "5", "is_correct": false}], "tags": ["personnalite"]}
+  ]
+}{% elif question_category == 'LOGICAL' %}{
+  "domain": "Général",
+  "category": "Logique",
+  "criteria": "Raisonnement logique",
+  "tags": ["logique"],
+  "question_category": "LOGICAL",
+  "questions": [
+    {"title": "Complétez la suite : 2, 4, 8, 16, ?", "description": "Quel est le nombre suivant ?", "level": 2, "question_type": "UCQ", "choices": [{"text": "24", "is_correct": false}, {"text": "32", "is_correct": true}, {"text": "30", "is_correct": false}], "tags": ["logique"]}
+  ]
+}{% else %}{
+  "domain": "Informatique",
+  "category": "Développement",
+  "criteria": "Développeur Full Stack",
+  "tags": ["python", "javascript"],
+  "question_category": "NORMAL",
+  "questions": [
+    {"title": "Qu'est-ce que Django ?", "description": "Expliquez brièvement Django.", "level": 1, "question_type": "OA", "tags": ["python", "django"]},
+    {"title": "Mot-clé fonction Python", "description": "Quel mot-clé déclare une fonction en Python ?", "level": 1, "question_type": "UCQ", "choices": [{"text": "func", "is_correct": false}, {"text": "def", "is_correct": true}, {"text": "function", "is_correct": false}], "tags": ["python"]}
+  ]
+}{% endif %}</textarea>
                             </div>
                             <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
                                 <button type="submit" class="btn btn-primary rounded-pill px-4">

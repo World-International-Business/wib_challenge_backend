@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from django.utils.timezone import now
 
 from questions.models import Question, Choice, Domain
+from wib_challenge.enums import ExperienceLevel
 
 
 class Settings(models.Model):
@@ -30,6 +31,23 @@ class Settings(models.Model):
 
     def __str__(self):
         return 'Paramètres'
+
+
+class TestDurationProfile(models.Model):
+    domain = models.ForeignKey(Domain, on_delete=models.CASCADE, verbose_name='Domaine', related_name='durations')
+    experience_level = models.IntegerField('Niveau d\'expérience', choices=ExperienceLevel.choices,
+                                           default=ExperienceLevel.BEGINNER)
+    technical_duration = models.DurationField('Durée test technique', default=timedelta(minutes=30))
+    logical_duration = models.DurationField('Durée test psychotechnique', default=timedelta(minutes=40))
+    personality_duration = models.DurationField('Durée test de personnalité', default=timedelta(hours=1))
+
+    class Meta:
+        verbose_name = 'Profil de durée'
+        verbose_name_plural = 'Profils de durée'
+        unique_together = ('domain', 'experience_level')
+
+    def __str__(self):
+        return f'{self.domain.name} - {self.get_experience_level_display()}'
 
 
 class Challenge(models.Model):
@@ -184,6 +202,7 @@ class APIUsage(models.Model):
 class PersonalityChallenge(models.Model):
     title = models.CharField('Titre', max_length=255)
     description = models.TextField('Description', blank=True, null=True)
+    duration = models.DurationField('Durée', blank=True, null=True, help_text='Durée en HH:MM:SS')
     slug = models.SlugField('Slug', max_length=255, blank=True, null=True)
     questions = models.ManyToManyField(Question, verbose_name='Questions', blank=True,
                                        related_name='personality_challenges')
@@ -201,6 +220,8 @@ class PersonalityChallenge(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
+        if not self.duration:
+            self.duration = Settings.objects.first().default_challenge_duration
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 

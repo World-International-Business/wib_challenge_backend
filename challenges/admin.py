@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from django.utils.html import format_html
 
 from challenges.models import (Settings, Challenge, SubmissionAttempt, Submission, Answer, APIUsage,
-                               PersonalityChallenge, PersonalityAnswer)
+                               PersonalityChallenge, PersonalityAnswer, TestDurationProfile)
 from questions.models import Tag
 
 
@@ -142,6 +142,17 @@ class SettingsAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(TestDurationProfile)
+class TestDurationProfileAdmin(admin.ModelAdmin):
+    list_display = ['domain', 'get_experience_level_display', 'technical_duration', 'logical_duration', 'personality_duration']
+    list_filter = ['domain', 'experience_level']
+    search_fields = ['domain__name']
+
+    def get_experience_level_display(self, obj):
+        return obj.get_experience_level_display()
+    get_experience_level_display.short_description = 'Niveau d\'expérience'
 
 
 class ChallengeQuestionInline(admin.TabularInline):
@@ -537,7 +548,7 @@ class PersonalityChallengeAdmin(admin.ModelAdmin):
     autocomplete_fields = ['candidate', 'questions']
     filter_horizontal = ['questions']
 
-    fieldsets = (('Informations de base', {'fields': ('title', 'description', 'candidate')}),
+    fieldsets = (('Informations de base', {'fields': ('title', 'description', 'duration', 'candidate')}),
                  ('Questions', {'fields': ('questions',), }), ('Statut', {'fields': ('is_passed', 'corrected')}),
                  ('Analyse de personnalité', {'fields': ('personality_detail',), 'classes': ('collapse',)}),
                  ('Statistiques',

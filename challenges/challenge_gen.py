@@ -5,9 +5,24 @@ from django.db import transaction
 from django.db.models import Case, When, IntegerField
 
 from accounts.models import User
-from challenges.models import Challenge, Settings, PersonalityChallenge
+from challenges.models import Challenge, Settings, PersonalityChallenge, TestDurationProfile
 from questions.models import Question, Tag, Domain
 from wib_challenge.enums import ExperienceLevel
+
+
+def get_profile_durations(domain, experience_level):
+    profile = TestDurationProfile.objects.filter(domain=domain, experience_level=experience_level).first()
+    if not profile:
+        return {
+            'technical': Settings.objects.first().default_challenge_duration,
+            'logical': Settings.objects.first().default_challenge_duration,
+            'personality': Settings.objects.first().default_challenge_duration,
+        }
+    return {
+        'technical': profile.technical_duration,
+        'logical': profile.logical_duration,
+        'personality': profile.personality_duration,
+    }
 
 
 def select_questions(skills: list[Tag] | None = None, question_category: str = Question.QuestionCategory.NORMAL):
@@ -56,20 +71,13 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
 
 @transaction.atomic
 def generate_challenge_for_user(user: User, skills: list[Tag] | None = None):
-    settings = Settings.objects.first()
-    challenge_duration = settings.default_challenge_duration
-    if user.experience_level == ExperienceLevel.BEGINNER:
-        challenge_duration = settings.beginner_challenge_duration
-    elif user.experience_level == ExperienceLevel.INTERMEDIATE:
-        challenge_duration = settings.intermediate_challenge_duration
-    elif user.experience_level == ExperienceLevel.EXPERT:
-        challenge_duration = settings.advanced_challenge_duration
+    durations = get_profile_durations(user.domain, user.experience_level)
 
     challenge = Challenge.objects.create(
         domain=user.domain,
         title=f'Test de {user.domain.name} pour {user.get_full_name()}',
         description=f'Testez vos compétences pour {user.domain.name}',
-        duration=challenge_duration
+        duration=durations['technical']
     )
     selected_questions = select_questions(skills or list(user.skills.all()))
     challenge.questions.add(*selected_questions)
@@ -80,10 +88,12 @@ def generate_challenge_for_user(user: User, skills: list[Tag] | None = None):
 
 @transaction.atomic
 def generate_personality_challenge_for_user(user: User, domain: Domain):
+    durations = get_profile_durations(domain, user.experience_level)
     challenge = PersonalityChallenge.objects.create(
         title=f'Test de Personnalité pour {user.get_full_name()}',
         description="Ce test nous permet de mieux vous connaitre",
-        candidate=user
+        candidate=user,
+        duration=durations['personality']
     )
     selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.PERSONALITY,
                                                                   criteria__category__domain=domain).distinct()), question_category=Question.QuestionCategory.PERSONALITY)
@@ -95,11 +105,12 @@ def generate_personality_challenge_for_user(user: User, domain: Domain):
 
 @transaction.atomic
 def generate_logical_challenge_for_user(user: User):
+    durations = get_profile_durations(user.domain, user.experience_level)
     challenge = Challenge.objects.create(
         domain=user.domain,
         title=f'Test Psychotechnique pour {user.get_full_name()}',
         description='Test Psychotechnique',
-        duration=Settings.objects.first().default_challenge_duration
+        duration=durations['logical']
     )
     selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.LOGICAL).distinct()),
                                           question_category=Question.QuestionCategory.LOGICAL)
