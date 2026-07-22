@@ -1,0 +1,503 @@
+[
+  {
+    "domain": "Développement Fullstack",
+    "category": "Technique",
+    "criteria": "Compétences techniques fullstack",
+    "tags": [
+      "fullstack",
+      "developpement",
+      "technique"
+    ],
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quelle balise HTML est utilisée pour inclure une feuille de style CSS externe ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "<link rel='stylesheet' href='style.css'>", "is_correct": true},
+          {"text": "<style src='style.css'>", "is_correct": false},
+          {"text": "<css href='style.css'>", "is_correct": false},
+          {"text": "<script href='style.css'>", "is_correct": false}
+        ],
+        "tags": ["html", "css"]
+      },
+      {
+        "title": "Dans quel langage s'écrit généralement la logique métier côté serveur avec Node.js ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "JavaScript", "is_correct": true},
+          {"text": "Python", "is_correct": false},
+          {"text": "Java", "is_correct": false},
+          {"text": "Ruby", "is_correct": false}
+        ],
+        "tags": ["nodejs", "backend"]
+      },
+      {
+        "title": "Quel verbe HTTP est utilisé pour récupérer des données d'une API ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "GET", "is_correct": true},
+          {"text": "POST", "is_correct": false},
+          {"text": "DELETE", "is_correct": false},
+          {"text": "PATCH", "is_correct": false}
+        ],
+        "tags": ["http", "api"]
+      },
+      {
+        "title": "Quelle base de données est dite relationnelle ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "PostgreSQL", "is_correct": true},
+          {"text": "MongoDB", "is_correct": false},
+          {"text": "Redis", "is_correct": false},
+          {"text": "Elasticsearch", "is_correct": false}
+        ],
+        "tags": ["base de données"]
+      },
+      {
+        "title": "Que signifie l'acronyme REST ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Representational State Transfer", "is_correct": true},
+          {"text": "Remote Execution Standard Transfer", "is_correct": false},
+          {"text": "Resource Entity State Transaction", "is_correct": false},
+          {"text": "Reactive External Service Transfer", "is_correct": false}
+        ],
+        "tags": ["api", "rest"]
+      },
+      {
+        "title": "Dans React, quel hook permet de gérer l'état local d'un composant ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "useState", "is_correct": true},
+          {"text": "useFetch", "is_correct": false},
+          {"text": "useClass", "is_correct": false},
+          {"text": "useRouter", "is_correct": false}
+        ],
+        "tags": ["react", "frontend"]
+      },
+      {
+        "title": "Quel framework Python est couramment utilisé pour construire des API web ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Django", "is_correct": true},
+          {"text": "Laravel", "is_correct": false},
+          {"text": "Spring", "is_correct": false},
+          {"text": "Express", "is_correct": false}
+        ],
+        "tags": ["python", "backend"]
+      },
+      {
+        "title": "Quel est le rôle principal du fichier requirements.txt en Python ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Lister les dépendances du projet", "is_correct": true},
+          {"text": "Configurer le serveur web", "is_correct": false},
+          {"text": "Définir les routes de l'API", "is_correct": false},
+          {"text": "Compiler le code source", "is_correct": false}
+        ],
+        "tags": ["python", "dependances"]
+      },
+      {
+        "title": "Quel système est utilisé pour versionner le code source ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Git", "is_correct": true},
+          {"text": "FTP", "is_correct": false},
+          {"text": "SSH", "is_correct": false},
+          {"text": "SMTP", "is_correct": false}
+        ],
+        "tags": ["git", "versioning"]
+      },
+      {
+        "title": "Quelle commande Git permet d'envoyer les modifications sur un dépôt distant ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "git push", "is_correct": true},
+          {"text": "git pull", "is_correct": false},
+          {"text": "git fetch", "is_correct": false},
+          {"text": "git clone", "is_correct": false}
+        ],
+        "tags": ["git"]
+      },
+      {
+        "title": "Quel est le format d'échange de données le plus courant entre frontend et backend ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "JSON", "is_correct": true},
+          {"text": "JPEG", "is_correct": false},
+          {"text": "XML uniquement", "is_correct": false},
+          {"text": "CSV", "is_correct": false}
+        ],
+        "tags": ["api", "json"]
+      },
+      {
+        "title": "Quelle instruction SQL permet de récupérer des lignes d'une table ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "SELECT", "is_correct": true},
+          {"text": "INSERT", "is_correct": false},
+          {"text": "DELETE", "is_correct": false},
+          {"text": "UPDATE", "is_correct": false}
+        ],
+        "tags": ["sql", "base de données"]
+      },
+      {
+        "title": "Quel est le rôle de Docker ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Conteneuriser des applications", "is_correct": true},
+          {"text": "Compiler du code", "is_correct": false},
+          {"text": "Créer des bases de données", "is_correct": false},
+          {"text": "Dessiner des interfaces", "is_correct": false}
+        ],
+        "tags": ["docker", "devops"]
+      },
+      {
+        "title": "Quelle méthode JavaScript permet de parcourir un tableau ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "forEach", "is_correct": true},
+          {"text": "toUpperCase", "is_correct": false},
+          {"text": "split", "is_correct": false},
+          {"text": "parseInt", "is_correct": false}
+        ],
+        "tags": ["javascript"]
+      },
+      {
+        "title": "Quel protocole sécurise les échanges web avec un certificat ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "HTTPS", "is_correct": true},
+          {"text": "HTTP", "is_correct": false},
+          {"text": "FTP", "is_correct": false},
+          {"text": "SMTP", "is_correct": false}
+        ],
+        "tags": ["securité", "web"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Logique",
+    "criteria": "Raisonnement logique",
+    "tags": [
+      "logique"
+    ],
+    "question_category": "LOGICAL",
+    "questions": [
+      {
+        "title": "Complétez la suite : 2, 4, 8, 16, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "24", "is_correct": false},
+          {"text": "32", "is_correct": true},
+          {"text": "30", "is_correct": false},
+          {"text": "20", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      },
+      {
+        "title": "Complétez la suite : 3, 6, 9, 12, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "14", "is_correct": false},
+          {"text": "15", "is_correct": true},
+          {"text": "16", "is_correct": false},
+          {"text": "18", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      },
+      {
+        "title": "Complétez la suite : 1, 4, 9, 16, 25, ?",
+        "description": "Quel est le nombre suivant (série des carrés) ?",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "30", "is_correct": false},
+          {"text": "36", "is_correct": true},
+          {"text": "35", "is_correct": false},
+          {"text": "49", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      },
+      {
+        "title": "Quel mot complète l'analogie : Clavier est à Ordinateur ce que Volant est à ... ?",
+        "description": "Choisissez la meilleure réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Voiture", "is_correct": true},
+          {"text": "Route", "is_correct": false},
+          {"text": "Pneu", "is_correct": false},
+          {"text": "Garage", "is_correct": false}
+        ],
+        "tags": ["logique", "analogie"]
+      },
+      {
+        "title": "Trouvez l'intrus : Python, Java, HTML, JavaScript",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "HTML", "is_correct": true},
+          {"text": "Python", "is_correct": false},
+          {"text": "Java", "is_correct": false},
+          {"text": "JavaScript", "is_correct": false}
+        ],
+        "tags": ["logique", "catégorisation"]
+      },
+      {
+        "title": "Si A est plus grand que B et B est plus grand que C, que peut-on dire de A et C ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "A est plus grand que C", "is_correct": true},
+          {"text": "C est plus grand que A", "is_correct": false},
+          {"text": "A et C sont égaux", "is_correct": false},
+          {"text": "On ne peut pas comparer", "is_correct": false}
+        ],
+        "tags": ["logique", "déduction"]
+      },
+      {
+        "title": "Complétez la suite de lettres : A, C, E, G, ?",
+        "description": "Quelle lettre suit logiquement ?",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "H", "is_correct": false},
+          {"text": "I", "is_correct": true},
+          {"text": "J", "is_correct": false},
+          {"text": "K", "is_correct": false}
+        ],
+        "tags": ["logique", "suite alphabétique"]
+      },
+      {
+        "title": "Un rectangle a une longueur de 8 cm et une largeur de 3 cm. Quelle est son aire ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "24 cm²", "is_correct": true},
+          {"text": "11 cm²", "is_correct": false},
+          {"text": "16 cm²", "is_correct": false},
+          {"text": "22 cm²", "is_correct": false}
+        ],
+        "tags": ["logique", "mathématiques"]
+      },
+      {
+        "title": "Complétez la suite : 100, 50, 25, 12.5, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "6.25", "is_correct": true},
+          {"text": "5", "is_correct": false},
+          {"text": "0", "is_correct": false},
+          {"text": "10", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Personnalité",
+    "criteria": "Personnalité",
+    "tags": [
+      "personnalite"
+    ],
+    "question_category": "PERSONALITY",
+    "questions": [
+      {
+        "title": "Je reste calme sous pression",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite"]
+      },
+      {
+        "title": "J'aime apprendre de nouvelles technologies et outils",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "apprentissage"]
+      },
+      {
+        "title": "J'accepte facilement les critiques constructives sur mon travail",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "feedback"]
+      },
+      {
+        "title": "Je respecte scrupuleusement les délais fixés, même sous forte charge de travail",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "gestion du temps"]
+      },
+      {
+        "title": "Je préfère travailler en équipe plutôt que seul",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "travail d'équipe"]
+      },
+      {
+        "title": "Je porte une grande attention aux détails dans mes réalisations",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "rigueur"]
+      },
+      {
+        "title": "Je m'adapte facilement aux changements de priorités",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "adaptabilité"]
+      },
+      {
+        "title": "J'aime partager mes connaissances avec mes collègues",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "communication"]
+      },
+      {
+        "title": "Je peux expliquer clairement des concepts techniques à des non-techniciens",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "communication"]
+      },
+      {
+        "title": "Je gère bien plusieurs projets en parallèle sans perdre en qualité",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "organisation"]
+      },
+      {
+        "title": "Je sais dire non ou négocier un délai lorsque la charge de travail devient trop importante",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "assertivité"]
+      }
+    ]
+  }
+]

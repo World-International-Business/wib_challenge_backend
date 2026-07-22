@@ -1,0 +1,1493 @@
+[
+  {
+    "domain": "Graphisme",
+    "category": "Design Graphique",
+    "criteria": "Compétences techniques en graphisme",
+    "tags": [
+      "graphisme",
+      "design",
+      "technique"
+    ],
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quel logiciel est principalement utilisé pour la retouche photo et le travail sur images matricielles ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Adobe Photoshop",
+            "is_correct": true
+          },
+          {
+            "text": "Adobe Illustrator",
+            "is_correct": false
+          },
+          {
+            "text": "Adobe InDesign",
+            "is_correct": false
+          },
+          {
+            "text": "Microsoft Word",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "photoshop",
+          "logiciel"
+        ]
+      },
+      {
+        "title": "Quel logiciel est la référence pour la création de dessins vectoriels (logos, icônes) ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Adobe Illustrator",
+            "is_correct": true
+          },
+          {
+            "text": "Adobe Photoshop",
+            "is_correct": false
+          },
+          {
+            "text": "Adobe Premiere Pro",
+            "is_correct": false
+          },
+          {
+            "text": "Figma uniquement",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "illustrator",
+          "vectoriel"
+        ]
+      },
+      {
+        "title": "Quel mode colorimétrique doit-on utiliser pour un document destiné à l'impression ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "RGB",
+            "is_correct": false
+          },
+          {
+            "text": "CMJN",
+            "is_correct": true
+          },
+          {
+            "text": "HSL",
+            "is_correct": false
+          },
+          {
+            "text": "Lab",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "couleur",
+          "impression"
+        ]
+      },
+      {
+        "title": "Quelle résolution minimale est généralement recommandée pour une image destinée à l'impression professionnelle ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "72 dpi",
+            "is_correct": false
+          },
+          {
+            "text": "96 dpi",
+            "is_correct": false
+          },
+          {
+            "text": "300 dpi",
+            "is_correct": true
+          },
+          {
+            "text": "150 dpi",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "résolution",
+          "impression"
+        ]
+      },
+      {
+        "title": "Quel format d'image permet de conserver une transparence tout en restant sans perte de qualité ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "JPEG",
+            "is_correct": false
+          },
+          {
+            "text": "PNG",
+            "is_correct": true
+          },
+          {
+            "text": "BMP",
+            "is_correct": false
+          },
+          {
+            "text": "GIF 8 bits",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "formats",
+          "image"
+        ]
+      },
+      {
+        "title": "Quel format est un format vectoriel ouvert, lisible directement par les navigateurs web ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "SVG",
+            "is_correct": true
+          },
+          {
+            "text": "PSD",
+            "is_correct": false
+          },
+          {
+            "text": "TIFF",
+            "is_correct": false
+          },
+          {
+            "text": "RAW",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "vectoriel",
+          "web"
+        ]
+      },
+      {
+        "title": "Quelle est l'extension native des fichiers Adobe Photoshop ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": ".ai",
+            "is_correct": false
+          },
+          {
+            "text": ".psd",
+            "is_correct": true
+          },
+          {
+            "text": ".indd",
+            "is_correct": false
+          },
+          {
+            "text": ".eps",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "photoshop",
+          "formats"
+        ]
+      },
+      {
+        "title": "Quel logiciel Adobe est spécialisé dans la mise en page de documents multi-pages (magazines, brochures) ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Adobe InDesign",
+            "is_correct": true
+          },
+          {
+            "text": "Adobe Illustrator",
+            "is_correct": false
+          },
+          {
+            "text": "Adobe Photoshop",
+            "is_correct": false
+          },
+          {
+            "text": "Adobe XD",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "indesign",
+          "mise en page"
+        ]
+      },
+      {
+        "title": "Sur le cercle chromatique, quelles couleurs sont dites complémentaires ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Deux couleurs opposées sur le cercle chromatique",
+            "is_correct": true
+          },
+          {
+            "text": "Deux couleurs adjacentes",
+            "is_correct": false
+          },
+          {
+            "text": "Deux nuances de la même teinte",
+            "is_correct": false
+          },
+          {
+            "text": "Le noir et le blanc uniquement",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "théorie des couleurs"
+        ]
+      },
+      {
+        "title": "En composition graphique, à quoi correspond la 'règle des tiers' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Diviser l'image en 3 parties égales par le texte",
+            "is_correct": false
+          },
+          {
+            "text": "Diviser l'image en une grille de 9 zones pour placer les éléments clés",
+            "is_correct": true
+          },
+          {
+            "text": "Utiliser uniquement 3 couleurs par composition",
+            "is_correct": false
+          },
+          {
+            "text": "Découper le visuel en 3 calques",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "composition"
+        ]
+      },
+      {
+        "title": "Quelle est la principale différence entre une police 'serif' et une police 'sans-serif' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "La présence ou l'absence de petits empattements sur les lettres",
+            "is_correct": true
+          },
+          {
+            "text": "La taille de la police",
+            "is_correct": false
+          },
+          {
+            "text": "La couleur du texte",
+            "is_correct": false
+          },
+          {
+            "text": "Le nombre de caractères disponibles",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "typographie"
+        ]
+      },
+      {
+        "title": "Qu'est-ce qu'une palette Pantone ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Un système standardisé de correspondance des couleurs pour l'impression",
+            "is_correct": true
+          },
+          {
+            "text": "Un plugin gratuit pour Illustrator",
+            "is_correct": false
+          },
+          {
+            "text": "Un format de fichier vectoriel",
+            "is_correct": false
+          },
+          {
+            "text": "Une police de caractères",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "couleur",
+          "impression"
+        ]
+      },
+      {
+        "title": "Que se passe-t-il généralement quand on agrandit fortement une image matricielle (bitmap) de faible résolution ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Elle reste parfaitement nette",
+            "is_correct": false
+          },
+          {
+            "text": "Elle devient pixelisée / floue",
+            "is_correct": true
+          },
+          {
+            "text": "Elle change automatiquement de format",
+            "is_correct": false
+          },
+          {
+            "text": "Elle se transforme en vecteur",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "bitmap",
+          "résolution"
+        ]
+      },
+      {
+        "title": "Pourquoi préfère-t-on un logo au format vectoriel plutôt qu'en bitmap ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Il pèse toujours plus lourd",
+            "is_correct": false
+          },
+          {
+            "text": "Il peut être redimensionné à l'infini sans perte de qualité",
+            "is_correct": true
+          },
+          {
+            "text": "Il ne peut pas être imprimé",
+            "is_correct": false
+          },
+          {
+            "text": "Il ne s'ouvre que dans Photoshop",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "vectoriel",
+          "logo"
+        ]
+      },
+      {
+        "title": "Quel est l'espace colorimétrique standard utilisé pour l'affichage sur écran (web, mobile) ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "CMJN",
+            "is_correct": false
+          },
+          {
+            "text": "RGB",
+            "is_correct": true
+          },
+          {
+            "text": "Pantone",
+            "is_correct": false
+          },
+          {
+            "text": "Niveaux de gris",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "couleur",
+          "web"
+        ]
+      },
+      {
+        "title": "Qu'appelle-t-on le 'fond perdu' (bleed) dans un fichier destiné à l'impression ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Une zone de marge supplémentaire au-delà du format final pour éviter les liserés blancs au massicotage",
+            "is_correct": true
+          },
+          {
+            "text": "Une erreur de calibrage couleur",
+            "is_correct": false
+          },
+          {
+            "text": "Le nom donné à un calque effacé par erreur",
+            "is_correct": false
+          },
+          {
+            "text": "La résolution minimale d'un document",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "impression",
+          "prépresse"
+        ]
+      },
+      {
+        "title": "Que signifie l'acronyme CMJN ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Cyan, Magenta, Jaune, Noir",
+            "is_correct": true
+          },
+          {
+            "text": "Couleur, Modèle, Jonction, Nuance",
+            "is_correct": false
+          },
+          {
+            "text": "Contraste, Marge, Justification, Netteté",
+            "is_correct": false
+          },
+          {
+            "text": "Cyan, Marron, Jaune, Nacre",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "couleur",
+          "impression"
+        ]
+      },
+      {
+        "title": "Qu'est-ce qu'un 'mockup' dans le domaine du design graphique ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Une présentation réaliste d'un visuel sur un support physique ou numérique (ex: pack, écran, t-shirt)",
+            "is_correct": true
+          },
+          {
+            "text": "Un type de police typographique",
+            "is_correct": false
+          },
+          {
+            "text": "Un plugin de retouche photo",
+            "is_correct": false
+          },
+          {
+            "text": "Un format vectoriel",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "mockup",
+          "présentation"
+        ]
+      },
+      {
+        "title": "Qu'appelle-t-on une 'charte graphique' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Un document définissant les règles visuelles d'une marque (couleurs, typographies, logo, usages)",
+            "is_correct": true
+          },
+          {
+            "text": "Un tableau de prix pour un client",
+            "is_correct": false
+          },
+          {
+            "text": "Un plan de production imprimeur",
+            "is_correct": false
+          },
+          {
+            "text": "Un fichier PDF non modifiable",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "branding",
+          "identité visuelle"
+        ]
+      },
+      {
+        "title": "En UI/UX, à quoi sert principalement une 'grille' (grid) de mise en page ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "À structurer et aligner les éléments de manière cohérente",
+            "is_correct": true
+          },
+          {
+            "text": "À ajouter des effets d'ombre",
+            "is_correct": false
+          },
+          {
+            "text": "À compresser les images",
+            "is_correct": false
+          },
+          {
+            "text": "À générer automatiquement des couleurs",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "ui",
+          "mise en page"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Logique",
+    "criteria": "Raisonnement logique",
+    "tags": [
+      "logique"
+    ],
+    "question_category": "LOGICAL",
+    "questions": [
+      {
+        "title": "Complétez la suite : 2, 4, 8, 16, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "24",
+            "is_correct": false
+          },
+          {
+            "text": "32",
+            "is_correct": true
+          },
+          {
+            "text": "30",
+            "is_correct": false
+          },
+          {
+            "text": "20",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "suite numérique"
+        ]
+      },
+      {
+        "title": "Complétez la suite : 3, 6, 9, 12, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "14",
+            "is_correct": false
+          },
+          {
+            "text": "15",
+            "is_correct": true
+          },
+          {
+            "text": "16",
+            "is_correct": false
+          },
+          {
+            "text": "18",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "suite numérique"
+        ]
+      },
+      {
+        "title": "Complétez la suite : 1, 4, 9, 16, 25, ?",
+        "description": "Quel est le nombre suivant (série des carrés) ?",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "30",
+            "is_correct": false
+          },
+          {
+            "text": "36",
+            "is_correct": true
+          },
+          {
+            "text": "35",
+            "is_correct": false
+          },
+          {
+            "text": "49",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "suite numérique"
+        ]
+      },
+      {
+        "title": "Quel mot complète l'analogie : Crayon est à Dessin ce que Pinceau est à ... ?",
+        "description": "Choisissez la meilleure réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Peinture",
+            "is_correct": true
+          },
+          {
+            "text": "Papier",
+            "is_correct": false
+          },
+          {
+            "text": "Gomme",
+            "is_correct": false
+          },
+          {
+            "text": "Photo",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "analogie"
+        ]
+      },
+      {
+        "title": "Quel mot complète l'analogie : Livre est à Bibliothèque ce que Tableau est à ... ?",
+        "description": "Choisissez la meilleure réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Musée",
+            "is_correct": true
+          },
+          {
+            "text": "Cuisine",
+            "is_correct": false
+          },
+          {
+            "text": "Garage",
+            "is_correct": false
+          },
+          {
+            "text": "École",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "analogie"
+        ]
+      },
+      {
+        "title": "Trouvez l'intrus dans la liste suivante : Cercle, Carré, Triangle, Rouge, Rectangle",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Rouge",
+            "is_correct": true
+          },
+          {
+            "text": "Carré",
+            "is_correct": false
+          },
+          {
+            "text": "Triangle",
+            "is_correct": false
+          },
+          {
+            "text": "Rectangle",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "catégorisation"
+        ]
+      },
+      {
+        "title": "Trouvez l'intrus : Photoshop, Illustrator, InDesign, Excel",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Excel",
+            "is_correct": true
+          },
+          {
+            "text": "Photoshop",
+            "is_correct": false
+          },
+          {
+            "text": "Illustrator",
+            "is_correct": false
+          },
+          {
+            "text": "InDesign",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "catégorisation"
+        ]
+      },
+      {
+        "title": "Si tous les Zorbs sont des Glips, et que tous les Glips sont bleus, alors...",
+        "description": "Quelle conclusion est logiquement valide ?",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Tous les Zorbs sont bleus",
+            "is_correct": true
+          },
+          {
+            "text": "Tous les bleus sont des Zorbs",
+            "is_correct": false
+          },
+          {
+            "text": "Aucun Zorb n'est bleu",
+            "is_correct": false
+          },
+          {
+            "text": "On ne peut rien conclure",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "déduction"
+        ]
+      },
+      {
+        "title": "Un carré a un côté de 4 cm. Quelle est son aire ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "8 cm²",
+            "is_correct": false
+          },
+          {
+            "text": "16 cm²",
+            "is_correct": true
+          },
+          {
+            "text": "12 cm²",
+            "is_correct": false
+          },
+          {
+            "text": "20 cm²",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "mathématiques"
+        ]
+      },
+      {
+        "title": "Complétez la suite de lettres : A, C, E, G, ?",
+        "description": "Quelle lettre suit logiquement ?",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "H",
+            "is_correct": false
+          },
+          {
+            "text": "I",
+            "is_correct": true
+          },
+          {
+            "text": "J",
+            "is_correct": false
+          },
+          {
+            "text": "K",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "suite alphabétique"
+        ]
+      },
+      {
+        "title": "Si aujourd'hui c'est mercredi, quel jour serons-nous dans 10 jours ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Samedi",
+            "is_correct": true
+          },
+          {
+            "text": "Vendredi",
+            "is_correct": false
+          },
+          {
+            "text": "Dimanche",
+            "is_correct": false
+          },
+          {
+            "text": "Lundi",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "temps"
+        ]
+      },
+      {
+        "title": "Un designer termine 3 logos en 6 heures. À ce rythme, combien de logos termine-t-il en 10 heures ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": true
+          },
+          {
+            "text": "6",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "proportionnalité"
+        ]
+      },
+      {
+        "title": "Quelle figure complète logiquement la série : Carré, Pentagone, Hexagone, ? (nombre de côtés croissant)",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Triangle",
+            "is_correct": false
+          },
+          {
+            "text": "Heptagone",
+            "is_correct": true
+          },
+          {
+            "text": "Cercle",
+            "is_correct": false
+          },
+          {
+            "text": "Losange",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "figures géométriques"
+        ]
+      },
+      {
+        "title": "Trouvez l'intrus : Rouge, Bleu, Jaune, Lourd, Vert",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "Lourd",
+            "is_correct": true
+          },
+          {
+            "text": "Rouge",
+            "is_correct": false
+          },
+          {
+            "text": "Bleu",
+            "is_correct": false
+          },
+          {
+            "text": "Jaune",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "catégorisation"
+        ]
+      },
+      {
+        "title": "Complétez la suite : 100, 50, 25, 12.5, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "6.25",
+            "is_correct": true
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          },
+          {
+            "text": "0",
+            "is_correct": false
+          },
+          {
+            "text": "10",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "logique",
+          "suite numérique"
+        ]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Personnalité",
+    "criteria": "Personnalité",
+    "tags": [
+      "personnalite"
+    ],
+    "question_category": "PERSONALITY",
+    "questions": [
+      {
+        "title": "Je reste calme sous pression",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite"
+        ]
+      },
+      {
+        "title": "J'aime explorer plusieurs pistes créatives avant de choisir une direction finale",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "créativité"
+        ]
+      },
+      {
+        "title": "J'accepte facilement les critiques constructives sur mon travail",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "feedback"
+        ]
+      },
+      {
+        "title": "Je respecte scrupuleusement les délais fixés, même sous forte charge de travail",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "gestion du temps"
+        ]
+      },
+      {
+        "title": "Je préfère travailler seul plutôt qu'en équipe",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "travail d'équipe"
+        ]
+      },
+      {
+        "title": "Je porte une grande attention aux détails dans mes réalisations",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "rigueur"
+        ]
+      },
+      {
+        "title": "Je m'adapte facilement lorsqu'un client change ses attentes en cours de projet",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "adaptabilité"
+        ]
+      },
+      {
+        "title": "J'aime proposer des idées originales, même si elles sortent du cadre habituel",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "créativité"
+        ]
+      },
+      {
+        "title": "Je me sens à l'aise pour présenter et défendre mes choix créatifs devant un client",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "communication"
+        ]
+      },
+      {
+        "title": "J'ai tendance à revoir et peaufiner mon travail plusieurs fois avant de le considérer terminé",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "perfectionnisme"
+        ]
+      },
+      {
+        "title": "Je gère bien plusieurs projets en parallèle sans perdre en qualité",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "organisation"
+        ]
+      },
+      {
+        "title": "J'aime me tenir informé(e) des nouvelles tendances graphiques et outils du secteur",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "veille"
+        ]
+      },
+      {
+        "title": "Je peux rester motivé(e) même face à des demandes répétitives ou peu créatives",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "motivation"
+        ]
+      },
+      {
+        "title": "Je préfère avoir un cadre clair et précis plutôt qu'une grande liberté sans consignes",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "autonomie"
+        ]
+      },
+      {
+        "title": "Je sais dire non ou négocier un délai lorsque la charge de travail devient trop importante",
+        "description": "De 1 (pas du tout d'accord) à 5 (totalement d'accord)",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {
+            "text": "1",
+            "is_correct": false
+          },
+          {
+            "text": "2",
+            "is_correct": false
+          },
+          {
+            "text": "3",
+            "is_correct": false
+          },
+          {
+            "text": "4",
+            "is_correct": false
+          },
+          {
+            "text": "5",
+            "is_correct": false
+          }
+        ],
+        "tags": [
+          "personnalite",
+          "assertivité"
+        ]
+      }
+    ]
+  }
+]

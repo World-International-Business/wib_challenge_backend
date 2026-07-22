@@ -32,9 +32,10 @@ class UserUpdateForm(forms.ModelForm):
     experience = forms.IntegerField(
         min_value=0, required=False, label="Années d'expérience")
     domain = forms.ModelChoiceField(
-        # Récupère tous les domaines de la BD
-        queryset=Domain.objects.filter(categories__questions__question_category=Question.QuestionCategory.NORMAL).exclude(categories__questions__isnull=True,
-                                                                                                                          ).distinct(),
+        # Récupère tous les domaines ayant au moins une question NORMAL
+        queryset=Domain.objects.filter(
+            categories__questions__question_category=Question.QuestionCategory.NORMAL
+        ).distinct(),
         required=False,
         empty_label="Sélectionner un domaine",
         label="Domaine"
@@ -59,9 +60,9 @@ class UserUpdateForm(forms.ModelForm):
 
 class UserSkillForm(forms.ModelForm):
     skill = forms.ModelChoiceField(
-        queryset=Tag.objects.filter(
-            questions__question_category=Question.QuestionCategory.NORMAL).distinct(),
-        required=True,  # TODO add a way to distinguish between personality and logical challenges
+        queryset=Tag.objects.all().order_by(
+            'criteria__category__domain__name', 'name'),
+        required=True,
         empty_label="Sélectionner une compétence",
         label="Compétence"
     )
