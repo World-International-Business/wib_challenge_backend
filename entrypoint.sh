@@ -3,7 +3,7 @@ set -e
 
 python manage.py migrate --noinput
 python manage.py initialize
-python manage.py create_default_questions --noinput
+python manage.py create_default_questions
 python manage.py collectstatic --noinput
 
 exec gunicorn wib_challenge.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 2
