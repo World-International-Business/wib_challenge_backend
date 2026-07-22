@@ -56,7 +56,7 @@ class Command(BaseCommand):
                 question, created = self.get_or_create_model(
                     Question,
                     title=question_data['title'],
-                    level=question_data['level'],
+                    level=int(question_data['level']),
                     question_type=question_data['question_type'],
                     defaults={
                         'category': category,
