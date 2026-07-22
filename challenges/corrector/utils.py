@@ -122,6 +122,11 @@ def make_personality_prompt(answers: list[PersonalityAnswer]):
     )
 
 
+def estimate_tokens(text: str) -> int:
+    """Estimation rapide : environ 1 token pour 4 caractères."""
+    return max(1, len(text) // 4)
+
+
 def split_batches(answers: list[Answer], max_tokens=900000) -> list[list[Answer]]:
     """Découpe les réponses en lots pour ne pas dépasser la limite de tokens"""
     batches = []
@@ -129,10 +134,7 @@ def split_batches(answers: list[Answer], max_tokens=900000) -> list[list[Answer]
     current_tokens = 0
 
     for answer in answers:
-        answer_tokens = get_genai_client().models.count_tokens(
-            model=GEMINI_MODEL,
-            contents=make_answer_prompt(answer),
-        ).total_tokens
+        answer_tokens = estimate_tokens(make_answer_prompt(answer))
         if current_tokens + answer_tokens > max_tokens:
             batches.append(current_batch)
             current_batch = []
