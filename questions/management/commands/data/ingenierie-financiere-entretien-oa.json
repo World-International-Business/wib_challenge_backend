@@ -1,0 +1,79 @@
+{
+  "domain": "Comptabilité et Finance",
+  "category": "Entretien",
+  "criteria": "Ingénierie financière",
+  "tags": ["entretien", "ingenierie financiere"],
+  "question_category": "NORMAL",
+  "questions": [
+    {
+      "title": "Parcours et ingénierie financière",
+      "description": "Votre parcours montre une expérience en comptabilité, coordination financière et audit. En quoi ce parcours vous prépare-t-il concrètement à un poste d'Expert en ingénierie financière ?",
+      "level": "2",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Lecture financière prioritaire",
+      "description": "Quand vous analysez une entreprise pour apprécier sa santé financière, quels sont les 4 indicateurs ou axes que vous regardez en priorité ?",
+      "level": "2",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Comptabilité analytique et pilotage",
+      "description": "Dans votre expérience en BTP, comment la comptabilité analytique par chantier peut-elle servir à une logique d'ingénierie financière et de pilotage de rentabilité ?",
+      "level": "3",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Budget, engagements et pilotage financier",
+      "description": "Quelle différence faites-vous entre suivi budgétaire, suivi des engagements et pilotage financier ?",
+      "level": "2",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Clôtures et fiabilité",
+      "description": "Pourquoi les écritures de clôture mensuelles avec FNP et CCA sont-elles importantes dans une démarche d'ingénierie financière ?",
+      "level": "2",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Risques financiers en croissance",
+      "description": "Grâce à votre expérience en audit, quels sont selon vous les principaux risques financiers à surveiller dans une entreprise en croissance ?",
+      "level": "3",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Dossier de financement",
+      "description": "Si une entreprise souhaite financer sa croissance, quelles informations financières minimales faut-il réunir avant de solliciter un partenaire financier ou une banque ?",
+      "level": "3",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "CA qui progresse et trésorerie qui dégrade",
+      "description": "Une entreprise a un chiffre d'affaires qui progresse, mais sa trésorerie se dégrade. Donnez 3 explications possibles.",
+      "level": "3",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Outils Excel pour la décision",
+      "description": "Quels outils ou fonctions Excel utilisez-vous concrètement pour analyser des données financières et produire une aide à la décision ?",
+      "level": "2",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    },
+    {
+      "title": "Priorités des 30 premiers jours",
+      "description": "Si vous êtes recruté comme Expert en ingénierie financière, quelles seraient vos 3 priorités durant vos 30 premiers jours ?",
+      "level": "2",
+      "question_type": "OPEN_ANSWER",
+      "tags": ["entretien", "ingenierie financiere"]
+    }
+  ]
+}
