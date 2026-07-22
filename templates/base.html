@@ -93,16 +93,34 @@
                     <a class="nav-link px-3 rounded-2" href="{% url 'home' %}">Accueil</a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link px-3 rounded-2" href="{% url 'challenge_evaluation' %}">
-                            <i class="bi bi-clipboard-check me-1 d-lg-none"></i>Passer un test
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-3 rounded-2" href="{% url 'results' %}">
-                            <i class="bi bi-graph-up me-1 d-lg-none"></i>Résultats
-                        </a>
-                    </li>
+                    {% if user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'personality_candidates' %}">
+                                <i class="bi bi-people me-1 d-lg-none"></i>Candidats
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'results' %}">
+                                <i class="bi bi-graph-up me-1 d-lg-none"></i>Résultats
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'leaderboard' %}">
+                                <i class="bi bi-trophy me-1 d-lg-none"></i>Classement
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'challenge_evaluation' %}">
+                                <i class="bi bi-clipboard-check me-1 d-lg-none"></i>Passer un test
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'results' %}">
+                                <i class="bi bi-graph-up me-1 d-lg-none"></i>Résultats
+                            </a>
+                        </li>
+                    {% endif %}
                     {% if user.is_staff %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-3 rounded-2" href="#" id="adminDropdown" role="button"

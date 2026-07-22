@@ -24,7 +24,7 @@ from accounts.views import (login_view, register_view, logout_view, update_profi
                            WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
 from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
     generate_challenge, generate_logical_challenge, generate_personality_challenge, personality_details_view, \
-    personality_evaluation_view
+    personality_evaluation_view, candidate_detail_view, leaderboard_view
 from questions.models import Question
 from wib_challenge.views import json_input
 
@@ -61,6 +61,10 @@ urlpatterns = [
          name='personality_candidates'),
     path('personalities/<int:user_id>/',
          personality_details_view, name='personality_details'),
+
+    # Détail candidat et classement (admin)
+    path('candidat/<int:user_id>/', candidate_detail_view, name='candidate_detail'),
+    path('classement/', leaderboard_view, name='leaderboard'),
 
     # URLs pour la réinitialisation de mot de passe
     path('password-reset/', WIBPasswordResetView.as_view(), name='password_reset'),

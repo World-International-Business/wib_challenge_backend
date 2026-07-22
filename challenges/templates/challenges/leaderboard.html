@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Classement candidats - WIB{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill px-3 py-2 mb-3">
+            <i class="bi bi-trophy me-1"></i> Classement
+        </span>
+        <h2 class="fw-bold display-6">Meilleurs candidats</h2>
+        <p class="text-secondary mx-auto" style="max-width: 650px;">
+            Classement global basé sur les scores techniques, psychotechniques et la personnalité.
+        </p>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body bg-white">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="domain" class="form-label text-muted small fw-semibold">Domaine</label>
+                    <select id="domain" name="domain" class="form-select">
+                        <option value="">Tous les domaines</option>
+                        {% for d in domains %}
+                            <option value="{{ d.id }}" {% if domain_id == d.id|stringformat:'s' %}selected{% endif %}>{{ d.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-8 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-funnel me-1"></i>Filtrer</button>
+                    <a href="?" class="btn btn-outline-secondary">Effacer</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            {% if leaderboard %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Rang</th>
+                                <th>Candidat</th>
+                                <th class="text-center">Technique</th>
+                                <th class="text-center">Psychotechnique</th>
+                                <th class="text-center">Personnalité</th>
+                                <th class="text-end pe-4">Score global</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in leaderboard %}
+                                <tr>
+                                    <td class="ps-4">
+                                        {% if forloop.counter <= 3 %}
+                                            <span class="badge rounded-pill {% if forloop.counter == 1 %}bg-warning{% elif forloop.counter == 2 %}bg-secondary{% else %}bg-danger{% endif %}">{{ forloop.counter }}</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill bg-light text-dark">{{ forloop.counter }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'candidate_detail' entry.candidate.id %}" class="text-decoration-none fw-semibold text-dark">
+                                            {{ entry.candidate.get_full_name|default:entry.candidate.email }}
+                                        </a>
+                                        <div class="small text-muted">{{ entry.candidate.email }}</div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge rounded-pill bg-primary">{{ entry.tech_score|floatformat:'2' }}%</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge rounded-pill bg-info">{{ entry.psych_score|floatformat:'2' }}%</span>
+                                    </td>
+                                    <td class="text-center">
+                                        {% if entry.personality_done %}
+                                            <span class="badge rounded-pill bg-success"><i class="bi bi-check-lg"></i></span>
+                                        {% else %}
+                                            <span class="badge rounded-pill bg-secondary">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <span class="badge rounded-pill {% if entry.overall >= 70 %}bg-success{% elif entry.overall >= 40 %}bg-warning text-dark{% else %}bg-danger{% endif %}">{{ entry.overall|floatformat:'2' }}%</span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="bi bi-trophy display-4 text-muted"></i>
+                    <p class="text-muted mt-3 mb-0">Aucun candidat classé pour ce domaine.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Détail candidat - {{ candidate.get_full_name|default:candidate.email }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="mb-4">
+        <a href="{% url 'results' %}" class="text-decoration-none text-muted"><i class="bi bi-arrow-left me-1"></i>Retour aux résultats</a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center" style="width: 72px; height: 72px; font-size: 1.5rem;">
+                    {{ candidate.first_name|first|default:'?'|upper }}{{ candidate.last_name|first|default:'?'|upper }}
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-1">{{ candidate.get_full_name|default:candidate.email }}</h2>
+                    <p class="text-muted mb-0"><i class="bi bi-envelope me-1"></i>{{ candidate.email }}</p>
+                    {% if candidate.domain %}
+                        <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill mt-2">{{ candidate.domain.name }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4 text-center">
+                    <div class="icon-circle bg-primary bg-opacity-10 text-primary mb-3 mx-auto">
+                        <i class="fas fa-code fa-2x"></i>
+                    </div>
+                    <h4 class="h5 fw-bold mb-2">Tests techniques</h4>
+                    <p class="display-6 fw-bold text-primary mb-0">{{ technical_submissions|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4 text-center">
+                    <div class="icon-circle bg-info bg-opacity-10 text-info mb-3 mx-auto">
+                        <i class="fas fa-puzzle-piece fa-2x"></i>
+                    </div>
+                    <h4 class="h5 fw-bold mb-2">Tests psychotechniques</h4>
+                    <p class="display-6 fw-bold text-info mb-0">{{ logical_submissions|length }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-body p-4 text-center">
+                    <div class="icon-circle bg-success bg-opacity-10 text-success mb-3 mx-auto">
+                        <i class="fas fa-user-check fa-2x"></i>
+                    </div>
+                    <h4 class="h5 fw-bold mb-2">Tests de personnalité</h4>
+                    <p class="display-6 fw-bold text-success mb-0">{{ personality_challenges|length }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="h4 fw-bold mt-5 mb-3"><i class="bi bi-code-square me-2 text-primary"></i>Tests techniques</h3>
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            {% if technical_submissions %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Évaluation</th>
+                                <th>Date</th>
+                                <th class="text-end pe-4">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sub in technical_submissions %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <a href="{% url 'result-detail' sub.id sub.challenge.slug sub.challenge.id %}?user_id={{ candidate.id }}" class="text-decoration-none fw-medium">{{ sub.challenge.title }}</a>
+                                    </td>
+                                    <td>{{ sub.submitted_at|date:'d/m/Y H:i' }}</td>
+                                    <td class="text-end pe-4">
+                                        {% if sub.result is not None %}
+                                            <span class="badge rounded-pill {% if sub.result_percent >= 80 %}bg-success{% elif sub.result_percent >= 50 %}bg-warning text-dark{% else %}bg-danger{% endif %}">{{ sub.result_percent|floatformat:'2' }}%</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill bg-secondary">Non corrigé</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-4 text-muted">Aucun test technique passé.</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <h3 class="h4 fw-bold mt-5 mb-3"><i class="bi bi-puzzle me-2 text-info"></i>Tests psychotechniques</h3>
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            {% if logical_submissions %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Évaluation</th>
+                                <th>Date</th>
+                                <th class="text-end pe-4">Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sub in logical_submissions %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <a href="{% url 'result-detail' sub.id sub.challenge.slug sub.challenge.id %}?user_id={{ candidate.id }}" class="text-decoration-none fw-medium">{{ sub.challenge.title }}</a>
+                                    </td>
+                                    <td>{{ sub.submitted_at|date:'d/m/Y H:i' }}</td>
+                                    <td class="text-end pe-4">
+                                        {% if sub.result is not None %}
+                                            <span class="badge rounded-pill {% if sub.result_percent >= 80 %}bg-success{% elif sub.result_percent >= 50 %}bg-warning text-dark{% else %}bg-danger{% endif %}">{{ sub.result_percent|floatformat:'2' }}%</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill bg-secondary">Non corrigé</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-4 text-muted">Aucun test psychotechnique passé.</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <h3 class="h4 fw-bold mt-5 mb-3"><i class="bi bi-person-heart me-2 text-success"></i>Tests de personnalité</h3>
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            {% if personality_challenges %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Statut</th>
+                                <th>Date</th>
+                                <th class="text-end pe-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pc in personality_challenges %}
+                                <tr>
+                                    <td class="ps-4">
+                                        {% if pc.corrected %}
+                                            <span class="badge rounded-pill bg-success">Corrigé</span>
+                                        {% elif pc.is_passed or pc.answers.exists %}
+                                            <span class="badge rounded-pill bg-warning text-dark">En attente de correction</span>
+                                        {% else %}
+                                            <span class="badge rounded-pill bg-secondary">Non commencé</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ pc.created_at|date:'d/m/Y H:i' }}</td>
+                                    <td class="text-end pe-4">
+                                        <a href="{% url 'personality_details' candidate.id %}" class="btn btn-sm btn-outline-success rounded-pill">Voir l'analyse</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-4 text-muted">Aucun test de personnalité passé.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

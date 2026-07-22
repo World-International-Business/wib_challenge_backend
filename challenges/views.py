@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import mail_managers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
+from django.db.models import Avg
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -20,7 +21,7 @@ from challenges.challenge_gen import generate_challenge_for_user, generate_perso
     generate_logical_challenge_for_user
 from challenges.corrector import correct_submission, correct_personality_challenge
 from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, PersonalityChallenge, PersonalityAnswer
-from questions.models import Question
+from questions.models import Domain, Question
 
 logger = logging.getLogger(__name__)
 
@@ -354,19 +355,16 @@ def submit_evaluation_view(request):
 
     # La correction est lancée après le commit de la requête afin de ne pas
     # bloquer l'enregistrement si l'API Gemini rencontre un problème.
+    def run_correction():
+        try:
+            _correct_submission(submission)
+        except Exception:
+            logger.exception('Erreur lors de la correction %s', submission.id)
+
     try:
-        transaction.on_commit(lambda: _correct_submission(submission))
-    except Exception as e:
+        transaction.on_commit(run_correction)
+    except Exception:
         logger.exception('Erreur lors de la planification de la correction %s', submission.id)
-        url = request.build_absolute_uri(reverse(admin_url, args=[submission.id]))
-        mail_managers(
-            subject=f'Erreur lors de la correction de la soumission {submission.id}',
-            message=f'Une erreur est survenue lors de la correction de la soumission {submission.id} '
-                    f'pour le candidat {submission.candidate.first_name} {submission.candidate.last_name}.'
-                    f' Challenge: {submission.challenge.title if is_challenge else submission.title}.'
-                    f'Voir dans admin: {url}',
-            fail_silently=True,
-        )
         messages.info(
             request,
             'Vos réponses ont bien été enregistrées. Elles seront corrigées sous peu. '
@@ -456,3 +454,78 @@ def personality_details_view(request, user_id=None):
         'page_obj': page_obj,
     }
     return render(request, 'challenges/personality_candidates.html', context)
+
+
+@staff_member_required
+def candidate_detail_view(request, user_id):
+    """Vue détaillée d'un candidat avec ses 3 types d'évaluations."""
+    candidate = get_object_or_404(User, id=user_id, is_staff=False)
+
+    technical_submissions = Submission.objects.filter(
+        candidate=candidate,
+        challenge__is_logical=False
+    ).select_related('challenge').order_by('-submitted_at')
+
+    logical_submissions = Submission.objects.filter(
+        candidate=candidate,
+        challenge__is_logical=True
+    ).select_related('challenge').order_by('-submitted_at')
+
+    personality_challenges = PersonalityChallenge.objects.filter(
+        candidate=candidate
+    ).order_by('-id')
+
+    context = {
+        'candidate': candidate,
+        'technical_submissions': technical_submissions,
+        'logical_submissions': logical_submissions,
+        'personality_challenges': personality_challenges,
+    }
+    return render(request, 'challenges/candidate_detail.html', context)
+
+
+@staff_member_required
+def leaderboard_view(request):
+    """Classement des candidats sur les 3 types d'évaluation."""
+    domain_id = request.GET.get('domain')
+
+    candidates = User.objects.filter(
+        is_staff=False,
+        submissions__isnull=False
+    ).distinct()
+
+    if domain_id:
+        candidates = candidates.filter(domain_id=domain_id)
+
+    leaderboard = []
+    for candidate in candidates:
+        tech_score = candidate.submissions.filter(
+            challenge__is_logical=False,
+            result__isnull=False
+        ).aggregate(avg=Avg('result'))['avg'] or 0
+
+        psych_score = candidate.submissions.filter(
+            challenge__is_logical=True,
+            result__isnull=False
+        ).aggregate(avg=Avg('result'))['avg'] or 0
+
+        personality_done = candidate.personality_challenges.filter(corrected=True).exists()
+
+        overall = (tech_score + psych_score) / 2
+
+        leaderboard.append({
+            'candidate': candidate,
+            'tech_score': tech_score,
+            'psych_score': psych_score,
+            'personality_done': personality_done,
+            'overall': overall,
+        })
+
+    leaderboard.sort(key=lambda x: x['overall'], reverse=True)
+
+    context = {
+        'leaderboard': leaderboard,
+        'domains': Domain.objects.all().order_by('name'),
+        'domain_id': domain_id or '',
+    }
+    return render(request, 'challenges/leaderboard.html', context)

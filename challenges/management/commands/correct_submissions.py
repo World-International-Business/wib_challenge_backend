@@ -72,10 +72,10 @@ class Command(BaseCommand):
         else:
             self.stdout.write('Aucune soumission à corriger.')
         
-        # Correction de tous les défis de personnalité non corrigés
+        # Correction de tous les défis de personnalité non corrigés (avec réponses)
         personalities_query = PersonalityChallenge.objects.all() if all_corrections else PersonalityChallenge.objects.filter(
-            Q(is_passed=True) & Q(corrected=False)
-        )
+            Q(corrected=False) & Q(answers__isnull=False)
+        ).distinct()
         personalities_count = personalities_query.count()
         
         if personalities_count > 0:
