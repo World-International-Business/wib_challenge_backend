@@ -24,12 +24,13 @@ from accounts.views import (login_view, register_view, logout_view, update_profi
                            WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
 from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
     generate_challenge, generate_logical_challenge, generate_personality_challenge, personality_details_view, \
-    personality_evaluation_view, candidate_detail_view, leaderboard_view
+    personality_evaluation_view, candidate_detail_view, leaderboard_view, admin_dashboard_view
 from questions.models import Question
 from wib_challenge.views import json_input
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
     path('', home_view, name='home'),
     path('resultats/', evaluation_results, name='results'),
     path('resultats/<int:submission_id>-<slug:slug>-<int:challenge_id>',

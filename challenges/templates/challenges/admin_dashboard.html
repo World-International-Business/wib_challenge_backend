@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tableau de bord admin - WIB{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-2">
+                <i class="bi bi-shield-lock me-1"></i> Administration
+            </span>
+            <h2 class="fw-bold display-6">Tableau de bord</h2>
+            <p class="text-muted mx-auto" style="max-width: 600px;">
+                Gérez les questions, les profils, les tests et visualisez les résultats en un seul endroit.
+            </p>
+        </div>
+
+        <!-- Statistiques -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center hover-card h-100">
+                    <div class="icon-circle-sm bg-primary bg-opacity-10 text-primary mx-auto mb-3">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ candidates_count }}</h3>
+                    <p class="text-muted small mb-0">Candidats</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center hover-card h-100">
+                    <div class="icon-circle-sm bg-info bg-opacity-10 text-info mx-auto mb-3">
+                        <i class="bi bi-code-square"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ technical_count }}</h3>
+                    <p class="text-muted small mb-0">Tests techniques</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center hover-card h-100">
+                    <div class="icon-circle-sm bg-warning bg-opacity-10 text-warning mx-auto mb-3">
+                        <i class="bi bi-puzzle"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ logical_count }}</h3>
+                    <p class="text-muted small mb-0">Tests psychotechniques</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center hover-card h-100">
+                    <div class="icon-circle-sm bg-success bg-opacity-10 text-success mx-auto mb-3">
+                        <i class="bi bi-person-heart"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">{{ personality_count }}</h3>
+                    <p class="text-muted small mb-0">Tests de personnalité</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions rapides -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 hover-card h-100">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-question-circle me-2 text-primary"></i>Questions</h5>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'add_questions' %}" class="btn btn-outline-primary rounded-pill">Techniques</a>
+                        <a href="{% url 'add_logical_questions' %}" class="btn btn-outline-info rounded-pill">Psychotechniques</a>
+                        <a href="{% url 'add_personality_questions' %}" class="btn btn-outline-success rounded-pill">Personnalité</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 hover-card h-100">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-clock-history me-2 text-warning"></i>Durées par profil</h5>
+                    <p class="text-muted small mb-3">Définissez le temps pour chaque type de test selon le domaine et l'expérience.</p>
+                    <a href="/admin/challenges/testdurationprofile/" class="btn btn-outline-warning rounded-pill">Gérer les profils</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm rounded-4 p-4 hover-card h-100">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-graph-up me-2 text-secondary"></i>Résultats</h5>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'results' %}" class="btn btn-outline-secondary rounded-pill">Tous les résultats</a>
+                        <a href="{% url 'leaderboard' %}" class="btn btn-outline-dark rounded-pill">Classement</a>
+                        <a href="{% url 'personality_candidates' %}" class="btn btn-outline-success rounded-pill">Personnalités</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Derniers résultats -->
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-clock-history me-2 text-primary"></i>Derniers résultats</h5>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        {% if latest_submissions %}
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Candidat</th>
+                                            <th>Test</th>
+                                            <th>Type</th>
+                                            <th class="text-end">Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for sub in latest_submissions %}
+                                            <tr>
+                                                <td>{{ sub.candidate.get_full_name|default:sub.candidate.email }}</td>
+                                                <td>{{ sub.challenge.title }}</td>
+                                                <td>
+                                                    {% if sub.challenge.is_logical %}
+                                                        <span class="badge bg-warning text-dark">Psychotechnique</span>
+                                                    {% else %}
+                                                        <span class="badge bg-info">Technique</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td class="text-end">
+                                                    {% if sub.result is not None %}
+                                                        <span class="badge rounded-pill bg-success">{{ sub.result_percent|floatformat:'2' }}%</span>
+                                                    {% else %}
+                                                        <span class="badge rounded-pill bg-secondary">En attente</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <p class="text-muted mb-0">Aucun résultat pour le moment.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-clock me-2 text-warning"></i>Profils de durée</h5>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        {% if duration_profiles %}
+                            <ul class="list-group list-group-flush">
+                                {% for profile in duration_profiles %}
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <span class="fw-semibold">{{ profile.domain.name }}</span>
+                                            <span class="text-muted small">— {{ profile.get_experience_level_display }}</span>
+                                        </div>
+                                        <a href="/admin/challenges/testdurationprofile/{{ profile.id }}/change/" class="btn btn-sm btn-outline-primary">Modifier</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted mb-0">Aucun profil de durée défini.</p>
+                        {% endif %}
+                        <a href="/admin/challenges/testdurationprofile/add/" class="btn btn-primary w-100 rounded-pill mt-3">Ajouter un profil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .icon-circle-sm {
+        width: 48px; height: 48px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem;
+    }
+    .bg-primary-subtle { background-color: rgba(37, 99, 235, 0.1) !important; }
+    .text-primary-emphasis { color: #1d4ed8 !important; }
+    .hover-card { transition: transform .2s ease, box-shadow .2s ease; }
+    .hover-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important; }
+</style>
+{% endblock %}

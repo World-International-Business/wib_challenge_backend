@@ -20,7 +20,7 @@ from accounts.models import User
 from challenges.challenge_gen import generate_challenge_for_user, generate_personality_challenge_for_user, \
     generate_logical_challenge_for_user
 from challenges.corrector import correct_submission, correct_personality_challenge
-from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, PersonalityChallenge, PersonalityAnswer
+from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, PersonalityChallenge, PersonalityAnswer, TestDurationProfile
 from questions.models import Domain, Question
 
 logger = logging.getLogger(__name__)
@@ -34,6 +34,26 @@ def home_view(request):
             'submissions')
     }
     return render(request, 'challenges/home.html', context)
+
+
+@staff_member_required
+def admin_dashboard_view(request):
+    candidates = User.objects.filter(is_staff=False, is_superuser=False)
+    technical_count = Submission.objects.filter(challenge__is_logical=False).count()
+    logical_count = Submission.objects.filter(challenge__is_logical=True).count()
+    personality_count = PersonalityChallenge.objects.filter(is_passed=True).count()
+    latest_submissions = Submission.objects.select_related('candidate', 'challenge').order_by('-submitted_at')[:10]
+    duration_profiles = TestDurationProfile.objects.select_related('domain').all()[:10]
+
+    context = {
+        'candidates_count': candidates.count(),
+        'technical_count': technical_count,
+        'logical_count': logical_count,
+        'personality_count': personality_count,
+        'latest_submissions': latest_submissions,
+        'duration_profiles': duration_profiles,
+    }
+    return render(request, 'challenges/admin_dashboard.html', context)
 
 
 @login_required
@@ -526,9 +546,14 @@ def leaderboard_view(request):
 
     leaderboard.sort(key=lambda x: x['overall'], reverse=True)
 
+    domains = Domain.objects.filter(
+        user__is_staff=False,
+        user__is_superuser=False
+    ).distinct().order_by('name')
+
     context = {
         'leaderboard': leaderboard,
-        'domains': Domain.objects.all().order_by('name'),
+        'domains': domains,
         'domain_id': domain_id or '',
     }
     return render(request, 'challenges/leaderboard.html', context)
