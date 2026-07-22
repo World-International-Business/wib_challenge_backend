@@ -33,7 +33,10 @@ class Command(BaseCommand):
         criteria, _ = self.get_or_create_model(Criteria, name=data['criteria'].strip(), category=category)
 
         tags_dict = {}
-        for tag in data.get('tags', []):
+        all_tags = set(data.get('tags', []))
+        for question_data in data.get('questions', []):
+            all_tags.update(question_data.get('tags', []))
+        for tag in all_tags:
             obj, _ = self.get_or_create_model(Tag, name=tag, criteria__category__domain=domain,
                                               defaults={'criteria': criteria})
             tags_dict[tag] = obj
