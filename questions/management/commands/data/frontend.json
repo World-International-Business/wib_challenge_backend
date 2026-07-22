@@ -1,0 +1,166 @@
+[
+  {
+    "domain": "Développement Frontend",
+    "category": "Frontend",
+    "criteria": "Compétences frontend",
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quelle balise HTML définit le titre visible dans l'onglet du navigateur ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "<title>", "is_correct": true},
+          {"text": "<head>", "is_correct": false},
+          {"text": "<meta>", "is_correct": false},
+          {"text": "<header>", "is_correct": false}
+        ],
+        "tags": ["html"]
+      },
+      {
+        "title": "Quelle propriété CSS change la couleur du texte ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "color", "is_correct": true},
+          {"text": "background", "is_correct": false},
+          {"text": "font-style", "is_correct": false},
+          {"text": "border-color", "is_correct": false}
+        ],
+        "tags": ["css"]
+      },
+      {
+        "title": "Quel mot-clé déclare une variable en JavaScript moderne ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "let", "is_correct": true},
+          {"text": "var", "is_correct": false},
+          {"text": "const", "is_correct": false},
+          {"text": "function", "is_correct": false}
+        ],
+        "tags": ["javascript"]
+      },
+      {
+        "title": "Quelle bibliothèque est principalement utilisée pour construire des interfaces déclaratives ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "React", "is_correct": true},
+          {"text": "jQuery", "is_correct": false},
+          {"text": "Bootstrap", "is_correct": false},
+          {"text": "Sass", "is_correct": false}
+        ],
+        "tags": ["react", "javascript"]
+      },
+      {
+        "title": "Quelle directive Vue.js permet d'afficher une liste d'éléments ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "v-for", "is_correct": true},
+          {"text": "v-if", "is_correct": false},
+          {"text": "v-model", "is_correct": false},
+          {"text": "v-bind", "is_correct": false}
+        ],
+        "tags": ["vue"]
+      },
+      {
+        "title": "Quel outil sert à regrouper et transformer plusieurs fichiers JavaScript ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Webpack ou Vite", "is_correct": true},
+          {"text": "Photoshop", "is_correct": false},
+          {"text": "Excel", "is_correct": false},
+          {"text": "Postman", "is_correct": false}
+        ],
+        "tags": ["webpack"]
+      },
+      {
+        "title": "Quelle unité CSS est relative à la taille de police parente ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "em", "is_correct": true},
+          {"text": "px", "is_correct": false},
+          {"text": "vw", "is_correct": false},
+          {"text": "rem", "is_correct": false}
+        ],
+        "tags": ["css"]
+      },
+      {
+        "title": "Quel attribut HTML rend une image accessible avec une description textuelle ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "alt", "is_correct": true},
+          {"text": "title", "is_correct": false},
+          {"text": "src", "is_correct": false},
+          {"text": "desc", "is_correct": false}
+        ],
+        "tags": ["html", "accessibilité"]
+      },
+      {
+        "title": "Quel langage ajoute des types statiques à JavaScript ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "TypeScript", "is_correct": true},
+          {"text": "CoffeeScript", "is_correct": false},
+          {"text": "Python", "is_correct": false},
+          {"text": "Dart", "is_correct": false}
+        ],
+        "tags": ["typescript", "javascript"]
+      },
+      {
+        "title": "Quelle approche permet d'adapter une page aux différentes tailles d'écran ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Responsive design", "is_correct": true},
+          {"text": "Flat design", "is_correct": false},
+          {"text": "Skeuomorphisme", "is_correct": false},
+          {"text": "Material design", "is_correct": false}
+        ],
+        "tags": ["responsive", "css"]
+      },
+      {
+        "title": "Quelle méthode JavaScript ajoute un écouteur d'événement ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "addEventListener", "is_correct": true},
+          {"text": "attachEvent", "is_correct": false},
+          {"text": "onClick", "is_correct": false},
+          {"text": "listenEvent", "is_correct": false}
+        ],
+        "tags": ["javascript"]
+      },
+      {
+        "title": "Quel est le rôle principal du DOM ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Représenter et manipuler la structure du document HTML", "is_correct": true},
+          {"text": "Stocker les mots de passe", "is_correct": false},
+          {"text": "Compiler le CSS", "is_correct": false},
+          {"text": "Gérer le serveur", "is_correct": false}
+        ],
+        "tags": ["html", "javascript"]
+      }
+    ]
+  }
+]

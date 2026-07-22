@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from debug_toolbar.toolbar import debug_toolbar_urls
+from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 
@@ -73,4 +73,7 @@ urlpatterns = [
     path('password-reset/confirm/<uidb64>/<token>/', WIBPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('password-reset/complete/', WIBPasswordResetCompleteView.as_view(), name='password_reset_complete'),
 ]
-urlpatterns += debug_toolbar_urls()
+
+if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+    urlpatterns += debug_toolbar_urls()

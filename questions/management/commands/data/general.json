@@ -1,0 +1,342 @@
+[
+  {
+    "domain": "Général",
+    "category": "Logique",
+    "criteria": "Raisonnement logique",
+    "question_category": "LOGICAL",
+    "questions": [
+      {
+        "title": "Trouvez l'intrus : chien, chat, souris, avion",
+        "description": "Choisissez l'intrus.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Avion", "is_correct": true},
+          {"text": "Chien", "is_correct": false},
+          {"text": "Chat", "is_correct": false},
+          {"text": "Souris", "is_correct": false}
+        ],
+        "tags": ["logique", "catégorisation"]
+      },
+      {
+        "title": "Si 4 peintres peignent 4 maisons en 4 jours, combien de jours faut-il à 8 peintres pour peindre 8 maisons ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "4 jours", "is_correct": true},
+          {"text": "8 jours", "is_correct": false},
+          {"text": "2 jours", "is_correct": false},
+          {"text": "16 jours", "is_correct": false}
+        ],
+        "tags": ["logique", "calcul"]
+      },
+      {
+        "title": "Complétez la suite : 2, 4, 8, 16, 32, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "64", "is_correct": true},
+          {"text": "48", "is_correct": false},
+          {"text": "128", "is_correct": false},
+          {"text": "36", "is_correct": false}
+        ],
+        "tags": ["logique", "suite"]
+      },
+      {
+        "title": "Quel est l'antonyme de 'facile' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Difficile", "is_correct": true},
+          {"text": "Simple", "is_correct": false},
+          {"text": "Rapide", "is_correct": false},
+          {"text": "Court", "is_correct": false}
+        ],
+        "tags": ["logique", "analogie"]
+      },
+      {
+        "title": "Dans une course, si vous dépassez le deuxième, vous devenez ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Deuxième", "is_correct": true},
+          {"text": "Premier", "is_correct": false},
+          {"text": "Troisième", "is_correct": false},
+          {"text": "Dernier", "is_correct": false}
+        ],
+        "tags": ["logique", "raisonnement"]
+      },
+      {
+        "title": "Quelle lettre suit dans la série : A, C, E, G, ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "I", "is_correct": true},
+          {"text": "H", "is_correct": false},
+          {"text": "J", "is_correct": false},
+          {"text": "K", "is_correct": false}
+        ],
+        "tags": ["logique", "suite"]
+      },
+      {
+        "title": "Un cube a 6 faces. Combien de faces a un dé à jouer ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "6", "is_correct": true},
+          {"text": "4", "is_correct": false},
+          {"text": "8", "is_correct": false},
+          {"text": "12", "is_correct": false}
+        ],
+        "tags": ["logique", "figures"]
+      },
+      {
+        "title": "Si demain est vendredi, quel jour était hier ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Mercredi", "is_correct": true},
+          {"text": "Jeudi", "is_correct": false},
+          {"text": "Mardi", "is_correct": false},
+          {"text": "Samedi", "is_correct": false}
+        ],
+        "tags": ["logique", "temps"]
+      },
+      {
+        "title": "Quel nombre est le double de la moitié de 20 ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "20", "is_correct": true},
+          {"text": "10", "is_correct": false},
+          {"text": "40", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["logique", "mathématiques"]
+      },
+      {
+        "title": "Trouvez l'intrus : pomme, banane, carotte, poire",
+        "description": "Choisissez l'intrus.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Carotte", "is_correct": true},
+          {"text": "Pomme", "is_correct": false},
+          {"text": "Banane", "is_correct": false},
+          {"text": "Poire", "is_correct": false}
+        ],
+        "tags": ["logique", "catégorisation"]
+      },
+      {
+        "title": "Combien de minutes y a-t-il dans 2 heures et 30 minutes ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "150", "is_correct": true},
+          {"text": "120", "is_correct": false},
+          {"text": "180", "is_correct": false},
+          {"text": "90", "is_correct": false}
+        ],
+        "tags": ["logique", "calcul"]
+      },
+      {
+        "title": "Quel mot est synonyme de 'rapide' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Vite", "is_correct": true},
+          {"text": "Lent", "is_correct": false},
+          {"text": "Fatigué", "is_correct": false},
+          {"text": "Calme", "is_correct": false}
+        ],
+        "tags": ["logique", "analogie"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Personnalité",
+    "criteria": "Personnalité",
+    "question_category": "PERSONALITY",
+    "questions": [
+      {
+        "title": "Je suis à l'aise pour travailler en équipe",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "equipe"]
+      },
+      {
+        "title": "J'aime apprendre de nouvelles compétences",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "apprentissage"]
+      },
+      {
+        "title": "Je reste calme sous pression",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "stress"]
+      },
+      {
+        "title": "Je communique clairement mes idées",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "communication"]
+      },
+      {
+        "title": "Je suis autonome dans mon travail",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "autonomie"]
+      },
+      {
+        "title": "J'accepte les retours constructifs",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "feedback"]
+      },
+      {
+        "title": "Je suis organisé dans la gestion des tâches",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "organisation"]
+      },
+      {
+        "title": "Je suis proactif pour résoudre les problèmes",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "proactivite"]
+      },
+      {
+        "title": "Je respecte les délais et les priorités",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "priorisation"]
+      },
+      {
+        "title": "Je m'adapte facilement aux changements",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "adaptabilite"]
+      },
+      {
+        "title": "J'aide mes collègues quand c'est nécessaire",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "entraide"]
+      },
+      {
+        "title": "Je fais attention aux détails dans mon travail",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "rigueur"]
+      }
+    ]
+  }
+]

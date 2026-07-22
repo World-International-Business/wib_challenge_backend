@@ -1,0 +1,356 @@
+[
+  {
+    "domain": "Graphisme",
+    "category": "Design Graphique",
+    "criteria": "Compétences techniques en graphisme",
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quel format d'image est recommandé pour les logos avec fond transparent ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "PNG", "is_correct": true},
+          {"text": "JPEG", "is_correct": false},
+          {"text": "GIF", "is_correct": false},
+          {"text": "BMP", "is_correct": false}
+        ],
+        "tags": ["formats", "image"]
+      },
+      {
+        "title": "Quel est le principal avantage du SVG ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Évolutivité sans perte de qualité", "is_correct": true},
+          {"text": "Petite taille pour les photos", "is_correct": false},
+          {"text": "Compatibilité limitée", "is_correct": false},
+          {"text": "Impossible à éditer", "is_correct": false}
+        ],
+        "tags": ["vectoriel", "formats"]
+      },
+      {
+        "title": "Que signifie RGB ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Rouge, Vert, Bleu", "is_correct": true},
+          {"text": "Rouge, Gris, Blanc", "is_correct": false},
+          {"text": "Rose, Vert, Beige", "is_correct": false},
+          {"text": "Rouge, Jaune, Bleu", "is_correct": false}
+        ],
+        "tags": ["couleur", "théorie des couleurs"]
+      },
+      {
+        "title": "Quel logiciel est spécialisé dans la mise en page de documents imprimés ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Adobe InDesign", "is_correct": true},
+          {"text": "Adobe Photoshop", "is_correct": false},
+          {"text": "Adobe Premiere Pro", "is_correct": false},
+          {"text": "Figma", "is_correct": false}
+        ],
+        "tags": ["indesign", "mise en page"]
+      },
+      {
+        "title": "Quelle unité est la plus adaptée pour les designs web ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Pixels", "is_correct": true},
+          {"text": "Centimètres", "is_correct": false},
+          {"text": "Points typographiques", "is_correct": false},
+          {"text": "Pouces", "is_correct": false}
+        ],
+        "tags": ["web", "résolution"]
+      },
+      {
+        "title": "Quel outil permet de créer des prototypes interactifs d'interface ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Figma", "is_correct": true},
+          {"text": "Adobe Lightroom", "is_correct": false},
+          {"text": "Blender", "is_correct": false},
+          {"text": "After Effects", "is_correct": false}
+        ],
+        "tags": ["ui", "mockup"]
+      },
+      {
+        "title": "Quelle résolution est recommandée pour l'impression haute qualité ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "300 dpi", "is_correct": true},
+          {"text": "72 dpi", "is_correct": false},
+          {"text": "96 dpi", "is_correct": false},
+          {"text": "150 dpi", "is_correct": false}
+        ],
+        "tags": ["impression", "résolution"]
+      },
+      {
+        "title": "Quel élément visuel représente une entreprise ou un produit ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Le logo", "is_correct": true},
+          {"text": "Le menu", "is_correct": false},
+          {"text": "Le pied de page", "is_correct": false},
+          {"text": "Le slide", "is_correct": false}
+        ],
+        "tags": ["logo", "identité visuelle"]
+      },
+      {
+        "title": "Qu'est-ce qu'une police de caractères ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Un ensemble de caractères graphiques avec un style commun", "is_correct": true},
+          {"text": "Un outil de retouche photo", "is_correct": false},
+          {"text": "Un type de fichier image", "is_correct": false},
+          {"text": "Une couleur spécifique", "is_correct": false}
+        ],
+        "tags": ["typographie"]
+      },
+      {
+        "title": "Quel format est adapté pour une animation légère sur le web ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "SVG animé ou GIF", "is_correct": true},
+          {"text": "RAW", "is_correct": false},
+          {"text": "TIFF", "is_correct": false},
+          {"text": "EPS", "is_correct": false}
+        ],
+        "tags": ["web", "formats"]
+      },
+      {
+        "title": "Quelle couleur est complémentaire du bleu dans le cercle chromatique ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Orange", "is_correct": true},
+          {"text": "Vert", "is_correct": false},
+          {"text": "Violet", "is_correct": false},
+          {"text": "Jaune", "is_correct": false}
+        ],
+        "tags": ["couleur", "théorie des couleurs"]
+      },
+      {
+        "title": "Qu'est-ce que la hiérarchie visuelle ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "L'organisation des éléments pour guider l'œil", "is_correct": true},
+          {"text": "La taille du fichier", "is_correct": false},
+          {"text": "Le nombre de calques", "is_correct": false},
+          {"text": "La couleur de fond", "is_correct": false}
+        ],
+        "tags": ["composition", "design"]
+      },
+      {
+        "title": "Quel outil sert à découper ou masquer une partie d'une image ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Masque de fusion", "is_correct": true},
+          {"text": "Pinceau magique", "is_correct": false},
+          {"text": "Pot de peinture", "is_correct": false},
+          {"text": "Tampon", "is_correct": false}
+        ],
+        "tags": ["photoshop", "image"]
+      },
+      {
+        "title": "Que signifie l'abréviation CMJN ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Cyan, Magenta, Jaune, Noir", "is_correct": true},
+          {"text": "Cyan, Marron, Jaune, Noir", "is_correct": false},
+          {"text": "Cyan, Magenta, Jaune, Blanc", "is_correct": false},
+          {"text": "Cyan, Mauve, Jaune, Noir", "is_correct": false}
+        ],
+        "tags": ["impression", "couleur"]
+      },
+      {
+        "title": "Quelle est la bonne pratique pour choisir une palette de couleurs ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Limiter le nombre de couleurs dominantes", "is_correct": true},
+          {"text": "Utiliser toutes les couleurs possibles", "is_correct": false},
+          {"text": "Éviter les couleurs complémentaires", "is_correct": false},
+          {"text": "Choisir au hasard", "is_correct": false}
+        ],
+        "tags": ["couleur", "design"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Logique",
+    "criteria": "Raisonnement logique",
+    "question_category": "LOGICAL",
+    "questions": [
+      {
+        "title": "Si 5 machines fabriquent 5 objets en 5 minutes, combien d'objets 100 machines fabriquent-elles en 100 minutes ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "100", "is_correct": true},
+          {"text": "500", "is_correct": false},
+          {"text": "20", "is_correct": false},
+          {"text": "1000", "is_correct": false}
+        ],
+        "tags": ["logique", "temps"]
+      },
+      {
+        "title": "Trouvez l'intrus : Carreau, Trèfle, Cœur, Diamant, Pique",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Diamant", "is_correct": true},
+          {"text": "Carreau", "is_correct": false},
+          {"text": "Trèfle", "is_correct": false},
+          {"text": "Pique", "is_correct": false}
+        ],
+        "tags": ["logique", "catégorisation"]
+      },
+      {
+        "title": "Un train part de Paris à 80 km/h. Un autre part de Lyon à 60 km/h vers Paris. La distance est 420 km. Où se croisent-ils ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "À 240 km de Paris", "is_correct": true},
+          {"text": "À 210 km de Paris", "is_correct": false},
+          {"text": "À 180 km de Paris", "is_correct": false},
+          {"text": "À 300 km de Paris", "is_correct": false}
+        ],
+        "tags": ["logique", "mathématiques"]
+      },
+      {
+        "title": "Complétez la suite : 2, 3, 5, 9, 17, ?",
+        "description": "Quel est le nombre suivant ?",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "33", "is_correct": true},
+          {"text": "31", "is_correct": false},
+          {"text": "35", "is_correct": false},
+          {"text": "29", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      },
+      {
+        "title": "Quel cube peut être formé à partir du patron donné ?",
+        "description": "Logique spatiale.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Cube A", "is_correct": true},
+          {"text": "Cube B", "is_correct": false},
+          {"text": "Cube C", "is_correct": false},
+          {"text": "Cube D", "is_correct": false}
+        ],
+        "tags": ["logique", "figures géométriques"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Personnalité",
+    "criteria": "Personnalité",
+    "question_category": "PERSONALITY",
+    "questions": [
+      {
+        "title": "Je suis curieux et j'aime découvrir de nouvelles tendances visuelles",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "veille"]
+      },
+      {
+        "title": "Je suis perfectionniste sur les détails visuels",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "perfectionnisme"]
+      },
+      {
+        "title": "Je peux travailler efficacement seul pendant de longues périodes",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "autonomie"]
+      },
+      {
+        "title": "Je suis motivé par les projets créatifs variés",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "motivation"]
+      },
+      {
+        "title": "Je donne de l'importance à l'avis du client sans sacrifier la qualité créative",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "feedback"]
+      }
+    ]
+  }
+]

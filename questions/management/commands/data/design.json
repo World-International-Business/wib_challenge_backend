@@ -1,0 +1,291 @@
+[
+  {
+    "domain": "Design",
+    "category": "Design",
+    "criteria": "Compétences en design",
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Qu'est-ce qu'un wireframe ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Un schéma basse fidélité d'une interface", "is_correct": true},
+          {"text": "Un fichier vectoriel", "is_correct": false},
+          {"text": "Un type de police", "is_correct": false},
+          {"text": "Une palette de couleurs", "is_correct": false}
+        ],
+        "tags": ["ui design", "ux design", "ui/ux design"]
+      },
+      {
+        "title": "Que signifie UX ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "User Experience", "is_correct": true},
+          {"text": "User Extension", "is_correct": false},
+          {"text": "Universal Experience", "is_correct": false},
+          {"text": "Unique Experience", "is_correct": false}
+        ],
+        "tags": ["ux design", "ui/ux design"]
+      },
+      {
+        "title": "Quel outil est très utilisé pour le prototypage collaboratif d'interfaces ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+          "choices": [
+          {"text": "Figma", "is_correct": true},
+          {"text": "Premiere Pro", "is_correct": false},
+          {"text": "Blender", "is_correct": false},
+          {"text": "Excel", "is_correct": false}
+        ],
+        "tags": ["ui design", "prototypage"]
+      },
+      {
+        "title": "Quelle étape précède généralement la création de maquettes haute fidélité ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "La recherche utilisateur et les wireframes", "is_correct": true},
+          {"text": "L'impression", "is_correct": false},
+          {"text": "Le développement", "is_correct": false},
+          {"text": "Le déploiement", "is_correct": false}
+        ],
+        "tags": ["ux design", "product design"]
+      },
+      {
+        "title": "Quel logiciel est adapté pour créer des animations d'interface (motion design) ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "After Effects ou Principle", "is_correct": true},
+          {"text": "Word", "is_correct": false},
+          {"text": "PowerPoint", "is_correct": false},
+          {"text": "Notepad", "is_correct": false}
+        ],
+        "tags": ["motion design"]
+      },
+      {
+        "title": "Qu'est-ce qu'un design system ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Un ensemble de composants et règles réutilisables", "is_correct": true},
+          {"text": "Un logiciel de dessin", "is_correct": false},
+          {"text": "Une base de données", "is_correct": false},
+          {"text": "Un type de contrat", "is_correct": false}
+        ],
+        "tags": ["product design", "ui design"]
+      },
+      {
+        "title": "Dans le product design, que désigne le MVP ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Minimum Viable Product", "is_correct": true},
+          {"text": "Most Valuable Product", "is_correct": false},
+          {"text": "Maximum Visual Product", "is_correct": false},
+          {"text": "Main Visual Prototype", "is_correct": false}
+        ],
+        "tags": ["product design"]
+      },
+      {
+        "title": "Quelle est l'unité de mesure adaptée aux espacements en design d'interface mobile ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Points ou dp", "is_correct": true},
+          {"text": "Centimètres", "is_correct": false},
+          {"text": "Kilogrammes", "is_correct": false},
+          {"text": "Pouces", "is_correct": false}
+        ],
+        "tags": ["ui design", "web design"]
+      },
+      {
+        "title": "Qu'est-ce que le branding ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "L'identité visuelle et la personnalité d'une marque", "is_correct": true},
+          {"text": "Un type de police", "is_correct": false},
+          {"text": "Un réseau social", "is_correct": false},
+          {"text": "Un logiciel de retouche", "is_correct": false}
+        ],
+        "tags": ["branding", "graphiste"]
+      },
+      {
+        "title": "Pourquoi effectuer des tests utilisateurs ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Valider l'ergonomie et l'utilisabilité", "is_correct": true},
+          {"text": "Créer un logo", "is_correct": false},
+          {"text": "Augmenter la résolution", "is_correct": false},
+          {"text": "Réduire les couleurs", "is_correct": false}
+        ],
+        "tags": ["ux design", "product design"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Logique",
+    "criteria": "Raisonnement logique",
+    "question_category": "LOGICAL",
+    "questions": [
+      {
+        "title": "Si 3 chats attrapent 3 souris en 3 minutes, combien de chats attrapent 100 souris en 100 minutes ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "3", "is_correct": true},
+          {"text": "100", "is_correct": false},
+          {"text": "33", "is_correct": false},
+          {"text": "10", "is_correct": false}
+        ],
+        "tags": ["logique", "calcul"]
+      },
+      {
+        "title": "Quelle figure suit logiquement dans la suite : carré, rond, triangle, carré, rond, ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Triangle", "is_correct": true},
+          {"text": "Cercle", "is_correct": false},
+          {"text": "Étoile", "is_correct": false},
+          {"text": "Rectangle", "is_correct": false}
+        ],
+        "tags": ["logique", "suite"]
+      },
+      {
+        "title": "Un pied correspond à 30 cm. Combien de centimètres mesurent 5 pieds ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "150", "is_correct": true},
+          {"text": "180", "is_correct": false},
+          {"text": "120", "is_correct": false},
+          {"text": "300", "is_correct": false}
+        ],
+        "tags": ["logique", "conversion"]
+      },
+      {
+        "title": "Complétez la suite : 1, 1, 2, 3, 5, 8, ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "13", "is_correct": true},
+          {"text": "11", "is_correct": false},
+          {"text": "15", "is_correct": false},
+          {"text": "10", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      },
+      {
+        "title": "Quel est l'intrus : rouge, vert, bleu, table",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Table", "is_correct": true},
+          {"text": "Rouge", "is_correct": false},
+          {"text": "Vert", "is_correct": false},
+          {"text": "Bleu", "is_correct": false}
+        ],
+        "tags": ["logique", "catégorisation"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Personnalité",
+    "criteria": "Personnalité",
+    "question_category": "PERSONALITY",
+    "questions": [
+      {
+        "title": "J'aime travailler en équipe sur des projets créatifs",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "equipe"]
+      },
+      {
+        "title": "Je suis attentif aux détails visuels et à l'expérience utilisateur",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "details"]
+      },
+      {
+        "title": "J'accepte facilement les retours et itérations sur mes designs",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "feedback"]
+      },
+      {
+        "title": "Je suis curieux des nouvelles tendances de design",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "veille"]
+      },
+      {
+        "title": "Je suis capable de prioriser les besoins utilisateurs et métier",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "priorisation"]
+      }
+    ]
+  }
+]

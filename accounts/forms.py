@@ -1,10 +1,26 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
+from django.db.models import F
 from django.forms import inlineformset_factory
 
 from questions.models import Domain, Question, Tag
 from wib_challenge.enums import ExperienceLevel
 from .models import User, UserSkill
+
+
+class DomainSkillSelect(forms.Select):
+    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
+        option = super().create_option(name, value, label, selected, index, subindex, attrs)
+        if value and hasattr(value, 'instance') and value.instance:
+            try:
+                domain = getattr(
+                    value.instance, 'domain_name', None)
+                if not domain:
+                    domain = value.instance.criteria.category.domain.name
+                option['attrs']['data-domain'] = domain
+            except Exception:
+                pass
+        return option
 
 
 class UserRegisterForm(UserCreationForm):
@@ -60,9 +76,7 @@ class UserUpdateForm(forms.ModelForm):
 
 class UserSkillForm(forms.ModelForm):
     skill = forms.ModelChoiceField(
-        queryset=Tag.objects.filter(
-            questions__question_category=Question.QuestionCategory.NORMAL
-        ).distinct().order_by('criteria__category__domain__name', 'name'),
+        queryset=Tag.objects.none(),
         required=True,
         empty_label="Sélectionner une compétence",
         label="Compétence"
@@ -75,10 +89,16 @@ class UserSkillForm(forms.ModelForm):
             'skill': 'Compétence',
             'experience_level': 'Niveau d\'expérience',
         }
-        widgets = {
-            'skill': forms.Select(attrs={'class': 'form-control'}),
-            'experience_level': forms.Select(attrs={'class': 'form-control'}),
-        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        qs = Tag.objects.filter(
+            questions__question_category=Question.QuestionCategory.NORMAL
+        ).annotate(domain_name=F('criteria__category__domain__name')).distinct().order_by('domain_name', 'name')
+        self.fields['skill'].queryset = qs
+        self.fields['skill'].widget = DomainSkillSelect(attrs={'class': 'form-control skill-select'})
+        self.fields['skill'].widget.choices = self.fields['skill'].choices
+        self.fields['experience_level'].widget.attrs.update({'class': 'form-control'})
 
 
 class WIBPasswordResetForm(PasswordResetForm):

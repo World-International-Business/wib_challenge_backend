@@ -1,0 +1,166 @@
+[
+  {
+    "domain": "DevOps",
+    "category": "DevOps",
+    "criteria": "Compétences DevOps",
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quel outil permet de créer des conteneurs isolés ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Docker", "is_correct": true},
+          {"text": "Jenkins", "is_correct": false},
+          {"text": "Ansible", "is_correct": false},
+          {"text": "Terraform", "is_correct": false}
+        ],
+        "tags": ["docker"]
+      },
+      {
+        "title": "Quelle plateforme est souvent utilisée pour orchestrer des conteneurs ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Kubernetes", "is_correct": true},
+          {"text": "GitLab", "is_correct": false},
+          {"text": "Nginx", "is_correct": false},
+          {"text": "Prometheus", "is_correct": false}
+        ],
+        "tags": ["kubernetes"]
+      },
+      {
+        "title": "Quel concept désigne l'intégration et le déploiement automatisés ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "CI/CD", "is_correct": true},
+          {"text": "CRM", "is_correct": false},
+          {"text": "ERP", "is_correct": false},
+          {"text": "VPN", "is_correct": false}
+        ],
+        "tags": ["ci/cd"]
+      },
+      {
+        "title": "Quel fournisseur cloud propose EC2, S3 et Lambda ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "AWS", "is_correct": true},
+          {"text": "Azure", "is_correct": false},
+          {"text": "GCP", "is_correct": false},
+          {"text": "Oracle", "is_correct": false}
+        ],
+        "tags": ["aws"]
+      },
+      {
+        "title": "Quel système d'exploitation est le plus utilisé sur les serveurs ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Linux", "is_correct": true},
+          {"text": "Windows", "is_correct": false},
+          {"text": "macOS", "is_correct": false},
+          {"text": "Android", "is_correct": false}
+        ],
+        "tags": ["linux"]
+      },
+      {
+        "title": "Quel langage est souvent utilisé pour l'automatisation de scripts DevOps ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Python", "is_correct": true},
+          {"text": "Swift", "is_correct": false},
+          {"text": "Kotlin", "is_correct": false},
+          {"text": "R", "is_correct": false}
+        ],
+        "tags": ["python"]
+      },
+      {
+        "title": "Quel outil est un système de gestion de versions ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Git", "is_correct": true},
+          {"text": "Docker", "is_correct": false},
+          {"text": "Kubernetes", "is_correct": false},
+          {"text": "Terraform", "is_correct": false}
+        ],
+        "tags": ["git"]
+      },
+      {
+        "title": "Quel outil permet de gérer l'infrastructure en tant que code ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Terraform", "is_correct": true},
+          {"text": "Jenkins", "is_correct": false},
+          {"text": "Grafana", "is_correct": false},
+          {"text": "Nagios", "is_correct": false}
+        ],
+        "tags": ["terraform"]
+      },
+      {
+        "title": "Quel outil sert à surveiller les performances d'applications et d'infrastructures ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Prometheus / Grafana", "is_correct": true},
+          {"text": "Figma", "is_correct": false},
+          {"text": "Photoshop", "is_correct": false},
+          {"text": "Slack", "is_correct": false}
+        ],
+        "tags": ["monitoring"]
+      },
+      {
+        "title": "Quel est le rôle d'un reverse proxy comme Nginx ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Distribuer les requêtes vers les serveurs backend", "is_correct": true},
+          {"text": "Compiler le code", "is_correct": false},
+          {"text": "Stocker les bases de données", "is_correct": false},
+          {"text": "Créer des animations", "is_correct": false}
+        ],
+        "tags": ["nginx"]
+      },
+      {
+        "title": "Quelle commande Git affiche l'état actuel du dépôt ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "git status", "is_correct": true},
+          {"text": "git log", "is_correct": false},
+          {"text": "git push", "is_correct": false},
+          {"text": "git branch", "is_correct": false}
+        ],
+        "tags": ["git"]
+      },
+      {
+        "title": "Quel service est typiquement utilisé pour le stockage d'objets dans le cloud ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "AWS S3", "is_correct": true},
+          {"text": "AWS RDS", "is_correct": false},
+          {"text": "AWS EC2", "is_correct": false},
+          {"text": "AWS Lambda", "is_correct": false}
+        ],
+        "tags": ["aws"]
+      }
+    ]
+  }
+]

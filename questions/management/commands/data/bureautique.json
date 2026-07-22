@@ -1,0 +1,166 @@
+[
+  {
+    "domain": "Bureautique",
+    "category": "Bureautique",
+    "criteria": "Compétences bureautique",
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quel raccourci clavier sélectionne tout le contenu d'un document Word ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Ctrl + A", "is_correct": true},
+          {"text": "Ctrl + S", "is_correct": false},
+          {"text": "Ctrl + C", "is_correct": false},
+          {"text": "Ctrl + P", "is_correct": false}
+        ],
+        "tags": ["word", "clavier"]
+      },
+      {
+        "title": "Quel est le format de fichier natif d'Excel ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": ".xlsx", "is_correct": true},
+          {"text": ".docx", "is_correct": false},
+          {"text": ".pdf", "is_correct": false},
+          {"text": ".csv", "is_correct": false}
+        ],
+        "tags": ["excel"]
+      },
+      {
+        "title": "Quelle fonction Excel additionne une plage de cellules ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "SOMME", "is_correct": true},
+          {"text": "MOYENNE", "is_correct": false},
+          {"text": "MAX", "is_correct": false},
+          {"text": "NB", "is_correct": false}
+        ],
+        "tags": ["excel"]
+      },
+      {
+        "title": "Quel logiciel est adapté pour créer des diaporamas ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "PowerPoint", "is_correct": true},
+          {"text": "Excel", "is_correct": false},
+          {"text": "Word", "is_correct": false},
+          {"text": "Outlook", "is_correct": false}
+        ],
+        "tags": ["powerpoint", "présentation"]
+      },
+      {
+        "title": "Quel outil sert à gérer les emails et le calendrier professionnel ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Outlook", "is_correct": true},
+          {"text": "PowerPoint", "is_correct": false},
+          {"text": "Excel", "is_correct": false},
+          {"text": "Paint", "is_correct": false}
+        ],
+        "tags": ["outlook"]
+      },
+      {
+        "title": "Quelle plateforme collaborative Microsoft permet le chat et les visioconférences ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Teams", "is_correct": true},
+          {"text": "Slack", "is_correct": false},
+          {"text": "Zoom", "is_correct": false},
+          {"text": "Discord", "is_correct": false}
+        ],
+        "tags": ["teams"]
+      },
+      {
+        "title": "Quel format est conseillé pour partager un document sans le modifier ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "PDF", "is_correct": true},
+          {"text": "DOCX", "is_correct": false},
+          {"text": "XLSX", "is_correct": false},
+          {"text": "TXT", "is_correct": false}
+        ],
+        "tags": ["pdf"]
+      },
+      {
+        "title": "Quel élément permet d'aligner un texte à gauche dans Word ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Alignement à gauche", "is_correct": true},
+          {"text": "Alignement justifié", "is_correct": false},
+          {"text": "Alignement centré", "is_correct": false},
+          {"text": "Alignement à droite", "is_correct": false}
+        ],
+        "tags": ["word"]
+      },
+      {
+        "title": "Quelle formule Excel compte les cellules contenant des nombres ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "NB", "is_correct": true},
+          {"text": "SOMME", "is_correct": false},
+          {"text": "MOYENNE", "is_correct": false},
+          {"text": "NBVAL", "is_correct": false}
+        ],
+        "tags": ["excel"]
+      },
+      {
+        "title": "Quel raccourci clavier enregistre un document ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Ctrl + S", "is_correct": true},
+          {"text": "Ctrl + P", "is_correct": false},
+          {"text": "Ctrl + N", "is_correct": false},
+          {"text": "Ctrl + O", "is_correct": false}
+        ],
+        "tags": ["clavier"]
+      },
+      {
+        "title": "Quel type de graphique Excel compare des valeurs avec des barres verticales ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Histogramme", "is_correct": true},
+          {"text": "Camembert", "is_correct": false},
+          {"text": "Courbe", "is_correct": false},
+          {"text": "Nuage de points", "is_correct": false}
+        ],
+        "tags": ["excel"]
+      },
+      {
+        "title": "Quel logiciel de la suite Microsoft est principalement utilisé pour le courrier ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Outlook", "is_correct": true},
+          {"text": "Word", "is_correct": false},
+          {"text": "Excel", "is_correct": false},
+          {"text": "OneNote", "is_correct": false}
+        ],
+        "tags": ["outlook"]
+      }
+    ]
+  }
+]

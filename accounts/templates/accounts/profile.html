@@ -6,11 +6,19 @@
             display: none;
         }
         .skill-row {
-            transition: background-color .2s ease-in-out;
-            border-radius: .75rem;
-            padding: .75rem;
+            transition: all .2s ease-in-out;
+            border-radius: 1rem;
+            padding: 1rem;
+            background: #fff;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 1px 2px rgba(0,0,0,.04);
+            margin-bottom: .75rem;
         }
         .skill-row:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,.06);
+            border-color: #dee2e6;
+        }
+        .skill-select:disabled {
             background-color: #f8f9fa;
         }
     </style>
@@ -70,12 +78,12 @@
 
             <div id="skills-container" class="mb-3">
                 {% for form in skill_formset.forms %}
-                    <div class="skill-row skill-item d-flex align-items-end mb-2">
+                    <div class="skill-row skill-item d-flex flex-column flex-md-row align-items-start align-items-md-end gap-2 gap-md-0 mb-3">
                         {% for hidden in form.hidden_fields %}
                             {{ hidden }}
                         {% endfor %}
 
-                        <div class="me-3 flex-grow-1">
+                        <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
                             <label class="form-label fw-semibold small text-muted">{{ form.skill.label }}</label>
                             {{ form.skill }}
                             {% if form.skill.errors %}
@@ -86,7 +94,7 @@
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="me-3 flex-grow-1">
+                        <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
                             <label class="form-label fw-semibold small text-muted">{{ form.experience_level.label }}</label>
                             {{ form.experience_level }}
                             {% if form.experience_level.errors %}
@@ -122,12 +130,12 @@
 
         <!-- Formulaire vide pour duplication JS -->
         <div id="empty-form" style="display: none;">
-            <div class="skill-row skill-item d-flex align-items-end mb-2">
-                <div class="me-3 flex-grow-1">
+            <div class="skill-row skill-item d-flex flex-column flex-md-row align-items-start align-items-md-end gap-2 gap-md-0 mb-3">
+                <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
                     {{ skill_formset.empty_form.skill.label_tag }}
                     {{ skill_formset.empty_form.skill }}
                 </div>
-                <div class="me-3 flex-grow-1">
+                <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
                     {{ skill_formset.empty_form.experience_level.label_tag }}
                     {{ skill_formset.empty_form.experience_level }}
                 </div>
@@ -149,6 +157,31 @@
             const totalForms = document.getElementById(`id_${formsetPrefix}-TOTAL_FORMS`);
             const skillsContainer = document.getElementById("skills-container");
             const addSkillButton = document.getElementById("add-skill");
+            const domainSelect = document.getElementById('id_domain');
+
+            function filterSkills() {
+                const selectedDomain = (domainSelect && domainSelect.value)
+                    ? domainSelect.options[domainSelect.selectedIndex].text.trim()
+                    : '';
+                document.querySelectorAll('.skill-select').forEach(select => {
+                    const placeholder = select.querySelector('option[value=""]');
+                    select.querySelectorAll('option').forEach(opt => {
+                        if (!opt.value) return;
+                        const match = !selectedDomain || (opt.dataset.domain || '') === selectedDomain;
+                        opt.hidden = !match;
+                        opt.disabled = !match;
+                        if (opt.selected && !match) {
+                            opt.selected = false;
+                            if (placeholder) placeholder.selected = true;
+                        }
+                    });
+                });
+            }
+
+            if (domainSelect) {
+                domainSelect.addEventListener('change', filterSkills);
+                filterSkills();
+            }
 
             // Ajouter une compétence
             addSkillButton.addEventListener("click", function (e) {
@@ -169,6 +202,7 @@
 
                 // Mettre à jour le nombre total de formulaires
                 totalForms.value = formCount + 1;
+                filterSkills();
             });
 
             // Supprimer une compétence

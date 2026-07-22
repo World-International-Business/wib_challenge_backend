@@ -72,7 +72,15 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
             category__domain=domain
         )[:sum(question_quotas.values())])
 
-    return questions
+    # Dédoublonne et plafonne le nombre de questions
+    total_limit = sum(question_quotas.values())
+    seen = set()
+    unique = []
+    for q in questions:
+        if q.id not in seen:
+            seen.add(q.id)
+            unique.append(q)
+    return unique[:total_limit]
 
 
 @transaction.atomic
@@ -101,8 +109,7 @@ def generate_personality_challenge_for_user(user: User, domain: Domain):
         candidate=user,
         duration=durations['personality']
     )
-    selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.PERSONALITY,
-                                                                  criteria__category__domain=domain).distinct()), question_category=Question.QuestionCategory.PERSONALITY, domain=domain)
+    selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.PERSONALITY).distinct()), question_category=Question.QuestionCategory.PERSONALITY, domain=domain)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.save()

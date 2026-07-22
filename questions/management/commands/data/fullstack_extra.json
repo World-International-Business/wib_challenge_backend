@@ -1,0 +1,356 @@
+[
+  {
+    "domain": "Développement Fullstack",
+    "category": "Technique",
+    "criteria": "Compétences techniques fullstack",
+    "question_category": "NORMAL",
+    "questions": [
+      {
+        "title": "Quel framework JavaScript est principalement utilisé pour le développement mobile cross-platform ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "React Native", "is_correct": true},
+          {"text": "Angular", "is_correct": false},
+          {"text": "Vue.js", "is_correct": false},
+          {"text": "Svelte", "is_correct": false}
+        ],
+        "tags": ["react", "mobile"]
+      },
+      {
+        "title": "Quelle méthode permet de supprimer un élément d'un tableau JavaScript par sa valeur ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "filter", "is_correct": true},
+          {"text": "push", "is_correct": false},
+          {"text": "concat", "is_correct": false},
+          {"text": "slice", "is_correct": false}
+        ],
+        "tags": ["javascript"]
+      },
+      {
+        "title": "Dans une API REST, quel code HTTP signifie 'Non trouvé' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "404", "is_correct": true},
+          {"text": "500", "is_correct": false},
+          {"text": "403", "is_correct": false},
+          {"text": "200", "is_correct": false}
+        ],
+        "tags": ["http", "api"]
+      },
+      {
+        "title": "Quel opérateur SQL permet de combiner deux tables ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "JOIN", "is_correct": true},
+          {"text": "MERGE", "is_correct": false},
+          {"text": "COMBINE", "is_correct": false},
+          {"text": "LINK", "is_correct": false}
+        ],
+        "tags": ["sql", "base de données"]
+      },
+      {
+        "title": "Quel concept CSS permet de créer des mises en page flexibles sur plusieurs écrans ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Flexbox et Grid", "is_correct": true},
+          {"text": "Float uniquement", "is_correct": false},
+          {"text": "Table layout", "is_correct": false},
+          {"text": "Inline-block", "is_correct": false}
+        ],
+        "tags": ["css", "frontend"]
+      },
+      {
+        "title": "Quel est le rôle d'un ORM comme Django ORM ou SQLAlchemy ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Faire le lien entre classes et tables de base de données", "is_correct": true},
+          {"text": "Gérer les styles CSS", "is_correct": false},
+          {"text": "Compiler du JavaScript", "is_correct": false},
+          {"text": "Déployer sur un serveur", "is_correct": false}
+        ],
+        "tags": ["base de données", "backend"]
+      },
+      {
+        "title": "Quel est l'avantage principal des JWT (JSON Web Tokens) ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Authentification stateless", "is_correct": true},
+          {"text": "Stockage des mots de passe en clair", "is_correct": false},
+          {"text": "Exécution plus rapide du code", "is_correct": false},
+          {"text": "Remplacement des bases de données", "is_correct": false}
+        ],
+        "tags": ["securité", "api"]
+      },
+      {
+        "title": "Quelle commande Git permet de visualiser l'historique des commits ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "git log", "is_correct": true},
+          {"text": "git status", "is_correct": false},
+          {"text": "git diff", "is_correct": false},
+          {"text": "git branch", "is_correct": false}
+        ],
+        "tags": ["git"]
+      },
+      {
+        "title": "Quel langage est principalement utilisé pour styliser une page web ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "CSS", "is_correct": true},
+          {"text": "HTML", "is_correct": false},
+          {"text": "Python", "is_correct": false},
+          {"text": "SQL", "is_correct": false}
+        ],
+        "tags": ["css", "frontend"]
+      },
+      {
+        "title": "Que signifie CI/CD ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Intégration continue / Déploiement continu", "is_correct": true},
+          {"text": "Compilation interne / Contrôle de données", "is_correct": false},
+          {"text": "Code intégré / Cache distribué", "is_correct": false},
+          {"text": "Client intégré / Classe dérivée", "is_correct": false}
+        ],
+        "tags": ["devops"]
+      },
+      {
+        "title": "Quel est le rôle d'un reverse proxy comme Nginx ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Rediriger les requêtes vers le bon serveur backend", "is_correct": true},
+          {"text": "Compiler les fichiers Python", "is_correct": false},
+          {"text": "Stocker les bases de données", "is_correct": false},
+          {"text": "Créer des animations frontend", "is_correct": false}
+        ],
+        "tags": ["devops", "web"]
+      },
+      {
+        "title": "Quel est l'objet global dans Node.js ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "global", "is_correct": true},
+          {"text": "window", "is_correct": false},
+          {"text": "document", "is_correct": false},
+          {"text": "processus", "is_correct": false}
+        ],
+        "tags": ["nodejs", "backend"]
+      },
+      {
+        "title": "Quelle balise HTML crée un champ de saisie texte ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "<input type='text'>", "is_correct": true},
+          {"text": "<text>", "is_correct": false},
+          {"text": "<textarea type='text'>", "is_correct": false},
+          {"text": "<field>", "is_correct": false}
+        ],
+        "tags": ["html"]
+      },
+      {
+        "title": "Quel est le rôle d'une clé primaire en base de données ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Identifier de manière unique chaque enregistrement", "is_correct": true},
+          {"text": "Stocker les mots de passe", "is_correct": false},
+          {"text": "Créer des relations entre serveurs", "is_correct": false},
+          {"text": "Chiffrer les données", "is_correct": false}
+        ],
+        "tags": ["base de données"]
+      },
+      {
+        "title": "Quel outil permet d'automatiser l'exécution de tâches répétitives en JavaScript ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 2,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Gulp / Webpack", "is_correct": true},
+          {"text": "jQuery", "is_correct": false},
+          {"text": "Bootstrap", "is_correct": false},
+          {"text": "Postman", "is_correct": false}
+        ],
+        "tags": ["javascript", "dependances"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Logique",
+    "criteria": "Raisonnement logique",
+    "question_category": "LOGICAL",
+    "questions": [
+      {
+        "title": "Si un papillon vole à 20 km/h avec le vent et à 12 km/h contre le vent, quelle est sa vitesse en eau calme ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "16 km/h", "is_correct": true},
+          {"text": "14 km/h", "is_correct": false},
+          {"text": "18 km/h", "is_correct": false},
+          {"text": "10 km/h", "is_correct": false}
+        ],
+        "tags": ["logique", "mathématiques"]
+      },
+      {
+        "title": "Complétez la suite : 1, 2, 6, 24, 120, ?",
+        "description": "Quel est le nombre suivant (factorielles) ?",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "720", "is_correct": true},
+          {"text": "360", "is_correct": false},
+          {"text": "600", "is_correct": false},
+          {"text": "240", "is_correct": false}
+        ],
+        "tags": ["logique", "suite numérique"]
+      },
+      {
+        "title": "Quel mot est l'antonyme de 'construire' ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Détruire", "is_correct": true},
+          {"text": "Élever", "is_correct": false},
+          {"text": "Fonder", "is_correct": false},
+          {"text": "Bâtir", "is_correct": false}
+        ],
+        "tags": ["logique", "analogie"]
+      },
+      {
+        "title": "Dans une équipe de 10 personnes, chacun serre la main de tous les autres. Combien de poignées de main au total ?",
+        "description": "Choisissez la bonne réponse.",
+        "level": 3,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "45", "is_correct": true},
+          {"text": "90", "is_correct": false},
+          {"text": "50", "is_correct": false},
+          {"text": "100", "is_correct": false}
+        ],
+        "tags": ["logique", "mathématiques"]
+      },
+      {
+        "title": "Trouvez l'intrus : Chrome, Firefox, Safari, Python",
+        "description": "Choisissez l'élément qui ne va pas avec les autres.",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "Python", "is_correct": true},
+          {"text": "Chrome", "is_correct": false},
+          {"text": "Firefox", "is_correct": false},
+          {"text": "Safari", "is_correct": false}
+        ],
+        "tags": ["logique", "catégorisation"]
+      }
+    ]
+  },
+  {
+    "domain": "Général",
+    "category": "Personnalité",
+    "criteria": "Personnalité",
+    "question_category": "PERSONALITY",
+    "questions": [
+      {
+        "title": "Je suis à l'aise pour apprendre de nouvelles technologies rapidement",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "adaptabilité"]
+      },
+      {
+        "title": "J'aime résoudre des problèmes complexes",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "motivation"]
+      },
+      {
+        "title": "Je suis attentif aux détails dans mon code et mes projets",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "rigueur"]
+      },
+      {
+        "title": "Je travaille bien sous pression et avec des délais serrés",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "gestion du temps"]
+      },
+      {
+        "title": "J'aime partager mes connaissances techniques avec mes collègues",
+        "description": "De 1 à 5",
+        "level": 1,
+        "question_type": "UCQ",
+        "choices": [
+          {"text": "1", "is_correct": false},
+          {"text": "2", "is_correct": false},
+          {"text": "3", "is_correct": false},
+          {"text": "4", "is_correct": false},
+          {"text": "5", "is_correct": false}
+        ],
+        "tags": ["personnalite", "communication"]
+      }
+    ]
+  }
+]
