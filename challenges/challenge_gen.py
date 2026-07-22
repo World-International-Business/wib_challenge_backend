@@ -25,7 +25,7 @@ def get_profile_durations(domain, experience_level):
     }
 
 
-def select_questions(skills: list[Tag] | None = None, question_category: str = Question.QuestionCategory.NORMAL):
+def select_questions(skills: list[Tag] | None = None, question_category: str = Question.QuestionCategory.NORMAL, domain: Domain = None):
     question_quotas = {
         Question.QuestionType.MULTIPLE_CHOICE: 14,
         Question.QuestionType.OPEN_ANSWER: 6,
@@ -66,6 +66,12 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
 
         questions.extend(selected_questions)
 
+    if not questions and domain:
+        questions = list(Question.objects.filter(
+            question_category=question_category,
+            category__domain=domain
+        )[:sum(question_quotas.values())])
+
     return questions
 
 
@@ -79,7 +85,7 @@ def generate_challenge_for_user(user: User, skills: list[Tag] | None = None):
         description=f'Testez vos compétences pour {user.domain.name}',
         duration=durations['technical']
     )
-    selected_questions = select_questions(skills or list(user.skills.all()))
+    selected_questions = select_questions(skills or list(user.skills.all()), domain=user.domain)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.save()
@@ -96,7 +102,7 @@ def generate_personality_challenge_for_user(user: User, domain: Domain):
         duration=durations['personality']
     )
     selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.PERSONALITY,
-                                                                  criteria__category__domain=domain).distinct()), question_category=Question.QuestionCategory.PERSONALITY)
+                                                                  criteria__category__domain=domain).distinct()), question_category=Question.QuestionCategory.PERSONALITY, domain=domain)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.save()
@@ -113,7 +119,7 @@ def generate_logical_challenge_for_user(user: User):
         duration=durations['logical']
     )
     selected_questions = select_questions(list(Tag.objects.filter(questions__question_category=Question.QuestionCategory.LOGICAL).distinct()),
-                                          question_category=Question.QuestionCategory.LOGICAL)
+                                          question_category=Question.QuestionCategory.LOGICAL, domain=user.domain)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.is_logical = True

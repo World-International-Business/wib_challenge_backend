@@ -60,8 +60,9 @@ class UserUpdateForm(forms.ModelForm):
 
 class UserSkillForm(forms.ModelForm):
     skill = forms.ModelChoiceField(
-        queryset=Tag.objects.all().order_by(
-            'criteria__category__domain__name', 'name'),
+        queryset=Tag.objects.filter(
+            questions__question_category=Question.QuestionCategory.NORMAL
+        ).distinct().order_by('criteria__category__domain__name', 'name'),
         required=True,
         empty_label="Sélectionner une compétence",
         label="Compétence"

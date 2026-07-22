@@ -236,12 +236,12 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         return redirect('update_profile')
     if not slug or not challenge_id:
         challenges = User.objects.get(id=request.user.id).challenges.filter(
-            is_logical=False
-        ).exclude(submissions__candidate_id=request.user.id)
+            is_logical=False, questions__isnull=False
+        ).exclude(submissions__candidate_id=request.user.id).distinct()
         if challenges.count() == 0:
             challenges = Challenge.objects.filter(
-                is_logical=False, attempts__candidate=request.user, attempts__ended_at__isnull=True
-            )
+                is_logical=False, attempts__candidate=request.user, attempts__ended_at__isnull=True, questions__isnull=False
+            ).distinct()
 
         challenges = challenges.order_by('title')
 
