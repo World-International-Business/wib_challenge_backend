@@ -8,350 +8,350 @@
     {
       "title": "Présentation générale",
       "description": "Pouvez-vous vous présenter et résumer votre parcours en mettant l'accent sur vos expériences en comptabilité, finance, paie, social et administration RH ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Compréhension de WIB",
       "description": "Qu'avez-vous compris de WIB, de ses projets et de ce que ce poste exige réellement ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Motivation pour WIB",
       "description": "Pourquoi souhaitez-vous rejoindre WIB ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Pourquoi vous choisir",
       "description": "Pourquoi devrions-nous vous choisir pour ce poste ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Mission comptable ou financière marquante",
       "description": "Parlez-nous d'une mission comptable ou financière dont vous êtes particulièrement fier.",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Détection d'anomalie",
       "description": "Décrivez une anomalie comptable, financière ou administrative que vous avez détectée. Qu'avez-vous fait ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Entreprise en croissance",
       "description": "Avez-vous déjà travaillé dans une entreprise en croissance ou peu structurée ? Comment vous êtes-vous adapté ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Responsabilités multiples",
       "description": "Avez-vous déjà géré simultanément des responsabilités comptables, sociales et administratives ? Expliquez.",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Missions essentielles du comptable",
       "description": "Quelles sont selon vous les missions essentielles d'un comptable dans une entreprise comme WIB ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Méthode comptable fiable",
       "description": "Expliquez votre méthode pour tenir une comptabilité fiable, régulière et à jour.",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Contrôles avant enregistrement d'une dépense",
       "description": "Quels contrôles effectuez-vous avant d'enregistrer une dépense ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Rapprochement bancaire",
       "description": "Comment effectuez-vous un rapprochement bancaire ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Clôtures mensuelles et fin d'exercice",
       "description": "Comment gérez-vous les clôtures mensuelles ou de fin d'exercice ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "États financiers et reporting",
       "description": "Quelle est votre expérience dans la production d'états financiers et de reportings ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Suivi de la trésorerie",
       "description": "Comment suivez-vous la trésorerie au quotidien ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Trésorerie insuffisante",
       "description": "Que faites-vous s'il n'y a pas assez de trésorerie pour couvrir toutes les dépenses prévues ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Élaboration d'un budget",
       "description": "Comment élaborez-vous un budget annuel ou un budget de projet ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Suivi budgétaire multi-projets",
       "description": "Comment organisez-vous le suivi budgétaire de plusieurs projets simultanément ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Informations clés pour le DG",
       "description": "Quelles informations financières clés un Directeur Général doit-il recevoir régulièrement ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Obligations fiscales et sociales",
       "description": "Quelle est votre expérience des obligations fiscales et sociales ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Risques fiscaux et conformité",
       "description": "Comment évitez-vous les risques fiscaux, comptables et administratifs ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Pratique non conforme",
       "description": "Que faites-vous si vous constatez une pratique non conforme dans l'entreprise ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Affiliation CNPS",
       "description": "Quelle est votre expérience en matière d'affiliation du personnel auprès de la Caisse Nationale de Prévoyance Sociale ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Déclarations sociales",
       "description": "Expliquez comment vous gérez les déclarations sociales du personnel.",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Préparation des bulletins de salaire",
       "description": "Quelle est votre expérience dans l'édition, la préparation ou le contrôle des bulletins de salaire ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Contrôles avant bulletin de salaire",
       "description": "Quels sont selon vous les éléments à contrôler absolument avant l'édition d'un bulletin de salaire ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Confidentialité des informations salariales",
       "description": "Comment gérez-vous la confidentialité des informations salariales et RH ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Suivi des dossiers du personnel",
       "description": "Avez-vous déjà suivi des dossiers du personnel ? Lesquels et comment ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Organisation multi-tâches",
       "description": "Comment vous organisez-vous pour gérer à la fois comptabilité, paie, obligations sociales et administration RH sans erreur ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Erreur sur bulletin de salaire",
       "description": "Que faites-vous si vous constatez une erreur sur un bulletin de salaire déjà préparé ou transmis ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Intégrité professionnelle",
       "description": "Comment définissez-vous l'intégrité dans votre métier ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Pression pour masquer une information",
       "description": "Avez-vous déjà subi une pression pour valider, masquer ou retarder une information comptable, sociale ou salariale ? Que s'est-il passé ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Gestion des informations sensibles",
       "description": "Comment gérez-vous des informations sensibles comme les salaires, la trésorerie, les dettes ou les déclarations sociales ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Rapport à la hiérarchie",
       "description": "Quel est votre rapport à la hiérarchie, aux procédures et aux validations ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Paiement urgent sans dossier complet",
       "description": "Que faites-vous si un responsable demande un paiement ou une opération sociale urgente sans dossier complet ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Conscience professionnelle",
       "description": "Que signifie pour vous la conscience professionnelle ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Suivi comptable et financier multi-projets",
       "description": "WIB lance plusieurs projets en même temps : projets IT, projets industriels, achats, communication, dépenses de fonctionnement. Comment organisez-vous le suivi comptable et financier ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Paiement urgent pièces manquantes budget dépassé",
       "description": "Un chef de projet demande un paiement urgent, mais il manque des pièces justificatives et le budget semble dépassé. Que faites-vous ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Capacité de dépense hebdomadaire",
       "description": "La Direction vous demande en urgence combien WIB peut encore dépenser cette semaine sans mettre l'entreprise en difficulté. Que produisez-vous ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Dépense engagée sans validation préalable",
       "description": "Vous découvrez qu'une dépense a été engagée sans validation préalable mais semble utile à l'entreprise. Comment gérez-vous cela ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Procédures sociales immédiates",
       "description": "WIB devra suivre des collaborateurs, les déclarer, produire des bulletins et garder les dossiers sociaux en ordre. Quelles procédures mettez-vous en place immédiatement ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Priorités des 30 premiers jours",
       "description": "Si vous êtes recruté, quelles seront vos priorités pendant vos 30 premiers jours chez WIB ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Procédures minimales à mettre en place",
       "description": "Quelles procédures minimales mettriez-vous en place immédiatement au niveau comptable, social et administratif ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Évolution vers plusieurs entités",
       "description": "Comment préparez-vous une entreprise comme WIB à évoluer demain vers plusieurs entités ou entreprises filles ?",
-      "level": "3",
+      "level": 3,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Qualité du travail",
       "description": "Comment savez-vous que votre travail est réellement bien fait ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Erreur professionnelle gérée",
       "description": "Quelle erreur professionnelle avez-vous déjà commise et comment l'avez-vous gérée ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Gestion du stress",
       "description": "Comment gérez-vous le stress en période de clôture, de paie ou de tension de trésorerie ?",
-      "level": "2",
+      "level": 2,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Souhaits de progression",
       "description": "Sur quels sujets souhaitez-vous encore progresser ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Type de manager idéal",
       "description": "Quel type de manager vous permet de donner le meilleur de vous-même ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     },
     {
       "title": "Questions pour le recruteur",
       "description": "Avez-vous des questions pour nous ?",
-      "level": "1",
+      "level": 1,
       "question_type": "OPEN_ANSWER",
       "tags": ["entretien", "comptable"]
     }
