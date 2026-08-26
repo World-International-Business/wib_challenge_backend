@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load challenges_extras %}
 
 {% block title %}Test de personnalité - {{ challenge.title|default:"WIB" }}{% endblock %}
 
@@ -59,9 +60,9 @@
                                 <div class="d-flex align-items-start gap-2">
                                     <span class="badge bg-success rounded-pill mt-1">{{ forloop.counter }}</span>
                                     <div>
-                                        <h5 class="h6 fw-bold mb-1">{{ question.title }}</h5>
+                                        <div class="h6 fw-bold mb-1 question-title">{{ question.title|render_markdown }}</div>
                                         {% if question.description %}
-                                            <p class="text-secondary small mb-1">{{ question.description }}</p>
+                                            <div class="text-secondary small mb-1 question-desc">{{ question.description|render_markdown }}</div>
                                         {% endif %}
                                         <small class="text-muted">
                                             {% if question.is_multiple_choice %}
@@ -113,20 +114,21 @@
                                 <div class="d-flex align-items-start gap-2">
                                     <span class="badge bg-success rounded-pill mt-1">{{ forloop.counter }}</span>
                                     <div>
-                                        <h5 class="h6 fw-bold mb-1">{{ question.title }}</h5>
+                                        <div class="h6 fw-bold mb-1 question-title">{{ question.title|render_markdown }}</div>
                                         {% if question.description %}
-                                            <p class="text-secondary small mb-0">{{ question.description }}</p>
+                                            <div class="text-secondary small mb-0 question-desc">{{ question.description|render_markdown }}</div>
                                         {% endif %}
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body px-4 pb-4">
                                 <div class="form-floating">
-                                    <textarea class="form-control rounded-3"
+                                    <textarea class="form-control font-monospace rounded-3"
                                               name="answer_{{ question.id }}"
                                               id="answer_{{ question.id }}"
-                                              placeholder="Réponse"
-                                              style="height: 140px; min-height: 120px;" required></textarea>
+                                              placeholder="Saisissez votre réponse (texte, code, pseudo-code...)"
+                                              spellcheck="false"
+                                              style="height: 140px; min-height: 120px;"></textarea>
                                     <label for="answer_{{ question.id }}">Votre réponse</label>
                                 </div>
                             </div>
@@ -171,6 +173,11 @@
     }
     .bg-success-subtle { background-color: rgba(16, 185, 129, 0.08) !important; }
     .border-success-subtle { border: 1px solid rgba(16, 185, 129, 0.2) !important; }
+    .question-title p { margin-bottom: 0; }
+    .question-desc p:last-child { margin-bottom: 0; }
+    .question-desc pre, .question-title pre { background: #f1f5f9; padding: 1rem; border-radius: .5rem; border: 1px solid #e2e8f0; overflow-x: auto; }
+    .question-desc code, .question-title code { font-family: 'SF Mono', ui-monospace, monospace; background: rgba(0,0,0,.06); padding: .1rem .3rem; border-radius: .25rem; }
+    .question-desc pre code { background: transparent; padding: 0; }
 </style>
 {% endblock %}
 
@@ -196,6 +203,36 @@
 
             let timerInterval = setInterval(updateTimer, 1000);
             updateTimer();
+
+            // Anti-triche : détection changement d'onglet/fenêtre
+            let tabViolations = parseInt(sessionStorage.getItem('wib_tab_violations_{{ challenge.id }}') || '0', 10);
+            let formSubmitted = false;
+
+            form.addEventListener('submit', function () { formSubmitted = true; });
+
+            window.addEventListener('beforeunload', function (e) {
+                if (!formSubmitted) {
+                    e.returnValue = 'Vous quittez le test. Vos réponses risquent d\'être perdues.';
+                }
+            });
+
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    tabViolations++;
+                    sessionStorage.setItem('wib_tab_violations_{{ challenge.id }}', String(tabViolations));
+                    if (tabViolations === 1) {
+                        setTimeout(function () {
+                            if (!document.hidden && !formSubmitted) {
+                                alert('Attention : vous avez quitté l\'onglet du test. C\'est votre seul avertissement. La prochaine fois, vos réponses seront envoyées automatiquement.');
+                            }
+                        }, 500);
+                    } else if (!formSubmitted) {
+                        alert('Vous avez quitté l\'onglet une seconde fois. Soumission automatique en cours.');
+                        form.setAttribute('novalidate', 'novalidate');
+                        form.submit();
+                    }
+                }
+            });
 
             form.addEventListener('submit', function (event) {
                 clearInterval(timerInterval);

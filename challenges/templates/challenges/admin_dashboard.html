@@ -86,6 +86,76 @@
             </div>
         </div>
 
+        <!-- Gestion du référentiel -->
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4 p-4 hover-card">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-plus-circle me-2 text-success"></i>Ajouter des profils et compétences</h5>
+                    <p class="text-muted small mb-3">Si un profil ou une compétence est manquant, créez-le directement avant d'ajouter des questions.</p>
+                    <div class="row g-3">
+                        <div class="col-md-3 col-sm-6">
+                            <a href="/admin/questions/domain/add/" class="btn btn-outline-success w-100 rounded-pill">Ajouter un profil</a>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <a href="/admin/questions/category/add/" class="btn btn-outline-secondary w-100 rounded-pill">Ajouter une catégorie</a>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <a href="/admin/questions/criteria/add/" class="btn btn-outline-secondary w-100 rounded-pill">Ajouter un critère</a>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <a href="/admin/questions/tag/add/" class="btn btn-outline-success w-100 rounded-pill">Ajouter une compétence</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Questions par profil -->
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-clipboard-data me-2 text-primary"></i>Questions par profil</h5>
+                        <a href="/admin/questions/question/add/" class="btn btn-sm btn-outline-primary rounded-pill">Ajouter une question</a>
+                    </div>
+                    <div class="card-body px-4 pb-4">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Profil</th>
+                                        <th class="text-center">Techniques</th>
+                                        <th class="text-center">Psychotechniques</th>
+                                        <th class="text-center">Personnalité</th>
+                                        <th class="text-center">Total</th>
+                                        <th class="text-end">Durées</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in domain_stats %}
+                                        <tr>
+                                            <td><strong>{{ row.domain.name }}</strong></td>
+                                            <td class="text-center"><span class="badge bg-primary">{{ row.normal }}</span></td>
+                                            <td class="text-center"><span class="badge bg-info">{{ row.logical }}</span></td>
+                                            <td class="text-center"><span class="badge bg-success">{{ row.personality }}</span></td>
+                                            <td class="text-center"><span class="badge bg-secondary">{{ row.total }}</span></td>
+                                            <td class="text-end">
+                                                <a href="/admin/challenges/testdurationprofile/?domain={{ row.domain.id }}" class="btn btn-sm btn-outline-warning rounded-pill">Configurer</a>
+                                            </td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="6" class="text-muted text-center">Aucun profil.</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Derniers résultats -->
         <div class="row g-4">
             <div class="col-lg-8">

@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import mail_managers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
-from django.db.models import Avg
+from django.db.models import Avg, Count
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -45,6 +45,23 @@ def admin_dashboard_view(request):
     latest_submissions = Submission.objects.select_related('candidate', 'challenge').order_by('-submitted_at')[:10]
     duration_profiles = TestDurationProfile.objects.select_related('domain').all()[:10]
 
+    # Compteurs de questions par domaine et par type de test
+    question_counts = {}
+    for row in Question.objects.values('category__domain', 'question_category').annotate(count=Count('id')):
+        domain_counts = question_counts.setdefault(row['category__domain'], {})
+        domain_counts[row['question_category']] = row['count']
+
+    domain_stats = []
+    for domain in Domain.objects.prefetch_related('durations').order_by('name'):
+        counts = question_counts.get(domain.id, {})
+        domain_stats.append({
+            'domain': domain,
+            'normal': counts.get('NORMAL', 0),
+            'logical': counts.get('LOGICAL', 0),
+            'personality': counts.get('PERSONALITY', 0),
+            'total': sum(counts.values()),
+        })
+
     context = {
         'candidates_count': candidates.count(),
         'technical_count': technical_count,
@@ -52,6 +69,7 @@ def admin_dashboard_view(request):
         'personality_count': personality_count,
         'latest_submissions': latest_submissions,
         'duration_profiles': duration_profiles,
+        'domain_stats': domain_stats,
     }
     return render(request, 'challenges/admin_dashboard.html', context)
 
