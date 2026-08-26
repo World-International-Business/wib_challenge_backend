@@ -17,7 +17,7 @@ class CorrectorResponse(BaseModel):
     correct: bool
 
 
-GEMINI_MODEL = "gemini-2.0-flash"
+GEMINI_MODEL = "gemini-3.6-flash"
 
 GENIMI_CONFIG = {
     'response_mime_type': 'application/json',
