@@ -106,6 +106,12 @@ class QuestionForm(forms.ModelForm):
         self.fields['level'].choices = ExperienceLevel.choices
         self.fields['question_type'].choices = Question.QuestionType.choices
         self.fields['question_category'].choices = Question.QuestionCategory.choices
+        self.fields['category'].queryset = Category.objects.select_related(
+            'domain'
+        ).order_by('domain__name', 'name')
+        self.fields['tags'].queryset = Tag.objects.select_related(
+            'criteria__category__domain'
+        ).order_by('criteria__category__domain__name', 'name')
 
 
 ChoiceFormSet = inlineformset_factory(

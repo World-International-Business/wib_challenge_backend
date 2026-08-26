@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
     <style>
         .skill-item input[type="checkbox"] {
@@ -182,6 +186,7 @@
                 domainSelect.addEventListener('change', filterSkills);
                 filterSkills();
             }
+            window.filterSkills = filterSkills;
 
             // Ajouter une compétence
             addSkillButton.addEventListener("click", function (e) {
@@ -234,4 +239,23 @@
             });
         });
     </script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#id_domain').select2({
+            placeholder: 'Rechercher un profil...',
+            allowClear: true,
+            width: '100%',
+            language: {
+                noResults: function() { return 'Aucun profil trouvé'; }
+            }
+        }).on('change.select2', window.filterSkills);
+        if (typeof window.filterSkills === 'function') {
+            window.filterSkills();
+        }
+    });
+</script>
 {% endblock %}

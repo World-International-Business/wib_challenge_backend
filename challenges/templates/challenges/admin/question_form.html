@@ -2,6 +2,10 @@
 
 {% block title %}{% if object %}Modifier{% else %}Ajouter{% endif %} une question - Admin WIB{% endblock %}
 
+{% block extra_css %}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+
 {% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -73,4 +77,20 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#id_category, #id_tags').select2({
+            placeholder: 'Rechercher...',
+            allowClear: true,
+            width: '100%',
+            language: {
+                noResults: function() { return 'Aucun résultat'; }
+            }
+        });
+    });
+</script>
 {% endblock %}
