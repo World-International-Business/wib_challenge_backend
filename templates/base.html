@@ -81,6 +81,8 @@
         .card-header { background: transparent; border-bottom: 1px solid rgba(0,0,0,.05); }
 
         footer { background: #0f172a; color: #cbd5e1; }
+        footer a { color: #cbd5e1; text-decoration: none; transition: color .2s ease; }
+        footer a:hover { color: #fff; }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
@@ -232,9 +234,37 @@
 </main>
 
 <!-- Footer -->
-<footer class="py-4 mt-auto">
-    <div class="container text-center">
-        <p class="mb-0 small opacity-75">&copy; 2025 WIB Challenge Platform. Tous droits réservés.</p>
+<footer class="py-5 mt-auto">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 text-center text-md-start">
+                <a class="d-inline-flex align-items-center gap-2 text-decoration-none mb-3" href="{% url 'home' %}">
+                    <img src="{% static 'images/favicon.png' %}" alt="Logo WIB" width="40" height="40" class="rounded-circle">
+                    <span class="fw-bold text-white fs-5">WIB Challenge</span>
+                </a>
+                <p class="small opacity-75 mb-0">Évaluez vos compétences tech, votre raisonnement et votre personnalité en un seul endroit.</p>
+            </div>
+            <div class="col-md-4 text-center text-md-start">
+                <h6 class="text-white fw-semibold mb-3">Liens utiles</h6>
+                <ul class="list-unstyled mb-0 small">
+                    <li class="mb-2"><a href="{% url 'home' %}">Accueil</a></li>
+                    <li class="mb-2"><a href="{% url 'challenge_evaluation' %}">Passer un test</a></li>
+                    <li class="mb-2"><a href="{% url 'results' %}">Résultats</a></li>
+                    {% if user.is_staff %}
+                        <li class="mb-2"><a href="{% url 'admin_dashboard' %}">Administration</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-md-4 text-center text-md-start">
+                <h6 class="text-white fw-semibold mb-3">Contact</h6>
+                <p class="small opacity-75 mb-2"><i class="bi bi-envelope me-2"></i>contact@wib-challenge.com</p>
+                <p class="small opacity-75 mb-0"><i class="bi bi-geo-alt me-2"></i>Paris, France</p>
+            </div>
+        </div>
+        <hr class="border-secondary opacity-25 my-4">
+        <div class="text-center small opacity-75">
+            &copy; 2025 WIB Challenge Platform. Tous droits réservés.
+        </div>
     </div>
 </footer>
 
