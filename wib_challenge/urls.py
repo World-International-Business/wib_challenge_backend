@@ -36,10 +36,7 @@ from challenges.admin_views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
-
-    # Gestion admin personnalisée
+    # Gestion admin personnalisée (doit être avant le catch-all de l'admin Django)
     path('admin/durees/', duration_profile_list_view, name='duration_profile_list'),
     path('admin/durees/ajouter/', duration_profile_create_view, name='duration_profile_create'),
     path('admin/durees/<int:pk>/modifier/', duration_profile_update_view, name='duration_profile_update'),
@@ -49,6 +46,9 @@ urlpatterns = [
     path('admin/questions/ajouter/', question_create_view, name='question_create'),
     path('admin/questions/<int:pk>/modifier/', question_update_view, name='question_update'),
     path('admin/questions/<int:pk>/supprimer/', question_delete_view, name='question_delete'),
+
+    path('admin/', admin.site.urls),
+    path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
 
     path('', home_view, name='home'),
     path('resultats/', evaluation_results, name='results'),
