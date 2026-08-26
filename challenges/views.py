@@ -522,6 +522,24 @@ def personality_details_view(request, user_id=None):
 
 
 @staff_member_required
+def manual_correct_submission_view(request, submission_id):
+    """Relance manuellement la correction d'une soumission technique/psychotechnique."""
+    submission = get_object_or_404(Submission, id=submission_id)
+    correct_submission(submission)
+    messages.success(request, f'Correction relancée pour {submission.challenge.title}.')
+    return redirect(request.GET.get('next', 'results'))
+
+
+@staff_member_required
+def manual_correct_personality_view(request, personality_id):
+    """Relance manuellement la correction d'un test de personnalité."""
+    challenge = get_object_or_404(PersonalityChallenge, id=personality_id)
+    correct_personality_challenge(challenge)
+    messages.success(request, f'Correction relancée pour {challenge.title}.')
+    return redirect(request.GET.get('next', 'personality_candidates'))
+
+
+@staff_member_required
 def candidate_detail_view(request, user_id):
     """Vue détaillée d'un candidat avec ses 3 types d'évaluations."""
     candidate = get_object_or_404(User, id=user_id, is_staff=False)

@@ -129,6 +129,12 @@
                                                 {% endif %}
                                             {% else %}
                                                 <span class="badge rounded-pill bg-secondary">Non corrigé</span>
+                                                {% if is_admin %}
+                                                    <form method="post" action="{% url 'manual_correct_submission' submission.id %}?next=results" class="d-inline">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-outline-warning rounded-pill mt-1">Relancer correction</button>
+                                                    </form>
+                                                {% endif %}
                                             {% endif %}
                                         </td>
                                     </tr>
@@ -184,6 +190,12 @@
                                                 <a href="{% url 'personality_details' pc.candidate.id %}" class="btn btn-sm btn-outline-success rounded-pill">Voir l'analyse</a>
                                             {% elif pc.is_passed %}
                                                 <span class="badge rounded-pill bg-warning text-dark">En attente de correction</span>
+                                                {% if is_admin %}
+                                                    <form method="post" action="{% url 'manual_correct_personality' pc.id %}?next=results" class="d-inline">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-outline-warning rounded-pill mt-1">Relancer correction</button>
+                                                    </form>
+                                                {% endif %}
                                             {% else %}
                                                 <span class="badge rounded-pill bg-secondary">Non commencé</span>
                                             {% endif %}

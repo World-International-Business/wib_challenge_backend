@@ -45,6 +45,12 @@
                     {{ challenge.personality_detail|render_markdown }}
                 </div>
             </div>
+            {% if user.is_staff %}
+                <form method="post" action="{% url 'manual_correct_personality' challenge.id %}?next=personality_candidates" class="mt-3">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-warning rounded-pill">Relancer la correction</button>
+                </form>
+            {% endif %}
         </div>
     </div>
     {% empty %}
