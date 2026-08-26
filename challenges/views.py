@@ -113,8 +113,17 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
         except EmptyPage:
             submissions = paginator.page(paginator.num_pages)
 
+        if is_admin:
+            personality_results = PersonalityChallenge.objects.all()
+            if candidate_id_filter:
+                personality_results = personality_results.filter(candidate_id=candidate_id_filter)
+        else:
+            personality_results = candidate.personality_challenges.all()
+        personality_results = personality_results.order_by('-created_at', '-id')
+
         context = {
             'submissions': submissions,
+            'personality_results': personality_results,
             'add_id': request.user.is_staff,
             'is_admin': is_admin,
             'challenges': Challenge.objects.all().order_by('title') if is_admin else [],
@@ -289,6 +298,11 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
             candidate=request.user
         ).exists()
 
+        technical_passed = Submission.objects.filter(
+            candidate=request.user,
+            challenge__is_logical=False
+        ).exists()
+
         context = {
             'domain': request.user.domain.name,
             'challenges': challenges,
@@ -298,6 +312,7 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
             'logical_challenge': logical_challenge,
             'has_logical_test': has_logical_test,
             'logical_passed': logical_passed,
+            'technical_passed': technical_passed,
         }
         return render(request, 'challenges/evaluation_choose.html', context)
 
@@ -416,6 +431,9 @@ def submit_evaluation_view(request):
 
 def generate_challenge(request):
     if request.method != 'POST' or not request.user.has_skill_infos or request.user.is_staff:
+        return redirect('home')
+    if Submission.objects.filter(candidate=request.user, challenge__is_logical=False).exists():
+        messages.warning(request, 'Vous avez déjà passé un test technique. Pour le repasser, contactez l\'administrateur.')
         return redirect('home')
     challenge = generate_challenge_for_user(request.user)
     request.user.challenges.add(challenge)

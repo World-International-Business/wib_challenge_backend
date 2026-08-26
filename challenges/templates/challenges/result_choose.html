@@ -145,6 +145,58 @@
             </div>
         </div>
 
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-header bg-white border-0 pt-4 px-4">
+                <h3 class="h5 fw-bold mb-0"><i class="bi bi-person-check me-2 text-success"></i>Tests de personnalité</h3>
+            </div>
+            <div class="card-body p-0">
+                {% if personality_results %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    {% if is_admin %}<th class="ps-4">Candidat</th>{% endif %}
+                                    <th class="ps-4">Test</th>
+                                    <th>Date</th>
+                                    <th class="text-end pe-4">Statut / Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pc in personality_results %}
+                                    <tr>
+                                        {% if is_admin %}
+                                            <td class="ps-4">
+                                                <a href="{% url 'candidate_detail' pc.candidate.id %}" class="text-decoration-none fw-semibold text-dark">{{ pc.candidate.get_full_name|default:pc.candidate.email }}</a>
+                                                <div class="small text-muted">{{ pc.candidate.email }}</div>
+                                            </td>
+                                        {% endif %}
+                                        <td class="ps-4">
+                                            <a href="{% url 'personality_details' pc.candidate.id %}" class="text-decoration-none fw-medium">{{ pc.title }}</a>
+                                        </td>
+                                        <td>{{ pc.created_at|date:'d/m/Y H:i'|default:'-' }}</td>
+                                        <td class="text-end pe-4">
+                                            {% if pc.corrected %}
+                                                <a href="{% url 'personality_details' pc.candidate.id %}" class="btn btn-sm btn-outline-success rounded-pill">Voir l'analyse</a>
+                                            {% elif pc.is_passed %}
+                                                <span class="badge rounded-pill bg-warning text-dark">En attente de correction</span>
+                                            {% else %}
+                                                <span class="badge rounded-pill bg-secondary">Non commencé</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox display-4 text-muted"></i>
+                        <p class="text-muted mt-3 mb-0">Aucun test de personnalité.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
         {% if submissions.has_other_pages %}
             <nav aria-label="Pagination" class="mt-4">
                 <ul class="pagination justify-content-center">

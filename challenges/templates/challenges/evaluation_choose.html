@@ -46,11 +46,17 @@
                             </div>
                             <h4 class="h5 fw-bold mb-2">Test technique</h4>
                             <p class="text-secondary small mb-3">Mesurez vos compétences en programmation, frameworks et bases de données.</p>
-                            {% if challenges.paginator.count > 0 %}
+                            {% if technical_passed %}
+                                <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà passé</span>
+                                <div class="alert alert-light border rounded-4 small p-2 mb-2">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Vous avez déjà passé ce test. Pour le repasser ou mettre à jour votre profil, contactez l'administrateur.
+                                </div>
+                            {% elif challenges.paginator.count > 0 %}
                                 <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà généré</span>
                             {% endif %}
-                            <button type="button" class="btn btn-outline-primary w-100 rounded-pill" id="create-challenge-button" {% if challenges.paginator.count > 0 %}disabled{% endif %}>
-                                <i class="bi bi-plus-lg me-2"></i>{% if challenges.paginator.count > 0 %}Test en cours{% else %}Générer{% endif %}
+                            <button type="button" class="btn btn-outline-primary w-100 rounded-pill" id="create-challenge-button" {% if technical_passed or challenges.paginator.count > 0 %}disabled{% endif %}>
+                                <i class="bi bi-plus-lg me-2"></i>{% if technical_passed %}Déjà passé{% elif challenges.paginator.count > 0 %}Test en cours{% else %}Générer{% endif %}
                             </button>
                         </div>
                     </div>
@@ -66,6 +72,10 @@
                             <p class="text-secondary small mb-3">Évaluez votre logique, votre raisonnement abstrait et votre rapidité.</p>
                             {% if logical_passed %}
                                 <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà passé</span>
+                                <div class="alert alert-light border rounded-4 small p-2 mb-2">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Vous avez déjà passé ce test. Pour le repasser ou mettre à jour votre profil, contactez l'administrateur.
+                                </div>
                             {% elif has_logical_test %}
                                 <span class="badge rounded-pill bg-info mb-2"><i class="bi bi-hourglass-split me-1"></i>En cours</span>
                             {% endif %}
@@ -96,6 +106,10 @@
                             <p class="text-secondary small mb-3">Découvrez votre profil comportemental et votre compatibilité équipe.</p>
                             {% if personality_passed %}
                                 <span class="badge rounded-pill bg-secondary mb-2"><i class="bi bi-check-circle me-1"></i>Déjà passé</span>
+                                <div class="alert alert-light border rounded-4 small p-2 mb-2">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Vous avez déjà passé ce test. Pour le repasser ou mettre à jour votre profil, contactez l'administrateur.
+                                </div>
                             {% elif has_personality_test %}
                                 <span class="badge rounded-pill bg-success mb-2"><i class="bi bi-hourglass-split me-1"></i>En cours</span>
                             {% endif %}

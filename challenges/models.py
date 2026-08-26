@@ -211,6 +211,7 @@ class PersonalityChallenge(models.Model):
                                   related_name='personality_challenges')
     is_passed = models.BooleanField('Passé', default=False)
     corrected = models.BooleanField('Corrigé', default=False)
+    created_at = models.DateTimeField('Créé le', auto_now_add=True, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Challenge de Personnalité'
