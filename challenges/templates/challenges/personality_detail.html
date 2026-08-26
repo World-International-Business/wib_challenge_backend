@@ -7,9 +7,11 @@
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Profil de personnalité: {{ candidate.get_full_name }}</h1>
-        <a href="{% url 'personality_candidates' %}" class="btn btn-secondary">
-            Retour à la liste
-        </a>
+        {% if user.is_staff %}
+            <a href="{% url 'personality_candidates' %}" class="btn btn-secondary">Retour à la liste</a>
+        {% else %}
+            <a href="{% url 'results' %}" class="btn btn-secondary">Retour à mes résultats</a>
+        {% endif %}
     </div>
     
     <div class="card mb-4 shadow-sm">

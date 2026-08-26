@@ -120,10 +120,12 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
         else:
             personality_results = candidate.personality_challenges.all()
         personality_results = personality_results.order_by('-created_at', '-id')
+        total_evaluations = submissions.paginator.count + personality_results.count()
 
         context = {
             'submissions': submissions,
             'personality_results': personality_results,
+            'total_evaluations': total_evaluations,
             'add_id': request.user.is_staff,
             'is_admin': is_admin,
             'challenges': Challenge.objects.all().order_by('title') if is_admin else [],
@@ -475,9 +477,13 @@ def generate_logical_challenge(request):
     return HttpResponse()
 
 
-@staff_member_required
+@login_required
 def personality_details_view(request, user_id=None):
-    """Vue pour afficher les détails de personnalité des candidats (admin uniquement)"""
+    """Vue pour afficher les détails de personnalité (candidat: soi-même, admin: tout le monde)."""
+
+    if not request.user.is_staff:
+        if not user_id or user_id != request.user.id:
+            return redirect('personality_details', user_id=request.user.id)
 
     if user_id:
         candidate = get_object_or_404(User, id=user_id)

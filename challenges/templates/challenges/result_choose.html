@@ -8,14 +8,14 @@
                 <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-2">
                     <i class="bi bi-graph-up me-1"></i> Historique
                 </span>
-                <h2 class="fw-bold mb-1">{% if is_admin %}Résultats des candidats{% else %}Résultats de vos évaluations{% endif %}</h2>
+                <h2 class="fw-bold mb-1">{% if is_admin %}Résultats des candidats{% else %}Vos évaluations{% endif %}</h2>
                 <p class="text-muted mb-0">
                     {% if is_admin %}
-                        <strong>{{ submissions.paginator.count }}</strong> résultat{{ submissions.paginator.count|pluralize }} trouvé{{ submissions.paginator.count|pluralize }}.
+                        <strong>{{ total_evaluations }}</strong> évaluation{{ total_evaluations|pluralize }} au total.
                     {% else %}
-                        Vous avez passé <strong>{{ submissions.paginator.count }}</strong> évaluation{{ submissions.paginator.count|pluralize }}.
+                        Vous avez passé <strong>{{ total_evaluations }}</strong> évaluation{{ total_evaluations|pluralize }} au total.
                     {% endif %}
-                    Cliquez sur le titre d'une évaluation pour voir le détail complet.
+                    La section du haut concerne les tests techniques et psychotechniques, la section du bas les tests de personnalité.
                 </p>
             </div>
             {% if is_admin %}
@@ -139,7 +139,8 @@
                 {% else %}
                     <div class="text-center py-5">
                         <i class="bi bi-inbox display-4 text-muted"></i>
-                        <p class="text-muted mt-3 mb-0">Aucun résultat ne correspond à vos critères.</p>
+                        <h4 class="h6 fw-bold text-muted mb-0">Tests techniques et psychotechniques</h4>
+                        <p class="text-muted mt-3 mb-0">Aucun test technique ou psychotechnique passé.</p>
                     </div>
                 {% endif %}
             </div>
@@ -171,7 +172,11 @@
                                             </td>
                                         {% endif %}
                                         <td class="ps-4">
-                                            <a href="{% url 'personality_details' pc.candidate.id %}" class="text-decoration-none fw-medium">{{ pc.title }}</a>
+                                            {% if pc.corrected %}
+                                                <a href="{% url 'personality_details' pc.candidate.id %}" class="text-decoration-none fw-medium">{{ pc.title }}</a>
+                                            {% else %}
+                                                <span class="text-decoration-none fw-medium">{{ pc.title }}</span>
+                                            {% endif %}
                                         </td>
                                         <td>{{ pc.created_at|date:'d/m/Y H:i'|default:'-' }}</td>
                                         <td class="text-end pe-4">
