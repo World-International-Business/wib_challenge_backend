@@ -526,6 +526,34 @@ def candidate_detail_view(request, user_id):
 
 
 @staff_member_required
+def candidate_retake_view(request, user_id):
+    """Autorise un candidat à repasser un test (supprime/dissocie l'ancien)."""
+    candidate = get_object_or_404(User, id=user_id, is_staff=False)
+    test_type = request.POST.get('test_type') or request.GET.get('test_type')
+
+    if request.method == 'POST' and test_type:
+        if test_type == 'technical':
+            for challenge in candidate.challenges.filter(is_logical=False):
+                if challenge.submissions.filter(candidate=candidate).exists():
+                    candidate.challenges.remove(challenge)
+                else:
+                    challenge.delete()
+            messages.success(request, 'Un nouveau test technique peut être généré.')
+        elif test_type == 'logical':
+            for challenge in candidate.challenges.filter(is_logical=True):
+                if challenge.submissions.filter(candidate=candidate).exists():
+                    candidate.challenges.remove(challenge)
+                else:
+                    challenge.delete()
+            messages.success(request, 'Un nouveau test psychotechnique peut être généré.')
+        elif test_type == 'personality':
+            candidate.personality_challenges.all().delete()
+            messages.success(request, 'Un nouveau test de personnalité peut être généré.')
+
+    return redirect('candidate_detail', user_id=candidate.id)
+
+
+@staff_member_required
 def leaderboard_view(request):
     """Classement des candidats sur les 3 types d'évaluation."""
     domain_id = request.GET.get('domain')
