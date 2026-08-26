@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Questions par profil - Admin WIB{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1"><i class="bi bi-clipboard-data me-2 text-primary"></i>Questions par profil</h2>
+            <p class="text-muted mb-0">Gérez les questions techniques, psychotechniques et de personnalité.</p>
+        </div>
+        <a href="{% url 'question_create' %}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}" class="btn btn-primary rounded-pill">
+            <i class="bi bi-plus-lg me-2"></i>Ajouter une question
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-2">
+                    <label for="id_domain" class="form-label small text-muted">Domaine</label>
+                    <select name="domain" id="id_domain" class="form-select rounded-pill form-select-sm">
+                        <option value="">Tous</option>
+                        {% for d in domains %}
+                            <option value="{{ d.id }}" {% if d.id|stringformat:'s' == domain_id %}selected{% endif %}>{{ d.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="id_category" class="form-label small text-muted">Catégorie</label>
+                    <select name="category" id="id_category" class="form-select rounded-pill form-select-sm">
+                        <option value="">Toutes</option>
+                        {% for c in categories %}
+                            <option value="{{ c.id }}" {% if c.id|stringformat:'s' == category_id %}selected{% endif %}>{{ c.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="id_question_category" class="form-label small text-muted">Type de test</label>
+                    <select name="question_category" id="id_question_category" class="form-select rounded-pill form-select-sm">
+                        <option value="">Tous</option>
+                        {% for value, label in question_category_choices %}
+                            <option value="{{ value }}" {% if value == question_category %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="id_question_type" class="form-label small text-muted">Format</label>
+                    <select name="question_type" id="id_question_type" class="form-select rounded-pill form-select-sm">
+                        <option value="">Tous</option>
+                        {% for value, label in question_type_choices %}
+                            <option value="{{ value }}" {% if value == question_type %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="id_level" class="form-label small text-muted">Niveau</label>
+                    <select name="level" id="id_level" class="form-select rounded-pill form-select-sm">
+                        <option value="">Tous</option>
+                        {% for value, label in level_choices %}
+                            <option value="{{ value }}" {% if value|stringformat:'s' == level %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="id_search" class="form-label small text-muted">Recherche</label>
+                    <input type="text" name="search" id="id_search" value="{{ search }}" class="form-control rounded-pill form-control-sm" placeholder="Titre...">
+                </div>
+                <div class="col-md-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-outline-primary rounded-pill btn-sm">Filtrer</button>
+                    <a href="{% url 'question_list' %}" class="btn btn-outline-secondary rounded-pill btn-sm">Réinitialiser</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Titre</th>
+                            <th>Catégorie</th>
+                            <th class="text-center">Type</th>
+                            <th class="text-center">Format</th>
+                            <th class="text-center">Niveau</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for q in questions %}
+                            <tr>
+                                <td class="ps-4 fw-semibold">{{ q.title|truncatechars:60 }}</td>
+                                <td><span class="small text-muted">{{ q.category.name }} — {{ q.category.domain.name }}</span></td>
+                                <td class="text-center">
+                                    {% if q.question_category == 'PERSONALITY' %}
+                                        <span class="badge bg-success">Personnalité</span>
+                                    {% elif q.question_category == 'LOGICAL' %}
+                                        <span class="badge bg-info">Psychotechnique</span>
+                                    {% else %}
+                                        <span class="badge bg-primary">Technique</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">{{ q.get_question_type_display }}</td>
+                                <td class="text-center">{{ q.get_level_display }}</td>
+                                <td class="text-end pe-4">
+                                    <a href="{% url 'question_update' q.id %}?{{ request.GET.urlencode }}" class="btn btn-sm btn-outline-primary rounded-pill me-1">Modifier</a>
+                                    <a href="{% url 'question_delete' q.id %}" class="btn btn-sm btn-outline-danger rounded-pill">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-muted text-center py-4">Aucune question ne correspond aux critères.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% if page_obj.has_other_pages %}
+        <nav class="mt-4" aria-label="Pagination">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">Précédent</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Précédent</span></li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if num == page_obj.number %}active{% endif %}"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ num }}">{{ num }}</a></li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Suivant</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Suivant</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}

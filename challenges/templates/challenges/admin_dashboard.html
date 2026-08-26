@@ -71,7 +71,7 @@
                 <div class="card border-0 shadow-sm rounded-4 p-4 hover-card h-100">
                     <h5 class="fw-bold mb-3"><i class="bi bi-clock-history me-2 text-warning"></i>Durées par profil</h5>
                     <p class="text-muted small mb-3">Définissez le temps pour chaque type de test selon le domaine et l'expérience.</p>
-                    <a href="/admin/challenges/testdurationprofile/" class="btn btn-outline-warning rounded-pill">Gérer les profils</a>
+                    <a href="{% url 'duration_profile_list' %}" class="btn btn-outline-warning rounded-pill">Gérer les profils</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -94,16 +94,16 @@
                     <p class="text-muted small mb-3">Si un profil ou une compétence est manquant, créez-le directement avant d'ajouter des questions.</p>
                     <div class="row g-3">
                         <div class="col-md-3 col-sm-6">
-                            <a href="/admin/questions/domain/add/" class="btn btn-outline-success w-100 rounded-pill">Ajouter un profil</a>
+                            <a href="{% url 'profile_manager' %}" class="btn btn-outline-success w-100 rounded-pill">Ajouter un profil</a>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <a href="/admin/questions/category/add/" class="btn btn-outline-secondary w-100 rounded-pill">Ajouter une catégorie</a>
+                            <a href="{% url 'profile_manager' %}" class="btn btn-outline-secondary w-100 rounded-pill">Ajouter une catégorie</a>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <a href="/admin/questions/criteria/add/" class="btn btn-outline-secondary w-100 rounded-pill">Ajouter un critère</a>
+                            <a href="{% url 'profile_manager' %}" class="btn btn-outline-secondary w-100 rounded-pill">Ajouter un critère</a>
                         </div>
                         <div class="col-md-3 col-sm-6">
-                            <a href="/admin/questions/tag/add/" class="btn btn-outline-success w-100 rounded-pill">Ajouter une compétence</a>
+                            <a href="{% url 'profile_manager' %}" class="btn btn-outline-success w-100 rounded-pill">Ajouter une compétence</a>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="card border-0 shadow-sm rounded-4">
                     <div class="card-header bg-white border-0 pt-4 px-4 d-flex justify-content-between align-items-center">
                         <h5 class="fw-bold mb-0"><i class="bi bi-clipboard-data me-2 text-primary"></i>Questions par profil</h5>
-                        <a href="/admin/questions/question/add/" class="btn btn-sm btn-outline-primary rounded-pill">Ajouter une question</a>
+                        <a href="{% url 'question_create' %}" class="btn btn-sm btn-outline-primary rounded-pill">Ajouter une question</a>
                     </div>
                     <div class="card-body px-4 pb-4">
                         <div class="table-responsive">
@@ -140,7 +140,7 @@
                                             <td class="text-center"><span class="badge bg-success">{{ row.personality }}</span></td>
                                             <td class="text-center"><span class="badge bg-secondary">{{ row.total }}</span></td>
                                             <td class="text-end">
-                                                <a href="/admin/challenges/testdurationprofile/?domain={{ row.domain.id }}" class="btn btn-sm btn-outline-warning rounded-pill">Configurer</a>
+                                                <a href="{% url 'question_list' %}?domain={{ row.domain.id }}" class="btn btn-sm btn-outline-warning rounded-pill">Configurer</a>
                                             </td>
                                         </tr>
                                     {% empty %}
@@ -164,6 +164,41 @@
                         <h5 class="fw-bold mb-0"><i class="bi bi-clock-history me-2 text-primary"></i>Derniers résultats</h5>
                     </div>
                     <div class="card-body px-4 pb-4">
+                        <form method="get" class="row g-3 align-items-end mb-4">
+                            <div class="col-md-3">
+                                <label for="id_date_from" class="form-label small text-muted">Du</label>
+                                <input type="date" name="date_from" id="id_date_from" value="{{ filters.date_from }}" class="form-control form-control-sm rounded-pill">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="id_date_to" class="form-label small text-muted">Au</label>
+                                <input type="date" name="date_to" id="id_date_to" value="{{ filters.date_to }}" class="form-control form-control-sm rounded-pill">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="id_type" class="form-label small text-muted">Type</label>
+                                <select name="type" id="id_type" class="form-select form-select-sm rounded-pill">
+                                    <option value="">Tous</option>
+                                    <option value="technical" {% if filters.type == 'technical' %}selected{% endif %}>Technique</option>
+                                    <option value="logical" {% if filters.type == 'logical' %}selected{% endif %}>Psychotechnique</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="id_status" class="form-label small text-muted">Statut</label>
+                                <select name="status" id="id_status" class="form-select form-select-sm rounded-pill">
+                                    <option value="">Tous</option>
+                                    <option value="corrected" {% if filters.status == 'corrected' %}selected{% endif %}>Corrigé</option>
+                                    <option value="pending" {% if filters.status == 'pending' %}selected{% endif %}>En attente</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="id_candidate_search" class="form-label small text-muted">Candidat</label>
+                                <input type="text" name="candidate_search" id="id_candidate_search" value="{{ filters.candidate_search }}" class="form-control form-control-sm rounded-pill" placeholder="Nom / email">
+                            </div>
+                            <div class="col-12 d-flex gap-2">
+                                <button type="submit" class="btn btn-outline-primary rounded-pill btn-sm">Filtrer</button>
+                                <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary rounded-pill btn-sm">Réinitialiser</a>
+                            </div>
+                        </form>
+
                         {% if latest_submissions %}
                             <div class="table-responsive">
                                 <table class="table table-hover align-middle mb-0">
@@ -199,6 +234,26 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            {% if latest_submissions.has_other_pages %}
+                                <nav class="mt-4" aria-label="Pagination">
+                                    <ul class="pagination justify-content-center">
+                                        {% if latest_submissions.has_previous %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ latest_submissions.previous_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.type %}&type={{ filters.type }}{% endif %}{% if filters.status %}&status={{ filters.status }}{% endif %}{% if filters.candidate_search %}&candidate_search={{ filters.candidate_search }}{% endif %}">Précédent</a></li>
+                                        {% else %}
+                                            <li class="page-item disabled"><span class="page-link">Précédent</span></li>
+                                        {% endif %}
+                                        {% for num in latest_submissions.paginator.page_range %}
+                                            <li class="page-item {% if num == latest_submissions.number %}active{% endif %}"><a class="page-link" href="?page={{ num }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.type %}&type={{ filters.type }}{% endif %}{% if filters.status %}&status={{ filters.status }}{% endif %}{% if filters.candidate_search %}&candidate_search={{ filters.candidate_search }}{% endif %}">{{ num }}</a></li>
+                                        {% endfor %}
+                                        {% if latest_submissions.has_next %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ latest_submissions.next_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.type %}&type={{ filters.type }}{% endif %}{% if filters.status %}&status={{ filters.status }}{% endif %}{% if filters.candidate_search %}&candidate_search={{ filters.candidate_search }}{% endif %}">Suivant</a></li>
+                                        {% else %}
+                                            <li class="page-item disabled"><span class="page-link">Suivant</span></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            {% endif %}
                         {% else %}
                             <p class="text-muted mb-0">Aucun résultat pour le moment.</p>
                         {% endif %}
@@ -219,14 +274,14 @@
                                             <span class="fw-semibold">{{ profile.domain.name }}</span>
                                             <span class="text-muted small">— {{ profile.get_experience_level_display }}</span>
                                         </div>
-                                        <a href="/admin/challenges/testdurationprofile/{{ profile.id }}/change/" class="btn btn-sm btn-outline-primary">Modifier</a>
+                                        <a href="{% url 'duration_profile_update' profile.id %}" class="btn btn-sm btn-outline-primary rounded-pill">Modifier</a>
                                     </li>
                                 {% endfor %}
                             </ul>
                         {% else %}
                             <p class="text-muted mb-0">Aucun profil de durée défini.</p>
                         {% endif %}
-                        <a href="/admin/challenges/testdurationprofile/add/" class="btn btn-primary w-100 rounded-pill mt-3">Ajouter un profil</a>
+                        <a href="{% url 'duration_profile_create' %}" class="btn btn-primary w-100 rounded-pill mt-3">Ajouter un profil</a>
                     </div>
                 </div>
             </div>

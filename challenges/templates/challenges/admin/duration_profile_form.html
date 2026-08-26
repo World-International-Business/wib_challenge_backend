@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Modifier{% else %}Ajouter{% endif %} un profil de durée - Admin WIB{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h4 class="fw-bold mb-0">
+                        {% if object %}
+                            <i class="bi bi-pencil me-2 text-primary"></i>Modifier le profil de durée
+                        {% else %}
+                            <i class="bi bi-plus-lg me-2 text-primary"></i>Ajouter un profil de durée
+                        {% endif %}
+                    </h4>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <div class="text-danger small mt-1">{{ field.errors }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill">Enregistrer</button>
+                            <a href="{% url 'duration_profile_list' %}" class="btn btn-outline-secondary rounded-pill">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

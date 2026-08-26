@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import mail_managers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
-from django.db.models import Avg, Count
+from django.db.models import Avg, Count, Q
 from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -42,8 +42,43 @@ def admin_dashboard_view(request):
     technical_count = Submission.objects.filter(challenge__is_logical=False).count()
     logical_count = Submission.objects.filter(challenge__is_logical=True).count()
     personality_count = PersonalityChallenge.objects.filter(is_passed=True).count()
-    latest_submissions = Submission.objects.select_related('candidate', 'challenge').order_by('-submitted_at')[:10]
     duration_profiles = TestDurationProfile.objects.select_related('domain').all()[:10]
+
+    # Filtres pour les derniers résultats
+    date_from = request.GET.get('date_from', '')
+    date_to = request.GET.get('date_to', '')
+    type_filter = request.GET.get('type', '')
+    status_filter = request.GET.get('status', '')
+    candidate_search = request.GET.get('candidate_search', '').strip()
+
+    latest_submissions = Submission.objects.select_related('candidate', 'challenge').order_by('-submitted_at')
+    if date_from:
+        latest_submissions = latest_submissions.filter(submitted_at__date__gte=date_from)
+    if date_to:
+        latest_submissions = latest_submissions.filter(submitted_at__date__lte=date_to)
+    if type_filter == 'technical':
+        latest_submissions = latest_submissions.filter(challenge__is_logical=False)
+    elif type_filter == 'logical':
+        latest_submissions = latest_submissions.filter(challenge__is_logical=True)
+    if status_filter == 'corrected':
+        latest_submissions = latest_submissions.filter(status=Submission.CorrectionStatus.CORRECTED)
+    elif status_filter == 'pending':
+        latest_submissions = latest_submissions.filter(status=Submission.CorrectionStatus.PENDING)
+    if candidate_search:
+        latest_submissions = latest_submissions.filter(
+            Q(candidate__first_name__icontains=candidate_search) |
+            Q(candidate__last_name__icontains=candidate_search) |
+            Q(candidate__email__icontains=candidate_search)
+        )
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(latest_submissions, 10)
+    try:
+        latest_submissions = paginator.page(page)
+    except PageNotAnInteger:
+        latest_submissions = paginator.page(1)
+    except EmptyPage:
+        latest_submissions = paginator.page(paginator.num_pages)
 
     # Compteurs de questions par domaine et par type de test
     question_counts = {}
@@ -70,6 +105,13 @@ def admin_dashboard_view(request):
         'latest_submissions': latest_submissions,
         'duration_profiles': duration_profiles,
         'domain_stats': domain_stats,
+        'filters': {
+            'date_from': date_from,
+            'date_to': date_to,
+            'type': type_filter,
+            'status': status_filter,
+            'candidate_search': candidate_search,
+        },
     }
     return render(request, 'challenges/admin_dashboard.html', context)
 

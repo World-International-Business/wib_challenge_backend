@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Profils de durée - Admin WIB{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1"><i class="bi bi-clock-history me-2 text-warning"></i>Profils de durée</h2>
+            <p class="text-muted mb-0">Définissez le temps pour chaque type de test selon le domaine et l'expérience.</p>
+        </div>
+        <a href="{% url 'duration_profile_create' %}" class="btn btn-primary rounded-pill">
+            <i class="bi bi-plus-lg me-2"></i>Ajouter un profil
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="id_domain" class="form-label">Domaine</label>
+                    <select name="domain" id="id_domain" class="form-select rounded-pill">
+                        <option value="">Tous</option>
+                        {% for d in domains %}
+                            <option value="{{ d.id }}" {% if d.id|stringformat:'s' == domain_filter %}selected{% endif %}>{{ d.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-outline-primary rounded-pill">Filtrer</button>
+                    <a href="{% url 'duration_profile_list' %}" class="btn btn-outline-secondary rounded-pill">Réinitialiser</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Domaine</th>
+                            <th>Expérience</th>
+                            <th class="text-center">Technique</th>
+                            <th class="text-center">Psychotechnique</th>
+                            <th class="text-center">Personnalité</th>
+                            <th class="text-end pe-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for profile in duration_profiles %}
+                            <tr>
+                                <td class="ps-4 fw-semibold">{{ profile.domain.name }}</td>
+                                <td>{{ profile.get_experience_level_display }}</td>
+                                <td class="text-center">{{ profile.technical_duration }}</td>
+                                <td class="text-center">{{ profile.logical_duration }}</td>
+                                <td class="text-center">{{ profile.personality_duration }}</td>
+                                <td class="text-end pe-4">
+                                    <a href="{% url 'duration_profile_update' profile.id %}" class="btn btn-sm btn-outline-primary rounded-pill me-1">Modifier</a>
+                                    <a href="{% url 'duration_profile_delete' profile.id %}" class="btn btn-sm btn-outline-danger rounded-pill">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-muted text-center py-4">Aucun profil de durée défini.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% if page_obj.has_other_pages %}
+        <nav class="mt-4" aria-label="Pagination">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if domain_filter %}&domain={{ domain_filter }}{% endif %}">Précédent</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Précédent</span></li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    <li class="page-item {% if num == page_obj.number %}active{% endif %}"><a class="page-link" href="?page={{ num }}{% if domain_filter %}&domain={{ domain_filter }}{% endif %}">{{ num }}</a></li>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if domain_filter %}&domain={{ domain_filter }}{% endif %}">Suivant</a></li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">Suivant</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}

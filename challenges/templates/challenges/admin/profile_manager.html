@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestion des profils et compétences - Admin WIB{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1"><i class="bi bi-plus-circle me-2 text-success"></i>Gestion des profils et compétences</h2>
+        <p class="text-muted mb-0">Créez les domaines, catégories, critères et compétences utilisés pour les tests.</p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-header bg-white border-0 pt-3 px-4">
+                    <h6 class="fw-bold mb-0"><i class="bi bi-briefcase me-2 text-success"></i>Ajouter un profil</h6>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <form method="post" action="{% url 'profile_manager' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_domain">
+                        {{ domain_form.name }}
+                        {% if domain_form.name.errors %}
+                            <div class="text-danger small mt-1">{{ domain_form.name.errors }}</div>
+                        {% endif %}
+                        <button type="submit" class="btn btn-success w-100 rounded-pill mt-3">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-header bg-white border-0 pt-3 px-4">
+                    <h6 class="fw-bold mb-0"><i class="bi bi-folder me-2 text-secondary"></i>Ajouter une catégorie</h6>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <form method="post" action="{% url 'profile_manager' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_category">
+                        <div class="mb-2">
+                            <label class="small text-muted">Domaine</label>
+                            {{ category_form.domain }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="small text-muted">Nom</label>
+                            {{ category_form.name }}
+                        </div>
+                        {% if category_form.non_field_errors %}
+                            <div class="text-danger small">{{ category_form.non_field_errors }}</div>
+                        {% endif %}
+                        <button type="submit" class="btn btn-secondary w-100 rounded-pill">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-header bg-white border-0 pt-3 px-4">
+                    <h6 class="fw-bold mb-0"><i class="bi bi-list-check me-2 text-secondary"></i>Ajouter un critère</h6>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <form method="post" action="{% url 'profile_manager' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_criteria">
+                        <div class="mb-2">
+                            <label class="small text-muted">Catégorie</label>
+                            {{ criteria_form.category }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="small text-muted">Nom</label>
+                            {{ criteria_form.name }}
+                        </div>
+                        <button type="submit" class="btn btn-secondary w-100 rounded-pill">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-header bg-white border-0 pt-3 px-4">
+                    <h6 class="fw-bold mb-0"><i class="bi bi-tag me-2 text-success"></i>Ajouter une compétence</h6>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <form method="post" action="{% url 'profile_manager' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_tag">
+                        <div class="mb-2">
+                            <label class="small text-muted">Critère</label>
+                            {{ tag_form.criteria }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="small text-muted">Nom</label>
+                            {{ tag_form.name }}
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 rounded-pill">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-header bg-white border-0 pt-4 px-4">
+            <h5 class="fw-bold mb-0"><i class="bi bi-diagram-3 me-2 text-primary"></i>Référentiel existant</h5>
+        </div>
+        <div class="card-body px-4 pb-4">
+            {% if domains %}
+                <div class="accordion" id="profilesAccordion">
+                    {% for domain in domains %}
+                        <div class="accordion-item border-0 mb-3 rounded-4 shadow-sm overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button rounded-4 {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ domain.id }}">
+                                    <span class="fw-bold">{{ domain.name }}</span>
+                                    <span class="badge bg-secondary ms-2">{{ domain.categories.count }} catégorie{{ domain.categories.count|pluralize }}</span>
+                                </button>
+                            </h2>
+                            <div id="collapse{{ domain.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#profilesAccordion">
+                                <div class="accordion-body p-4">
+                                    {% for category in domain.categories.all %}
+                                        <div class="mb-4">
+                                            <h6 class="fw-semibold text-primary mb-2">{{ category.name }}</h6>
+                                            <div class="ps-3">
+                                                {% for criteria in category.criteria.all %}
+                                                    <div class="mb-2">
+                                                        <span class="fw-medium small text-muted">{{ criteria.name }}</span>
+                                                        <div class="d-flex flex-wrap gap-1 mt-1">
+                                                            {% for tag in criteria.tags.all %}
+                                                                <span class="badge bg-light text-dark border rounded-pill">{{ tag.name }}</span>
+                                                            {% empty %}
+                                                                <span class="text-muted small">Aucune compétence.</span>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                {% empty %}
+                                                    <span class="text-muted small">Aucun critère.</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% empty %}
+                                        <span class="text-muted small">Aucune catégorie.</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-muted mb-0">Aucun profil enregistré.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

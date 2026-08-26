@@ -28,10 +28,28 @@ from challenges.views import home_view, evaluation_results, challenge_evaluation
     manual_correct_submission_view, manual_correct_personality_view, leaderboard_view, admin_dashboard_view
 from questions.models import Question
 from wib_challenge.views import json_input
+from challenges.admin_views import (
+    duration_profile_list_view, duration_profile_create_view,
+    duration_profile_update_view, duration_profile_delete_view,
+    profile_manager_view, question_list_view, question_create_view,
+    question_update_view, question_delete_view,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
+
+    # Gestion admin personnalisée
+    path('admin/durees/', duration_profile_list_view, name='duration_profile_list'),
+    path('admin/durees/ajouter/', duration_profile_create_view, name='duration_profile_create'),
+    path('admin/durees/<int:pk>/modifier/', duration_profile_update_view, name='duration_profile_update'),
+    path('admin/durees/<int:pk>/supprimer/', duration_profile_delete_view, name='duration_profile_delete'),
+    path('admin/profils/', profile_manager_view, name='profile_manager'),
+    path('admin/questions/', question_list_view, name='question_list'),
+    path('admin/questions/ajouter/', question_create_view, name='question_create'),
+    path('admin/questions/<int:pk>/modifier/', question_update_view, name='question_update'),
+    path('admin/questions/<int:pk>/supprimer/', question_delete_view, name='question_delete'),
+
     path('', home_view, name='home'),
     path('resultats/', evaluation_results, name='results'),
     path('resultats/<int:submission_id>-<slug:slug>-<int:challenge_id>',

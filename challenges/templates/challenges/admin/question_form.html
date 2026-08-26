@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Modifier{% else %}Ajouter{% endif %} une question - Admin WIB{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h4 class="fw-bold mb-0">
+                        {% if object %}
+                            <i class="bi bi-pencil me-2 text-primary"></i>Modifier la question
+                        {% else %}
+                            <i class="bi bi-plus-lg me-2 text-primary"></i>Ajouter une question
+                        {% endif %}
+                    </h4>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-semibold">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <div class="form-text">{{ field.help_text }}</div>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <div class="text-danger small mt-1">{{ field.errors }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+
+                        <h5 class="fw-bold mt-4 mb-3"><i class="bi bi-list-check me-2 text-secondary"></i>Choix de réponse</h5>
+                        {{ formset.management_form }}
+                        {% if formset.non_form_errors %}
+                            <div class="alert alert-danger">{{ formset.non_form_errors }}</div>
+                        {% endif %}
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Texte</th>
+                                        <th class="text-center">Correct</th>
+                                        <th class="text-center">Supprimer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for f in formset %}
+                                        <tr>
+                                            <td>{{ f.text }}</td>
+                                            <td class="text-center">{{ f.is_correct }}</td>
+                                            <td class="text-center">
+                                                {% if f.instance.pk %}
+                                                    {{ f.DELETE }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% for hidden in f.hidden_fields %}{{ hidden }}{% endfor %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill">Enregistrer</button>
+                            <a href="{% url 'question_list' %}?{{ request.GET.urlencode }}" class="btn btn-outline-secondary rounded-pill">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
