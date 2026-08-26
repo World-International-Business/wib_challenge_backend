@@ -48,10 +48,8 @@ class UserUpdateForm(forms.ModelForm):
     experience = forms.IntegerField(
         min_value=0, required=False, label="Années d'expérience")
     domain = forms.ModelChoiceField(
-        # Récupère tous les domaines ayant au moins une question NORMAL
-        queryset=Domain.objects.filter(
-            categories__questions__question_category=Question.QuestionCategory.NORMAL
-        ).distinct(),
+        # Affiche tous les profils/domaines disponibles
+        queryset=Domain.objects.order_by('name'),
         required=False,
         empty_label="Sélectionner un domaine",
         label="Domaine"
@@ -92,9 +90,9 @@ class UserSkillForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        qs = Tag.objects.filter(
-            questions__question_category=Question.QuestionCategory.NORMAL
-        ).annotate(domain_name=F('criteria__category__domain__name')).distinct().order_by('domain_name', 'name')
+        qs = Tag.objects.annotate(
+            domain_name=F('criteria__category__domain__name')
+        ).distinct().order_by('domain_name', 'name')
         self.fields['skill'].queryset = qs
         self.fields['skill'].widget = DomainSkillSelect(attrs={'class': 'form-control skill-select'})
         self.fields['skill'].widget.choices = self.fields['skill'].choices
