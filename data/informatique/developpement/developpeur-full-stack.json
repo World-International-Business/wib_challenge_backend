@@ -1,0 +1,47 @@
+{
+    "domain": "Informatique",
+    "category": "Développement",
+    "criteria": "Développeur Full Stack",
+    "tags": [
+        "python",
+        "javascript"
+    ],
+    "question_category": "NORMAL",
+    "questions": [
+        {
+            "title": "Qu'est-ce que Django ?",
+            "description": "Expliquez brièvement Django.",
+            "level": 1,
+            "question_type": "OA",
+            "tags": [
+                "python",
+                "django"
+            ],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Mot-clé fonction Python",
+            "description": "Quel mot-clé déclare une fonction en Python ?",
+            "level": 1,
+            "question_type": "UCQ",
+            "choices": [
+                {
+                    "text": "func",
+                    "is_correct": false
+                },
+                {
+                    "text": "def",
+                    "is_correct": true
+                },
+                {
+                    "text": "function",
+                    "is_correct": false
+                }
+            ],
+            "tags": [
+                "python"
+            ],
+            "question_category": "NORMAL"
+        }
+    ]
+}
