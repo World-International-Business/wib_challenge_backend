@@ -1,7 +1,7 @@
 import time
 
 from django.core.management.base import BaseCommand
-from django.db import connection
+from django.db import connections
 from django.db.utils import OperationalError
 
 
@@ -15,12 +15,11 @@ class Command(BaseCommand):
         db_conn = None
         while not db_conn:
             try:
-                connection = connection['default']
-                connection.ensure_connection()
+                conn = connections['default']
+                conn.ensure_connection()
                 db_conn = True
-            except OperationalError:
-                #log important ;voir l erreur exacte
-                self.stdout.write(str(self.style.ERROR(f'Databaseerror:{e}')))
+            except OperationalError as e:
+                self.stdout.write(self.style.ERROR(f'Database error: {e}'))
                 self.stdout.write('Database unavailable, waiting 1 second...')
                 time.sleep(1)
 
