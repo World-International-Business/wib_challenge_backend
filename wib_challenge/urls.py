@@ -34,6 +34,11 @@ urlpatterns = [
     path('api/', include(('apps.evaluations.urls', 'evaluations'), namespace='evaluations')),
     path('api/', include(('apps.organizations.urls', 'organizations'), namespace='organizations')),
     path('health/', health_check, name='health_check'),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/redoc',
+         SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
+    re_path('^api/docs(/swagger)?/$',
+            SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
 
 
@@ -41,11 +46,6 @@ if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls
 
     urlpatterns = [
-        path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-        path('api/docs/redoc',
-             SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
-        re_path('^api/docs(/swagger)?/$',
-                SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
         *debug_toolbar_urls(),
         path('api-auth/', include('rest_framework.urls'), name='rest_framework'),
         *urlpatterns, *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),

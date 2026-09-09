@@ -24,7 +24,8 @@ USER django
 COPY --chown=django:django . .
 
 RUN python manage.py collectstatic --noinput && mkdir -p /app/media \
-    && chown -R django:django /app/media && chmod +x ./entrypoint.sh
+    && chown -R django:django /app/media && chmod +x ./entrypoint.sh \
+    && sed -i 's/\r$//' ./entrypoint.sh
 
 EXPOSE 8000
 

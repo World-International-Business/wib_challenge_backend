@@ -6,6 +6,7 @@
 python manage.py check
 python manage.py check --deploy --settings=wib_challenge.settings.production
 python manage.py test apps.learning apps.payments --keepdb
+python manage.py seed_courses --force
 python manage.py makemigrations --check --dry-run
 ```
 
@@ -29,6 +30,8 @@ python manage.py makemigrations --check --dry-run
 ## Certificats
 
 - `GET /api/learnings/courses/{id}/certificate/eligibility/`
+- `GET /api/certificates/me/`
+- `GET /api/certificates/{id}/`
 - `POST /api/certificates/{id}/checkout/`
 - `POST /api/certificates/{id}/issue/`
 - `GET /api/certificates/{id}/download/`
@@ -37,9 +40,20 @@ python manage.py makemigrations --check --dry-run
 
 ## Profil / CV
 
-- `GET/POST/DELETE /api/candidates/profiles/me/resume/` (PDF, max 5 Mo)
-- `GET /api/candidates/profiles/me/dashboard/`
-- `GET /api/candidates/profiles/me/cv-data/`
+- `GET/POST/DELETE /api/candidate-profiles/me/resume/` (PDF, max 5 Mo)
+- `GET /api/candidate-profiles/me/dashboard/`
+- `GET /api/candidate-profiles/me/certificates/`
+- `GET /api/candidate-profiles/me/cv-data/`
+
+## Authentification
+
+- `POST /api/auth/register/`
+- `POST /api/auth/login/` (JWT access + refresh)
+- `POST /api/auth/token/refresh/`
+- `POST /api/auth/token/verify/`
+- `POST /api/auth/logout/`
+- `POST /api/auth/forgot-password/`
+- `GET/POST /api/users/` (profil utilisateur)
 
 ## Déploiement
 
@@ -55,6 +69,14 @@ python manage.py makemigrations --check --dry-run
      python manage.py showmigrations
      ```
 5. Vérifier `GET http(s)://<host>/health/` et `GET /api/learnings/courses/`.
+6. Si le catalogue est vide, exécuter dans la console conteneur :
+   ```bash
+   python manage.py seed_courses --force
+   ```
+7. La documentation OpenAPI est disponible en production :
+   - `GET /api/schema/`
+   - `GET /api/docs/swagger/`
+   - `GET /api/docs/redoc`
 
 ## Écarts connus
 
