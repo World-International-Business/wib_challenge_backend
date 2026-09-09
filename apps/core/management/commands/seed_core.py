@@ -72,14 +72,26 @@ class Command(BaseCommand):
                 if created:
                     self.stdout.write(self.style.SUCCESS(
                         f'Created {tech["name"]}'))
-                    file, content = self.download_image(tech['url'])
-                    technology.image.save(file, ContentFile(content))
+                    if tech.get('url'):
+                        try:
+                            file, content = self.download_image(tech['url'])
+                            technology.image.save(file, ContentFile(content))
+                        except Exception as e:
+                            self.stdout.write(self.style.WARNING(
+                                f'Failed to download image for {tech["name"]}: {e}'))
                 elif force:
-                    self.stdout.write(self.style.SUCCESS(
-                        f'Updating {tech["name"]}'))
-                    file, content = self.download_image(tech['url'])
-                    technology.image.delete(save=False)
-                    technology.image.save(file, ContentFile(content))
+                    if not technology.image and tech.get('url'):
+                        try:
+                            file, content = self.download_image(tech['url'])
+                            technology.image.save(file, ContentFile(content))
+                            self.stdout.write(self.style.SUCCESS(
+                                f'Updated {tech["name"]}'))
+                        except Exception as e:
+                            self.stdout.write(self.style.WARNING(
+                                f'Failed to download image for {tech["name"]}: {e}'))
+                    else:
+                        self.stdout.write(self.style.WARNING(
+                            f'{tech["name"]} already exists'))
                 else:
                     self.stdout.write(self.style.WARNING(
                         f'{tech["name"]} already exists'))

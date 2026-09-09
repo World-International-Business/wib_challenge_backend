@@ -29,7 +29,7 @@ from wib_challenge.pagination import paginated_response
 from wib_challenge.permissions import ReadOnly
 from .filters import JobOfferFilter, JobApplicationFilter
 from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation, JobApplicationAnalysis
-from .permissions import IsCompanyOwnerOrReadOnly
+from .permissions import CanAccessJobApplication, IsCompanyOwnerOrReadOnly
 from .serializers import (
     JobCategorySerializer, JobCategoryListSerializer,
     JobOfferListSerializer, JobOfferDetailSerializer,
@@ -194,7 +194,7 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         request=JobApplicationSerializer,
         responses={200: JobApplicationSerializer}
     )
-    @action(detail=True, methods=['post'], permission_classes=[])
+    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
     def apply(self, request, pk=None):
         """
         Permet à un candidat de postuler une offre d'emploi.
@@ -204,6 +204,25 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         from rest_framework.exceptions import ValidationError as DRFValidationError
         
         job_offer = self.get_object()
+        if job_offer.status != JobOffer.Status.PUBLISHED or (
+            job_offer.expires_at and job_offer.expires_at <= timezone.now()
+        ):
+            return Response(
+                {'code': 'JOB_OFFER_CLOSED', 'detail': "Cette offre n'accepte plus de candidatures.", 'fieldErrors': {}, 'metadata': {}},
+                status=status.HTTP_409_CONFLICT,
+            )
+        if hasattr(request.user, 'organization') and job_offer.company_id == request.user.organization.id:
+            return Response(
+                {'code': 'PERMISSION_DENIED', 'detail': "Vous ne pouvez pas postuler à votre propre offre.", 'fieldErrors': {}, 'metadata': {}},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        if JobApplication.objects.filter(job_offer=job_offer, user=request.user).exclude(
+            status=JobApplication.ApplicationStatus.REJECTED
+        ).exists():
+            return Response(
+                {'code': 'APPLICATION_ALREADY_EXISTS', 'detail': 'Une candidature active existe déjà.', 'fieldErrors': {}, 'metadata': {}},
+                status=status.HTTP_409_CONFLICT,
+            )
         required_docs = job_offer.required_documents or []
         
         # Valider que tous les documents requis sont fournis
@@ -236,8 +255,12 @@ class JobOfferViewSet(viewsets.ModelViewSet):
         # Créer l'application
         serializer = JobApplicationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = request.user if request.user.is_authenticated and hasattr(request.user, 'profile') else None
-        application = serializer.save(job_offer=job_offer, user=user)
+        application = serializer.save(
+            job_offer=job_offer,
+            user=request.user,
+            applicant_name=request.user.get_full_name() or request.user.email,
+            applicant_email=request.user.email,
+        )
         
         # Uploader et sauvegarder les documents additionnels
         documents_saved = {}
@@ -588,24 +611,33 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
     serializer_class = JobApplicationSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_class = JobApplicationFilter
-    permission_classes = [IsAuthenticated, IsOrganization]
+    permission_classes = [CanAccessJobApplication]
     search_fields = ['applicant_name', 'applicant_email']
     ordering_fields = ['submitted_at', 'status']
     ordering = ['-submitted_at']
 
     def get_queryset(self):
+        queryset = JobApplication.objects.select_related(
+            'job_offer',
+            'job_offer__company',
+            'user',
+            'user__profile',
+            'user__profile__profession'
+        )
+        if self.request.user.is_staff:
+            return queryset
         if hasattr(self.request.user, 'organization'):
-            return JobApplication.objects.filter(
-                job_offer__company=self.request.user.organization
-            ).select_related(
-                'job_offer', 
-                'job_offer__company', 
-                'user',
-                'user__profile',
-                'user__profile__profession'
-            )
-        else:
-            return JobApplication.objects.none()
+            return queryset.filter(job_offer__company=self.request.user.organization)
+        return queryset.filter(user=self.request.user)
+
+    @action(detail=False, methods=['get'], url_path='me')
+    def me(self, request):
+        queryset = self.filter_queryset(self.get_queryset().filter(user=request.user))
+        page = self.paginate_queryset(queryset)
+        serializer = self.get_serializer(page if page is not None else queryset, many=True)
+        if page is not None:
+            return self.get_paginated_response(serializer.data)
+        return Response(serializer.data)
 
     @extend_schema(
         summary="Lister toutes les candidatures de l'organisation",

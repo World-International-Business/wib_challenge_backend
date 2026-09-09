@@ -5,9 +5,11 @@ from decouple import config
 
 from .base import *
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 
 SECRET_KEY = config('SECRET_KEY')
+if SECRET_KEY.startswith('django-insecure-') or len(SECRET_KEY) < 50:
+    raise ValueError('SECRET_KEY must be a strong production secret')
 
 # Configuration de la base de données
 DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'), conn_max_age=600, conn_health_checks=True)
@@ -19,7 +21,19 @@ if DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
     }
 
 # Hôtes autorisés
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',') if s.strip()])
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='',
+    cast=lambda v: [s.strip() for s in v.split(',') if s.strip()],
+)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'] = timedelta(minutes=15)
+SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'] = timedelta(days=7)
+SIMPLE_JWT['ROTATE_REFRESH_TOKENS'] = True
+SIMPLE_JWT['BLACKLIST_AFTER_ROTATION'] = True
 
 # Détection de l'environnement Dokploy/Traefik
 IS_TRAEFIK = config('TRAEFIK_ENABLED', default='traefik.me' in ''.join(ALLOWED_HOSTS), cast=bool)
@@ -66,7 +80,7 @@ else:
 LOGGING['handlers']['security_file'] = {
     'level': 'WARNING',
     'class': 'logging.handlers.RotatingFileHandler',
-    'filename': '/app/logs/security.log',
+    'filename': BASE_DIR / 'logs' / 'security.log',
     'maxBytes': 1024 * 1024 * 5,  # 5 MB
     'backupCount': 5,
     'formatter': 'verbose',
@@ -76,7 +90,7 @@ LOGGING['loggers']['django.security']['handlers'].append('security_file')
 
 # Performance logging
 LOGGING['loggers']['django.db.backends'] = {
-    'handlers': ['file'],
+    'handlers': ['file'] if 'file' in LOGGING['handlers'] else ['console'],
     'level': 'WARNING',
     'propagate': False,
 }
@@ -117,7 +131,6 @@ if REDIS_ENABLED:
                 'SOCKET_CONNECT_TIMEOUT': 5,
                 'SOCKET_TIMEOUT': 5,
                 'IGNORE_EXCEPTIONS': True,
-                'PARSER_CLASS': 'redis.connection.HiredisParser',
                 'CONNECTION_POOL_KWARGS': {'max_connections': 100}
             },
             'KEY_PREFIX': 'wib_challenge'

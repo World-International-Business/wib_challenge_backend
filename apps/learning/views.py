@@ -93,6 +93,8 @@ class CourseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        if not self.request.user.is_staff:
+            queryset = queryset.filter(is_published=True, is_active=True)
         is_selected = self.request.query_params.get('is_selected', None)
 
         if is_selected is not None and hasattr(self.request.user, 'organization'):
@@ -102,6 +104,39 @@ class CourseViewSet(viewsets.ModelViewSet):
                 return queryset.exclude(selected_by_organizations=self.request.user.organization)
 
         return queryset
+
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy', 'assign_to_users']:
+            return [permissions.IsAdminUser()]
+        if self.action in ['enroll', 'progress', 'generate_certificate']:
+            return [permissions.IsAuthenticated()]
+        return super().get_permissions()
+
+    @action(detail=True, methods=['post'])
+    def enroll(self, request, pk=None):
+        course = self.get_object()
+        if not course.is_free or course.price > 0:
+            return Response(
+                {'code': 'PAYMENT_REQUIRED', 'detail': 'Cette formation nécessite un paiement.', 'fieldErrors': {}, 'metadata': {}},
+                status=status.HTTP_402_PAYMENT_REQUIRED,
+            )
+        enrollment, created = CourseEnrollment.objects.get_or_create(
+            user=request.user,
+            course=course,
+            defaults={'status': CourseEnrollment.Status.ACTIVE, 'source': CourseEnrollment.Source.SELF},
+        )
+        if enrollment.status in [CourseEnrollment.Status.CANCELLED, CourseEnrollment.Status.EXPIRED]:
+            enrollment.status = CourseEnrollment.Status.ACTIVE
+            enrollment.source = CourseEnrollment.Source.SELF
+            enrollment.expires_at = None
+            enrollment.save(update_fields=['status', 'source', 'expires_at', 'updated_at'])
+        return Response({
+            'id': enrollment.id,
+            'courseId': course.id,
+            'status': enrollment.status,
+            'enrolledAt': enrollment.assigned_at,
+            'accessGranted': enrollment.status == CourseEnrollment.Status.ACTIVE,
+        }, status=status.HTTP_201_CREATED if created else status.HTTP_200_OK)
 
     @action(detail=True, methods=['POST'])
     def select(self, request, pk=None):
@@ -241,7 +276,8 @@ class CourseViewSet(viewsets.ModelViewSet):
                     'start_date': start_date,
                     'end_date': end_date,
                     'message': message,
-                    'status': 'assigned'
+                    'status': CourseEnrollment.Status.ACTIVE,
+                    'source': CourseEnrollment.Source.ORGANIZATION
                 }
             )
             enrollments.append(enrollment)
@@ -397,9 +433,27 @@ class ModuleViewSet(viewsets.ModelViewSet):
 
 class ContentViewSet(viewsets.ModelViewSet):
     """ViewSet pour la gestion des contenus"""
-    queryset = Content.objects.all()
+    queryset = Content.objects.select_related('module__course')
     serializer_class = ContentDetailSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        if self.action in ['start', 'progress', 'mark_completed', 'retrieve']:
+            return [permissions.IsAuthenticated()]
+        return super().get_permissions()
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(is_active=True, module__is_active=True, module__course__is_published=True)
+        if self.request.user.is_staff:
+            return queryset
+        if not self.request.user.is_authenticated:
+            return queryset.filter(is_preview=True)
+        return queryset.filter(
+            module__course__enrollments__user=self.request.user,
+            module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
+        ).distinct()
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ContentFilter
     search_fields = ['title']
@@ -427,10 +481,16 @@ class ContentViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
 
+        enrollment = get_object_or_404(
+            CourseEnrollment,
+            user=request.user,
+            course=content.module.course,
+            status=CourseEnrollment.Status.ACTIVE,
+        )
         progress, created = Progress.objects.get_or_create(
             user=request.user,
             content=content,
-            defaults={'is_completed': True, 'completed_at': timezone.now()}
+            defaults={'enrollment': enrollment, 'is_completed': True, 'completed_at': timezone.now()}
         )
 
         if not created and not progress.is_completed:
@@ -480,12 +540,26 @@ class QuizViewSet(viewsets.ModelViewSet):
     """ViewSet pour la gestion des quiz"""
     queryset = Quiz.objects.select_related('module', 'module__course').prefetch_related('questions',
                                                                                         'questions__choices')
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = QuizFilter
     search_fields = ['title', 'description']
     ordering_fields = ['title', 'created_at', 'passing_score']
     ordering = ['title']
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(is_active=True, module__course__is_published=True)
+        if self.request.user.is_staff:
+            return queryset
+        return queryset.filter(
+            module__course__enrollments__user=self.request.user,
+            module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
+        ).distinct()
+
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update', 'destroy']:
+            return [permissions.IsAdminUser()]
+        return super().get_permissions()
 
     def get_serializer_class(self):
         if self.action == 'list':

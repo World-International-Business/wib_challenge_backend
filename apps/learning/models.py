@@ -31,7 +31,15 @@ class Course(LearningModel):
                                   related_name='courses_created', verbose_name=_('Instructeur'))
     estimated_duration = models.PositiveIntegerField(_('Durée estimée (mois)'), null=True, blank=True)
     picture_cover = models.ImageField(_('Image'), upload_to='learning/courses/pictures/', null=True, blank=True)
-    price = models.DecimalField(_('Prix (en euros)'), max_digits=10, decimal_places=2, null=True, blank=True)
+    price = models.DecimalField(_('Prix'), max_digits=10, decimal_places=2, default=0)
+    currency = models.CharField(_('Devise'), max_length=3, default='XOF')
+    short_description = models.CharField(_('Description courte'), max_length=500, blank=True)
+    language = models.CharField(_('Langue'), max_length=100, default='Français')
+    learning_objectives = models.JSONField(_('Objectifs pédagogiques'), default=list, blank=True)
+    prerequisites = models.JSONField(_('Prérequis'), default=list, blank=True)
+    is_published = models.BooleanField(_('Publié'), default=False, db_index=True)
+    certificate_enabled = models.BooleanField(_('Certificat activé'), default=True)
+    certificate_price = models.DecimalField(_('Prix du certificat'), max_digits=10, decimal_places=2, default=0)
     skills = models.ManyToManyField(Technology, blank=True, related_name='courses', verbose_name=_('Compétence'))
     selected_by_organizations = models.ManyToManyField(
         'organizations.Organization',
@@ -136,6 +144,8 @@ class Content(LearningModel):
     order = models.PositiveIntegerField(_('Ordre'), default=0)
     is_active = models.BooleanField(_('Actif'), default=True)
     duration_minutes = models.PositiveIntegerField(_('Durée (minutes)'), null=True, blank=True)
+    is_preview = models.BooleanField(_('Aperçu public'), default=False)
+    is_required = models.BooleanField(_('Obligatoire'), default=True)
 
     class Meta:
         verbose_name = _('Contenu')
@@ -367,12 +377,15 @@ class QuizAnswer(models.Model):
 
 class Progress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Utilisateur'))
+    enrollment = models.ForeignKey('CourseEnrollment', on_delete=models.CASCADE, related_name='content_progress', null=True)
     content = models.ForeignKey(Content, on_delete=models.CASCADE, verbose_name=_('Contenu'))
     is_completed = models.BooleanField(_('Terminé'), default=False)
     completed_at = models.DateTimeField(_('Terminé le'), null=True, blank=True)
     started_at = models.DateTimeField(_('Commencé le'), auto_now_add=True)
     last_accessed = models.DateTimeField(_('Dernier accès'), auto_now=True)
     time_spent_seconds = models.PositiveIntegerField(_('Temps passé (secondes)'), default=0)
+    last_position_seconds = models.PositiveIntegerField(_('Dernière position'), default=0)
+    duration_seconds = models.PositiveIntegerField(_('Durée'), default=0)
 
     class Meta:
         verbose_name = _('Progrès')
@@ -397,10 +410,16 @@ class Progress(models.Model):
 class CourseEnrollment(models.Model):
     """Inscription/Assignation d'un utilisateur à une formation"""
     class Status(models.TextChoices):
-        ASSIGNED = 'assigned', _('Assigné')
-        IN_PROGRESS = 'in_progress', _('En cours')
-        COMPLETED = 'completed', _('Terminé')
-        CANCELLED = 'cancelled', _('Annulé')
+        PENDING_PAYMENT = 'pending_payment', _('Paiement en attente')
+        ACTIVE = 'active', _('Active')
+        COMPLETED = 'completed', _('Terminée')
+        CANCELLED = 'cancelled', _('Annulée')
+        EXPIRED = 'expired', _('Expirée')
+
+    class Source(models.TextChoices):
+        SELF = 'self', _('Individuelle')
+        ORGANIZATION = 'organization', _('Organisation')
+        ADMIN = 'admin', _('Administration')
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_enrollments', 
                             verbose_name=_('Utilisateur'))
@@ -408,11 +427,15 @@ class CourseEnrollment(models.Model):
                               verbose_name=_('Formation'))
     assigned_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                    related_name='assigned_courses', verbose_name=_('Assigné par'))
-    status = models.CharField(_('Statut'), max_length=20, choices=Status.choices, default=Status.ASSIGNED)
+    status = models.CharField(_('Statut'), max_length=20, choices=Status.choices, default=Status.ACTIVE)
+    source = models.CharField(_('Source'), max_length=20, choices=Source.choices, default=Source.SELF)
     start_date = models.DateField(_('Date de début'), null=True, blank=True)
     end_date = models.DateField(_('Date de fin'), null=True, blank=True)
     message = models.TextField(_('Message'), blank=True)
-    assigned_at = models.DateTimeField(_('Assigné le'), auto_now_add=True)
+    assigned_at = models.DateTimeField(_('Inscrit le'), auto_now_add=True)
+    started_at = models.DateTimeField(_('Commencée le'), null=True, blank=True)
+    completed_at = models.DateTimeField(_('Terminée le'), null=True, blank=True)
+    expires_at = models.DateTimeField(_('Expire le'), null=True, blank=True)
     updated_at = models.DateTimeField(_('Modifié le'), auto_now=True)
 
     class Meta:
