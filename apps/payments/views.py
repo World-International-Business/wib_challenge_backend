@@ -21,6 +21,11 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = PaymentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_permissions(self):
+        if self.action in ['webhooks']:
+            return [permissions.AllowAny()]
+        return [permission() for permission in self.permission_classes]
+
     def get_queryset(self):
         return Payment.objects.filter(user=self.request.user)
 
@@ -91,7 +96,7 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
             'provider_reference': payment.provider_reference,
         }, status=status.HTTP_201_CREATED)
 
-    @action(detail=False, methods=['post'], url_path=r'webhooks/(?P<provider>[^/.]+)', permission_classes=[])
+    @action(detail=False, methods=['post'], url_path=r'webhooks/(?P<provider>[^/.]+)', permission_classes=[permissions.AllowAny])
     def webhooks(self, request, provider=None):
         try:
             provider_instance = get_provider(provider)

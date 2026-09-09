@@ -1009,7 +1009,7 @@ class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
     def get_permissions(self):
         if self.action == 'verify':
             return [permissions.AllowAny()]
-        return super().get_permissions()
+        return [permissions.IsAuthenticated()]
 
     @extend_schema(
         summary="Mes certificats",

@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .models import Content, Course, CourseEnrollment, ContentType, Module, Progress, Quiz, QuizChoice, QuizQuestion
+from .models import Certificate, Content, Course, CourseEnrollment, ContentType, Module, Progress, Quiz, QuizChoice, QuizQuestion
 
 
 class CandidateLearningSecurityTests(APITestCase):
@@ -50,3 +50,24 @@ class CandidateLearningSecurityTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertNotIn('isCorrect', response.data['questions'][0]['choices'][0])
         self.assertEqual(enrollment.status, CourseEnrollment.Status.ACTIVE)
+
+    def test_course_completion_progress(self):
+        enrollment = CourseEnrollment.objects.create(user=self.user, course=self.course, status=CourseEnrollment.Status.ACTIVE)
+        self.client.force_authenticate(self.user)
+        self.client.post(f'/api/learnings/contents/{self.content.id}/mark_completed/')
+        response = self.client.get(f'/api/learnings/courses/{self.course.id}/progress/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(response.data['percentage'] > 0)
+
+    def test_certificate_not_issued_before_completion(self):
+        CourseEnrollment.objects.create(user=self.user, course=self.course, status=CourseEnrollment.Status.ACTIVE)
+        self.client.force_authenticate(self.user)
+        response = self.client.get(f'/api/learnings/courses/{self.course.id}/certificate/eligibility/')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_certificate_issued_after_completion(self):
+        CourseEnrollment.objects.create(user=self.user, course=self.course, status=CourseEnrollment.Status.COMPLETED)
+        self.client.force_authenticate(self.user)
+        response = self.client.get(f'/api/learnings/courses/{self.course.id}/certificate/eligibility/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(Certificate.objects.filter(user=self.user, course=self.course).exists())
