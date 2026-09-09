@@ -34,6 +34,9 @@ class CandidateProfile(BaseModel):
     technologies = models.ManyToManyField(Technology, related_name='profiles', verbose_name=_('Technologies'),
                                           through='ProfileTechnology')
 
+    resume = models.FileField(_('CV'), upload_to='resumes/private/', blank=True, null=True,
+                              help_text=_('PDF uniquement'))
+
     interested_by = models.CharField(_('Intéressé par'), max_length=512, blank=True)
 
     def __str__(self):

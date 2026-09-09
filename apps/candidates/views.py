@@ -1,12 +1,20 @@
+import os
+
+from django.core.exceptions import ValidationError
+from django.db.models import Count, Q
+from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, OpenApiParameter
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import get_object_or_404
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
+
+from apps.learning.models import Certificate, CourseEnrollment
+from apps.jobs.models import JobApplication
 
 from apps.candidates.filters import (
     CandidateProfileFilterSet, ExperienceFilterSet, EducationFilterSet, ProjectFilterSet, LanguageFilterSet
@@ -54,6 +62,139 @@ class CandidateProfileViewSet(viewsets.ModelViewSet):
         profile = get_object_or_404(self.get_queryset(), user=user_id)
         serializer = self.get_serializer(profile)
         return Response(serializer.data)
+
+    def _get_or_create_profile(self, user):
+        profile, _ = CandidateProfile.objects.get_or_create(user=user, defaults={
+            'profession_id': 1,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+        })
+        return profile
+
+    @action(detail=False, methods=['get'], url_path='me/dashboard', permission_classes=[IsAuthenticated])
+    def dashboard(self, request):
+        profile = get_object_or_404(CandidateProfile, user=request.user)
+
+        missing = []
+        if not profile.biography:
+            missing.append('biography')
+        if not profile.profession:
+            missing.append('profession')
+        if not profile.years_experience:
+            missing.append('years_experience')
+
+        total_fields = ['first_name', 'last_name', 'biography', 'profession', 'years_experience']
+        filled = sum([bool(getattr(profile, f, None)) for f in total_fields])
+        completion = int((filled / len(total_fields)) * 100)
+
+        completed_courses_count = CourseEnrollment.objects.filter(
+            user=request.user, status=CourseEnrollment.Status.COMPLETED
+        ).count()
+        certificates_count = Certificate.objects.filter(user=request.user, status=Certificate.Status.ISSUED).count()
+
+        applications_by_status = JobApplication.objects.filter(user=request.user).values('status').annotate(count=Count('id'))
+        applications_summary = {item['status']: item['count'] for item in applications_by_status}
+
+        return Response({
+            'profile_completion_percentage': completion,
+            'missing_profile_fields': missing,
+            'steps': {
+                'account_created': True,
+                'profile_completed': completion >= 80,
+                'evaluation_completed': False,
+                'orientation_completed': False,
+                'has_job_applications': JobApplication.objects.filter(user=request.user).exists(),
+            },
+            'completed_courses_count': completed_courses_count,
+            'certificates_count': certificates_count,
+            'applications_count': JobApplication.objects.filter(user=request.user).count(),
+            'applications_by_status': applications_summary,
+        })
+
+    @action(detail=False, methods=['get'], url_path='me/certificates', permission_classes=[IsAuthenticated])
+    def certificates(self, request):
+        certs = Certificate.objects.filter(user=request.user, status=Certificate.Status.ISSUED)
+        data = [{
+            'id': c.id,
+            'certificate_number': c.certificate_number,
+            'course_title': c.course_title_snapshot,
+            'issued_at': c.issued_at,
+            'verification_code': c.verification_code,
+            'download_url': request.build_absolute_uri(c.pdf_file.url) if c.pdf_file else None,
+        } for c in certs]
+        return Response(data)
+
+    @action(detail=False, methods=['post', 'get', 'delete'], url_path='me/resume', permission_classes=[IsAuthenticated])
+    def resume(self, request):
+        profile = get_object_or_404(CandidateProfile, user=request.user)
+
+        if request.method == 'GET':
+            if not profile.resume:
+                return Response({'code': 'RESUME_NOT_FOUND', 'detail': 'Aucun CV enregistré.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({
+                'resume_url': request.build_absolute_uri(profile.resume.url),
+                'name': os.path.basename(profile.resume.name),
+            })
+
+        if request.method == 'DELETE':
+            if profile.resume:
+                profile.resume.delete(save=False)
+                profile.resume = None
+                profile.save(update_fields=['resume', 'updated_at'])
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        # POST
+        file = request.FILES.get('file')
+        if not file:
+            return Response({'code': 'INVALID_RESUME', 'detail': 'Aucun fichier fourni.', 'fieldErrors': {}, 'metadata': {}}, status=status.HTTP_400_BAD_REQUEST)
+
+        ext = os.path.splitext(file.name)[1].lower()
+        if ext != '.pdf':
+            return Response({'code': 'INVALID_RESUME', 'detail': 'Le CV doit être au format PDF.', 'fieldErrors': {}, 'metadata': {}}, status=status.HTTP_400_BAD_REQUEST)
+
+        max_size = 5 * 1024 * 1024
+        if file.size > max_size:
+            return Response({'code': 'INVALID_RESUME', 'detail': 'Le fichier dépasse 5 Mo.', 'fieldErrors': {}, 'metadata': {}}, status=status.HTTP_400_BAD_REQUEST)
+
+        if hasattr(file, 'content_type') and file.content_type not in ['application/pdf', 'application/octet-stream']:
+            pass
+
+        if profile.resume:
+            profile.resume.delete(save=False)
+        profile.resume.save(f"resume_{request.user.id}_{timezone.now().timestamp()}.pdf", file, save=True)
+
+        return Response({
+            'resume_url': request.build_absolute_uri(profile.resume.url),
+            'name': os.path.basename(profile.resume.name),
+        }, status=status.HTTP_201_CREATED)
+
+    @action(detail=False, methods=['get'], url_path='me/cv-data', permission_classes=[IsAuthenticated])
+    def cv_data(self, request):
+        profile = get_object_or_404(CandidateProfile, user=request.user)
+        certs = Certificate.objects.filter(user=request.user, status=Certificate.Status.ISSUED)
+        return Response({
+            'identity': {
+                'first_name': request.user.first_name,
+                'last_name': request.user.last_name,
+                'email': request.user.email,
+                'phone': profile.user.phone if hasattr(profile.user, 'phone') else '',
+                'location': profile.location,
+            },
+            'profession': profile.profession.title if profile.profession else None,
+            'summary': profile.biography,
+            'experiences': ExperienceSerializer(profile.experiences.all(), many=True).data,
+            'educations': EducationSerializer(profile.educations.all(), many=True).data,
+            'skills': [{'name': pt.technology.name, 'level': pt.level} for pt in profile.profile_technologies.all()],
+            'projects': ProjectSerializer(profile.projects.all(), many=True).data,
+            'languages': [{'name': l.name, 'level': l.level} for l in profile.languages.all()],
+            'certificates': [{
+                'certificate_number': c.certificate_number,
+                'course_title': c.course_title_snapshot,
+                'issued_at': c.issued_at,
+                'verification_code': c.verification_code,
+            } for c in certs],
+            'resume_url': request.build_absolute_uri(profile.resume.url) if profile.resume else None,
+        })
 
 
 @extend_schema(
