@@ -1,3 +1,6 @@
+import secrets
+import uuid
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -436,6 +439,8 @@ class CourseEnrollment(models.Model):
     started_at = models.DateTimeField(_('Commencée le'), null=True, blank=True)
     completed_at = models.DateTimeField(_('Terminée le'), null=True, blank=True)
     expires_at = models.DateTimeField(_('Expire le'), null=True, blank=True)
+    payment = models.ForeignKey('payments.Payment', on_delete=models.SET_NULL, null=True, blank=True,
+                                related_name='enrollment_payment', verbose_name=_('Paiement'))
     updated_at = models.DateTimeField(_('Modifié le'), auto_now=True)
 
     class Meta:
@@ -449,26 +454,58 @@ class CourseEnrollment(models.Model):
 
 
 class Certificate(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Utilisateur'))
+    class Status(models.TextChoices):
+        ELIGIBLE = 'eligible', _('Éligible')
+        PAYMENT_PENDING = 'payment_pending', _('Paiement en attente')
+        ISSUED = 'issued', _('Émis')
+        REVOKED = 'revoked', _('Révoqué')
+
+    public_uuid = models.UUIDField(_('UUID public'), unique=True, db_index=True, null=True, blank=True)
+    verification_code = models.CharField(_('Code de vérification'), max_length=32, unique=True, db_index=True, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Utilisateur'), related_name='certificates')
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name=_('Cours'))
-    issued_at = models.DateTimeField(_('Émis le'), auto_now_add=True)
-    file = models.FileField(_('Fichier'), upload_to='certificates/', null=True, blank=True)
+    enrollment = models.ForeignKey(CourseEnrollment, on_delete=models.CASCADE, null=True, blank=True, related_name='certificate')
+    participant_name_snapshot = models.CharField(_('Nom du participant'), max_length=255, blank=True)
+    course_title_snapshot = models.CharField(_('Titre du cours'), max_length=255, blank=True)
+    level_snapshot = models.CharField(_('Niveau'), max_length=20, blank=True)
+    duration_snapshot = models.CharField(_('Durée'), max_length=50, blank=True)
+    final_score = models.PositiveIntegerField(_('Score final'), default=0)
+    issued_at = models.DateTimeField(_('Émis le'), null=True, blank=True)
+    status = models.CharField(_('Statut'), max_length=20, choices=Status.choices, default=Status.ELIGIBLE)
     certificate_number = models.CharField(_('Numéro de certificat'), max_length=50, unique=True, null=True, blank=True)
+    pdf_file = models.FileField(_('Fichier PDF'), upload_to='certificates/', null=True, blank=True)
+    payment_required = models.BooleanField(_('Paiement requis'), default=False)
+    payment = models.ForeignKey('payments.Payment', on_delete=models.SET_NULL, null=True, blank=True, related_name='certificate_payment')
+    revoked_at = models.DateTimeField(_('Révoqué le'), null=True, blank=True)
+    revoked_reason = models.TextField(_('Motif de révocation'), blank=True)
+    metadata = models.JSONField(_('Métadonnées'), default=dict, blank=True)
+    file = models.FileField(_('Fichier'), upload_to='certificates/', null=True, blank=True)
     is_valid = models.BooleanField(_('Valide'), default=True)
+    created_at = models.DateTimeField(_('Créé le'), default=timezone.now)
+    updated_at = models.DateTimeField(_('Modifié le'), default=timezone.now)
 
     class Meta:
         verbose_name = _('Certificat')
         verbose_name_plural = _('Certificats')
         unique_together = ('user', 'course')
-        ordering = ['-issued_at']
+        ordering = ['-created_at']
         indexes = [models.Index(fields=['certificate_number']), models.Index(fields=['is_valid']),
-                   models.Index(fields=['issued_at']), ]
+                   models.Index(fields=['public_uuid']), models.Index(fields=['verification_code']), ]
 
     def save(self, *args, **kwargs):
+        if not self.public_uuid:
+            self.public_uuid = uuid.uuid4()
         if not self.certificate_number:
-            import uuid
-            self.certificate_number = f"CERT-{uuid.uuid4().hex[:8].upper()}"
+            self.certificate_number = self.generate_number()
+        if not self.verification_code:
+            self.verification_code = secrets.token_urlsafe(16)[:32]
         super().save(*args, **kwargs)
+
+    def generate_number(self):
+        from datetime import datetime
+        year = (self.issued_at or timezone.now()).year
+        count = Certificate.objects.filter(issued_at__year=year).count() + 1
+        return f"WIB-{year}-{count:06d}"
 
     def __str__(self):
         return f"Certif: {self.user.username} - {self.course.title}"

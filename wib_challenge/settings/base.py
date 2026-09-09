@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'apps.evaluations',
     'apps.organizations',
     'apps.learning',
+    'apps.payments',
     'apps.jobs',
 ]
 
