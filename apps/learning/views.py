@@ -11,8 +11,10 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 
+from services.certificate_generator import generate_certificate_pdf
 from services.learning_progress import complete_content, compute_course_progress, compute_blocking_reasons, get_next_content
 from services.suggest_courses import suggest_courses_from_attempt
+from apps.payments.models import Payment
 from wib_challenge.pagination import paginated_response
 from .filters import (
     CourseFilter, ModuleFilter, ContentFilter, QuizFilter, QuizQuestionFilter, QuizChoiceFilter,
@@ -256,6 +258,57 @@ class CourseViewSet(viewsets.ModelViewSet):
             'blockingReasons': blocking,
             'finalScore': progress['percentage'],
             'certificate': {'status': 'available'} if eligible else {'status': 'not_eligible'},
+        })
+
+    @extend_schema(
+        summary="Éligibilité au certificat",
+        description="Indique si le certificat est disponible, payant, et son identifiant",
+        tags=["Cours"],
+        responses={200: None},
+    )
+    @action(detail=True, methods=['get'], url_path='certificate/eligibility')
+    def certificate_eligibility(self, request, pk=None):
+        course = self.get_object()
+        try:
+            enrollment = CourseEnrollment.objects.get(
+                user=request.user, course=course, status=CourseEnrollment.Status.COMPLETED
+            )
+        except CourseEnrollment.DoesNotExist:
+            return Response(
+                {'code': 'COURSE_NOT_COMPLETED', 'detail': 'La formation doit être terminée.', 'fieldErrors': {}, 'metadata': {}},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
+        payment_required = course.certificate_enabled and course.certificate_price > 0
+        price = course.certificate_price if payment_required else 0
+
+        certificate, _ = Certificate.objects.get_or_create(
+            user=request.user,
+            course=course,
+            defaults={
+                'enrollment': enrollment,
+                'status': Certificate.Status.PAYMENT_PENDING if payment_required else Certificate.Status.ELIGIBLE,
+                'payment_required': payment_required,
+                'participant_name_snapshot': request.user.get_full_name() or request.user.email,
+                'course_title_snapshot': course.title,
+                'level_snapshot': course.level,
+                'duration_snapshot': str(course.estimated_duration or ''),
+                'final_score': compute_course_progress(request.user, course, enrollment)['percentage'],
+            },
+        )
+
+        blocking = []
+        if certificate.status == Certificate.Status.REVOKED:
+            blocking.append({'type': 'certificate_revoked', 'label': 'Le certificat a été révoqué.'})
+
+        return Response({
+            'eligible': True,
+            'paymentRequired': payment_required,
+            'price': str(price),
+            'currency': course.currency,
+            'certificateId': certificate.id,
+            'status': certificate.status,
+            'blockingReasons': blocking,
         })
 
     @extend_schema(
@@ -938,31 +991,169 @@ class ProgressViewSet(viewsets.ModelViewSet):
         })
 
 
-@extend_schema_view(
-    list=extend_schema(
-        summary="Liste des certificats",
-        description="Récupérer la liste des certificats de l'utilisateur",
-        tags=["Certificats"]
-    ),
-    retrieve=extend_schema(
-        summary="Détails d'un certificat",
-        description="Récupérer les détails d'un certificat",
-        tags=["Certificats"]
-    )
-)
 class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
-    """ViewSet pour la consultation des certificats"""
+    """ViewSet pour la gestion des certificats"""
     serializer_class = CertificateSerializer
     permission_classes = [permissions.IsAuthenticated]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = CertificateFilter
-    ordering_fields = ['issued_at']
-    ordering = ['-issued_at']
+    ordering_fields = ['issued_at', 'created_at']
+    ordering = ['-created_at']
+    lookup_field = 'pk'
 
     def get_queryset(self):
         if self.request.user.is_staff:
             return Certificate.objects.all()
         return Certificate.objects.filter(user=self.request.user)
+
+    def get_permissions(self):
+        if self.action == 'verify':
+            return [permissions.AllowAny()]
+        return super().get_permissions()
+
+    @extend_schema(
+        summary="Mes certificats",
+        description="Liste des certificats de l'utilisateur connecté",
+        tags=["Certificats"],
+    )
+    @action(detail=False, methods=['get'], url_path='me')
+    def me(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        serializer = self.get_serializer(page if page is not None else queryset, many=True)
+        if page is not None:
+            return self.get_paginated_response(serializer.data)
+        return Response(serializer.data)
+
+    @extend_schema(
+        summary="Payer un certificat",
+        description="Crée un paiement pour l'émission d'un certificat payant",
+        tags=["Certificats"],
+    )
+    @action(detail=True, methods=['post'], url_path='checkout')
+    def checkout(self, request, pk=None):
+        certificate = self.get_object()
+        if certificate.status == Certificate.Status.ISSUED:
+            return Response({'code': 'CERTIFICATE_ALREADY_ISSUED', 'detail': 'Certificat déjà émis.'}, status=status.HTTP_400_BAD_REQUEST)
+        if certificate.status == Certificate.Status.REVOKED:
+            return Response({'code': 'CERTIFICATE_REVOKED', 'detail': 'Certificat révoqué.'}, status=status.HTTP_403_FORBIDDEN)
+        if not certificate.payment_required or certificate.course.certificate_price <= 0:
+            return Response({'code': 'PAYMENT_NOT_REQUIRED', 'detail': 'Le certificat est gratuit.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        from apps.payments.providers import PaymentProviderError, get_provider
+        provider_name = request.data.get('provider', 'cinetpay')
+        try:
+            provider = get_provider(provider_name)
+            checkout = provider.create_checkout(None, request.data.get('returnUrl', ''), request.data.get('cancelUrl', ''))
+        except PaymentProviderError as e:
+            return Response({'code': 'PAYMENT_PROVIDER_ERROR', 'detail': str(e)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+
+        payment = Payment.objects.create(
+            user=request.user,
+            purpose=Payment.Purpose.CERTIFICATE,
+            certificate=certificate,
+            course=certificate.course,
+            amount=certificate.course.certificate_price,
+            currency=certificate.course.currency,
+            provider=provider_name,
+            provider_reference=checkout['provider_reference'],
+            checkout_url=checkout['checkout_url'],
+        )
+        certificate.status = Certificate.Status.PAYMENT_PENDING
+        certificate.payment = payment
+        certificate.save(update_fields=['status', 'payment', 'updated_at'])
+
+        return Response({
+            'payment_id': payment.id,
+            'checkout_url': payment.checkout_url,
+            'status': payment.status,
+        })
+
+    @extend_schema(
+        summary="Émettre un certificat",
+        description="Émet le certificat si les conditions sont remplies",
+        tags=["Certificats"],
+    )
+    @action(detail=True, methods=['post'], url_path='issue')
+    def issue(self, request, pk=None):
+        certificate = self.get_object()
+        if certificate.status == Certificate.Status.ISSUED:
+            return Response(CertificateSerializer(certificate, context={'request': request}).data, status=status.HTTP_200_OK)
+        if certificate.status == Certificate.Status.REVOKED:
+            return Response({'code': 'CERTIFICATE_REVOKED', 'detail': 'Certificat révoqué.'}, status=status.HTTP_403_FORBIDDEN)
+
+        if certificate.payment_required:
+            payment = certificate.payment
+            if not payment or payment.status != Payment.Status.SUCCEEDED:
+                return Response({'code': 'CERTIFICATE_PAYMENT_REQUIRED', 'detail': 'Paiement requis avant émission.'}, status=status.HTTP_402_PAYMENT_REQUIRED)
+
+        with transaction.atomic():
+            certificate.status = Certificate.Status.ISSUED
+            certificate.issued_at = timezone.now()
+            certificate.participant_name_snapshot = request.user.get_full_name() or request.user.email
+            certificate.course_title_snapshot = certificate.course.title
+            certificate.level_snapshot = certificate.course.level
+            certificate.duration_snapshot = str(certificate.course.estimated_duration or '')
+            certificate.final_score = compute_course_progress(request.user, certificate.course, certificate.enrollment)['percentage']
+            certificate.save(update_fields=['status', 'issued_at', 'participant_name_snapshot', 'course_title_snapshot', 'level_snapshot', 'duration_snapshot', 'final_score', 'updated_at'])
+
+            if not certificate.pdf_file:
+                from django.core.files.base import ContentFile
+                pdf_bytes = generate_certificate_pdf(certificate)
+                filename = f"certificate_{certificate.certificate_number}.pdf"
+                certificate.pdf_file.save(filename, ContentFile(pdf_bytes), save=True)
+
+        return Response(CertificateSerializer(certificate, context={'request': request}).data, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        summary="Télécharger le certificat",
+        description="Retourne une URL de téléchargement",
+        tags=["Certificats"],
+    )
+    @action(detail=True, methods=['get'], url_path='download')
+    def download(self, request, pk=None):
+        certificate = self.get_object()
+        if certificate.status != Certificate.Status.ISSUED:
+            return Response({'code': 'CERTIFICATE_NOT_ELIGIBLE', 'detail': 'Certificat non émis.'}, status=status.HTTP_403_FORBIDDEN)
+        if not certificate.pdf_file:
+            return Response({'code': 'PDF_NOT_READY', 'detail': 'PDF non généré.'}, status=status.HTTP_404_NOT_FOUND)
+        from django.core.signing import TimestampSigner
+        signer = TimestampSigner()
+        token = signer.sign(f"cert:{certificate.id}")
+        base = request.build_absolute_uri('/api/certificates/')
+        return Response({
+            'download_url': f"{base}{certificate.id}/download/?token={token}",
+            'expires_at': timezone.now() + timezone.timedelta(seconds=300),
+        })
+
+    @extend_schema(
+        summary="Vérifier un certificat",
+        description="Page publique de vérification par code",
+        tags=["Certificats"],
+    )
+    @action(detail=False, methods=['get'], url_path=r'verify/(?P<verification_code>[^/.]+)')
+    def verify(self, request, verification_code=None):
+        certificate = get_object_or_404(Certificate, verification_code=verification_code)
+        if certificate.status == Certificate.Status.REVOKED:
+            return Response({
+                'valid': False,
+                'status': 'revoked',
+                'certificate_number': certificate.certificate_number,
+                'revoked_at': certificate.revoked_at,
+            })
+        if certificate.status != Certificate.Status.ISSUED:
+            return Response({'valid': False, 'status': certificate.status}, status=status.HTTP_404_NOT_FOUND)
+        return Response({
+            'valid': True,
+            'status': 'issued',
+            'certificate_number': certificate.certificate_number,
+            'participant_name': certificate.participant_name_snapshot,
+            'course_title': certificate.course_title_snapshot,
+            'level': certificate.level_snapshot,
+            'final_score': certificate.final_score,
+            'issued_at': certificate.issued_at,
+            'issuer': 'WIB Challenge',
+        })
 
 
 @extend_schema_view(

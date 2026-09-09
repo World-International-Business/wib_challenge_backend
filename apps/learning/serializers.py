@@ -565,12 +565,20 @@ class CertificateSerializer(serializers.ModelSerializer):
     """Serializer pour les certificats"""
     user = serializers.StringRelatedField(read_only=True)
     course = CourseListSerializer(read_only=True)
-    course_id = serializers.IntegerField(write_only=True)
+    course_id = serializers.IntegerField(write_only=True, required=False)
+    status = serializers.CharField(read_only=True)
+    certificate_number = serializers.CharField(read_only=True)
+    verification_code = serializers.CharField(read_only=True)
+    public_uuid = serializers.UUIDField(read_only=True)
+    download_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Certificate
-        fields = ['id', 'user', 'course', 'course_id', 'issued_at', 'file']
-        read_only_fields = ['id', 'user', 'issued_at']
+        fields = ['id', 'public_uuid', 'verification_code', 'user', 'course', 'course_id', 'enrollment',
+                  'participant_name_snapshot', 'course_title_snapshot', 'level_snapshot', 'duration_snapshot',
+                  'final_score', 'issued_at', 'status', 'certificate_number', 'pdf_file', 'file',
+                  'payment_required', 'payment', 'revoked_at', 'revoked_reason', 'download_url']
+        read_only_fields = [f for f in fields if f != 'course_id']
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
@@ -583,6 +591,16 @@ class CertificateSerializer(serializers.ModelSerializer):
         except Course.DoesNotExist:
             raise serializers.ValidationError(_("Le cours spécifié n'existe pas"))
         return value
+
+    @extend_schema_field(serializers.URLField(allow_null=True))
+    def get_download_url(self, obj):
+        request = self.context.get('request')
+        if obj.pdf_file:
+            url = obj.pdf_file.url
+            if request:
+                return request.build_absolute_uri(url)
+            return url
+        return None
 
 
 class QuizSubmissionChoiceSerializer(serializers.Serializer):

@@ -2,7 +2,7 @@ from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
 
 from .views import (CourseViewSet, ModuleViewSet, ContentViewSet, QuizViewSet, QuizQuestionViewSet, QuizChoiceViewSet,
-                    QuizResultViewSet, ProgressViewSet, CertificateViewSet, CourseSuggestionView)
+                    QuizResultViewSet, ProgressViewSet, CourseSuggestionView)
 
 router = DefaultRouter()
 
@@ -14,7 +14,6 @@ router.register(r'quiz-questions', QuizQuestionViewSet, basename='quiz-question'
 router.register(r'quiz-choices', QuizChoiceViewSet, basename='quiz-choice')
 router.register(r'quiz-results', QuizResultViewSet, basename='quiz-result')
 router.register(r'progress', ProgressViewSet, basename='progress')
-router.register(r'certificates', CertificateViewSet, basename='certificate')
 
 urlpatterns = [
     re_path('courses/suggest/?$', CourseSuggestionView.as_view(), name='suggest_courses'),

@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/jobs/', include(('apps.jobs.urls', 'jobs'), namespace='jobs')),
     path('api/learnings/', include(('apps.learning.urls', 'learning'), namespace='learning')),
     path('api/payments/', include(('apps.payments.urls', 'payments'), namespace='payments')),
+    path('api/certificates/', include(('apps.learning.certificate_urls', 'certificates'), namespace='certificates')),
     path('api/', include(('apps.accounts.urls', 'accounts'), namespace='accounts')),
     path('api/', include(('apps.questions.urls', 'questions'), namespace='questions')),
     path('api/', include(('apps.candidates.urls', 'candidates'), namespace='candidates')),
