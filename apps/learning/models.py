@@ -421,7 +421,7 @@ class CourseEnrollment(models.Model):
         ORGANIZATION = 'organization', _('Organisation')
         ADMIN = 'admin', _('Administration')
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_enrollments', 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_enrollments',
                             verbose_name=_('Utilisateur'))
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments',
                               verbose_name=_('Formation'))

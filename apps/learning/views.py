@@ -11,6 +11,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 
+from services.learning_progress import complete_content, compute_course_progress, compute_blocking_reasons, get_next_content
 from services.suggest_courses import suggest_courses_from_attempt
 from wib_challenge.pagination import paginated_response
 from .filters import (
@@ -27,7 +28,7 @@ from .serializers import (
     CourseEnrollmentSerializer, CourseAssignmentSerializer,
     QuizChoiceSerializer, QuizResultSerializer, ProgressSerializer, CertificateSerializer,
     CourseProgressSerializer, UserProgressStatsSerializer, QuizStatsSerializer,
-    QuizSubmissionSerializer, CourseSuggestSerializer
+    QuizSubmissionSerializer, CourseSuggestSerializer, ProgressUpdateSerializer
 )
 from ..evaluations.models import SubmissionAttempt
 
@@ -205,24 +206,56 @@ class CourseViewSet(viewsets.ModelViewSet):
     def progress(self, request, pk=None):
         """Obtenir le progrès de l'utilisateur pour ce cours"""
         course = self.get_object()
-        if not request.user.is_authenticated:
-            return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
-
-        total_contents = Content.objects.filter(module__course=course).count()
-        completed_contents = Progress.objects.filter(
+        enrollment = get_object_or_404(
+            CourseEnrollment,
             user=request.user,
-            content__module__course=course,
-            is_completed=True
-        ).count()
+            course=course,
+            status__in=[CourseEnrollment.Status.ACTIVE, CourseEnrollment.Status.COMPLETED],
+        )
+        data = compute_course_progress(request.user, course, enrollment)
+        data['next_content'] = get_next_content(request.user, course)
+        data['modules'] = []
+        for module in course.modules.filter(is_active=True).order_by('order'):
+            module_total = Content.objects.filter(module=module, is_active=True, is_required=True).count()
+            module_completed = Progress.objects.filter(
+                user=request.user, content__module=module, content__is_required=True, is_completed=True
+            ).count()
+            module_pct = round((module_completed / module_total * 100), 2) if module_total > 0 else 0
+            data['modules'].append({
+                'moduleId': module.id,
+                'percentage': module_pct,
+                'isCompleted': module_pct == 100 and module_total > 0,
+            })
+        return Response(data)
 
-        percentage = (completed_contents / total_contents * 100) if total_contents > 0 else 0
-
+    @extend_schema(
+        summary="État de complétion du cours",
+        description="Indique si l'utilisateur peut obtenir son certificat",
+        tags=["Cours"],
+        responses={200: None},
+    )
+    @action(detail=True, methods=['get'], url_path='completion-status')
+    def completion_status(self, request, pk=None):
+        course = self.get_object()
+        try:
+            enrollment = CourseEnrollment.objects.get(
+                user=request.user, course=course, status__in=[CourseEnrollment.Status.ACTIVE, CourseEnrollment.Status.COMPLETED]
+            )
+        except CourseEnrollment.DoesNotExist:
+            return Response(
+                {'code': 'ENROLLMENT_REQUIRED', 'detail': 'Inscription requise.', 'fieldErrors': {}, 'metadata': {}},
+                status=status.HTTP_403_FORBIDDEN,
+            )
+        progress = compute_course_progress(request.user, course, enrollment)
+        eligible = progress['is_completed']
+        blocking = compute_blocking_reasons(request.user, course) if not eligible else []
         return Response({
-            'course_id': course.id,
-            'total_contents': total_contents,
-            'completed_contents': completed_contents,
-            'percentage': round(percentage, 2),
-            'is_completed': percentage == 100
+            'eligible': eligible,
+            'isCompleted': enrollment.status == CourseEnrollment.Status.COMPLETED,
+            'completedAt': enrollment.completed_at,
+            'blockingReasons': blocking,
+            'finalScore': progress['percentage'],
+            'certificate': {'status': 'available'} if eligible else {'status': 'not_eligible'},
         })
 
     @extend_schema(
@@ -458,13 +491,64 @@ class ContentViewSet(viewsets.ModelViewSet):
     filterset_class = ContentFilter
     search_fields = ['title']
     ordering_fields = ['title', 'content_type']
-    ordering = ['id']
+    ordering = ['module__order', 'order', 'id']
 
     def get_serializer_class(self):
         if self.action == 'list':
             return ContentListSerializer
         else:
             return ContentDetailSerializer
+
+    @extend_schema(
+        summary="Démarrer un contenu",
+        description="Enregistrer le début de lecture d'un contenu",
+        tags=["Contenus"],
+    )
+    @action(detail=True, methods=['post'])
+    def start(self, request, pk=None):
+        content = self.get_object()
+        enrollment = get_object_or_404(
+            CourseEnrollment,
+            user=request.user,
+            course=content.module.course,
+            status=CourseEnrollment.Status.ACTIVE,
+        )
+        progress, _ = Progress.objects.get_or_create(
+            user=request.user,
+            content=content,
+            defaults={'enrollment': enrollment},
+        )
+        if not progress.started_at:
+            progress.started_at = timezone.now()
+            progress.save(update_fields=['started_at', 'updated_at'])
+        return Response(ProgressSerializer(progress, context={'request': request}).data, status=status.HTTP_200_OK)
+
+    @extend_schema(
+        summary="Mettre à jour la progression vidéo",
+        description="Enregistrer la dernière position et la durée d'un contenu",
+        tags=["Contenus"],
+        request=ProgressUpdateSerializer,
+    )
+    @action(detail=True, methods=['patch'], url_path='progress')
+    def progress(self, request, pk=None):
+        content = self.get_object()
+        serializer = ProgressUpdateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        enrollment = get_object_or_404(
+            CourseEnrollment,
+            user=request.user,
+            course=content.module.course,
+            status=CourseEnrollment.Status.ACTIVE,
+        )
+        progress, _ = Progress.objects.get_or_create(
+            user=request.user,
+            content=content,
+            defaults={'enrollment': enrollment},
+        )
+        progress.last_position_seconds = serializer.validated_data.get('last_position_seconds', progress.last_position_seconds)
+        progress.duration_seconds = serializer.validated_data.get('duration_seconds') or progress.duration_seconds
+        progress.save(update_fields=['last_position_seconds', 'duration_seconds', 'updated_at'])
+        return Response(ProgressSerializer(progress, context={'request': request}).data, status=status.HTTP_200_OK)
 
     @extend_schema(
         summary="Marquer comme terminé",
@@ -478,30 +562,14 @@ class ContentViewSet(viewsets.ModelViewSet):
     def mark_completed(self, request, pk=None):
         """Marquer ce contenu comme terminé"""
         content = self.get_object()
-        if not request.user.is_authenticated:
-            return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
-
         enrollment = get_object_or_404(
             CourseEnrollment,
             user=request.user,
             course=content.module.course,
             status=CourseEnrollment.Status.ACTIVE,
         )
-        progress, created = Progress.objects.get_or_create(
-            user=request.user,
-            content=content,
-            defaults={'enrollment': enrollment, 'is_completed': True, 'completed_at': timezone.now()}
-        )
-
-        if not created and not progress.is_completed:
-            progress.is_completed = True
-            progress.completed_at = timezone.now()
-            progress.save()
-
-        return Response(
-            ProgressSerializer(progress, context={'request': request}).data,
-            status=status.HTTP_200_OK
-        )
+        result = complete_content(request.user, content, enrollment)
+        return Response(result, status=status.HTTP_200_OK)
 
 
 @extend_schema_view(

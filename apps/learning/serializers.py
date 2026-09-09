@@ -288,16 +288,26 @@ class ContentDetailSerializer(serializers.ModelSerializer):
     """Serializer détaillé pour les contenus"""
     user_progress = serializers.SerializerMethodField()
     content_url = serializers.SerializerMethodField()
+    is_locked = serializers.SerializerMethodField()
 
     class Meta:
         model = Content
         fields = ['id', 'module', 'title', 'content_type', 'resource_file', 'resource_url', 'content', 'content_url',
-                  'user_progress']
+                  'duration_minutes', 'is_preview', 'is_locked', 'user_progress']
         read_only_fields = ['id']
         extra_kwargs = {
             'resource_file': {'write_only': True},
             'resource_url': {'write_only': True},
         }
+
+    @extend_schema_field(serializers.BooleanField)
+    def get_is_locked(self, obj: Content):
+        request = self.context.get('request')
+        if not request or not request.user.is_authenticated:
+            return not obj.is_preview
+        return not CourseEnrollment.objects.filter(
+            user=request.user, course=obj.module.course, status=CourseEnrollment.Status.ACTIVE
+        ).exists()
 
     @extend_schema_field(serializers.URLField)
     def get_content_url(self, obj):
@@ -320,9 +330,12 @@ class ContentDetailSerializer(serializers.ModelSerializer):
             if progress:
                 return {
                     'is_completed': progress.is_completed,
-                    'completed_at': progress.completed_at
+                    'started_at': progress.started_at,
+                    'completed_at': progress.completed_at,
+                    'last_position_seconds': progress.last_position_seconds,
+                    'duration_seconds': progress.duration_seconds,
                 }
-        return {'is_completed': False, 'completed_at': None}
+        return {'is_completed': False, 'started_at': None, 'completed_at': None, 'last_position_seconds': 0, 'duration_seconds': 0}
 
     def validate(self, data):
         """Validation basée sur le type de contenu"""
@@ -368,10 +381,11 @@ class ContentDetailSerializer(serializers.ModelSerializer):
 class ContentListSerializer(serializers.ModelSerializer):
     """Serializer pour la liste des contenus"""
     user_progress = serializers.SerializerMethodField()
+    is_locked = serializers.SerializerMethodField()
 
     class Meta:
         model = Content
-        fields = ['id', 'module', 'title', 'content_type', 'user_progress']
+        fields = ['id', 'module', 'title', 'content_type', 'is_preview', 'is_locked', 'duration_minutes', 'user_progress']
         read_only_fields = ['id']
 
     @extend_schema_field(ContentProgressInlineSerializer)
@@ -382,9 +396,21 @@ class ContentListSerializer(serializers.ModelSerializer):
             if progress:
                 return {
                     'is_completed': progress.is_completed,
-                    'completed_at': progress.completed_at
+                    'started_at': progress.started_at,
+                    'completed_at': progress.completed_at,
+                    'last_position_seconds': progress.last_position_seconds,
+                    'duration_seconds': progress.duration_seconds,
                 }
-        return {'is_completed': False, 'completed_at': None}
+        return {'is_completed': False, 'started_at': None, 'completed_at': None, 'last_position_seconds': 0, 'duration_seconds': 0}
+
+    @extend_schema_field(serializers.BooleanField)
+    def get_is_locked(self, obj: Content):
+        request = self.context.get('request')
+        if not request or not request.user.is_authenticated:
+            return not obj.is_preview
+        return not CourseEnrollment.objects.filter(
+            user=request.user, course=obj.module.course, status=CourseEnrollment.Status.ACTIVE
+        ).exists()
 
 
 class ModuleSerializer(serializers.ModelSerializer):
@@ -505,6 +531,12 @@ class CourseListSerializer(serializers.ModelSerializer):
         return Quiz.objects.filter(module__course=obj).count()
 
 
+class ProgressUpdateSerializer(serializers.Serializer):
+    """Serializer pour mettre à jour la progression d'un contenu"""
+    last_position_seconds = serializers.IntegerField(min_value=0, required=True)
+    duration_seconds = serializers.IntegerField(min_value=0, required=False, allow_null=True)
+
+
 class ProgressSerializer(serializers.ModelSerializer):
     """Serializer pour les progrès"""
     user = serializers.StringRelatedField(read_only=True)
@@ -513,7 +545,7 @@ class ProgressSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
-        fields = ['id', 'user', 'content', 'content_id', 'is_completed', 'completed_at']
+        fields = ['id', 'user', 'content', 'content_id', 'is_completed', 'completed_at', 'last_position_seconds', 'duration_seconds']
         read_only_fields = ['id', 'user', 'completed_at']
 
     def create(self, validated_data):
