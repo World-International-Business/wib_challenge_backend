@@ -137,6 +137,8 @@ celerybeat.pid
 .env
 .env.*
 !.env.example
+*.secret
+
 .venv
 env/
 venv/
