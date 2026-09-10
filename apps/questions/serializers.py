@@ -46,9 +46,9 @@ class QuestionSerializer(WritableNestedModelSerializer):
 EvaluationQuestionProportions = inline_serializer(
     'EvaluationQuestionProportions',
     fields={
-        Question.Difficulty.EASY: serializers.IntegerField(),
-        Question.Difficulty.MEDIUM: serializers.IntegerField(),
-        Question.Difficulty.HARD: serializers.IntegerField(),
+        Question.Difficulty.EASY.value: serializers.IntegerField(),
+        Question.Difficulty.MEDIUM.value: serializers.IntegerField(),
+        Question.Difficulty.HARD.value: serializers.IntegerField(),
     }
 )
 

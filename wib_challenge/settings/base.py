@@ -335,10 +335,11 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'WIB Challenge API',
     'DESCRIPTION': 'API for WIB Challenge',
     'ENUM_NAME_OVERRIDES': {
-        'jobs.JobOffer.Status': 'JobOfferStatus',
-        'apps.evaluations.Evaluation.Difficulty': 'EvaluationDifficulty',
-        'apps.questions.Question.Difficulty': 'QuestionDifficulty',
+        'JobOfferStatus': 'apps.jobs.models.JobOffer.Status',
+        'EvaluationDifficulty': 'apps.evaluations.models.Evaluation.Difficulty',
+        'QuestionDifficulty': 'apps.questions.models.Question.Difficulty',
     },
+    'POSTPROCESSING_HOOKS': ['wib_challenge.openapi.stringify_enum_choices'],
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
         "persistAuthorization": True,

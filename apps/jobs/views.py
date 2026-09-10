@@ -7,7 +7,7 @@ from django.db.models import Count, Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiResponse, OpenApiExample
-from rest_framework import generics, filters, status, mixins
+from rest_framework import generics, filters, status, mixins, serializers
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
@@ -1697,13 +1697,14 @@ class PublicContractUploadSignedView(APIView):
         )
 
 
-@extend_schema(tags=['Métadonnées'])
+@extend_schema(tags=['Métadonnées'], responses={200: serializers.Serializer})
 class JobMetadataView(APIView):
     """
     Retourne les métadonnées pour les offres d'emploi (types, statuts, documents requis, etc.)
     Cette API permet au frontend d'afficher les listes déroulantes sans dupliquer les choix.
     """
     permission_classes = [AllowAny]
+    serializer_class = serializers.Serializer
     
     def get(self, request):
         from apps.evaluations.models import ExperienceLevel

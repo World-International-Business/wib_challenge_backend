@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 from apps.core.views import health_check
 
@@ -34,7 +34,7 @@ urlpatterns = [
     path('api/', include(('apps.evaluations.urls', 'evaluations'), namespace='evaluations')),
     path('api/', include(('apps.organizations.urls', 'organizations'), namespace='organizations')),
     path('health/', health_check, name='health_check'),
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/', SpectacularJSONAPIView.as_view(), name='schema'),
     path('api/docs/redoc',
          SpectacularRedocView.as_view(url_name='schema'), name='redoc-ui'),
     re_path('^api/docs(/swagger)?/$',
