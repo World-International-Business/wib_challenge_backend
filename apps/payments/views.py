@@ -27,6 +27,8 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
         return [permission() for permission in self.permission_classes]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return Payment.objects.none()
         return Payment.objects.filter(user=self.request.user)
 
     @action(detail=False, methods=['post'], url_path='course-checkout')

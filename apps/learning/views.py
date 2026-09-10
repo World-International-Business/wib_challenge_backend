@@ -670,6 +670,8 @@ class QuizViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(is_active=True, module__course__is_published=True)
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return queryset.filter(is_preview=True)
         if self.request.user.is_staff:
             return queryset
         return queryset.filter(
@@ -885,6 +887,8 @@ class QuizResultViewSet(viewsets.ReadOnlyModelViewSet):
             'user', 'quiz', 'quiz__module', 'quiz__module__course'
         ).prefetch_related('answers', 'answers__selected_choices', 'answers__question')
 
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return queryset.none()
         if self.request.user.is_staff or self.request.user.is_superuser:
             return queryset
         return queryset.filter(user=self.request.user)
@@ -961,6 +965,8 @@ class ProgressViewSet(viewsets.ModelViewSet):
     ordering = ['-completed_at']
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return Progress.objects.none()
         if self.request.user.is_staff:
             return Progress.objects.all()
         return Progress.objects.filter(user=self.request.user)
@@ -1002,6 +1008,8 @@ class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = 'pk'
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return Certificate.objects.none()
         if self.request.user.is_staff:
             return Certificate.objects.all()
         return Certificate.objects.filter(user=self.request.user)

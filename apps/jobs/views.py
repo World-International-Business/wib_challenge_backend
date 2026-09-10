@@ -579,6 +579,10 @@ class MyJobOffersView(generics.ListAPIView):
     ordering = ['-created_at']
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return JobOffer.objects.none()
+        if not hasattr(self.request.user, 'organization'):
+            return JobOffer.objects.none()
         return JobOffer.objects.filter(
             company=self.request.user.organization
         ).select_related('company', 'poste')
@@ -624,6 +628,8 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             'user__profile',
             'user__profile__profession'
         )
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return queryset.none()
         if self.request.user.is_staff:
             return queryset
         if hasattr(self.request.user, 'organization'):

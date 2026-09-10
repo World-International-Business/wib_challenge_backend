@@ -64,6 +64,8 @@ class UserNotificationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Retourne uniquement les notifications de l'utilisateur connecté"""
+        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
+            return UserNotification.objects.none()
         return UserNotification.objects.filter(user=self.request.user).order_by('-created_at')
 
     @action(detail=False, methods=['get'], url_path='unread-count')

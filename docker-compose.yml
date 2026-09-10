@@ -1,8 +1,8 @@
-version: '3.8'
-
 services:
   web:
     build: .
+    entrypoint: ["sh", "./entrypoint.sh"]
+    command: []
     restart: always
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8000/health/" ]
