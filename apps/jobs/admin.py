@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from .models import JobCategory, JobOffer, JobApplication
+from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation, JobApplicationAnalysis
 
 
 @admin.register(JobCategory)
@@ -445,3 +445,268 @@ class JobApplicationAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         return queryset.select_related('job_offer', 'user')
+
+
+# ==================== ÉVALUATIONS DE CANDIDATURES ====================
+
+class JobAppEvaluationStatusFilter(admin.SimpleListFilter):
+    title = _('Statut évaluation')
+    parameter_name = 'job_eval_status'
+
+    def lookups(self, request, model_admin):
+        return JobApplicationEvaluation.Status.choices
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(status=self.value())
+        return queryset
+
+
+@admin.register(JobApplicationEvaluation)
+class JobApplicationEvaluationAdmin(admin.ModelAdmin):
+    list_display = [
+        'id', 'application_link', 'evaluation_link', 'status_badge',
+        'score_display', 'completed_at', 'created_at'
+    ]
+    list_display_links = ['id', 'application_link']
+    list_filter = [
+        JobAppEvaluationStatusFilter, 'evaluation__evaluation_type',
+        'evaluation', 'created_at', 'completed_at'
+    ]
+    search_fields = [
+        'job_application__applicant_name', 'job_application__applicant_email',
+        'evaluation__title'
+    ]
+    readonly_fields = ['created_at', 'completed_at', 'eval_summary']
+    list_per_page = 25
+
+    fieldsets = (
+        (_('🔗 Relations'), {
+            'fields': ('job_application', 'evaluation', 'invitation')
+        }),
+        (_('📊 Résultats'), {
+            'fields': ('status', 'score', 'completed_at')
+        }),
+        (_('📋 Résumé'), {
+            'fields': ('eval_summary',),
+            'classes': ('collapse',)
+        }),
+        (_('📅 Métadonnées'), {
+            'fields': ('created_at',),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'job_application', 'evaluation', 'invitation'
+        )
+
+    @admin.display(description=_('Candidature'))
+    def application_link(self, obj):
+        if obj.job_application:
+            url = reverse('admin:jobs_jobapplication_change', args=[obj.job_application.pk])
+            return format_html(
+                '<a href="{}" style="color: #417690;">{} - #{}</a>',
+                url, obj.job_application.applicant_name, obj.job_application.pk
+            )
+        return '-'
+
+    @admin.display(description=_('Évaluation'))
+    def evaluation_link(self, obj):
+        if obj.evaluation:
+            url = reverse('admin:evaluations_evaluation_change', args=[obj.evaluation.pk])
+            return format_html('<a href="{}" style="color: #417690;">{}</a>', url, obj.evaluation.title)
+        return '-'
+
+    @admin.display(description=_('Statut'), ordering='status')
+    def status_badge(self, obj):
+        colors = {
+            'assigned': '#ffc107',
+            'started': '#17a2b8',
+            'completed': '#28a745',
+        }
+        icons = {
+            'assigned': '📋',
+            'started': '▶️',
+            'completed': '✅',
+        }
+        color = colors.get(obj.status, '#6c757d')
+        icon = icons.get(obj.status, '❓')
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 3px 8px; '
+            'border-radius: 12px; font-size: 11px;">{} {}</span>',
+            color, icon, obj.get_status_display()
+        )
+
+    @admin.display(description=_('Score'), ordering='score')
+    def score_display(self, obj):
+        if obj.score is not None:
+            try:
+                score_val = float(obj.score)
+                color = '#28a745' if score_val >= 70 else '#ffc107' if score_val >= 50 else '#dc3545'
+                return format_html(
+                    '<span style="color: {}; font-weight: bold;">{:.1f}</span>',
+                    color, score_val
+                )
+            except (TypeError, ValueError):
+                return str(obj.score)
+        return '-'
+
+    @admin.display(description=_('Résumé évaluation'))
+    def eval_summary(self, obj):
+        return format_html(
+            '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+            '<strong>Résumé:</strong><br>'
+            '• Candidat: {}<br>'
+            '• Évaluation: {}<br>'
+            '• Statut: {}<br>'
+            '• Score: {}<br>'
+            '</div>',
+            obj.job_application.applicant_name if obj.job_application else '-',
+            obj.evaluation.title if obj.evaluation else '-',
+            obj.get_status_display(),
+            obj.score if obj.score is not None else '-',
+        )
+
+
+# ==================== ANALYSES IA DE CANDIDATURES ====================
+
+class AnalysisStatusFilter(admin.SimpleListFilter):
+    title = _('Statut analyse')
+    parameter_name = 'analysis_status'
+
+    def lookups(self, request, model_admin):
+        return JobApplicationAnalysis.Status.choices
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(status=self.value())
+        return queryset
+
+
+@admin.register(JobApplicationAnalysis)
+class JobApplicationAnalysisAdmin(admin.ModelAdmin):
+    list_display = [
+        'id', 'application_link', 'status_badge', 'provider_badge',
+        'decision_badge', 'started_at', 'finished_at', 'created_at'
+    ]
+    list_display_links = ['id', 'application_link']
+    list_filter = [
+        AnalysisStatusFilter, 'provider', 'decision', 'created_at'
+    ]
+    search_fields = [
+        'application__applicant_name', 'application__applicant_email',
+    ]
+    readonly_fields = [
+        'created_at', 'started_at', 'finished_at',
+        'extracted_data', 'analysis_markdown', 'error', 'analysis_summary'
+    ]
+    list_per_page = 25
+
+    fieldsets = (
+        (_('🔗 Candidature'), {
+            'fields': ('application',)
+        }),
+        (_('🤖 Analyse IA'), {
+            'fields': ('status', 'provider', 'decision')
+        }),
+        (_('📊 Résultats'), {
+            'fields': ('analysis_summary',),
+            'classes': ('collapse',)
+        }),
+        (_('📝 Données extraites'), {
+            'fields': ('extracted_data',),
+            'classes': ('collapse',)
+        }),
+        (_('📄 Analyse détaillée'), {
+            'fields': ('analysis_markdown',),
+            'classes': ('collapse',)
+        }),
+        (_('❌ Erreur'), {
+            'fields': ('error',),
+            'classes': ('collapse',)
+        }),
+        (_('📅 Métadonnées'), {
+            'fields': ('started_at', 'finished_at', 'created_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('application')
+
+    @admin.display(description=_('Candidature'))
+    def application_link(self, obj):
+        if obj.application:
+            url = reverse('admin:jobs_jobapplication_change', args=[obj.application.pk])
+            return format_html(
+                '<a href="{}" style="color: #417690;">{} - #{}</a>',
+                url, obj.application.applicant_name, obj.application.pk
+            )
+        return '-'
+
+    @admin.display(description=_('Statut'), ordering='status')
+    def status_badge(self, obj):
+        colors = {
+            'pending': '#ffc107',
+            'processing': '#17a2b8',
+            'done': '#28a745',
+            'failed': '#dc3545',
+        }
+        icons = {
+            'pending': '⏳',
+            'processing': '🔄',
+            'done': '✅',
+            'failed': '❌',
+        }
+        color = colors.get(obj.status, '#6c757d')
+        icon = icons.get(obj.status, '❓')
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 3px 8px; '
+            'border-radius: 12px; font-size: 11px;">{} {}</span>',
+            color, icon, obj.get_status_display()
+        )
+
+    @admin.display(description=_('Provider'))
+    def provider_badge(self, obj):
+        if obj.provider:
+            colors = {
+                'gemini': '#4285f4',
+                'local': '#6c757d',
+            }
+            color = colors.get(obj.provider, '#6c757d')
+            return format_html(
+                '<span style="background-color: {}; color: white; padding: 2px 6px; '
+                'border-radius: 8px; font-size: 11px;">{}</span>',
+                color, obj.get_provider_display()
+            )
+        return '-'
+
+    @admin.display(description=_('Décision IA'), ordering='decision')
+    def decision_badge(self, obj):
+        if obj.decision is None:
+            return format_html('<span style="color: #9e9e9e;">-</span>')
+        elif obj.decision:
+            return format_html('<span style="color: #28a745; font-weight: bold;">✓ Recommandé</span>')
+        else:
+            return format_html('<span style="color: #dc3545; font-weight: bold;">✗ Non recommandé</span>')
+
+    @admin.display(description=_('Résumé analyse'))
+    def analysis_summary(self, obj):
+        data_count = len(obj.extracted_data) if isinstance(obj.extracted_data, dict) else 0
+        return format_html(
+            '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+            '<strong>Résumé:</strong><br>'
+            '• Statut: {}<br>'
+            '• Provider: {}<br>'
+            '• Décision: {}<br>'
+            '• Données extraites: {} champ(s)<br>'
+            '• Analyse: {} caractère(s)<br>'
+            '</div>',
+            obj.get_status_display(),
+            obj.get_provider_display() if obj.provider else '-',
+            'Recommandé' if obj.decision else ('Non recommandé' if obj.decision is not None else '-'),
+            data_count,
+            len(obj.analysis_markdown) if obj.analysis_markdown else 0,
+        )

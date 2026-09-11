@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.evaluations.models import (
     Evaluation, Submission, SubmissionAttempt, Answer, Competition,
-    EvaluationType, Candidate, Participant, EvaluationInvitation
+    EvaluationType, Candidate, Participant, EvaluationInvitation, SkillEvaluation
 )
 
 
@@ -804,3 +804,66 @@ class EvaluationInvitationAdmin(admin.ModelAdmin):
     @admin.display(description=_("Valide"), boolean=True)
     def is_valid_status(self, obj):
         return obj.is_valid
+
+
+@admin.register(SkillEvaluation)
+class SkillEvaluationAdmin(admin.ModelAdmin):
+    list_display = [
+        'id', 'evaluation_link', 'user_link', 'created_at'
+    ]
+    list_display_links = ['id']
+    list_filter = ['evaluation__evaluation_type', 'evaluation', 'created_at', 'user']
+    search_fields = [
+        'evaluation__title', 'user__email', 'user__first_name', 'user__last_name'
+    ]
+    readonly_fields = ['created_at', 'skill_eval_summary']
+    list_per_page = 25
+
+    fieldsets = (
+        (_('🔗 Relations'), {
+            'fields': ('evaluation', 'user')
+        }),
+        (_('📋 Résumé'), {
+            'fields': ('skill_eval_summary',),
+            'classes': ('collapse',)
+        }),
+        (_('📅 Métadonnées'), {
+            'fields': ('created_at',),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('evaluation', 'user')
+
+    @admin.display(description=_('Évaluation'), ordering='evaluation__title')
+    def evaluation_link(self, obj):
+        if obj.evaluation:
+            url = reverse('admin:evaluations_evaluation_change', args=[obj.evaluation.pk])
+            return format_html('<a href="{}" style="color: #417690;">{}</a>', url, obj.evaluation.title)
+        return '-'
+
+    @admin.display(description=_('Utilisateur'), ordering='user__email')
+    def user_link(self, obj):
+        if obj.user:
+            url = reverse('admin:accounts_user_change', args=[obj.user.pk])
+            name = obj.user.get_full_name() or obj.user.email
+            return format_html(
+                '<a href="{}" style="color: #417690;"><strong>{}</strong></a><br><small>{}</small>',
+                url, name, obj.user.email
+            )
+        return '-'
+
+    @admin.display(description=_('Résumé'))
+    def skill_eval_summary(self, obj):
+        return format_html(
+            '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+            '<strong>Résumé évaluation de compétences:</strong><br>'
+            '• Évaluation: {}<br>'
+            '• Utilisateur: {}<br>'
+            '• Créée le: {}<br>'
+            '</div>',
+            obj.evaluation.title if obj.evaluation else '-',
+            obj.user.email if obj.user else '-',
+            obj.created_at.strftime('%d/%m/%Y %H:%M') if obj.created_at else '-',
+        )

@@ -12,6 +12,7 @@ from apps.accounts.models import User
 admin.site.site_header = 'WIB Challenge Administration'
 admin.site.site_title  = 'WIB Admin'
 admin.site.index_title = 'Panneau d\'administration'
+admin.site.index_template = 'admin/wib_index.html'
 
 
 class RoleFilter(admin.SimpleListFilter):

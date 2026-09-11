@@ -14,6 +14,7 @@ from django.utils.translation import gettext_lazy as _
 from .models import (
     Course, Module, Content, Quiz, QuizQuestion, QuizChoice,
     QuizResult, QuizAnswer, Progress, Certificate,
+    CourseEnrollment, TrainingSelection,
     # Nouveaux modèles pour évaluations
     Evaluation, EvaluationQuestion, EvaluationAnswer, 
     CandidateProfile, EvaluationResult
@@ -1574,3 +1575,229 @@ class CandidateProfileAdmin(admin.ModelAdmin):
         
         html += '</div>'
         return format_html(html)
+
+
+# ==================== INSCRIPTIONS & FORMATIONS ====================
+
+class EnrollmentStatusFilter(SimpleListFilter):
+    title = _('Statut inscription')
+    parameter_name = 'enrollment_status'
+
+    def lookups(self, request, model_admin):
+        return CourseEnrollment.Status.choices
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(status=self.value())
+        return queryset
+
+
+@admin.register(CourseEnrollment)
+class CourseEnrollmentAdmin(admin.ModelAdmin):
+    list_display = [
+        'id', 'user_link', 'course_link', 'status_badge', 'source_badge',
+        'assigned_by_link', 'progress_display', 'assigned_at', 'completed_at'
+    ]
+    list_display_links = ['id', 'user_link']
+    list_filter = [
+        EnrollmentStatusFilter, 'source', 'course', 'assigned_at', 'completed_at'
+    ]
+    search_fields = [
+        'user__email', 'user__first_name', 'user__last_name',
+        'course__title', 'assigned_by__email'
+    ]
+    readonly_fields = ['assigned_at', 'updated_at', 'progress_display', 'enrollment_summary']
+    date_hierarchy = 'assigned_at'
+    list_per_page = 25
+    actions = ['activate_enrollments', 'complete_enrollments', 'cancel_enrollments']
+
+    fieldsets = (
+        (_('👤 Utilisateur & Formation'), {
+            'fields': ('user', 'course')
+        }),
+        (_('📊 Statut & Source'), {
+            'fields': ('status', 'source', 'assigned_by')
+        }),
+        (_('📅 Dates'), {
+            'fields': ('start_date', 'end_date', 'expires_at', 'assigned_at', 'started_at', 'completed_at')
+        }),
+        (_('💳 Paiement'), {
+            'fields': ('payment',),
+            'classes': ('collapse',)
+        }),
+        (_('📝 Message'), {
+            'fields': ('message',),
+            'classes': ('collapse',)
+        }),
+        (_('📋 Résumé'), {
+            'fields': ('progress_display', 'enrollment_summary'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related(
+            'user', 'course', 'assigned_by', 'payment'
+        )
+
+    @admin.display(description=_('Utilisateur'), ordering='user__email')
+    def user_link(self, obj):
+        url = reverse('admin:accounts_user_change', args=[obj.user.pk])
+        return format_html(
+            '<a href="{}" style="color: #417690;"><strong>{}</strong></a><br><small>{}</small>',
+            url, obj.user.get_full_name() or obj.user.email, obj.user.email
+        )
+
+    @admin.display(description=_('Formation'), ordering='course__title')
+    def course_link(self, obj):
+        url = reverse('admin:learning_course_change', args=[obj.course.pk])
+        return format_html('<a href="{}" style="color: #417690;">{}</a>', url, obj.course.title)
+
+    @admin.display(description=_('Statut'), ordering='status')
+    def status_badge(self, obj):
+        colors = {
+            'pending_payment': '#ffc107',
+            'active': '#28a745',
+            'completed': '#17a2b8',
+            'cancelled': '#dc3545',
+            'expired': '#6c757d',
+        }
+        icons = {
+            'pending_payment': '⏳',
+            'active': '✅',
+            'completed': '🎓',
+            'cancelled': '🚫',
+            'expired': '⏰',
+        }
+        color = colors.get(obj.status, '#6c757d')
+        icon = icons.get(obj.status, '❓')
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 3px 8px; '
+            'border-radius: 12px; font-size: 11px;">{} {}</span>',
+            color, icon, obj.get_status_display()
+        )
+
+    @admin.display(description=_('Source'))
+    def source_badge(self, obj):
+        colors = {
+            'self': '#17a2b8',
+            'organization': '#6f42c1',
+            'admin': '#dc3545',
+        }
+        color = colors.get(obj.source, '#6c757d')
+        return format_html(
+            '<span style="background-color: {}; color: white; padding: 2px 6px; '
+            'border-radius: 8px; font-size: 11px;">{}</span>',
+            color, obj.get_source_display()
+        )
+
+    @admin.display(description=_('Assigné par'))
+    def assigned_by_link(self, obj):
+        if obj.assigned_by:
+            url = reverse('admin:accounts_user_change', args=[obj.assigned_by.pk])
+            return format_html('<a href="{}">{}</a>', url, obj.assigned_by.email)
+        return '-'
+
+    @admin.display(description=_('Progression'))
+    def progress_display(self, obj):
+        total = Content.objects.filter(module__course=obj.course).count()
+        if total == 0:
+            return 'N/A'
+        completed = Progress.objects.filter(
+            content__module__course=obj.course,
+            user=obj.user,
+            is_completed=True
+        ).count()
+        pct = int((completed / total) * 100)
+        color = '#28a745' if pct >= 80 else '#ffc107' if pct >= 50 else '#dc3545'
+        return format_html(
+            '<span style="color: {}; font-weight: bold;">{}/{} ({}%)</span>',
+            color, completed, total, pct
+        )
+
+    @admin.display(description=_('Résumé inscription'))
+    def enrollment_summary(self, obj):
+        total = Content.objects.filter(module__course=obj.course).count()
+        completed = Progress.objects.filter(
+            content__module__course=obj.course,
+            user=obj.user,
+            is_completed=True
+        ).count()
+        quiz_results = QuizResult.objects.filter(
+            quiz__module__course=obj.course,
+            user=obj.user
+        )
+        avg_score = quiz_results.aggregate(avg=Avg('score'))['avg'] or 0
+        return format_html(
+            '<div style="padding: 10px; background-color: #f8f9fa; border-radius: 5px;">'
+            '<strong>Résumé:</strong><br>'
+            '• Contenus complétés: {}/{}<br>'
+            '• Quiz complétés: {}<br>'
+            '• Score moyen quiz: {:.1f}%<br>'
+            '• Statut: {}<br>'
+            '</div>',
+            completed, total,
+            quiz_results.count(),
+            avg_score,
+            obj.get_status_display()
+        )
+
+    @admin.action(description=_('Activer les inscriptions sélectionnées'))
+    def activate_enrollments(self, request, queryset):
+        updated = queryset.exclude(status='cancelled').update(status='active')
+        self.message_user(request, f'{updated} inscription(s) activée(s).')
+
+    @admin.action(description=_('Marquer comme terminées'))
+    def complete_enrollments(self, request, queryset):
+        updated = queryset.filter(status='active').update(
+            status='completed', completed_at=timezone.now()
+        )
+        self.message_user(request, f'{updated} inscription(s) marquée(s) comme terminée(s).')
+
+    @admin.action(description=_('Annuler les inscriptions sélectionnées'))
+    def cancel_enrollments(self, request, queryset):
+        updated = queryset.exclude(status='completed').update(status='cancelled')
+        self.message_user(request, f'{updated} inscription(s) annulée(s).')
+
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['total_enrollments'] = CourseEnrollment.objects.count()
+        extra_context['active_enrollments'] = CourseEnrollment.objects.filter(status='active').count()
+        extra_context['completed_enrollments'] = CourseEnrollment.objects.filter(status='completed').count()
+        return super().changelist_view(request, extra_context=extra_context)
+
+
+@admin.register(TrainingSelection)
+class TrainingSelectionAdmin(admin.ModelAdmin):
+    list_display = ['id', 'organization_link', 'course_link', 'is_active', 'selected_at']
+    list_display_links = ['id']
+    list_filter = ['organization', 'course', 'is_active', 'selected_at']
+    search_fields = ['organization__name', 'course__title']
+    readonly_fields = ['selected_at']
+
+    fieldsets = (
+        (_('Sélection'), {
+            'fields': ('organization', 'course', 'is_active')
+        }),
+        (_('Métadonnées'), {
+            'fields': ('selected_at',),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('organization', 'course')
+
+    @admin.display(description=_('Organisation'), ordering='organization__name')
+    def organization_link(self, obj):
+        if obj.organization:
+            url = reverse('admin:organizations_organization_change', args=[obj.organization.pk])
+            return format_html('<a href="{}" style="color: #417690;">{}</a>', url, obj.organization.name)
+        return '-'
+
+    @admin.display(description=_('Formation'), ordering='course__title')
+    def course_link(self, obj):
+        if obj.course:
+            url = reverse('admin:learning_course_change', args=[obj.course.pk])
+            return format_html('<a href="{}" style="color: #417690;">{}</a>', url, obj.course.title)
+        return '-'
