@@ -68,13 +68,18 @@ else:
 # Configuration CORS
 CORS_ALLOW_CREDENTIALS = True
 
-# Si l'environnement est Dokploy avec Traefik, on peut être plus permissif avec CORS
+# Toujours lire CORS_ALLOWED_ORIGINS depuis l'environnement
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS',
+    default='',
+    cast=lambda v: [s.strip() for s in v.split(',') if s.strip()],
+)
+
+# En plus, autoriser les domaines traefik.me si on est sur Dokploy/Traefik
 if IS_TRAEFIK:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r'^https?://.*\.traefik\.me$',
     ]
-else:
-    CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Add security logging
 LOGGING['handlers']['security_file'] = {
