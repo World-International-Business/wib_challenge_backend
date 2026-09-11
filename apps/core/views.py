@@ -6,9 +6,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.decorators import api_view, permission_classes as perm_classes
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import GenericAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework.response import Response
 
 from apps.core.filters import TechnologyFilter, ProfessionFilter, DomainFilter
@@ -197,3 +198,29 @@ class ContactView(GenericAPIView):
             'message': 'Les données fournies ne sont pas valides.',
             'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    summary="Statistiques globales",
+    description="Récupère les statistiques globales des trois plateformes (public, sans authentification)",
+    tags=["Système"],
+)
+@api_view(['GET'])
+@perm_classes([AllowAny])
+def stats_global(request):
+    """Endpoint public retournant les statistiques globales des trois plateformes."""
+    from apps.accounts.models import User
+    from apps.learning.models import Course
+    from apps.organizations.models import Organization
+
+    organizations_count = Organization.objects.count()
+    candidates_count = User.objects.filter(role=User.Roles.USER, is_active=True).count()
+    evaluators_count = User.objects.filter(role=User.Roles.EVALUATOR, is_active=True).count()
+    formations_count = Course.objects.filter(is_active=True).count()
+
+    return Response({
+        'organizations': organizations_count,
+        'candidates': candidates_count,
+        'evaluators': evaluators_count,
+        'formations': formations_count,
+    })

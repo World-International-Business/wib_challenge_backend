@@ -97,7 +97,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         if not self.request.user.is_staff:
-            queryset = queryset.filter(is_published=True, is_active=True)
+            queryset = queryset.filter(is_active=True)
         is_selected = self.request.query_params.get('is_selected', None)
 
         if is_selected is not None and hasattr(self.request.user, 'organization'):
@@ -531,11 +531,11 @@ class ContentViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(is_active=True, module__is_active=True, module__course__is_published=True)
+        queryset = super().get_queryset().filter(is_active=True, module__is_active=True, module__course__is_active=True)
         if self.request.user.is_staff:
             return queryset
         if not self.request.user.is_authenticated:
-            return queryset.filter(is_preview=True)
+            return queryset
         return queryset.filter(
             module__course__enrollments__user=self.request.user,
             module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
