@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema_field
@@ -11,6 +12,8 @@ from .models import (
 from ..evaluations.models import SubmissionAttempt
 
 User = get_user_model()
+
+DEFAULT_COURSE_COVER = f'{settings.MEDIA_URL}defaults/default-course-cover.svg'
 
 
 class CourseProgressSerializer(serializers.Serializer):
@@ -451,9 +454,19 @@ class CourseSerializer(WritableNestedModelSerializer):
         model = Course
         fields = [
             'id', 'title', 'description', 'level', 'is_free', 'skills',
-            'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'user_progress','picture_cover','price','estimated_duration','publisher'
+            'modules', 'module_count', 'total_content_count', 'total_quiz_count', 'user_progress','picture_cover','price','estimated_duration','language','publisher'
         ]
         read_only_fields = ['id']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        if not data.get('picture_cover'):
+            data['picture_cover'] = DEFAULT_COURSE_COVER
+        else:
+            request = self.context.get('request')
+            if request:
+                data['picture_cover'] = request.build_absolute_uri(data['picture_cover'])
+        return data
 
     def get_module_count(self, obj: Course) -> int:
         return obj.modules.count()
@@ -514,12 +527,21 @@ class CourseListSerializer(serializers.ModelSerializer):
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
     skills = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+    picture_cover = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'description', 'level', 'is_free', 'picture_cover', 'price', 'estimated_duration', 'module_count', 'total_content_count', 'skills',
+        fields = ['id', 'title', 'description', 'level', 'is_free', 'picture_cover', 'price', 'estimated_duration', 'language', 'module_count', 'total_content_count', 'skills',
                   'total_quiz_count']
         read_only_fields = ['id']
+
+    def get_picture_cover(self, obj: Course) -> str:
+        if obj.picture_cover:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.picture_cover.url)
+            return obj.picture_cover.url
+        return DEFAULT_COURSE_COVER
 
     def get_module_count(self, obj: Course) -> int:
         return obj.modules.count()
