@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.views.static import serve
 from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 from apps.core.views import health_check
@@ -40,6 +41,13 @@ urlpatterns = [
     re_path('^api/docs(/swagger)?/$',
             SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
+
+# Servir les fichiers media en production (DEBUG=False) via Django
+# En DEBUG=True, static() s'en charge déjà plus bas.
+if not settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^api/media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
 
 
 if settings.DEBUG:
