@@ -481,13 +481,13 @@ class CourseSerializer(WritableNestedModelSerializer):
         return data
 
     def get_module_count(self, obj: Course) -> int:
-        return obj.modules.count()
+        return obj.modules.filter(is_active=True).count()
 
     def get_total_content_count(self, obj: Course) -> int:
-        return Content.objects.filter(module__course=obj).count()
+        return Content.objects.filter(module__course=obj, is_active=True, module__is_active=True).count()
 
     def get_total_quiz_count(self, obj: Course) -> int:
-        return Quiz.objects.filter(module__course=obj).count()
+        return Quiz.objects.filter(module__course=obj, is_active=True, module__is_active=True).count()
 
     @extend_schema_field(UserProgressInlineSerializer)
     def get_user_progress(self, obj: Course):
@@ -556,13 +556,13 @@ class CourseListSerializer(serializers.ModelSerializer):
         return DEFAULT_COURSE_COVER
 
     def get_module_count(self, obj: Course) -> int:
-        return obj.modules.count()
+        return obj.modules.filter(is_active=True).count()
 
     def get_total_content_count(self, obj: Course) -> int:
-        return Content.objects.filter(module__course=obj).count()
+        return Content.objects.filter(module__course=obj, is_active=True, module__is_active=True).count()
 
     def get_total_quiz_count(self, obj: Course) -> int:
-        return Quiz.objects.filter(module__course=obj).count()
+        return Quiz.objects.filter(module__course=obj, is_active=True, module__is_active=True).count()
 
 
 class ProgressUpdateSerializer(serializers.Serializer):
