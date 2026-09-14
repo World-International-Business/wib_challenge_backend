@@ -170,18 +170,52 @@ class QuizPublicSerializer(serializers.ModelSerializer):
     """Serializer public pour les quiz (sans réponses correctes)"""
     questions = QuizQuestionPublicSerializer(many=True, read_only=True)
     question_count = serializers.SerializerMethodField()
+    is_attempted = serializers.SerializerMethodField()
+    is_passed = serializers.SerializerMethodField()
+    best_score = serializers.SerializerMethodField()
+    attempts_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Quiz
         fields = [
             'id', 'module', 'title', 'description', 'passing_score',
             'time_limit_minutes', 'max_attempts', 'randomize_questions',
-            'questions', 'question_count'
+            'is_active', 'questions', 'question_count',
+            'is_attempted', 'is_passed', 'best_score', 'attempts_count'
         ]
         read_only_fields = ['id']
 
     def get_question_count(self, obj: Quiz) -> int:
         return obj.questions.count()
+
+    def get_is_attempted(self, obj: Quiz) -> bool:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return QuizResult.objects.filter(user=request.user, quiz=obj).exists()
+        return False
+
+    def get_is_passed(self, obj: Quiz) -> bool:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return QuizResult.objects.filter(
+                user=request.user, quiz=obj, score__gte=obj.passing_score
+            ).exists()
+        return False
+
+    def get_best_score(self, obj: Quiz) -> float:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            best = QuizResult.objects.filter(
+                user=request.user, quiz=obj
+            ).order_by('-score').first()
+            return best.score if best else 0
+        return 0
+
+    def get_attempts_count(self, obj: Quiz) -> int:
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return QuizResult.objects.filter(user=request.user, quiz=obj).count()
+        return 0
 
 
 class QuizAnswerSerializer(serializers.ModelSerializer):
