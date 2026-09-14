@@ -297,7 +297,7 @@ REST_FRAMEWORK = {
         'no_underscore_before_number': True,
     },
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'apps.core.authentication.PermissiveJWTAuthentication',
     ],
     'DEFAULT_PARSER_CLASSES': [
         'djangorestframework_camel_case.parser.CamelCaseFormParser',
