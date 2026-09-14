@@ -671,6 +671,11 @@ class QuizViewSet(viewsets.ModelViewSet):
             return queryset
         if self.request.user.is_staff:
             return queryset
+        # retrieve (GET détail) : accessible à tout utilisateur authentifié
+        # (l'inscription est vérifiée uniquement lors de la soumission)
+        if self.action == 'retrieve':
+            return queryset
+        # list et autres actions : restreint aux cours où l'utilisateur est inscrit
         return queryset.filter(
             module__course__enrollments__user=self.request.user,
             module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
