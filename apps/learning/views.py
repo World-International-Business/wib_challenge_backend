@@ -534,12 +534,9 @@ class ContentViewSet(viewsets.ModelViewSet):
         queryset = super().get_queryset().filter(is_active=True, module__is_active=True, module__course__is_active=True)
         if self.request.user.is_staff:
             return queryset
-        if not self.request.user.is_authenticated:
-            return queryset
-        return queryset.filter(
-            module__course__enrollments__user=self.request.user,
-            module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
-        ).distinct()
+        # Tous les utilisateurs (authentifiés ou non) peuvent voir les contenus actifs
+        # Le filtre par inscription s'applique uniquement aux actions de progression
+        return queryset
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ContentFilter
     search_fields = ['title']
@@ -669,9 +666,9 @@ class QuizViewSet(viewsets.ModelViewSet):
     ordering = ['title']
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(is_active=True, module__course__is_published=True)
+        queryset = super().get_queryset().filter(is_active=True, module__course__is_active=True)
         if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
-            return queryset.filter(is_preview=True)
+            return queryset
         if self.request.user.is_staff:
             return queryset
         return queryset.filter(

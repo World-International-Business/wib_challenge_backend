@@ -70,27 +70,77 @@ class Command(BaseCommand):
                     self.stdout.write(f'  🗑 Module "{module.title}" — contenus existants supprimés (--force)')
 
                 for content_data in module_data.get('contents', []):
-                    # Ne créer que le contenu markdown (cours + tests)
-                    # Les vidéos et PDF seront ajoutés manuellement via l'admin
-                    if content_data['content_type'] not in ('markdown',):
-                        self.stdout.write(
-                            f'  ⊘ Contenu ignoré : {content_data["title"]} '
-                            f'({content_data["content_type"]}) — à ajouter manuellement'
+                    ct = content_data['content_type']
+                    if ct == 'markdown':
+                        # Contenu markdown : cours théorique
+                        Content.objects.create(
+                            module=module,
+                            title=content_data['title'],
+                            content_type=ct,
+                            content=content_data.get('content'),
+                            duration_minutes=content_data.get('duration_minutes'),
                         )
-                        continue
+                        created_contents += 1
+                        self.stdout.write(f'  + Contenu créé : {content_data["title"]} (markdown)')
+                    elif ct == 'video':
+                        # Vidéo placeholder avec URL placeholder
+                        # L'utilisateur remplacera l'URL via l'admin
+                        Content.objects.create(
+                            module=module,
+                            title=content_data['title'],
+                            content_type=ct,
+                            resource_url=content_data.get('resource_url', 'https://placeholder.com/video-pending'),
+                            duration_minutes=content_data.get('duration_minutes', 30),
+                        )
+                        created_contents += 1
+                        self.stdout.write(f'  + Vidéo placeholder : {content_data["title"]} (à remplacer via admin)')
+                    elif ct == 'pdf':
+                        # PDF placeholder : contourner la validation du modèle
+                        # car le modèle exige un fichier pour les PDF
+                        last_content = Content.objects.filter(module=module).order_by('-order').first()
+                        next_order = (last_content.order + 1) if last_content else 1
+                        Content.objects.bulk_create([
+                            Content(
+                                module=module,
+                                title=content_data['title'],
+                                content_type=ct,
+                                content=f"# {content_data['title']}\n\n> **Placeholder** — Ajoutez le fichier PDF via l'admin Django.",
+                                order=next_order,
+                                duration_minutes=content_data.get('duration_minutes', 30),
+                            )
+                        ])
+                        created_contents += 1
+                        self.stdout.write(f'  + PDF placeholder : {content_data["title"]} (à remplacer via admin)')
+                    elif ct == 'external':
+                        # Ressource externe avec URL
+                        Content.objects.create(
+                            module=module,
+                            title=content_data['title'],
+                            content_type=ct,
+                            resource_url=content_data.get('resource_url', 'https://placeholder.com/external'),
+                            duration_minutes=content_data.get('duration_minutes', 20),
+                        )
+                        created_contents += 1
+                        self.stdout.write(f'  + Ressource externe : {content_data["title"]}')
 
-                    Content.objects.create(
-                        module=module,
-                        title=content_data['title'],
-                        content_type=content_data['content_type'],
-                        resource_url=content_data.get('resource_url'),
-                        content=content_data.get('content'),
-                        duration_minutes=content_data.get('duration_minutes'),
-                    )
+                # Ajouter un PDF placeholder automatique pour chaque module
+                # L'utilisateur ajoutera le fichier PDF via l'admin Django
+                has_pdf = any(c.get('content_type') == 'pdf' for c in module_data.get('contents', []))
+                if not has_pdf:
+                    last_content = Content.objects.filter(module=module).order_by('-order').first()
+                    next_order = (last_content.order + 1) if last_content else 1
+                    Content.objects.bulk_create([
+                        Content(
+                            module=module,
+                            title=f"Document PDF : {module.title}",
+                            content_type='pdf',
+                            content=f"# Document PDF : {module.title}\n\n> **Placeholder** — Ajoutez le fichier PDF via l'admin Django.",
+                            order=next_order,
+                            duration_minutes=30,
+                        )
+                    ])
                     created_contents += 1
-                    self.stdout.write(
-                        f'  + Contenu créé : {content_data["title"]} ({content_data["content_type"]})'
-                    )
+                    self.stdout.write(f'  + PDF placeholder : Document PDF : {module.title} (à remplacer via admin)')
 
                 # Ajouter un contenu "test/exercice" en markdown
                 test_content = module_data.get('test_content')
@@ -184,6 +234,17 @@ class Command(BaseCommand):
                     "title": f"Introduction : {module.title}",
                     "content_type": "markdown",
                     "content": f"# {module.title}\n\n## Introduction\n\nCe module couvre les concepts essentiels de **{module.title}** dans le cadre de la formation **{module.course.title}**.\n\n## Objectifs\n\n- Comprendre les fondamentaux\n- Mettre en pratique les concepts\n- Appliquer les bonnes pratiques\n\n## Plan du module\n\n1. Concepts théoriques\n2. Démonstration pratique\n3. Exercices et ressources",
+                    "duration_minutes": 30,
+                },
+                {
+                    "title": f"Vidéo : {module.title}",
+                    "content_type": "video",
+                    "resource_url": "https://placeholder.com/video-pending",
+                    "duration_minutes": 40,
+                },
+                {
+                    "title": f"Document PDF : {module.title}",
+                    "content_type": "pdf",
                     "duration_minutes": 30,
                 },
             ],

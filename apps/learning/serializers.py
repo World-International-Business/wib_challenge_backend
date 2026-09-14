@@ -385,11 +385,23 @@ class ContentListSerializer(serializers.ModelSerializer):
     """Serializer pour la liste des contenus"""
     user_progress = serializers.SerializerMethodField()
     is_locked = serializers.SerializerMethodField()
+    content_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Content
-        fields = ['id', 'module', 'title', 'content_type', 'is_preview', 'is_locked', 'duration_minutes', 'user_progress']
+        fields = ['id', 'module', 'title', 'content_type', 'content_url', 'is_preview', 'is_locked', 'duration_minutes', 'user_progress']
         read_only_fields = ['id']
+
+    def get_content_url(self, obj):
+        request = self.context.get('request')
+        if obj.resource_file:
+            url = obj.resource_file.url
+            if request:
+                return request.build_absolute_uri(url)
+            return url
+        elif obj.resource_url:
+            return obj.resource_url
+        return None
 
     @extend_schema_field(ContentProgressInlineSerializer)
     def get_user_progress(self, obj: Content):
