@@ -127,7 +127,7 @@
 {% block content %}
 <div class="container py-4 py-lg-5">
     <div class="row justify-content-center">
-        <div class="col-lg-9 col-xl-8">
+        <div class="col-lg-11 col-xl-10">
 
             <!-- En-tête profil -->
             <div class="profile-hero p-4 p-lg-5 mb-4">
@@ -136,7 +136,7 @@
                         {{ user.first_name|first|upper }}{{ user.last_name|first|upper }}
                     </div>
                     <div class="flex-grow-1">
-                        <h1 class="h3 fw-bold mb-1">Bonjour {{ user.first_name|default:user.email }} 👋</h1>
+                        <h1 class="h3 fw-bold mb-1">Bonjour {{ user.first_name|default:user.email }}</h1>
                         <p class="mb-0 opacity-75">Complétez votre profil pour débloquer vos évaluations personnalisées.</p>
                     </div>
                 </div>

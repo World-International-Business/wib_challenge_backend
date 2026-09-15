@@ -17,7 +17,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            messages.success(request, "Inscription réussie ! Bienvenue 😊")
+            messages.success(request, "Inscription réussie ! Bienvenue.")
             return redirect('challenge_evaluation')
     else:
         form = UserRegisterForm()
