@@ -269,15 +269,28 @@ class CourseViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'], url_path='certificate/eligibility')
     def certificate_eligibility(self, request, pk=None):
         course = self.get_object()
-        try:
-            enrollment = CourseEnrollment.objects.get(
-                user=request.user, course=course, status=CourseEnrollment.Status.COMPLETED
-            )
-        except CourseEnrollment.DoesNotExist:
-            return Response(
-                {'code': 'COURSE_NOT_COMPLETED', 'detail': 'La formation doit être terminée.', 'fieldErrors': {}, 'metadata': {}},
-                status=status.HTTP_403_FORBIDDEN,
-            )
+
+        # Pour les formations gratuites, pas besoin d'inscription COMPLETED
+        # Pour les formations payantes, l'inscription doit être COMPLETED
+        enrollment = CourseEnrollment.objects.filter(
+            user=request.user, course=course
+        ).first()
+
+        if not course.is_free:
+            # Formation payante : inscription COMPLETED requise
+            if not enrollment or enrollment.status != CourseEnrollment.Status.COMPLETED:
+                return Response(
+                    {'code': 'COURSE_NOT_COMPLETED', 'detail': 'La formation doit être terminée.', 'fieldErrors': {}, 'metadata': {}},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+        else:
+            # Formation gratuite : vérifier que tous les contenus sont terminés
+            progress = compute_course_progress(request.user, course, enrollment)
+            if not progress.get('is_completed', False):
+                return Response(
+                    {'code': 'COURSE_NOT_COMPLETED', 'detail': 'La formation doit être terminée.', 'fieldErrors': {}, 'metadata': {}},
+                    status=status.HTTP_403_FORBIDDEN,
+                )
 
         payment_required = course.certificate_enabled and course.certificate_price > 0
         price = course.certificate_price if payment_required else 0
@@ -1187,7 +1200,29 @@ class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
             return Response({'code': 'CERTIFICATE_NOT_ELIGIBLE', 'detail': 'Certificat non émis.'}, status=status.HTTP_403_FORBIDDEN)
         if not certificate.pdf_file:
             return Response({'code': 'PDF_NOT_READY', 'detail': 'PDF non généré.'}, status=status.HTTP_404_NOT_FOUND)
-        from django.core.signing import TimestampSigner
+
+        # Si un token est fourni, servir le fichier directement
+        token = request.query_params.get('token')
+        if token:
+            from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
+            signer = TimestampSigner()
+            try:
+                value = signer.unsign(token, max_age=300)  # 5 minutes
+                if value != f"cert:{certificate.id}":
+                    raise BadSignature('Invalid token')
+            except (BadSignature, SignatureExpired):
+                return Response({'code': 'TOKEN_INVALID', 'detail': 'Lien expiré ou invalide.'}, status=status.HTTP_403_FORBIDDEN)
+
+            from django.http import FileResponse
+            response = FileResponse(
+                certificate.pdf_file.open('rb'),
+                content_type='application/pdf',
+                filename=f"{certificate.certificate_number or 'certificate'}.pdf"
+            )
+            response['Content-Disposition'] = f'attachment; filename="{certificate.certificate_number or "certificate"}.pdf"'
+            return response
+
+        # Sans token : retourner l'URL de téléchargement avec token
         signer = TimestampSigner()
         token = signer.sign(f"cert:{certificate.id}")
         base = request.build_absolute_uri('/api/certificates/')
