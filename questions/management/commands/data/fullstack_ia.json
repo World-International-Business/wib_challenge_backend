@@ -527,6 +527,468 @@
             "choices": [],
             "tags": ["Bonnes Pratiques", "Full Stack"],
             "question_category": "NORMAL"
+        },
+        {
+            "title": "Donner un exemple dans le prompt (few-shot)",
+            "description": "Vous voulez que l'IA génère des descriptions de produits dans un style précis. Quelle technique de prompting est la plus efficace ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Fournir 1 à 3 exemples de descriptions déjà rédigées dans le style souhaité (few-shot prompting)", "is_correct": true},
+                {"text": "Écrire « écris joliment » sans exemple", "is_correct": false},
+                {"text": "Allonger le prompt au maximum sans donner d'exemple", "is_correct": false},
+                {"text": "Envoyer le catalogue entier sans consigne de style", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Préciser le format de sortie attendu",
+            "description": "L'IA retourne du texte libre alors que votre code attend un objet JSON. Que devez-vous ajouter au prompt ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le format de sortie exact attendu : un schéma JSON avec les champs et un exemple de réponse valide", "is_correct": true},
+                {"text": "Relancer la génération jusqu'à obtenir du JSON par hasard", "is_correct": false},
+                {"text": "Parser le texte libre avec des regex fragiles", "is_correct": false},
+                {"text": "Rien, l'IA devine toujours le bon format", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "v0.dev : générer des composants d'interface",
+            "description": "À quoi sert principalement v0.dev dans un projet frontend ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Générer des composants d'interface (React/Tailwind) à partir d'une description ou d'une maquette, prêts à être intégrés au projet", "is_correct": true},
+                {"text": "Héberger la base de données de production", "is_correct": false},
+                {"text": "Écrire les tests backend automatiquement", "is_correct": false},
+                {"text": "Configurer le DNS du nom de domaine", "is_correct": false}
+            ],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Codes de statut HTTP",
+            "description": "L'IA a généré un endpoint API : la création d'un produit renvoie 200 au lieu de 201, et une ressource absente renvoie 200 avec un message d'erreur au lieu de 404. Pourquoi est-ce un problème ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Les codes HTTP permettent au frontend et aux clients de l'API de comprendre le résultat sans parser le message : 201 = créé, 404 = introuvable", "is_correct": true},
+                {"text": "Ce n'est pas un problème, seul le message compte", "is_correct": false},
+                {"text": "Les codes HTTP ne servent qu'au débogage navigateur", "is_correct": false},
+                {"text": "Il faut toujours renvoyer 200 pour simplifier", "is_correct": false}
+            ],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Props et state dans un composant React généré",
+            "description": "L'IA a généré un composant React `ProductCard`. Quelle différence entre `props` et `state` devez-vous vérifier en relisant le code ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Les props sont des données reçues du parent (lecture seule) ; le state est une donnée interne modifiable qui déclenche un re-rendu", "is_correct": true},
+                {"text": "Les props sont internes au composant et le state vient du parent", "is_correct": false},
+                {"text": "Il n'y a aucune différence fonctionnelle", "is_correct": false},
+                {"text": "Le state sert uniquement à appeler l'API", "is_correct": false}
+            ],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Le paramètre temperature",
+            "description": "Vous intégrez l'API OpenAI pour générer des descriptions produit. Que contrôle le paramètre `temperature` ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le degré de créativité : valeur basse = réponses plus déterministes et prévisibles, valeur haute = plus variées et créatives", "is_correct": true},
+                {"text": "La vitesse du serveur du fournisseur", "is_correct": false},
+                {"text": "Le nombre maximal de tokens en réponse", "is_correct": false},
+                {"text": "Le prix facturé par requête", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Développement vs production",
+            "description": "Pourquoi votre application doit-elle se comporter différemment en développement et en production (DEBUG, logs détaillés, base de données) ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le mode debug expose des informations sensibles (traces d'erreur, configuration) et la prod utilise la vraie BDD : il faut des configurations séparées via variables d'environnement", "is_correct": true},
+                {"text": "La production n'a pas besoin de base de données", "is_correct": false},
+                {"text": "Le mode debug rend le site plus rapide en production", "is_correct": false},
+                {"text": "Il n'y a aucune différence à gérer", "is_correct": false}
+            ],
+            "tags": ["Déploiement", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Données personnelles dans les prompts",
+            "description": "Vous voulez que l'IA corrige un bug impliquant des données clients réelles. Quelle précaution avant d'envoyer ces données dans le prompt ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Anonymiser ou remplacer les données personnelles (noms, emails, téléphones) par des valeurs fictives avant de les envoyer à un service externe", "is_correct": true},
+                {"text": "Envoyer les vraies données, c'est plus rapide", "is_correct": false},
+                {"text": "Chiffrer le texte avec un simple décalage de lettres", "is_correct": false},
+                {"text": "Publier les données sur un forum public pour obtenir plus d'aide", "is_correct": false}
+            ],
+            "tags": ["Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Complétion inline ou agent : la bonne tâche",
+            "description": "Vous devez renommer une méthode utilisée sur 3 lignes d'un même fichier. Quel usage de l'IA est le plus adapté ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "La complétion/édition inline (Copilot, Cursor Tab) : tâche ponctuelle où le développeur garde la main ligne par ligne", "is_correct": true},
+                {"text": "Lancer un agent autonome qui réécrit tout le projet", "is_correct": false},
+                {"text": "Générer une application complète avec Lovable", "is_correct": false},
+                {"text": "Ouvrir un ticket au support de GitHub", "is_correct": false}
+            ],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Choisir entre complétion et agent",
+            "description": "Décrivez une situation où la simple complétion de code (Copilot, Cursor Tab) suffit, et une situation où vous préférez lancer un agent (Claude Code, Replit Agent). Justifiez la différence de choix.",
+            "level": 1,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Expliquer le CORS simplement",
+            "description": "Votre frontend (localhost:3000) appelle votre API (localhost:8000) et le navigateur bloque avec une erreur CORS. Expliquez simplement ce qu'est le CORS et pourquoi le navigateur bloque cette requête.",
+            "level": 1,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Premier appel à une API de LLM",
+            "description": "Décrivez les étapes pour faire votre premier appel à l'API OpenAI (ou Claude) depuis un backend Python : obtenir la clé, l'installer en variable d'environnement, écrire l'appel, lire la réponse. Listez les points où une erreur peut survenir.",
+            "level": 1,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Contraintes explicites dans le prompt",
+            "description": "L'IA utilise régulièrement jQuery alors que votre projet est en React. Comment l'empêcher durablement de le faire ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Ajouter une contrainte explicite dans le prompt ou les règles projet : « utilise uniquement React + hooks, jamais jQuery ni manipulation directe du DOM »", "is_correct": true},
+                {"text": "Supprimer jQuery à la main après chaque génération sans jamais le dire à l'IA", "is_correct": false},
+                {"text": "Installer jQuery pour que le code généré fonctionne", "is_correct": false},
+                {"text": "On ne peut pas contraindre une IA, il faut accepter ses choix", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering", "Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Prompt pour refactorer du code legacy",
+            "description": "Vous devez faire refactorer par l'IA un fichier PHP procédural de 800 lignes vers des fonctions claires et testées. Rédigez le prompt : contexte à donner, découpage de la tâche, contraintes (ne pas changer le comportement, garder les noms publics), et demande de tests de non-régression.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Cursor : mode Ask vs mode Agent",
+            "description": "Dans Cursor, quelle différence entre le mode Ask et le mode Agent devez-vous connaître pour choisir le bon outil ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Ask répond à une question sur le code sans le modifier ; Agent peut éditer plusieurs fichiers, créer des fichiers et exécuter des commandes pour accomplir une tâche", "is_correct": true},
+                {"text": "Ask modifie le code, Agent pose des questions", "is_correct": false},
+                {"text": "Agent sert uniquement à rédiger de la documentation", "is_correct": false},
+                {"text": "Les deux modes sont fonctionnellement identiques", "is_correct": false}
+            ],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Workflow quotidien avec l'IA",
+            "description": "Décrivez votre organisation type pour développer une fonctionnalité avec l'IA sur une journée : quel outil à quel moment (planification, génération, tests, revue), et où vous gardez le contrôle humain.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Corriger une erreur CORS",
+            "description": "L'IA a généré le frontend et le backend, mais le navigateur affiche « blocked by CORS policy ». Où et comment corriger ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Côté backend : autoriser l'origine du frontend dans la configuration CORS (ex: django-cors-headers, CORS_ALLOWED_ORIGINS)", "is_correct": true},
+                {"text": "Désactiver les protections du navigateur chez chaque utilisateur", "is_correct": false},
+                {"text": "Ajouter un header CORS dans le code HTML de la page", "is_correct": false},
+                {"text": "Recompiler le frontend en mode compatibilité", "is_correct": false}
+            ],
+            "tags": ["Full Stack", "Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Validation côté serveur obligatoire",
+            "description": "Le code généré valide le formulaire uniquement dans le frontend React. Pourquoi devez-vous exiger aussi une validation côté backend ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Un utilisateur peut contourner le frontend et appeler l'API directement (curl, Postman) : la validation serveur est la seule barrière réelle pour l'intégrité et la sécurité des données", "is_correct": true},
+                {"text": "La validation backend rend simplement le code plus long", "is_correct": false},
+                {"text": "Le frontend est impossible à contourner", "is_correct": false},
+                {"text": "La validation serveur ne sert qu'aux tests automatisés", "is_correct": false}
+            ],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Qu'est-ce que le RAG",
+            "description": "Votre client veut un chatbot qui répond uniquement à partir de sa documentation interne. Qu'apporte le RAG (Retrieval-Augmented Generation) ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "On recherche d'abord les passages pertinents de la documentation (via embeddings), on les injecte dans le prompt, puis le LLM répond en s'appuyant dessus — sans réentraîner le modèle", "is_correct": true},
+                {"text": "Le RAG réentraîne le modèle chaque nuit sur les documents", "is_correct": false},
+                {"text": "Le RAG envoie tous les documents dans chaque prompt", "is_correct": false},
+                {"text": "Le RAG est une base de données qui remplace le LLM", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Domaine personnalisé et HTTPS",
+            "description": "Votre application est déployée sur Render avec une URL temporaire. Le client veut www.son-site.com en HTTPS. Quelles étapes sont nécessaires ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Configurer le domaine chez le registrar (enregistrement CNAME/A vers l'hébergeur), déclarer le domaine sur la plateforme qui fournira le certificat TLS automatique", "is_correct": true},
+                {"text": "Écrire le nouveau nom de domaine dans le code source", "is_correct": false},
+                {"text": "Le HTTPS se configure dans le navigateur de chaque visiteur", "is_correct": false},
+                {"text": "Il faut obligatoirement louer un serveur dédié", "is_correct": false}
+            ],
+            "tags": ["Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Vérifier une affirmation de l'IA",
+            "description": "L'IA vous affirme qu'une bibliothèque possède une méthode `client.verify_secure()` qui ne semble pas exister. Décrivez votre démarche pour vérifier avant d'utiliser : où cherchez-vous la vérité et comment réagissez-vous si la méthode n'existe pas ?",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Bonnes Pratiques", "Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Fenêtre de contexte et gros fichiers",
+            "description": "Vous demandez à l'IA de modifier un fichier de 5 000 lignes mais elle ignore vos instructions concernant le début du fichier. Pourquoi, et quelle solution ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le fichier dépasse ou sature la fenêtre de contexte : découper le travail, ne fournir que les sections concernées, ou faire travailler l'IA module par module", "is_correct": true},
+                {"text": "L'IA refuse volontairement de lire les longs fichiers", "is_correct": false},
+                {"text": "Il faut compresser le fichier en ZIP avant de l'envoyer", "is_correct": false},
+                {"text": "Il suffit de payer pour que l'IA lise tout", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Prompt pour générer une suite de tests",
+            "description": "Rédigez un prompt demandant à l'IA de générer une suite de tests pour un endpoint de paiement : cas nominaux, cas d'erreur (montant négatif, carte refusée, webhook dupliqué), framework de test à utiliser, et exigence que les tests soient réellement exécutables.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Code propriétaire envoyé à un outil IA cloud",
+            "description": "Avant d'adopter un outil IA cloud (Copilot, Cursor, Claude Code) sur un projet client confidentiel, quels points devez-vous vérifier ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "La politique de rétention et d'entraînement sur les données du fournisseur, le contrat client (NDA), et l'activation d'un mode « ne pas entraîner » ou d'une offre entreprise", "is_correct": true},
+                {"text": "Seulement le prix de l'abonnement mensuel", "is_correct": false},
+                {"text": "Rien : le code envoyé à une IA reste toujours privé par défaut", "is_correct": false},
+                {"text": "Uniquement la vitesse de génération de code", "is_correct": false}
+            ],
+            "tags": ["Outils IA", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Limites d'un agent sur un gros dépôt",
+            "description": "Un agent IA modifie votre gros monorepo : il corrige un bug mais casse trois fonctionnalités ailleurs. Quelle pratique limite ce risque ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Cadrer la tâche sur un périmètre réduit, exiger que les tests existants passent après chaque modification, et relire le diff avant de committer", "is_correct": true},
+                {"text": "Donner à l'agent accès à tout le repo sans suite de tests", "is_correct": false},
+                {"text": "Lui demander de tout réécrire pour être sûr de la cohérence", "is_correct": false},
+                {"text": "Désactiver les tests pour accélérer les itérations", "is_correct": false}
+            ],
+            "tags": ["Outils IA", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Évaluer et choisir un outil IA pour une équipe",
+            "description": "Votre équipe hésite entre Cursor, GitHub Copilot et Claude Code. Proposez une méthode d'évaluation : critères (coût, intégration éditeur, qualité sur VOTRE codebase, sécurité des données), protocole de test sur une semaine, et critère de décision final.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Requêtes N+1 générées par l'IA",
+            "description": "L'IA a généré une vue qui boucle sur 500 commandes et exécute une requête SQL par commande pour récupérer le client. Quel est le problème et la correction ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Problème N+1 : 501 requêtes au lieu d'une. Corriger avec un JOIN / prefetch (ex: select_related en Django, eager loading) pour tout charger en une requête", "is_correct": true},
+                {"text": "C'est normal, la base de données est faite pour ça", "is_correct": false},
+                {"text": "Ajouter une seconde boucle pour équilibrer la charge", "is_correct": false},
+                {"text": "Entourer la requête d'un try/except suffit", "is_correct": false}
+            ],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "XSS dans du code généré",
+            "description": "L'IA a généré ce code React : `<div dangerouslySetInnerHTML={{__html: commentaireUtilisateur}} />`. Quel risque identifiez-vous ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "XSS stockée : du HTML/JS injecté par un utilisateur s'exécutera chez les autres visiteurs. Échapper le contenu ou le purifier (DOMPurify), et n'utiliser dangerouslySetInnerHTML qu'avec du contenu assaini", "is_correct": true},
+                {"text": "Aucun risque : React protège automatiquement de tout", "is_correct": false},
+                {"text": "Le seul risque est un décalage de mise en page", "is_correct": false},
+                {"text": "Il suffit de renommer la prop pour sécuriser", "is_correct": false}
+            ],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Concevoir schéma BDD et endpoints d'un blog",
+            "description": "Pour un blog multi-auteurs avec articles, commentaires et tags : décrivez le schéma de base de données (tables, relations), les endpoints REST principaux, et deux règles métier à implémenter (ex: seul l'auteur peut modifier son article).",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Plan de mise en production complet",
+            "description": "Votre application (React + API Django + PostgreSQL) est prête en local. Décrivez votre plan de mise en production : choix d'hébergement pour chaque partie, variables d'environnement, migrations, HTTPS/domaine, sauvegardes BDD, et vérifications post-déploiement.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Déploiement", "Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Sortie structurée / function calling",
+            "description": "Votre backend doit recevoir de l'IA un objet JSON strict {sentiment, score, resume} pour stockage en BDD. Quelle approche est la plus fiable ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Utiliser le mode JSON / sortie structurée (function calling, response_format) de l'API et valider le résultat avec un schéma côté serveur", "is_correct": true},
+                {"text": "Demander gentiment du JSON dans le prompt et espérer", "is_correct": false},
+                {"text": "Parser la réponse libre avec des split() sur le texte", "is_correct": false},
+                {"text": "Stocker le texte brut en BDD sans structure", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Streaming des réponses IA",
+            "description": "Votre fonctionnalité IA génère de longs textes et l'utilisateur attend sans retour visuel. Qu'apporte le streaming (tokens progressifs / SSE) ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Afficher la réponse au fur et à mesure de sa génération : perception de rapidité, possibilité d'annuler, meilleure UX — sans réduire le temps total de génération", "is_correct": true},
+                {"text": "Le streaming rend le modèle plus précis", "is_correct": false},
+                {"text": "Le streaming supprime le coût des tokens", "is_correct": false},
+                {"text": "Le streaming envoie la réponse par email", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Concevoir un pipeline RAG documentaire",
+            "description": "Un client veut un assistant qui répond aux questions sur 200 PDF internes. Décrivez le pipeline RAG complet : ingestion (extraction de texte, découpage en chunks), embeddings et stockage vectoriel, recherche des passages pertinents, construction du prompt avec citations, et limites à surveiller (PDF scannés, fraîcheur des documents).",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Tolérance de panne de l'API IA",
+            "description": "Votre fonctionnalité « résumé automatique » dépend de l'API d'un fournisseur LLM. Décrivez comment la rendre résiliente : que se passe-t-il si l'API est lente, en panne ou dépasse le quota ? Proposez timeouts, retries, file d'attente, fallback et communication utilisateur.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Intégration IA", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Dépendance douteuse suggérée par l'IA",
+            "description": "L'IA suggère d'installer le package npm `reqwests-helper` (ressemblant à `requests`). Avant de l'installer, que vérifiez-vous ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Que le paquet existe officiellement, sa popularité et sa maintenance — les IA inventent parfois des paquets ou suggèrent des noms proches de paquets légitimes (risque de typosquatting malveillant)", "is_correct": true},
+                {"text": "On installe directement : l'IA sait ce qu'elle fait", "is_correct": false},
+                {"text": "On vérifie seulement que le nom est cohérent", "is_correct": false},
+                {"text": "On l'installe en production pour tester plus vite", "is_correct": false}
+            ],
+            "tags": ["Bonnes Pratiques", "Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Politique d'usage de l'IA dans une équipe",
+            "description": "Rédigez les grandes lignes d'une politique d'usage de l'IA pour votre équipe de développement : ce qui est autorisé, ce qui est interdit (secrets dans les prompts, code non relu en production), qui valide le code généré, et comment documenter l'usage de l'IA.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Faire raisonner l'IA étape par étape",
+            "description": "Pour un problème d'architecture complexe (choisir entre 3 approches), pourquoi demander à l'IA de raisonner étape par étape et de comparer les options avant de conclure ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Cela améliore la qualité sur les problèmes complexes : l'IA explicite les compromis au lieu de donner la première solution plausible, et vous pouvez challenger son raisonnement", "is_correct": true},
+                {"text": "Cela rend la réponse plus rapide à générer", "is_correct": false},
+                {"text": "Cela garantit une réponse parfaite à 100 %", "is_correct": false},
+                {"text": "Cela sert uniquement à produire des réponses plus longues", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Diagnostic d'un bug en production",
+            "description": "En production, les utilisateurs rapportent que la recherche produit renvoie parfois des résultats vides. En local tout fonctionne. Décrivez votre démarche de diagnostic : logs à consulter, comment reproduire, hypothèses possibles (données de prod différentes, variables d'environnement, index BDD), et comment utiliser l'IA dans cette investigation.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
         }
     ]
 }
