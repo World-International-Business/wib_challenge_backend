@@ -557,12 +557,8 @@ class ContentViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def start(self, request, pk=None):
         content = self.get_object()
-        enrollment = get_object_or_404(
-            CourseEnrollment,
-            user=request.user,
-            course=content.module.course,
-            status=CourseEnrollment.Status.ACTIVE,
-        )
+        course = content.module.course
+        enrollment = self._get_enrollment_or_403(request.user, course)
         progress, _ = Progress.objects.get_or_create(
             user=request.user,
             content=content,
@@ -584,12 +580,8 @@ class ContentViewSet(viewsets.ModelViewSet):
         content = self.get_object()
         serializer = ProgressUpdateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        enrollment = get_object_or_404(
-            CourseEnrollment,
-            user=request.user,
-            course=content.module.course,
-            status=CourseEnrollment.Status.ACTIVE,
-        )
+        course = content.module.course
+        enrollment = self._get_enrollment_or_403(request.user, course)
         progress, _ = Progress.objects.get_or_create(
             user=request.user,
             content=content,
@@ -612,14 +604,33 @@ class ContentViewSet(viewsets.ModelViewSet):
     def mark_completed(self, request, pk=None):
         """Marquer ce contenu comme terminé"""
         content = self.get_object()
-        enrollment = get_object_or_404(
-            CourseEnrollment,
-            user=request.user,
-            course=content.module.course,
-            status=CourseEnrollment.Status.ACTIVE,
-        )
+        course = content.module.course
+        enrollment = self._get_enrollment_or_403(request.user, course)
         result = complete_content(request.user, content, enrollment)
         return Response(result, status=status.HTTP_200_OK)
+
+    def _get_enrollment_or_403(self, user, course):
+        """Récupère l'inscription active, ou None si formation gratuite.
+        Lève une Response 403 si formation payante sans inscription."""
+        if course.is_free:
+            return CourseEnrollment.objects.filter(
+                user=user, course=course, status=CourseEnrollment.Status.ACTIVE
+            ).first()
+        enrollment = CourseEnrollment.objects.filter(
+            user=user, course=course, status=CourseEnrollment.Status.ACTIVE
+        ).first()
+        if not enrollment:
+            from rest_framework.response import Response as _R
+            from rest_framework import status as _s
+            raise _R(
+                {
+                    'detail': "Vous devez être inscrit à cette formation pour accéder à ce contenu.",
+                    'code': 'enrollment_required',
+                    'course_id': course.id,
+                },
+                status=_s.HTTP_403_FORBIDDEN
+            )
+        return enrollment
 
 
 @extend_schema_view(
@@ -722,21 +733,23 @@ class QuizViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # Vérifier l'inscription à la formation
-        enrollment = CourseEnrollment.objects.filter(
-            user=request.user,
-            course=quiz.module.course,
-            status=CourseEnrollment.Status.ACTIVE,
-        ).first()
-        if not enrollment:
-            return Response(
-                {
-                    'detail': "Vous devez être inscrit à cette formation pour soumettre le quiz.",
-                    'code': 'enrollment_required',
-                    'course_id': quiz.module.course_id,
-                },
-                status=status.HTTP_403_FORBIDDEN
-            )
+        # Vérifier l'inscription à la formation (sauf formations gratuites)
+        course = quiz.module.course
+        if not course.is_free:
+            enrollment = CourseEnrollment.objects.filter(
+                user=request.user,
+                course=course,
+                status=CourseEnrollment.Status.ACTIVE,
+            ).first()
+            if not enrollment:
+                return Response(
+                    {
+                        'detail': "Vous devez être inscrit à cette formation pour soumettre le quiz.",
+                        'code': 'enrollment_required',
+                        'course_id': course.id,
+                    },
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
         # Vérifier le nombre maximum de tentatives
         if quiz.max_attempts > 0:
@@ -852,21 +865,23 @@ class QuizViewSet(viewsets.ModelViewSet):
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
 
-        # Vérifier l'inscription à la formation
-        enrollment = CourseEnrollment.objects.filter(
-            user=request.user,
-            course=quiz.module.course,
-            status=CourseEnrollment.Status.ACTIVE,
-        ).first()
-        if not enrollment:
-            return Response(
-                {
-                    'detail': "Vous devez être inscrit à cette formation pour démarrer le quiz.",
-                    'code': 'enrollment_required',
-                    'course_id': quiz.module.course_id,
-                },
-                status=status.HTTP_403_FORBIDDEN
-            )
+        # Vérifier l'inscription à la formation (sauf formations gratuites)
+        course = quiz.module.course
+        if not course.is_free:
+            enrollment = CourseEnrollment.objects.filter(
+                user=request.user,
+                course=course,
+                status=CourseEnrollment.Status.ACTIVE,
+            ).first()
+            if not enrollment:
+                return Response(
+                    {
+                        'detail': "Vous devez être inscrit à cette formation pour démarrer le quiz.",
+                        'code': 'enrollment_required',
+                        'course_id': course.id,
+                    },
+                    status=status.HTTP_403_FORBIDDEN
+                )
 
         # Vérifier le nombre maximum de tentatives
         if quiz.max_attempts > 0:

@@ -67,11 +67,11 @@ def get_next_content(user, course: Course):
 
 def complete_content(user, content: Content, enrollment: CourseEnrollment = None):
     if enrollment is None:
-        enrollment = CourseEnrollment.objects.get(
+        enrollment = CourseEnrollment.objects.filter(
             user=user,
             course=content.module.course,
             status=CourseEnrollment.Status.ACTIVE,
-        )
+        ).first()
 
     progress, created = Progress.objects.get_or_create(
         user=user,
@@ -91,7 +91,7 @@ def complete_content(user, content: Content, enrollment: CourseEnrollment = None
     course_progress = compute_course_progress(user, content.module.course, enrollment)
     next_content = get_next_content(user, content.module.course)
 
-    if course_progress['is_completed'] and enrollment.status != CourseEnrollment.Status.COMPLETED:
+    if enrollment and course_progress['is_completed'] and enrollment.status != CourseEnrollment.Status.COMPLETED:
         enrollment.status = CourseEnrollment.Status.COMPLETED
         enrollment.completed_at = timezone.now()
         enrollment.save(update_fields=['status', 'completed_at', 'updated_at'])
