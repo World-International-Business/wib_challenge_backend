@@ -175,8 +175,9 @@ class Command(BaseCommand):
             existing_course.modules.all().delete()
             for field, value in course_data.items():
                 setattr(existing_course, field, value)
-            # Générer une couverture SVG si pas déjà présente
-            if not existing_course.picture_cover:
+            # Vérifier que le fichier image existe vraiment sur le disque
+            # (en Docker, le volume media peut être éphémère à chaque redéploiement)
+            if self._cover_missing(existing_course):
                 self._assign_cover_svg(existing_course, data.get('title', ''), skills)
             existing_course.save()
             return existing_course
@@ -188,11 +189,22 @@ class Command(BaseCommand):
 
         return existing_course
 
+    @staticmethod
+    def _cover_missing(course):
+        """Vrai si le cours n'a pas de couverture ou si le fichier n'existe plus sur le disque."""
+        if not course.picture_cover:
+            return True
+        try:
+            return not course.picture_cover.storage.exists(course.picture_cover.name)
+        except Exception:
+            return True
+
     def _assign_cover_svg(self, course, title, skills):
         """Génère et assigne une couverture SVG pour le cours."""
         try:
+            from django.utils.text import slugify
             svg_content = _generate_course_svg(title, skills)
-            filename = f'{title.lower().replace(" ", "-").replace("/", "-")[:50]}.svg'
+            filename = f'{slugify(title)[:50] or "course"}.svg'
             course.picture_cover.save(
                 filename,
                 ContentFile(svg_content.encode('utf-8')),
