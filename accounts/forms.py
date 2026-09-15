@@ -63,7 +63,8 @@ class UserUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserUpdateForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
-            field.widget.attrs.update({'class': 'form-control'})
+            css = 'form-select' if isinstance(field.widget, forms.Select) else 'form-control'
+            field.widget.attrs.update({'class': css})
 
     def clean_domain(self):
         domain = self.cleaned_data['domain']
@@ -94,9 +95,9 @@ class UserSkillForm(forms.ModelForm):
             domain_name=F('criteria__category__domain__name')
         ).distinct().order_by('domain_name', 'name')
         self.fields['skill'].queryset = qs
-        self.fields['skill'].widget = DomainSkillSelect(attrs={'class': 'form-control skill-select'})
+        self.fields['skill'].widget = DomainSkillSelect(attrs={'class': 'form-select skill-select'})
         self.fields['skill'].widget.choices = self.fields['skill'].choices
-        self.fields['experience_level'].widget.attrs.update({'class': 'form-control'})
+        self.fields['experience_level'].widget.attrs.update({'class': 'form-select'})
 
 
 class WIBPasswordResetForm(PasswordResetForm):

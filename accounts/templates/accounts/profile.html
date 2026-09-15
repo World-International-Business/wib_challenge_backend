@@ -1,244 +1,388 @@
 {% extends "base.html" %}
 
+{% block title %}Mon profil - WIB Challenge{% endblock %}
+
 {% block extra_css %}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<style>
+    .profile-hero {
+        background: linear-gradient(135deg, #2563eb 0%, #4f46e5 60%, #7c3aed 100%);
+        border-radius: var(--radius);
+        color: #fff;
+        box-shadow: var(--shadow-lg);
+    }
+    .avatar-circle {
+        width: 76px;
+        height: 76px;
+        background: rgba(255, 255, 255, .18);
+        border: 2px solid rgba(255, 255, 255, .4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+    .step-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        padding: .45rem 1rem;
+        border-radius: 999px;
+        font-size: .82rem;
+        font-weight: 600;
+    }
+    .step-done { background: #d1fae5; color: #047857; }
+    .step-current { background: #fff; color: var(--primary); box-shadow: var(--shadow); }
+    .step-todo { background: #e2e8f0; color: #94a3b8; }
+    .step-arrow { color: #cbd5e1; }
+
+    .section-card {
+        border: none;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1.4rem;
+        border-bottom: 1px solid #eef2f7;
+    }
+    .section-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: .8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .form-label {
+        font-weight: 600;
+        font-size: .8rem;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+        margin-bottom: .35rem;
+    }
+    .form-control, .form-select {
+        border-radius: .65rem;
+        padding: .65rem .95rem;
+        border-color: #e2e8f0;
+        font-size: .95rem;
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 .22rem rgba(37, 99, 235, .12);
+    }
+
+    .skill-row {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: .9rem;
+        padding: 1rem;
+        margin-bottom: .8rem;
+        transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .skill-row:hover {
+        border-color: #c7d2fe;
+        background: #fff;
+        box-shadow: var(--shadow-md);
+    }
+    .skill-item input[type="checkbox"] { display: none; }
+    .skill-select:disabled, .skill-item select:disabled {
+        background-color: #f1f5f9;
+        opacity: .6;
+    }
+
+    .remove-skill { white-space: nowrap; }
+
+    .select2-container--bootstrap-5 .select2-selection {
+        border-radius: .65rem !important;
+        border-color: #e2e8f0 !important;
+        min-height: 45px;
+        padding: .35rem .5rem;
+        font-size: .95rem;
+    }
+    .select2-container--bootstrap-5.select2-container--focus .select2-selection,
+    .select2-container--bootstrap-5.select2-container--open .select2-selection {
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 .22rem rgba(37, 99, 235, .12) !important;
+    }
+
+    .submit-bar {
+        background: #fff;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-    <style>
-        .skill-item input[type="checkbox"] {
-            display: none;
-        }
-        .skill-row {
-            transition: all .2s ease-in-out;
-            border-radius: 1rem;
-            padding: 1rem;
-            background: #fff;
-            border: 1px solid #e9ecef;
-            box-shadow: 0 1px 2px rgba(0,0,0,.04);
-            margin-bottom: .75rem;
-        }
-        .skill-row:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,.06);
-            border-color: #dee2e6;
-        }
-        .skill-select:disabled {
-            background-color: #f8f9fa;
-        }
-    </style>
-    <div class="container py-5">
-        {% if not user.has_skill_infos %}
-            <div class="alert alert-warning border-0 rounded-4 shadow-sm text-center p-4 mb-4" role="alert">
-                <i class="bi bi-exclamation-triangle-fill fs-3 d-block mb-2"></i>
-                <strong>Avant de continuer !</strong>
-                <p class="mb-0">Pour accéder aux évaluations, veuillez <a href="{% url 'update_profile' %}" class="alert-link fw-bold">mettre à jour votre profil</a> en renseignant votre niveau d'expérience, vos années d'expérience et vos compétences.</p>
+<div class="container py-4 py-lg-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-xl-8">
+
+            <!-- En-tête profil -->
+            <div class="profile-hero p-4 p-lg-5 mb-4">
+                <div class="d-flex align-items-center gap-3 gap-lg-4">
+                    <div class="avatar-circle">
+                        {{ user.first_name|first|upper }}{{ user.last_name|first|upper }}
+                    </div>
+                    <div class="flex-grow-1">
+                        <h1 class="h3 fw-bold mb-1">Bonjour {{ user.first_name|default:user.email }} 👋</h1>
+                        <p class="mb-0 opacity-75">Complétez votre profil pour débloquer vos évaluations personnalisées.</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center flex-wrap gap-2 mt-4">
+                    <span class="step-badge step-done"><i class="bi bi-check-circle-fill"></i>Inscription</span>
+                    <i class="bi bi-chevron-right step-arrow"></i>
+                    <span class="step-badge step-current"><i class="bi bi-pencil-square"></i>Profil</span>
+                    <i class="bi bi-chevron-right step-arrow"></i>
+                    <span class="step-badge step-todo"><i class="bi bi-clipboard-check"></i>Évaluation</span>
+                </div>
             </div>
-        {% endif %}
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="card border-0 shadow-lg rounded-4">
-                    <div class="card-body p-5">
-                        <div class="text-center mb-4">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary mb-3" style="width: 64px; height: 64px;">
-                                <i class="bi bi-person-gear fs-2"></i>
-                            </div>
-                            <h2 class="fw-bold">Modifier votre profil</h2>
-                            <p class="text-secondary mb-0">Personnalisez votre expérience et vos compétences.</p>
-                        </div>
-                        <form method="POST" id="profile-form">
-            {% csrf_token %}
-            <!-- Afficher les erreurs globales du formulaire -->
-            {% if user_form.errors or skill_formset.errors %}
-                <div class="alert alert-danger">
-                    <strong>Erreur :</strong> Veuillez corriger les erreurs ci-dessous.
-                    {% if skill_formset.errors %}
-                        {% for error in skill_formset.errors %}
-                            {% if error %}
-                                {{ error.as_ul }}
-                            {% endif %}
-                        {% endfor %}
-                    {% endif %}
+
+            {% if not user.has_skill_infos %}
+                <div class="alert alert-warning border-0 rounded-4 shadow-sm d-flex align-items-start gap-3 p-4 mb-4" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill fs-4 mt-1"></i>
+                    <div>
+                        <strong>Encore une étape !</strong>
+                        <p class="mb-0">Pour accéder aux évaluations, renseignez votre domaine, votre niveau d'expérience et au moins une compétence.</p>
+                    </div>
                 </div>
             {% endif %}
 
-            <div class="row g-3 mb-4">
-                {% for field in user_form %}
-                    <div class="col-md-6">
-                        <label for="{{ field.id_for_label }}" class="form-label fw-semibold small text-muted">{{ field.label }}</label>
-                        {{ field }}
-                        {% if field.errors %}
-                            <div class="text-danger small mt-1">
-                                {% for error in field.errors %}
-                                    <div>{{ error }}</div>
+            <form method="POST" id="profile-form" novalidate>
+                {% csrf_token %}
+
+                {% if user_form.errors or skill_formset.errors %}
+                    <div class="alert alert-danger border-0 rounded-4 shadow-sm d-flex align-items-start gap-3 p-4 mb-4">
+                        <i class="bi bi-x-octagon-fill fs-4 mt-1"></i>
+                        <div>
+                            <strong>Veuillez corriger les erreurs ci-dessous.</strong>
+                            {% if skill_formset.errors %}
+                                {% for error in skill_formset.errors %}
+                                    {% if error %}{{ error.as_ul }}{% endif %}
                                 {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Informations personnelles -->
+                <div class="card section-card mb-4">
+                    <div class="card-body p-4 p-lg-4">
+                        <div class="section-header">
+                            <div class="section-icon bg-primary bg-opacity-10 text-primary">
+                                <i class="bi bi-person-badge"></i>
                             </div>
-                        {% endif %}
+                            <div>
+                                <h2 class="h5 fw-bold mb-0">Informations personnelles</h2>
+                                <small class="text-muted">Vos coordonnées et votre expérience</small>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            {% for field in user_form %}
+                                <div class="col-md-6">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                    {{ field }}
+                                    {% if field.errors %}
+                                        <div class="text-danger small mt-1">
+                                            {% for error in field.errors %}<div>{{ error }}</div>{% endfor %}
+                                        </div>
+                                    {% endif %}
+                                    {% if field.help_text %}
+                                        <div class="form-text">{{ field.help_text }}</div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
 
-            <h4 class="fw-bold mb-3"><i class="bi bi-stars me-2 text-warning"></i>Mes compétences</h4>
-            {{ skill_formset.management_form }}
-
-            <div id="skills-container" class="mb-3">
-                {% for form in skill_formset.forms %}
-                    <div class="skill-row skill-item d-flex flex-column flex-md-row align-items-start align-items-md-end gap-2 gap-md-0 mb-3">
-                        {% for hidden in form.hidden_fields %}
-                            {{ hidden }}
-                        {% endfor %}
-
-                        <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
-                            <label class="form-label fw-semibold small text-muted">{{ form.skill.label }}</label>
-                            {{ form.skill }}
-                            {% if form.skill.errors %}
-                                <div class="text-danger small">
-                                    {% for error in form.skill.errors %}
-                                        <div>{{ error }}</div>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
+                <!-- Compétences -->
+                <div class="card section-card mb-4">
+                    <div class="card-body p-4 p-lg-4">
+                        <div class="section-header">
+                            <div class="section-icon bg-warning bg-opacity-10 text-warning">
+                                <i class="bi bi-stars"></i>
+                            </div>
+                            <div>
+                                <h2 class="h5 fw-bold mb-0">Mes compétences</h2>
+                                <small class="text-muted">Sélectionnez vos compétences et votre niveau pour chacune</small>
+                            </div>
                         </div>
-                        <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
-                            <label class="form-label fw-semibold small text-muted">{{ form.experience_level.label }}</label>
-                            {{ form.experience_level }}
-                            {% if form.experience_level.errors %}
-                                <div class="text-danger small">
-                                    {% for error in form.experience_level.errors %}
-                                        <div>{{ error }}</div>
-                                    {% endfor %}
+
+                        {{ skill_formset.management_form }}
+
+                        <div id="skills-container">
+                            {% for form in skill_formset.forms %}
+                                <div class="skill-row skill-item">
+                                    <div class="row g-3 align-items-end">
+                                        {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
+                                        <div class="col-md-6">
+                                            <label class="form-label">{{ form.skill.label }}</label>
+                                            {{ form.skill }}
+                                            {% if form.skill.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.skill.errors %}<div>{{ error }}</div>{% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">{{ form.experience_level.label }}</label>
+                                            {{ form.experience_level }}
+                                            {% if form.experience_level.errors %}
+                                                <div class="text-danger small mt-1">
+                                                    {% for error in form.experience_level.errors %}<div>{{ error }}</div>{% endfor %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-2 text-md-end">
+                                            <button type="button" class="btn btn-outline-danger btn-sm rounded-pill remove-skill">
+                                                <i class="bi bi-trash"></i>
+                                                <span>Supprimer</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
                                 </div>
-                            {% endif %}
+                            {% endfor %}
                         </div>
-                        <button type="button" class="btn btn-outline-danger remove-skill rounded-pill">
-                            <i class="bi bi-trash"></i>
-                            <span>Supprimer</span>
+
+                        <button type="button" id="add-skill" class="btn btn-outline-primary rounded-pill">
+                            <i class="bi bi-plus-lg me-1"></i>Ajouter une compétence
                         </button>
-                        {% if form.instance.pk %}
-                            {{ form.DELETE }}
-                        {% endif %}
                     </div>
-                {% endfor %}
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 mb-4">
-                <button type="button" id="add-skill" class="btn btn-outline-primary rounded-pill">
-                    <i class="bi bi-plus-lg me-1"></i>Ajouter une compétence
-                </button>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-success btn-lg rounded-pill px-5">
-                    <i class="bi bi-check-lg me-2"></i>Enregistrer les modifications
-                </button>
-            </div>
-        </form>
-
-        <!-- Formulaire vide pour duplication JS -->
-        <div id="empty-form" style="display: none;">
-            <div class="skill-row skill-item d-flex flex-column flex-md-row align-items-start align-items-md-end gap-2 gap-md-0 mb-3">
-                <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
-                    {{ skill_formset.empty_form.skill.label_tag }}
-                    {{ skill_formset.empty_form.skill }}
                 </div>
-                <div class="flex-grow-1 mb-2 mb-md-0 me-md-3">
-                    {{ skill_formset.empty_form.experience_level.label_tag }}
-                    {{ skill_formset.empty_form.experience_level }}
+
+                <!-- Barre d'action -->
+                <div class="submit-bar d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3 p-3 px-4">
+                    <small class="text-muted"><i class="bi bi-shield-check me-1"></i>Vos informations restent confidentielles.</small>
+                    <button type="submit" class="btn btn-success btn-lg rounded-pill px-5 shadow-sm">
+                        <i class="bi bi-check-lg me-2"></i>Enregistrer et continuer
+                    </button>
                 </div>
-                <button type="button" class="btn btn-outline-danger remove-skill rounded-pill">
-                    <i class="bi bi-trash"></i>
-                    <span>Supprimer</span>
-                </button>
-            </div>
-        </div>
+            </form>
+
+            <!-- Formulaire vide pour duplication JS -->
+            <div id="empty-form" style="display: none;">
+                <div class="skill-row skill-item">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-6">
+                            {{ skill_formset.empty_form.skill.label_tag }}
+                            {{ skill_formset.empty_form.skill }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ skill_formset.empty_form.experience_level.label_tag }}
+                            {{ skill_formset.empty_form.experience_level }}
+                        </div>
+                        <div class="col-md-2 text-md-end">
+                            <button type="button" class="btn btn-outline-danger btn-sm rounded-pill remove-skill">
+                                <i class="bi bi-trash"></i>
+                                <span>Supprimer</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const formsetPrefix = "{{ skill_formset.prefix }}";
-            const totalForms = document.getElementById(`id_${formsetPrefix}-TOTAL_FORMS`);
-            const skillsContainer = document.getElementById("skills-container");
-            const addSkillButton = document.getElementById("add-skill");
-            const domainSelect = document.getElementById('id_domain');
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const formsetPrefix = "{{ skill_formset.prefix }}";
+        const totalForms = document.getElementById(`id_${formsetPrefix}-TOTAL_FORMS`);
+        const skillsContainer = document.getElementById("skills-container");
+        const addSkillButton = document.getElementById("add-skill");
+        const domainSelect = document.getElementById('id_domain');
 
-            function filterSkills() {
-                const selectedDomain = (domainSelect && domainSelect.value)
-                    ? domainSelect.options[domainSelect.selectedIndex].text.trim()
-                    : '';
-                document.querySelectorAll('.skill-select').forEach(select => {
-                    const placeholder = select.querySelector('option[value=""]');
-                    select.querySelectorAll('option').forEach(opt => {
-                        if (!opt.value) return;
-                        const match = !selectedDomain || (opt.dataset.domain || '') === selectedDomain;
-                        opt.hidden = !match;
-                        opt.disabled = !match;
-                        if (opt.selected && !match) {
-                            opt.selected = false;
-                            if (placeholder) placeholder.selected = true;
-                        }
-                    });
-                });
-            }
-
-            if (domainSelect) {
-                domainSelect.addEventListener('change', filterSkills);
-                filterSkills();
-            }
-            window.filterSkills = filterSkills;
-
-            // Ajouter une compétence
-            addSkillButton.addEventListener("click", function (e) {
-                e.preventDefault();
-                const formCount = parseInt(totalForms.value);
-                const newForm = document.getElementById("empty-form").innerHTML.replace(/__prefix__/g, `${formCount}`);
-                skillsContainer.insertAdjacentHTML('beforeend', newForm)
-
-                const newFormDiv = skillsContainer.lastElementChild;
-                // Mettre à jour les attributs id et name des nouveaux champs
-                const newFields = newFormDiv.querySelectorAll("input, select, textarea");
-                newFields.forEach(field => {
-                    const oldId = field.id;
-                    const oldName = field.name;
-                    if (oldId) field.id = oldId.replace(/__prefix__/g, formCount);
-                    if (oldName) field.name = oldName.replace(/__prefix__/g, formCount);
-                });
-
-                // Mettre à jour le nombre total de formulaires
-                totalForms.value = formCount + 1;
-                filterSkills();
-            });
-
-            // Supprimer une compétence
-            skillsContainer.addEventListener("click", function (e) {
-                button = e.target.closest('button')
-                if (button && button.classList.contains("remove-skill")) {
-                    const skillItem = button.closest(".skill-item");
-                    const deleteInput = skillItem.querySelector("input[name*='DELETE']");
-                    if (deleteInput) {
-                        deleteInput.checked = !deleteInput.checked
-                        skillItem.querySelectorAll("input, select").forEach(field => {
-                            field.disabled = deleteInput.checked;
-                        });
-                        console.log(deleteInput.checked);
-                        button.lastElementChild.textContent = deleteInput.checked ? "Restaurer" : "Supprimer";
-                        if (deleteInput.checked) {
-                            button.classList.remove("btn-danger");
-                            button.classList.add("btn-success");
-                        } else {
-                            button.classList.remove("btn-success");
-                            button.classList.add("btn-danger");
-                        }
-                        button.firstElementChild.className = deleteInput.checked ? "bi bi-arrow-counterclockwise" : "bi bi-trash";
-                    } else {
-                        skillItem.remove();
-                        totalForms.value = parseInt(totalForms.value) - 1;
+        function filterSkills() {
+            const selectedDomain = (domainSelect && domainSelect.value)
+                ? domainSelect.options[domainSelect.selectedIndex].text.trim()
+                : '';
+            document.querySelectorAll('.skill-select').forEach(select => {
+                const placeholder = select.querySelector('option[value=""]');
+                select.querySelectorAll('option').forEach(opt => {
+                    if (!opt.value) return;
+                    const match = !selectedDomain || (opt.dataset.domain || '') === selectedDomain;
+                    opt.hidden = !match;
+                    opt.disabled = !match;
+                    if (opt.selected && !match) {
+                        opt.selected = false;
+                        if (placeholder) placeholder.selected = true;
                     }
-                }
+                });
             });
+        }
+
+        if (domainSelect) {
+            domainSelect.addEventListener('change', filterSkills);
+            filterSkills();
+        }
+        window.filterSkills = filterSkills;
+
+        // Ajouter une compétence
+        addSkillButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const formCount = parseInt(totalForms.value);
+            const newForm = document.getElementById("empty-form").innerHTML.replace(/__prefix__/g, `${formCount}`);
+            skillsContainer.insertAdjacentHTML('beforeend', newForm)
+
+            const newFormDiv = skillsContainer.lastElementChild;
+            // Mettre à jour les attributs id et name des nouveaux champs
+            const newFields = newFormDiv.querySelectorAll("input, select, textarea");
+            newFields.forEach(field => {
+                const oldId = field.id;
+                const oldName = field.name;
+                if (oldId) field.id = oldId.replace(/__prefix__/g, formCount);
+                if (oldName) field.name = oldName.replace(/__prefix__/g, formCount);
+            });
+
+            // Mettre à jour le nombre total de formulaires
+            totalForms.value = formCount + 1;
+            filterSkills();
         });
-    </script>
+
+        // Supprimer une compétence
+        skillsContainer.addEventListener("click", function (e) {
+            const button = e.target.closest('button');
+            if (button && button.classList.contains("remove-skill")) {
+                const skillItem = button.closest(".skill-item");
+                const deleteInput = skillItem.querySelector("input[name*='DELETE']");
+                if (deleteInput) {
+                    deleteInput.checked = !deleteInput.checked
+                    skillItem.querySelectorAll("input, select").forEach(field => {
+                        field.disabled = deleteInput.checked;
+                    });
+                    button.lastElementChild.textContent = deleteInput.checked ? "Restaurer" : "Supprimer";
+                    if (deleteInput.checked) {
+                        button.classList.remove("btn-outline-danger");
+                        button.classList.add("btn-success");
+                        skillItem.style.opacity = ".55";
+                    } else {
+                        button.classList.remove("btn-success");
+                        button.classList.add("btn-outline-danger");
+                        skillItem.style.opacity = "1";
+                    }
+                    button.firstElementChild.className = deleteInput.checked ? "bi bi-arrow-counterclockwise" : "bi bi-trash";
+                } else {
+                    skillItem.remove();
+                    totalForms.value = parseInt(totalForms.value) - 1;
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}
 
 {% block extra_js %}
@@ -246,11 +390,12 @@
 <script>
     $(document).ready(function() {
         $('#id_domain').select2({
-            placeholder: 'Rechercher un profil...',
+            theme: 'bootstrap-5',
+            placeholder: 'Rechercher un domaine...',
             allowClear: true,
             width: '100%',
             language: {
-                noResults: function() { return 'Aucun profil trouvé'; }
+                noResults: function() { return 'Aucun domaine trouvé'; }
             }
         }).on('change.select2', window.filterSkills);
         if (typeof window.filterSkills === 'function') {
