@@ -671,15 +671,28 @@ class QuizViewSet(viewsets.ModelViewSet):
             return queryset
         if self.request.user.is_staff:
             return queryset
-        # retrieve (GET détail) : accessible à tout utilisateur authentifié
-        # (l'inscription est vérifiée uniquement lors de la soumission)
-        if self.action == 'retrieve':
+        # retrieve, start, submit : accessibles à tout utilisateur authentifié
+        # (l'inscription est vérifiée explicitement dans les actions de progression
+        #  avec un message clair, plutôt que via un filtre queryset qui produit 404)
+        if self.action in ('retrieve', 'start', 'submit'):
             return queryset
         # list et autres actions : restreint aux cours où l'utilisateur est inscrit
         return queryset.filter(
             module__course__enrollments__user=self.request.user,
             module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
         ).distinct()
+
+    def get_object_or_404_message(self, queryset, **kwargs):
+        """get_object avec message d'erreur clair en français."""
+        from django.http import Http404
+        from django.shortcuts import get_object_or_404 as _get
+        try:
+            return _get(queryset, **kwargs)
+        except Http404:
+            raise Http404(
+                "Ce quiz n'existe pas ou n'est plus disponible. "
+                "Vérifiez le lien ou contactez le support."
+            )
 
     def get_permissions(self):
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
@@ -708,6 +721,22 @@ class QuizViewSet(viewsets.ModelViewSet):
         quiz = self.get_object()
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Vérifier l'inscription à la formation
+        enrollment = CourseEnrollment.objects.filter(
+            user=request.user,
+            course=quiz.module.course,
+            status=CourseEnrollment.Status.ACTIVE,
+        ).first()
+        if not enrollment:
+            return Response(
+                {
+                    'detail': "Vous devez être inscrit à cette formation pour soumettre le quiz.",
+                    'code': 'enrollment_required',
+                    'course_id': quiz.module.course_id,
+                },
+                status=status.HTTP_403_FORBIDDEN
+            )
 
         # Vérifier le nombre maximum de tentatives
         if quiz.max_attempts > 0:
@@ -822,6 +851,22 @@ class QuizViewSet(viewsets.ModelViewSet):
         quiz = self.get_object()
         if not request.user.is_authenticated:
             return Response({'detail': 'Authentification requise'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Vérifier l'inscription à la formation
+        enrollment = CourseEnrollment.objects.filter(
+            user=request.user,
+            course=quiz.module.course,
+            status=CourseEnrollment.Status.ACTIVE,
+        ).first()
+        if not enrollment:
+            return Response(
+                {
+                    'detail': "Vous devez être inscrit à cette formation pour démarrer le quiz.",
+                    'code': 'enrollment_required',
+                    'course_id': quiz.module.course_id,
+                },
+                status=status.HTTP_403_FORBIDDEN
+            )
 
         # Vérifier le nombre maximum de tentatives
         if quiz.max_attempts > 0:
