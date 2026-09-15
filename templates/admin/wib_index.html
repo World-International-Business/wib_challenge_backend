@@ -207,7 +207,17 @@
         <div class="stat-label">Cours actifs</div>
       </div>
       <div class="wib-stat-card blue">
-        <div class="stat-icon">🎓</div>
+        <div class="stat-icon">�</div>
+        <div class="stat-value">{{ stats.free_courses }}</div>
+        <div class="stat-label">Cours gratuits</div>
+      </div>
+      <div class="wib-stat-card orange">
+        <div class="stat-icon">💰</div>
+        <div class="stat-value">{{ stats.paid_courses }}</div>
+        <div class="stat-label">Cours payants</div>
+      </div>
+      <div class="wib-stat-card blue">
+        <div class="stat-icon">�🎓</div>
         <div class="stat-value">{{ stats.total_enrollments }}</div>
         <div class="stat-label">Inscriptions</div>
       </div>
@@ -226,6 +236,105 @@
         <div class="stat-value">{{ stats.issued_certificates }}</div>
         <div class="stat-label">Certificats émis</div>
       </div>
+    </div>
+  </div>
+
+  <!-- Gestion des Contenus -->
+  <div class="wib-platform-section">
+    <h2>📦 Gestion des Contenus</h2>
+    <div class="wib-stats-grid">
+      <div class="wib-stat-card">
+        <div class="stat-icon">📑</div>
+        <div class="stat-value">{{ stats.total_modules }}</div>
+        <div class="stat-label">Modules</div>
+      </div>
+      <div class="wib-stat-card green">
+        <div class="stat-icon">🟢</div>
+        <div class="stat-value">{{ stats.active_modules }}</div>
+        <div class="stat-label">Modules actifs</div>
+      </div>
+      <div class="wib-stat-card blue">
+        <div class="stat-icon">📄</div>
+        <div class="stat-value">{{ stats.total_contents }}</div>
+        <div class="stat-label">Contenus totaux</div>
+      </div>
+      <div class="wib-stat-card">
+        <div class="stat-icon">📝</div>
+        <div class="stat-value">{{ stats.markdown_contents }}</div>
+        <div class="stat-label">Articles (Markdown)</div>
+      </div>
+      <div class="wib-stat-card red">
+        <div class="stat-icon">🎬</div>
+        <div class="stat-value">{{ stats.video_contents }}</div>
+        <div class="stat-label">Vidéos</div>
+      </div>
+      <div class="wib-stat-card orange">
+        <div class="stat-icon">📕</div>
+        <div class="stat-value">{{ stats.pdf_contents }}</div>
+        <div class="stat-label">PDFs</div>
+      </div>
+      <div class="wib-stat-card purple">
+        <div class="stat-icon">🔗</div>
+        <div class="stat-value">{{ stats.external_contents }}</div>
+        <div class="stat-label">Liens externes</div>
+      </div>
+      <div class="wib-stat-card green">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value">{{ stats.completed_progress }}</div>
+        <div class="stat-label">Contenus terminés</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gestion des Quiz -->
+  <div class="wib-platform-section">
+    <h2>❓ Gestion des Quiz & Évaluations</h2>
+    <div class="wib-stats-grid">
+      <div class="wib-stat-card">
+        <div class="stat-icon">📋</div>
+        <div class="stat-value">{{ stats.total_quizzes }}</div>
+        <div class="stat-label">Quiz totaux</div>
+      </div>
+      <div class="wib-stat-card blue">
+        <div class="stat-icon">🧪</div>
+        <div class="stat-value">{{ stats.practice_quizzes }}</div>
+        <div class="stat-label">Quiz pratique</div>
+      </div>
+      <div class="wib-stat-card red">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value">{{ stats.final_quizzes }}</div>
+        <div class="stat-label">Quiz final</div>
+      </div>
+      <div class="wib-stat-card purple">
+        <div class="stat-icon">❓</div>
+        <div class="stat-value">{{ stats.total_quiz_questions }}</div>
+        <div class="stat-label">Questions</div>
+      </div>
+      <div class="wib-stat-card orange">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value">{{ stats.total_quiz_results }}</div>
+        <div class="stat-label">Tentatives quiz</div>
+      </div>
+      <div class="wib-stat-card green">
+        <div class="stat-icon">✅</div>
+        <div class="stat-value">{{ stats.passed_quiz_results }}</div>
+        <div class="stat-label">Quiz réussis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions rapides - Gestion des formations -->
+  <div class="wib-platform-section">
+    <h2>⚡ Actions rapides</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+      <a href="/administration/learning/course/" style="text-decoration: none;"><span style="display: inline-block; background: #0f4c81; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">📖 Formations</span></a>
+      <a href="/administration/learning/course/add/" style="text-decoration: none;"><span style="display: inline-block; background: #28a745; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">➕ Nouvelle formation</span></a>
+      <a href="/administration/learning/module/" style="text-decoration: none;"><span style="display: inline-block; background: #6f42c1; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">📑 Modules</span></a>
+      <a href="/administration/learning/content/" style="text-decoration: none;"><span style="display: inline-block; background: #17a2b8; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">📄 Contenus</span></a>
+      <a href="/administration/learning/quiz/" style="text-decoration: none;"><span style="display: inline-block; background: #ffc107; color: #333; padding: 10px 20px; border-radius: 8px; font-weight: bold;">❓ Quiz</span></a>
+      <a href="/administration/learning/courseenrollment/" style="text-decoration: none;"><span style="display: inline-block; background: #fd7e14; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">🎓 Inscriptions</span></a>
+      <a href="/administration/learning/certificate/" style="text-decoration: none;"><span style="display: inline-block; background: #20c997; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">🏆 Certificats</span></a>
+      <a href="/administration/learning/progress/" style="text-decoration: none;"><span style="display: inline-block; background: #6c757d; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;">📊 Progressions</span></a>
     </div>
   </div>
 

@@ -48,22 +48,61 @@ def wib_dashboard_stats():
         stats['total_participants'] = 0
 
     try:
-        from apps.learning.models import Course, Certificate, CourseEnrollment, Progress
+        from apps.learning.models import (
+            Course, Certificate, CourseEnrollment, Progress,
+            Module, Content, Quiz, QuizQuestion, QuizResult
+        )
         stats['total_courses'] = Course.objects.count()
         stats['active_courses'] = Course.objects.filter(is_active=True).count()
+        stats['free_courses'] = Course.objects.filter(is_free=True).count()
+        stats['paid_courses'] = Course.objects.filter(is_free=False).count()
         stats['total_certificates'] = Certificate.objects.count()
         stats['issued_certificates'] = Certificate.objects.filter(status='issued').count()
+        stats['pending_certificates'] = Certificate.objects.filter(status='eligible').count()
         stats['total_enrollments'] = CourseEnrollment.objects.count()
         stats['active_enrollments'] = CourseEnrollment.objects.filter(status='active').count()
         stats['completed_enrollments'] = CourseEnrollment.objects.filter(status='completed').count()
+        stats['total_modules'] = Module.objects.count()
+        stats['active_modules'] = Module.objects.filter(is_active=True).count()
+        stats['total_contents'] = Content.objects.count()
+        stats['markdown_contents'] = Content.objects.filter(content_type='markdown').count()
+        stats['video_contents'] = Content.objects.filter(content_type='video').count()
+        stats['pdf_contents'] = Content.objects.filter(content_type='pdf').count()
+        stats['external_contents'] = Content.objects.filter(content_type='external').count()
+        stats['total_quizzes'] = Quiz.objects.count()
+        stats['practice_quizzes'] = Quiz.objects.filter(quiz_type='practice').count()
+        stats['final_quizzes'] = Quiz.objects.filter(quiz_type='final').count()
+        stats['total_quiz_questions'] = QuizQuestion.objects.count()
+        stats['total_quiz_results'] = QuizResult.objects.count()
+        stats['passed_quiz_results'] = QuizResult.objects.filter(is_passed=True).count()
+        stats['total_progress'] = Progress.objects.count()
+        stats['completed_progress'] = Progress.objects.filter(is_completed=True).count()
     except Exception:
         stats['total_courses'] = 0
         stats['active_courses'] = 0
+        stats['free_courses'] = 0
+        stats['paid_courses'] = 0
         stats['total_certificates'] = 0
         stats['issued_certificates'] = 0
+        stats['pending_certificates'] = 0
         stats['total_enrollments'] = 0
         stats['active_enrollments'] = 0
         stats['completed_enrollments'] = 0
+        stats['total_modules'] = 0
+        stats['active_modules'] = 0
+        stats['total_contents'] = 0
+        stats['markdown_contents'] = 0
+        stats['video_contents'] = 0
+        stats['pdf_contents'] = 0
+        stats['external_contents'] = 0
+        stats['total_quizzes'] = 0
+        stats['practice_quizzes'] = 0
+        stats['final_quizzes'] = 0
+        stats['total_quiz_questions'] = 0
+        stats['total_quiz_results'] = 0
+        stats['passed_quiz_results'] = 0
+        stats['total_progress'] = 0
+        stats['completed_progress'] = 0
 
     try:
         from apps.jobs.models import JobOffer, JobApplication
