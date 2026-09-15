@@ -1,0 +1,532 @@
+{
+    "domain": "Développement Full Stack IA",
+    "category": "Technique Full Stack IA",
+    "criteria": "Développement avec IA",
+    "tags": ["Prompt Engineering", "Outils IA", "Full Stack", "Déploiement", "Intégration IA", "Bonnes Pratiques"],
+    "question_category": "NORMAL",
+    "questions": [
+        {
+            "title": "Générer une fonction fiable avec l'IA",
+            "description": "Vous demandez à une IA de générer une fonction de calcul de prix TTC. Le code retourné compile mais le calcul est faux. Quelle est la première chose à faire ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Fournir un exemple concret d'entrée et de sortie attendue dans le prompt", "is_correct": true},
+                {"text": "Relancer la génération sans changer le prompt", "is_correct": false},
+                {"text": "Coder la fonction soi-même sans IA", "is_correct": false},
+                {"text": "Changer de modèle d'IA", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Découper une demande complexe en prompts",
+            "description": "Vous devez créer une application complète (authentification, base de données, interface) avec une IA de génération de code. Quelle stratégie de prompt donne les meilleurs résultats ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Découper en étapes : d'abord le schéma BDD, puis l'API, puis le frontend, en validant chaque étape avant de continuer", "is_correct": true},
+                {"text": "Décrire toute l'application dans un seul très long prompt", "is_correct": false},
+                {"text": "Demander juste « crée-moi une application de gestion » et laisser l'IA décider", "is_correct": false},
+                {"text": "Générer le frontend, la BDD et l'API dans n'importe quel ordre sans validation intermédiaire", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering", "Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Rôle du contexte dans un prompt de code",
+            "description": "Pourquoi faut-il donner à l'IA de génération de code le contexte comme la version de Django, la structure du projet et les conventions utilisées ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Sans contexte, l'IA génère du code générique qui peut ne pas s'intégrer au projet existant", "is_correct": true},
+                {"text": "Le contexte rend les réponses plus jolies", "is_correct": false},
+                {"text": "Le contexte ne sert à rien pour la génération de code", "is_correct": false},
+                {"text": "Le contexte sert uniquement à traduire le code en français", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Prompt système vs prompt utilisateur",
+            "description": "Dans un outil comme Claude Code ou l'API OpenAI, quelle est la différence entre un prompt système et un prompt utilisateur dans un projet de génération de code ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le prompt système définit les règles permanentes (style de code, conventions, contraintes) ; le prompt utilisateur exprime la tâche du moment", "is_correct": true},
+                {"text": "Le prompt système est plus rapide à exécuter que le prompt utilisateur", "is_correct": false},
+                {"text": "Le prompt utilisateur définit les règles permanentes et le système exprime la tâche", "is_correct": false},
+                {"text": "Il n'y a aucune différence fonctionnelle", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering", "Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Gérer les erreurs répétées de l'IA",
+            "description": "Une IA génère du code qui appelle une fonction `process_data()` qui n'existe pas dans votre projet, et le fait à chaque itération. Que faites-vous ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Fournir la signature exacte des fonctions disponibles dans le prompt et demander à l'IA de s'y conformer", "is_correct": true},
+                {"text": "Créer la fonction process_data pour que le code fonctionne", "is_correct": false},
+                {"text": "Ignorer l'erreur et passer à la suite", "is_correct": false},
+                {"text": "Accuser l'IA d'être défaillante et ne plus l'utiliser", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Revue du code généré par IA",
+            "description": "Avant d'intégrer du code généré par IA dans un projet en production, quelles vérifications minimales devez-vous effectuer ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Tester le code, vérifier les injections SQL et l'absence de secrets en dur, et relire la logique métier", "is_correct": true},
+                {"text": "Aucune vérification : l'IA produit du code toujours sûr", "is_correct": false},
+                {"text": "Vérifier uniquement que le code compile", "is_correct": false},
+                {"text": "Faire relire le code par une autre IA sans test", "is_correct": false}
+            ],
+            "tags": ["Bonnes Pratiques", "Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Itérer sur un prompt de génération",
+            "description": "Le premier code généré fonctionne mais ne respecte pas les conventions de nommage de votre équipe. Quelle est la meilleure façon de corriger ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Envoyer l'erreur exacte ou le résultat inattendu à l'IA avec un prompt de correction précis", "is_correct": true},
+                {"text": "Supprimer tout le code et recommencer à zéro", "is_correct": false},
+                {"text": "Renommer manuellement chaque variable sans jamais réitérer avec l'IA", "is_correct": false},
+                {"text": "Garder les conventions de l'IA pour tout le projet", "is_correct": false}
+            ],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Rédiger un prompt pour une fonctionnalité complète",
+            "description": "Rédigez un prompt complet que vous enverriez à une IA pour générer : une API REST Django avec un modèle Produit (nom, prix, stock), un endpoint GET /api/produits/ avec pagination, et des tests unitaires. Votre prompt doit inclure le contexte nécessaire (framework, version, conventions attendues). Écrivez le prompt tel quel.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Prompt Engineering", "Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Cursor : règles projet efficaces",
+            "description": "Dans l'outil Cursor, à quoi servent les règles de projet (fichier .cursorrules ou équivalent) et que doit-on y mettre pour générer du code cohérent sur un projet Django + React ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Y décrire la stack, les conventions de nommage, la structure des dossiers et les interdictions (ex: ne jamais logger de secrets), pour que chaque génération les respecte", "is_correct": true},
+                {"text": "Seulement le nom de l'équipe de développement", "is_correct": false},
+                {"text": "La liste complète de toutes les lignes de code du projet", "is_correct": false},
+                {"text": "Les règles de projet ne servent qu'à la coloration syntaxique", "is_correct": false}
+            ],
+            "tags": ["Outils IA", "Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Quand utiliser GitHub Copilot vs Claude Code",
+            "description": "GitHub Copilot dans l'éditeur et un agent comme Claude Code ou Replit Agent n'ont pas les mêmes usages. Quelle affirmation est correcte ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Copilot complète le code en continu dans l'éditeur ; un agent peut exécuter des tâches multi-fichiers complètes (créer fichiers, lancer des commandes, corriger des tests)", "is_correct": true},
+                {"text": "Copilot peut lancer des commandes terminal mais pas les agents", "is_correct": false},
+                {"text": "Les deux servent exactement à la même chose", "is_correct": false},
+                {"text": "Les agents ne génèrent que de la documentation, pas du code", "is_correct": false}
+            ],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Lovable et Bolt.new : cas d'usage",
+            "description": "Des outils comme Lovable, Bolt.new ou v0.dev permettent de générer une application web à partir d'une description. À quoi sont-ils les plus adaptés ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Prototyper rapidement une interface web complète à partir d'une description textuelle, puis itérer visuellement", "is_correct": true},
+                {"text": "Remplacer complètement un développeur sur des projets critiques en production sans validation", "is_correct": false},
+                {"text": "Administrer un serveur PostgreSQL", "is_correct": false},
+                {"text": "Créer des jeux vidéo 3D", "is_correct": false}
+            ],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Limites des génrateurs d'apps IA",
+            "description": "Vous avez généré une application avec Lovable. Quelle limitation courante devez-vous anticiper avant de la mettre en production ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le code généré contient souvent des placeholders (auth simplifiée, gestion d'erreurs incomplète) qu'il faut auditer et compléter", "is_correct": true},
+                {"text": "Les applications générées ne peuvent jamais être déployées", "is_correct": false},
+                {"text": "Ces outils ne fonctionnent qu'en français", "is_correct": false},
+                {"text": "Il n'y a aucune limitation, tout est prêt pour la production", "is_correct": false}
+            ],
+            "tags": ["Outils IA", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Exporter et maintenir le code d'un générateur IA",
+            "description": "Votre client veut livrer une application générée avec Bolt.new et pouvoir la faire évoluer ensuite. Que devez-vous vérifier en priorité ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Que le code soit exportable dans un dépôt Git classique pour permettre l'évolution et le versioning hors de l'outil", "is_correct": true},
+                {"text": "Que Bolt.new garantisse les mises à jour de sécurité à vie", "is_correct": false},
+                {"text": "Que l'application n'utilise aucune dépendance", "is_correct": false},
+                {"text": "Que le client ne puisse jamais modifier le code", "is_correct": false}
+            ],
+            "tags": ["Outils IA", "Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Choisir un outil IA selon la tâche",
+            "description": "Pour chacun de ces besoins : (a) compléter du code ligne par ligne pendant que je tape, (b) générer tout un module backend avec ses tests, (c) créer une maquette d'interface poussée — quels outils associeriez-vous ?",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Outils IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Lire du code backend généré par IA",
+            "description": "Une IA vient de générer un endpoint API. Quels points précis devez-vous relire dans le code backend généré avant de l'accepter ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "La validation des entrées, la gestion des permissions, l'absence d'exécution de code arbitraire et la gestion des erreurs", "is_correct": true},
+                {"text": "Seulement l'indentation du code", "is_correct": false},
+                {"text": "Seulement la couleur des variables dans l'éditeur", "is_correct": false},
+                {"text": "Rien, le backend généré est toujours correct", "is_correct": false}
+            ],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Comprendre une relation de base de données",
+            "description": "L'IA a généré un schéma avec une table `Commande` liée à une table `Client`. Pourquoi cette relation (clé étrangère) est-elle essentielle dans une application e-commerce ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Elle garantit qu'une commande est toujours rattachée à un client existant et permet de retrouver l'historique d'achat de chaque client", "is_correct": true},
+                {"text": "Elle rend le site plus rapide à charger", "is_correct": false},
+                {"text": "Elle sert uniquement à organiser les dossiers du projet", "is_correct": false},
+                {"text": "Elle n'a aucun intérêt pratique", "is_correct": false}
+            ],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Authentification JWT : lecture critique",
+            "description": "Le code généré par l'IA stocke le token JWT d'authentification dans le localStorage et l'envoie dans chaque requête. Quel risque devez-vous identifier ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le localStorage est accessible à tout script de la page (risque XSS) : envisager des cookies httpOnly ou durcir la protection XSS", "is_correct": true},
+                {"text": "Aucun risque, c'est la meilleure pratique absolue", "is_correct": false},
+                {"text": "Le seul risque est que le token prenne de la place disque", "is_correct": false},
+                {"text": "Le JWT ne peut pas être utilisé avec le localStorage", "is_correct": false}
+            ],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Débugger du code IA qui ne fonctionne pas",
+            "description": "Le code frontend généré par l'IA affiche une page blanche sans message d'erreur. Quelle est votre première action ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Ouvrir la console du navigateur pour lire l'erreur JavaScript exacte et la fournir à l'IA pour correction", "is_correct": true},
+                {"text": "Supprimer le projet entier", "is_correct": false},
+                {"text": "Changer de navigateur sans regarder l'erreur", "is_correct": false},
+                {"text": "Demander à l'IA de tout régénérer sans lui donner l'erreur", "is_correct": false}
+            ],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Migration de base de données",
+            "description": "L'IA propose d'ajouter un champ `phone` au modèle Client. Pourquoi devez-vous exécuter une migration plutôt que modifier directement la table ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "La migration garde l'historique des changements du schéma, peut être versionnée avec Git et rejouée sur tous les environnements (dev, prod)", "is_correct": true},
+                {"text": "Les migrations rendent la base plus jolie", "is_correct": false},
+                {"text": "La modification directe est impossible techniquement", "is_correct": false},
+                {"text": "Les migrations ne servent qu'à sauvegarder les données", "is_correct": false}
+            ],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Trouver un bug logique dans du code IA",
+            "description": "L'IA a généré ce calcul de remise : `prix_final = prix * (1 - remise)` avec remise en pourcentage (ex: 20 pour 20%). Identifiez le bug et corrigez-le.",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "La remise doit être divisée par 100 : prix_final = prix * (1 - remise/100)", "is_correct": true},
+                {"text": "Il n'y a aucun bug dans ce calcul", "is_correct": false},
+                {"text": "Il faut additionner la remise : prix + remise", "is_correct": false},
+                {"text": "Il faut multiplier par 2 pour la TVA", "is_correct": false}
+            ],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Structurer la revue d'une app IA complète",
+            "description": "Vous avez dirigé une IA pour produire une application de réservation (frontend + API + BDD). Avant livraison au client, établissez une checklist de validation : que testez-vous dans chaque couche (interface, API, base de données, sécurité) ?",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Full Stack", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Comprendre le rôle d'une API REST",
+            "description": "Votre frontend React doit afficher la liste des produits. Expliquez le rôle de l'API REST (GET /api/produits/) entre le frontend et la base de données, et pourquoi le frontend ne se connecte pas directement à PostgreSQL.",
+            "level": 1,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Déployer une app générée par IA sur Vercel",
+            "description": "Votre application Next.js générée avec l'aide de l'IA est prête. Quelles étapes minimales devez-vous effectuer pour la déployer sur Vercel ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Connecter le dépôt Git à Vercel, configurer les variables d'environnement, puis déclencher le build et vérifier l'URL générée", "is_correct": true},
+                {"text": "Envoyer les fichiers par email à Vercel", "is_correct": false},
+                {"text": "Il est impossible de déployer du code généré par IA", "is_correct": false},
+                {"text": "Copier les fichiers sur une clé USB et l'envoyer par la poste", "is_correct": false}
+            ],
+            "tags": ["Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Variables d'environnement en production",
+            "description": "Votre application utilise une clé d'API IA. Comment devez-vous gérer cette clé entre le développement local et la production déployée ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "La stocker dans des variables d'environnement (jamais dans le code), différentes entre dev et prod, et ne jamais les versionner dans Git", "is_correct": true},
+                {"text": "L'écrire en dur dans le code avec un commentaire « confidentiel »", "is_correct": false},
+                {"text": "La mettre dans le README du repo public", "is_correct": false},
+                {"text": "La partager dans un message Slack public pour l'équipe", "is_correct": false}
+            ],
+            "tags": ["Déploiement", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Lire une erreur de déploiement",
+            "description": "Le build échoue sur Vercel avec l'erreur « Module not found: Can't resolve './Component' ». Que signifie cette erreur et comment la corriger ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Un import pointe vers un fichier inexistant ou mal nommé : vérifier l'orthographe et la casse du nom de fichier (minuscules/majuscules)", "is_correct": true},
+                {"text": "Vercel est en panne, il faut attendre", "is_correct": false},
+                {"text": "Il faut payer un abonnement Vercel supérieur", "is_correct": false},
+                {"text": "L'erreur vient obligatoirement de la base de données", "is_correct": false}
+            ],
+            "tags": ["Déploiement", "Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Docker : utilité pour la livraison client",
+            "description": "Pourquoi dockeriser une application (même générée par IA) avant de la livrer à un client qui veut l'héberger lui-même ?",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "CI/CD avec assistance IA",
+            "description": "Voulez-vous configurer GitHub Actions pour qu'à chaque push, les tests soient lancés automatiquement. Décrivez le fichier de workflow minimum et demandez à une IA de vous le générer : décrivez le prompt que vous rédigeriez.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Déploiement", "Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Ajouter un chatbot à une app existante",
+            "description": "Votre application de support client veut un assistant IA qui répond aux questions fréquentes. Quelle est la bonne architecture pour un premier déploiement ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Le frontend envoie la question à votre backend, qui appelle l'API LLM avec un prompt système contenant la FAQ, puis retourne la réponse — la clé API reste côté serveur", "is_correct": true},
+                {"text": "Le frontend appelle directement l'API OpenAI avec la clé dans le code JavaScript", "is_correct": false},
+                {"text": "Envoyer toute la base de données clients dans chaque prompt", "is_correct": false},
+                {"text": "Créer un compte OpenAI par utilisateur de votre application", "is_correct": false}
+            ],
+            "tags": ["Intégration IA", "Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Coûts des tokens et optimisation",
+            "description": "Votre fonctionnalité de résumé de documents facture 0,40 € par résumé car vous envoyez le document complet à chaque appel. Quelles optimisations réduisent les coûts ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Découper le document (chunking), mettre en cache les résumés déjà produits et n'envoyer que les sections pertinentes", "is_correct": true},
+                {"text": "Payer sans regarder la facture", "is_correct": false},
+                {"text": "Demander aux utilisateurs de payer OpenAI directement", "is_correct": false},
+                {"text": "Doubler la taille des documents envoyés", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Embeddings et recherche sémantique",
+            "description": "Votre client veut une recherche qui trouve « chaussure de sport » même si le document contient « basket pour courir ». Quelle technique d'IA utiliser ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Les embeddings : convertir les textes en vecteurs et comparer leur proximité sémantique plutôt que de chercher les mots exacts", "is_correct": true},
+                {"text": "Une recherche classique CTRL+F sur les mots exacts", "is_correct": false},
+                {"text": "Un tableur Excel avec des filtres", "is_correct": false},
+                {"text": "Demander à l'IA de deviner sans lui fournir les documents", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Choisir un modèle LLM selon le cas d'usage",
+            "description": "Vous devez classer automatiquement des milliers de tickets support par jour (tâche simple, volume élevé). Quelle stratégie de choix de modèle est la plus rationnelle ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Utiliser un modèle petit et économique pour le volume (ex: modèles « mini/flash ») et réserver les modèles chers aux cas complexes", "is_correct": true},
+                {"text": "Utiliser systématiquement le modèle le plus cher pour toutes les requêtes", "is_correct": false},
+                {"text": "Choisir le modèle dont le nom est le plus connu, sans regarder le coût", "is_correct": false},
+                {"text": "Entraîner son propre modèle depuis zéro", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Latence des appels IA dans l'UX",
+            "description": "La génération IA prend 20 secondes et vos utilisateurs quittent la page. Quelles améliorations UX/techniques appliquez-vous ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Afficher un indicateur de progression, streamer la réponse (affichage progressif) et pré-calculer ce qui peut l'être en arrière-plan", "is_correct": true},
+                {"text": "Cacher le bouton d'action pour éviter que les utilisateurs cliquent", "is_correct": false},
+                {"text": "Supprimer la fonctionnalité IA", "is_correct": false},
+                {"text": "Bloquer l'interface pendant 20 secondes sans message", "is_correct": false}
+            ],
+            "tags": ["Intégration IA"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Concevoir une fonctionnalité de résumé automatique",
+            "description": "Pour votre application de gestion de réunion, concevez une fonctionnalité qui envoie automatiquement un compte rendu rédigé par IA après chaque réunion (enregistrement audio ou notes brutes). Décrivez : le parcours utilisateur, les appels IA à faire (transcription puis résumé), les coûts estimés à surveiller, et les erreurs possibles à gérer.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Intégration IA", "Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Hallucinations dans le code généré",
+            "description": "L'IA génère du code qui importe la bibliothèque `django-super-validator` qui n'existe pas sur PyPI. Comment s'appelle ce phénomène et comment le détecter systématiquement ?",
+            "level": 1,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "C'est une hallucination de dépendance : toujours vérifier que les bibliothèques importées existent (pip install / npm install réel) avant de tester le code", "is_correct": true},
+                {"text": "C'est un bug de votre ordinateur", "is_correct": false},
+                {"text": "C'est normal, l'IA connaît des bibliothèques secrètes", "is_correct": false},
+                {"text": "Il suffit de renommer l'import", "is_correct": false}
+            ],
+            "tags": ["Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Faille d'injection SQL dans du code IA",
+            "description": "L'IA a généré cette requête : `query = f\"SELECT * FROM users WHERE email = '{email}'\"`. Quel est le danger ?",
+            "level": 3,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Injection SQL : l'entrée utilisateur peut modifier la requête. Il faut utiliser les requêtes paramétrées ou l'ORM", "is_correct": true},
+                {"text": "Aucun danger, f-string est sécurisé", "is_correct": false},
+                {"text": "Le seul risque est que la requête soit lente", "is_correct": false},
+                {"text": "C'est la meilleure pratique recommandée", "is_correct": false}
+            ],
+            "tags": ["Bonnes Pratiques", "Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Secret commité par erreur",
+            "description": "En générant du code, l'IA a inclus votre vraie clé API OpenAI dans un fichier qui vient d'être poussé sur GitHub public. Quelle est la procédure correcte ?",
+            "level": 2,
+            "question_type": "MCQ",
+            "choices": [
+                {"text": "Révoquer immédiatement la clé sur la console du fournisseur, en générer une nouvelle, la mettre en variable d'environnement — supprimer le fichier ne suffit pas (l'historique Git la garde)", "is_correct": true},
+                {"text": "Supprimer le fichier et re-pousser : c'est suffisant", "is_correct": false},
+                {"text": "Mettre le dépôt en privé : plus de problème", "is_correct": false},
+                {"text": "Attendre que quelqu'un la remarque avant d'agir", "is_correct": false}
+            ],
+            "tags": ["Bonnes Pratiques", "Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Licences du code généré par IA",
+            "description": "Un client vous demande si le code généré par IA peut être livré commercialement. Quels points devez-vous vérifier ?",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Bonnes Pratiques"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Stratégie complète de projet piloté par IA",
+            "description": "Un commerçant veut une boutique en ligne simple (catalogue, panier, paiement) livrée en une semaine. Décrivez votre plan de travail complet en vous appuyant sur l'IA : choix des outils à chaque étape (design, frontend, backend, paiement, déploiement), découpage des prompts, et points de contrôle humain indispensables. Une bonne réponse montre la capacité à orchestrer l'IA de bout en bout sans perdre la maîtrise de la qualité.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Prompt Engineering", "Outils IA", "Full Stack", "Déploiement"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Corriger un prompt qui produit du code incohérent",
+            "description": "Voici un prompt inefficace : « Fais-moi un site ». Réécrivez ce prompt pour obtenir une landing page HTML/CSS responsive présentant un restaurant, avec les sections : menu, horaires, formulaire de réservation. Expliquez ce que vous ajoutez et pourquoi.",
+            "level": 1,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "IA vs SaaS et outils no-code",
+            "description": "Pour un besoin client simple (formulaire + stockage des réponses + notification email), quand recommander une plateforme comme Airtable/Make plutôt qu'une application générée par IA ? Citez deux critères décisifs.",
+            "level": 2,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Outils IA", "Full Stack"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Automatiser un rapport hebdomadaire avec IA",
+            "description": "Un client veut recevoir chaque lundi un email résumant ses ventes de la semaine, rédigé dans un style professionnel. Décrivez l'automatisation complète : source de données, planification (cron/n8n/Make), appel IA pour la rédaction, et envoi. Indiquez un exemple de prompt pour l'étape de rédaction.",
+            "level": 3,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Intégration IA", "Prompt Engineering"],
+            "question_category": "NORMAL"
+        },
+        {
+            "title": "Tester le code généré sans être développeur senior",
+            "description": "Sans être expert, quelles 3 vérifications simples pouvez-vous faire sur une page web générée par IA avant de la montrer au client ?",
+            "level": 1,
+            "question_type": "OA",
+            "choices": [],
+            "tags": ["Bonnes Pratiques", "Full Stack"],
+            "question_category": "NORMAL"
+        }
+    ]
+}
