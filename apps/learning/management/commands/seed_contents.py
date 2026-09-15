@@ -39,6 +39,13 @@ class Command(BaseCommand):
 
         self.stdout.write(f'Trouvé {modules.count()} modules à traiter.')
 
+        # Pré-calcul : identifier le dernier module de chaque cours (quiz final)
+        final_module_ids = set()
+        for course_id in modules.values_list('course_id', flat=True).distinct():
+            last_module = Module.objects.filter(course_id=course_id).order_by('order', 'id').last()
+            if last_module:
+                final_module_ids.add(last_module.id)
+
         created_contents = 0
         created_quizzes = 0
         created_questions = 0
@@ -171,13 +178,19 @@ class Command(BaseCommand):
                     if has_quiz and force:
                         module.quiz.delete()
 
+                    # Dernier module du cours = quiz final (1 tentative)
+                    # Autres modules = quiz de pratique (illimité)
+                    is_final = module.id in final_module_ids
                     quiz = Quiz.objects.create(
                         module=module,
                         title=quiz_data['title'],
                         description=quiz_data.get('description', ''),
+                        quiz_type=Quiz.QuizType.FINAL if is_final else Quiz.QuizType.PRACTICE,
+                        max_attempts=1 if is_final else 0,
                     )
                     created_quizzes += 1
-                    self.stdout.write(f'  + Quiz créé : {quiz_data["title"]}')
+                    quiz_label = 'FINAL' if is_final else 'pratique'
+                    self.stdout.write(f'  + Quiz créé ({quiz_label}) : {quiz_data["title"]}')
 
                     for q_data in quiz_data.get('questions', []):
                         question = QuizQuestion.objects.create(

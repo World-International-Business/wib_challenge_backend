@@ -203,13 +203,19 @@ class Content(LearningModel):
 
 
 class Quiz(LearningModel):
+    class QuizType(models.TextChoices):
+        PRACTICE = 'practice', _('Pratique')
+        FINAL = 'final', _('Final')
+
     module = models.OneToOneField(Module, null=True, on_delete=models.CASCADE, related_name='quiz',
                                   verbose_name=_('Module'))
     title = models.CharField(_('Titre'), max_length=255)
     description = models.TextField(_('Description'), blank=True)
+    quiz_type = models.CharField(_('Type de quiz'), max_length=10, choices=QuizType.choices,
+                                 default=QuizType.PRACTICE)
     passing_score = models.PositiveIntegerField(_('Score de passage (%)'), default=70)
     time_limit_minutes = models.PositiveIntegerField(_('Limite de temps (minutes)'), null=True, blank=True)
-    max_attempts = models.PositiveIntegerField(_('Nombre maximum de tentatives'), default=3)
+    max_attempts = models.PositiveIntegerField(_('Nombre maximum de tentatives'), default=0)
     is_active = models.BooleanField(_('Actif'), default=True)
     randomize_questions = models.BooleanField(_('Questions aléatoires'), default=False)
 

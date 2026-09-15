@@ -150,7 +150,7 @@ class QuizSerializer(WritableNestedModelSerializer):
     class Meta:
         model = Quiz
         fields = [
-            'id', 'module', 'title', 'description', 'passing_score',
+            'id', 'module', 'title', 'description', 'quiz_type', 'passing_score',
             'time_limit_minutes', 'max_attempts', 'randomize_questions',
             'is_active', 'questions', 'question_count'
         ]
@@ -178,7 +178,7 @@ class QuizPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
         fields = [
-            'id', 'module', 'title', 'description', 'passing_score',
+            'id', 'module', 'title', 'description', 'quiz_type', 'passing_score',
             'time_limit_minutes', 'max_attempts', 'randomize_questions',
             'is_active', 'questions', 'question_count',
             'is_attempted', 'is_passed', 'best_score', 'attempts_count'
@@ -273,7 +273,7 @@ class QuizListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiz
         fields = [
-            'id', 'module', 'title', 'description', 'passing_score',
+            'id', 'module', 'title', 'description', 'quiz_type', 'passing_score',
             'time_limit_minutes', 'max_attempts', 'question_count',
             'is_attempted', 'is_passed', 'best_score', 'attempts_count'
         ]

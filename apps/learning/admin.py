@@ -789,17 +789,21 @@ class QuizQuestionInline(admin.TabularInline):
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):
     list_display = [
-        'title', 'module_link', 'questions_count', 'attempts_count',
+        'title', 'module_link', 'quiz_type_badge', 'questions_count', 'attempts_count',
         'average_score', 'success_rate'
     ]
-    list_filter = ['module__course', 'module']
+    list_filter = ['quiz_type', 'module__course', 'module']
     search_fields = ['title', 'description', 'module__title']
     readonly_fields = ['questions_count', 'attempts_count', 'average_score', 'success_rate', 'quiz_analytics']
     inlines = [QuizQuestionInline]
 
     fieldsets = [
         (_('Informations générales'), {
-            'fields': ['module', 'title', 'description']
+            'fields': ['module', 'title', 'description', 'quiz_type']
+        }),
+        (_('Configuration'), {
+            'fields': ['passing_score', 'time_limit_minutes', 'max_attempts',
+                       'randomize_questions', 'is_active']
         }),
         (_('Statistiques'), {
             'fields': ['questions_count', 'attempts_count', 'average_score', 'success_rate'],
@@ -810,6 +814,18 @@ class QuizAdmin(admin.ModelAdmin):
             'classes': ['collapse']
         })
     ]
+
+    @admin.display(description=_('Type'), ordering='quiz_type')
+    def quiz_type_badge(self, obj):
+        if obj.quiz_type == Quiz.QuizType.FINAL:
+            return format_html(
+                '<span style="background: #fee2e2; color: #991b1b; '
+                'padding: 2px 8px; border-radius: 4px; font-weight: bold;">Final</span>'
+            )
+        return format_html(
+            '<span style="background: #dbeafe; color: #1e40af; '
+            'padding: 2px 8px; border-radius: 4px;">Pratique</span>'
+        )
 
     @admin.display(description=_('Module'), ordering='module__title')
     def module_link(self, obj):
