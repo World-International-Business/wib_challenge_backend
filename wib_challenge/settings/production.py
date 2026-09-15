@@ -32,8 +32,10 @@ USE_X_FORWARDED_HOST = True
 
 SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'] = timedelta(hours=6)
 SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'] = timedelta(days=30)
-SIMPLE_JWT['ROTATE_REFRESH_TOKENS'] = True
-SIMPLE_JWT['BLACKLIST_AFTER_ROTATION'] = True
+# Rotation désactivée : évite les déconnexions quand le frontend
+# fait deux appels refresh simultanés avec le même token
+SIMPLE_JWT['ROTATE_REFRESH_TOKENS'] = False
+SIMPLE_JWT['BLACKLIST_AFTER_ROTATION'] = False
 
 # Détection de l'environnement Dokploy/Traefik
 IS_TRAEFIK = config('TRAEFIK_ENABLED', default='traefik.me' in ''.join(ALLOWED_HOSTS), cast=bool)

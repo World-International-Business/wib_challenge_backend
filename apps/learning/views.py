@@ -690,21 +690,9 @@ class QuizViewSet(viewsets.ModelViewSet):
     ordering = ['title']
 
     def get_queryset(self):
-        queryset = super().get_queryset().filter(is_active=True, module__course__is_active=True)
-        if getattr(self, 'swagger_fake_view', False) or not self.request.user.is_authenticated:
-            return queryset
-        if self.request.user.is_staff:
-            return queryset
-        # retrieve, start, submit : accessibles à tout utilisateur authentifié
-        # (l'inscription est vérifiée explicitement dans les actions de progression
-        #  avec un message clair, plutôt que via un filtre queryset qui produit 404)
-        if self.action in ('retrieve', 'start', 'submit'):
-            return queryset
-        # list et autres actions : restreint aux cours où l'utilisateur est inscrit
-        return queryset.filter(
-            module__course__enrollments__user=self.request.user,
-            module__course__enrollments__status=CourseEnrollment.Status.ACTIVE,
-        ).distinct()
+        # Tous les utilisateurs authentifiés voient tous les quiz actifs
+        # (le filtrage par inscription est géré explicitement dans start/submit)
+        return super().get_queryset().filter(is_active=True, module__course__is_active=True)
 
     def get_object_or_404_message(self, queryset, **kwargs):
         """get_object avec message d'erreur clair en français."""
@@ -1236,15 +1224,22 @@ class CertificateViewSet(viewsets.ReadOnlyModelViewSet):
         description="Page publique de vérification par code",
         tags=["Certificats"],
     )
-    @action(detail=False, methods=['get'], url_path=r'verify/(?P<verification_code>[^/.]+)')
+    @action(detail=False, methods=['get'], url_path=r'verify/(?P<verification_code>[^/.]+)',
+            permission_classes=[permissions.AllowAny])
     def verify(self, request, verification_code=None):
-        certificate = get_object_or_404(Certificate, verification_code=verification_code)
+        certificate = Certificate.objects.filter(verification_code=verification_code).first()
+        if not certificate:
+            return Response({
+                'valid': False,
+                'detail': 'Code de vérification introuvable.'
+            }, status=status.HTTP_404_NOT_FOUND)
         if certificate.status == Certificate.Status.REVOKED:
             return Response({
                 'valid': False,
                 'status': 'revoked',
                 'certificate_number': certificate.certificate_number,
                 'revoked_at': certificate.revoked_at,
+                'revoked_reason': certificate.revoked_reason,
             })
         if certificate.status != Certificate.Status.ISSUED:
             return Response({'valid': False, 'status': certificate.status}, status=status.HTTP_404_NOT_FOUND)
