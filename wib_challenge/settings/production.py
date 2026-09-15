@@ -12,6 +12,18 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600, conn_health_chec
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
+# Derrière Traefik/Dokploy : le proxy termine le HTTPS et transmet
+# X-Forwarded-Proto. Sans cela, request.is_secure() vaut False et la
+# vérification CSRF rejette les POST venant de https://... (erreur 403).
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Origines autorisées pour les requêtes POST (formulaires, admin...).
+# Priorité à la variable d'env ; sinon dérivé d'ALLOWED_HOSTS en https.
+_csrf_origins = os.getenv('CSRF_TRUSTED_ORIGINS', '')
+CSRF_TRUSTED_ORIGINS = [o.strip() for o in _csrf_origins.split(',') if o.strip()] or [
+    f'https://{host}' for host in ALLOWED_HOSTS if host not in ('*', '')
+]
+
 SECURE_HSTS_SECONDS = 0
 
 SECURE_SSL_REDIRECT = False
