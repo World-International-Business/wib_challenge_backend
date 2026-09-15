@@ -33,6 +33,32 @@ class Command(BaseCommand):
         file = uuid4().hex + ext
         return file, response.read()
 
+    @staticmethod
+    def _generate_tech_svg(technology, name):
+        """Génère un SVG de fallback avec les initiales de la technologie."""
+        import hashlib
+        # Couleur basée sur le hash du nom
+        hash_int = int(hashlib.md5(name.encode()).hexdigest()[:6], 16)
+        hue = hash_int % 360
+        color1 = f'hsl({hue}, 60%, 45%)'
+        color2 = f'hsl({(hue + 30) % 360}, 70%, 35%)'
+        # Initiales (max 2 caractères)
+        initials = ''.join([w[0] for w in name.split()[:2]]).upper() if name else '?'
+        svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:{color1}" />
+      <stop offset="100%" style="stop-color:{color2}" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="20" fill="url(#g)"/>
+  <text x="100" y="115" font-family="Arial, sans-serif" font-size="60" font-weight="bold"
+        fill="white" text-anchor="middle">{initials}</text>
+</svg>'''
+        filename = f'{name.lower().replace(" ", "-").replace("/", "-")[:40]}.svg'
+        technology.image.save(filename, ContentFile(svg.encode('utf-8')), save=False)
+        technology.save()
+
     @transaction.atomic
     def handle(self, *args, **options):
         data_dir = Path(options['data_dir']).resolve()
@@ -79,7 +105,17 @@ class Command(BaseCommand):
                         except Exception as e:
                             self.stdout.write(self.style.WARNING(
                                 f'Failed to download image for {tech["name"]}: {e}'))
+                            # Fallback : générer un SVG avec les initiales
+                            self._generate_tech_svg(technology, tech['name'])
+                    else:
+                        # Pas d'URL -> SVG de fallback
+                        self._generate_tech_svg(technology, tech['name'])
                 elif force:
+                    # Vérifier si l'image existe en base mais le fichier est manquant
+                    if technology.image and not technology.image.storage.exists(technology.image.name):
+                        self.stdout.write(self.style.WARNING(
+                            f'{tech["name"]} image file missing, regenerating...'))
+                        technology.image = None
                     if not technology.image and tech.get('url'):
                         try:
                             file, content = self.download_image(tech['url'])
@@ -89,6 +125,11 @@ class Command(BaseCommand):
                         except Exception as e:
                             self.stdout.write(self.style.WARNING(
                                 f'Failed to download image for {tech["name"]}: {e}'))
+                            # Fallback : générer un SVG avec les initiales
+                            self._generate_tech_svg(technology, tech['name'])
+                    elif not technology.image:
+                        # Pas d'URL mais pas d'image non plus -> SVG de fallback
+                        self._generate_tech_svg(technology, tech['name'])
                     else:
                         self.stdout.write(self.style.WARNING(
                             f'{tech["name"]} already exists'))
