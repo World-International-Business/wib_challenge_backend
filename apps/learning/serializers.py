@@ -573,11 +573,12 @@ class CourseListSerializer(serializers.ModelSerializer):
     total_content_count = serializers.SerializerMethodField()
     total_quiz_count = serializers.SerializerMethodField()
     skills = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+    skills_images = serializers.SerializerMethodField()
     picture_cover = serializers.SerializerMethodField()
 
     class Meta:
         model = Course
-        fields = ['id', 'title', 'description', 'level', 'is_free', 'picture_cover', 'price', 'estimated_duration', 'language', 'module_count', 'total_content_count', 'skills',
+        fields = ['id', 'title', 'description', 'level', 'is_free', 'picture_cover', 'price', 'estimated_duration', 'language', 'module_count', 'total_content_count', 'skills', 'skills_images',
                   'total_quiz_count']
         read_only_fields = ['id']
 
@@ -588,6 +589,18 @@ class CourseListSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.picture_cover.url)
             return obj.picture_cover.url
         return DEFAULT_COURSE_COVER
+
+    def get_skills_images(self, obj: Course) -> list:
+        """Retourne les URLs des images des technologies associées au cours."""
+        request = self.context.get('request')
+        images = []
+        for skill in obj.skills.all():
+            if skill.image:
+                if request:
+                    images.append(request.build_absolute_uri(skill.image.url))
+                else:
+                    images.append(skill.image.url)
+        return images
 
     def get_module_count(self, obj: Course) -> int:
         return obj.modules.filter(is_active=True).count()

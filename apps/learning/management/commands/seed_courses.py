@@ -1,11 +1,90 @@
 import json
+import hashlib
 from pathlib import Path
 
+from django.core.files.base import ContentFile
 from django.core.management import BaseCommand
 from django.db import transaction
 
 from apps.core.models import Technology
 from apps.learning.models import Course, Module, Content, Quiz, QuizQuestion, QuizChoice
+
+
+# Couleurs par technologie (nom en minuscule -> gradient)
+TECH_GRADIENTS = {
+    'python': ('#3776ab', '#ffd43b'),
+    'cybersécurité': ('#1a1a2e', '#e94560'),
+    'cybersecurite': ('#1a1a2e', '#e94560'),
+    'data science': ('#764ba2', '#667eea'),
+    'machine learning': ('#764ba2', '#667eea'),
+    'intelligence artificielle': ('#764ba2', '#667eea'),
+    'react': ('#61dafb', '#282c34'),
+    'node.js': ('#68a063', '#3c873a'),
+    'nodejs': ('#68a063', '#3c873a'),
+    'docker': ('#2496ed', '#0db7ed'),
+    'kubernetes': ('#326ce5', '#1e42a3'),
+    'aws': ('#ff9900', '#232f3e'),
+    'azure': ('#0078d4', '#00bcf2'),
+    'scrum': ('#1a73e8', '#4285f4'),
+    'agile': ('#1a73e8', '#4285f4'),
+    'git': ('#f05032', '#e94e31'),
+    'html': ('#e34c26', '#f06529'),
+    'css': ('#264de4', '#2965f1'),
+    'javascript': ('#f7df1e', '#323330'),
+    'sql': ('#336791', '#4479a1'),
+    'linux': ('#fcc624', '#000000'),
+}
+
+DEFAULT_GRADIENT = ('#0f4c81', '#1a5fa3')
+
+
+def _gradient_for_course(course_title, skills):
+    """Retourne un gradient (couleur1, couleur2) basé sur le titre ou les skills."""
+    title_lower = course_title.lower()
+    for skill in skills:
+        skill_lower = skill.lower()
+        for key, grad in TECH_GRADIENTS.items():
+            if key in skill_lower or key in title_lower:
+                return grad
+    for key, grad in TECH_GRADIENTS.items():
+        if key in title_lower:
+            return grad
+    return DEFAULT_GRADIENT
+
+
+def _generate_course_svg(course_title, skills):
+    """Génère un SVG de couverture pour un cours."""
+    color1, color2 = _gradient_for_course(course_title, skills)
+    # Hash pour un pattern unique par cours
+    hash_hex = hashlib.md5(course_title.encode()).hexdigest()[:8]
+
+    # Tronquer le titre pour l'affichage
+    display_title = course_title if len(course_title) <= 30 else course_title[:27] + '...'
+
+    # Technologies (skills) à afficher
+    skills_text = ' • '.join(skills[:3]) if skills else 'Formation'
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="bg-{hash_hex}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:{color1};stop-opacity:1" />
+      <stop offset="100%" style="stop-color:{color2};stop-opacity:1" />
+    </linearGradient>
+    <pattern id="dots-{hash_hex}" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.5" fill="white" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="400" fill="url(#bg-{hash_hex})"/>
+  <rect width="600" height="400" fill="url(#dots-{hash_hex})"/>
+  <rect x="0" y="280" width="600" height="120" fill="black" opacity="0.25"/>
+  <text x="300" y="180" font-family="Arial, sans-serif" font-size="26" font-weight="bold"
+        fill="white" text-anchor="middle" opacity="0.95">{display_title}</text>
+  <text x="300" y="220" font-family="Arial, sans-serif" font-size="16"
+        fill="white" text-anchor="middle" opacity="0.7">{skills_text}</text>
+  <text x="300" y="340" font-family="Arial, sans-serif" font-size="14" font-weight="bold"
+        fill="white" text-anchor="middle" opacity="0.6">WIB Challenge</text>
+</svg>'''
+    return svg
 
 
 class Command(BaseCommand):
@@ -84,6 +163,7 @@ class Command(BaseCommand):
 
     def create_or_update_course(self, data, existing_course=None, force=False):
         """Create or update a course"""
+        skills = data.get('skills', [])
         course_data = {
             'title': data.get('title'),
             'description': data.get('description', ''),
@@ -95,12 +175,34 @@ class Command(BaseCommand):
             existing_course.modules.all().delete()
             for field, value in course_data.items():
                 setattr(existing_course, field, value)
+            # Générer une couverture SVG si pas déjà présente
+            if not existing_course.picture_cover:
+                self._assign_cover_svg(existing_course, data.get('title', ''), skills)
             existing_course.save()
             return existing_course
         elif not existing_course:
-            return Course.objects.create(**course_data)
+            course = Course.objects.create(**course_data)
+            self._assign_cover_svg(course, data.get('title', ''), skills)
+            course.save()
+            return course
 
         return existing_course
+
+    def _assign_cover_svg(self, course, title, skills):
+        """Génère et assigne une couverture SVG pour le cours."""
+        try:
+            svg_content = _generate_course_svg(title, skills)
+            filename = f'{title.lower().replace(" ", "-").replace("/", "-")[:50]}.svg'
+            course.picture_cover.save(
+                filename,
+                ContentFile(svg_content.encode('utf-8')),
+                save=False
+            )
+            self.stdout.write(f'\tGenerated cover image: {filename}')
+        except Exception as e:
+            self.stdout.write(
+                self.style.WARNING(f'Failed to generate cover for "{title}": {e}')
+            )
 
     def process_modules(self, course, modules_data, force=False):
         """Process modules for a course"""
