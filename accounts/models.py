@@ -35,6 +35,7 @@ class User(AbstractUser):
     experience_level = models.IntegerField('Expérience', choices=ExperienceLevel.choices,
                                            default=ExperienceLevel.BEGINNER)
     experience = models.IntegerField('Années d\'expérience', default=0)
+    email_verified = models.BooleanField('Email vérifié', default=True)
     skills = models.ManyToManyField('questions.Tag', related_name='users', blank=True, verbose_name="Compétences",
                                     through='UserSkill')
 

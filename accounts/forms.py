@@ -38,6 +38,15 @@ class UserRegisterForm(UserCreationForm):
             field.widget.attrs.update({'class': 'form-control'})
 
 
+class EmailVerificationForm(forms.Form):
+    code = forms.CharField(
+        label='Code de vérification',
+        min_length=6,
+        max_length=6,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'inputmode': 'numeric'}),
+    )
+
+
 # Formulaire de mise à jour du profil
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(required=True, label="Adresse Email")

@@ -1,4 +1,9 @@
 from django.contrib import admin
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import send_mail
+from django.urls import reverse
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from django.utils.html import format_html
 
 from accounts.models import User, UserSkill
@@ -82,6 +87,30 @@ class UserAdmin(admin.ModelAdmin):
         }),
     )
     inlines = [UserSkillInline]
+    actions = ['send_candidate_invitations']
+
+    @admin.action(description='Envoyer une invitation aux candidats sélectionnés')
+    def send_candidate_invitations(self, request, queryset):
+        sent = 0
+        for user in queryset.filter(is_staff=False, is_superuser=False, is_active=True):
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+            token = default_token_generator.make_token(user)
+            reset_path = reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
+            reset_url = request.build_absolute_uri(reset_path)
+            site_url = request.build_absolute_uri(reverse('home'))
+            send_mail(
+                'Invitation à WIB Challenge',
+                (
+                    f'Bonjour {user.first_name},\n\n'
+                    f'Vous êtes invité(e) à passer votre évaluation : {site_url}\n\n'
+                    f'Créez ou définissez votre mot de passe ici : {reset_url}\n'
+                ),
+                None,
+                [user.email],
+                fail_silently=False,
+            )
+            sent += 1
+        self.message_user(request, f'{sent} invitation(s) envoyée(s).')
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('skills_infos__skill', 'domain', 'challenges')

@@ -19,7 +19,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path
 
-from accounts.views import (login_view, register_view, logout_view, update_profile,
+from accounts.views import (login_view, register_view, verify_email_view, logout_view, update_profile,
                            WIBPasswordResetView, WIBPasswordResetDoneView,
                            WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
 from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
@@ -62,6 +62,7 @@ urlpatterns = [
     path('submit_evaluation/', submit_evaluation_view, name='submit_evaluation'),
     path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
+     path('register/verify/', verify_email_view, name='verify_email'),
     path('logout/', logout_view, name='logout'),
     path('profile/update/', update_profile, name='update_profile'),
     path('add-questions/', json_input,
