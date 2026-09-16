@@ -9,6 +9,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Create default challenge settings
         from challenges.models import Settings
-        Settings.objects.create(default_challenge_duration=timedelta(hours=1))
+        Settings.objects.get_or_create(
+            defaults={'default_challenge_duration': timedelta(hours=1)},
+        )
 
         self.stdout.write(self.style.SUCCESS('Default settings created'))

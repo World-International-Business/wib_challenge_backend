@@ -1,0 +1,1839 @@
+{
+  "domain": "Marketing Digital & Vente en ligne",
+  "category": "Technique Marketing",
+  "criteria": "Marketing Digital",
+  "question_category": "NORMAL",
+  "tags": [
+    "SEO",
+    "SEA",
+    "Email Marketing",
+    "Réseaux sociaux",
+    "Analytics",
+    "CRM",
+    "E-commerce",
+    "Growth",
+    "Data"
+  ],
+  "questions": [
+    {
+      "title": "Définition du SEO",
+      "description": "Que signifie l'acronyme **SEO** et à quoi sert-il concrètement pour un site web ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Search Engine Optimization : optimiser un site pour qu'il apparaisse plus haut dans les résultats de recherche organiques",
+          "is_correct": true
+        },
+        {
+          "text": "Social Engagement Optimization : augmenter les likes sur les réseaux sociaux",
+          "is_correct": false
+        },
+        {
+          "text": "Site Email Outreach : envoyer des emails automatisés à des prospects",
+          "is_correct": false
+        },
+        {
+          "text": "Sales Efficiency Operations : améliorer le taux de conversion des ventes",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Rôle de la balise title",
+      "description": "Une page produit a une balise `<title>` vide. Quel est le principal impact SEO de cette absence ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Les moteurs de recherche affichent un titre par défaut souvent peu pertinent, ce qui réduit le taux de clic (CTR) dans les résultats",
+          "is_correct": true
+        },
+        {
+          "text": "Le site est automatiquement pénalisé et désindexé sous 24h",
+          "is_correct": false
+        },
+        {
+          "text": "Aucun impact, la balise title est purement décorative",
+          "is_correct": false
+        },
+        {
+          "text": "Le site charge plus lentement",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Recherche de mots-clés",
+      "description": "Avant de rédiger un article de blog, quel est l'intérêt principal de faire une recherche de mots-clés ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Identifier les termes que les internautes tapent réellement pour aligner le contenu sur leur intention de recherche",
+          "is_correct": true
+        },
+        {
+          "text": "Remplir la page du plus de mots possible pour paraître plus complète",
+          "is_correct": false
+        },
+        {
+          "text": "Choisir le mot-clé le plus court possible pour aller plus vite",
+          "is_correct": false
+        },
+        {
+          "text": "Copier les mots-clés utilisés par n'importe quel site concurrent sans analyse",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO",
+        "Mots-clés"
+      ]
+    },
+    {
+      "title": "Backlink",
+      "description": "Qu'est-ce qu'un backlink en SEO ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Un lien externe pointant depuis un autre site web vers le site en question",
+          "is_correct": true
+        },
+        {
+          "text": "Un lien interne entre deux pages du même site",
+          "is_correct": false
+        },
+        {
+          "text": "Un lien mort qui renvoie une erreur 404",
+          "is_correct": false
+        },
+        {
+          "text": "Un lien publicitaire payant affiché en haut des résultats de recherche",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Sitemap.xml",
+      "description": "À quoi sert le fichier `sitemap.xml` sur un site web ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "À indiquer aux moteurs de recherche la liste des pages du site à explorer et indexer",
+          "is_correct": true
+        },
+        {
+          "text": "À bloquer l'accès de certains robots au site",
+          "is_correct": false
+        },
+        {
+          "text": "À afficher un plan du site pour les visiteurs humains",
+          "is_correct": false
+        },
+        {
+          "text": "À stocker les mots de passe des utilisateurs",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO",
+        "Technique"
+      ]
+    },
+    {
+      "title": "Robots.txt",
+      "description": "Un client te demande d'empêcher Google d'explorer son dossier `/admin/`. Quel fichier dois-tu utiliser ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "robots.txt",
+          "is_correct": true
+        },
+        {
+          "text": "sitemap.xml",
+          "is_correct": false
+        },
+        {
+          "text": ".htaccess uniquement, aucune autre solution n'existe",
+          "is_correct": false
+        },
+        {
+          "text": "Le fichier package.json",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO",
+        "Technique"
+      ]
+    },
+    {
+      "title": "Taux d'engagement",
+      "description": "Comment calcule-t-on le taux d'engagement d'une publication sur un réseau social ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "(Likes + commentaires + partages) / nombre d'abonnés ou d'impressions, x100",
+          "is_correct": true
+        },
+        {
+          "text": "Nombre de vues uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Nombre d'abonnés du compte",
+          "is_correct": false
+        },
+        {
+          "text": "Budget publicitaire dépensé sur la publication",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Réseaux sociaux"
+      ]
+    },
+    {
+      "title": "Choix de la plateforme sociale",
+      "description": "Une marque B2B qui vend un logiciel de comptabilité pour PME veut prioriser un seul réseau social. Lequel est généralement le plus pertinent ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "LinkedIn, car il concentre une audience professionnelle et décisionnaire",
+          "is_correct": true
+        },
+        {
+          "text": "TikTok, car il a le plus d'utilisateurs actifs au monde",
+          "is_correct": false
+        },
+        {
+          "text": "Pinterest, car il est spécialisé dans le shopping visuel",
+          "is_correct": false
+        },
+        {
+          "text": "Snapchat, car il cible les moins de 18 ans",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Réseaux sociaux"
+      ]
+    },
+    {
+      "title": "Call-to-action",
+      "description": "Qu'est-ce qu'un call-to-action (CTA) efficace dans une publication ou un email ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une invitation claire et actionnable qui indique précisément à l'utilisateur quoi faire ensuite (ex : « Achetez maintenant »)",
+          "is_correct": true
+        },
+        {
+          "text": "Un simple lien vers la page d'accueil du site",
+          "is_correct": false
+        },
+        {
+          "text": "Une image décorative sans texte",
+          "is_correct": false
+        },
+        {
+          "text": "Un long paragraphe expliquant l'historique de l'entreprise",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Réseaux sociaux",
+        "Copywriting"
+      ]
+    },
+    {
+      "title": "Taux d'ouverture email",
+      "description": "Le taux d'ouverture d'une campagne email mesure quoi exactement ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Le pourcentage de destinataires ayant ouvert l'email parmi ceux qui l'ont reçu",
+          "is_correct": true
+        },
+        {
+          "text": "Le pourcentage de destinataires ayant cliqué sur un lien dans l'email",
+          "is_correct": false
+        },
+        {
+          "text": "Le nombre total d'emails envoyés",
+          "is_correct": false
+        },
+        {
+          "text": "Le pourcentage de destinataires s'étant désabonnés",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing"
+      ]
+    },
+    {
+      "title": "Lien de désabonnement",
+      "description": "Pourquoi est-il obligatoire d'inclure un lien de désabonnement dans une newsletter commerciale ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "C'est une obligation légale (ex : RGPD) et cela protège la réputation d'expéditeur en évitant les signalements spam",
+          "is_correct": true
+        },
+        {
+          "text": "Cela n'a aucune utilité, c'est juste une convention esthétique",
+          "is_correct": false
+        },
+        {
+          "text": "Cela augmente automatiquement le taux d'ouverture",
+          "is_correct": false
+        },
+        {
+          "text": "C'est uniquement utile pour les emails envoyés en Europe et nulle part ailleurs",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing"
+      ]
+    },
+    {
+      "title": "Sessions GA4",
+      "description": "Dans Google Analytics 4, que représente une « session » ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une période d'interaction active d'un utilisateur avec le site, regroupant plusieurs pages vues et événements",
+          "is_correct": true
+        },
+        {
+          "text": "Le nombre total de visiteurs uniques sur toute la durée de vie du site",
+          "is_correct": false
+        },
+        {
+          "text": "Le nombre de clics sur une publicité",
+          "is_correct": false
+        },
+        {
+          "text": "Le nombre d'emails envoyés durant une campagne",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Analytics",
+        "GA4"
+      ]
+    },
+    {
+      "title": "Taux de rebond",
+      "description": "Un taux de rebond élevé sur une page d'atterrissage signifie généralement quoi ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une grande proportion de visiteurs quittent le site après avoir vu une seule page, sans interagir davantage",
+          "is_correct": true
+        },
+        {
+          "text": "Le site reçoit énormément de trafic payant",
+          "is_correct": false
+        },
+        {
+          "text": "La page se charge très rapidement",
+          "is_correct": false
+        },
+        {
+          "text": "Les visiteurs achètent immédiatement le produit",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Analytics"
+      ]
+    },
+    {
+      "title": "Paramètres UTM",
+      "description": "À quoi servent les paramètres UTM ajoutés à une URL partagée sur Facebook ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "À suivre précisément dans les outils analytics la source, le support et la campagne à l'origine du trafic",
+          "is_correct": true
+        },
+        {
+          "text": "À raccourcir l'URL pour qu'elle tienne dans un post",
+          "is_correct": false
+        },
+        {
+          "text": "À rediriger automatiquement vers une autre page",
+          "is_correct": false
+        },
+        {
+          "text": "À chiffrer l'URL pour la sécuriser",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Analytics",
+        "Tracking"
+      ]
+    },
+    {
+      "title": "Taux de conversion",
+      "description": "Comment se calcule le taux de conversion d'une boutique en ligne ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "(Nombre de commandes / nombre total de visiteurs) x 100",
+          "is_correct": true
+        },
+        {
+          "text": "(Chiffre d'affaires / nombre de produits en stock) x 100",
+          "is_correct": false
+        },
+        {
+          "text": "Nombre de visiteurs uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "(Panier moyen / nombre de commandes)",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "E-commerce",
+        "Analytics"
+      ]
+    },
+    {
+      "title": "Texte alternatif d'image",
+      "description": "Pourquoi renseigner l'attribut `alt` sur les images d'une fiche produit ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Cela améliore l'accessibilité et le référencement de l'image dans les moteurs de recherche",
+          "is_correct": true
+        },
+        {
+          "text": "Cela accélère automatiquement le chargement de la page",
+          "is_correct": false
+        },
+        {
+          "text": "Cela change la couleur de l'image",
+          "is_correct": false
+        },
+        {
+          "text": "Cela empêche l'image d'être copiée",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Fréquence de publication",
+      "description": "Pour démarrer une page Instagram professionnelle, quelle approche est la plus recommandée au premier mois ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Publier régulièrement (ex : 3-4 fois/semaine) avec un contenu cohérent plutôt que de publier massivement puis d'abandonner",
+          "is_correct": true
+        },
+        {
+          "text": "Publier 10 fois par jour pendant une semaine puis arrêter",
+          "is_correct": false
+        },
+        {
+          "text": "Publier une seule fois par mois pour ne pas fatiguer l'audience",
+          "is_correct": false
+        },
+        {
+          "text": "Ne publier que des publicités payantes, jamais de contenu organique",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Réseaux sociaux"
+      ]
+    },
+    {
+      "title": "Objet d'email",
+      "description": "Quel objet d'email a le plus de chances d'obtenir un bon taux d'ouverture ?",
+      "level": 1,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "« Sarah, votre commande vous attend encore (-15% jusqu'à demain) » : personnalisé, concret et avec une urgence claire",
+          "is_correct": true
+        },
+        {
+          "text": "« Newsletter #47 »",
+          "is_correct": false
+        },
+        {
+          "text": "« INFORMATION IMPORTANTE!!! CLIQUEZ MAINTENANT!!! »",
+          "is_correct": false
+        },
+        {
+          "text": "Un objet vide",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing",
+        "Copywriting"
+      ]
+    },
+    {
+      "title": "SEO on-page vs off-page",
+      "description": "Explique la différence entre le SEO on-page et le SEO off-page. Donne au moins 3 exemples concrets d'actions pour chaque catégorie, appliqués à une fiche produit e-commerce.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Stratégie de contenu Facebook pour une PME",
+      "description": "Une PME locale (boulangerie) te demande de lancer sa page Facebook. Décris ta stratégie de contenu pour le premier mois : types de publications, fréquence, ton, et objectifs mesurables.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Réseaux sociaux",
+        "Stratégie"
+      ]
+    },
+    {
+      "title": "Rédaction d'un objet d'email promotionnel",
+      "description": "Rédige un objet d'email pour une promotion de -20% valable 48h sur une boutique de vêtements. Explique en 2-3 phrases pourquoi cet objet devrait bien fonctionner.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Email Marketing",
+        "Copywriting"
+      ]
+    },
+    {
+      "title": "Analyse de trafic avec GA4",
+      "description": "Un client te demande d'analyser pourquoi le trafic de son site a chuté de 30% le mois dernier. Décris la démarche et les rapports GA4 que tu consulterais, dans l'ordre.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Analytics",
+        "GA4"
+      ]
+    },
+    {
+      "title": "Choix de mots-clés pour un article de blog",
+      "description": "Décris les étapes concrètes pour choisir les mots-clés d'un article de blog destiné à une boutique de cosmétiques bio, depuis la recherche jusqu'à l'intégration dans le contenu.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "SEO",
+        "Mots-clés"
+      ]
+    },
+    {
+      "title": "Fréquence de publication justifiée",
+      "description": "Pour une marque de mode qui débute sur Instagram, quelle fréquence de publication recommanderais-tu (par semaine) ? Justifie ta réponse en tenant compte des ressources limitées d'une petite équipe.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Réseaux sociaux"
+      ]
+    },
+    {
+      "title": "Tunnel de conversion e-commerce",
+      "description": "Explique ce qu'est un tunnel de conversion (funnel) en prenant l'exemple concret d'un site e-commerce, en détaillant chaque étape du premier contact jusqu'à l'achat.",
+      "level": 1,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Funnel",
+        "E-commerce"
+      ]
+    },
+    {
+      "title": "Core Web Vitals",
+      "description": "Parmi les métriques suivantes des Core Web Vitals, laquelle mesure la rapidité de chargement du plus gros élément visible de la page ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "LCP (Largest Contentful Paint)",
+          "is_correct": true
+        },
+        {
+          "text": "CLS (Cumulative Layout Shift)",
+          "is_correct": false
+        },
+        {
+          "text": "FID (First Input Delay)",
+          "is_correct": false
+        },
+        {
+          "text": "TTFB uniquement, sans autre métrique",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO",
+        "Core Web Vitals"
+      ]
+    },
+    {
+      "title": "E-E-A-T",
+      "description": "Que signifie le critère E-E-A-T utilisé par Google pour évaluer la qualité d'un contenu ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Experience, Expertise, Authoritativeness, Trustworthiness (expérience, expertise, autorité, fiabilité)",
+          "is_correct": true
+        },
+        {
+          "text": "Engagement, Efficiency, Analytics, Targeting",
+          "is_correct": false
+        },
+        {
+          "text": "Email, Exposure, Advertising, Traffic",
+          "is_correct": false
+        },
+        {
+          "text": "Extraction, Encoding, Analysis, Testing",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEO"
+      ]
+    },
+    {
+      "title": "Quality Score Google Ads",
+      "description": "Le Quality Score dans Google Ads dépend principalement de quels facteurs ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "La pertinence de l'annonce, le taux de clic attendu et l'expérience sur la page de destination",
+          "is_correct": true
+        },
+        {
+          "text": "Uniquement le montant de l'enchère maximale définie",
+          "is_correct": false
+        },
+        {
+          "text": "Le nombre d'employés de l'entreprise annonceur",
+          "is_correct": false
+        },
+        {
+          "text": "L'ancienneté du compte Google Ads uniquement",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "SEA",
+        "Google Ads"
+      ]
+    },
+    {
+      "title": "Calcul du ROAS",
+      "description": "Comment calcule-t-on le ROAS (Return On Ad Spend) ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Chiffre d'affaires généré par la publicité / dépense publicitaire",
+          "is_correct": true
+        },
+        {
+          "text": "Dépense publicitaire / chiffre d'affaires généré",
+          "is_correct": false
+        },
+        {
+          "text": "Nombre de clics / dépense publicitaire",
+          "is_correct": false
+        },
+        {
+          "text": "Marge nette / nombre d'impressions",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Publicité",
+        "ROAS"
+      ]
+    },
+    {
+      "title": "Pixel Meta",
+      "description": "À quoi sert le Pixel Meta (Facebook) installé sur un site e-commerce ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "À suivre les actions des visiteurs venus des publicités Meta afin de mesurer les conversions et créer des audiences de retargeting",
+          "is_correct": true
+        },
+        {
+          "text": "À bloquer les robots indésirables sur le site",
+          "is_correct": false
+        },
+        {
+          "text": "À améliorer automatiquement la vitesse de chargement du site",
+          "is_correct": false
+        },
+        {
+          "text": "À gérer le stock des produits en temps réel",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Meta Ads",
+        "Tracking"
+      ]
+    },
+    {
+      "title": "Format TikTok Ads",
+      "description": "Pour une campagne TikTok Ads destinée à une audience jeune, quel type de contenu publicitaire performe généralement le mieux ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une vidéo native, courte et divertissante qui s'intègre au format habituel du fil (proche d'un contenu organique)",
+          "is_correct": true
+        },
+        {
+          "text": "Une image statique haute résolution avec beaucoup de texte",
+          "is_correct": false
+        },
+        {
+          "text": "Un PDF téléchargeable",
+          "is_correct": false
+        },
+        {
+          "text": "Un email envoyé en parallèle sans lien avec la vidéo",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "TikTok Ads"
+      ]
+    },
+    {
+      "title": "Priorité en A/B testing",
+      "description": "Tu veux améliorer le taux de conversion d'une landing page via un A/B test. Quel élément est généralement le plus judicieux à tester en premier ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Le titre principal (headline) et le CTA, car ils ont souvent l'impact le plus fort sur la décision de l'utilisateur",
+          "is_correct": true
+        },
+        {
+          "text": "La couleur du favicon",
+          "is_correct": false
+        },
+        {
+          "text": "La police de caractères des mentions légales",
+          "is_correct": false
+        },
+        {
+          "text": "L'ordre des liens dans le footer",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "A/B Testing"
+      ]
+    },
+    {
+      "title": "Lead scoring CRM",
+      "description": "Que permet de faire le lead scoring dans un CRM ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Attribuer un score aux prospects selon leur comportement et leur profil, pour prioriser ceux les plus susceptibles de convertir",
+          "is_correct": true
+        },
+        {
+          "text": "Supprimer automatiquement les contacts inactifs",
+          "is_correct": false
+        },
+        {
+          "text": "Calculer uniquement le chiffre d'affaires total de l'entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Envoyer des factures automatiquement",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "CRM"
+      ]
+    },
+    {
+      "title": "Enregistrement SPF",
+      "description": "À quoi sert un enregistrement SPF dans la configuration DNS d'un nom de domaine utilisé pour l'emailing ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "À indiquer quels serveurs sont autorisés à envoyer des emails au nom du domaine, réduisant le risque de spoofing",
+          "is_correct": true
+        },
+        {
+          "text": "À accélérer l'envoi des emails",
+          "is_correct": false
+        },
+        {
+          "text": "À chiffrer le contenu des emails",
+          "is_correct": false
+        },
+        {
+          "text": "À créer automatiquement une liste de diffusion",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing",
+        "Deliverability"
+      ]
+    },
+    {
+      "title": "DKIM",
+      "description": "Le DKIM sert principalement à :",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Signer numériquement les emails pour prouver qu'ils n'ont pas été altérés et qu'ils proviennent bien du domaine annoncé",
+          "is_correct": true
+        },
+        {
+          "text": "Compresser les pièces jointes des emails",
+          "is_correct": false
+        },
+        {
+          "text": "Créer des templates d'email responsive",
+          "is_correct": false
+        },
+        {
+          "text": "Segmenter automatiquement la base de contacts",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing",
+        "Deliverability"
+      ]
+    },
+    {
+      "title": "DMARC",
+      "description": "Quel est le rôle du DMARC en complément du SPF et du DKIM ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Définir la politique à appliquer (rejeter, mettre en quarantaine, ou laisser passer) quand un email échoue aux vérifications SPF/DKIM, et fournir des rapports",
+          "is_correct": true
+        },
+        {
+          "text": "Générer automatiquement des objets d'email optimisés",
+          "is_correct": false
+        },
+        {
+          "text": "Remplacer complètement le besoin de SPF et DKIM",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer l'affichage responsive des emails sur mobile",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing",
+        "Deliverability"
+      ]
+    },
+    {
+      "title": "Panier abandonné",
+      "description": "Quel est, en général, l'ordre de grandeur du taux d'abandon de panier en e-commerce ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Environ 65 à 75% des paniers sont abandonnés en moyenne",
+          "is_correct": true
+        },
+        {
+          "text": "Environ 5 à 10%",
+          "is_correct": false
+        },
+        {
+          "text": "Environ 95 à 99%",
+          "is_correct": false
+        },
+        {
+          "text": "0%, les paniers ne sont jamais abandonnés une fois le produit ajouté",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "E-commerce",
+        "Panier abandonné"
+      ]
+    },
+    {
+      "title": "Retargeting",
+      "description": "Qu'est-ce que le retargeting (reciblage publicitaire) ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une technique qui consiste à recibler avec des publicités des internautes ayant déjà visité le site sans convertir",
+          "is_correct": true
+        },
+        {
+          "text": "Une technique d'envoi d'emails uniquement à de nouveaux prospects jamais contactés",
+          "is_correct": false
+        },
+        {
+          "text": "Une méthode de référencement naturel",
+          "is_correct": false
+        },
+        {
+          "text": "Un type de contenu organique sur les réseaux sociaux",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Retargeting",
+        "Publicité"
+      ]
+    },
+    {
+      "title": "Landing page performante",
+      "description": "Quelle pratique améliore le plus généralement le taux de conversion d'une landing page publicitaire ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Aligner précisément le message de la landing page avec celui de l'annonce qui y mène, avec un seul objectif clair",
+          "is_correct": true
+        },
+        {
+          "text": "Ajouter le plus de liens de navigation possible vers d'autres pages",
+          "is_correct": false
+        },
+        {
+          "text": "Multiplier les formulaires à remplir sur la même page",
+          "is_correct": false
+        },
+        {
+          "text": "Retirer tout call-to-action pour ne pas paraître trop commercial",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Conversion",
+        "Landing Page"
+      ]
+    },
+    {
+      "title": "Audience similaire (lookalike)",
+      "description": "Qu'est-ce qu'une audience similaire (lookalike) sur Meta Ads ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une audience générée automatiquement à partir des caractéristiques d'une audience source (ex : clients actuels) pour toucher des profils comparables",
+          "is_correct": true
+        },
+        {
+          "text": "Une audience composée uniquement de personnes ayant déjà cliqué sur l'annonce",
+          "is_correct": false
+        },
+        {
+          "text": "Une audience définie uniquement par tranche d'âge",
+          "is_correct": false
+        },
+        {
+          "text": "Une audience limitée aux abonnés de la page",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Meta Ads"
+      ]
+    },
+    {
+      "title": "Étapes du funnel",
+      "description": "Dans un funnel marketing classique TOFU/MOFU/BOFU, à quelle étape correspond un livre blanc téléchargeable en échange d'un email ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "MOFU (Middle of Funnel) : le prospect est déjà intéressé et évalue les solutions",
+          "is_correct": true
+        },
+        {
+          "text": "TOFU (Top of Funnel) exclusivement, jamais utilisé ailleurs",
+          "is_correct": false
+        },
+        {
+          "text": "BOFU (Bottom of Funnel) uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Cela ne correspond à aucune étape du funnel",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Funnel"
+      ]
+    },
+    {
+      "title": "Segmentation RFM",
+      "description": "La méthode de segmentation RFM en CRM se base sur quels critères ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Récence, Fréquence, Montant des achats du client",
+          "is_correct": true
+        },
+        {
+          "text": "Région, Fidélité, Marge",
+          "is_correct": false
+        },
+        {
+          "text": "Réseau, Format, Média",
+          "is_correct": false
+        },
+        {
+          "text": "Revenu, Famille, Métier",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "CRM",
+        "Segmentation"
+      ]
+    },
+    {
+      "title": "Impact des avis clients",
+      "description": "Quel est généralement l'effet des avis clients (reviews) sur le taux de conversion d'une fiche produit e-commerce ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Un nombre suffisant d'avis positifs augmente sensiblement la confiance et le taux de conversion",
+          "is_correct": true
+        },
+        {
+          "text": "Les avis clients n'ont aucun impact mesurable sur les ventes",
+          "is_correct": false
+        },
+        {
+          "text": "Seuls les avis négatifs influencent le comportement d'achat",
+          "is_correct": false
+        },
+        {
+          "text": "Les avis clients réduisent toujours les ventes",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "E-commerce",
+        "Conversion"
+      ]
+    },
+    {
+      "title": "Panier moyen",
+      "description": "Quelle stratégie permet le plus directement d'augmenter le panier moyen d'une boutique en ligne ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "La vente croisée (cross-sell) et la montée en gamme (upsell) au moment de l'achat",
+          "is_correct": true
+        },
+        {
+          "text": "Réduire le nombre de produits proposés au strict minimum",
+          "is_correct": false
+        },
+        {
+          "text": "Supprimer les frais de livraison gratuite au-delà d'un seuil",
+          "is_correct": false
+        },
+        {
+          "text": "Augmenter uniquement le prix unitaire des produits sans autre action",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "E-commerce",
+        "Panier moyen"
+      ]
+    },
+    {
+      "title": "Email automation",
+      "description": "Qu'est-ce qu'un scénario d'email automation « bienvenue » (welcome series) ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une séquence d'emails déclenchée automatiquement après l'inscription d'un nouveau contact, pour l'engager progressivement",
+          "is_correct": true
+        },
+        {
+          "text": "Un email unique envoyé une fois par an à tous les contacts",
+          "is_correct": false
+        },
+        {
+          "text": "Une campagne envoyée manuellement à chaque nouvelle inscription",
+          "is_correct": false
+        },
+        {
+          "text": "Un email envoyé uniquement lors du Black Friday",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Email Marketing",
+        "Automation"
+      ]
+    },
+    {
+      "title": "Test A/B - taille d'échantillon",
+      "description": "Pourquoi est-il risqué de conclure un A/B test après seulement 50 visiteurs par variante ?",
+      "level": 2,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "L'échantillon est probablement trop petit pour une signification statistique fiable, le résultat peut être dû au hasard",
+          "is_correct": true
+        },
+        {
+          "text": "50 visiteurs est toujours largement suffisant quel que soit le contexte",
+          "is_correct": false
+        },
+        {
+          "text": "Le nombre de visiteurs n'a aucune importance pour la fiabilité d'un test",
+          "is_correct": false
+        },
+        {
+          "text": "Cela garantit au contraire une conclusion fiable à 100%",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "A/B Testing"
+      ]
+    },
+    {
+      "title": "Optimisation d'une fiche produit mal référencée",
+      "description": "Une fiche produit e-commerce ne génère quasiment aucun trafic organique. Explique la démarche complète que tu suivrais pour l'optimiser (titre, description, images, structure, mots-clés).",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "SEO",
+        "E-commerce"
+      ]
+    },
+    {
+      "title": "Stratégie de récupération de panier abandonné",
+      "description": "Décris une stratégie complète de récupération de panier abandonné combinant email, SMS et retargeting publicitaire, avec le timing de chaque relance.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "E-commerce",
+        "Automation"
+      ]
+    },
+    {
+      "title": "Campagne Google Ads à budget limité",
+      "description": "Un client te confie un budget de 100 000 FCFA/mois pour une campagne Google Ads. Explique comment tu structurerais la campagne (types de campagne, mots-clés, enchères, suivi) pour maximiser le ROI.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Google Ads",
+        "SEA"
+      ]
+    },
+    {
+      "title": "Segmentation d'une base CRM",
+      "description": "Tu disposes d'une base CRM de 10 000 contacts pour une marque de cosmétiques. Décris comment tu la segmenterais pour des campagnes email personnalisées, avec au moins 3 segments concrets.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "CRM",
+        "Segmentation"
+      ]
+    },
+    {
+      "title": "Conception d'un test A/B",
+      "description": "Décris un test A/B complet sur une landing page e-commerce : l'hypothèse de départ, l'élément testé, la méthode de mise en œuvre et la métrique de succès.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "A/B Testing"
+      ]
+    },
+    {
+      "title": "Amélioration du Quality Score Google Ads",
+      "description": "Une campagne Google Ads a un Quality Score faible (3/10) sur ses mots-clés principaux. Explique la démarche pour l'améliorer, en détaillant les leviers sur lesquels tu peux agir.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Google Ads",
+        "SEA"
+      ]
+    },
+    {
+      "title": "Stratégie multicanale de lancement produit",
+      "description": "Décris une stratégie multicanale (au moins 3 canaux) pour lancer un nouveau produit e-commerce avec un budget de 500 000 FCFA, en expliquant le rôle de chaque canal dans le funnel.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Stratégie",
+        "Funnel"
+      ]
+    },
+    {
+      "title": "Gestion des avis clients négatifs",
+      "description": "Un produit vendu sur une marketplace accumule plusieurs avis négatifs sur la livraison. Décris comment tu gérerais la situation, à la fois en réponse publique et en actions correctives.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "E-commerce",
+        "Marketplace"
+      ]
+    },
+    {
+      "title": "Mesure du succès d'une campagne d'influence",
+      "description": "Explique comment tu mesurerais le succès d'une campagne avec des micro-influenceurs pour le lancement d'un produit, en précisant les indicateurs à suivre avant, pendant et après la campagne.",
+      "level": 2,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Influence",
+        "KPI"
+      ]
+    },
+    {
+      "title": "Modèles d'attribution",
+      "description": "Quelle est la principale limite du modèle d'attribution « dernier clic » (last-click) ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Il attribue 100% du mérite de la conversion au dernier point de contact, en ignorant l'influence des canaux précédents dans le parcours client",
+          "is_correct": true
+        },
+        {
+          "text": "Il est impossible à configurer dans Google Analytics",
+          "is_correct": false
+        },
+        {
+          "text": "Il attribue toujours la conversion au premier point de contact",
+          "is_correct": false
+        },
+        {
+          "text": "Il ne fonctionne que pour les campagnes email",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Attribution"
+      ]
+    },
+    {
+      "title": "Attribution multi-touch",
+      "description": "Quel est l'avantage principal d'un modèle d'attribution multi-touch par rapport à un modèle single-touch ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Il répartit le crédit de la conversion entre plusieurs points de contact, offrant une vision plus fidèle du parcours client réel",
+          "is_correct": true
+        },
+        {
+          "text": "Il est plus simple à mettre en place qu'un modèle single-touch",
+          "is_correct": false
+        },
+        {
+          "text": "Il élimine totalement le besoin de tracking",
+          "is_correct": false
+        },
+        {
+          "text": "Il ne peut être utilisé que sur un seul canal à la fois",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Attribution"
+      ]
+    },
+    {
+      "title": "Publicité programmatique",
+      "description": "Que désigne le terme RTB (Real-Time Bidding) en publicité programmatique ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Un système d'enchères automatisées en temps réel pour l'achat d'espaces publicitaires, impression par impression",
+          "is_correct": true
+        },
+        {
+          "text": "Un format d'annonce uniquement vidéo",
+          "is_correct": false
+        },
+        {
+          "text": "Une méthode de segmentation manuelle des audiences",
+          "is_correct": false
+        },
+        {
+          "text": "Un protocole de sécurité pour les emails",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Programmatique"
+      ]
+    },
+    {
+      "title": "DSP et SSP",
+      "description": "Dans l'écosystème programmatique, quelle est la différence entre un DSP et un SSP ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Le DSP est utilisé par les annonceurs pour acheter des espaces publicitaires, le SSP est utilisé par les éditeurs pour vendre leurs espaces",
+          "is_correct": true
+        },
+        {
+          "text": "Ce sont deux noms différents pour la même plateforme",
+          "is_correct": false
+        },
+        {
+          "text": "Le DSP sert uniquement à l'email marketing",
+          "is_correct": false
+        },
+        {
+          "text": "Le SSP est réservé aux réseaux sociaux uniquement",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Programmatique"
+      ]
+    },
+    {
+      "title": "Lead nurturing",
+      "description": "Qu'est-ce que le lead nurturing en marketing automation ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Un processus d'accompagnement progressif des prospects via du contenu ciblé, jusqu'à ce qu'ils soient prêts à l'achat",
+          "is_correct": true
+        },
+        {
+          "text": "L'achat massif de leads auprès de fournisseurs tiers",
+          "is_correct": false
+        },
+        {
+          "text": "La suppression automatique des prospects non qualifiés",
+          "is_correct": false
+        },
+        {
+          "text": "Une technique de référencement payant",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Automation"
+      ]
+    },
+    {
+      "title": "Framework AARRR",
+      "description": "Que représente le framework AARRR utilisé en growth marketing ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Acquisition, Activation, Rétention, Referral (recommandation), Revenu",
+          "is_correct": true
+        },
+        {
+          "text": "Analyse, Audit, Reporting, Rédaction, ROI",
+          "is_correct": false
+        },
+        {
+          "text": "Ads, Automation, Retargeting, Retention, Return",
+          "is_correct": false
+        },
+        {
+          "text": "Audience, Attribution, Reach, Reporting, ROAS",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Growth"
+      ]
+    },
+    {
+      "title": "Customer Lifetime Value",
+      "description": "Comment calcule-t-on, de manière simplifiée, la Customer Lifetime Value (LTV) d'un client e-commerce ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Panier moyen x fréquence d'achat annuelle x durée moyenne de la relation client",
+          "is_correct": true
+        },
+        {
+          "text": "Chiffre d'affaires total de l'entreprise / nombre de salariés",
+          "is_correct": false
+        },
+        {
+          "text": "Coût d'acquisition client uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Nombre de visiteurs uniques du site sur un mois",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "LTV",
+        "Data"
+      ]
+    },
+    {
+      "title": "Analyse prédictive",
+      "description": "Dans quel cas l'analyse prédictive est-elle la plus utile pour une équipe marketing ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Pour anticiper le risque de churn d'un client avant qu'il ne se désabonne, en se basant sur des signaux comportementaux historiques",
+          "is_correct": true
+        },
+        {
+          "text": "Pour rédiger manuellement chaque email de la newsletter",
+          "is_correct": false
+        },
+        {
+          "text": "Pour choisir la couleur du logo de l'entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Pour remplacer entièrement l'intuition créative dans la conception des visuels",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Data",
+        "Prédictif"
+      ]
+    },
+    {
+      "title": "Tracking sans cookies tiers",
+      "description": "Avec la disparition progressive des cookies tiers, quelle approche devient centrale pour les stratégies data des marques ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "La collecte et la valorisation des données first-party (propres à la marque, collectées avec le consentement de l'utilisateur)",
+          "is_correct": true
+        },
+        {
+          "text": "L'abandon complet de tout tracking, quel qu'il soit",
+          "is_correct": false
+        },
+        {
+          "text": "Le recours exclusif à des cookies tiers plus performants",
+          "is_correct": false
+        },
+        {
+          "text": "L'achat massif de bases de données email non consenties",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Data",
+        "Cookieless"
+      ]
+    },
+    {
+      "title": "Test d'incrémentalité",
+      "description": "Quel est l'objectif principal d'un test d'incrémentalité (incrementality test) en marketing ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Mesurer l'impact réel additionnel d'une campagne, au-delà de ce qui se serait produit sans elle (via un groupe témoin)",
+          "is_correct": true
+        },
+        {
+          "text": "Mesurer uniquement le nombre total de clics générés",
+          "is_correct": false
+        },
+        {
+          "text": "Remplacer complètement l'A/B testing classique",
+          "is_correct": false
+        },
+        {
+          "text": "Calculer le budget publicitaire maximal autorisé",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Data",
+        "Attribution"
+      ]
+    },
+    {
+      "title": "Media Mix Modeling",
+      "description": "Le Media Mix Modeling (MMM) est particulièrement utile pour :",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Évaluer l'efficacité globale des investissements marketing across canaux, y compris ceux difficiles à tracker individuellement (TV, affichage)",
+          "is_correct": true
+        },
+        {
+          "text": "Suivre en temps réel les clics sur une seule campagne Google Ads",
+          "is_correct": false
+        },
+        {
+          "text": "Créer automatiquement des visuels publicitaires",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer le service client sur les réseaux sociaux",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Data",
+        "MMM"
+      ]
+    },
+    {
+      "title": "Taux de churn",
+      "description": "Comment calcule-t-on le taux de churn (attrition) mensuel d'un abonnement ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "(Nombre de clients perdus durant le mois / nombre de clients en début de mois) x 100",
+          "is_correct": true
+        },
+        {
+          "text": "Nombre total de clients actifs",
+          "is_correct": false
+        },
+        {
+          "text": "Chiffre d'affaires mensuel / nombre de nouveaux clients",
+          "is_correct": false
+        },
+        {
+          "text": "Nombre de clients ayant renouvelé leur abonnement",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Churn",
+        "Data"
+      ]
+    },
+    {
+      "title": "Analyse de cohortes",
+      "description": "À quoi sert une analyse de cohortes en marketing data-driven ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Comparer le comportement de groupes d'utilisateurs regroupés par une caractéristique commune (ex : date d'inscription) dans le temps",
+          "is_correct": true
+        },
+        {
+          "text": "Remplacer entièrement le besoin de segmentation client",
+          "is_correct": false
+        },
+        {
+          "text": "Mesurer uniquement le trafic organique d'un site",
+          "is_correct": false
+        },
+        {
+          "text": "Calculer le budget publicitaire d'une seule campagne",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Data",
+        "Cohortes"
+      ]
+    },
+    {
+      "title": "Dynamic Creative Optimization",
+      "description": "Qu'est-ce que le Dynamic Creative Optimization (DCO) en publicité programmatique ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Une technique qui génère et teste automatiquement plusieurs combinaisons de visuels/textes pour diffuser la version la plus performante à chaque utilisateur",
+          "is_correct": true
+        },
+        {
+          "text": "Un outil de retouche photo manuel",
+          "is_correct": false
+        },
+        {
+          "text": "Une méthode de segmentation par CRM uniquement",
+          "is_correct": false
+        },
+        {
+          "text": "Un format publicitaire réservé à la télévision",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Programmatique",
+        "DCO"
+      ]
+    },
+    {
+      "title": "Customer Data Platform",
+      "description": "Quel est le rôle principal d'une Customer Data Platform (CDP) ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Unifier les données clients provenant de multiples sources (site, CRM, publicité, app) en un profil client unique et exploitable",
+          "is_correct": true
+        },
+        {
+          "text": "Remplacer complètement le CRM de l'entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Gérer uniquement la comptabilité de l'entreprise",
+          "is_correct": false
+        },
+        {
+          "text": "Créer automatiquement des visuels pour les réseaux sociaux",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "CDP",
+        "Data"
+      ]
+    },
+    {
+      "title": "Brand safety programmatique",
+      "description": "Pourquoi la « brand safety » est-elle un enjeu majeur en achat programmatique ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Car les annonces peuvent être diffusées automatiquement sur des sites au contenu inapproprié, nuisant à l'image de marque",
+          "is_correct": true
+        },
+        {
+          "text": "Car elle garantit un ROAS minimum de 500%",
+          "is_correct": false
+        },
+        {
+          "text": "Car elle concerne uniquement les campagnes email",
+          "is_correct": false
+        },
+        {
+          "text": "Car elle n'a aucun impact réel sur la réputation de la marque",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Programmatique",
+        "Brand Safety"
+      ]
+    },
+    {
+      "title": "Trigger d'automation",
+      "description": "Dans un scénario de marketing automation, qu'est-ce qu'un « trigger » (déclencheur) ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Un événement précis (ex : abandon de panier, inscription, inactivité de 30 jours) qui déclenche automatiquement une action marketing",
+          "is_correct": true
+        },
+        {
+          "text": "Le budget total alloué à la campagne",
+          "is_correct": false
+        },
+        {
+          "text": "Le nom du contact dans la base CRM",
+          "is_correct": false
+        },
+        {
+          "text": "La couleur du bouton d'action dans l'email",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Automation"
+      ]
+    },
+    {
+      "title": "Server-side tracking",
+      "description": "Quel est l'avantage principal du tracking server-side (côté serveur) par rapport au tracking client-side classique ?",
+      "level": 3,
+      "question_type": "MCQ",
+      "choices": [
+        {
+          "text": "Il est moins impacté par les bloqueurs de publicité et les restrictions des navigateurs, ce qui fiabilise la collecte de données",
+          "is_correct": true
+        },
+        {
+          "text": "Il ne nécessite aucune configuration technique",
+          "is_correct": false
+        },
+        {
+          "text": "Il remplace entièrement le besoin de consentement utilisateur (RGPD)",
+          "is_correct": false
+        },
+        {
+          "text": "Il fonctionne uniquement pour les campagnes TV",
+          "is_correct": false
+        }
+      ],
+      "tags": [
+        "Tracking",
+        "Data"
+      ]
+    },
+    {
+      "title": "Modèle d'attribution multi-touch avec budget limité",
+      "description": "Explique comment tu mettrais en place un modèle d'attribution multi-touch pour un client au budget limité qui utilise Google Ads, Meta Ads et de l'email marketing. Quelles données collecter, quels outils, quelles limites accepter ?",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Attribution",
+        "Data"
+      ]
+    },
+    {
+      "title": "Stratégie de growth hacking pour une startup SaaS",
+      "description": "Décris une stratégie de growth hacking pour une startup SaaS en phase de lancement avec un budget marketing très limité. Utilise le framework AARRR pour structurer ta réponse.",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Growth"
+      ]
+    },
+    {
+      "title": "Utilisation des cohortes pour la rétention",
+      "description": "Explique comment tu utiliserais une analyse de cohortes pour identifier et corriger un problème de rétention client sur une application mobile.",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Data",
+        "Cohortes"
+      ]
+    },
+    {
+      "title": "Scénario d'automation complexe",
+      "description": "Décris un scénario de marketing automation avancé combinant onboarding et réactivation des clients inactifs, avec les déclencheurs, délais et contenus de chaque étape.",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Automation"
+      ]
+    },
+    {
+      "title": "Enjeux de la disparition des cookies tiers",
+      "description": "Explique les principaux enjeux liés à la disparition progressive des cookies tiers pour une stratégie marketing data-driven, et les solutions concrètes à mettre en place.",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Data",
+        "Cookieless"
+      ]
+    },
+    {
+      "title": "Calcul et utilisation de la LTV",
+      "description": "Explique comment tu calculerais la Customer Lifetime Value (LTV) de différents segments clients et comment tu utiliserais ce chiffre pour prioriser les investissements marketing.",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "LTV",
+        "Data"
+      ]
+    },
+    {
+      "title": "Dashboard data-driven pour un CMO",
+      "description": "Décris comment tu structurerais un dashboard data-driven destiné à un CMO, en précisant les KPI essentiels à afficher et pourquoi ils sont pertinents pour des décisions stratégiques.",
+      "level": 3,
+      "question_type": "OA",
+      "choices": [],
+      "tags": [
+        "Data",
+        "KPI"
+      ]
+    }
+  ]
+}

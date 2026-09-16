@@ -595,7 +595,7 @@
             "question_category": "LOGICAL"
         },
         {
-            "title": "Code : RAVIOLI → 1324564 ; LOI → 765. Appliquez la même logique à RIVAL → 37458 ; VOL → ?",
+            "title": "Code : RAVIOLI -> 1324564 ; LOI -> 765. Appliquez la même logique à RIVAL -> 37458 ; VOL -> ?",
             "description": "Trouvez le code manquant.",
             "level": 2,
             "question_type": "MCQ",
