@@ -12,4 +12,5 @@ services:
       - ./static:/app/static
       - ./media:/app/media
       - ./db.sqlite3:/app/db.sqlite3
+      - ./database_exports:/app/database_exports
     restart: unless-stopped
