@@ -48,7 +48,10 @@ EMAIL_PORT = int(os.getenv('SMTP_PORT', os.getenv('EMAIL_PORT', '587')))
 
 EMAIL_HOST_USER = os.getenv('SMTP_USER', os.getenv('EMAIL_HOST_USER'))
 
-EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASSWORD', os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_HOST_PASSWORD = os.getenv(
+    'SMTP_PASSWORD',
+    os.getenv('EMAIL_HOST_PASSWORD', ''),
+).replace(' ', '')
 
 EMAIL_USE_TLS = os.getenv('SMTP_USE_TLS', 'True').lower() in ('1', 'true', 'yes')
 

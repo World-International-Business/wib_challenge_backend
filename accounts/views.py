@@ -1,4 +1,5 @@
 import secrets
+import logging
 from datetime import timedelta
 
 from django.conf import settings
@@ -15,27 +16,39 @@ from django.utils import timezone
 from .forms import UserRegisterForm, EmailVerificationForm, UserUpdateForm, UserSkillFormSet, WIBPasswordResetForm, WIBSetPasswordForm
 
 User = get_user_model()
+logger = logging.getLogger(__name__)
 
 
 def register_view(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.email_verified = False
-            user.save()
-            code = f'{secrets.randbelow(1000000):06d}'
+            try:
+                with transaction.atomic():
+                    user = form.save(commit=False)
+                    user.is_active = False
+                    user.email_verified = False
+                    user.save()
+                    code = f'{secrets.randbelow(1000000):06d}'
+                    send_mail(
+                        'Code de vérification WIB Challenge',
+                        f'Votre code de vérification est : {code}. Il expire dans 15 minutes.',
+                        settings.DEFAULT_FROM_EMAIL,
+                        [user.email],
+                        fail_silently=False,
+                    )
+            except Exception:
+                logger.exception('Erreur lors de l envoi du code de vérification')
+                messages.error(
+                    request,
+                    "Impossible d'envoyer l'email de vérification. "
+                    "Vérifiez votre adresse email ou réessayez plus tard.",
+                )
+                return render(request, 'accounts/register.html', {'form': form})
+
             request.session['verification_user_id'] = user.pk
             request.session['verification_code'] = code
             request.session['verification_expires_at'] = (timezone.now() + timedelta(minutes=15)).timestamp()
-            send_mail(
-                'Code de vérification WIB Challenge',
-                f'Votre code de vérification est : {code}. Il expire dans 15 minutes.',
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=False,
-            )
             messages.info(request, "Un code de vérification a été envoyé à votre adresse email.")
             return redirect('verify_email')
     else:
