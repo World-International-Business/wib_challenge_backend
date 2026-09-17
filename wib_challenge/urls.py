@@ -29,6 +29,12 @@ from challenges.views import home_view, evaluation_results, challenge_evaluation
     manual_correct_submission_view, manual_correct_personality_view, leaderboard_view, admin_dashboard_view
 from questions.models import Question
 from wib_challenge.views import json_input
+from education.views import (
+     school_home_view, school_dashboard_view, school_student_create_view,
+     school_exam_create_view, school_exam_publish_view, student_dashboard_view,
+     school_exam_results_publish_view, school_exam_attempt_view, school_exam_integrity_event_view,
+     school_attempt_grade_view,
+)
 from challenges.admin_views import (
     duration_profile_list_view, duration_profile_create_view,
     duration_profile_update_view, duration_profile_delete_view,
@@ -49,6 +55,16 @@ urlpatterns = [
     path('admin/questions/<int:pk>/supprimer/', question_delete_view, name='question_delete'),
 
     path('admin/', admin.site.urls),
+     path('ecole/', school_home_view, name='school_home'),
+     path('ecole/tableau-de-bord/', school_dashboard_view, name='school_dashboard'),
+     path('ecole/eleves/ajouter/', school_student_create_view, name='school_student_create'),
+     path('ecole/epreuves/ajouter/', school_exam_create_view, name='school_exam_create'),
+     path('ecole/epreuves/<int:exam_id>/publier/', school_exam_publish_view, name='school_exam_publish'),
+     path('ecole/epreuves/<int:exam_id>/publier-resultats/', school_exam_results_publish_view, name='school_exam_results_publish'),
+     path('ecole/epreuves/<int:exam_id>/composer/', school_exam_attempt_view, name='school_exam_attempt'),
+     path('ecole/tentatives/<int:attempt_id>/integrite/', school_exam_integrity_event_view, name='school_exam_integrity_event'),
+     path('ecole/tentatives/<int:attempt_id>/corriger/', school_attempt_grade_view, name='school_attempt_grade'),
+     path('ecole/mes-epreuves/', student_dashboard_view, name='student_dashboard'),
     path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
 
     path('', home_view, name='home'),

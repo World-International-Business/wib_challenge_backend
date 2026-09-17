@@ -5,6 +5,7 @@ python manage.py migrate --noinput
 
 python manage.py initialize
 python manage.py create_default_questions
+python manage.py initialize_education
 
 IMPORT_FIXTURE_PATH="${IMPORT_FIXTURE_PATH:-/app/database_exports/pending.json}"
 if [ -f "$IMPORT_FIXTURE_PATH" ]; then

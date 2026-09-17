@@ -8,6 +8,26 @@ from challenges.models import (Settings, Challenge, SubmissionAttempt, Submissio
 from questions.models import Tag
 
 
+class RecruitmentOnlyAdminMixin:
+    def has_module_permission(self, request):
+        return request.user.is_superuser or not hasattr(request.user, 'school_staff')
+
+    def _allowed(self, request):
+        return request.user.is_superuser or not hasattr(request.user, 'school_staff')
+
+    def has_view_permission(self, request, obj=None):
+        return self._allowed(request)
+
+    def has_add_permission(self, request):
+        return self._allowed(request)
+
+    def has_change_permission(self, request, obj=None):
+        return self._allowed(request)
+
+    def has_delete_permission(self, request, obj=None):
+        return self._allowed(request)
+
+
 class TagFilter(admin.SimpleListFilter):
     title = 'Tags'
     parameter_name = 'tag'
@@ -127,7 +147,7 @@ class QuestionCategoryFilter(admin.SimpleListFilter):
 
 
 @admin.register(Settings)
-class SettingsAdmin(admin.ModelAdmin):
+class SettingsAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['__str__', 'default_challenge_duration', 'is_database_already_populated']
 
     fieldsets = (('Durées des challenges', {
@@ -145,7 +165,7 @@ class SettingsAdmin(admin.ModelAdmin):
 
 
 @admin.register(TestDurationProfile)
-class TestDurationProfileAdmin(admin.ModelAdmin):
+class TestDurationProfileAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['domain', 'get_experience_level_display', 'technical_duration', 'logical_duration', 'personality_duration']
     list_filter = ['domain', 'experience_level']
     search_fields = ['domain__name']
@@ -164,7 +184,7 @@ class ChallengeQuestionInline(admin.TabularInline):
 
 
 @admin.register(Challenge)
-class ChallengeAdmin(admin.ModelAdmin):
+class ChallengeAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['title', 'domain', 'duration_display', 'question_count', 'get_tags', 'submissions_count',
                     'is_logical', 'is_active', 'get_question_categories']
     search_fields = ['title', 'description', 'domain__name', 'questions__tags__name']
@@ -232,7 +252,7 @@ class ChallengeAdmin(admin.ModelAdmin):
 
 
 @admin.register(SubmissionAttempt)
-class SubmissionAttemptAdmin(admin.ModelAdmin):
+class SubmissionAttemptAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['candidate', 'challenge', 'started_at', 'ended_at', 'is_finished_display', 'performance_display',
                     'remaining_time_display']
     list_filter = ['started_at', 'ended_at', 'challenge', 'candidate', ActiveCandidateFilter, CandidateDateJoinedFilter]
@@ -333,7 +353,7 @@ class AnswerInline(admin.TabularInline):
 
 
 @admin.register(Submission)
-class SubmissionAdmin(admin.ModelAdmin):
+class SubmissionAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['candidate_display', 'challenge', 'get_challenge_tags', 'status_display', 'result_percent_display',
                     'correct_answers_display', 'submitted_at']
     search_fields = ['candidate__email', 'candidate__first_name', 'candidate__last_name', 'challenge__title',
@@ -426,7 +446,7 @@ class SubmissionAdmin(admin.ModelAdmin):
 
 
 @admin.register(Answer)
-class AnswerAdmin(admin.ModelAdmin):
+class AnswerAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['submission_candidate', 'question_display', 'response_display', 'is_correct_display',
                     'score_display', 'answered_at']
     list_filter = ['is_correct', 'question__question_type', 'answered_at', 'submission__challenge']
@@ -481,7 +501,7 @@ class AnswerAdmin(admin.ModelAdmin):
 
 
 @admin.register(APIUsage)
-class APIUsageAdmin(admin.ModelAdmin):
+class APIUsageAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['date', 'count_display', 'limit_status']
     search_fields = ['date']
     list_filter = ['date']
@@ -539,7 +559,7 @@ class PersonalityAnswerInline(admin.TabularInline):
 
 
 @admin.register(PersonalityChallenge)
-class PersonalityChallengeAdmin(admin.ModelAdmin):
+class PersonalityChallengeAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['title', 'candidate_display', 'questions_count', 'answers_count', 'is_passed', 'corrected']
     search_fields = ['title', 'description', 'candidate__first_name', 'candidate__last_name', 'candidate__email']
     list_filter = ['is_passed', 'corrected', ActiveCandidateFilter, CandidateDateJoinedFilter]
@@ -592,7 +612,7 @@ class PersonalityChallengeAdmin(admin.ModelAdmin):
 
 
 @admin.register(PersonalityAnswer)
-class PersonalityAnswerAdmin(admin.ModelAdmin):
+class PersonalityAnswerAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['submission_title', 'candidate_display', 'question_display', 'response_display', 'answered_at']
     list_filter = ['answered_at', 'submission', 'question__question_type']
     search_fields = ['submission__title', 'submission__candidate__email', 'question__title', 'text',

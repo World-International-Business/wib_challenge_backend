@@ -104,7 +104,23 @@
                     <a class="nav-link px-3 rounded-2" href="{% url 'home' %}">Accueil</a>
                 </li>
                 {% if user.is_authenticated %}
-                    {% if user.is_staff %}
+                    {% if user.school_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'school_dashboard' %}">
+                                <i class="bi bi-grid-1x2 me-1 d-lg-none"></i>Tableau de bord
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'school_student_create' %}">
+                                <i class="bi bi-person-plus me-1 d-lg-none"></i>Créer un élève
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'school_exam_create' %}">
+                                <i class="bi bi-journal-plus me-1 d-lg-none"></i>Créer une épreuve
+                            </a>
+                        </li>
+                    {% elif user.is_staff %}
                         <li class="nav-item">
                             <a class="nav-link px-3 rounded-2" href="{% url 'admin_dashboard' %}">
                                 <i class="bi bi-grid-1x2 me-1 d-lg-none"></i>Tableau de bord
@@ -181,6 +197,12 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                    {% elif user.student_profile %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'student_dashboard' %}">
+                                <i class="bi bi-journal-check me-1 d-lg-none"></i>Mes épreuves
+                            </a>
                         </li>
                     {% else %}
                         <li class="nav-item">
@@ -266,7 +288,7 @@
                     <li class="mb-2"><a href="{% url 'home' %}">Accueil</a></li>
                     <li class="mb-2"><a href="{% url 'challenge_evaluation' %}">Passer un test</a></li>
                     <li class="mb-2"><a href="{% url 'results' %}">Résultats</a></li>
-                    {% if user.is_staff %}
+                    {% if user.is_staff and not user.school_staff %}
                         <li class="mb-2"><a href="{% url 'admin_dashboard' %}">Administration</a></li>
                     {% endif %}
                 </ul>

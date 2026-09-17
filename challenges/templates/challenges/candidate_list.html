@@ -35,6 +35,17 @@
 
     <form method="post">
         {% csrf_token %}
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-body p-4">
+                <h2 class="h5 fw-bold mb-1"><i class="bi bi-envelope-paper me-2 text-primary"></i>Inviter par email</h2>
+                <p class="small text-muted">Sélectionnez des candidats inscrits ci-dessous ou saisissez des adresses de personnes qui ne possèdent pas encore de compte.</p>
+                <div class="row g-3">
+                    <div class="col-md-5"><label for="bulk-subject" class="form-label small fw-semibold">Objet personnalisé</label><input id="bulk-subject" name="subject" class="form-control" maxlength="180" placeholder="Invitation à votre évaluation"></div>
+                    <div class="col-12"><label for="bulk-message" class="form-label small fw-semibold">Message personnalisé</label><textarea id="bulk-message" name="message" class="form-control" rows="4" placeholder="Présentez l’évaluation, les consignes et le délai."></textarea></div>
+                    <div class="col-12"><label for="manual-emails" class="form-label small fw-semibold">Adresses non inscrites</label><textarea id="manual-emails" name="manual_emails" class="form-control" rows="3" placeholder="candidat1@example.com, candidat2@example.com"></textarea><div class="form-text">Séparez les adresses par une virgule, un espace ou une nouvelle ligne. Un lien de création de compte sera ajouté automatiquement.</div></div>
+                </div>
+            </div>
+        </div>
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-header bg-white border-0 p-4 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
                 <div>

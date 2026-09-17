@@ -1,12 +1,14 @@
 import logging
 import math
+import re
 from urllib.parse import urlencode
 
 from django.contrib import messages
-from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.tokens import default_token_generator
 from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 from django.core.mail import EmailMultiAlternatives, mail_managers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
@@ -32,10 +34,19 @@ from questions.models import Domain, Question
 logger = logging.getLogger(__name__)
 
 
+def _is_recruitment_staff(user):
+    return user.is_authenticated and user.is_staff and not hasattr(user, 'school_staff')
+
+
+recruitment_staff_required = user_passes_test(_is_recruitment_staff)
+
+
 def _public_url(request, path):
-    base_url = getattr(settings, 'PUBLIC_SITE_URL', '')
+    base_url = getattr(settings, 'PUBLIC_SITE_URL', '').rstrip('/')
     if base_url:
         return f'{base_url}{path}'
+    if not settings.DEBUG:
+        raise RuntimeError('PUBLIC_SITE_URL doit être configurée en production')
     return request.build_absolute_uri(path)
 
 
@@ -72,6 +83,31 @@ def _send_candidate_invitation(request, candidate):
     email.send(fail_silently=False)
 
 
+def _send_recruitment_message(request, recipient, first_name, subject, message, registration_url=None, include_registration=False):
+    if include_registration and registration_url is None:
+        register_path = f'{reverse("register")}?{urlencode({"email": recipient})}'
+        registration_url = _public_url(request, register_path)
+    email = EmailMultiAlternatives(
+        subject,
+        (
+            f'Bonjour {first_name},\n\n{message}\n\n'
+            f'Créer mon accès : {registration_url}'
+        ),
+        settings.DEFAULT_FROM_EMAIL,
+        [recipient],
+    )
+    email.attach_alternative(
+        render_to_string('challenges/candidate_personal_email.html', {
+            'first_name': first_name,
+            'subject': subject,
+            'message': message,
+            'registration_url': registration_url,
+        }),
+        'text/html',
+    )
+    email.send(fail_silently=False)
+
+
 def home_view(request):
     if not request.user.is_authenticated:
         return render(request, 'challenges/home.html')
@@ -82,9 +118,14 @@ def home_view(request):
     return render(request, 'challenges/home.html', context)
 
 
-@staff_member_required
+@recruitment_staff_required
 def admin_dashboard_view(request):
-    candidates = User.objects.filter(is_staff=False, is_superuser=False)
+    candidates = User.objects.filter(
+        is_staff=False,
+        is_superuser=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
+    )
     technical_count = Submission.objects.filter(challenge__is_logical=False).count()
     logical_count = Submission.objects.filter(challenge__is_logical=True).count()
     personality_count = PersonalityChallenge.objects.filter(is_passed=True).count()
@@ -165,10 +206,10 @@ def admin_dashboard_view(request):
 @login_required
 def evaluation_results(request, submission_id=None, slug=None, challenge_id=None):
     candidate = request.user
-    if request.user.is_staff and request.GET.get('user_id', None):
+    if _is_recruitment_staff(request.user) and request.GET.get('user_id', None):
         candidate = get_object_or_404(User, pk=request.GET.get('user_id'))
     if not slug or not challenge_id:
-        is_admin = request.user.is_staff and candidate == request.user
+        is_admin = _is_recruitment_staff(request.user) and candidate == request.user
         if is_admin:
             submissions = Submission.objects.all()
         else:
@@ -217,10 +258,15 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
             'submissions': submissions,
             'personality_results': personality_page,
             'total_evaluations': total_evaluations,
-            'add_id': request.user.is_staff,
+            'add_id': _is_recruitment_staff(request.user),
             'is_admin': is_admin,
             'challenges': Challenge.objects.all().order_by('title') if is_admin else [],
-            'candidates': User.objects.filter(is_staff=False, is_superuser=False).order_by('last_name', 'first_name') if is_admin else [],
+            'candidates': User.objects.filter(
+                is_staff=False,
+                is_superuser=False,
+                student_profile__isnull=True,
+                school_staff__isnull=True,
+            ).order_by('last_name', 'first_name') if is_admin else [],
             'filters': {
                 'date_from': date_from or '',
                 'date_to': date_to or '',
@@ -572,6 +618,9 @@ def generate_logical_challenge(request):
 def personality_details_view(request, user_id=None):
     """Vue pour afficher les détails de personnalité (candidat: soi-même, admin: tout le monde)."""
 
+    if request.user.is_staff and not _is_recruitment_staff(request.user):
+        return redirect('home')
+
     if not request.user.is_staff:
         if not user_id or user_id != request.user.id:
             return redirect('personality_details', user_id=request.user.id)
@@ -594,7 +643,9 @@ def personality_details_view(request, user_id=None):
 
     # Récupérer tous les utilisateurs qui ont un test de personnalité
     users_with_challenges = User.objects.filter(
-        personality_challenges__isnull=False
+        personality_challenges__isnull=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
     ).distinct().order_by('last_name', 'first_name')
 
     # Ajouter des informations sur le statut des tests
@@ -615,7 +666,7 @@ def personality_details_view(request, user_id=None):
     return render(request, 'challenges/personality_candidates.html', context)
 
 
-@staff_member_required
+@recruitment_staff_required
 def manual_correct_submission_view(request, submission_id):
     """Relance manuellement la correction d'une soumission technique/psychotechnique."""
     submission = get_object_or_404(Submission, id=submission_id)
@@ -624,7 +675,7 @@ def manual_correct_submission_view(request, submission_id):
     return redirect(request.GET.get('next', 'results'))
 
 
-@staff_member_required
+@recruitment_staff_required
 def manual_correct_personality_view(request, personality_id):
     """Relance manuellement la correction d'un test de personnalité."""
     challenge = get_object_or_404(PersonalityChallenge, id=personality_id)
@@ -642,11 +693,13 @@ def manual_correct_personality_view(request, personality_id):
     return redirect(request.GET.get('next', 'personality_candidates'))
 
 
-@staff_member_required
+@recruitment_staff_required
 def candidate_list_view(request):
     candidates = User.objects.filter(
         is_staff=False,
         is_superuser=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
     ).order_by('last_name', 'first_name', 'email')
     search = request.GET.get('search', '').strip()
     if search:
@@ -659,22 +712,78 @@ def candidate_list_view(request):
     if request.method == 'POST':
         selected_ids = request.POST.getlist('candidate_ids')
         selected_candidates = candidates.filter(id__in=selected_ids)
+        subject = request.POST.get('subject', '').strip()
+        message = request.POST.get('message', '').strip()
+        raw_manual_emails = request.POST.get('manual_emails', '')
+        manual_emails = []
+        for value in re.split(r'[,;\s]+', raw_manual_emails):
+            email = value.strip().lower()
+            if email and email not in manual_emails:
+                manual_emails.append(email)
+        invalid_emails = []
+        valid_manual_emails = []
+        for email in manual_emails:
+            try:
+                validate_email(email)
+            except ValidationError:
+                invalid_emails.append(email)
+            else:
+                valid_manual_emails.append(email)
+
+        if valid_manual_emails and (not subject or not message):
+            messages.error(request, 'Le sujet et le message sont obligatoires pour un envoi personnalisé.')
+            return redirect(reverse('candidate_list'))
+
         sent = 0
         failed = 0
         for candidate in selected_candidates:
             try:
-                _send_candidate_invitation(request, candidate)
+                if subject and message:
+                    _send_recruitment_message(request, candidate.email, candidate.first_name or 'candidat', subject, message)
+                else:
+                    _send_candidate_invitation(request, candidate)
                 sent += 1
             except Exception:
                 failed += 1
                 logger.exception('Erreur lors de l invitation du candidat %s', candidate.pk)
 
+        registered_emails = {candidate.email.lower() for candidate in selected_candidates}
+        for email in valid_manual_emails:
+            if email in registered_emails:
+                continue
+            try:
+                existing_candidate = candidates.filter(email__iexact=email).first()
+                if existing_candidate:
+                    _send_recruitment_message(
+                        request,
+                        email,
+                        existing_candidate.first_name or 'candidat',
+                        subject,
+                        message,
+                        registration_url=None,
+                    )
+                else:
+                    _send_recruitment_message(
+                        request,
+                        email,
+                        email.split('@')[0],
+                        subject,
+                        message,
+                        include_registration=True,
+                    )
+                sent += 1
+            except Exception:
+                failed += 1
+                logger.exception('Erreur lors de l envoi manuel à %s', email)
+
         if sent:
             messages.success(request, f'{sent} invitation(s) envoyée(s) avec succès.')
         if failed:
             messages.error(request, f'{failed} invitation(s) n’ont pas pu être envoyée(s).')
-        if not selected_ids:
-            messages.warning(request, 'Sélectionnez au moins un candidat.')
+        if invalid_emails:
+            messages.warning(request, f'{len(invalid_emails)} adresse(s) ignorée(s) car invalide(s).')
+        if not selected_ids and not valid_manual_emails:
+            messages.warning(request, 'Sélectionnez un candidat ou saisissez au moins une adresse email.')
         query = urlencode({'search': search}) if search else ''
         return redirect(f'{reverse("candidate_list")}?{query}' if query else reverse('candidate_list'))
 
@@ -685,10 +794,16 @@ def candidate_list_view(request):
     })
 
 
-@staff_member_required
+@recruitment_staff_required
 def candidate_detail_view(request, user_id):
     """Vue détaillée d'un candidat avec ses 3 types d'évaluations."""
-    candidate = get_object_or_404(User, id=user_id, is_staff=False)
+    candidate = get_object_or_404(
+        User,
+        id=user_id,
+        is_staff=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
+    )
 
     technical_submissions = Submission.objects.filter(
         candidate=candidate,
@@ -720,10 +835,16 @@ def candidate_detail_view(request, user_id):
     return render(request, 'challenges/candidate_detail.html', context)
 
 
-@staff_member_required
+@recruitment_staff_required
 def candidate_retake_view(request, user_id):
     """Autorise un candidat à repasser un test (supprime/dissocie l'ancien)."""
-    candidate = get_object_or_404(User, id=user_id, is_staff=False)
+    candidate = get_object_or_404(
+        User,
+        id=user_id,
+        is_staff=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
+    )
     test_type = request.POST.get('test_type') or request.GET.get('test_type')
 
     if request.method == 'POST' and test_type:
@@ -748,12 +869,19 @@ def candidate_retake_view(request, user_id):
     return redirect('candidate_detail', user_id=candidate.id)
 
 
-@staff_member_required
+@recruitment_staff_required
 def candidate_invitation_view(request, user_id):
     if request.method != 'POST':
         return redirect('candidate_detail', user_id=user_id)
 
-    candidate = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    candidate = get_object_or_404(
+        User,
+        id=user_id,
+        is_staff=False,
+        is_superuser=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
+    )
     try:
         _send_candidate_invitation(request, candidate)
     except Exception:
@@ -765,9 +893,16 @@ def candidate_invitation_view(request, user_id):
     return redirect('candidate_detail', user_id=candidate.id)
 
 
-@staff_member_required
+@recruitment_staff_required
 def candidate_message_view(request, user_id):
-    candidate = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    candidate = get_object_or_404(
+        User,
+        id=user_id,
+        is_staff=False,
+        is_superuser=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
+    )
     if request.method != 'POST':
         return redirect('candidate_detail', user_id=candidate.id)
 
@@ -802,13 +937,15 @@ def candidate_message_view(request, user_id):
     return redirect('candidate_detail', user_id=candidate.id)
 
 
-@staff_member_required
+@recruitment_staff_required
 def leaderboard_view(request):
     """Classement des candidats sur les 3 types d'évaluation."""
     domain_id = request.GET.get('domain')
 
     candidates = User.objects.filter(
         is_staff=False,
+        student_profile__isnull=True,
+        school_staff__isnull=True,
         submissions__isnull=False
     ).distinct()
 
@@ -844,7 +981,9 @@ def leaderboard_view(request):
 
     domains = Domain.objects.filter(
         user__is_staff=False,
-        user__is_superuser=False
+        user__is_superuser=False,
+        user__student_profile__isnull=True,
+        user__school_staff__isnull=True,
     ).distinct().order_by('name')
 
     context = {

@@ -1,3 +1,18 @@
+### Parcours scolaire
+
+Après connexion, le personnel scolaire est envoyé vers son tableau de bord. Il
+peut créer les comptes des élèves de ses classes, créer une épreuve, sélectionner
+les questions, puis la publier. L'élève se connecte avec le compte créé par son
+enseignant et ne voit que les épreuves publiées pour sa classe.
+
+Une tentative est limitée par la période de l'épreuve, sa durée et le nombre de
+tentatives autorisées. Les QCM sont corrigés automatiquement ; les réponses
+ouvertes apparaissent dans la file de copies à corriger. L'enseignant publie
+ensuite les notes, et l'élève ne les voit qu'après cette publication.
+
+Les noms de classes et de matières sont libres : le module peut donc être utilisé
+par des établissements francophones ou anglophones. Les traductions de l'interface
+peuvent être ajoutées séparément sans modifier les données ni le recrutement.
 # WIB Challenge
 
 ## Installation
@@ -50,4 +65,22 @@ Après avoir migré la base de données, créer un super utilisateur et les para
   python manage.py createsuperuser
   python manage.py create_default_settings
 ```
+
+## Module scolaire
+
+Le module scolaire est séparé du parcours de recrutement. Le super administrateur
+crée les comptes du personnel dans l'administration Django, puis les rattache à
+un établissement via **Personnel scolaire** :
+
+- **Responsable d'établissement** : gère les classes, élèves, matières et épreuves de son établissement.
+- **Enseignant** : gère les épreuves de son établissement, sans accès à sa structure administrative.
+
+Les épreuves scolaires sont enregistrées avec une classe, une matière, une période,
+une durée, un nombre maximal de tentatives et un barème sur 20 ou 100. Le personnel
+scolaire ne peut pas accéder aux candidats ni aux résultats du module recrutement.
+
+La structure scolaire peut être initialisée automatiquement au déploiement avec
+les variables `EDUCATION_*`. Si `EDUCATION_SCHOOL_NAME` est vide, aucune école
+n'est créée. Les élèves et le personnel scolaire sont exclus des listes du réseau
+professionnel de recrutement.
 

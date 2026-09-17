@@ -66,7 +66,7 @@ def register_view(request):
             messages.info(request, "Un code de vérification a été envoyé à votre adresse email.")
             return redirect('verify_email')
     else:
-        form = UserRegisterForm()
+        form = UserRegisterForm(initial={'email': request.GET.get('email', '').strip()})
 
     return render(request, 'accounts/register.html', {'form': form})
 
@@ -105,6 +105,10 @@ def login_view(request):
                             backend='django.contrib.auth.backends.ModelBackend')
         if user is not None:
             login(request, user)
+            if hasattr(user, 'school_staff'):
+                return redirect('school_dashboard')
+            if hasattr(user, 'student_profile'):
+                return redirect('student_dashboard')
             return redirect('challenge_evaluation')
         else:
             messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")

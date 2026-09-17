@@ -6,6 +6,26 @@ from django.utils.html import format_html
 from questions.models import Domain, Category, Criteria, Tag, Choice, Question
 
 
+class RecruitmentOnlyAdminMixin:
+    def has_module_permission(self, request):
+        return request.user.is_superuser or not hasattr(request.user, 'school_staff')
+
+    def _allowed(self, request):
+        return request.user.is_superuser or not hasattr(request.user, 'school_staff')
+
+    def has_view_permission(self, request, obj=None):
+        return self._allowed(request)
+
+    def has_add_permission(self, request):
+        return self._allowed(request)
+
+    def has_change_permission(self, request, obj=None):
+        return self._allowed(request)
+
+    def has_delete_permission(self, request, obj=None):
+        return self._allowed(request)
+
+
 class CategoryInline(admin.TabularInline):
     model = Category
     extra = 1
@@ -13,7 +33,7 @@ class CategoryInline(admin.TabularInline):
 
 
 @admin.register(Domain)
-class DomainAdmin(admin.ModelAdmin):
+class DomainAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['name', 'categories_count']
     search_fields = ['name']
     ordering = ['name']
@@ -47,7 +67,7 @@ class CriteriaInline(admin.TabularInline):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['name', 'domain', 'criteria_count', 'questions_count']
     list_filter = ['domain']
     search_fields = ['name', 'domain__name']
@@ -83,7 +103,7 @@ class TagInline(admin.TabularInline):
 
 
 @admin.register(Criteria)
-class CriteriaAdmin(admin.ModelAdmin):
+class CriteriaAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['name', 'category', 'domain_name', 'tags_count']
     list_filter = ['category__domain', 'category']
     search_fields = ['name', 'category__name', 'category__domain__name']
@@ -112,7 +132,7 @@ class CriteriaAdmin(admin.ModelAdmin):
 
 
 @admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
+class TagAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['name', 'domain_name', 'criteria', 'category_name', 'questions_count']
     list_filter = ['criteria__category__domain', 'criteria__category', 'criteria']
     search_fields = ['name', 'criteria__name', 'criteria__category__name', 'criteria__category__domain__name']
@@ -152,7 +172,7 @@ class ChoiceInline(admin.TabularInline):
 
 
 @admin.register(Choice)
-class ChoiceAdmin(admin.ModelAdmin):
+class ChoiceAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['text', 'question', 'question_type', 'category_name', 'domain_name', 'is_correct']
     list_filter = ['is_correct', 'question__question_type', 'question__category__domain', 'question__category']
     search_fields = ['text', 'question__title', 'question__category__name', 'question__category__domain__name']
@@ -195,7 +215,7 @@ class ChoiceAdmin(admin.ModelAdmin):
 
 
 @admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
+class QuestionAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
     list_display = ['title', 'category', 'domain_name', 'question_type', 'question_category_badge', 'level', 'created_at', 'choices_count',
                     'correct_choices_count', 'tags_display']
     search_fields = ['title', 'description', 'category__name', 'category__domain__name', 'tags__name']

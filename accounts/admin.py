@@ -90,10 +90,30 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [UserSkillInline]
     actions = ['send_candidate_invitations']
 
+    def has_module_permission(self, request):
+        return request.user.is_superuser or not hasattr(request.user, 'school_staff')
+
+    def has_add_permission(self, request):
+        return request.user.is_superuser
+
+    def save_model(self, request, obj, form, change):
+        if not request.user.is_superuser and obj.is_staff:
+            obj.is_staff = False
+            obj.is_superuser = False
+        if not change:
+            obj.set_password(obj.password)
+        super().save_model(request, obj, form, change)
+
     @admin.action(description='Envoyer une invitation aux candidats sélectionnés')
     def send_candidate_invitations(self, request, queryset):
         sent = 0
-        for user in queryset.filter(is_staff=False, is_superuser=False, is_active=True):
+        for user in queryset.filter(
+            is_staff=False,
+            is_superuser=False,
+            is_active=True,
+            student_profile__isnull=True,
+            school_staff__isnull=True,
+        ):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
             reset_path = reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
@@ -168,11 +188,6 @@ class UserAdmin(admin.ModelAdmin):
             fieldsets[0] = (None, {'fields': ('email', 'password')})
             return fieldsets
         return super().get_fieldsets(request, obj)
-
-    def save_model(self, request, obj, form, change):
-        if not change:
-            obj.set_password(obj.password)
-        super().save_model(request, obj, form, change)
 
     @admin.display(ordering='domain__name', description='Domaine', empty_value='-')
     def get_domain_name(self, obj):

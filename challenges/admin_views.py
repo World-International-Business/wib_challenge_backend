@@ -20,7 +20,8 @@ from wib_challenge.enums import ExperienceLevel
 
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_staff
+        user = self.request.user
+        return user.is_staff and not hasattr(user, 'school_staff')
 
 
 # ------------------------------------------------------------------
