@@ -710,6 +710,9 @@ def candidate_detail_view(request, user_id):
 
     context = {
         'candidate': candidate,
+        'technical_count': technical_submissions.count(),
+        'logical_count': logical_submissions.count(),
+        'personality_count': personality_challenges.count(),
         'technical_submissions': technical_page,
         'logical_submissions': logical_page,
         'personality_challenges': personality_page,

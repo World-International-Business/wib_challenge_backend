@@ -218,11 +218,11 @@
             <nav aria-label="Pagination des tests de personnalité" class="mt-4">
                 <ul class="pagination justify-content-center">
                     {% if personality_results.has_previous %}
-                        <li class="page-item"><a class="page-link" href="?personality_page={{ personality_results.previous_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Précédent</a></li>
+                        <li class="page-item"><a class="page-link" href="?personality_page={{ personality_results.previous_page_number }}{% if submissions.number %}&page={{ submissions.number }}{% endif %}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Précédent</a></li>
                     {% endif %}
                     <li class="page-item active"><span class="page-link">{{ personality_results.number }}</span></li>
                     {% if personality_results.has_next %}
-                        <li class="page-item"><a class="page-link" href="?personality_page={{ personality_results.next_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Suivant</a></li>
+                        <li class="page-item"><a class="page-link" href="?personality_page={{ personality_results.next_page_number }}{% if submissions.number %}&page={{ submissions.number }}{% endif %}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Suivant</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -233,7 +233,7 @@
                 <ul class="pagination justify-content-center">
                     {% if submissions.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ submissions.previous_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Précédent</a>
+                            <a class="page-link" href="?page={{ submissions.previous_page_number }}{% if personality_results.number %}&personality_page={{ personality_results.number }}{% endif %}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Précédent</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled"><span class="page-link">Précédent</span></li>
@@ -243,13 +243,13 @@
                             <li class="page-item active"><span class="page-link">{{ page_number }}</span></li>
                         {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{ page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">{{ page_number }}</a>
+                                <a class="page-link" href="?page={{ page_number }}{% if personality_results.number %}&personality_page={{ personality_results.number }}{% endif %}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">{{ page_number }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}
                     {% if submissions.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ submissions.next_page_number }}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Suivant</a>
+                            <a class="page-link" href="?page={{ submissions.next_page_number }}{% if personality_results.number %}&personality_page={{ personality_results.number }}{% endif %}{% if filters.date_from %}&date_from={{ filters.date_from }}{% endif %}{% if filters.date_to %}&date_to={{ filters.date_to }}{% endif %}{% if filters.challenge %}&challenge={{ filters.challenge }}{% endif %}{% if filters.candidate %}&candidate={{ filters.candidate }}{% endif %}">Suivant</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled"><span class="page-link">Suivant</span></li>

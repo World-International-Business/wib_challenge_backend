@@ -77,7 +77,7 @@
                         <i class="bi bi-code-slash fs-2"></i>
                     </div>
                     <h4 class="h5 fw-bold mb-2">Tests techniques</h4>
-                    <p class="display-6 fw-bold text-primary mb-0">{{ technical_submissions|length }}</p>
+                    <p class="display-6 fw-bold text-primary mb-0">{{ technical_count }}</p>
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
                         <i class="bi bi-puzzle fs-2"></i>
                     </div>
                     <h4 class="h5 fw-bold mb-2">Tests psychotechniques</h4>
-                    <p class="display-6 fw-bold text-info mb-0">{{ logical_submissions|length }}</p>
+                    <p class="display-6 fw-bold text-info mb-0">{{ logical_count }}</p>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                         <i class="bi bi-person-check fs-2"></i>
                     </div>
                     <h4 class="h5 fw-bold mb-2">Tests de personnalité</h4>
-                    <p class="display-6 fw-bold text-success mb-0">{{ personality_challenges|length }}</p>
+                    <p class="display-6 fw-bold text-success mb-0">{{ personality_count }}</p>
                 </div>
             </div>
         </div>
@@ -146,9 +146,9 @@
     {% if technical_submissions.has_other_pages %}
         <nav aria-label="Pagination des tests techniques" class="mt-3">
             <ul class="pagination pagination-sm justify-content-center">
-                {% if technical_submissions.has_previous %}<li class="page-item"><a class="page-link" href="?technical_page={{ technical_submissions.previous_page_number }}">Précédent</a></li>{% endif %}
+                {% if technical_submissions.has_previous %}<li class="page-item"><a class="page-link" href="?technical_page={{ technical_submissions.previous_page_number }}{% if logical_submissions.number %}&logical_page={{ logical_submissions.number }}{% endif %}{% if personality_challenges.number %}&personality_page={{ personality_challenges.number }}{% endif %}">Précédent</a></li>{% endif %}
                 <li class="page-item active"><span class="page-link">{{ technical_submissions.number }}</span></li>
-                {% if technical_submissions.has_next %}<li class="page-item"><a class="page-link" href="?technical_page={{ technical_submissions.next_page_number }}">Suivant</a></li>{% endif %}
+                {% if technical_submissions.has_next %}<li class="page-item"><a class="page-link" href="?technical_page={{ technical_submissions.next_page_number }}{% if logical_submissions.number %}&logical_page={{ logical_submissions.number }}{% endif %}{% if personality_challenges.number %}&personality_page={{ personality_challenges.number }}{% endif %}">Suivant</a></li>{% endif %}
             </ul>
         </nav>
     {% endif %}
@@ -194,9 +194,9 @@
     {% if logical_submissions.has_other_pages %}
         <nav aria-label="Pagination des tests psychotechniques" class="mt-3">
             <ul class="pagination pagination-sm justify-content-center">
-                {% if logical_submissions.has_previous %}<li class="page-item"><a class="page-link" href="?logical_page={{ logical_submissions.previous_page_number }}">Précédent</a></li>{% endif %}
+                {% if logical_submissions.has_previous %}<li class="page-item"><a class="page-link" href="?logical_page={{ logical_submissions.previous_page_number }}{% if technical_submissions.number %}&technical_page={{ technical_submissions.number }}{% endif %}{% if personality_challenges.number %}&personality_page={{ personality_challenges.number }}{% endif %}">Précédent</a></li>{% endif %}
                 <li class="page-item active"><span class="page-link">{{ logical_submissions.number }}</span></li>
-                {% if logical_submissions.has_next %}<li class="page-item"><a class="page-link" href="?logical_page={{ logical_submissions.next_page_number }}">Suivant</a></li>{% endif %}
+                {% if logical_submissions.has_next %}<li class="page-item"><a class="page-link" href="?logical_page={{ logical_submissions.next_page_number }}{% if technical_submissions.number %}&technical_page={{ technical_submissions.number }}{% endif %}{% if personality_challenges.number %}&personality_page={{ personality_challenges.number }}{% endif %}">Suivant</a></li>{% endif %}
             </ul>
         </nav>
     {% endif %}
@@ -244,9 +244,9 @@
     {% if personality_challenges.has_other_pages %}
         <nav aria-label="Pagination des tests de personnalité" class="mt-3">
             <ul class="pagination pagination-sm justify-content-center">
-                {% if personality_challenges.has_previous %}<li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.previous_page_number }}">Précédent</a></li>{% endif %}
+                {% if personality_challenges.has_previous %}<li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.previous_page_number }}{% if technical_submissions.number %}&technical_page={{ technical_submissions.number }}{% endif %}{% if logical_submissions.number %}&logical_page={{ logical_submissions.number }}{% endif %}">Précédent</a></li>{% endif %}
                 <li class="page-item active"><span class="page-link">{{ personality_challenges.number }}</span></li>
-                {% if personality_challenges.has_next %}<li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.next_page_number }}">Suivant</a></li>{% endif %}
+                {% if personality_challenges.has_next %}<li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.next_page_number }}{% if technical_submissions.number %}&technical_page={{ technical_submissions.number }}{% endif %}{% if logical_submissions.number %}&logical_page={{ logical_submissions.number }}{% endif %}">Suivant</a></li>{% endif %}
             </ul>
         </nav>
     {% endif %}

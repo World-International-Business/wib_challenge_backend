@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.tokens import default_token_generator
+from django.conf import settings
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.utils.encoding import force_bytes
@@ -96,14 +97,20 @@ class UserAdmin(admin.ModelAdmin):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             token = default_token_generator.make_token(user)
             reset_path = reverse('password_reset_confirm', kwargs={'uidb64': uid, 'token': token})
-            reset_url = request.build_absolute_uri(reset_path)
-            site_url = request.build_absolute_uri(reverse('home'))
+            base_url = getattr(settings, 'PUBLIC_SITE_URL', '').rstrip('/')
+            if not base_url:
+                if not settings.DEBUG:
+                    raise RuntimeError('PUBLIC_SITE_URL doit être configurée en production')
+                base_url = request.build_absolute_uri('/').rstrip('/')
+            reset_url = f'{base_url}{reset_path}'
+            site_url = f'{base_url}{reverse("home")}'
             send_mail(
-                'Invitation à WIB Challenge',
+                'Invitation : passez vos évaluations en ligne sur WIB Challenge',
                 (
                     f'Bonjour {user.first_name},\n\n'
-                    f'Vous êtes invité(e) à passer votre évaluation : {site_url}\n\n'
-                    f'Créez ou définissez votre mot de passe ici : {reset_url}\n'
+                    'Vous êtes invité(e) à passer vos évaluations en ligne sur la plateforme WIB Challenge.\n\n'
+                    f'Définissez votre mot de passe ici : {reset_url}\n\n'
+                    f'Accéder à la plateforme : {site_url}\n'
                 ),
                 None,
                 [user.email],

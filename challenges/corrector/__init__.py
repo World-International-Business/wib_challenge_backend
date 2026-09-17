@@ -16,7 +16,11 @@ logger = logging.getLogger(__name__)
 
 def _public_url(path):
     base_url = getattr(settings, 'PUBLIC_SITE_URL', '').rstrip('/')
-    return f'{base_url}{path}' if base_url else f'http://127.0.0.1:8000{path}'
+    if base_url:
+        return f'{base_url}{path}'
+    if settings.DEBUG:
+        return f'http://127.0.0.1:8000{path}'
+    raise RuntimeError('PUBLIC_SITE_URL doit être configurée en production')
 
 
 def _notify_candidate_results(challenge, result_url, result_type):
@@ -120,14 +124,24 @@ def correct_submission(submission: Submission):
 
             for batch in batches:
                 try:
-                    response = correct_answers(batch)
-                    for answer, resp in zip(batch, response):
-                        answer.is_correct = resp.correct
+                    responses = correct_answers(batch)
+                    expected_ids = {answer.id for answer in batch}
+                    response_by_id = {}
+                    for response in responses:
+                        if response.id not in expected_ids or response.id in response_by_id:
+                            raise ValueError('Réponse Gemini avec un identifiant inattendu ou dupliqué')
+                        response_by_id[response.id] = response
+                    if set(response_by_id) != expected_ids:
+                        raise ValueError('Réponse Gemini incomplète pour le lot de correction')
+
+                    for answer in batch:
+                        answer.is_correct = response_by_id[answer.id].correct
                         answer.save()
                 except Exception:
                     for answer in batch:
                         answer.is_correct = None
                         answer.save()
+                    raise
             usage.count += 1
             usage.save()
 
@@ -138,6 +152,7 @@ def correct_submission(submission: Submission):
                 answer.average_score for answer in answers) / submission.challenge.questions.count()
         submission.status = Submission.CorrectionStatus.CORRECTED
     except Exception:
+        logger.exception('Erreur lors de la correction de la soumission %s', submission.pk)
         submission.status = Submission.CorrectionStatus.PENDING
     submission.save()
     if submission.status == Submission.CorrectionStatus.CORRECTED:
