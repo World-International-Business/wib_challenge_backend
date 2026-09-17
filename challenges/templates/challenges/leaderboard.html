@@ -95,5 +95,19 @@
             {% endif %}
         </div>
     </div>
+
+    {% if leaderboard.has_other_pages %}
+        <nav aria-label="Pagination du classement" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if leaderboard.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ leaderboard.previous_page_number }}{% if domain_id %}&domain={{ domain_id }}{% endif %}">Précédent</a></li>
+                {% endif %}
+                <li class="page-item active"><span class="page-link">{{ leaderboard.number }}</span></li>
+                {% if leaderboard.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ leaderboard.next_page_number }}{% if domain_id %}&domain={{ domain_id }}{% endif %}">Suivant</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 </div>
 {% endblock %}

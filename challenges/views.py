@@ -1,10 +1,13 @@
 import logging
 import math
+from urllib.parse import urlencode
 
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-from django.core.mail import mail_managers
+from django.contrib.auth.tokens import default_token_generator
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives, mail_managers
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
 from django.db.models import Avg, Count, Q
@@ -12,7 +15,10 @@ from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 
@@ -24,6 +30,46 @@ from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, 
 from questions.models import Domain, Question
 
 logger = logging.getLogger(__name__)
+
+
+def _public_url(request, path):
+    base_url = getattr(settings, 'PUBLIC_SITE_URL', '')
+    if base_url:
+        return f'{base_url}{path}'
+    return request.build_absolute_uri(path)
+
+
+def _send_candidate_invitation(request, candidate):
+    uid = urlsafe_base64_encode(force_bytes(candidate.pk))
+    token = default_token_generator.make_token(candidate)
+    reset_path = reverse('password_reset_confirm', kwargs={
+        'uidb64': uid,
+        'token': token,
+    })
+    reset_url = _public_url(request, reset_path)
+    site_url = _public_url(request, reverse('home'))
+    email = EmailMultiAlternatives(
+        'Votre invitation à WIB Challenge',
+        (
+            f'Bonjour {candidate.first_name},\n\n'
+            'Vous êtes invité(e) à passer vos évaluations en ligne sur la plateforme WIB Challenge.\n\n'
+            'Commencez par définir votre mot de passe avec ce lien : '
+            f'{reset_url}\n\nAccéder à la plateforme : {site_url}\n\n'
+            'Ce lien est personnel. Si vous n\'êtes pas à l\'origine de cette invitation, '
+            'ignorez ce message.'
+        ),
+        None,
+        [candidate.email],
+    )
+    email.attach_alternative(
+        render_to_string('challenges/candidate_invitation_email.html', {
+            'first_name': candidate.first_name,
+            'reset_url': reset_url,
+            'site_url': site_url,
+        }),
+        'text/html',
+    )
+    email.send(fail_silently=False)
 
 
 def home_view(request):
@@ -162,11 +208,14 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
         else:
             personality_results = candidate.personality_challenges.all()
         personality_results = personality_results.order_by('-created_at', '-id')
+        personality_page = Paginator(personality_results, 10).get_page(
+            request.GET.get('personality_page')
+        )
         total_evaluations = submissions.paginator.count + personality_results.count()
 
         context = {
             'submissions': submissions,
-            'personality_results': personality_results,
+            'personality_results': personality_page,
             'total_evaluations': total_evaluations,
             'add_id': request.user.is_staff,
             'is_admin': is_admin,
@@ -533,10 +582,13 @@ def personality_details_view(request, user_id=None):
             candidate=candidate,
             corrected=True
         ).order_by('-id')
+        personality_page = Paginator(personality_challenges, 5).get_page(
+            request.GET.get('personality_page')
+        )
 
         context = {
             'candidate': candidate,
-            'personality_challenges': personality_challenges,
+            'personality_challenges': personality_page,
         }
         return render(request, 'challenges/personality_detail.html', context)
 
@@ -577,8 +629,60 @@ def manual_correct_personality_view(request, personality_id):
     """Relance manuellement la correction d'un test de personnalité."""
     challenge = get_object_or_404(PersonalityChallenge, id=personality_id)
     correct_personality_challenge(challenge)
-    messages.success(request, f'Correction relancée pour {challenge.title}.')
+    if challenge.corrected:
+        messages.success(request, f'Correction terminée pour {challenge.title}.')
+    else:
+        messages.error(
+            request,
+            "La correction n'a pas abouti. Consultez les logs du serveur pour connaître la cause."
+        )
+
+    if request.GET.get('next') == 'personality_details':
+        return redirect('personality_details', user_id=challenge.candidate_id)
     return redirect(request.GET.get('next', 'personality_candidates'))
+
+
+@staff_member_required
+def candidate_list_view(request):
+    candidates = User.objects.filter(
+        is_staff=False,
+        is_superuser=False,
+    ).order_by('last_name', 'first_name', 'email')
+    search = request.GET.get('search', '').strip()
+    if search:
+        candidates = candidates.filter(
+            Q(first_name__icontains=search) |
+            Q(last_name__icontains=search) |
+            Q(email__icontains=search)
+        )
+
+    if request.method == 'POST':
+        selected_ids = request.POST.getlist('candidate_ids')
+        selected_candidates = candidates.filter(id__in=selected_ids)
+        sent = 0
+        failed = 0
+        for candidate in selected_candidates:
+            try:
+                _send_candidate_invitation(request, candidate)
+                sent += 1
+            except Exception:
+                failed += 1
+                logger.exception('Erreur lors de l invitation du candidat %s', candidate.pk)
+
+        if sent:
+            messages.success(request, f'{sent} invitation(s) envoyée(s) avec succès.')
+        if failed:
+            messages.error(request, f'{failed} invitation(s) n’ont pas pu être envoyée(s).')
+        if not selected_ids:
+            messages.warning(request, 'Sélectionnez au moins un candidat.')
+        query = urlencode({'search': search}) if search else ''
+        return redirect(f'{reverse("candidate_list")}?{query}' if query else reverse('candidate_list'))
+
+    page_obj = Paginator(candidates, 20).get_page(request.GET.get('page'))
+    return render(request, 'challenges/candidate_list.html', {
+        'page_obj': page_obj,
+        'search': search,
+    })
 
 
 @staff_member_required
@@ -600,11 +704,15 @@ def candidate_detail_view(request, user_id):
         candidate=candidate
     ).order_by('-id')
 
+    technical_page = Paginator(technical_submissions, 10).get_page(request.GET.get('technical_page'))
+    logical_page = Paginator(logical_submissions, 10).get_page(request.GET.get('logical_page'))
+    personality_page = Paginator(personality_challenges, 10).get_page(request.GET.get('personality_page'))
+
     context = {
         'candidate': candidate,
-        'technical_submissions': technical_submissions,
-        'logical_submissions': logical_submissions,
-        'personality_challenges': personality_challenges,
+        'technical_submissions': technical_page,
+        'logical_submissions': logical_page,
+        'personality_challenges': personality_page,
     }
     return render(request, 'challenges/candidate_detail.html', context)
 
@@ -633,6 +741,60 @@ def candidate_retake_view(request, user_id):
         elif test_type == 'personality':
             candidate.personality_challenges.all().delete()
             messages.success(request, 'Un nouveau test de personnalité peut être généré.')
+
+    return redirect('candidate_detail', user_id=candidate.id)
+
+
+@staff_member_required
+def candidate_invitation_view(request, user_id):
+    if request.method != 'POST':
+        return redirect('candidate_detail', user_id=user_id)
+
+    candidate = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    try:
+        _send_candidate_invitation(request, candidate)
+    except Exception:
+        logger.exception('Erreur lors de l invitation du candidat %s', candidate.pk)
+        messages.error(request, "L'invitation n'a pas pu être envoyée. Vérifiez la configuration email.")
+    else:
+        messages.success(request, f"L'invitation a été envoyée à {candidate.email}.")
+
+    return redirect('candidate_detail', user_id=candidate.id)
+
+
+@staff_member_required
+def candidate_message_view(request, user_id):
+    candidate = get_object_or_404(User, id=user_id, is_staff=False, is_superuser=False)
+    if request.method != 'POST':
+        return redirect('candidate_detail', user_id=candidate.id)
+
+    subject = request.POST.get('subject', '').strip()
+    message = request.POST.get('message', '').strip()
+    if not subject or not message:
+        messages.error(request, 'Le sujet et le message sont obligatoires.')
+        return redirect('candidate_detail', user_id=candidate.id)
+
+    try:
+        email = EmailMultiAlternatives(
+            subject,
+            f'Bonjour {candidate.first_name},\n\n{message}',
+            settings.DEFAULT_FROM_EMAIL,
+            [candidate.email],
+        )
+        email.attach_alternative(
+            render_to_string('challenges/candidate_personal_email.html', {
+                'first_name': candidate.first_name,
+                'subject': subject,
+                'message': message,
+            }),
+            'text/html',
+        )
+        email.send(fail_silently=False)
+    except Exception:
+        logger.exception('Erreur lors de l envoi du message au candidat %s', candidate.pk)
+        messages.error(request, "Le message n'a pas pu être envoyé.")
+    else:
+        messages.success(request, f'Le message a été envoyé à {candidate.email}.')
 
     return redirect('candidate_detail', user_id=candidate.id)
 
@@ -675,6 +837,7 @@ def leaderboard_view(request):
         })
 
     leaderboard.sort(key=lambda x: x['overall'], reverse=True)
+    leaderboard_page = Paginator(leaderboard, 20).get_page(request.GET.get('page'))
 
     domains = Domain.objects.filter(
         user__is_staff=False,
@@ -682,7 +845,7 @@ def leaderboard_view(request):
     ).distinct().order_by('name')
 
     context = {
-        'leaderboard': leaderboard,
+        'leaderboard': leaderboard_page,
         'domains': domains,
         'domain_id': domain_id or '',
     }

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}Candidats - WIB Challenge{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+        <div>
+            <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2 mb-2">
+                <i class="bi bi-people me-1"></i> Suivi des candidats
+            </span>
+            <h1 class="h2 fw-bold mb-1">Inviter des candidats</h1>
+            <p class="text-muted mb-0">Sélectionnez un ou plusieurs candidats pour leur envoyer un accès à la plateforme.</p>
+        </div>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary rounded-pill">
+            <i class="bi bi-arrow-left me-2"></i>Tableau de bord
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <form method="get" class="row g-2 align-items-end">
+                <div class="col-md-9">
+                    <label for="candidate-search" class="form-label small fw-semibold text-muted">Rechercher un candidat</label>
+                    <input id="candidate-search" type="search" name="search" value="{{ search }}" class="form-control" placeholder="Nom, prénom ou adresse email">
+                </div>
+                <div class="col-md-3 d-grid">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="bi bi-search me-2"></i>Rechercher
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-header bg-white border-0 p-4 d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
+                <div>
+                    <h2 class="h5 fw-bold mb-1">Candidats</h2>
+                    <p class="small text-muted mb-0">{{ page_obj.paginator.count }} candidat{{ page_obj.paginator.count|pluralize }} trouvé{{ page_obj.paginator.count|pluralize }}</p>
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill">
+                    <i class="bi bi-send me-2"></i>Envoyer les invitations
+                </button>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4" style="width:48px;"><input class="form-check-input" type="checkbox" id="select-all" aria-label="Sélectionner tous les candidats visibles"></th>
+                            <th>Candidat</th>
+                            <th>Email</th>
+                            <th>Statut</th>
+                            <th class="text-end pe-4">Fiche</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in page_obj %}
+                            <tr>
+                                <td class="ps-4"><input class="form-check-input candidate-checkbox" type="checkbox" name="candidate_ids" value="{{ candidate.id }}" aria-label="Sélectionner {{ candidate.get_full_name|default:candidate.email }}"></td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary bg-opacity-10 text-primary fw-bold d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                                            {{ candidate.first_name|first|default:'?'|upper }}{{ candidate.last_name|first|default:'?'|upper }}
+                                        </div>
+                                        <span class="fw-semibold">{{ candidate.get_full_name|default:candidate.email }}</span>
+                                    </div>
+                                </td>
+                                <td class="text-muted">{{ candidate.email }}</td>
+                                <td>
+                                    {% if candidate.is_active %}
+                                        <span class="badge rounded-pill bg-success-subtle text-success-emphasis">Actif</span>
+                                    {% else %}
+                                        <span class="badge rounded-pill bg-warning-subtle text-warning-emphasis">Invitation à envoyer</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-end pe-4"><a href="{% url 'candidate_detail' candidate.id %}" class="btn btn-sm btn-outline-primary rounded-pill">Voir la fiche</a></td>
+                            </tr>
+                        {% empty %}
+                            <tr><td colspan="5" class="text-center py-5 text-muted"><i class="bi bi-person-x display-6 d-block mb-2"></i>Aucun candidat trouvé.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    {% if page_obj.has_other_pages %}
+        <nav aria-label="Pagination des candidats" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search %}&search={{ search|urlencode }}{% endif %}">Précédent</a></li>{% endif %}
+                <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+                {% if page_obj.has_next %}<li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search %}&search={{ search|urlencode }}{% endif %}">Suivant</a></li>{% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAll = document.getElementById('select-all');
+        const checkboxes = document.querySelectorAll('.candidate-checkbox');
+        if (!selectAll) return;
+        selectAll.addEventListener('change', function () {
+            checkboxes.forEach(function (checkbox) { checkbox.checked = selectAll.checked; });
+        });
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                selectAll.checked = Array.from(checkboxes).every(function (item) { return item.checked; });
+            });
+        });
+    });
+</script>
+{% endblock %}

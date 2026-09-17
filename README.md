@@ -16,6 +16,13 @@ Copier le fichier `.env.example` en `.env` et remplir les variables d'environnem
 cp .env.example .env
 ```
 
+En production, `PUBLIC_SITE_URL` doit contenir l'URL publique complète du site.
+Elle est utilisée dans les emails envoyés aux candidats :
+
+```env
+PUBLIC_SITE_URL=https://tests-evaluations.worldwide-international.business
+```
+
 Pour activer l'envoi SMTP avec Gmail en développement, renseigner dans `.env` :
 
 ```env

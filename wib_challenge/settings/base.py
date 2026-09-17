@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 dotenv.load_dotenv(dotenv_path=BASE_DIR / '.env')
 
+PUBLIC_SITE_URL = os.getenv('PUBLIC_SITE_URL', '').rstrip('/')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 

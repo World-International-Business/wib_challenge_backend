@@ -106,49 +106,47 @@
                 {% if user.is_authenticated %}
                     {% if user.is_staff %}
                         <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'personality_candidates' %}">
-                                <i class="bi bi-people me-1 d-lg-none"></i>Candidats
+                            <a class="nav-link px-3 rounded-2" href="{% url 'admin_dashboard' %}">
+                                <i class="bi bi-grid-1x2 me-1 d-lg-none"></i>Tableau de bord
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'results' %}">
-                                <i class="bi bi-graph-up me-1 d-lg-none"></i>Résultats
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'leaderboard' %}">
-                                <i class="bi bi-trophy me-1 d-lg-none"></i>Classement
-                            </a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'challenge_evaluation' %}">
-                                <i class="bi bi-clipboard-check me-1 d-lg-none"></i>Passer un test
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'results' %}">
-                                <i class="bi bi-graph-up me-1 d-lg-none"></i>Résultats
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if user.is_staff %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-3 rounded-2" href="#" id="adminDropdown" role="button"
+                            <a class="nav-link dropdown-toggle px-3 rounded-2" href="#" id="trackingDropdown" role="button"
                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-shield-lock me-1 d-lg-none"></i>Admin
+                                <i class="bi bi-people me-1 d-lg-none"></i>Suivi
                             </a>
                             <ul class="dropdown-menu dropdown-menu-lg-start shadow border-0 rounded-3 mt-2"
-                                aria-labelledby="adminDropdown">
+                                aria-labelledby="trackingDropdown">
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'admin_dashboard' %}">
-                                        <i class="bi bi-speedometer2 me-2 text-primary"></i>Tableau de bord
+                                    <a class="dropdown-item py-2" href="{% url 'candidate_list' %}">
+                                        <i class="bi bi-send me-2 text-primary"></i>Inviter des candidats
                                     </a>
                                 </li>
-                                <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <h6 class="dropdown-header text-muted small">Questions</h6>
+                                    <a class="dropdown-item py-2" href="{% url 'results' %}">
+                                        <i class="bi bi-clipboard-data me-2 text-primary"></i>Évaluations et résultats
+                                    </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'personality_candidates' %}">
+                                        <i class="bi bi-person-vcard me-2 text-success"></i>Profils candidats
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'leaderboard' %}">
+                                        <i class="bi bi-trophy me-2 text-warning"></i>Classement
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-3 rounded-2" href="#" id="configurationDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-sliders me-1 d-lg-none"></i>Configuration
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-lg-start shadow border-0 rounded-3 mt-2"
+                                aria-labelledby="configurationDropdown">
+                                <li><h6 class="dropdown-header text-muted small">Banque de questions</h6></li>
                                 <li>
                                     <a class="dropdown-item py-2" href="{% url 'add_questions' %}">
                                         <i class="bi bi-code-square me-2 text-primary"></i>Questions techniques
@@ -165,17 +163,35 @@
                                     </a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
+                                <li><h6 class="dropdown-header text-muted small">Référentiel</h6></li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'admin_dashboard' %}">
-                                        <i class="bi bi-clock-history me-2 text-warning"></i>Durées / Paramètres
+                                    <a class="dropdown-item py-2" href="{% url 'duration_profile_list' %}">
+                                        <i class="bi bi-clock-history me-2 text-warning"></i>Durées des évaluations
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item py-2" href="{% url 'personality_candidates' %}">
-                                        <i class="bi bi-people me-2 text-secondary"></i>Profils candidats
+                                    <a class="dropdown-item py-2" href="{% url 'profile_manager' %}">
+                                        <i class="bi bi-diagram-3 me-2 text-secondary"></i>Profils et compétences
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'admin:index' %}">
+                                        <i class="bi bi-shield-lock me-2 text-dark"></i>Administration système
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'challenge_evaluation' %}">
+                                <i class="bi bi-clipboard-check me-1 d-lg-none"></i>Passer un test
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'results' %}">
+                                <i class="bi bi-graph-up me-1 d-lg-none"></i>Résultats
+                            </a>
                         </li>
                     {% endif %}
                 {% endif %}

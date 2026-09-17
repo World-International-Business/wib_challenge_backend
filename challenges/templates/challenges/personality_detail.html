@@ -3,6 +3,19 @@
 
 {% block title %}Profil de personnalité - {{ candidate.get_full_name }}{% endblock %}
 
+{% block extra_css %}
+<style>
+    .analysis-content { color: #475569; line-height: 1.75; }
+    .analysis-content h1, .analysis-content h2, .analysis-content h3,
+    .analysis-content h4, .analysis-content h5, .analysis-content h6 { color: #172033; margin-top: 1.5rem; }
+    .analysis-content h3 { font-size: 1.15rem; }
+    .analysis-content ul { padding-left: 1.25rem; }
+    .analysis-content li { margin-bottom: .5rem; }
+    .analysis-content hr { border-color: #e2e8f0; margin: 1.5rem 0; }
+    .analysis-content strong { color: #172033; }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -46,7 +59,7 @@
                 </div>
             </div>
             {% if user.is_staff %}
-                <form method="post" action="{% url 'manual_correct_personality' challenge.id %}?next=personality_candidates" class="mt-3">
+                <form method="post" action="{% url 'manual_correct_personality' challenge.id %}?next=personality_details&user_id={{ candidate.id }}" class="mt-3">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-sm btn-outline-warning rounded-pill">Relancer la correction</button>
                 </form>
@@ -58,5 +71,19 @@
         Ce candidat n'a pas encore complété de test de personnalité avec des résultats disponibles.
     </div>
     {% endfor %}
+
+    {% if personality_challenges.has_other_pages %}
+        <nav aria-label="Pagination des analyses" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if personality_challenges.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.previous_page_number }}">Précédent</a></li>
+                {% endif %}
+                <li class="page-item active"><span class="page-link">{{ personality_challenges.number }}</span></li>
+                {% if personality_challenges.has_next %}
+                    <li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.next_page_number }}">Suivant</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 </div>
 {% endblock %}

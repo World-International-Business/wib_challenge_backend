@@ -7,9 +7,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
 
@@ -30,13 +31,26 @@ def register_view(request):
                     user.email_verified = False
                     user.save()
                     code = f'{secrets.randbelow(1000000):06d}'
-                    send_mail(
-                        'Code de vérification WIB Challenge',
-                        f'Votre code de vérification est : {code}. Il expire dans 15 minutes.',
+                    email_context = {
+                        'code': code,
+                        'first_name': user.first_name,
+                    }
+                    email = EmailMultiAlternatives(
+                        'Votre code de vérification WIB Challenge',
+                        (
+                            f"Bonjour {user.first_name},\n\n"
+                            f"Votre code de vérification est : {code}.\n"
+                            "Il expire dans 15 minutes.\n\n"
+                            "Si vous n'êtes pas à l'origine de cette demande, ignorez cet email."
+                        ),
                         settings.DEFAULT_FROM_EMAIL,
                         [user.email],
-                        fail_silently=False,
                     )
+                    email.attach_alternative(
+                        render_to_string('accounts/verification_email.html', email_context),
+                        'text/html',
+                    )
+                    email.send(fail_silently=False)
             except Exception:
                 logger.exception('Erreur lors de l envoi du code de vérification')
                 messages.error(

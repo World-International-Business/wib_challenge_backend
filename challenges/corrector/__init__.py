@@ -1,10 +1,54 @@
 import json
+import logging
 from datetime import date
 
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
+from django.urls import reverse
+from django.template.loader import render_to_string
 
 from challenges.models import Submission, APIUsage, PersonalityChallenge, Answer
 from challenges.corrector.utils import get_genai_client, CorrectorResponse, GEMINI_MODEL, GENIMI_CONFIG, PERSONALITY_CONFIG, make_final_prompt, make_personality_prompt, split_batches, split_choices_and_open_answers
+
+logger = logging.getLogger(__name__)
+
+
+def _public_url(path):
+    base_url = getattr(settings, 'PUBLIC_SITE_URL', '').rstrip('/')
+    return f'{base_url}{path}' if base_url else f'http://127.0.0.1:8000{path}'
+
+
+def _notify_candidate_results(challenge, result_url, result_type):
+    candidate = challenge.candidate
+    if not candidate.email:
+        return
+
+    if result_type == 'personality':
+        subject = 'Votre analyse de personnalité est disponible'
+        heading = 'Votre analyse de personnalité est disponible'
+        message = 'Votre test de personnalité a été analysé. Vous pouvez consulter votre synthèse depuis votre espace candidat.'
+    else:
+        subject = 'Les résultats de votre évaluation sont disponibles'
+        heading = 'Les résultats de votre évaluation sont disponibles'
+        message = 'La correction de votre évaluation est terminée. Consultez votre score et le détail de vos résultats depuis votre espace candidat.'
+
+    email = EmailMultiAlternatives(
+        subject,
+        f'Bonjour {candidate.first_name},\n\n{message}\n\nConsulter : {result_url}',
+        settings.DEFAULT_FROM_EMAIL,
+        [candidate.email],
+    )
+    email.attach_alternative(
+        render_to_string('challenges/candidate_results_email.html', {
+            'first_name': candidate.first_name,
+            'heading': heading,
+            'message': message,
+            'result_url': result_url,
+        }),
+        'text/html',
+    )
+    email.send(fail_silently=False)
 
 
 def correct_answers(answers: list[Answer]):
@@ -96,15 +140,36 @@ def correct_submission(submission: Submission):
     except Exception:
         submission.status = Submission.CorrectionStatus.PENDING
     submission.save()
+    if submission.status == Submission.CorrectionStatus.CORRECTED:
+        result_path = reverse('result-detail', kwargs={
+            'submission_id': submission.id,
+            'slug': submission.challenge.slug,
+            'challenge_id': submission.challenge_id,
+        })
+        try:
+            _notify_candidate_results(
+                submission,
+                _public_url(result_path),
+                'technical',
+            )
+        except Exception:
+            logger.exception('Erreur lors de la notification des résultats %s', submission.pk)
     return answers
 
 
 def correct_personality_challenge(challenge: PersonalityChallenge):
     try:
         client = get_genai_client()
-        answers = list(challenge.answers.all())
+        answers = list(
+            challenge.answers.select_related('question__category__domain').prefetch_related(
+                'selected_choices', 'question__choices'
+            ).order_by('id')
+        )
 
         if len(answers) == 0:
+            challenge.corrected = False
+            challenge.personality_detail = ''
+            challenge.save(update_fields=['corrected', 'personality_detail'])
             return None
         usage, _ = APIUsage.objects.get_or_create(date=date.today())
 
@@ -116,14 +181,30 @@ def correct_personality_challenge(challenge: PersonalityChallenge):
             config=PERSONALITY_CONFIG,
         )
 
-        challenge.personality_detail = response.text
+        analysis = (response.text or '').strip()
+        if not analysis:
+            raise ValueError('Réponse vide de Gemini pour l analyse de personnalité')
+
+        challenge.personality_detail = analysis
         challenge.corrected = True
-        challenge.save()
+        challenge.save(update_fields=['personality_detail', 'corrected'])
+
+        result_path = reverse('personality_details', kwargs={'user_id': challenge.candidate_id})
+        try:
+            _notify_candidate_results(
+                challenge,
+                _public_url(result_path),
+                'personality',
+            )
+        except Exception:
+            logger.exception('Erreur lors de la notification de personnalité %s', challenge.pk)
 
         usage.count += 1
         usage.save()
     except Exception:
+        logger.exception('Erreur lors de la correction de personnalité %s', challenge.pk)
         challenge.corrected = False
-        challenge.save()
+        challenge.personality_detail = ''
+        challenge.save(update_fields=['corrected', 'personality_detail'])
 
     return challenge

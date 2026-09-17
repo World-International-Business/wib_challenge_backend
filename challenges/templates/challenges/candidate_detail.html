@@ -22,6 +22,14 @@
                         <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill mt-2">{{ candidate.domain.name }}</span>
                     {% endif %}
                 </div>
+                <div class="ms-md-auto mt-3 mt-md-0">
+                    <form method="post" action="{% url 'candidate_invitation' candidate.id %}" onsubmit="return confirm('Envoyer une invitation à ce candidat ?');">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary rounded-pill">
+                            <i class="bi bi-envelope-paper me-2"></i>Envoyer une invitation
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -46,6 +54,19 @@
                 <button type="submit" class="btn btn-outline-success rounded-pill"><i class="bi bi-person-check me-2"></i>Personnalité</button>
             </form>
         </div>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 mb-4 p-4">
+        <h5 class="fw-bold mb-2"><i class="bi bi-envelope me-2 text-primary"></i>Écrire au candidat</h5>
+        <p class="text-muted small mb-3">Envoyez une information personnalisée au sujet de son parcours ou de ses évaluations.</p>
+        <form method="post" action="{% url 'candidate_message' candidate.id %}">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-5"><label for="candidate-message-subject" class="form-label small fw-semibold">Objet</label><input id="candidate-message-subject" name="subject" class="form-control" required maxlength="180" placeholder="Objet du message"></div>
+                <div class="col-12"><label for="candidate-message-body" class="form-label small fw-semibold">Message</label><textarea id="candidate-message-body" name="message" class="form-control" rows="4" required placeholder="Votre message au candidat"></textarea></div>
+                <div class="col-12"><button type="submit" class="btn btn-outline-primary rounded-pill"><i class="bi bi-send me-2"></i>Envoyer le message</button></div>
+            </div>
+        </form>
     </div>
 
     <div class="row g-4">
@@ -122,6 +143,16 @@
         </div>
     </div>
 
+    {% if technical_submissions.has_other_pages %}
+        <nav aria-label="Pagination des tests techniques" class="mt-3">
+            <ul class="pagination pagination-sm justify-content-center">
+                {% if technical_submissions.has_previous %}<li class="page-item"><a class="page-link" href="?technical_page={{ technical_submissions.previous_page_number }}">Précédent</a></li>{% endif %}
+                <li class="page-item active"><span class="page-link">{{ technical_submissions.number }}</span></li>
+                {% if technical_submissions.has_next %}<li class="page-item"><a class="page-link" href="?technical_page={{ technical_submissions.next_page_number }}">Suivant</a></li>{% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
     <h3 class="h4 fw-bold mt-5 mb-3"><i class="bi bi-puzzle me-2 text-info"></i>Tests psychotechniques</h3>
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-0">
@@ -159,6 +190,16 @@
             {% endif %}
         </div>
     </div>
+
+    {% if logical_submissions.has_other_pages %}
+        <nav aria-label="Pagination des tests psychotechniques" class="mt-3">
+            <ul class="pagination pagination-sm justify-content-center">
+                {% if logical_submissions.has_previous %}<li class="page-item"><a class="page-link" href="?logical_page={{ logical_submissions.previous_page_number }}">Précédent</a></li>{% endif %}
+                <li class="page-item active"><span class="page-link">{{ logical_submissions.number }}</span></li>
+                {% if logical_submissions.has_next %}<li class="page-item"><a class="page-link" href="?logical_page={{ logical_submissions.next_page_number }}">Suivant</a></li>{% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 
     <h3 class="h4 fw-bold mt-5 mb-3"><i class="bi bi-person-heart me-2 text-success"></i>Tests de personnalité</h3>
     <div class="card border-0 shadow-sm rounded-4">
@@ -199,5 +240,15 @@
             {% endif %}
         </div>
     </div>
+
+    {% if personality_challenges.has_other_pages %}
+        <nav aria-label="Pagination des tests de personnalité" class="mt-3">
+            <ul class="pagination pagination-sm justify-content-center">
+                {% if personality_challenges.has_previous %}<li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.previous_page_number }}">Précédent</a></li>{% endif %}
+                <li class="page-item active"><span class="page-link">{{ personality_challenges.number }}</span></li>
+                {% if personality_challenges.has_next %}<li class="page-item"><a class="page-link" href="?personality_page={{ personality_challenges.next_page_number }}">Suivant</a></li>{% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 </div>
 {% endblock %}

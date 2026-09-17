@@ -24,7 +24,8 @@ from accounts.views import (login_view, register_view, verify_email_view, logout
                            WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
 from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
     generate_challenge, generate_logical_challenge, generate_personality_challenge, personality_details_view, \
-    personality_evaluation_view, candidate_detail_view, candidate_retake_view, \
+     personality_evaluation_view, candidate_list_view, candidate_detail_view, candidate_retake_view, \
+     candidate_invitation_view, candidate_message_view, \
     manual_correct_submission_view, manual_correct_personality_view, leaderboard_view, admin_dashboard_view
 from questions.models import Question
 from wib_challenge.views import json_input
@@ -84,8 +85,11 @@ urlpatterns = [
          personality_details_view, name='personality_details'),
 
     # Détail candidat et classement (admin)
+    path('candidats/', candidate_list_view, name='candidate_list'),
     path('candidat/<int:user_id>/', candidate_detail_view, name='candidate_detail'),
     path('candidat/<int:user_id>/retake/', candidate_retake_view, name='candidate_retake'),
+     path('candidat/<int:user_id>/invitation/', candidate_invitation_view, name='candidate_invitation'),
+     path('candidat/<int:user_id>/message/', candidate_message_view, name='candidate_message'),
     path('correction/submission/<int:submission_id>/', manual_correct_submission_view,
          name='manual_correct_submission'),
     path('correction/personality/<int:personality_id>/', manual_correct_personality_view,

@@ -1,0 +1,45 @@
+{% autoescape on %}<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code de vérification WIB Challenge</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f1f5f9; color:#172033; font-family:Arial,Helvetica,sans-serif;">
+    <div style="display:none; max-height:0; overflow:hidden; opacity:0; color:transparent;">
+        Votre code de vérification WIB Challenge expire dans 15 minutes.
+    </div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color:#f1f5f9;">
+        <tr>
+            <td align="center" style="padding:32px 16px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:600px; background-color:#ffffff; border:1px solid #e2e8f0; border-radius:16px; overflow:hidden;">
+                    <tr>
+                        <td style="padding:30px 32px; background-color:#2563eb; color:#ffffff;">
+                            <div style="font-size:13px; font-weight:bold; letter-spacing:1.5px; text-transform:uppercase;">WIB Challenge</div>
+                            <div style="margin-top:12px; font-size:25px; line-height:1.2; font-weight:bold;">Vérification de votre compte</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:36px 32px 28px;">
+                            <h1 style="margin:0 0 16px; font-size:27px; line-height:1.25; color:#172033;">Bonjour {{ first_name }},</h1>
+                            <p style="margin:0; font-size:16px; line-height:1.65; color:#475569;">Merci d'avoir créé votre compte WIB Challenge. Pour confirmer votre adresse email, saisissez le code de sécurité ci-dessous.</p>
+                            <div style="margin:28px 0; padding:24px 16px; text-align:center; background-color:#f8fafc; border:1px solid #cbd5e1; border-radius:10px;">
+                                <div style="font-size:12px; font-weight:bold; letter-spacing:1.8px; text-transform:uppercase; color:#2563eb;">Code de sécurité</div>
+                                <div style="margin-top:10px; font-size:38px; line-height:1; font-weight:bold; letter-spacing:8px; color:#172033;">{{ code }}</div>
+                            </div>
+                            <p style="margin:0; font-size:14px; line-height:1.6; color:#64748b;"><strong style="color:#334155;">Ce code expire dans 15 minutes.</strong> Pour votre sécurité, ne le communiquez à personne.</p>
+                            <p style="margin:22px 0 0; font-size:14px; line-height:1.6; color:#64748b;">Vous n'avez pas demandé la création de ce compte ? Vous pouvez ignorer ce message.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:20px 32px; background-color:#f8fafc; border-top:1px solid #e2e8f0; text-align:center;">
+                            <p style="margin:0; font-size:12px; line-height:1.5; color:#94a3b8;">Message automatique de WIB Challenge.<br>Merci de ne pas répondre à cet email.</p>
+                        </td>
+                    </tr>
+                </table>
+                <p style="max-width:600px; margin:18px 16px 0; font-size:11px; line-height:1.5; text-align:center; color:#94a3b8;">© 2026 WIB Challenge</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>{% endautoescape %}

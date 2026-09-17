@@ -51,30 +51,41 @@ Check the correctness of all answers and respond with JSON in the following form
 """
 
 _personality_answer_prompt = """
+Réponse {id}
 Question: {question}
 Description: {description}
 {extras}
-Réponse: {answer}
+Réponse du candidat: {answer}
 """
 
 _personality_prompt = """
-Tu es un psychologue expert en analyse comportementale. Analyse les réponses du candidat à ce test de personnalité.
-Pour le Poste de {domain} dans une startup IT
+Tu es un analyste RH spécialisé dans l'interprétation prudente de questionnaires comportementaux.
+Analyse uniquement les réponses fournies ci-dessous pour le candidat au domaine {domain}.
+
+Règles obligatoires:
+- Base chaque observation sur une ou plusieurs réponses précises. Ne présente aucune hypothèse comme un fait.
+- N'invente aucune information personnelle, médicale, professionnelle ou biographique.
+- Ne pose aucun diagnostic psychologique ou médical et n'utilise pas de vocabulaire clinique.
+- Ne déduis pas l'aptitude, l'embauche ou la valeur globale du candidat à partir de ce seul questionnaire.
+- Signale les réponses ambiguës, contradictoires ou insuffisantes au lieu de les compléter par imagination.
+- Utilise un ton professionnel, neutre et respectueux. Les points d'amélioration doivent être formulés comme des pistes, jamais comme des défauts.
+- Ne compare pas le candidat à une norme que le questionnaire ne contient pas.
+- Termine par une section "Limites de l'analyse" rappelant qu'il s'agit d'un indicateur parmi d'autres.
 
 Voici ses réponses:
 
 {answers}
 
-Sur la base de ces réponses, fournis une analyse complète de la personnalité du candidat, comprenant:
-Introduction
-Traits de personnalité dominants
-Forces et qualités
-Points d'amélioration potentiels
-Style de travail et de communication
-Compatibilité avec différents environnements professionnels
-Conclusion
+Sur la base exclusive de ces réponses, fournis une synthèse comportementale comprenant:
+1. Synthèse générale
+2. Indicateurs observés et réponses qui les étayent
+3. Ressources et comportements favorables
+4. Points de vigilance et pistes de développement
+5. Style de travail et de communication possible
+6. Contextes de travail à explorer, sans conclure à une compatibilité
+7. Limites de l'analyse
 
-Reste objectif et factuel dans ton analyse. Limite ta réponse à environ 600 mots.
+Reste factuel, spécifique et nuancé. Limite ta réponse à environ 600 mots.
 """
 
 
@@ -104,6 +115,7 @@ def make_personality_answer_prompt(answer: PersonalityAnswer):
         extras = ', '.join([choice.text for choice in answer.question.choices.all()])
 
     return _personality_answer_prompt.format(
+        id=answer.id,
         question=answer.question.title,
         description=answer.question.description,
         answer=answer_text,
