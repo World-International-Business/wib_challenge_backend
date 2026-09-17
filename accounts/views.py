@@ -66,6 +66,9 @@ def register_view(request):
             messages.info(request, "Un code de vérification a été envoyé à votre adresse email.")
             return redirect('verify_email')
     else:
+        campaign_id = request.GET.get('campaign', '').strip()
+        if campaign_id.isdigit():
+            request.session['recruitment_campaign_id'] = int(campaign_id)
         form = UserRegisterForm(initial={'email': request.GET.get('email', '').strip()})
 
     return render(request, 'accounts/register.html', {'form': form})
@@ -84,6 +87,16 @@ def verify_email_view(request):
             user.email_verified = True
             user.is_active = True
             user.save(update_fields=['email_verified', 'is_active'])
+            campaign_id = request.session.get('recruitment_campaign_id')
+            if campaign_id:
+                from challenges.models import CampaignCandidate, RecruitmentCampaign
+
+                campaign = RecruitmentCampaign.objects.filter(
+                    id=campaign_id,
+                    status=RecruitmentCampaign.Status.OPEN,
+                ).first()
+                if campaign:
+                    CampaignCandidate.objects.get_or_create(campaign=campaign, candidate=user)
             request.session.pop('verification_user_id', None)
             request.session.pop('verification_code', None)
             request.session.pop('verification_expires_at', None)

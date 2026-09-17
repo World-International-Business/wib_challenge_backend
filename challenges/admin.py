@@ -4,7 +4,8 @@ from django.db.models import Count, Q
 from django.utils.html import format_html
 
 from challenges.models import (Settings, Challenge, SubmissionAttempt, Submission, Answer, APIUsage,
-                               PersonalityChallenge, PersonalityAnswer, TestDurationProfile)
+                               PersonalityChallenge, PersonalityAnswer, TestDurationProfile,
+                               RecruitmentCampaign, CampaignCandidate)
 from questions.models import Tag
 
 
@@ -26,6 +27,26 @@ class RecruitmentOnlyAdminMixin:
 
     def has_delete_permission(self, request, obj=None):
         return self._allowed(request)
+
+
+@admin.register(RecruitmentCampaign)
+class RecruitmentCampaignAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
+    list_display = ['name', 'position', 'owner', 'status', 'starts_at', 'ends_at', 'candidate_count']
+    list_filter = ['status', 'owner']
+    search_fields = ['name', 'position', 'owner__email']
+    autocomplete_fields = ['owner']
+
+    @admin.display(description='Candidats')
+    def candidate_count(self, obj):
+        return obj.candidates.count()
+
+
+@admin.register(CampaignCandidate)
+class CampaignCandidateAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
+    list_display = ['campaign', 'candidate', 'status', 'invited_at']
+    list_filter = ['campaign', 'status']
+    search_fields = ['campaign__name', 'candidate__email', 'candidate__last_name']
+    autocomplete_fields = ['campaign', 'candidate']
 
 
 class TagFilter(admin.SimpleListFilter):

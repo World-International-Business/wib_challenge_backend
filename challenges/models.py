@@ -9,6 +9,53 @@ from questions.models import Question, Choice, Domain
 from wib_challenge.enums import ExperienceLevel
 
 
+class RecruitmentCampaign(models.Model):
+    class Status(models.TextChoices):
+        DRAFT = 'DRAFT', 'Brouillon'
+        OPEN = 'OPEN', 'Ouverte'
+        CLOSED = 'CLOSED', 'Clôturée'
+        ARCHIVED = 'ARCHIVED', 'Archivée'
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='recruitment_campaigns')
+    name = models.CharField('Nom de la campagne', max_length=255)
+    position = models.CharField('Poste', max_length=255)
+    description = models.TextField('Description', blank=True)
+    starts_at = models.DateTimeField('Début', null=True, blank=True)
+    ends_at = models.DateTimeField('Fin', null=True, blank=True)
+    status = models.CharField('Statut', max_length=20, choices=Status.choices, default=Status.DRAFT)
+    created_at = models.DateTimeField('Créée le', auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Campagne de recrutement'
+        verbose_name_plural = 'Campagnes de recrutement'
+
+    def __str__(self):
+        return f'{self.name} - {self.position}'
+
+
+class CampaignCandidate(models.Model):
+    class Status(models.TextChoices):
+        INVITED = 'INVITED', 'Invité'
+        IN_PROGRESS = 'IN_PROGRESS', 'En cours'
+        COMPLETED = 'COMPLETED', 'Terminé'
+        REJECTED = 'REJECTED', 'Écarté'
+        HIRED = 'HIRED', 'Retenu'
+
+    campaign = models.ForeignKey(RecruitmentCampaign, on_delete=models.CASCADE, related_name='candidates')
+    candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='campaign_memberships')
+    status = models.CharField('Statut', max_length=20, choices=Status.choices, default=Status.INVITED)
+    invited_at = models.DateTimeField('Invité le', auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['campaign', 'candidate'], name='unique_campaign_candidate'),
+        ]
+
+    def __str__(self):
+        return f'{self.campaign} - {self.candidate}'
+
+
 class Settings(models.Model):
     default_challenge_duration = models.DurationField("Durée par défaut d'un challenge", default=timedelta(hours=1))
     beginner_challenge_duration = models.DurationField("Durée d'un challenge pour les débutants",
@@ -75,6 +122,7 @@ class Challenge(models.Model):
 
 
 class SubmissionAttempt(models.Model):
+    campaign = models.ForeignKey(RecruitmentCampaign, on_delete=models.SET_NULL, null=True, blank=True, related_name='submission_attempts')
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, verbose_name='Challenge',
                                   related_name='attempts')
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Utilisateur',
@@ -120,6 +168,7 @@ class Submission(models.Model):
         PENDING = 'PENDING', 'En attente'
         CORRECTED = 'CORRECTED', 'Corrigé'
 
+    campaign = models.ForeignKey(RecruitmentCampaign, on_delete=models.SET_NULL, null=True, blank=True, related_name='submissions')
     challenge = models.ForeignKey(Challenge, on_delete=models.CASCADE, verbose_name='Challenge',
                                   related_name='submissions')
     candidate = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Utilisateur',
@@ -200,6 +249,7 @@ class APIUsage(models.Model):
 
 
 class PersonalityChallenge(models.Model):
+    campaign = models.ForeignKey(RecruitmentCampaign, on_delete=models.SET_NULL, null=True, blank=True, related_name='personality_challenges')
     title = models.CharField('Titre', max_length=255)
     description = models.TextField('Description', blank=True, null=True)
     duration = models.DurationField('Durée', blank=True, null=True, help_text='Durée en HH:MM:SS')

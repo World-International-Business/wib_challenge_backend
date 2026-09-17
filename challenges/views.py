@@ -28,7 +28,10 @@ from accounts.models import User
 from challenges.challenge_gen import generate_challenge_for_user, generate_personality_challenge_for_user, \
     generate_logical_challenge_for_user
 from challenges.corrector import correct_submission, correct_personality_challenge
-from challenges.models import Challenge, SubmissionAttempt, Submission, Answer, PersonalityChallenge, PersonalityAnswer, TestDurationProfile
+from challenges.models import (
+    CampaignCandidate, Challenge, RecruitmentCampaign, SubmissionAttempt,
+    Submission, Answer, PersonalityChallenge, PersonalityAnswer, TestDurationProfile,
+)
 from questions.models import Domain, Question
 
 logger = logging.getLogger(__name__)
@@ -50,7 +53,7 @@ def _public_url(request, path):
     return request.build_absolute_uri(path)
 
 
-def _send_candidate_invitation(request, candidate):
+def _send_candidate_invitation(request, candidate, campaign=None):
     uid = urlsafe_base64_encode(force_bytes(candidate.pk))
     token = default_token_generator.make_token(candidate)
     reset_path = reverse('password_reset_confirm', kwargs={
@@ -59,6 +62,7 @@ def _send_candidate_invitation(request, candidate):
     })
     reset_url = _public_url(request, reset_path)
     site_url = _public_url(request, reverse('home'))
+    campaign_url = _public_url(request, reverse('recruitment_campaign_access', kwargs={'campaign_id': campaign.id})) if campaign else ''
     email = EmailMultiAlternatives(
         'Votre invitation à WIB Challenge',
         (
@@ -77,22 +81,26 @@ def _send_candidate_invitation(request, candidate):
             'first_name': candidate.first_name,
             'reset_url': reset_url,
             'site_url': site_url,
+            'campaign_url': campaign_url,
         }),
         'text/html',
     )
     email.send(fail_silently=False)
 
 
-def _send_recruitment_message(request, recipient, first_name, subject, message, registration_url=None, include_registration=False):
+def _send_recruitment_message(request, recipient, first_name, subject, message, registration_url=None, include_registration=False, campaign=None):
     if include_registration and registration_url is None:
-        register_path = f'{reverse("register")}?{urlencode({"email": recipient})}'
+        params = {'email': recipient}
+        if campaign:
+            params['campaign'] = campaign.id
+        register_path = f'{reverse("register")}?{urlencode(params)}'
         registration_url = _public_url(request, register_path)
+    plain_message = f'Bonjour {first_name},\n\n{message}'
+    if registration_url:
+        plain_message += f'\n\nCréer mon accès : {registration_url}'
     email = EmailMultiAlternatives(
         subject,
-        (
-            f'Bonjour {first_name},\n\n{message}\n\n'
-            f'Créer mon accès : {registration_url}'
-        ),
+        plain_message,
         settings.DEFAULT_FROM_EMAIL,
         [recipient],
     )
@@ -116,6 +124,50 @@ def home_view(request):
             'submissions')
     }
     return render(request, 'challenges/home.html', context)
+
+
+def recruitment_campaign_access_view(request, campaign_id):
+    campaign = get_object_or_404(RecruitmentCampaign, id=campaign_id, status=RecruitmentCampaign.Status.OPEN)
+    request.session['recruitment_campaign_id'] = campaign.id
+    if not request.user.is_authenticated:
+        return redirect('login')
+    return redirect('challenge_evaluation')
+
+
+@recruitment_staff_required
+def recruitment_campaign_list_view(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        position = request.POST.get('position', '').strip()
+        description = request.POST.get('description', '').strip()
+        if not name or not position:
+            messages.error(request, 'Le nom de la campagne et le poste sont obligatoires.')
+        else:
+            campaign = RecruitmentCampaign.objects.create(
+                owner=request.user,
+                name=name,
+                position=position,
+                description=description,
+                status=RecruitmentCampaign.Status.OPEN,
+            )
+            messages.success(request, f'La campagne « {campaign.name} » a été créée.')
+            return redirect('recruitment_campaign_detail', campaign_id=campaign.id)
+    campaigns = RecruitmentCampaign.objects.prefetch_related('candidates').order_by('-created_at')
+    return render(request, 'challenges/campaign_list.html', {'campaigns': campaigns})
+
+
+@recruitment_staff_required
+def recruitment_campaign_detail_view(request, campaign_id):
+    campaign = get_object_or_404(RecruitmentCampaign, id=campaign_id)
+    memberships = campaign.candidates.select_related('candidate').order_by('-invited_at')
+    submissions = campaign.submissions.select_related('candidate', 'challenge').order_by('-submitted_at')
+    personalities = campaign.personality_challenges.select_related('candidate').order_by('-created_at')
+    return render(request, 'challenges/campaign_detail.html', {
+        'campaign': campaign,
+        'memberships': memberships,
+        'submissions': submissions,
+        'personalities': personalities,
+    })
 
 
 @recruitment_staff_required
@@ -488,17 +540,34 @@ def submit_evaluation_view(request):
 
     challenge = get_object_or_404(_Challenge,
                                   id=request.POST.get('challenge_id'))
+    campaign = None
+    campaign_id = request.session.get('recruitment_campaign_id')
+    if campaign_id:
+        campaign = RecruitmentCampaign.objects.filter(
+            id=campaign_id,
+            status=RecruitmentCampaign.Status.OPEN,
+            candidates__candidate=request.user,
+        ).first()
     if is_challenge:
         submission = Submission.objects.create(
             candidate=request.user,
-            challenge=challenge
+            challenge=challenge,
+            campaign=campaign,
         )
-        attempt, _ = SubmissionAttempt.objects.get_or_create(candidate=request.user, challenge=challenge)
+        attempt, _ = SubmissionAttempt.objects.get_or_create(
+            candidate=request.user,
+            challenge=challenge,
+            defaults={'campaign': campaign},
+        )
+        if campaign and attempt.campaign_id != campaign.id:
+            attempt.campaign = campaign
         attempt.ended_at = timezone.now()
         attempt.submission = submission
         attempt.save()
     else:
         submission = challenge
+        if campaign and submission.campaign_id != campaign.id:
+            submission.campaign = campaign
 
     for key in request.POST:
         if key.startswith('answer_'):
@@ -702,6 +771,8 @@ def candidate_list_view(request):
         school_staff__isnull=True,
     ).order_by('last_name', 'first_name', 'email')
     search = request.GET.get('search', '').strip()
+    campaign_id = (request.POST.get('campaign') or request.GET.get('campaign', '')).strip()
+    campaign = get_object_or_404(RecruitmentCampaign, id=campaign_id) if campaign_id else None
     if search:
         candidates = candidates.filter(
             Q(first_name__icontains=search) |
@@ -737,11 +808,13 @@ def candidate_list_view(request):
         sent = 0
         failed = 0
         for candidate in selected_candidates:
+            if campaign:
+                CampaignCandidate.objects.get_or_create(campaign=campaign, candidate=candidate)
             try:
                 if subject and message:
                     _send_recruitment_message(request, candidate.email, candidate.first_name or 'candidat', subject, message)
                 else:
-                    _send_candidate_invitation(request, candidate)
+                    _send_candidate_invitation(request, candidate, campaign=campaign)
                 sent += 1
             except Exception:
                 failed += 1
@@ -770,6 +843,7 @@ def candidate_list_view(request):
                         subject,
                         message,
                         include_registration=True,
+                        campaign=campaign,
                     )
                 sent += 1
             except Exception:
@@ -784,13 +858,19 @@ def candidate_list_view(request):
             messages.warning(request, f'{len(invalid_emails)} adresse(s) ignorée(s) car invalide(s).')
         if not selected_ids and not valid_manual_emails:
             messages.warning(request, 'Sélectionnez un candidat ou saisissez au moins une adresse email.')
-        query = urlencode({'search': search}) if search else ''
+        query_values = {}
+        if search:
+            query_values['search'] = search
+        if campaign:
+            query_values['campaign'] = campaign.id
+        query = urlencode(query_values)
         return redirect(f'{reverse("candidate_list")}?{query}' if query else reverse('candidate_list'))
 
     page_obj = Paginator(candidates, 20).get_page(request.GET.get('page'))
     return render(request, 'challenges/candidate_list.html', {
         'page_obj': page_obj,
         'search': search,
+        'campaign': campaign,
     })
 
 

@@ -22,11 +22,16 @@ from django.urls import path
 from accounts.views import (login_view, register_view, verify_email_view, logout_view, update_profile,
                            WIBPasswordResetView, WIBPasswordResetDoneView,
                            WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
-from challenges.views import home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view, \
-    generate_challenge, generate_logical_challenge, generate_personality_challenge, personality_details_view, \
-     personality_evaluation_view, candidate_list_view, candidate_detail_view, candidate_retake_view, \
-     candidate_invitation_view, candidate_message_view, \
-    manual_correct_submission_view, manual_correct_personality_view, leaderboard_view, admin_dashboard_view
+from challenges.views import (
+     home_view, evaluation_results, challenge_evaluation_view, submit_evaluation_view,
+     generate_challenge, generate_logical_challenge, generate_personality_challenge,
+     personality_details_view, personality_evaluation_view, candidate_list_view,
+     candidate_detail_view, candidate_retake_view, candidate_invitation_view,
+     candidate_message_view, recruitment_campaign_access_view,
+     recruitment_campaign_list_view, recruitment_campaign_detail_view,
+     manual_correct_submission_view, manual_correct_personality_view,
+     leaderboard_view, admin_dashboard_view,
+)
 from questions.models import Question
 from wib_challenge.views import json_input
 from education.views import (
@@ -66,6 +71,9 @@ urlpatterns = [
      path('ecole/tentatives/<int:attempt_id>/corriger/', school_attempt_grade_view, name='school_attempt_grade'),
      path('ecole/mes-epreuves/', student_dashboard_view, name='student_dashboard'),
     path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
+     path('recrutement/campagnes/', recruitment_campaign_list_view, name='recruitment_campaign_list'),
+     path('recrutement/campagnes/<int:campaign_id>/', recruitment_campaign_detail_view, name='recruitment_campaign_detail'),
+     path('recrutement/campagnes/<int:campaign_id>/acces/', recruitment_campaign_access_view, name='recruitment_campaign_access'),
 
     path('', home_view, name='home'),
     path('resultats/', evaluation_results, name='results'),
