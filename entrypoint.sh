@@ -8,7 +8,10 @@ echo "=========================================="
 
 # Attendre que la base de données soit prête
 echo "Attente de la base de donnees..."
-python manage.py migrate --noinput
+until python manage.py migrate --noinput; do
+  echo "La base de donnees n'est pas encore prete - attente..."
+  sleep 2
+done
 
 # Creer le superutilisateur par defaut si necessaire
 echo "Verification du superutilisateur..."

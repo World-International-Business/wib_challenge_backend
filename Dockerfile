@@ -15,8 +15,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
+# Create staticfiles directory
+RUN mkdir -p staticfiles
+
+# Collect static files (only if static files exist)
+RUN python manage.py collectstatic --noinput --clear || echo "No static files to collect"
 
 # Make entrypoint executable
 RUN chmod +x entrypoint.sh

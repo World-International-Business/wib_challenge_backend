@@ -13,7 +13,7 @@ services:
       test: ["CMD-SHELL", "pg_isready -U wib_user -d wib_challenge"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   web:
     build: .
@@ -26,14 +26,14 @@ services:
     environment:
       - DEBUG=False
       - DATABASE_URL=postgresql://wib_user:wib_password@db:5432/wib_challenge
-      - SECRET_KEY=${SECRET_KEY}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - SECRET_KEY=${SECRET_KEY:-change_this_in_production}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
       - EMAIL_PROVIDER=smtp
-      - SMTP_HOST=${SMTP_HOST}
-      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
       - SMTP_USER=${SMTP_USER}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
-      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_FROM=${SMTP_FROM:-noreply@wib-challenge.com}
     depends_on:
       db:
         condition: service_healthy
