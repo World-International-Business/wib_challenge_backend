@@ -32,6 +32,13 @@ SERVER_EMAIL = os.getenv('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
 EMAIL_TIMEOUT = 30
 EMAIL_SUBJECT_PREFIX = '[WIB Challenge] '
 
+# Configuration des fichiers statiques en développement
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'collected_static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'staticfiles',
+]
+
 USE_DEBUG_TOOLBAR = os.getenv('USE_DEBUG_TOOLBAR', 'False').lower() in ('1', 'true', 'yes')
 
 if USE_DEBUG_TOOLBAR:

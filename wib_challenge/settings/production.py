@@ -75,3 +75,10 @@ if EMAIL_HOST_USER:
 else:
     ADMINS = []
     MANAGERS = []
+
+# Configuration des fichiers statiques en production
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'collected_static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'staticfiles',
+]
