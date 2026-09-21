@@ -8,6 +8,13 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
+# Ajouter Whitenoise pour servir les fichiers statiques
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+# Configuration Whitenoise pour servir depuis staticfiles directement
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles'
+WHITENOISE_USE_FINDERS = True
+
 # Configuration email avec fallback intelligent
 EMAIL_BACKEND = 'wib_challenge.settings.email_config.SafeEmailBackend'
 EMAIL_HOST = os.getenv('SMTP_HOST', os.getenv('EMAIL_HOST', 'smtp.gmail.com'))
@@ -38,9 +45,6 @@ STATIC_ROOT = BASE_DIR / 'collected_static'
 STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles',
 ]
-
-# Ajouter Whitenoise pour le développement (optionnel)
-# MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 USE_DEBUG_TOOLBAR = os.getenv('USE_DEBUG_TOOLBAR', 'False').lower() in ('1', 'true', 'yes')
 
