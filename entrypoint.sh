@@ -29,6 +29,11 @@ python manage.py seed_education_data || echo "Donnees educatives deja peuplees"
 echo "Creation des parametres par defaut..."
 python manage.py create_default_settings || echo "Parametres par defaut existent"
 
+# Collecter les fichiers statiques
+echo "Collecte des fichiers statiques..."
+mkdir -p collected_static
+python manage.py collectstatic --noinput --clear || echo "Collecte des fichiers statiques echouee ou inutile"
+
 echo "=========================================="
 echo "Initialisation terminee avec succes!"
 echo "=========================================="

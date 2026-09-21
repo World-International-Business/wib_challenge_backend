@@ -39,6 +39,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'staticfiles',
 ]
 
+# Ajouter Whitenoise pour le développement (optionnel)
+# MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
 USE_DEBUG_TOOLBAR = os.getenv('USE_DEBUG_TOOLBAR', 'False').lower() in ('1', 'true', 'yes')
 
 if USE_DEBUG_TOOLBAR:
