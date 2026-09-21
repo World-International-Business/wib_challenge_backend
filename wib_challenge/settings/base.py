@@ -37,6 +37,26 @@ ALLOWED_HOSTS = config(
 # CORS Configuration
 CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS',
+    default='https://candidats.worldwide-international.business,https://tests-evaluations.worldwide-international.business',
+    cast=lambda value: [origin.strip() for origin in value.split(',') if origin.strip()],
+)
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    'x-csrftoken',
+    'accept',
+    'accept-language',
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
 
 IMAP_HOST = config('IMAP_HOST', default=None)
 IMAP_PORT = config('IMAP_PORT', cast=int, default=993)

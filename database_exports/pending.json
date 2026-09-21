@@ -1,0 +1,5989 @@
+﻿[
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$8U1Kn3xNovl5mhAn2H1NWP$INS9PplHkOUjbTqrVMjQK0cHYdNUH0IYty4rCYDnMqU=",
+    "last_login": "2026-09-16T11:57:30.514Z",
+    "is_superuser": true,
+    "first_name": "Admin",
+    "last_name": "Admin",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-16T11:52:17.223Z",
+    "email": "admin@wibchallenge.com",
+    "domain": null,
+    "experience_level": 1,
+    "experience": 0,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": []
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$CEF1aPNbpPkfbxFWTYv5nR$PvxH7fDyre9AFqhZUATa4YCjHbfyij5WoTJJCF1MYDg=",
+    "last_login": "2026-09-16T12:11:09.858Z",
+    "is_superuser": false,
+    "first_name": "Ariane",
+    "last_name": "MOTUE",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T12:11:08.131Z",
+    "email": "motueariane5@gmail.com",
+    "domain": 55,
+    "experience_level": 1,
+    "experience": 1,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$kileIK3me2npw6gnNWu8Yl$flB5R4EexyeXaBEb0jj53UgBTV0YzM/phXaFKySsWzQ=",
+    "last_login": "2026-09-16T12:49:46.149Z",
+    "is_superuser": false,
+    "first_name": "Lorince Crespo",
+    "last_name": "NGAFFAG MONKAM",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T12:49:44.633Z",
+    "email": "theroypercy@gmail.com",
+    "domain": 55,
+    "experience_level": 1,
+    "experience": 1,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$oat3f5DOfEiAR4Ut6bCBte$x1AR+kwAAp1gnR0bXS1Dxbxc3Dlo6EMlHZyloAfwpsU=",
+    "last_login": "2026-09-16T13:14:05.463Z",
+    "is_superuser": false,
+    "first_name": "alex",
+    "last_name": "kadje",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T13:14:03.809Z",
+    "email": "alexiskadje@gmail.com",
+    "domain": 55,
+    "experience_level": 2,
+    "experience": 2,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Krg1kco9kMVD4CAs04N790$/3wimisWaHetI7U2lCCmNbchu1E2c4AYDb3InJ2qSa8=",
+    "last_login": "2026-09-16T13:40:03.183Z",
+    "is_superuser": false,
+    "first_name": "audred",
+    "last_name": "Siani",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T13:40:01.872Z",
+    "email": "kevinaudred@gmail.com",
+    "domain": 58,
+    "experience_level": 3,
+    "experience": 7,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$b7ZXaKuduMYomJEZ2LUf40$YOoMOLF6gbx9AZOJiuTO2C4HN8x3jelHh3wWySTXaFg=",
+    "last_login": "2026-09-16T14:02:04.604Z",
+    "is_superuser": false,
+    "first_name": "Francis Lionel",
+    "last_name": "SIKALI Tala",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T13:56:36.049Z",
+    "email": "lioneltala93230@gmail.com",
+    "domain": 55,
+    "experience_level": 1,
+    "experience": 1,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$LZEzbPaZVEBN7gqeiNfp97$9vRLPI3rNCf9WOKdpAoe5u51z83M1daEgTnvmc8SudI=",
+    "last_login": "2026-09-16T14:14:22.127Z",
+    "is_superuser": false,
+    "first_name": "Landry",
+    "last_name": "ABANDA MBOMBE",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T14:14:20.487Z",
+    "email": "landryabanda@yahoo.fr",
+    "domain": 58,
+    "experience_level": 2,
+    "experience": 4,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "accounts.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Lr2MDR9CbnaTjAN2YjmrA8$Ns/fefwdzaq2pkI+rOOOvfq4Nic+6bie71ZjSHJCzCg=",
+    "last_login": "2026-09-16T14:34:56.341Z",
+    "is_superuser": false,
+    "first_name": "cedric",
+    "last_name": "mapoure",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-09-16T14:34:55.098Z",
+    "email": "mapourecedric96@gmail.com",
+    "domain": 55,
+    "experience_level": 2,
+    "experience": 3,
+    "groups": [],
+    "user_permissions": [],
+    "challenges": [
+      13,
+      14
+    ]
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "motueariane5@gmail.com"
+    ],
+    "skill": 139,
+    "experience_level": 1
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "theroypercy@gmail.com"
+    ],
+    "skill": 139,
+    "experience_level": 1
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "alexiskadje@gmail.com"
+    ],
+    "skill": 139,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "kevinaudred@gmail.com"
+    ],
+    "skill": 183,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "lioneltala93230@gmail.com"
+    ],
+    "skill": 139,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 189,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 223,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 204,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 218,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 213,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 209,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 12,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 195,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 13,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 212,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 14,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 217,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 15,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 192,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 16,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 191,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 17,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 183,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 18,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 194,
+    "experience_level": 3
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 19,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 193,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 20,
+  "fields": {
+    "user": [
+      "landryabanda@yahoo.fr"
+    ],
+    "skill": 186,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 21,
+  "fields": {
+    "user": [
+      "mapourecedric96@gmail.com"
+    ],
+    "skill": 141,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 22,
+  "fields": {
+    "user": [
+      "mapourecedric96@gmail.com"
+    ],
+    "skill": 137,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 23,
+  "fields": {
+    "user": [
+      "mapourecedric96@gmail.com"
+    ],
+    "skill": 138,
+    "experience_level": 2
+  }
+},
+{
+  "model": "accounts.userskill",
+  "pk": 24,
+  "fields": {
+    "user": [
+      "mapourecedric96@gmail.com"
+    ],
+    "skill": 140,
+    "experience_level": 1
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 1,
+  "fields": {
+    "domain": 55,
+    "title": "Test de D├®veloppement Full Stack IA pour Ariane MOTUE #1",
+    "description": "Testez vos comp├®tences pour D├®veloppement Full Stack IA",
+    "duration": "01:00:00",
+    "slug": "test-de-developpement-full-stack-ia-pour-ariane-motue-1",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      168,
+      174,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      191,
+      201,
+      204,
+      206,
+      208,
+      212,
+      213,
+      225,
+      226,
+      235
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 2,
+  "fields": {
+    "domain": 55,
+    "title": "Test Psychotechnique pour Ariane MOTUE #2",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-ariane-motue-2",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 3,
+  "fields": {
+    "domain": 55,
+    "title": "Test de D├®veloppement Full Stack IA pour Lorince Crespo NGAFFAG MONKAM #3",
+    "description": "Testez vos comp├®tences pour D├®veloppement Full Stack IA",
+    "duration": "01:00:00",
+    "slug": "test-de-developpement-full-stack-ia-pour-lorince-crespo-ngaffag-monkam-3",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      168,
+      174,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      191,
+      201,
+      204,
+      206,
+      208,
+      212,
+      213,
+      225,
+      226,
+      235
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 4,
+  "fields": {
+    "domain": 55,
+    "title": "Test Psychotechnique pour Lorince Crespo NGAFFAG MONKAM #4",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-lorince-crespo-ngaffag-monkam-4",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 5,
+  "fields": {
+    "domain": 55,
+    "title": "Test de D├®veloppement Full Stack IA pour alex kadje #5",
+    "description": "Testez vos comp├®tences pour D├®veloppement Full Stack IA",
+    "duration": "01:00:00",
+    "slug": "test-de-developpement-full-stack-ia-pour-alex-kadje-5",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      168,
+      174,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      191,
+      201,
+      204,
+      206,
+      208,
+      212,
+      213,
+      225,
+      226,
+      235
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 6,
+  "fields": {
+    "domain": 55,
+    "title": "Test Psychotechnique pour alex kadje #6",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-alex-kadje-6",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 7,
+  "fields": {
+    "domain": 58,
+    "title": "Test de Marketing Digital & Vente en ligne pour audred Siani #7",
+    "description": "Testez vos comp├®tences pour Marketing Digital & Vente en ligne",
+    "duration": "01:00:00",
+    "slug": "test-de-marketing-digital-vente-en-ligne-pour-audred-siani-7",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      407,
+      411
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 8,
+  "fields": {
+    "domain": 58,
+    "title": "Test Psychotechnique pour audred Siani #8",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-audred-siani-8",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 9,
+  "fields": {
+    "domain": 55,
+    "title": "Test de D├®veloppement Full Stack IA pour Francis Lionel SIKALI Tala #9",
+    "description": "Testez vos comp├®tences pour D├®veloppement Full Stack IA",
+    "duration": "01:00:00",
+    "slug": "test-de-developpement-full-stack-ia-pour-francis-lionel-sikali-tala-9",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      168,
+      174,
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      191,
+      201,
+      204,
+      206,
+      208,
+      212,
+      213,
+      225,
+      226,
+      235
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 10,
+  "fields": {
+    "domain": 55,
+    "title": "Test Psychotechnique pour Francis Lionel SIKALI Tala #10",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-francis-lionel-sikali-tala-10",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 11,
+  "fields": {
+    "domain": 58,
+    "title": "Test de Marketing Digital & Vente en ligne pour Landry ABANDA MBOMBE #11",
+    "description": "Testez vos comp├®tences pour Marketing Digital & Vente en ligne",
+    "duration": "01:00:00",
+    "slug": "test-de-marketing-digital-vente-en-ligne-pour-landry-abanda-mbombe-11",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      377,
+      378,
+      380,
+      381,
+      382,
+      383,
+      386,
+      389,
+      390,
+      393,
+      401,
+      405,
+      407,
+      410,
+      411,
+      412,
+      415,
+      416,
+      418,
+      422
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 12,
+  "fields": {
+    "domain": 58,
+    "title": "Test Psychotechnique pour Landry ABANDA MBOMBE #12",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-landry-abanda-mbombe-12",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 13,
+  "fields": {
+    "domain": 55,
+    "title": "Test de D├®veloppement Full Stack IA pour cedric mapoure #13",
+    "description": "Testez vos comp├®tences pour D├®veloppement Full Stack IA",
+    "duration": "01:00:00",
+    "slug": "test-de-developpement-full-stack-ia-pour-cedric-mapoure-13",
+    "is_logical": false,
+    "is_active": true,
+    "questions": [
+      171,
+      172,
+      178,
+      181,
+      183,
+      186,
+      187,
+      190,
+      194,
+      200,
+      201,
+      202,
+      203,
+      208,
+      215,
+      216,
+      226,
+      229,
+      242,
+      244
+    ]
+  }
+},
+{
+  "model": "challenges.challenge",
+  "pk": 14,
+  "fields": {
+    "domain": 55,
+    "title": "Test Psychotechnique pour cedric mapoure #14",
+    "description": "Test Psychotechnique",
+    "duration": "01:00:00",
+    "slug": "test-psychotechnique-pour-cedric-mapoure-14",
+    "is_logical": true,
+    "is_active": true,
+    "questions": [
+      504,
+      505,
+      506,
+      507,
+      508,
+      509,
+      510,
+      511,
+      512,
+      513,
+      514,
+      515,
+      516,
+      517,
+      519,
+      520,
+      521,
+      522,
+      523,
+      524
+    ]
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 1,
+  "fields": {
+    "challenge": 1,
+    "candidate": [
+      "motueariane5@gmail.com"
+    ],
+    "submission": 1,
+    "started_at": "2026-09-16T12:12:18.482Z",
+    "ended_at": "2026-09-16T12:12:51.727Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 2,
+  "fields": {
+    "challenge": 2,
+    "candidate": [
+      "motueariane5@gmail.com"
+    ],
+    "submission": 2,
+    "started_at": "2026-09-16T12:13:25.458Z",
+    "ended_at": "2026-09-16T12:13:58.405Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 3,
+  "fields": {
+    "challenge": 3,
+    "candidate": [
+      "theroypercy@gmail.com"
+    ],
+    "submission": 4,
+    "started_at": "2026-09-16T12:52:05.530Z",
+    "ended_at": "2026-09-16T13:42:02.115Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 4,
+  "fields": {
+    "challenge": 5,
+    "candidate": [
+      "alexiskadje@gmail.com"
+    ],
+    "submission": 3,
+    "started_at": "2026-09-16T13:16:07.527Z",
+    "ended_at": "2026-09-16T13:35:51.851Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 5,
+  "fields": {
+    "challenge": 6,
+    "candidate": [
+      "alexiskadje@gmail.com"
+    ],
+    "submission": 6,
+    "started_at": "2026-09-16T13:36:35.693Z",
+    "ended_at": "2026-09-16T13:56:14.277Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 6,
+  "fields": {
+    "challenge": 7,
+    "candidate": [
+      "kevinaudred@gmail.com"
+    ],
+    "submission": 5,
+    "started_at": "2026-09-16T13:42:13.608Z",
+    "ended_at": "2026-09-16T13:43:36.500Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 7,
+  "fields": {
+    "challenge": 4,
+    "candidate": [
+      "theroypercy@gmail.com"
+    ],
+    "submission": 7,
+    "started_at": "2026-09-16T13:42:45.309Z",
+    "ended_at": "2026-09-16T13:57:42.577Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 8,
+  "fields": {
+    "challenge": 8,
+    "candidate": [
+      "kevinaudred@gmail.com"
+    ],
+    "submission": 8,
+    "started_at": "2026-09-16T13:43:52.448Z",
+    "ended_at": "2026-09-16T14:18:42.250Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 9,
+  "fields": {
+    "challenge": 9,
+    "candidate": [
+      "lioneltala93230@gmail.com"
+    ],
+    "submission": 9,
+    "started_at": "2026-09-16T13:59:09.249Z",
+    "ended_at": "2026-09-16T14:35:32.355Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 10,
+  "fields": {
+    "challenge": 11,
+    "candidate": [
+      "landryabanda@yahoo.fr"
+    ],
+    "submission": 12,
+    "started_at": "2026-09-16T14:24:57.639Z",
+    "ended_at": "2026-09-16T15:07:34.977Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 11,
+  "fields": {
+    "challenge": 10,
+    "candidate": [
+      "lioneltala93230@gmail.com"
+    ],
+    "submission": 11,
+    "started_at": "2026-09-16T14:35:51.742Z",
+    "ended_at": "2026-09-16T15:03:23.480Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 12,
+  "fields": {
+    "challenge": 13,
+    "candidate": [
+      "mapourecedric96@gmail.com"
+    ],
+    "submission": 10,
+    "started_at": "2026-09-16T14:36:45.298Z",
+    "ended_at": "2026-09-16T15:01:12.978Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 13,
+  "fields": {
+    "challenge": 14,
+    "candidate": [
+      "mapourecedric96@gmail.com"
+    ],
+    "submission": 13,
+    "started_at": "2026-09-16T15:01:33.109Z",
+    "ended_at": "2026-09-16T15:13:46.315Z"
+  }
+},
+{
+  "model": "challenges.submissionattempt",
+  "pk": 14,
+  "fields": {
+    "challenge": 12,
+    "candidate": [
+      "landryabanda@yahoo.fr"
+    ],
+    "submission": 14,
+    "started_at": "2026-09-16T15:08:56.201Z",
+    "ended_at": "2026-09-16T15:29:00.791Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 1,
+  "fields": {
+    "challenge": 1,
+    "candidate": [
+      "motueariane5@gmail.com"
+    ],
+    "result": 0.0,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T12:12:51.720Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 2,
+  "fields": {
+    "challenge": 2,
+    "candidate": [
+      "motueariane5@gmail.com"
+    ],
+    "result": 0.0,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T12:13:58.399Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 3,
+  "fields": {
+    "challenge": 5,
+    "candidate": [
+      "alexiskadje@gmail.com"
+    ],
+    "result": 0.55,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T13:35:51.828Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 4,
+  "fields": {
+    "challenge": 3,
+    "candidate": [
+      "theroypercy@gmail.com"
+    ],
+    "result": 0.65,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T13:42:02.088Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 5,
+  "fields": {
+    "challenge": 7,
+    "candidate": [
+      "kevinaudred@gmail.com"
+    ],
+    "result": 1.0,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T13:43:36.493Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 6,
+  "fields": {
+    "challenge": 6,
+    "candidate": [
+      "alexiskadje@gmail.com"
+    ],
+    "result": 0.2,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T13:56:14.269Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 7,
+  "fields": {
+    "challenge": 4,
+    "candidate": [
+      "theroypercy@gmail.com"
+    ],
+    "result": 0.2,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T13:57:42.559Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 8,
+  "fields": {
+    "challenge": 8,
+    "candidate": [
+      "kevinaudred@gmail.com"
+    ],
+    "result": 0.3,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T14:18:42.236Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 9,
+  "fields": {
+    "challenge": 9,
+    "candidate": [
+      "lioneltala93230@gmail.com"
+    ],
+    "result": 0.7,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T14:35:32.343Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 10,
+  "fields": {
+    "challenge": 13,
+    "candidate": [
+      "mapourecedric96@gmail.com"
+    ],
+    "result": 0.7,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T15:01:12.960Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 11,
+  "fields": {
+    "challenge": 10,
+    "candidate": [
+      "lioneltala93230@gmail.com"
+    ],
+    "result": 0.6,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T15:03:23.473Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 12,
+  "fields": {
+    "challenge": 11,
+    "candidate": [
+      "landryabanda@yahoo.fr"
+    ],
+    "result": 0.6,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T15:07:34.931Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 13,
+  "fields": {
+    "challenge": 14,
+    "candidate": [
+      "mapourecedric96@gmail.com"
+    ],
+    "result": 0.25,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T15:13:46.260Z"
+  }
+},
+{
+  "model": "challenges.submission",
+  "pk": 14,
+  "fields": {
+    "challenge": 12,
+    "candidate": [
+      "landryabanda@yahoo.fr"
+    ],
+    "result": 0.2,
+    "status": "CORRECTED",
+    "submitted_at": "2026-09-16T15:29:00.761Z"
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 1,
+  "fields": {
+    "submission": 3,
+    "question": 168,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.877Z",
+    "selected_choices": [
+      490
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 2,
+  "fields": {
+    "submission": 3,
+    "question": 181,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.910Z",
+    "selected_choices": [
+      534
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 3,
+  "fields": {
+    "submission": 3,
+    "question": 183,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.920Z",
+    "selected_choices": [
+      542
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 4,
+  "fields": {
+    "submission": 3,
+    "question": 184,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.932Z",
+    "selected_choices": [
+      546
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 5,
+  "fields": {
+    "submission": 3,
+    "question": 185,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.944Z",
+    "selected_choices": [
+      550
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 6,
+  "fields": {
+    "submission": 3,
+    "question": 186,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.953Z",
+    "selected_choices": [
+      554
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 7,
+  "fields": {
+    "submission": 3,
+    "question": 191,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:51.966Z",
+    "selected_choices": [
+      566
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 8,
+  "fields": {
+    "submission": 3,
+    "question": 201,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:35:52.001Z",
+    "selected_choices": [
+      595
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 9,
+  "fields": {
+    "submission": 3,
+    "question": 212,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:52.023Z",
+    "selected_choices": [
+      614
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 10,
+  "fields": {
+    "submission": 3,
+    "question": 213,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:52.033Z",
+    "selected_choices": [
+      618
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 11,
+  "fields": {
+    "submission": 3,
+    "question": 225,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:52.045Z",
+    "selected_choices": [
+      646
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 12,
+  "fields": {
+    "submission": 3,
+    "question": 226,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:35:52.053Z",
+    "selected_choices": [
+      650
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 13,
+  "fields": {
+    "submission": 3,
+    "question": 235,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:35:52.081Z",
+    "selected_choices": [
+      677
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 14,
+  "fields": {
+    "submission": 3,
+    "question": 174,
+    "text": "Use DJANGO PYTHON FRAMEWORK TO GENERATE A REST API with a schema Product containing the name(it should be at most 10 characters), the price(long interger) and the stock(not null), and add an endpoint with pagination and use postman to test the API endpoint;all the fields should be mandatory",
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:35:52.094Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 15,
+  "fields": {
+    "submission": 3,
+    "question": 187,
+    "text": "reponsiveness on the frontend\r\nNo conflict in database schema\r\nendpoints validations\r\nsecurity",
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:35:52.102Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 16,
+  "fields": {
+    "submission": 3,
+    "question": 188,
+    "text": "the REST API will go and fetch the product schema and verify the logic, equally with the endpoint(what it is rendering) and serve it to the frontend\r\nthen check the CORS policy to make sure that both endpoints are communicating",
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:35:52.118Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 17,
+  "fields": {
+    "submission": 3,
+    "question": 204,
+    "text": " Use Claude sonnet for brainstorming and generate the Book requirement, Use NextJs for tech stack and server side rendering, Stripe for payment or MOMO API and deployment on a VPS server",
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:35:52.134Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 18,
+  "fields": {
+    "submission": 4,
+    "question": 168,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.131Z",
+    "selected_choices": [
+      490
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 19,
+  "fields": {
+    "submission": 4,
+    "question": 181,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.152Z",
+    "selected_choices": [
+      534
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 20,
+  "fields": {
+    "submission": 4,
+    "question": 182,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.170Z",
+    "selected_choices": [
+      538
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 21,
+  "fields": {
+    "submission": 4,
+    "question": 183,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.206Z",
+    "selected_choices": [
+      542
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 22,
+  "fields": {
+    "submission": 4,
+    "question": 184,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.223Z",
+    "selected_choices": [
+      546
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 23,
+  "fields": {
+    "submission": 4,
+    "question": 185,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.247Z",
+    "selected_choices": [
+      550
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 24,
+  "fields": {
+    "submission": 4,
+    "question": 186,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.272Z",
+    "selected_choices": [
+      554
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 25,
+  "fields": {
+    "submission": 4,
+    "question": 191,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.285Z",
+    "selected_choices": [
+      566
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 26,
+  "fields": {
+    "submission": 4,
+    "question": 201,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.298Z",
+    "selected_choices": [
+      594
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 27,
+  "fields": {
+    "submission": 4,
+    "question": 212,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.323Z",
+    "selected_choices": [
+      614
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 28,
+  "fields": {
+    "submission": 4,
+    "question": 213,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:42:02.351Z",
+    "selected_choices": [
+      619
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 29,
+  "fields": {
+    "submission": 4,
+    "question": 225,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.368Z",
+    "selected_choices": [
+      646
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 30,
+  "fields": {
+    "submission": 4,
+    "question": 226,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.384Z",
+    "selected_choices": [
+      650
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 31,
+  "fields": {
+    "submission": 4,
+    "question": 235,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:42:02.405Z",
+    "selected_choices": [
+      674
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 32,
+  "fields": {
+    "submission": 4,
+    "question": 174,
+    "text": "Positionne toi comme un expert Djanjo et effectue les actions suivantes :\r\n- Installe toutes les dependances necessaires a l'utilisation de DJANGO\r\n- Dans la racine du projet tu vas creer les differents repertoires : entities, controllers, exception, service, repositories, handler\r\n- Tu vas creer creer une endpoint permettant de recuperer la liste complete des produits avec les attributs (nom, prix, stock) en te rassurant de creer l'entite Produit dans le dossier entite, la requete sql pour recuperer la liste des produits dans le dossier repositories, creer les differents erreurs qui peuvent se lever dans le dossier exception puis enfin ecrire la logique de tout ca dans service et enfin ouvrir la endpoint dans controllers sachant que la endpoint attendra un objet json qui aura en parametre le nombre de page et d'elements souhaites.\r\n- Dans le dossier handler tu vas definir une logique centralise de gestion des exceptions.\r\n- Tu crees des test unitaires pour chaque fonction metier cree dans service\r\nUne fois que tu as terminer cela tu vas creer une vue permettant d'afficher le resultat fournie par la endpoint.",
+    "is_correct": null,
+    "answered_at": "2026-09-16T13:42:02.422Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 33,
+  "fields": {
+    "submission": 4,
+    "question": 187,
+    "text": "Positionne toi comme un expert testeur QA et effectue les tests d'integrations complet depuis l'application frontend voici un utilisateur admin qui a acces a toutes les fonctionnalites username=toto password=1234. Ensuite fait une analyse de tout le backend en verifiant notamment s'ils existent des problemes de concurences lies aux acces a la base de donnees et verifie egalement la coherence des donnees; puis tu te rassures que la gestion des authentifications et des authorisations qui a ete mis en place est correcte et fonctionne normalement. A la fin de tout ca fait moi un rapport des actions menees.",
+    "is_correct": null,
+    "answered_at": "2026-09-16T13:42:02.434Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 34,
+  "fields": {
+    "submission": 4,
+    "question": 188,
+    "text": "L'API Rest permet deja d'envoyer des requetes et recevoir des reponses dans un format simplifie et facilement exploitable. D'autre part le REST utilise le protocol http ce qui facilite la communication entre les deux environnements deployes separement dans le serveur respectif. Le front-end ne se connecte pas directement a PostgreSQL notamment pour des raisons mappings des objets, le front-end react aujourd'hui ne regle pas encore les questions liees au mapping objet relationnel.",
+    "is_correct": null,
+    "answered_at": "2026-09-16T13:42:02.445Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 35,
+  "fields": {
+    "submission": 4,
+    "question": 204,
+    "text": "Positionne toi comme expert fullstack en spring boot et react js et met en place une application permettant a un commercant de gerer sa boutique en ligne. En developpant aligne toi sur les normes et bonne pratique de developpement logiciel.",
+    "is_correct": null,
+    "answered_at": "2026-09-16T13:42:02.454Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 36,
+  "fields": {
+    "submission": 4,
+    "question": 206,
+    "text": "Lorsque le besoin du client ne presente pas des aspects de personnalisations trop importantes.",
+    "is_correct": null,
+    "answered_at": "2026-09-16T13:42:02.495Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 37,
+  "fields": {
+    "submission": 4,
+    "question": 208,
+    "text": "- Me rassurer que l'application est bien connecte a une base de donnee.\r\n- Me rassurer que le login avec un compte existant marche bien.\r\n- Effectuer le test fonctionnel de quelques fonctionnalites importantes.",
+    "is_correct": null,
+    "answered_at": "2026-09-16T13:42:02.506Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 38,
+  "fields": {
+    "submission": 5,
+    "question": 407,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:43:36.507Z",
+    "selected_choices": [
+      1195
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 39,
+  "fields": {
+    "submission": 5,
+    "question": 411,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:43:36.516Z",
+    "selected_choices": [
+      1211
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 40,
+  "fields": {
+    "submission": 6,
+    "question": 504,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:56:14.283Z",
+    "selected_choices": [
+      1300
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 41,
+  "fields": {
+    "submission": 6,
+    "question": 505,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:56:14.298Z",
+    "selected_choices": [
+      1305
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 42,
+  "fields": {
+    "submission": 6,
+    "question": 506,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:56:14.306Z",
+    "selected_choices": [
+      1309
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 43,
+  "fields": {
+    "submission": 6,
+    "question": 507,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:56:14.317Z",
+    "selected_choices": [
+      1312
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 44,
+  "fields": {
+    "submission": 6,
+    "question": 508,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:56:14.331Z",
+    "selected_choices": [
+      1315
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 45,
+  "fields": {
+    "submission": 6,
+    "question": 509,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:56:14.340Z",
+    "selected_choices": [
+      1319
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 46,
+  "fields": {
+    "submission": 6,
+    "question": 510,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:56:14.353Z",
+    "selected_choices": [
+      1323
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 47,
+  "fields": {
+    "submission": 7,
+    "question": 504,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:57:42.590Z",
+    "selected_choices": [
+      1300
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 48,
+  "fields": {
+    "submission": 7,
+    "question": 505,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:57:42.636Z",
+    "selected_choices": [
+      1305
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 49,
+  "fields": {
+    "submission": 7,
+    "question": 506,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:57:42.705Z",
+    "selected_choices": [
+      1307
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 50,
+  "fields": {
+    "submission": 7,
+    "question": 507,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:57:42.720Z",
+    "selected_choices": [
+      1314
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 51,
+  "fields": {
+    "submission": 7,
+    "question": 508,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:57:42.734Z",
+    "selected_choices": [
+      1315
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 52,
+  "fields": {
+    "submission": 7,
+    "question": 509,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:57:42.745Z",
+    "selected_choices": [
+      1319
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 53,
+  "fields": {
+    "submission": 7,
+    "question": 510,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:57:42.759Z",
+    "selected_choices": [
+      1323
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 54,
+  "fields": {
+    "submission": 7,
+    "question": 511,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:57:42.773Z",
+    "selected_choices": [
+      1330
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 55,
+  "fields": {
+    "submission": 7,
+    "question": 512,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T13:57:42.788Z",
+    "selected_choices": [
+      1331
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 56,
+  "fields": {
+    "submission": 7,
+    "question": 513,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T13:57:42.800Z",
+    "selected_choices": [
+      1338
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 57,
+  "fields": {
+    "submission": 8,
+    "question": 504,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:18:42.262Z",
+    "selected_choices": [
+      1300
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 58,
+  "fields": {
+    "submission": 8,
+    "question": 505,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:18:42.282Z",
+    "selected_choices": [
+      1303,
+      1304,
+      1305,
+      1306
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 59,
+  "fields": {
+    "submission": 8,
+    "question": 506,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.302Z",
+    "selected_choices": [
+      1309
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 60,
+  "fields": {
+    "submission": 8,
+    "question": 507,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:18:42.343Z",
+    "selected_choices": [
+      1311,
+      1312,
+      1313,
+      1314
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 61,
+  "fields": {
+    "submission": 8,
+    "question": 508,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.360Z",
+    "selected_choices": [
+      1316
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 62,
+  "fields": {
+    "submission": 8,
+    "question": 509,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.368Z",
+    "selected_choices": [
+      1319
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 63,
+  "fields": {
+    "submission": 8,
+    "question": 510,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:18:42.380Z",
+    "selected_choices": [
+      1323
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 64,
+  "fields": {
+    "submission": 8,
+    "question": 511,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.401Z",
+    "selected_choices": [
+      1328,
+      1329
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 65,
+  "fields": {
+    "submission": 8,
+    "question": 512,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.429Z",
+    "selected_choices": [
+      1332,
+      1333
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 66,
+  "fields": {
+    "submission": 8,
+    "question": 513,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:18:42.451Z",
+    "selected_choices": [
+      1335,
+      1336
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 67,
+  "fields": {
+    "submission": 8,
+    "question": 514,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:18:42.469Z",
+    "selected_choices": [
+      1339
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 68,
+  "fields": {
+    "submission": 8,
+    "question": 515,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.483Z",
+    "selected_choices": [
+      1344
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 69,
+  "fields": {
+    "submission": 8,
+    "question": 516,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.494Z",
+    "selected_choices": [
+      1349
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 70,
+  "fields": {
+    "submission": 8,
+    "question": 517,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T14:18:42.503Z",
+    "selected_choices": [
+      1351,
+      1352
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 71,
+  "fields": {
+    "submission": 8,
+    "question": 519,
+    "text": "21600s+ 4680s + 162s = 26442s\r\n     ",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:18:42.514Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 72,
+  "fields": {
+    "submission": 8,
+    "question": 520,
+    "text": "7200s + 2880s + 52s + 14400s + 2160s + 15s = 26707s",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:18:42.518Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 73,
+  "fields": {
+    "submission": 8,
+    "question": 522,
+    "text": "10800s + 2040s + 52s = 12892s",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:18:42.526Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 74,
+  "fields": {
+    "submission": 8,
+    "question": 524,
+    "text": "Cabillaud",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:18:42.530Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 75,
+  "fields": {
+    "submission": 9,
+    "question": 168,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.361Z",
+    "selected_choices": [
+      490
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 76,
+  "fields": {
+    "submission": 9,
+    "question": 181,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.374Z",
+    "selected_choices": [
+      534
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 77,
+  "fields": {
+    "submission": 9,
+    "question": 182,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.387Z",
+    "selected_choices": [
+      538
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 78,
+  "fields": {
+    "submission": 9,
+    "question": 183,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.404Z",
+    "selected_choices": [
+      542
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 79,
+  "fields": {
+    "submission": 9,
+    "question": 184,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.417Z",
+    "selected_choices": [
+      546
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 80,
+  "fields": {
+    "submission": 9,
+    "question": 185,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.427Z",
+    "selected_choices": [
+      550
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 81,
+  "fields": {
+    "submission": 9,
+    "question": 186,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.471Z",
+    "selected_choices": [
+      554
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 82,
+  "fields": {
+    "submission": 9,
+    "question": 191,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.483Z",
+    "selected_choices": [
+      566
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 83,
+  "fields": {
+    "submission": 9,
+    "question": 201,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.492Z",
+    "selected_choices": [
+      594
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 84,
+  "fields": {
+    "submission": 9,
+    "question": 212,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.504Z",
+    "selected_choices": [
+      614
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 85,
+  "fields": {
+    "submission": 9,
+    "question": 213,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.515Z",
+    "selected_choices": [
+      618
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 86,
+  "fields": {
+    "submission": 9,
+    "question": 225,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.525Z",
+    "selected_choices": [
+      646
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 87,
+  "fields": {
+    "submission": 9,
+    "question": 226,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.536Z",
+    "selected_choices": [
+      650
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 88,
+  "fields": {
+    "submission": 9,
+    "question": 235,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T14:35:32.545Z",
+    "selected_choices": [
+      674
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 89,
+  "fields": {
+    "submission": 9,
+    "question": 174,
+    "text": "tu es un espert en devellopement logiciel django et react , tu dois me faire un  endpoint securiser e robuste en utilisant django 5  et angular 22  , quelaue point a clarifier tu dois utiliserun back end robute est securiser , middleware auth pagination retour des erreurs   et coter front pareil utiliser la validation une experience utiliateur fluide (loader , toaste etc....)",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:35:32.557Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 90,
+  "fields": {
+    "submission": 9,
+    "question": 187,
+    "text": "interface je verifie si il a pas  d'erreur dans la console du navigateuret que les validations de donnees ont ete faitess , et si tout s'execute bien , api je me rassure que le back end est bien structurer controller, service, migration etc... egalement dans le controlleur on doit faire des validations ,  la paginations , l utilisation des transactions ausnd c'est neccessaire , le les middleware , le gestions des erreurs(try/catch ) et le retour propre des endpoints(201,404,500 etc...)",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:35:32.561Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 91,
+  "fields": {
+    "submission": 9,
+    "question": 188,
+    "text": "les api rest permettent a 2 applications de commuiquer ensemble via des requettes , dans le cadre d'une application avec react il est important de ne jamais laisser react(ou tout autre framework front ) communiquer avec une bd car tout le code front end et charger par le navigateur au demarrage et laisser react communiquer avec une bd signifie donner les access a la bd dans le code react et de ce fait tout le monde peut y avoir accessssss",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:35:32.568Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 92,
+  "fields": {
+    "submission": 9,
+    "question": 204,
+    "text": "tout d'abord j'utilise claude por au'on parle de l'architechture de notre application et definier les migrations puis j'utilise google stitch pour la generation des interfaces ensuite je definit mes stack front avec(react ou angular )et back avec (laravel ou django ) je commence par faire generer mes endpoints avec claude puis je genere les differents code endpoint securier et ensuite le front end",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:35:32.579Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 93,
+  "fields": {
+    "submission": 9,
+    "question": 206,
+    "text": "l'evolution de l'app , si le projet est destinee a evoluer c' est mieux une application \r\nsecuriter , s'il s'agit d'une application critique c'et egalement mieux de faire une application\r\n",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:35:32.589Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 94,
+  "fields": {
+    "submission": 9,
+    "question": 208,
+    "text": "pas d'erreur dans la console ;\r\npas d'information cle laisser dans la page ( par exemple : le identifioant de l'admin ......... oui certaines ia le font et de fois sans lire on laisse vu que ca marche )\r\net enfin si l'experience utilisateur est correct ( couleur , etc.....)",
+    "is_correct": null,
+    "answered_at": "2026-09-16T14:35:32.626Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 95,
+  "fields": {
+    "submission": 10,
+    "question": 171,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:12.995Z",
+    "selected_choices": [
+      502
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 96,
+  "fields": {
+    "submission": 10,
+    "question": 172,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.014Z",
+    "selected_choices": [
+      506,
+      509
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 97,
+  "fields": {
+    "submission": 10,
+    "question": 178,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.032Z",
+    "selected_choices": [
+      526
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 98,
+  "fields": {
+    "submission": 10,
+    "question": 181,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.065Z",
+    "selected_choices": [
+      534
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 99,
+  "fields": {
+    "submission": 10,
+    "question": 183,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.083Z",
+    "selected_choices": [
+      542,
+      545
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 100,
+  "fields": {
+    "submission": 10,
+    "question": 186,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.108Z",
+    "selected_choices": [
+      554,
+      556
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 101,
+  "fields": {
+    "submission": 10,
+    "question": 190,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.127Z",
+    "selected_choices": [
+      562,
+      564
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 102,
+  "fields": {
+    "submission": 10,
+    "question": 194,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.164Z",
+    "selected_choices": [
+      570
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 103,
+  "fields": {
+    "submission": 10,
+    "question": 200,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.514Z",
+    "selected_choices": [
+      590,
+      592
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 104,
+  "fields": {
+    "submission": 10,
+    "question": 201,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.532Z",
+    "selected_choices": [
+      594
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 105,
+  "fields": {
+    "submission": 10,
+    "question": 202,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.598Z",
+    "selected_choices": [
+      598,
+      600
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 106,
+  "fields": {
+    "submission": 10,
+    "question": 215,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.616Z",
+    "selected_choices": [
+      626,
+      628
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 107,
+  "fields": {
+    "submission": 10,
+    "question": 216,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.629Z",
+    "selected_choices": [
+      630,
+      632
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 108,
+  "fields": {
+    "submission": 10,
+    "question": 226,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:01:13.640Z",
+    "selected_choices": [
+      650
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 109,
+  "fields": {
+    "submission": 10,
+    "question": 187,
+    "text": "je test interface si quand le client reservation il recois une notification et aussi si admin recois \r\n\r\naussi les api interagis normalement entre base de donnee et le forntend aussi les test de securite pour securise les identifiant des cleints ",
+    "is_correct": null,
+    "answered_at": "2026-09-16T15:01:13.649Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 110,
+  "fields": {
+    "submission": 10,
+    "question": 203,
+    "text": "pour que un projets soit commercial il faut vraiment que le projet etait conu pour sa dans ce fait je verifie d'abord les espace ou le projet sera deploier en longterms aussi verifie comment sa reagis quand plusier personnes ce connect ensemble sur la plateforme ",
+    "is_correct": null,
+    "answered_at": "2026-09-16T15:01:13.657Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 111,
+  "fields": {
+    "submission": 10,
+    "question": 208,
+    "text": "je verifie sur la page contient tout les informations requis \r\npuis le design en fonctionne de charte donne ",
+    "is_correct": null,
+    "answered_at": "2026-09-16T15:01:13.661Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 112,
+  "fields": {
+    "submission": 10,
+    "question": 242,
+    "text": "timeouts j'essaie de genere un autre ",
+    "is_correct": null,
+    "answered_at": "2026-09-16T15:01:13.666Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 113,
+  "fields": {
+    "submission": 10,
+    "question": 244,
+    "text": "ce qui autorise : ",
+    "is_correct": null,
+    "answered_at": "2026-09-16T15:01:13.673Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 114,
+  "fields": {
+    "submission": 11,
+    "question": 504,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.488Z",
+    "selected_choices": [
+      1300
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 115,
+  "fields": {
+    "submission": 11,
+    "question": 505,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.500Z",
+    "selected_choices": [
+      1305
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 116,
+  "fields": {
+    "submission": 11,
+    "question": 506,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:03:23.509Z",
+    "selected_choices": [
+      1309
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 117,
+  "fields": {
+    "submission": 11,
+    "question": 507,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.520Z",
+    "selected_choices": [
+      1312
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 118,
+  "fields": {
+    "submission": 11,
+    "question": 509,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:03:23.530Z",
+    "selected_choices": [
+      1319
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 119,
+  "fields": {
+    "submission": 11,
+    "question": 510,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.542Z",
+    "selected_choices": [
+      1323
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 120,
+  "fields": {
+    "submission": 11,
+    "question": 512,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.554Z",
+    "selected_choices": [
+      1331
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 121,
+  "fields": {
+    "submission": 11,
+    "question": 515,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.563Z",
+    "selected_choices": [
+      1343
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 122,
+  "fields": {
+    "submission": 11,
+    "question": 516,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.593Z",
+    "selected_choices": [
+      1348
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 123,
+  "fields": {
+    "submission": 11,
+    "question": 517,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.607Z",
+    "selected_choices": [
+      1353
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 124,
+  "fields": {
+    "submission": 11,
+    "question": 519,
+    "text": "7h20min42s",
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.620Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 125,
+  "fields": {
+    "submission": 11,
+    "question": 520,
+    "text": "7h25min7s",
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.627Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 126,
+  "fields": {
+    "submission": 11,
+    "question": 521,
+    "text": "144",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:03:23.634Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 127,
+  "fields": {
+    "submission": 11,
+    "question": 522,
+    "text": "12892",
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.640Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 128,
+  "fields": {
+    "submission": 11,
+    "question": 523,
+    "text": "3h3min26s",
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:03:23.645Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 129,
+  "fields": {
+    "submission": 11,
+    "question": 524,
+    "text": "requin",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:03:23.657Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 130,
+  "fields": {
+    "submission": 12,
+    "question": 377,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:34.992Z",
+    "selected_choices": [
+      1103
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 131,
+  "fields": {
+    "submission": 12,
+    "question": 378,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.009Z",
+    "selected_choices": [
+      1107
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 132,
+  "fields": {
+    "submission": 12,
+    "question": 380,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.026Z",
+    "selected_choices": [
+      1115
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 133,
+  "fields": {
+    "submission": 12,
+    "question": 381,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.103Z",
+    "selected_choices": [
+      1119
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 134,
+  "fields": {
+    "submission": 12,
+    "question": 382,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.126Z",
+    "selected_choices": [
+      1123
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 135,
+  "fields": {
+    "submission": 12,
+    "question": 383,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.140Z",
+    "selected_choices": [
+      1127
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 136,
+  "fields": {
+    "submission": 12,
+    "question": 386,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.178Z",
+    "selected_choices": [
+      1139,
+      1141
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 137,
+  "fields": {
+    "submission": 12,
+    "question": 401,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.206Z",
+    "selected_choices": [
+      1171
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 138,
+  "fields": {
+    "submission": 12,
+    "question": 405,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.222Z",
+    "selected_choices": [
+      1187
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 139,
+  "fields": {
+    "submission": 12,
+    "question": 407,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.263Z",
+    "selected_choices": [
+      1195
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 140,
+  "fields": {
+    "submission": 12,
+    "question": 410,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:07:35.298Z",
+    "selected_choices": [
+      1208
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 141,
+  "fields": {
+    "submission": 12,
+    "question": 411,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.332Z",
+    "selected_choices": [
+      1211
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 142,
+  "fields": {
+    "submission": 12,
+    "question": 412,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:07:35.353Z",
+    "selected_choices": [
+      1215
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 143,
+  "fields": {
+    "submission": 12,
+    "question": 389,
+    "text": "Sarah, si vous manquez ceci, vous passez ├á c├┤t├® d'une belle opportunit├® que vous n'aurez plus jamais. Explication : Je capitalise sur le gap de curiosit├®. Ma cible devrait se demander de quoi il s'agit, qu'est ce qu'elle manque et ouvrir l'email pour v├®rifier.",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:07:35.376Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 144,
+  "fields": {
+    "submission": 12,
+    "question": 393,
+    "text": "Le tunnel de conversion represente les actions de conversion mis en place en reponse au parcours client qui cartographie les ├®tapes et actions men├®es par le client cible. Ces actions contituent des leviers ├á activer afin de faire passer le client cible de la prise de conscience ├á l'achat. Pour un site e-commerce, on pourrait avoir : La prise de conscience du probl├¿me que l'article r├¿gle qui constitue le top of funnel, la decision d'investir qui int├¿gre la recherche et la selection et constitue le midlle of funnel, l'achat qui constitue le bottom of funnel.",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:07:35.397Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 145,
+  "fields": {
+    "submission": 12,
+    "question": 415,
+    "text": "Je modifie le post social media qui mene vers ce produit en faisant deux posts AB testing et je modifie un ou deux ├®l├®ments sur une autre page produit et je draine du trafic vers cette page afin de d├®terminer quels sont les ├®l├®ments constititufs du probl├¿me. Cela peut ├¬tre le titren la description ou les images.",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:07:35.410Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 146,
+  "fields": {
+    "submission": 12,
+    "question": 422,
+    "text": "Je repondrai en commentaire ou j'entrerai en contact direct avec quelques personnes auteure des avis n├®gatif pour en savoir plus car il s'agit des retours utilisateur ├á prendre en compte afin d'ameliore le produit si c'est identifier que c'est lui le probl├¿me, am├®liorer l'exp├®rience client si c'est identifier que c'est ce la le probl├¿me, r├®gler le probl├¿me d'usage si c'est ├á ce niveau le probl├¿me.",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:07:35.415Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 147,
+  "fields": {
+    "submission": 13,
+    "question": 504,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:13:46.332Z",
+    "selected_choices": [
+      1300
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 148,
+  "fields": {
+    "submission": 13,
+    "question": 505,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.373Z",
+    "selected_choices": [
+      1303
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 149,
+  "fields": {
+    "submission": 13,
+    "question": 506,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.389Z",
+    "selected_choices": [
+      1307
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 150,
+  "fields": {
+    "submission": 13,
+    "question": 507,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.415Z",
+    "selected_choices": [
+      1314
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 151,
+  "fields": {
+    "submission": 13,
+    "question": 508,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.429Z",
+    "selected_choices": [
+      1315
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 152,
+  "fields": {
+    "submission": 13,
+    "question": 509,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.443Z",
+    "selected_choices": [
+      1322
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 153,
+  "fields": {
+    "submission": 13,
+    "question": 510,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.453Z",
+    "selected_choices": [
+      1325
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 154,
+  "fields": {
+    "submission": 13,
+    "question": 511,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.465Z",
+    "selected_choices": [
+      1330
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 155,
+  "fields": {
+    "submission": 13,
+    "question": 512,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:13:46.483Z",
+    "selected_choices": [
+      1331
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 156,
+  "fields": {
+    "submission": 13,
+    "question": 513,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:13:46.494Z",
+    "selected_choices": [
+      1335
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 157,
+  "fields": {
+    "submission": 13,
+    "question": 514,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:13:46.506Z",
+    "selected_choices": [
+      1339
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 158,
+  "fields": {
+    "submission": 13,
+    "question": 515,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:13:46.516Z",
+    "selected_choices": [
+      1343
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 159,
+  "fields": {
+    "submission": 13,
+    "question": 516,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.527Z",
+    "selected_choices": [
+      1349
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 160,
+  "fields": {
+    "submission": 13,
+    "question": 517,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.536Z",
+    "selected_choices": [
+      1352
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 161,
+  "fields": {
+    "submission": 13,
+    "question": 520,
+    "text": "6h",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.547Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 162,
+  "fields": {
+    "submission": 13,
+    "question": 524,
+    "text": "cabillaud",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:13:46.552Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 163,
+  "fields": {
+    "submission": 14,
+    "question": 504,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:29:00.877Z",
+    "selected_choices": [
+      1300
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 164,
+  "fields": {
+    "submission": 14,
+    "question": 505,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:29:00.922Z",
+    "selected_choices": [
+      1305
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 165,
+  "fields": {
+    "submission": 14,
+    "question": 507,
+    "text": null,
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:29:00.946Z",
+    "selected_choices": [
+      1313
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 166,
+  "fields": {
+    "submission": 14,
+    "question": 517,
+    "text": null,
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:29:01.416Z",
+    "selected_choices": [
+      1353
+    ]
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 167,
+  "fields": {
+    "submission": 14,
+    "question": 519,
+    "text": "7h00",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:29:01.428Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 168,
+  "fields": {
+    "submission": 14,
+    "question": 520,
+    "text": "7h 02min 68s",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:29:01.432Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 169,
+  "fields": {
+    "submission": 14,
+    "question": 521,
+    "text": "4h 48m",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:29:01.438Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 170,
+  "fields": {
+    "submission": 14,
+    "question": 522,
+    "text": "12892 s",
+    "is_correct": true,
+    "answered_at": "2026-09-16T15:29:01.443Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.answer",
+  "pk": 171,
+  "fields": {
+    "submission": 14,
+    "question": 524,
+    "text": "Cabillaud",
+    "is_correct": false,
+    "answered_at": "2026-09-16T15:29:01.447Z",
+    "selected_choices": []
+  }
+},
+{
+  "model": "challenges.apiusage",
+  "pk": 1,
+  "fields": {
+    "date": "2026-09-16",
+    "count": 17
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 1,
+  "fields": {
+    "title": "Test de Personnalit├® pour Ariane MOTUE #1",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-ariane-motue-1",
+    "personality_detail": "Voici l'analyse comportementale du candidat bas├®e sur ses r├®ponses au test de personnalit├®, dans le cadre d'un recrutement pour une startup IT.\n\n---\n\n### Introduction\nL'├®valuation comportementale de ce candidat r├®v├¿le un profil ax├® sur la recherche d'├®quilibre personnel et la pr├®dictibilit├®. L'analyse met en ├®vidence une sensibilit├® marqu├®e au stress et une appr├®hension face ├á l'incertitude, temp├®r├®es par une capacit├® ├á poser des limites claires entre vie professionnelle et vie priv├®e.\n\n---\n\n### Traits de personnalit├® dominants\n\n1. **Sensibilit├® au stress et ├á la pression :** Le candidat pr├®sente une faible tol├®rance au stress op├®rationnel. L'utilisation pass├®e de traitements anti-stress, la prise de cong├®s d├®di├®s et l'irritabilit├® face aux tracas quotidiens indiquent une r├®activit├® ├®motionnelle ├®lev├®e aux facteurs de tension.\n2. **Besoin de pr├®dictibilit├® et de routine :** Il manifeste une aversion pour le chaos (├®vitement des situations turbulentes) et une inqui├®tude face ├á la nouveaut├® technologique.\n3. **Gestion herm├®tique des limites vie pro/vie perso :** Le candidat cloisonne fortement son travail et son temps libre. Il d├®connecte facilement et refuse de compenser le stress par le surtravail.\n4. **Expression ├®motionnelle directe :** Ouvert sur ses ressentis, il n'h├®site pas ├á communiquer ses ├®motions, tout en maintenant une faible tendance ├á la culpabilisation en cas d'erreur.\n\n---\n\n### Forces et qualit├®s\n\n* **Capacit├® de d├®connexion :** Facult├® ├á faire le vide et ├á pr├®server sa sant├® mentale hors du travail, r├®duisant le risque d'├®puisement professionnel par surengagement (*burnout* d'implication).\n* **Communication transparente :** Facilit├® ├á verbaliser ses ├®motions et ses ressentis, ce qui peut faciliter la d├®tection pr├®coce de dysfonctionnements au sein d'une ├®quipe.\n* **Pragmatisme et d├®tachement face aux erreurs :** Faible tendance ├á la rumination mentale apr├¿s un ├®chec, permettant de passer rapidement ├á autre chose.\n\n---\n\n### Points d'am├®lioration potentiels\n\n* **Gestion de la crise et du stress :** Une tendance ├á projeter son anxi├®t├® sur les autres en p├®riode de crise (\"ceux qui restent calmes n'ont pas compris\"). Les d├®lais serr├®s sont per├ºus comme une source de stress plut├┤t qu'un stimulant.\n* **R├®sistance au changement technologique :** L'apprentissage de nouvelles technologies g├®n├¿re chez lui de l'inqui├®tude, ce qui repr├®sente un frein majeur dans le secteur de l'IT.\n* **R├®seau de soutien limit├® :** L'absence d'un r├®seau social de confiance solide peut restreindre ses ressources externes pour faire face aux p├®riodes de forte tension.\n\n---\n\n### Style de travail et de communication\n\n* **Style de travail :** M├®thodique et routinier. Le candidat produit son meilleur travail dans un environnement stable, aux ├®ch├®ances souples et aux processus bien ├®tablis. Il n'est pas stimul├® par la comp├®tition ni par l'urgence.\n* **Style de communication :** Expressif sur le plan",
+    "candidate": [
+      "motueariane5@gmail.com"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T12:12:13.361Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      577,
+      580,
+      581,
+      586,
+      587,
+      589
+    ]
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 2,
+  "fields": {
+    "title": "Test de Personnalit├® pour Lorince Crespo NGAFFAG MONKAM #2",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-lorince-crespo-ngaffag-monkam-2",
+    "personality_detail": "Voici l'analyse comportementale et psychologique du candidat, bas├®e sur ses r├®ponses au questionnaire, ├®valu├®e dans le cadre d'un recrutement au sein d'une startup IT.\n\n---\n\n### **1. Introduction**\nLe candidat pr├®sente un profil ├®quilibr├®, caract├®ris├® par une forte ambition personnelle et une excellente capacit├® d'adaptation aux mutations technologiques. Il fait preuve d'une grande lucidit├® quant ├á sa gestion du stress : sans chercher ├á sur-vendre une invuln├®rabilit├® irr├®aliste, il reconna├«t ses limites tout en d├®montrant des strat├®gies de r├®cup├®ration effectives.\n\n---\n\n### **2. Traits de personnalit├® dominants**\n* **Orientation vers la r├®ussite et le d├®fi :** Le candidat accorde une importance majeure au succ├¿s. Il per├ºoit le monde actuel comme hautement comp├®titif et aborde la nouveaut├® (changement de vie, apprentissage technologique, situations impr├®vues) comme un d├®fi stimulant.\n* **Agilit├® et curiosit├® intellectuelle :** Tr├¿s ouvert ├á l'innovation, il exprime un attrait naturel pour l'apprentissage de nouvelles technologies et l'adaptation ├á de nouveaux environnements.\n* **Pragmatisme et r├®alisme ├®motionnel :** Il fait preuve d'une transparence notable concernant son niveau de stress (impact sur le quotidien, ├®volution avec l'├óge). Il ne nie pas les pressions de la vie moderne.\n\n---\n\n### **3. Forces et qualit├®s**\n* **Capacit├® d'apprentissage et d'adaptation :** Un atout majeur pour le secteur IT. Sa curiosit├® face aux nouvelles technologies garantit une mont├®e en comp├®tences rapide.\n* **Maintien du sang-froid per├ºu en crise :** Il estime conserver son calme en situation critique, une qualit├® essentielle pour la gestion d'incidents ou le d├®ploiement de projets complexes.\n* **Recherche d'├®quilibre et r├®seau de soutien :** Le candidat dispose d'un r├®seau amical solide et veille ├á faire une coupure nette entre travail et vie priv├®e durant le week-end, pr├®servant ainsi sa sant├® mentale ├á long terme.\n* **Organisation et planification :** Il per├ºoit les changements majeurs (comme un d├®m├®nagement) comme des ├®v├®nements plaisants ├á planifier.\n\n---\n\n### **4. Points d'am├®lioration et points de vigilance**\n* **Sensibilit├® ├á la pression des d├®lais :** Le candidat consid├¿re les ├®ch├®ances comme un ┬½ mal n├®cessaire ┬╗ plut├┤t que comme un facteur stimulant. Dans l'├®cosyst├¿me startup o├╣ les \"deadlines\" sont fr├®quentes, cela pourrait g├®n├®rer de la fatigue ├®motionnelle.\n* **M├®canismes de gestion du stress (*coping*) :** La mention de l'alcool comme moyen de relaxation ÔÇö bien que cit├®e aux c├┤t├®s du repos ÔÇö constitue un signal d'alerte quant aux modalit├®s de r├®gulation du stress lors des p├®riodes de surchauffe.\n* **Vuln├®rabilit├® au stress accumul├® :** Il admet avoir d├®j├á pris des cong├®s pour cause de stress et ressentir plus de pression avec l'├óge. Un suivi de sa charge de travail sera n├®cessaire.\n\n---\n\n### **5. Style de travail et de communication**\n* **Style de travail :** M├®ticuleux, orient├® vers la r├®solution de probl├¿mes et l'apprentissage continu. Il pr├®f├¿re travailler dans un cadre structur├® o├╣ les impr├®vus sont anticip├®s par la planification.\n* **Communication :** Directe, lucide et authentique. Il ne cherche pas ├á masquer ses erreurs (\"comme tout le monde\") ni ses vuln├®rabilit├®s, ce qui facilite un feedback constructif et transparent avec son management.\n\n---\n\n### **6. Compatibilit├® avec l'environnement professionnel (Startup IT)**\n* **Facteurs d'alignement tr├¿s forts :** Excellente ad├®quation avec la culture d'innovation, le besoin constant de veille technologique et l'agilit├® propre aux startups IT.\n* **Points de friction potentiels :** Le rythme intense et le manque de visibilit├® parfois inh├®rents aux startups jeunes pourraient heurter sa vision du travail. Sa faible tol├®rance au travail sous pression temporelle stricte n├®cessite un environnement manag├®",
+    "candidate": [
+      "theroypercy@gmail.com"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T12:52:00.067Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      580,
+      584,
+      585,
+      589,
+      590,
+      591
+    ]
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 3,
+  "fields": {
+    "title": "Test de Personnalit├® pour alex kadje #3",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-alex-kadje-3",
+    "personality_detail": "Voici l'analyse comportementale et psychologique du candidat ├á partir de ses r├®ponses au questionnaire, structur├®e pour ├®valuer son ad├®quation avec un poste au sein d'une startup IT.\n\n---\n\n### **1. Introduction**\nLe profil ├®valu├® pr├®sente un niveau remarquable de stabilit├® ├®motionnelle, d'ambition et de r├®silience face au stress. Dans le contexte exigeant et dynamique d'une startup IT (d├®lais serr├®s, incertitude, ├®volution technologique rapide), le candidat affiche des traits de personnalit├® particuli├¿rement adapt├®s aux environnements sous haute pression.\n\n---\n\n### **2. Traits de personnalit├® dominants**\n* **Grande r├®sistance au stress et stabilit├® ├®motionnelle :** Le candidat conserve son sang-froid en crise, ne laisse pas le stress impacter sa sant├® ou ses relations, et per├ºoit la pression comme un moteur plut├┤t que comme une menace.\n* **Orientation vers l'accomplissement et ambition :** Accordant une \"tr├¿s grande importance\" au succ├¿s et conscient de la comp├®titivit├® du monde actuel, il est stimul├® par les objectifs ├®lev├®s.\n* **Curiosit├® intellectuelle et adaptabilit├® :** Il per├ºoit l'apprentissage de nouvelles technologies comme un plaisir et accepte le multit├óche sans difficult├®.\n* **Pragmatisme et ├®quilibre personnel :** Il dispose d'un r├®seau de soutien solide et pr├®serve son ├®quilibre de vie (importance accord├®e aux proches et au repos), ├®vitant le surengagement aveugle (\"rarement\" d'immersion dans le travail pour fuir le stress).\n\n---\n\n### **3. Forces et qualit├®s**\n* **Performance sous pression :** Stimul├® par les d├®lais, il est capable de maintenir son efficacit├® op├®rationnelle lors des coup de feu.\n* **Agilit├® technologique :** Son app├®tence pour l'apprentissage est un atout majeur dans le secteur IT, caract├®ris├® par une obsolescence rapide des comp├®tences.\n* **R├®silience et ma├«trise de soi :** Jamais d'arr├¬t maladie pour stress, absence de comportements impulsifs ou destructeurs. Il g├¿re l'anxi├®t├® de mani├¿re saine (repos, entourage).\n* **Capacit├® ├á g├®rer la complexit├® :** Il aborde les situations impr├®vues ou chaotiques (ex. garder des enfants turbulents) comme des d├®fis stimulants.\n\n---\n\n### **4. Points d'am├®lioration potentiels**\n* **Sensibilit├® aux d├®tails insignifiants :** Il indique ├¬tre parfois ennuy├® par des d├®tails mineurs. Dans un r├┤le de testeur/QA, cela peut ├¬tre une qualit├® (rigueur), mais en gestion de projet, cela pourrait g├®n├®rer de la frustration si le niveau d'exigence n'est pas partag├®.\n* **Risque d'impatience envers les profils moins r├®silients :** Tr├¿s ├á l'aise avec la pression, le candidat pourrait ├®prouver des difficult├®s d'empathie ou d'indulgence face ├á des collaborateurs plus vuln├®rables au stress ou r├®fractaires au changement.\n\n---\n\n### **5. Style de travail et de communication**\n* **Style de travail :** Autonome, orient├® r├®sultats, r├®actif et flexible. Il passe facilement d'un projet ├á un autre sans perdre ses moyens.\n* **Style de communication :** Calme, factuel et pos├® en situation de crise. Il s'appuie sur une assurance personnelle forte tout en maintenant un ancrage relationnel sain.\n\n---\n\n### **6. Compatibilit├® avec les environnements professionnels**\n* **Excellente ad├®quation :** Startups IT, environnements Agiles, r├┤les n├®cessitant de la gestion de crise, de l'assurance qualit├® (QA), du test logiciel ou de la r├®solution de probl├¿mes sous contrainte de temps.\n* **Faible ad├®quation :** Environnements bureaucratiques, routiniers, ├á faible niveau d'exigence ou manquant de perspectives de succ├¿s et d'├®volution.\n\n---\n\n### **7. Conclusion**\nLe candidat pr├®sente un **profil hautement compatible",
+    "candidate": [
+      "alexiskadje@gmail.com"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T13:15:41.733Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      579,
+      584,
+      585,
+      587,
+      589,
+      591
+    ]
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 4,
+  "fields": {
+    "title": "Test de Personnalit├® pour audred Siani #4",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-audred-siani-4",
+    "personality_detail": "Voici l'analyse comportementale de ce candidat, ├®tablie sur la base de ses r├®ponses au test de personnalit├®, dans le contexte d'un recrutement pour une startup IT.\n\n---\n\n### **1. Introduction**\nLe profil ├®valu├® pr├®sente une personnalit├® fortement orient├®e vers la performance, l'action et le d├®passement de soi. Le candidat affiche une r├®silience ├®motionnelle ├®lev├®e et une grande capacit├® d'adaptation face au changement, des qualit├®s essentielles dans le secteur dynamique des technologies.\n\n---\n\n### **2. Traits de personnalit├® dominants**\n* **Drive et ambition ├®lev├®s :** Le candidat accorde une importance majeure ├á la r├®ussite et per├ºoit la comp├®tition et la progression continue comme des n├®cessit├®s professionnelles.\n* **R├®silience et stabilit├® ├®motionnelle :** Il montre une tol├®rance ├®lev├®e au stress. Il affirme conserver son sang-froid en p├®riode de crise et per├ºoit les ├®ch├®ances serr├®es comme un facteur stimulant plut├┤t que comme une menace.\n* **Adaptabilit├® et curiosit├® :** Face ├á la nouveaut├® (technologies, d├®m├®nagement, impr├®vus), il adopte une posture proactive et enthousiaste.\n* **Pragmatisme et ancrage :** Il dispose d'un r├®seau de soutien solide (proches) et de m├®canismes d'├®vacuation du stress simples et sains (sommeil, d├®connexion).\n\n---\n\n### **3. Forces et qualit├®s**\n* **Performance sous pression :** Capable de travailler efficacement sous des d├®lais courts, il est particuli├¿rement adapt├® aux environnements exigeants.\n* **Agilit├® d'apprentissage :** Sa r├®ponse positive concernant l'assimilation de nouvelles technologies t├®moigne d'un esprit ouvert, id├®al pour un r├┤le dans l'IT.\n* **Gestion des crises :** Il conserve sa lucidit├® op├®rationnelle lorsque les situations se d├®t├®riorent.\n* **Capacit├® de r├®cup├®ration :** Il sait compartimenter sa vie professionnelle et personnelle, utilisant son entourage comme levier de ressourcement.\n\n---\n\n### **4. Points d'am├®lioration potentiels**\n* **Risque de sur-engagement / D├®ni de la fatigue :** La r├®ponse ┬½ Jamais ┬╗ concernant la prise de cong├®s pour stress, combin├®e ├á une forte ambition, peut indiquer une tendance ├á ignorer les signaux d'├®puisement ├á long terme.\n* **Gestion ponctuelle de la frustration :** Le fait d'avoir d├®j├á raccroch├® brutalement sous le coup du stress indique que, malgr├® un bon sang-froid global, des acc├¿s de micro-impulsivit├® peuvent survenir sous une pression extr├¬me.\n* **Exigence envers autrui :** En consid├®rant la comp├®tition et le progr├¿s constant comme la norme, il pourrait se montrer impatient envers des collaborateurs moins r├®silients ou plus lents ├á s'adapter.\n\n---\n\n### **5. Style de travail et de communication**\n* **Style de travail :** Autonome, orient├® objectifs, stimulant face aux d├®fis. Il privil├®gie l'action et la r├®solution de probl├¿mes.\n* **Style de communication :** Direct et pragmatique. Il est susceptible d'aller ├á l'essentiel, mais doit veiller ├á maintenir de l'empathie envers des profils plus anxieux ou ├®motifs.\n\n---\n\n### **6. Compatibilit├® avec l'environnement professionnel**\n* **Excellente ad├®quation :** Startups IT, environnements *Agile*, r├┤les de test ou de gestion de projet ├á fort rythme, o├╣ la gestion de l'impr├®vu et l'apprentissage continu sont quotidiens.\n* **Incompatibilit├® :** Structures tr├¿s bureaucratiques, routini├¿res ou manquant de perspectives d'├®volution, qui risqueraient de freiner son besoin d'accomplissement.\n\n---\n\n### **7. Conclusion**\nLe candidat pr├®sente un profil psychologique solide, r├®sistant et parfaitement align├® avec la culture d'une startup IT. Sa capacit├® ├á transformer la pression en levier de performance est un atout majeur. Pour optimiser son int├®gration, un suivi de sa charge de travail sera conseill├® afin de pr├®venir les risques de surchauffe li├®s ├á son niveau ├®lev├® d'exigence personnelle.",
+    "candidate": [
+      "kevinaudred@gmail.com"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T13:42:04.986Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      578,
+      582,
+      584,
+      586,
+      590,
+      591
+    ]
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 5,
+  "fields": {
+    "title": "Test de Personnalit├® pour Francis Lionel SIKALI Tala #5",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-francis-lionel-sikali-tala-5",
+    "personality_detail": "Voici lÔÇÖanalyse comportementale et psychologique du candidat bas├®e sur ses r├®ponses au questionnaire, dans le cadre d'un recrutement pour une startup IT.\n\n---\n\n### **Introduction**\nLe profil ├®valu├® pr├®sente une forte dynamique dÔÇÖaccomplissement, une app├®tence pour lÔÇÖinnovation et une capacit├® ├á fonctionner sous pression. Toutefois, l'analyse r├®v├¿le un d├®calage significatif entre sa perception de sa gestion du stress et l'impact r├®el de celui-ci sur sa sant├® globale et son ├®quilibre personnel.\n\n---\n\n### **Traits de personnalit├® dominants**\n*   **Orientation vers le succ├¿s et la comp├®tition :** Le candidat accorde une importance capitale ├á la r├®ussite individuelle et per├ºoit son environnement comme fortement comp├®titif.\n*   **App├®tence pour l'apprentissage et le changement :** Il affiche un enthousiasme marqu├® pour les nouvelles technologies et per├ºoit la nouveaut├® comme une opportunit├® de d├®veloppement.\n*   **Sur-estimation de la r├®sistance au stress :** Bien qu'il se d├®clare calme en p├®riode de crise et stimul├® par la pression, les donn├®es factuelles montrent une vuln├®rabilit├® sous-jacente ├®lev├®e.\n\n---\n\n### **Forces et qualit├®s**\n*   **Agilit├® et r├®activit├® :** ├Ç l'aise avec le multit├óche et les d├®lais serr├®s, il correspond au rythme rapide exig├® en startup IT.\n*   **Motivation intrins├¿que :** Il aborde les d├®fis complexes avec optimisme et curiosit├® intellectuelle.\n*   **R├®silience per├ºue :** Capable de maintenir une fa├ºade sereine et professionnelle face aux impr├®vus quotidiens (embouteillages, travaux).\n\n---\n\n### **Points d'am├®lioration potentiels**\n*   **Risque d'├®puisement professionnel (Burnout) :** Le candidat a d├®j├á pris plusieurs jours de cong├® pour stress, subit une pression croissante avec l'├óge et rapporte un impact fr├®quent sur sa vie personnelle. Sa capacit├® d'endurance sur le long terme est probl├®matique.\n*   **R├®gulation ├®motionnelle en phase critique :** Des fuites comportementales sont visibles sous forte tension (ex: raccrocher brutalement), indiquant une canalisation incompl├¿te de la frustration.\n*   **Capacit├® de d├®connexion limit├®e :** Bien qu'il recherche le repos le week-end, le stress accumul├® d├®borde largement sur sa sph├¿re priv├®e.\n\n---\n\n### **Style de travail et de communication**\n*   **Style de travail :** Orient├® action, r├®sultats et performance. Le candidat est performant dans le rush et aime g├®rer plusieurs dossiers de front.\n*   **Communication :** Directe et pragmatique. Il poss├¿de un r├®seau de soutien solide (amis de confiance), mais peut manifester des r├®actions d'agacement impulsives lorsque la pression atteint un seuil critique.\n\n---\n\n### **Compatibilit├® avec l'environnement professionnel**\n*   **Ad├®quation avec l'├®cosyst├¿me Startup IT :** **├ëlev├®e sur le plan op├®rationnel.** Son attrait pour la technologie, sa tol├®rance au changement et son go├╗t du d├®fi sont parfaitement align├®s avec la culture startup.\n*   **Facteur de risque organisationnel :** Les startups ├®tant par nature anxiog├¿nes et instables, cet environnement risque d'exacerber sa vuln├®rabilit├® au stress. Sans cadrage, le candidat risque de s'engager dans un surinvestissement professionnel menant ├á un arr├¬t de travail.\n\n---\n\n### **Conclusion**\nLe candidat poss├¿de un profil ├á haut potentiel pour une startup IT : ambitieux, adaptable et motiv├® par la performance sous pression. Cependant, son historique r├®v├¿le une gestion d├®ficiente du stress chronique, se traduisant par un impact somatique et comportemental av├®r├®. \n\n**Recommandation :** Un recrutement est envisageable, sous r├®serve de lui offrir un cadre de travail structur├®, d'instaurer des garde-fous clairs sur la charge de travail et d'├®valuer lors de l'entretien individuel sa capacit├® r├®elle ├á poser des limites pour pr├®server sa sant├®.",
+    "candidate": [
+      "lioneltala93230@gmail.com"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T13:58:57.498Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      579,
+      583,
+      585,
+      588,
+      589,
+      591
+    ]
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 6,
+  "fields": {
+    "title": "Test de Personnalit├® pour Landry ABANDA MBOMBE #6",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-landry-abanda-mbombe-6",
+    "personality_detail": "Voici une analyse comportementale et psychologique d├®taill├®e du candidat, ├®tablie ├á partir de ses r├®ponses au questionnaire.\n\n---\n\n### **1. Introduction**\nL'├®valuation comportementale vise ├á d├®terminer l'ad├®quation du profil avec la culture d'une **startup IT**, un environnement caract├®ris├® par l'incertitude, la rapidit├® d'ex├®cution et l'innovation continue. Le candidat pr├®sente un profil ├®quilibr├®, caract├®ris├® par une forte ambition personnelle, une solide capacit├® d'apprentissage et une gestion rationnelle du stress, temp├®r├®e par une sensibilit├® particuli├¿re aux impr├®vus du quotidien.\n\n---\n\n### **2. Traits de personnalit├® dominants**\n*   **Orient├® vers la r├®ussite et l'accomplissement :** Le candidat accorde une importance majeure au succ├¿s et consid├¿re l'effort continu comme un moteur indispensable.\n*   **Stabilit├® ├®motionnelle sous pression aigu├½ :** Il affirme conserver son sang-froid en p├®riode de crise et aborde les situations impr├®vues complexes (ex. gestion de la crise ou d├®fis impr├®vus) comme des opportunit├®s d'engagement.\n*   **Agilit├® d'apprentissage :** Il d├®montre une r├®elle ouverture ├á la nouveaut├® technologique et une grande aisance d'adaptation face aux changements d'outils.\n*   **R├®activit├® accrue aux irritants l├®gers :** Bien que r├®sistant aux grosses crises, il se d├®clare souvent agac├® par les tracas et d├®tails insignifiants du quotidien.\n\n---\n\n### **3. Forces et qualit├®s**\n*   **Capacit├® d'assimilation technique :** Sa curiosit├® et son aisance face aux nouvelles technologies constituent un atout critique pour le secteur de l'IT.\n*   **R├®silience op├®rationnelle :** Aucun historique d'absent├®isme li├® au stress, absence de comportements impulsifs d├®gradants et maintien du calme per├ºu par son entourage.\n*   **├ëquilibre de vie sain :** Le candidat ne se r├®fugie pas dans le surlabeur pour compenser le stress. Il s'appuie sur un r├®seau personnel solide et privil├®gie la r├®cup├®ration (sommeil, entourage) pour maintenir son efficacit├®.\n\n---\n\n### **4. Points d'am├®lioration potentiels**\n*   **Relation aux d├®lais (Deadlines) :** Le candidat per├ºoit les ├®ch├®ances comme un ┬½ mal n├®cessaire ┬╗ plut├┤t que comme un stimulant. Dans une startup IT o├╣ le *time-to-market* exige de la v├®locit├®, cela peut limiter sa productivit├® sous forte contrainte temporelle.\n*   **Frustration li├®e aux micro-d├®tails :** Sa tendance ├á ├¬tre fr├®quemment ennuy├® par des tracas mineurs pourrait g├®n├®rer des frictions face ├á des processus non stabilis├®s, des bugs r├®currents ou des ajustements de derni├¿re minute.\n*   **Gestion de la pression ├á long terme :** L'impression d'accumuler plus de pression avec l'├óge indique une sensibilit├® progressive au surmenage qu'il convient de surveiller.\n\n---\n\n### **5. Style de travail et de communication**\n*   **Style de travail :** Rigoureux et orient├® objectifs. Il s'adapte tr├¿s bien aux changements technologiques, mais pr├®f├¿re travailler dans un cadre o├╣ la pression temporelle reste mesur├®e.\n*   **Style de communication :** ├ëquilibr├® et factuel. Il exprime ses ├®motions de fa├ºon ponctuelle et contr├┤l├®e (┬½ Parfois ┬╗), privil├®giant une posture professionnelle et ma├«tris├®e avec ses collaborateurs.\n\n---\n\n### **6. Compatibilit├® avec les environnements professionnels**\n*   **Startup IT (Poste vis├®) :** **Compatibilit├® Bonne ├á Moyenne.**\n    *   *Points forts :* Excellente capacit├® ├á apprendre de nouvelles technologies et sang-froid en cas d'urgence majeure.\n    *   *Points de vigilance :* Risque de baisse de motivation face aux d├®lais tr├¿s serr├®s r├®currents et aux d├®sorganisations mineures typiques des jeunes entreprises.\n*   **Environnement id├®al :** Une entreprise Scale-up ou une ETI technologique structur├®e, proposant des projets innovants, un cadre clair et une planification r├®aliste des livraisons.\n\n---\n\n### **7. Conclusion**\nLe candidat pr├®sente un profil fiable, ambitieux et",
+    "candidate": [
+      "landryabanda@yahoo.fr"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T14:24:46.931Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      577,
+      578,
+      580,
+      585,
+      587,
+      589
+    ]
+  }
+},
+{
+  "model": "challenges.personalitychallenge",
+  "pk": 7,
+  "fields": {
+    "title": "Test de Personnalit├® pour cedric mapoure #7",
+    "description": "Ce test nous permet de mieux vous connaitre",
+    "duration": "01:00:00",
+    "slug": "test-de-personnalite-pour-cedric-mapoure-7",
+    "personality_detail": "Voici l'analyse comportementale et psychologique ├®tablie ├á partir des r├®ponses du candidat, dans le cadre d'un recrutement pour une startup IT.\n\n---\n\n### Introduction\nL'├®valuation du candidat r├®v├¿le un profil psychologique particuli├¿rement robuste, orient├® vers la performance et dot├® d'une excellente ma├«trise ├®motionnelle. Ses r├®ponses traduisent une forte ad├®quation avec les exigences d'un environnement dynamique et sous pression.\n\n---\n\n### Traits de personnalit├® dominants\n\n1. **Orientation vers le succ├¿s et l'accomplissement :** Le candidat accorde une \"tr├¿s grande importance\" au succ├¿s. Il est stimul├® par les objectifs ├®lev├®s et poss├¿de une motivation intrins├¿que forte.\n2. **Haute r├®silience au stress (Hardiness) :** L'absence d'historique de cong├®s ou de traitements li├®s au stress, combin├®e ├á une faible r├®activit├® ├®motionnelle face aux impond├®rables (embouteillages v├®cus comme de l'ennui et non de la col├¿re), indique une excellente stabilit├® ├®motionnelle.\n3. **App├®tence pour la nouveaut├® et l'apprentissage :** L'enthousiasme face aux nouvelles technologies et aux changements de routine d├®montre une grande curiosit├® intellectuelle et une plasticit├® mentale ├®lev├®e.\n\n---\n\n### Forces et qualit├®s\n\n* **R├®sistance ├á la pression :** Le candidat affirme travailler mieux sous la pression des d├®lais. La pression agit chez lui comme un catalyseur de performance plut├┤t que comme un facteur d'inhibition.\n* **Gestion du chaos et ma├«trise de soi :** Sa disposition ├á percevoir les situations perturbantes (ex: garde d'enfants turbulents) comme des \"d├®fis stimulants\" t├®moigne d'un sentiment d'efficacit├® personnelle ├®lev├®. Il conserve son autocontr├┤le (aucune manifestation physique de frustration).\n* **Adaptabilit├® technologique :** Sa motivation ├á apprendre de nouvelles technologies est un atout majeur pour le secteur IT, caract├®ris├® par une obsolescence rapide des comp├®tences.\n* **├ëquilibre de vie sain :** Il utilise des leviers de r├®cup├®ration efficaces (sommeil, moments en famille) et dispose d'un r├®seau de soutien social solide, ce qui prot├¿ge son capital sant├® ├á long terme.\n\n---\n\n### Points d'am├®lioration potentiels\n\n* **Risque d'impatience ou de manque d'empathie :** Sa tr├¿s forte r├®sistance au stress et sa perception pragmatique des crises pourraient l'amener ├á sous-estimer l'impact du stress chez ses collaborateurs moins r├®silients.\n* **Nuance dans la prise de d├®cision :** Le candidat a parfois s├®lectionn├® plusieurs r├®ponses contradictoires ou compl├®mentaires (ex: perception du sang-froid en crise, ├®volution du stress). Cela peut traduire une h├®sitation dans l'auto-├®valuation ou une volont├® de trop bien faire (d├®sirabilit├® sociale).\n* **Risque de surengagement :** Son ambition ├®lev├®e associ├®e ├á une capacit├® ├á absorber la pression pourrait le conduire ├á accepter une charge de travail excessive sans tirer la sonnette d'alarme ├á temps.\n\n---\n\n### Style de travail et de communication\n\n* **Style de travail :** Agiles, pragmatiques et ax├®s sur les r├®sultats. Il fonctionne particuli├¿rement bien dans",
+    "candidate": [
+      "mapourecedric96@gmail.com"
+    ],
+    "is_passed": true,
+    "corrected": true,
+    "created_at": "2026-09-16T14:36:39.756Z",
+    "questions": [
+      563,
+      564,
+      565,
+      566,
+      567,
+      568,
+      569,
+      570,
+      571,
+      572,
+      573,
+      574,
+      575,
+      576,
+      581,
+      583,
+      585,
+      588,
+      589,
+      592
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 1,
+  "fields": {
+    "submission": 3,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.627Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 2,
+  "fields": {
+    "submission": 3,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.645Z",
+    "selected_choices": [
+      1488
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 3,
+  "fields": {
+    "submission": 3,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.660Z",
+    "selected_choices": [
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 4,
+  "fields": {
+    "submission": 3,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.677Z",
+    "selected_choices": [
+      1492
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 5,
+  "fields": {
+    "submission": 3,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.705Z",
+    "selected_choices": [
+      1497
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 6,
+  "fields": {
+    "submission": 3,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.717Z",
+    "selected_choices": [
+      1499
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 7,
+  "fields": {
+    "submission": 3,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.739Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 8,
+  "fields": {
+    "submission": 3,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.758Z",
+    "selected_choices": [
+      1506
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 9,
+  "fields": {
+    "submission": 3,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.772Z",
+    "selected_choices": [
+      1507
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 10,
+  "fields": {
+    "submission": 3,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.787Z",
+    "selected_choices": [
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 11,
+  "fields": {
+    "submission": 3,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.796Z",
+    "selected_choices": [
+      1513
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 12,
+  "fields": {
+    "submission": 3,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.807Z",
+    "selected_choices": [
+      1516
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 13,
+  "fields": {
+    "submission": 3,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.819Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 14,
+  "fields": {
+    "submission": 3,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.827Z",
+    "selected_choices": [
+      1523
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 15,
+  "fields": {
+    "submission": 3,
+    "question": 579,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.851Z",
+    "selected_choices": [
+      1531
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 16,
+  "fields": {
+    "submission": 3,
+    "question": 584,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.860Z",
+    "selected_choices": [
+      1546
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 17,
+  "fields": {
+    "submission": 3,
+    "question": 585,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.879Z",
+    "selected_choices": [
+      1549
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 18,
+  "fields": {
+    "submission": 3,
+    "question": 587,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.890Z",
+    "selected_choices": [
+      1557
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 19,
+  "fields": {
+    "submission": 3,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.908Z",
+    "selected_choices": [
+      1563
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 20,
+  "fields": {
+    "submission": 3,
+    "question": 591,
+    "text": null,
+    "answered_at": "2026-09-16T13:58:50.922Z",
+    "selected_choices": [
+      1569
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 21,
+  "fields": {
+    "submission": 2,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.745Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 22,
+  "fields": {
+    "submission": 2,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.773Z",
+    "selected_choices": [
+      1486
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 23,
+  "fields": {
+    "submission": 2,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.794Z",
+    "selected_choices": [
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 24,
+  "fields": {
+    "submission": 2,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.810Z",
+    "selected_choices": [
+      1492,
+      1493
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 25,
+  "fields": {
+    "submission": 2,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.824Z",
+    "selected_choices": [
+      1495
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 26,
+  "fields": {
+    "submission": 2,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.842Z",
+    "selected_choices": [
+      1499
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 27,
+  "fields": {
+    "submission": 2,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.859Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 28,
+  "fields": {
+    "submission": 2,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.877Z",
+    "selected_choices": [
+      1506
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 29,
+  "fields": {
+    "submission": 2,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.893Z",
+    "selected_choices": [
+      1507
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 30,
+  "fields": {
+    "submission": 2,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.910Z",
+    "selected_choices": [
+      1510,
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 31,
+  "fields": {
+    "submission": 2,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.924Z",
+    "selected_choices": [
+      1515
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 32,
+  "fields": {
+    "submission": 2,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.937Z",
+    "selected_choices": [
+      1516
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 33,
+  "fields": {
+    "submission": 2,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.976Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 34,
+  "fields": {
+    "submission": 2,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:03.993Z",
+    "selected_choices": [
+      1523
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 35,
+  "fields": {
+    "submission": 2,
+    "question": 580,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:04.006Z",
+    "selected_choices": [
+      1534
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 36,
+  "fields": {
+    "submission": 2,
+    "question": 584,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:04.021Z",
+    "selected_choices": [
+      1546
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 37,
+  "fields": {
+    "submission": 2,
+    "question": 585,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:04.030Z",
+    "selected_choices": [
+      1549
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 38,
+  "fields": {
+    "submission": 2,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:04.041Z",
+    "selected_choices": [
+      1562
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 39,
+  "fields": {
+    "submission": 2,
+    "question": 590,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:04.049Z",
+    "selected_choices": [
+      1566
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 40,
+  "fields": {
+    "submission": 2,
+    "question": 591,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:04.062Z",
+    "selected_choices": [
+      1567
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 41,
+  "fields": {
+    "submission": 2,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.338Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 42,
+  "fields": {
+    "submission": 2,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.353Z",
+    "selected_choices": [
+      1486
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 43,
+  "fields": {
+    "submission": 2,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.362Z",
+    "selected_choices": [
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 44,
+  "fields": {
+    "submission": 2,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.378Z",
+    "selected_choices": [
+      1492,
+      1493
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 45,
+  "fields": {
+    "submission": 2,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.402Z",
+    "selected_choices": [
+      1495
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 46,
+  "fields": {
+    "submission": 2,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.423Z",
+    "selected_choices": [
+      1499
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 47,
+  "fields": {
+    "submission": 2,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.502Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 48,
+  "fields": {
+    "submission": 2,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.562Z",
+    "selected_choices": [
+      1506
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 49,
+  "fields": {
+    "submission": 2,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.577Z",
+    "selected_choices": [
+      1507
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 50,
+  "fields": {
+    "submission": 2,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.589Z",
+    "selected_choices": [
+      1510,
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 51,
+  "fields": {
+    "submission": 2,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.604Z",
+    "selected_choices": [
+      1515
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 52,
+  "fields": {
+    "submission": 2,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.653Z",
+    "selected_choices": [
+      1516
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 53,
+  "fields": {
+    "submission": 2,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.670Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 54,
+  "fields": {
+    "submission": 2,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.687Z",
+    "selected_choices": [
+      1523
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 55,
+  "fields": {
+    "submission": 2,
+    "question": 580,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.701Z",
+    "selected_choices": [
+      1534
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 56,
+  "fields": {
+    "submission": 2,
+    "question": 584,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.712Z",
+    "selected_choices": [
+      1546
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 57,
+  "fields": {
+    "submission": 2,
+    "question": 585,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.726Z",
+    "selected_choices": [
+      1549
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 58,
+  "fields": {
+    "submission": 2,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.893Z",
+    "selected_choices": [
+      1562
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 59,
+  "fields": {
+    "submission": 2,
+    "question": 590,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.908Z",
+    "selected_choices": [
+      1566
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 60,
+  "fields": {
+    "submission": 2,
+    "question": 591,
+    "text": null,
+    "answered_at": "2026-09-16T14:03:17.920Z",
+    "selected_choices": [
+      1567
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 61,
+  "fields": {
+    "submission": 4,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.143Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 62,
+  "fields": {
+    "submission": 4,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.157Z",
+    "selected_choices": [
+      1488
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 63,
+  "fields": {
+    "submission": 4,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.167Z",
+    "selected_choices": [
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 64,
+  "fields": {
+    "submission": 4,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.185Z",
+    "selected_choices": [
+      1492
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 65,
+  "fields": {
+    "submission": 4,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.197Z",
+    "selected_choices": [
+      1497
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 66,
+  "fields": {
+    "submission": 4,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.209Z",
+    "selected_choices": [
+      1499
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 67,
+  "fields": {
+    "submission": 4,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.217Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 68,
+  "fields": {
+    "submission": 4,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.228Z",
+    "selected_choices": [
+      1504
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 69,
+  "fields": {
+    "submission": 4,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.237Z",
+    "selected_choices": [
+      1507
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 70,
+  "fields": {
+    "submission": 4,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.283Z",
+    "selected_choices": [
+      1510,
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 71,
+  "fields": {
+    "submission": 4,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.302Z",
+    "selected_choices": [
+      1513
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 72,
+  "fields": {
+    "submission": 4,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.313Z",
+    "selected_choices": [
+      1516
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 73,
+  "fields": {
+    "submission": 4,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.324Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 74,
+  "fields": {
+    "submission": 4,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.332Z",
+    "selected_choices": [
+      1523
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 75,
+  "fields": {
+    "submission": 4,
+    "question": 578,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.344Z",
+    "selected_choices": [
+      1529
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 76,
+  "fields": {
+    "submission": 4,
+    "question": 582,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.353Z",
+    "selected_choices": [
+      1542
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 77,
+  "fields": {
+    "submission": 4,
+    "question": 584,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.373Z",
+    "selected_choices": [
+      1548
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 78,
+  "fields": {
+    "submission": 4,
+    "question": 586,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.382Z",
+    "selected_choices": [
+      1552,
+      1554
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 79,
+  "fields": {
+    "submission": 4,
+    "question": 590,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.393Z",
+    "selected_choices": [
+      1564,
+      1566
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 80,
+  "fields": {
+    "submission": 4,
+    "question": 591,
+    "text": null,
+    "answered_at": "2026-09-16T14:26:13.401Z",
+    "selected_choices": [
+      1569
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 81,
+  "fields": {
+    "submission": 5,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.370Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 82,
+  "fields": {
+    "submission": 5,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.384Z",
+    "selected_choices": [
+      1486,
+      1487
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 83,
+  "fields": {
+    "submission": 5,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.402Z",
+    "selected_choices": [
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 84,
+  "fields": {
+    "submission": 5,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.420Z",
+    "selected_choices": [
+      1492
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 85,
+  "fields": {
+    "submission": 5,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.433Z",
+    "selected_choices": [
+      1497
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 86,
+  "fields": {
+    "submission": 5,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.446Z",
+    "selected_choices": [
+      1499
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 87,
+  "fields": {
+    "submission": 5,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.489Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 88,
+  "fields": {
+    "submission": 5,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.508Z",
+    "selected_choices": [
+      1504
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 89,
+  "fields": {
+    "submission": 5,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.517Z",
+    "selected_choices": [
+      1507
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 90,
+  "fields": {
+    "submission": 5,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.530Z",
+    "selected_choices": [
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 91,
+  "fields": {
+    "submission": 5,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.565Z",
+    "selected_choices": [
+      1514
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 92,
+  "fields": {
+    "submission": 5,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.588Z",
+    "selected_choices": [
+      1516
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 93,
+  "fields": {
+    "submission": 5,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.601Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 94,
+  "fields": {
+    "submission": 5,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.616Z",
+    "selected_choices": [
+      1523
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 95,
+  "fields": {
+    "submission": 5,
+    "question": 579,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.628Z",
+    "selected_choices": [
+      1531
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 96,
+  "fields": {
+    "submission": 5,
+    "question": 583,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.639Z",
+    "selected_choices": [
+      1543
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 97,
+  "fields": {
+    "submission": 5,
+    "question": 585,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.651Z",
+    "selected_choices": [
+      1551
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 98,
+  "fields": {
+    "submission": 5,
+    "question": 588,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.688Z",
+    "selected_choices": [
+      1560
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 99,
+  "fields": {
+    "submission": 5,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.700Z",
+    "selected_choices": [
+      1562
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 100,
+  "fields": {
+    "submission": 5,
+    "question": 591,
+    "text": null,
+    "answered_at": "2026-09-16T15:07:08.712Z",
+    "selected_choices": [
+      1568
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 101,
+  "fields": {
+    "submission": 7,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.454Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 102,
+  "fields": {
+    "submission": 7,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.473Z",
+    "selected_choices": [
+      1488
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 103,
+  "fields": {
+    "submission": 7,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.486Z",
+    "selected_choices": [
+      1489,
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 104,
+  "fields": {
+    "submission": 7,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.507Z",
+    "selected_choices": [
+      1492
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 105,
+  "fields": {
+    "submission": 7,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.544Z",
+    "selected_choices": [
+      1495,
+      1497
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 106,
+  "fields": {
+    "submission": 7,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.553Z",
+    "selected_choices": [
+      1499
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 107,
+  "fields": {
+    "submission": 7,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.565Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 108,
+  "fields": {
+    "submission": 7,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.574Z",
+    "selected_choices": [
+      1506
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 109,
+  "fields": {
+    "submission": 7,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.585Z",
+    "selected_choices": [
+      1507
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 110,
+  "fields": {
+    "submission": 7,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.597Z",
+    "selected_choices": [
+      1510,
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 111,
+  "fields": {
+    "submission": 7,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.607Z",
+    "selected_choices": [
+      1513,
+      1515
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 112,
+  "fields": {
+    "submission": 7,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.618Z",
+    "selected_choices": [
+      1516,
+      1518
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 113,
+  "fields": {
+    "submission": 7,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.629Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 114,
+  "fields": {
+    "submission": 7,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.640Z",
+    "selected_choices": [
+      1522,
+      1523
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 115,
+  "fields": {
+    "submission": 7,
+    "question": 581,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.652Z",
+    "selected_choices": [
+      1539
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 116,
+  "fields": {
+    "submission": 7,
+    "question": 583,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.672Z",
+    "selected_choices": [
+      1545
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 117,
+  "fields": {
+    "submission": 7,
+    "question": 585,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.683Z",
+    "selected_choices": [
+      1551
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 118,
+  "fields": {
+    "submission": 7,
+    "question": 588,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.694Z",
+    "selected_choices": [
+      1560
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 119,
+  "fields": {
+    "submission": 7,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.704Z",
+    "selected_choices": [
+      1561,
+      1562
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 120,
+  "fields": {
+    "submission": 7,
+    "question": 592,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:18.715Z",
+    "selected_choices": [
+      1572
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 121,
+  "fields": {
+    "submission": 1,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.013Z",
+    "selected_choices": [
+      1483
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 122,
+  "fields": {
+    "submission": 1,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.023Z",
+    "selected_choices": [
+      1486
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 123,
+  "fields": {
+    "submission": 1,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.034Z",
+    "selected_choices": [
+      1489
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 124,
+  "fields": {
+    "submission": 1,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.043Z",
+    "selected_choices": [
+      1494
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 125,
+  "fields": {
+    "submission": 1,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.054Z",
+    "selected_choices": [
+      1496
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 126,
+  "fields": {
+    "submission": 1,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.065Z",
+    "selected_choices": [
+      1500
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 127,
+  "fields": {
+    "submission": 1,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.074Z",
+    "selected_choices": [
+      1502
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 128,
+  "fields": {
+    "submission": 1,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.086Z",
+    "selected_choices": [
+      1506
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 129,
+  "fields": {
+    "submission": 1,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.108Z",
+    "selected_choices": [
+      1508
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 130,
+  "fields": {
+    "submission": 1,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.124Z",
+    "selected_choices": [
+      1511
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 131,
+  "fields": {
+    "submission": 1,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.342Z",
+    "selected_choices": [
+      1515
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 132,
+  "fields": {
+    "submission": 1,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.503Z",
+    "selected_choices": [
+      1518
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 133,
+  "fields": {
+    "submission": 1,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.526Z",
+    "selected_choices": [
+      1520
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 134,
+  "fields": {
+    "submission": 1,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.541Z",
+    "selected_choices": [
+      1524
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 135,
+  "fields": {
+    "submission": 1,
+    "question": 577,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.552Z",
+    "selected_choices": [
+      1527
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 136,
+  "fields": {
+    "submission": 1,
+    "question": 580,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.564Z",
+    "selected_choices": [
+      1536
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 137,
+  "fields": {
+    "submission": 1,
+    "question": 581,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.573Z",
+    "selected_choices": [
+      1537
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 138,
+  "fields": {
+    "submission": 1,
+    "question": 586,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.586Z",
+    "selected_choices": [
+      1554
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 139,
+  "fields": {
+    "submission": 1,
+    "question": 587,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.635Z",
+    "selected_choices": [
+      1557
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 140,
+  "fields": {
+    "submission": 1,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T15:18:54.700Z",
+    "selected_choices": [
+      1563
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 141,
+  "fields": {
+    "submission": 6,
+    "question": 563,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.025Z",
+    "selected_choices": [
+      1484
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 142,
+  "fields": {
+    "submission": 6,
+    "question": 564,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.079Z",
+    "selected_choices": [
+      1488
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 143,
+  "fields": {
+    "submission": 6,
+    "question": 565,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.577Z",
+    "selected_choices": [
+      1491
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 144,
+  "fields": {
+    "submission": 6,
+    "question": 566,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.585Z",
+    "selected_choices": [
+      1492
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 145,
+  "fields": {
+    "submission": 6,
+    "question": 567,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.596Z",
+    "selected_choices": [
+      1495
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 146,
+  "fields": {
+    "submission": 6,
+    "question": 568,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.607Z",
+    "selected_choices": [
+      1498
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 147,
+  "fields": {
+    "submission": 6,
+    "question": 569,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.615Z",
+    "selected_choices": [
+      1503
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 148,
+  "fields": {
+    "submission": 6,
+    "question": 570,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.627Z",
+    "selected_choices": [
+      1506
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 149,
+  "fields": {
+    "submission": 6,
+    "question": 571,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.635Z",
+    "selected_choices": [
+      1508
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 150,
+  "fields": {
+    "submission": 6,
+    "question": 572,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.647Z",
+    "selected_choices": [
+      1510,
+      1512
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 151,
+  "fields": {
+    "submission": 6,
+    "question": 573,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.658Z",
+    "selected_choices": [
+      1513
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 152,
+  "fields": {
+    "submission": 6,
+    "question": 574,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.666Z",
+    "selected_choices": [
+      1516
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 153,
+  "fields": {
+    "submission": 6,
+    "question": 575,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.677Z",
+    "selected_choices": [
+      1521
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 154,
+  "fields": {
+    "submission": 6,
+    "question": 576,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.685Z",
+    "selected_choices": [
+      1524
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 155,
+  "fields": {
+    "submission": 6,
+    "question": 577,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.699Z",
+    "selected_choices": [
+      1525
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 156,
+  "fields": {
+    "submission": 6,
+    "question": 578,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.713Z",
+    "selected_choices": [
+      1529
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 157,
+  "fields": {
+    "submission": 6,
+    "question": 580,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.723Z",
+    "selected_choices": [
+      1534
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 158,
+  "fields": {
+    "submission": 6,
+    "question": 585,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.733Z",
+    "selected_choices": [
+      1551
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 159,
+  "fields": {
+    "submission": 6,
+    "question": 587,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.745Z",
+    "selected_choices": [
+      1557
+    ]
+  }
+},
+{
+  "model": "challenges.personalityanswer",
+  "pk": 160,
+  "fields": {
+    "submission": 6,
+    "question": 589,
+    "text": null,
+    "answered_at": "2026-09-16T15:34:04.754Z",
+    "selected_choices": [
+      1562
+    ]
+  }
+}
+]
