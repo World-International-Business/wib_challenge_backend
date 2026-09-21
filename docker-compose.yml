@@ -1,16 +1,55 @@
 version: '3.8'
 
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: wib_challenge
+      POSTGRES_USER: wib_user
+      POSTGRES_PASSWORD: wib_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wib_user -d wib_challenge"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   web:
     build: .
-    container_name: wib_challenge_web
+    command: ./entrypoint.sh
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
     ports:
       - "8000:8000"
-    env_file:
-      - .env
-    volumes:
-      - ./static:/app/static
-      - ./media:/app/media
-      - ./db.sqlite3:/app/db.sqlite3
-      - ./database_exports:/app/database_exports
+    environment:
+      - DEBUG=False
+      - DATABASE_URL=postgresql://wib_user:wib_password@db:5432/wib_challenge
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - EMAIL_PROVIDER=smtp
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_FROM=${SMTP_FROM}
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/staticfiles
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  static_volume:

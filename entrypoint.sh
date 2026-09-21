@@ -1,22 +1,34 @@
-#!/bin/sh
+#!/bin/bash
+
 set -e
 
+echo "=========================================="
+echo "Initialisation de WIB Challenge Backend"
+echo "=========================================="
+
+# Attendre que la base de données soit prête
+echo "Attente de la base de donnees..."
 python manage.py migrate --noinput
 
-python manage.py initialize
-python manage.py create_default_questions
-python manage.py initialize_education
+# Creer le superutilisateur par defaut si necessaire
+echo "Verification du superutilisateur..."
+python manage.py create_default_admin || echo "Superutilisateur existe deja"
 
-IMPORT_FIXTURE_PATH="${IMPORT_FIXTURE_PATH:-/app/database_exports/pending.json}"
-if [ -f "$IMPORT_FIXTURE_PATH" ]; then
-	echo "Importing database fixture from $IMPORT_FIXTURE_PATH"
-	python manage.py loaddata "$IMPORT_FIXTURE_PATH"
-	rm -f "$IMPORT_FIXTURE_PATH"
-	echo "Database fixture imported and removed"
-else
-	echo "No database fixture found at $IMPORT_FIXTURE_PATH"
-fi
+# Initialiser les donnees de base
+echo "Initialisation des donnees de base..."
+python manage.py initialize || echo "Donnees de base deja initialisees"
 
-python manage.py collectstatic --noinput
+# Peupler la base de donnees educatives
+echo "Peuplement de la base de donnees educatives..."
+python manage.py seed_education_data || echo "Donnees educatives deja peuplees"
 
-exec gunicorn wib_challenge.wsgi:application --bind 0.0.0.0:8000 --workers 3 --threads 2
+# Creer les parametres par defaut
+echo "Creation des parametres par defaut..."
+python manage.py create_default_settings || echo "Parametres par defaut existent"
+
+echo "=========================================="
+echo "Initialisation terminee avec succes!"
+echo "=========================================="
+
+# Demarrer le serveur
+exec python manage.py runserver 0.0.0.0:8000

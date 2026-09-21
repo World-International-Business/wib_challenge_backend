@@ -14,7 +14,7 @@ from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.utils import timezone
 
-from .forms import UserRegisterForm, EmailVerificationForm, UserUpdateForm, UserSkillFormSet, WIBPasswordResetForm, WIBSetPasswordForm
+from .forms import UserRegisterForm, EmailVerificationForm, UserUpdateForm, SimpleUserUpdateForm, UserSkillFormSet, WIBPasswordResetForm, WIBSetPasswordForm
 
 User = get_user_model()
 logger = logging.getLogger(__name__)
@@ -138,19 +138,75 @@ def logout_view(request):
 @transaction.atomic
 @login_required
 def update_profile(request):
+    # Redirect to appropriate profile based on user type
+    if hasattr(request.user, 'student_profile'):
+        return redirect('student_profile')
+    elif hasattr(request.user, 'school_staff'):
+        return redirect('school_staff_profile')
+    else:
+        return redirect('candidate_profile')
+
+
+@login_required
+def student_profile_view(request):
+    if not hasattr(request.user, 'student_profile'):
+        return redirect('update_profile')
+    
+    student = request.user.student_profile
+    if request.method == "POST":
+        user_form = SimpleUserUpdateForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Votre profil a ete mis a jour.')
+            return redirect('student_profile')
+    else:
+        user_form = SimpleUserUpdateForm(instance=request.user)
+
+    return render(request, 'accounts/student_profile.html', {
+        'user_form': user_form,
+        'student': student,
+    })
+
+
+@login_required
+def school_staff_profile_view(request):
+    if not hasattr(request.user, 'school_staff'):
+        return redirect('update_profile')
+    
+    staff = request.user.school_staff
+    if request.method == "POST":
+        user_form = SimpleUserUpdateForm(request.POST, instance=request.user)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Votre profil a ete mis a jour.')
+            return redirect('school_staff_profile')
+    else:
+        user_form = SimpleUserUpdateForm(instance=request.user)
+
+    return render(request, 'accounts/school_staff_profile.html', {
+        'user_form': user_form,
+        'staff': staff,
+    })
+
+
+@login_required
+def candidate_profile_view(request):
+    if hasattr(request.user, 'student_profile') or hasattr(request.user, 'school_staff'):
+        return redirect('update_profile')
+    
     if request.method == "POST":
         user_form = UserUpdateForm(request.POST, instance=request.user)
         skill_formset = UserSkillFormSet(request.POST, instance=request.user)
         if user_form.is_valid() and skill_formset.is_valid():
             user_form.save()
             skill_formset.save()
-
-            return redirect('challenge_evaluation')
+            messages.success(request, 'Votre profil a ete mis a jour.')
+            return redirect('candidate_profile')
     else:
         user_form = UserUpdateForm(instance=request.user)
         skill_formset = UserSkillFormSet(instance=request.user)
 
-    return render(request, 'accounts/profile.html', {
+    return render(request, 'accounts/candidate_profile.html', {
         'user_form': user_form,
         'skill_formset': skill_formset,
     })

@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block title %}Mon profil candidat - WIB Challenge{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h1 class="h2 fw-bold">Mon profil candidat</h1>
+                <p class="text-muted">Gerez vos informations personnelles et vos competences techniques.</p>
+            </div>
+            
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    {% if user_form.non_field_errors %}
+                        <div class="alert alert-danger">{{ user_form.non_field_errors }}</div>
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                                {{ user_form.first_name }}
+                                {% for error in user_form.first_name.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                                {{ user_form.last_name }}
+                                {% for error in user_form.last_name.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                            {{ user_form.email }}
+                            {% for error in user_form.email.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ user_form.domain.id_for_label }}">{{ user_form.domain.label }}</label>
+                                {{ user_form.domain }}
+                                {% for error in user_form.domain.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ user_form.experience_level.id_for_label }}">{{ user_form.experience_level.label }}</label>
+                                {{ user_form.experience_level }}
+                                {% for error in user_form.experience_level.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ user_form.experience.id_for_label }}">{{ user_form.experience.label }}</label>
+                            {{ user_form.experience }}
+                            {% for error in user_form.experience.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <hr class="my-4">
+                        
+                        <h3 class="h5 fw-bold mb-3">Competences techniques</h3>
+                        {{ skill_formset.management_form }}
+                        <div id="skill-forms">
+                            {% for form in skill_formset %}
+                                <div class="row mb-3 skill-form-row">
+                                    <div class="col-md-6">
+                                        <label class="form-label small">Competence</label>
+                                        {{ form.skill }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small">Niveau</label>
+                                        {{ form.experience_level }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline-primary btn-sm rounded-pill" onclick="addSkillForm()">
+                            <i class="bi bi-plus me-1"></i>Ajouter une competence
+                        </button>
+
+                        <hr class="my-4">
+
+                        <button class="btn btn-primary rounded-pill" type="submit">
+                            <i class="bi bi-check-lg me-2"></i>Mettre a jour
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function addSkillForm() {
+    const formset = document.querySelector('[name$="-TOTAL_FORMS"]');
+    const totalForms = parseInt(formset.value);
+    formset.value = totalForms + 1;
+    
+    const container = document.getElementById('skill-forms');
+    const newRow = document.createElement('div');
+    newRow.className = 'row mb-3 skill-form-row';
+    newRow.innerHTML = `
+        <div class="col-md-6">
+            <label class="form-label small">Competence</label>
+            <select name="user_skills-${totalForms}-skill" class="form-select" id="id_user_skills-${totalForms}-skill">
+                <option value="">---------</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label small">Niveau</label>
+            <select name="user_skills-${totalForms}-experience_level" class="form-select" id="id_user_skills-${totalForms}-experience_level">
+                <option value="1">Debutant</option>
+                <option value="2">Intermediaire</option>
+                <option value="3">Expert</option>
+            </select>
+        </div>
+    `;
+    
+    // Copy options from the first skill select
+    const firstSelect = container.querySelector('select[name$="-skill"]');
+    const newSelect = newRow.querySelector('select[name$="-skill"]');
+    newSelect.innerHTML = firstSelect.innerHTML;
+    
+    container.appendChild(newRow);
+}
+</script>
+{% endblock %}

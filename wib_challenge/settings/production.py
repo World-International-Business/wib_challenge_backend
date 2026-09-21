@@ -40,7 +40,8 @@ MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Configuration email avec fallback intelligent
+EMAIL_BACKEND = 'wib_challenge.settings.email_config.SafeEmailBackend'
 
 EMAIL_HOST = os.getenv('SMTP_HOST', os.getenv('EMAIL_HOST', 'smtp.gmail.com'))
 
@@ -57,12 +58,20 @@ EMAIL_USE_TLS = os.getenv('SMTP_USE_TLS', 'True').lower() in ('1', 'true', 'yes'
 
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() in ('1', 'true', 'yes')
 
-DEFAULT_FROM_EMAIL = os.getenv('SMTP_FROM', os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER))
+DEFAULT_FROM_EMAIL = os.getenv('SMTP_FROM', os.getenv('DEFAULT_FROM_EMAIL', 'noreply@wib-challenge.com'))
 
-SERVER_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = os.getenv('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
 
-ADMINS = [
-    ('WIB Challenge', EMAIL_HOST_USER)
-]
+# Options additionnelles pour la fiabilite
+EMAIL_TIMEOUT = 30
+EMAIL_SUBJECT_PREFIX = '[WIB Challenge] '
 
-MANAGERS = ADMINS
+# Configuration des admins seulement si email est configure
+if EMAIL_HOST_USER:
+    ADMINS = [
+        ('WIB Challenge', EMAIL_HOST_USER)
+    ]
+    MANAGERS = ADMINS
+else:
+    ADMINS = []
+    MANAGERS = []

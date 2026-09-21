@@ -1,6 +1,20 @@
 from django import forms
 
-from .models import AcademicClass, Exam, Subject
+from .models import AcademicClass, Exam, Subject, TeacherQuestion, TeacherChoice
+
+
+class TeacherChoiceForm(forms.Form):
+    text = forms.CharField(label='Réponse', max_length=255, required=True)
+    is_correct = forms.BooleanField(label='Réponse correcte', required=False)
+
+
+class TeacherQuestionForm(forms.ModelForm):
+    class Meta:
+        model = TeacherQuestion
+        fields = ['subject', 'title', 'description', 'question_type', 'points']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
+        }
 
 
 class StudentCreationForm(forms.Form):

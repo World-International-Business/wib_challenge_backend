@@ -8,12 +8,8 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-EMAIL_BACKEND = os.getenv(
-    'EMAIL_BACKEND',
-    'django.core.mail.backends.smtp.EmailBackend'
-    if os.getenv('EMAIL_PROVIDER', '').lower() == 'smtp'
-    else 'django.core.mail.backends.console.EmailBackend',
-)
+# Configuration email avec fallback intelligent
+EMAIL_BACKEND = 'wib_challenge.settings.email_config.SafeEmailBackend'
 EMAIL_HOST = os.getenv('SMTP_HOST', os.getenv('EMAIL_HOST', 'smtp.gmail.com'))
 EMAIL_PORT = int(os.getenv('SMTP_PORT', os.getenv('EMAIL_PORT', '587')))
 EMAIL_HOST_USER = os.getenv('SMTP_USER', os.getenv('EMAIL_HOST_USER', ''))
@@ -28,9 +24,13 @@ EMAIL_USE_TLS = os.getenv(
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False').lower() in ('1', 'true', 'yes')
 DEFAULT_FROM_EMAIL = os.getenv(
     'SMTP_FROM',
-    os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER),
+    os.getenv('DEFAULT_FROM_EMAIL', 'noreply@wib-challenge.com'),
 )
 SERVER_EMAIL = os.getenv('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
+
+# Options additionnelles pour la fiabilite
+EMAIL_TIMEOUT = 30
+EMAIL_SUBJECT_PREFIX = '[WIB Challenge] '
 
 USE_DEBUG_TOOLBAR = os.getenv('USE_DEBUG_TOOLBAR', 'False').lower() in ('1', 'true', 'yes')
 

@@ -1,17 +1,192 @@
 {% extends 'base.html' %}
-{% block title %}Tableau scolaire - WIB Challenge{% endblock %}
+{% block title %}Tableau de bord enseignant - WIB Challenge{% endblock %}
 {% block content %}
 <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
-        <div><span class="badge bg-success-subtle text-success-emphasis rounded-pill px-3 py-2">Espace scolaire</span><h1 class="h2 fw-bold mt-2 mb-1">Bonjour {{ staff.user.first_name }}</h1><p class="text-muted mb-0">{{ staff.school.name }} · {{ staff.get_role_display }}</p></div>
-        <div class="d-flex gap-2"><a href="{% url 'school_student_create' %}" class="btn btn-outline-primary rounded-pill"><i class="bi bi-person-plus me-1"></i>Créer un élève</a><a href="{% url 'school_exam_create' %}" class="btn btn-primary rounded-pill"><i class="bi bi-journal-plus me-1"></i>Créer une épreuve</a></div>
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-4 mb-5">
+        <div>
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-success-subtle text-success-emphasis rounded-circle p-3">
+                    <i class="bi bi-person-workspace fs-4"></i>
+                </div>
+                <div>
+                    <h1 class="h2 fw-bold mb-1">Bonjour, {{ staff.user.first_name }}</h1>
+                    <p class="text-muted mb-0">{{ staff.school.name }} · {{ staff.get_role_display }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+            <a href="{% url 'teacher_question_list' %}" class="btn btn-outline-primary rounded-pill px-4">
+                <i class="bi bi-question-square me-2"></i>Mes questions
+            </a>
+            <a href="{% url 'school_student_create' %}" class="btn btn-outline-success rounded-pill px-4">
+                <i class="bi bi-person-plus me-2"></i>Creer un eleve
+            </a>
+            <a href="{% url 'school_exam_create' %}" class="btn btn-primary rounded-pill px-4">
+                <i class="bi bi-journal-plus me-2"></i>Creer une epreuve
+            </a>
+        </div>
     </div>
-    <div class="row g-3 mb-4">
-        <div class="col-md-4"><div class="card border-0 shadow-sm rounded-4 p-4"><div class="text-muted small">Élèves actifs</div><div class="display-6 fw-bold text-primary">{{ students_count }}</div></div></div>
-        <div class="col-md-4"><div class="card border-0 shadow-sm rounded-4 p-4"><div class="text-muted small">Classes accessibles</div><div class="display-6 fw-bold text-success">{{ classes_count }}</div></div></div>
-        <div class="col-md-4"><div class="card border-0 shadow-sm rounded-4 p-4"><div class="text-muted small">Copies à corriger</div><div class="display-6 fw-bold text-warning">{{ pending_attempts|length }}</div></div></div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 hover-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-primary-subtle text-primary-emphasis rounded-circle p-3">
+                        <i class="bi bi-people fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small mb-1">Eleves actifs</div>
+                        <div class="display-6 fw-bold text-primary">{{ students_count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 hover-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-success-subtle text-success-emphasis rounded-circle p-3">
+                        <i class="bi bi-grid-3x3 fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small mb-1">Classes accessibles</div>
+                        <div class="display-6 fw-bold text-success">{{ classes_count }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 hover-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="bg-warning-subtle text-warning-emphasis rounded-circle p-3">
+                        <i class="bi bi-pencil-square fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted small mb-1">Copies a corriger</div>
+                        <div class="display-6 fw-bold text-warning">{{ pending_attempts|length }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card border-0 shadow-sm rounded-4 mb-4"><div class="card-header bg-white p-4 border-0"><h2 class="h5 fw-bold mb-0">Mes épreuves</h2></div><div class="table-responsive"><table class="table align-middle mb-0"><thead class="table-light"><tr><th class="ps-4">Épreuve</th><th>Classe</th><th>Matière</th><th>Statut</th><th class="text-end pe-4">Action</th></tr></thead><tbody>{% for exam in exams %}<tr><td class="ps-4 fw-semibold">{{ exam.title }}</td><td>{{ exam.academic_class.name }}</td><td>{{ exam.subject.name }}</td><td>{% if exam.is_published %}<span class="badge bg-success-subtle text-success-emphasis">Publiée</span>{% else %}<span class="badge bg-secondary-subtle text-secondary-emphasis">Brouillon</span>{% endif %}{% if exam.results_published %}<span class="badge bg-info-subtle text-info-emphasis ms-1">Notes publiées</span>{% endif %}</td><td class="text-end pe-4">{% if not exam.is_published %}<form method="post" action="{% url 'school_exam_publish' exam.id %}" class="d-inline">{% csrf_token %}<button class="btn btn-sm btn-outline-success rounded-pill">Publier</button></form>{% elif not exam.results_published %}<form method="post" action="{% url 'school_exam_results_publish' exam.id %}" class="d-inline">{% csrf_token %}<button class="btn btn-sm btn-outline-primary rounded-pill">Publier les notes</button></form>{% endif %}</td></tr>{% empty %}<tr><td colspan="5" class="text-center text-muted py-4">Aucune épreuve créée.</td></tr>{% endfor %}</tbody></table></div></div>
-    <div class="card border-0 shadow-sm rounded-4"><div class="card-header bg-white p-4 border-0"><h2 class="h5 fw-bold mb-0">Copies nécessitant une correction</h2></div><div class="table-responsive"><table class="table align-middle mb-0"><tbody>{% for attempt in pending_attempts %}<tr><td class="ps-4">{{ attempt.student.user.get_full_name }}</td><td>{{ attempt.exam.title }}</td><td>{% if attempt.fraud_flag %}<span class="badge bg-danger-subtle text-danger-emphasis">Intégrité à vérifier</span>{% else %}<span class="badge bg-secondary-subtle text-secondary-emphasis">Standard</span>{% endif %}</td><td>{{ attempt.submitted_at|date:'d/m/Y H:i' }}</td><td class="text-end pe-4"><a href="{% url 'school_attempt_grade' attempt.id %}" class="btn btn-sm btn-outline-warning rounded-pill">Corriger</a></td></tr>{% empty %}<tr><td colspan="5" class="text-center text-muted py-4">Aucune copie en attente.</td></tr>{% endfor %}</tbody></table></div></div>
+
+    <!-- Exams Table -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-header bg-white p-4 border-0">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h5 fw-bold mb-0">Mes epreuves</h2>
+                <a href="{% url 'school_exam_create' %}" class="btn btn-sm btn-primary rounded-pill">
+                    <i class="bi bi-plus me-1"></i>Nouvelle epreuve
+                </a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">Epreuve</th>
+                        <th>Classe</th>
+                        <th>Matiere</th>
+                        <th>Statut</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exam in exams %}
+                        <tr class="hover-list-item">
+                            <td class="ps-4">
+                                <div class="fw-semibold">{{ exam.title }}</div>
+                                <small class="text-muted">{{ exam.starts_at|date:'d/m/Y H:i' }} - {{ exam.ends_at|date:'d/m/Y H:i' }}</small>
+                            </td>
+                            <td>{{ exam.academic_class.name }}</td>
+                            <td>{{ exam.subject.name }}</td>
+                            <td>
+                                {% if exam.is_published %}
+                                    <span class="badge bg-success-subtle text-success-emphasis rounded-pill">Publiee</span>
+                                {% else %}
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill">Brouillon</span>
+                                {% endif %}
+                                {% if exam.results_published %}
+                                    <span class="badge bg-info-subtle text-info-emphasis rounded-pill ms-1">Notes publiees</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-end pe-4">
+                                {% if not exam.is_published %}
+                                    <form method="post" action="{% url 'school_exam_publish' exam.id %}" class="d-inline">
+                                        {% csrf_token %}
+                                        <button class="btn btn-sm btn-outline-success rounded-pill">
+                                            <i class="bi bi-send me-1"></i>Publier
+                                        </button>
+                                    </form>
+                                {% elif not exam.results_published %}
+                                    <form method="post" action="{% url 'school_exam_results_publish' exam.id %}" class="d-inline">
+                                        {% csrf_token %}
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill">
+                                            <i class="bi bi-bar-chart me-1"></i>Publier notes
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-5">
+                                <i class="bi bi-journal-x fs-1 d-block mb-3"></i>
+                                <p class="mb-0">Aucune epreuve creee.</p>
+                                <a href="{% url 'school_exam_create' %}" class="btn btn-primary rounded-pill mt-3">
+                                    Creer votre premiere epreuve
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pending Corrections -->
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-header bg-white p-4 border-0">
+            <h2 class="h5 fw-bold mb-0">Copies necessitant une correction</h2>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <tbody>
+                    {% for attempt in pending_attempts %}
+                        <tr class="hover-list-item">
+                            <td class="ps-4">
+                                <div class="fw-semibold">{{ attempt.student.user.get_full_name }}</div>
+                                <small class="text-muted">{{ attempt.student.academic_class.name }}</small>
+                            </td>
+                            <td>{{ attempt.exam.title }}</td>
+                            <td>
+                                {% if attempt.fraud_flag %}
+                                    <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill">
+                                        <i class="bi bi-exclamation-triangle me-1"></i>Integrite a verifier
+                                    </span>
+                                {% else %}
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill">Standard</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ attempt.submitted_at|date:'d/m/Y H:i' }}</td>
+                            <td class="text-end pe-4">
+                                <a href="{% url 'school_attempt_grade' attempt.id %}" class="btn btn-sm btn-outline-warning rounded-pill">
+                                    <i class="bi bi-pencil me-1"></i>Corriger
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-5">
+                                <i class="bi bi-check-circle fs-1 d-block mb-3 text-success"></i>
+                                <p class="mb-0">Aucune copie en attente de correction.</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

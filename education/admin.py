@@ -1,6 +1,7 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
-from .models import AcademicClass, Exam, ExamAnswer, ExamAttempt, ExamQuestion, School, SchoolStaff, Student, Subject
+from .models import AcademicClass, Exam, ExamAnswer, ExamAttempt, ExamQuestion, School, SchoolStaff, Student, Subject, TeacherQuestion, TeacherChoice
 
 
 class SchoolScopedAdmin(admin.ModelAdmin):
@@ -44,9 +45,21 @@ class SchoolScopedAdmin(admin.ModelAdmin):
 @admin.register(School)
 class SchoolAdmin(admin.ModelAdmin):
     list_display = ['name', 'code', 'is_active', 'created_at']
-    list_filter = ['is_active']
+    list_filter = ['is_active', 'created_at']
     search_fields = ['name', 'code']
     prepopulated_fields = {'code': ('name',)}
+    ordering = ['name']
+    
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'code', 'is_active')
+        }),
+        ('Informations systeme', {
+            'fields': ('created_at',),
+            'classes': ('collapse',)
+        }),
+    )
+    readonly_fields = ['created_at']
 
     def has_module_permission(self, request):
         return request.user.is_superuser
@@ -54,10 +67,21 @@ class SchoolAdmin(admin.ModelAdmin):
 
 @admin.register(SchoolStaff)
 class SchoolStaffAdmin(admin.ModelAdmin):
-    list_display = ['user', 'school', 'role', 'is_active']
+    list_display = ['user_full_name', 'school', 'role', 'is_active']
     list_filter = ['school', 'role', 'is_active']
     search_fields = ['user__email', 'user__first_name', 'user__last_name', 'school__name']
     autocomplete_fields = ['user', 'school']
+    ordering = ['school', 'role', 'user__last_name']
+    
+    fieldsets = (
+        (None, {
+            'fields': ('user', 'school', 'role', 'is_active')
+        }),
+    )
+
+    def user_full_name(self, obj):
+        return obj.user.get_full_name()
+    user_full_name.short_description = 'Utilisateur'
 
     def save_model(self, request, obj, form, change):
         obj.user.is_staff = True
@@ -176,3 +200,70 @@ class ExamAnswerAdmin(admin.ModelAdmin):
         return request.user.is_superuser
 
     has_add_permission = has_change_permission = has_delete_permission = has_view_permission
+
+
+class TeacherChoiceInline(admin.TabularInline):
+    model = TeacherChoice
+    extra = 1
+    fields = ['text', 'is_correct', 'position']
+
+
+@admin.register(TeacherQuestion)
+class TeacherQuestionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'subject', 'question_type', 'points', 'is_active', 'created_by', 'created_at']
+    list_filter = ['subject', 'question_type', 'is_active', 'created_at']
+    search_fields = ['title', 'description', 'created_by__email', 'subject__name']
+    autocomplete_fields = ['subject', 'created_by']
+    inlines = [TeacherChoiceInline]
+    readonly_fields = ['created_at', 'updated_at']
+    
+    fieldsets = (
+        (None, {
+            'fields': ('subject', 'title', 'description', 'question_type', 'points', 'is_active')
+        }),
+        ('Informations systeme', {
+            'fields': ('created_by', 'created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        staff = getattr(request.user, 'school_staff', None)
+        if request.user.is_superuser:
+            return queryset
+        if not staff or not staff.is_active:
+            return queryset.none()
+        return queryset.filter(created_by=request.user, subject__school=staff.school)
+
+    def save_model(self, request, obj, form, change):
+        if not change:
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+    def has_module_permission(self, request):
+        return request.user.is_superuser or bool(getattr(request.user, 'school_staff', None))
+
+    def has_add_permission(self, request):
+        return request.user.is_superuser or bool(getattr(request.user, 'school_staff', None))
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        if obj and obj.created_by != request.user:
+            return False
+        return bool(getattr(request.user, 'school_staff', None))
+
+    def has_delete_permission(self, request, obj=None):
+        return self.has_change_permission(request, obj)
+
+
+@admin.register(TeacherChoice)
+class TeacherChoiceAdmin(admin.ModelAdmin):
+    list_display = ['teacher_question', 'text', 'is_correct', 'position']
+    list_filter = ['is_correct', 'teacher_question__subject']
+    search_fields = ['text', 'teacher_question__title']
+    autocomplete_fields = ['teacher_question']
+
+    def has_module_permission(self, request):
+        return request.user.is_superuser or bool(getattr(request.user, 'school_staff', None))

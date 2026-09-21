@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %}{% if editing %}Modifier{% else %}Creer{% endif %} une question - WIB Challenge{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="mb-4">
+        <a href="{% url 'teacher_question_list' %}" class="text-muted text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i>Retour a mes questions
+        </a>
+        <h1 class="h2 fw-bold mt-3">{% if editing %}Modifier{% else %}Creer{% endif %} une question</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                    {% endif %}
+                    
+                    <form method="post" id="questionForm">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ form.subject.id_for_label }}">{{ form.subject.label }}</label>
+                            {{ form.subject }}
+                            {% for error in form.subject.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+                            {{ form.title }}
+                            {% for error in form.title.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+                            {{ form.description }}
+                            {% for error in form.description.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ form.question_type.id_for_label }}">{{ form.question_type.label }}</label>
+                                {{ form.question_type }}
+                                {% for error in form.question_type.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ form.points.id_for_label }}">{{ form.points.label }}</label>
+                                {{ form.points }}
+                                {% for error in form.points.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div id="choicesSection" class="mb-3" style="display: none;">
+                            <label class="form-label fw-semibold">Reponses possibles</label>
+                            <div id="choicesContainer">
+                                <!-- Choices will be added here dynamically -->
+                            </div>
+                            <button type="button" class="btn btn-outline-primary btn-sm rounded-pill mt-2" onclick="addChoice()">
+                                <i class="bi bi-plus me-1"></i>Ajouter une reponse
+                            </button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary rounded-pill">
+                            <i class="bi bi-check-lg me-1"></i>{% if editing %}Mettre a jour{% else %}Creer{% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const questionType = document.getElementById('{{ form.question_type.id_for_label }}');
+    const choicesSection = document.getElementById('choicesSection');
+    const choicesContainer = document.getElementById('choicesContainer');
+    
+    // Handle question type change
+    questionType.addEventListener('change', function() {
+        const type = this.value;
+        if (type === 'MCQ' || type === 'UCQ') {
+            choicesSection.style.display = 'block';
+            if (choicesContainer.children.length === 0) {
+                addChoice();
+                addChoice();
+            }
+        } else {
+            choicesSection.style.display = 'none';
+        }
+    });
+    
+    // Check initial value
+    if (questionType.value === 'MCQ' || questionType.value === 'UCQ') {
+        choicesSection.style.display = 'block';
+        {% if editing and question.choices.all %}
+            {% for choice in question.choices.all %}
+                addChoice('{{ choice.text }}', {{ choice.is_correct|lower }});
+            {% endfor %}
+        {% else %}
+            addChoice();
+            addChoice();
+        {% endif %}
+    }
+});
+
+function addChoice(text = '', isCorrect = false) {
+    const container = document.getElementById('choicesContainer');
+    const index = container.children.length;
+    
+    const div = document.createElement('div');
+    div.className = 'input-group mb-2';
+    div.innerHTML = `
+        <div class="input-group-text">
+            <input type="checkbox" name="choice_correct[]" value="true" ${isCorrect ? 'checked' : ''}>
+        </div>
+        <input type="text" name="choice_text[]" class="form-control" placeholder="Reponse ${index + 1}" value="${text}" required>
+        <button type="button" class="btn btn-outline-danger" onclick="this.parentElement.remove()">
+            <i class="bi bi-trash"></i>
+        </button>
+    `;
+    container.appendChild(div);
+}
+</script>
+{% endblock %}

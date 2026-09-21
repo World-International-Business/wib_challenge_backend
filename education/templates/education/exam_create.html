@@ -1,3 +1,86 @@
 {% extends 'base.html' %}
-{% block title %}Créer une épreuve - WIB Challenge{% endblock %}
-{% block content %}<div class="container py-5"><div class="mb-4"><a href="{% url 'school_dashboard' %}" class="text-muted text-decoration-none"><i class="bi bi-arrow-left me-1"></i>Retour</a><h1 class="h2 fw-bold mt-3">Créer une épreuve</h1><p class="text-muted">Les élèves de la classe ne verront l’épreuve qu’après sa publication.</p></div><form method="post">{% csrf_token %}<div class="row g-4"><div class="col-lg-5"><div class="card border-0 shadow-sm rounded-4"><div class="card-body p-4">{% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}{% for field in form %}<div class="mb-3"><label class="form-label fw-semibold" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}</div>{% endfor %}</div></div></div><div class="col-lg-7"><div class="card border-0 shadow-sm rounded-4"><div class="card-header bg-white p-4 border-0"><h2 class="h5 fw-bold mb-1">Questions</h2><p class="small text-muted mb-0">Sélectionnez les questions et définissez les points ensuite si nécessaire dans l’administration.</p></div><div class="card-body p-4" style="max-height:620px;overflow:auto;">{% for question in questions %}<label class="d-flex gap-3 border-bottom py-3"><input class="form-check-input mt-1" type="checkbox" name="question_ids" value="{{ question.id }}"><span><strong>{{ forloop.counter }}. {{ question.title }}</strong><small class="d-block text-muted">{{ question.get_question_type_display }} · {{ question.category.name }}</small></span></label>{% empty %}<p class="text-muted">Aucune question générale disponible.</p>{% endfor %}</div></div><button type="submit" class="btn btn-primary rounded-pill mt-3"><i class="bi bi-save me-2"></i>Enregistrer en brouillon</button></div></div></form></div>{% endblock %}
+{% block title %}Creer une epreuve - WIB Challenge{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="mb-4">
+        <a href="{% url 'school_dashboard' %}" class="text-muted text-decoration-none">
+            <i class="bi bi-arrow-left me-1"></i>Retour
+        </a>
+        <h1 class="h2 fw-bold mt-3">Creer une epreuve</h1>
+        <p class="text-muted">Les eleves de la classe ne verront l'epreuve qu'apres sa publication.</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4">
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+                        {% endif %}
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                                {% for error in field.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm rounded-4 mb-4">
+                    <div class="card-header bg-white p-4 border-0">
+                        <h2 class="h5 fw-bold mb-1">Mes questions personnelles</h2>
+                        <p class="small text-muted mb-0">Questions que vous avez creees.</p>
+                    </div>
+                    <div class="card-body p-4" style="max-height:300px;overflow:auto;">
+                        {% for question in teacher_questions %}
+                            <label class="d-flex gap-3 border-bottom py-3">
+                                <input class="form-check-input mt-1" type="checkbox" name="teacher_question_ids" value="{{ question.id }}">
+                                <span>
+                                    <strong>{{ question.title }}</strong>
+                                    <small class="d-block text-muted">{{ question.get_question_type_display }} · {{ question.subject.name }} · {{ question.points }} pts</small>
+                                </span>
+                            </label>
+                        {% empty %}
+                            <p class="text-muted mb-0">
+                                Aucune question personnelle. 
+                                <a href="{% url 'teacher_question_create' %}" class="text-primary">Creer une question</a>
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-header bg-white p-4 border-0">
+                        <h2 class="h5 fw-bold mb-1">Questions generales</h2>
+                        <p class="small text-muted mb-0">Questions de la banque de questions generale.</p>
+                    </div>
+                    <div class="card-body p-4" style="max-height:300px;overflow:auto;">
+                        {% for question in general_questions %}
+                            <label class="d-flex gap-3 border-bottom py-3">
+                                <input class="form-check-input mt-1" type="checkbox" name="general_question_ids" value="{{ question.id }}">
+                                <span>
+                                    <strong>{{ forloop.counter }}. {{ question.title }}</strong>
+                                    <small class="d-block text-muted">{{ question.get_question_type_display }} · {{ question.category.name }}</small>
+                                </span>
+                            </label>
+                        {% empty %}
+                            <p class="text-muted">Aucune question generale disponible.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary rounded-pill mt-3">
+                    <i class="bi bi-save me-2"></i>Enregistrer en brouillon
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

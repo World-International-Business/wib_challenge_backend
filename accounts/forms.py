@@ -82,6 +82,23 @@ class UserUpdateForm(forms.ModelForm):
         return domain
 
 
+# Formulaire simplifie pour les eleves et enseignants
+class SimpleUserUpdateForm(forms.ModelForm):
+    email = forms.EmailField(required=True, label="Adresse Email")
+    first_name = forms.CharField(max_length=30, required=True, label="Prénom")
+    last_name = forms.CharField(max_length=30, required=True, label="Nom")
+
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(SimpleUserUpdateForm, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            css = 'form-select' if isinstance(field.widget, forms.Select) else 'form-control'
+            field.widget.attrs.update({'class': css})
+
+
 class UserSkillForm(forms.ModelForm):
     skill = forms.ModelChoiceField(
         queryset=Tag.objects.none(),

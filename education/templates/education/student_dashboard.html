@@ -1,3 +1,99 @@
 {% extends 'base.html' %}
-{% block title %}Mes épreuves - WIB Challenge{% endblock %}
-{% block content %}<div class="container py-5"><div class="mb-4"><span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-3 py-2">Espace élève</span><h1 class="h2 fw-bold mt-3 mb-1">Bonjour {{ student.user.first_name }}</h1><p class="text-muted mb-0">{{ student.school.name }} · {{ student.academic_class.name }}</p></div><div class="row g-4">{% for row in exam_rows %}<div class="col-lg-6"><div class="card border-0 shadow-sm rounded-4 h-100"><div class="card-body p-4"><div class="d-flex justify-content-between gap-3"><div><h2 class="h5 fw-bold mb-1">{{ row.exam.title }}</h2><p class="text-muted mb-1">{{ row.exam.subject.name }} · Barème sur {{ row.exam.grading_scale }}</p><p class="small text-muted">Ouverte jusqu’au {{ row.exam.ends_at|date:'d/m/Y à H:i' }} · {{ row.exam.duration_minutes }} min</p></div>{% if row.latest and row.latest.status == 'CORRECTED' and row.exam.results_published %}<span class="badge bg-success-subtle text-success-emphasis">Note disponible</span>{% elif row.latest %}<span class="badge bg-warning-subtle text-warning-emphasis">Soumise</span>{% endif %}</div>{% if row.latest and row.latest.status == 'CORRECTED' and row.exam.results_published %}<div class="alert alert-success mt-3 mb-0">Votre note : <strong>{{ row.latest.score|floatformat:2 }}/{{ row.exam.grading_scale }}</strong></div>{% elif row.active_attempt %}<a href="{% url 'school_exam_attempt' row.exam.id %}" class="btn btn-primary rounded-pill mt-3">Reprendre l’épreuve</a>{% elif row.can_start and row.is_open %}<a href="{% url 'school_exam_attempt' row.exam.id %}" class="btn btn-primary rounded-pill mt-3">Commencer l’épreuve</a>{% elif row.latest %}<p class="text-muted small mt-3 mb-0">Épreuve terminée. Résultat en attente de publication.</p>{% else %}<p class="text-muted small mt-3 mb-0">Épreuve non ouverte.</p>{% endif %}</div></div></div>{% empty %}<div class="col-12"><div class="alert alert-info">Aucune épreuve publiée pour votre classe.</div></div>{% endfor %}</div></div>{% endblock %}
+{% block title %}Mes epreuves - WIB Challenge{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-4 mb-5">
+        <div>
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-primary-subtle text-primary-emphasis rounded-circle p-3">
+                    <i class="bi bi-mortarboard fs-4"></i>
+                </div>
+                <div>
+                    <h1 class="h2 fw-bold mb-1">Bonjour, {{ student.user.first_name }}</h1>
+                    <p class="text-muted mb-0">{{ student.school.name }} · {{ student.academic_class.name }}</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill px-4 py-2 fs-6">
+                Espace eleve
+            </span>
+        </div>
+    </div>
+
+    <!-- Exam Cards -->
+    <div class="row g-4">
+        {% for row in exam_rows %}
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100 hover-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between gap-3 mb-3">
+                            <div class="flex-grow-1">
+                                <h2 class="h5 fw-bold mb-1">{{ row.exam.title }}</h2>
+                                <p class="text-muted mb-1">{{ row.exam.subject.name }} · Barème sur {{ row.exam.grading_scale }}</p>
+                                <p class="small text-muted mb-0">
+                                    <i class="bi bi-clock me-1"></i>{{ row.exam.duration_minutes }} min
+                                    <span class="mx-2">·</span>
+                                    <i class="bi bi-calendar me-1"></i> Ouverte jusqu'au {{ row.exam.ends_at|date:'d/m/Y à H:i' }}
+                                </p>
+                            </div>
+                            <div class="text-end">
+                                {% if row.latest and row.latest.status == 'CORRECTED' and row.exam.results_published %}
+                                    <span class="badge bg-success-subtle text-success-emphasis rounded-pill">
+                                        <i class="bi bi-check-circle me-1"></i>Note disponible
+                                    </span>
+                                {% elif row.latest %}
+                                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">
+                                        <i class="bi bi-hourglass me-1"></i>Soumise
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        {% if row.latest and row.latest.status == 'CORRECTED' and row.exam.results_published %}
+                            <div class="alert alert-success rounded-3 mb-0">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-trophy-fill fs-4"></i>
+                                    <div>
+                                        <div class="small text-muted mb-1">Votre note</div>
+                                        <div class="h4 fw-bold mb-0">{{ row.latest.score|floatformat:2 }}/{{ row.exam.grading_scale }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif row.active_attempt %}
+                            <a href="{% url 'school_exam_attempt' row.exam.id %}" class="btn btn-primary rounded-pill w-100">
+                                <i class="bi bi-play-circle me-2"></i>Reprendre l'epreuve
+                            </a>
+                        {% elif row.can_start and row.is_open %}
+                            <a href="{% url 'school_exam_attempt' row.exam.id %}" class="btn btn-primary rounded-pill w-100">
+                                <i class="bi bi-play-circle me-2"></i>Commencer l'epreuve
+                            </a>
+                        {% elif row.latest %}
+                            <div class="alert alert-info rounded-3 mb-0">
+                                <i class="bi bi-info-circle me-2"></i>
+                                Epreuve terminee. Resultat en attente de publication.
+                            </div>
+                        {% else %}
+                            <div class="alert alert-secondary rounded-3 mb-0">
+                                <i class="bi bi-calendar-x me-2"></i>
+                                Epreuve non ouverte.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-5 text-center">
+                        <i class="bi bi-journal-x fs-1 text-muted d-block mb-3"></i>
+                        <h3 class="h5 fw-bold mb-2">Aucune epreuve disponible</h3>
+                        <p class="text-muted mb-0">Votre enseignant n'a pas encore publie d'epreuve pour votre classe.</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path
 
 from accounts.views import (login_view, register_view, verify_email_view, logout_view, update_profile,
+                           student_profile_view, school_staff_profile_view, candidate_profile_view,
                            WIBPasswordResetView, WIBPasswordResetDoneView,
                            WIBPasswordResetConfirmView, WIBPasswordResetCompleteView)
 from challenges.views import (
@@ -38,7 +39,8 @@ from education.views import (
      school_home_view, school_dashboard_view, school_student_create_view,
      school_exam_create_view, school_exam_publish_view, student_dashboard_view,
      school_exam_results_publish_view, school_exam_attempt_view, school_exam_integrity_event_view,
-     school_attempt_grade_view,
+     school_attempt_grade_view, teacher_question_list_view, teacher_question_create_view,
+     teacher_question_update_view, teacher_question_delete_view,
 )
 from challenges.admin_views import (
     duration_profile_list_view, duration_profile_create_view,
@@ -63,6 +65,10 @@ urlpatterns = [
      path('ecole/', school_home_view, name='school_home'),
      path('ecole/tableau-de-bord/', school_dashboard_view, name='school_dashboard'),
      path('ecole/eleves/ajouter/', school_student_create_view, name='school_student_create'),
+     path('ecole/questions/', teacher_question_list_view, name='teacher_question_list'),
+     path('ecole/questions/ajouter/', teacher_question_create_view, name='teacher_question_create'),
+     path('ecole/questions/<int:question_id>/modifier/', teacher_question_update_view, name='teacher_question_update'),
+     path('ecole/questions/<int:question_id>/supprimer/', teacher_question_delete_view, name='teacher_question_delete'),
      path('ecole/epreuves/ajouter/', school_exam_create_view, name='school_exam_create'),
      path('ecole/epreuves/<int:exam_id>/publier/', school_exam_publish_view, name='school_exam_publish'),
      path('ecole/epreuves/<int:exam_id>/publier-resultats/', school_exam_results_publish_view, name='school_exam_results_publish'),
@@ -90,6 +96,9 @@ urlpatterns = [
      path('register/verify/', verify_email_view, name='verify_email'),
     path('logout/', logout_view, name='logout'),
     path('profile/update/', update_profile, name='update_profile'),
+    path('profile/eleve/', student_profile_view, name='student_profile'),
+    path('profile/enseignant/', school_staff_profile_view, name='school_staff_profile'),
+    path('profile/candidat/', candidate_profile_view, name='candidate_profile'),
     path('add-questions/', json_input,
          {'question_category': Question.QuestionCategory.NORMAL}, name='add_questions'),
     path('add-questions/logical/', json_input,

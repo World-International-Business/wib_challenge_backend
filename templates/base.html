@@ -105,20 +105,32 @@
                 </li>
                 {% if user.is_authenticated %}
                     {% if user.school_staff %}
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'school_dashboard' %}">
-                                <i class="bi bi-grid-1x2 me-1 d-lg-none"></i>Tableau de bord
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle px-3 rounded-2" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-building me-1 d-lg-none"></i>Espace enseignant
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'school_student_create' %}">
-                                <i class="bi bi-person-plus me-1 d-lg-none"></i>Créer un élève
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3 rounded-2" href="{% url 'school_exam_create' %}">
-                                <i class="bi bi-journal-plus me-1 d-lg-none"></i>Créer une épreuve
-                            </a>
+                            <ul class="dropdown-menu dropdown-menu-lg-start shadow border-0 rounded-3 mt-2" aria-labelledby="schoolDropdown">
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'school_dashboard' %}">
+                                        <i class="bi bi-grid-1x2 me-2 text-primary"></i>Tableau de bord
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'teacher_question_list' %}">
+                                        <i class="bi bi-question-square me-2 text-info"></i>Mes questions
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'school_student_create' %}">
+                                        <i class="bi bi-person-plus me-2 text-success"></i>Creer un eleve
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" href="{% url 'school_exam_create' %}">
+                                        <i class="bi bi-journal-plus me-2 text-warning"></i>Creer une epreuve
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     {% elif user.is_staff %}
                         <li class="nav-item">
@@ -206,7 +218,12 @@
                     {% elif user.student_profile %}
                         <li class="nav-item">
                             <a class="nav-link px-3 rounded-2" href="{% url 'student_dashboard' %}">
-                                <i class="bi bi-journal-check me-1 d-lg-none"></i>Mes épreuves
+                                <i class="bi bi-journal-check me-1 d-lg-none"></i>Mes epreuves
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 rounded-2" href="{% url 'student_profile' %}">
+                                <i class="bi bi-person-gear me-1 d-lg-none"></i>Mon profil
                             </a>
                         </li>
                     {% else %}
@@ -234,16 +251,26 @@
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 mt-2"
                             aria-labelledby="userDropdown">
                             <li>
-                                <a class="dropdown-item py-2" href="{% url 'update_profile' %}">
-                                    <i class="bi bi-pencil-square me-2"></i>Modifier le profil
-                                </a>
+                                {% if user.student_profile %}
+                                    <a class="dropdown-item py-2" href="{% url 'student_profile' %}">
+                                        <i class="bi bi-pencil-square me-2"></i>Modifier le profil
+                                    </a>
+                                {% elif user.school_staff %}
+                                    <a class="dropdown-item py-2" href="{% url 'school_staff_profile' %}">
+                                        <i class="bi bi-pencil-square me-2"></i>Modifier le profil
+                                    </a>
+                                {% else %}
+                                    <a class="dropdown-item py-2" href="{% url 'candidate_profile' %}">
+                                        <i class="bi bi-pencil-square me-2"></i>Modifier le profil
+                                    </a>
+                                {% endif %}
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form action="{% url 'logout' %}" method="post" class="m-0">
                                     {% csrf_token %}
                                     <button type="submit" class="dropdown-item text-danger py-2">
-                                        <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
+                                        <i class="bi bi-box-arrow-right me-2"></i>Deconnexion
                                     </button>
                                 </form>
                             </li>

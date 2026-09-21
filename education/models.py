@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 
-from questions.models import Question
+from questions.models import Category, Question
 
 
 class School(models.Model):
@@ -91,6 +91,58 @@ class Subject(models.Model):
         return self.name
 
 
+class TeacherQuestion(models.Model):
+    class QuestionType(models.TextChoices):
+        MULTIPLE_CHOICE = 'MCQ', 'Choix multiple'
+        UNIQUE_CHOICE = 'UCQ', 'Choix unique'
+        OPEN_ANSWER = 'OA', 'Réponse ouverte'
+
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='teacher_questions')
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='teacher_questions')
+    title = models.CharField('Titre', max_length=255)
+    description = models.TextField('Description', blank=True)
+    question_type = models.CharField('Type de question', choices=QuestionType.choices, default=QuestionType.UNIQUE_CHOICE, max_length=3)
+    points = models.PositiveIntegerField('Points par défaut', default=1, validators=[MinValueValidator(1)])
+    is_active = models.BooleanField('Active', default=True)
+    created_at = models.DateTimeField('Créée le', auto_now_add=True)
+    updated_at = models.DateTimeField('Modifiée le', auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Question enseignant'
+        verbose_name_plural = 'Questions enseignants'
+
+    def __str__(self):
+        return f'{self.title} ({self.subject.name})'
+
+    @property
+    def is_multiple_choice(self):
+        return self.question_type == self.QuestionType.MULTIPLE_CHOICE
+
+    @property
+    def is_unique_choice(self):
+        return self.question_type == self.QuestionType.UNIQUE_CHOICE
+
+    @property
+    def is_open_answer(self):
+        return self.question_type == self.QuestionType.OPEN_ANSWER
+
+
+class TeacherChoice(models.Model):
+    teacher_question = models.ForeignKey(TeacherQuestion, on_delete=models.CASCADE, related_name='choices')
+    text = models.CharField('Texte', max_length=255)
+    is_correct = models.BooleanField('Correcte', default=False)
+    position = models.PositiveIntegerField('Position', default=1)
+
+    class Meta:
+        ordering = ['position']
+        verbose_name = 'Choix enseignant'
+        verbose_name_plural = 'Choix enseignants'
+
+    def __str__(self):
+        return self.text
+
+
 class Exam(models.Model):
     class GradingScale(models.IntegerChoices):
         OUT_OF_20 = 20, 'Sur 20'
@@ -135,18 +187,24 @@ class Exam(models.Model):
 
 class ExamQuestion(models.Model):
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='exam_questions')
-    question = models.ForeignKey(Question, on_delete=models.PROTECT, related_name='school_exam_questions')
+    teacher_question = models.ForeignKey(TeacherQuestion, on_delete=models.PROTECT, related_name='exam_questions', null=True, blank=True)
+    question = models.ForeignKey(Question, on_delete=models.PROTECT, related_name='school_exam_questions', null=True, blank=True)
     points = models.PositiveIntegerField('Points', default=1, validators=[MinValueValidator(1)])
     position = models.PositiveIntegerField('Position', default=1)
 
     class Meta:
         ordering = ['position', 'id']
         constraints = [
+            models.UniqueConstraint(fields=['exam', 'teacher_question'], name='unique_exam_teacher_question'),
             models.UniqueConstraint(fields=['exam', 'question'], name='unique_exam_question'),
         ]
 
     def __str__(self):
         return f'{self.exam} - question {self.position}'
+
+    @property
+    def effective_question(self):
+        return self.teacher_question if self.teacher_question else self.question
 
 
 class ExamAttempt(models.Model):
@@ -186,6 +244,7 @@ class ExamAnswer(models.Model):
     exam_question = models.ForeignKey(ExamQuestion, on_delete=models.CASCADE, related_name='student_answers')
     text = models.TextField('Réponse', blank=True)
     selected_choices = models.ManyToManyField('questions.Choice', blank=True, related_name='school_exam_answers')
+    selected_teacher_choices = models.ManyToManyField(TeacherChoice, blank=True, related_name='exam_answers')
     is_correct = models.BooleanField('Correcte', null=True, blank=True)
     points_awarded = models.FloatField('Points obtenus', default=0)
 

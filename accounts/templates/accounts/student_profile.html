@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Mon profil eleve - WIB Challenge{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h1 class="h2 fw-bold">Mon profil eleve</h1>
+                <p class="text-muted">{{ student.school.name }} · {{ student.academic_class.name }}</p>
+            </div>
+            
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-body p-4">
+                    {% if user_form.non_field_errors %}
+                        <div class="alert alert-danger">{{ user_form.non_field_errors }}</div>
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ user_form.first_name.id_for_label }}">{{ user_form.first_name.label }}</label>
+                                {{ user_form.first_name }}
+                                {% for error in user_form.first_name.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-semibold" for="{{ user_form.last_name.id_for_label }}">{{ user_form.last_name.label }}</label>
+                                {{ user_form.last_name }}
+                                {% for error in user_form.last_name.errors %}
+                                    <div class="text-danger small">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold" for="{{ user_form.email.id_for_label }}">{{ user_form.email.label }}</label>
+                            {{ user_form.email }}
+                            {% for error in user_form.email.errors %}
+                                <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Etablissement</label>
+                            <input type="text" class="form-control" value="{{ student.school.name }}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Classe</label>
+                            <input type="text" class="form-control" value="{{ student.academic_class.name }}" readonly>
+                        </div>
+
+                        {% if student.student_number %}
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Matricule</label>
+                                <input type="text" class="form-control" value="{{ student.student_number }}" readonly>
+                            </div>
+                        {% endif %}
+
+                        <button class="btn btn-primary rounded-pill" type="submit">
+                            <i class="bi bi-check-lg me-2"></i>Mettre a jour
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

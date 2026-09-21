@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Mes questions - WIB Challenge{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+        <div>
+            <a href="{% url 'school_dashboard' %}" class="text-muted text-decoration-none">
+                <i class="bi bi-arrow-left me-1"></i>Retour au tableau de bord
+            </a>
+            <h1 class="h2 fw-bold mt-3">Mes questions</h1>
+            <p class="text-muted mb-0">Gerez vos questions personnelles pour les epreuves.</p>
+        </div>
+        <a href="{% url 'teacher_question_create' %}" class="btn btn-primary rounded-pill">
+            <i class="bi bi-plus-lg me-1"></i>Nouvelle question
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-4">
+            {% if questions %}
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Question</th>
+                                <th>Matiere</th>
+                                <th>Type</th>
+                                <th>Points</th>
+                                <th>Statut</th>
+                                <th class="text-end pe-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for question in questions %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <strong>{{ question.title }}</strong>
+                                        {% if question.description %}
+                                            <br><small class="text-muted">{{ question.description|truncatewords:10 }}</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ question.subject.name }}</td>
+                                    <td>
+                                        <span class="badge bg-primary-subtle text-primary-emphasis">
+                                            {{ question.get_question_type_display }}
+                                        </span>
+                                    </td>
+                                    <td>{{ question.points }}</td>
+                                    <td>
+                                        {% if question.is_active %}
+                                            <span class="badge bg-success-subtle text-success-emphasis">Active</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary-subtle text-secondary-emphasis">Inactive</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <a href="{% url 'teacher_question_update' question.id %}" class="btn btn-sm btn-outline-primary rounded-pill me-1">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <form action="{% url 'teacher_question_delete' question.id %}" method="post" class="d-inline">
+                                            {% csrf_token %}
+                                            <button class="btn btn-sm btn-outline-danger rounded-pill" onclick="return confirm('Etes-vous sur de vouloir supprimer cette question ?');">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="bi bi-question-circle fs-1 text-muted mb-3"></i>
+                    <p class="text-muted mb-0">Aucune question creee.</p>
+                    <a href="{% url 'teacher_question_create' %}" class="btn btn-primary rounded-pill mt-3">
+                        Creer votre premiere question
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -178,9 +178,20 @@ class UserAdmin(admin.ModelAdmin):
         count = obj.challenges.count()
         return count if count > 0 else "-"
 
+    def delete_model(self, request, obj):
+        if request.user.is_superuser:
+            super().delete_model(request, obj)
+        else:
+            obj.is_active = False
+            obj.save()
+
     def delete_queryset(self, request, queryset):
-        queryset.update(is_active=False)
-        self.message_user(request, 'Les utilisateurs sélectionnés ont été désactivés avec succès.')
+        if request.user.is_superuser:
+            super().delete_queryset(request, queryset)
+            self.message_user(request, 'Les utilisateurs sélectionnés ont été supprimés avec succès.')
+        else:
+            queryset.update(is_active=False)
+            self.message_user(request, 'Les utilisateurs sélectionnés ont été désactivés avec succès.')
 
     def get_fieldsets(self, request, obj=None):
         if not obj:
