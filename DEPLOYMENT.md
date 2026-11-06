@@ -46,6 +46,7 @@ PUBLIC_SITE_URL=https://votre-domaine.com
 CSRF_TRUSTED_ORIGINS=https://votre-domaine.com
 
 # Configuration email (optionnel)
+EMAIL_PROVIDER=smtp
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=votre_email@gmail.com
