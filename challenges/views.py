@@ -815,7 +815,11 @@ def generate_challenge(request):
     if Submission.objects.filter(candidate=request.user, challenge__is_logical=False).exists():
         messages.warning(request, 'Vous avez déjà passé un test technique. Pour le repasser, contactez l\'administrateur.')
         return redirect('home')
-    challenge = generate_challenge_for_user(request.user)
+    try:
+        challenge = generate_challenge_for_user(request.user)
+    except ValueError as exc:
+        messages.error(request, str(exc))
+        return redirect('challenge_evaluation')
     request.user.challenges.add(challenge)
     if request.user.challenges.filter(is_logical=True).count() == 0:
         logical_challenge = generate_logical_challenge_for_user(request.user)

@@ -175,7 +175,7 @@ class SettingsAdmin(RecruitmentOnlyAdminMixin, admin.ModelAdmin):
         'fields': ('default_challenge_duration', 'beginner_challenge_duration', 'intermediate_challenge_duration',
                    'advanced_challenge_duration'), 'classes': ('wide',), }), ('Configuration des questions', {
         'fields': ('open_answer_question_count_per_tag', 'multiple_choice_question_count_per_tag',
-                   'unique_choice_question_count_per_tag'), }),
+                   'unique_choice_question_count_per_tag', 'minimum_technical_question_count'), }),
                  ('Base de données', {'fields': ('is_database_already_populated',), }),)
 
     def has_add_permission(self, request):

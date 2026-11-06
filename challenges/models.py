@@ -135,6 +135,10 @@ class Settings(models.Model):
                                                                          default=3)
     unique_choice_question_count_per_tag = models.PositiveIntegerField('Nombre de questions choix unique par tag',
                                                                        default=2)
+    minimum_technical_question_count = models.PositiveIntegerField(
+        'Nombre minimum de questions techniques',
+        default=20,
+    )
 
     class Meta:
         verbose_name = 'Paramètre'

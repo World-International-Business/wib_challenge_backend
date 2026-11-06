@@ -2,8 +2,6 @@ from collections import defaultdict
 from random import shuffle
 
 from django.db import transaction
-from django.db.models import Case, When, IntegerField
-
 from accounts.models import User
 from challenges.models import Challenge, Settings, PersonalityChallenge, TestDurationProfile
 from questions.models import Question, Tag, Domain
@@ -53,10 +51,27 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
         questions_by_type[question.question_type].append(question)
 
     selected_questions = []
+    selected_ids = set()
     for question_type, count in question_quotas.items():
         candidates = questions_by_type[question_type]
         shuffle(candidates)
-        selected_questions.extend(candidates[:count])
+        for question in candidates[:count]:
+            selected_questions.append(question)
+            selected_ids.add(question.id)
+
+    minimum_count = (
+        settings.minimum_technical_question_count
+        if settings and question_category == Question.QuestionCategory.NORMAL
+        else 0
+    )
+    if len(selected_questions) < minimum_count:
+        remaining = [
+            question
+            for question in question_queryset
+            if question.id not in selected_ids
+        ]
+        shuffle(remaining)
+        selected_questions.extend(remaining[:minimum_count - len(selected_questions)])
 
     return selected_questions
 
@@ -64,6 +79,13 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
 @transaction.atomic
 def generate_challenge_for_user(user: User, skills: list[Tag] | None = None):
     durations = get_profile_durations(user.domain, user.experience_level)
+    selected_questions = select_questions(skills or list(user.skills.all()), domain=user.domain)
+    minimum_count = Settings.objects.first().minimum_technical_question_count
+    if len(selected_questions) < minimum_count:
+        raise ValueError(
+            f'Le domaine « {user.domain} » ne contient que {len(selected_questions)} '
+            f'question(s) technique(s), {minimum_count} sont nécessaires.'
+        )
 
     challenge = Challenge.objects.create(
         domain=user.domain,
@@ -71,7 +93,6 @@ def generate_challenge_for_user(user: User, skills: list[Tag] | None = None):
         description=f'Testez vos compétences pour {user.domain.name}',
         duration=durations['technical']
     )
-    selected_questions = select_questions(skills or list(user.skills.all()), domain=user.domain)
     challenge.questions.add(*selected_questions)
     challenge.title += ' #' + str(challenge.pk)
     challenge.save()
