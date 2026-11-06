@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}{{ interview.title }}{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="card p-4">
+<div class="d-flex justify-content-between"><div><h1 class="h3 fw-bold">{{ interview.title }}</h1><p class="text-muted">{{ interview.scheduled_at|date:'d/m/Y à H:i' }} · {{ interview.duration_minutes }} minutes</p></div><span class="badge text-bg-primary align-self-start">{{ interview.get_status_display }}</span></div>
+{% if interview.notes %}<div class="alert alert-light">{{ interview.notes|linebreaks }}</div>{% endif %}
+{% if user == interview.candidate and not interview.candidate_consented %}<div class="alert alert-warning">Cet entretien sera enregistré et pourra être transcrit. Votre consentement est nécessaire pour rejoindre la salle.</div>{% endif %}
+<form method="post" action="{% url 'interview_join' interview.id %}" class="mb-3">{% csrf_token %}{% if user == interview.candidate %}<div class="form-check mb-3"><input class="form-check-input" type="checkbox" name="consent" id="consent" required><label class="form-check-label" for="consent">J'accepte l'enregistrement et la transcription de cet entretien.</label></div>{% endif %}<button class="btn btn-success">Rejoindre la salle vidéo</button></form>
+{% if user == interview.organizer %}<form method="post" action="{% url 'interview_complete' interview.id %}" class="d-inline">{% csrf_token %}<button class="btn btn-outline-secondary">Terminer l'entretien</button></form>{% endif %}
+{% if user == interview.organizer and interview.transcript %}<form method="post" action="{% url 'interview_analyze' interview.id %}" class="mt-4">{% csrf_token %}<button class="btn btn-outline-primary">Générer l'analyse IA</button></form>{% endif %}
+{% if interview.ai_analysis %}<hr><h2 class="h5">Analyse assistée</h2><pre class="bg-light p-3 rounded">{{ interview.ai_analysis }}</pre>{% endif %}
+</div></div>
+{% endblock %}

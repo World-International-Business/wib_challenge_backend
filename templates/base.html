@@ -104,6 +104,16 @@
                     <a class="nav-link px-3 rounded-2" href="{% url 'home' %}">Accueil</a>
                 </li>
                 {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link px-3 rounded-2" href="{% url 'interview_list' %}">
+                            <i class="bi bi-camera-video me-1 d-lg-none"></i>Entretiens
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3 rounded-2" href="{% url 'notification_list' %}">
+                            <i class="bi bi-bell me-1 d-lg-none"></i>Notifications
+                        </a>
+                    </li>
                     {% if user.school_staff %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-3 rounded-2" href="#" id="schoolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

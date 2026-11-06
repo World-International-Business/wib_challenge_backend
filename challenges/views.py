@@ -1,3 +1,4 @@
+import json
 import logging
 import math
 import re
@@ -14,6 +15,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
 from django.db.models import Avg, Count, Q
 from django.http.response import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -23,6 +25,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.utils import timezone
 from django.utils.safestring import mark_safe
+from django.views.decorators.http import require_POST
 
 from accounts.models import User
 from challenges.challenge_gen import generate_challenge_for_user, generate_personality_challenge_for_user, \
@@ -31,7 +34,9 @@ from challenges.corrector import correct_submission, correct_personality_challen
 from challenges.models import (
     CampaignCandidate, Challenge, RecruitmentCampaign, SubmissionAttempt,
     Submission, Answer, PersonalityChallenge, PersonalityAnswer, TestDurationProfile,
+    Interview, Notification,
 )
+from challenges.services.daily import DailyError, analyze_transcript, create_meeting_token, ensure_room
 from questions.models import Domain, Question
 
 logger = logging.getLogger(__name__)
@@ -253,6 +258,173 @@ def admin_dashboard_view(request):
         },
     }
     return render(request, 'challenges/admin_dashboard.html', context)
+
+
+def _notify(user, title, message, url):
+    Notification.objects.create(recipient=user, title=title, message=message, url=url)
+
+
+@recruitment_staff_required
+def interview_create_view(request, candidate_id=None):
+    candidate = get_object_or_404(User, pk=candidate_id) if candidate_id else None
+    if request.method == 'POST':
+        candidate = get_object_or_404(User, pk=request.POST.get('candidate_id'))
+        title = request.POST.get('title', '').strip()
+        scheduled_at = request.POST.get('scheduled_at', '').strip()
+        notes = request.POST.get('notes', '').strip()
+        try:
+            scheduled = timezone.make_aware(
+                timezone.datetime.fromisoformat(scheduled_at)
+            )
+            duration = int(request.POST.get('duration_minutes', '45'))
+            if duration < 15 or duration > 180:
+                raise ValueError
+        except (TypeError, ValueError):
+            messages.error(request, 'La date ou la durée de l’entretien est invalide.')
+            scheduled = None
+            duration = 45
+        if scheduled is not None and not title:
+            messages.error(request, 'Le titre de l’entretien est obligatoire.')
+        elif scheduled is not None and (not candidate.is_active or candidate.is_staff):
+            messages.error(request, 'Ce compte ne peut pas recevoir un entretien candidat.')
+        elif scheduled is not None:
+            interview = Interview.objects.create(
+                organizer=request.user,
+                candidate=candidate,
+                title=title,
+                scheduled_at=scheduled,
+                duration_minutes=duration,
+                notes=notes,
+            )
+            url = reverse('interview_detail', kwargs={'interview_id': interview.id})
+            _notify(candidate, 'Nouvel entretien vidéo planifié', f'{title} le {scheduled:%d/%m/%Y à %H:%M}.', url)
+            try:
+                _send_recruitment_message(
+                    request,
+                    candidate.email,
+                    candidate.first_name,
+                    f'Entretien vidéo planifié : {title}',
+                    f'Votre entretien est planifié le {scheduled:%d/%m/%Y à %H:%M}. '
+                    'Connectez-vous à votre compte pour rejoindre la salle vidéo.',
+                )
+            except Exception:
+                logger.exception('Impossible d envoyer l invitation entretien')
+                messages.warning(request, 'Entretien créé, mais l’email n’a pas pu être envoyé.')
+            else:
+                messages.success(request, 'Entretien créé et notification envoyée.')
+            return redirect('interview_detail', interview_id=interview.id)
+    candidates = User.objects.filter(
+        is_active=True, is_staff=False, student_profile__isnull=True, school_staff__isnull=True,
+    ).order_by('last_name', 'first_name')
+    return render(request, 'challenges/interview_form.html', {'candidate': candidate, 'candidates': candidates})
+
+
+@login_required
+def interview_list_view(request):
+    if _is_recruitment_staff(request.user):
+        interviews = Interview.objects.filter(organizer=request.user).select_related('candidate')
+    else:
+        interviews = Interview.objects.filter(candidate=request.user).select_related('organizer')
+    return render(request, 'challenges/interview_list.html', {'interviews': interviews})
+
+
+@login_required
+def interview_detail_view(request, interview_id):
+    interview = get_object_or_404(
+        Interview.objects.select_related('candidate', 'organizer'),
+        pk=interview_id,
+    )
+    if request.user not in (interview.candidate, interview.organizer):
+        from django.core.exceptions import PermissionDenied
+        raise PermissionDenied
+    return render(request, 'challenges/interview_detail.html', {'interview': interview})
+
+
+@login_required
+def interview_join_view(request, interview_id):
+    interview = get_object_or_404(Interview, pk=interview_id)
+    is_owner = request.user == interview.organizer
+    if request.user not in (interview.candidate, interview.organizer):
+        from django.core.exceptions import PermissionDenied
+        raise PermissionDenied
+    if request.method == 'POST' and request.user == interview.candidate:
+        if request.POST.get('consent') != 'on':
+            messages.error(request, 'Votre consentement est nécessaire pour l’enregistrement.')
+            return redirect('interview_detail', interview_id=interview.id)
+        interview.candidate_consented = True
+        interview.save(update_fields=['candidate_consented'])
+    if not is_owner and not interview.candidate_consented:
+        messages.error(request, 'Acceptez l’enregistrement avant de rejoindre l’entretien.')
+        return redirect('interview_detail', interview_id=interview.id)
+    try:
+        ensure_room(interview)
+        token = create_meeting_token(interview, is_owner=is_owner)
+    except DailyError as exc:
+        messages.error(request, str(exc))
+        return redirect('interview_detail', interview_id=interview.id)
+    if interview.status == Interview.Status.SCHEDULED:
+        interview.status = Interview.Status.IN_PROGRESS
+        interview.save(update_fields=['status'])
+    return render(request, 'challenges/interview_room.html', {
+        'interview': interview,
+        'token': token,
+        'is_owner': is_owner,
+        'recording_enabled': settings.INTERVIEW_RECORDING_ENABLED,
+        'transcription_enabled': settings.INTERVIEW_TRANSCRIPTION_ENABLED,
+    })
+
+
+@require_POST
+@recruitment_staff_required
+def interview_complete_view(request, interview_id):
+    interview = get_object_or_404(Interview, pk=interview_id, organizer=request.user)
+    interview.status = Interview.Status.COMPLETED
+    interview.completed_at = timezone.now()
+    interview.save(update_fields=['status', 'completed_at'])
+    _notify(interview.candidate, 'Entretien terminé', f'Votre entretien « {interview.title} » est terminé.', reverse('interview_detail', kwargs={'interview_id': interview.id}))
+    messages.success(request, 'Entretien clôturé.')
+    return redirect('interview_detail', interview_id=interview.id)
+
+
+@login_required
+def interview_transcript_view(request, interview_id):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Méthode non autorisée.'}, status=405)
+    interview = get_object_or_404(Interview, pk=interview_id)
+    if request.user not in (interview.candidate, interview.organizer):
+        from django.core.exceptions import PermissionDenied
+        raise PermissionDenied
+    try:
+        payload = json.loads(request.body)
+        transcript = str(payload.get('transcript', '')).strip()
+    except (TypeError, ValueError, json.JSONDecodeError):
+        return JsonResponse({'error': 'Transcription invalide.'}, status=400)
+    if transcript:
+        interview.transcript = f'{interview.transcript}\n{transcript}'.strip()
+        interview.save(update_fields=['transcript'])
+    return JsonResponse({'saved': True})
+
+
+@require_POST
+@recruitment_staff_required
+def interview_analyze_view(request, interview_id):
+    interview = get_object_or_404(Interview, pk=interview_id, organizer=request.user)
+    try:
+        interview.ai_analysis = analyze_transcript(interview.transcript)
+    except Exception as exc:
+        logger.exception('Analyse IA entretien impossible')
+        messages.error(request, f'Analyse impossible : {exc}')
+    else:
+        interview.save(update_fields=['ai_analysis'])
+        messages.success(request, 'Analyse IA générée.')
+    return redirect('interview_detail', interview_id=interview.id)
+
+
+@login_required
+def notification_list_view(request):
+    notifications = request.user.notifications.all()
+    notifications.filter(read_at__isnull=False).update(read_at=timezone.now())
+    return render(request, 'challenges/notification_list.html', {'notifications': notifications})
 
 
 @login_required

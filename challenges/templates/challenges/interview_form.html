@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Planifier un entretien{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="card p-4 mx-auto" style="max-width:760px">
+<h1 class="h3 fw-bold mb-4">Planifier un entretien vidéo</h1>
+<form method="post">{% csrf_token %}
+  <label class="form-label">Candidat</label>
+  <select name="candidate_id" class="form-select mb-3" required>
+    {% for item in candidates %}<option value="{{ item.id }}" {% if candidate.id == item.id %}selected{% endif %}>{{ item.get_full_name|default:item.email }} — {{ item.email }}</option>{% endfor %}
+  </select>
+  <label class="form-label">Titre</label><input name="title" class="form-control mb-3" required maxlength="180" placeholder="Entretien technique">
+  <div class="row"><div class="col-md-8"><label class="form-label">Date et heure</label><input type="datetime-local" name="scheduled_at" class="form-control mb-3" required></div><div class="col-md-4"><label class="form-label">Durée (minutes)</label><input type="number" name="duration_minutes" value="45" min="15" max="180" class="form-control mb-3"></div></div>
+  <label class="form-label">Notes de préparation</label><textarea name="notes" class="form-control mb-4" rows="4"></textarea>
+  <button class="btn btn-primary">Créer et notifier le candidat</button>
+</form></div></div>
+{% endblock %}

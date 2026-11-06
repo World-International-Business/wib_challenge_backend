@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Salle vidéo{% endblock %}
+{% block content %}
+<div class="container-fluid py-3"><div class="d-flex justify-content-between align-items-center mb-3"><h1 class="h4">{{ interview.title }}</h1><a href="{% url 'interview_detail' interview.id %}" class="btn btn-outline-secondary">Quitter</a></div><div id="daily-room" style="height:78vh;border-radius:16px;overflow:hidden;background:#0f172a"></div></div>
+<script src="https://unpkg.com/@daily-co/daily-js"></script>
+<script>
+  const call = DailyIframe.createFrame(document.getElementById('daily-room'), {showLeaveButton: true, iframeStyle: {width:'100%',height:'100%',border:0}});
+  const transcript = [];
+  call.join({url: "{{ interview.daily_room_url|escapejs }}", token: "{{ token|escapejs }}", userName: "{{ request.user.get_full_name|default:request.user.email|escapejs }}"});
+  {% if is_owner and recording_enabled %}call.on('joined-meeting', () => call.startRecording({type:'cloud'}));{% endif %}
+  {% if transcription_enabled %}call.on('joined-meeting', () => call.startTranscription());{% endif %}
+  {% if recording_enabled %}call.on('transcription-message', (event) => {
+    if (event?.text) transcript.push(event.text);
+  });{% endif %}
+  call.on('left-meeting', () => {
+    if (!transcript.length) return;
+    const csrf = document.cookie.split('; ').find(row => row.startsWith('csrftoken='))?.split('=')[1];
+    fetch("{% url 'interview_transcript' interview.id %}", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrf || ''},
+      body: JSON.stringify({transcript: transcript.join('\n')}),
+    });
+  });
+</script>
+{% endblock %}

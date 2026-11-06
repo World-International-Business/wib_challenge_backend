@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Entretiens vidéo{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div><h1 class="h3 fw-bold">Entretiens vidéo</h1><p class="text-muted mb-0">Vos rendez-vous, notifications et salles sécurisées.</p></div>
+    {% if user.is_staff and not user.school_staff %}<a class="btn btn-primary" href="{% url 'interview_create' %}">Planifier un entretien</a>{% endif %}
+  </div>
+  <div class="row g-3">
+    {% for interview in interviews %}
+    <div class="col-md-6"><div class="card h-100"><div class="card-body">
+      <span class="badge text-bg-light">{{ interview.get_status_display }}</span>
+      <h2 class="h5 mt-2">{{ interview.title }}</h2>
+      <p class="mb-1"><strong>{% if user == interview.candidate %}Responsable{% else %}Candidat{% endif %} :</strong> {% if user == interview.candidate %}{{ interview.organizer.get_full_name|default:interview.organizer.email }}{% else %}{{ interview.candidate.get_full_name|default:interview.candidate.email }}{% endif %}</p>
+      <p class="text-muted">{{ interview.scheduled_at|date:'d/m/Y à H:i' }} · {{ interview.duration_minutes }} min</p>
+      <a class="btn btn-outline-primary" href="{% url 'interview_detail' interview.id %}">Voir l'entretien</a>
+    </div></div></div>
+    {% empty %}<div class="col-12"><div class="alert alert-info">Aucun entretien planifié.</div></div>{% endfor %}
+  </div>
+</div>
+{% endblock %}

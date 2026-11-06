@@ -56,6 +56,70 @@ class CampaignCandidate(models.Model):
         return f'{self.campaign} - {self.candidate}'
 
 
+class Notification(models.Model):
+    recipient = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='notifications',
+    )
+    title = models.CharField(max_length=180)
+    message = models.TextField()
+    url = models.CharField(max_length=500, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    read_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f'{self.recipient.email} - {self.title}'
+
+
+class Interview(models.Model):
+    class Status(models.TextChoices):
+        SCHEDULED = 'SCHEDULED', 'Planifié'
+        IN_PROGRESS = 'IN_PROGRESS', 'En cours'
+        COMPLETED = 'COMPLETED', 'Terminé'
+        CANCELLED = 'CANCELLED', 'Annulé'
+
+    organizer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        related_name='organized_interviews',
+    )
+    candidate = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        related_name='candidate_interviews',
+    )
+    campaign = models.ForeignKey(
+        RecruitmentCampaign,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='interviews',
+    )
+    title = models.CharField('Titre', max_length=180)
+    notes = models.TextField('Notes de préparation', blank=True)
+    scheduled_at = models.DateTimeField('Date et heure')
+    duration_minutes = models.PositiveIntegerField('Durée (minutes)', default=45)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.SCHEDULED)
+    daily_room_name = models.CharField(max_length=180, unique=True, blank=True)
+    daily_room_url = models.URLField(blank=True)
+    candidate_consented = models.BooleanField(default=False)
+    recording_started_at = models.DateTimeField(null=True, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    transcript = models.TextField(blank=True)
+    ai_analysis = models.JSONField(default=dict, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-scheduled_at']
+
+    def __str__(self):
+        return f'{self.title} - {self.candidate.email}'
+
+
 class Settings(models.Model):
     default_challenge_duration = models.DurationField("Durée par défaut d'un challenge", default=timedelta(hours=1))
     beginner_challenge_duration = models.DurationField("Durée d'un challenge pour les débutants",

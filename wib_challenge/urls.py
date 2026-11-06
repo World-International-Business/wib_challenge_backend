@@ -32,6 +32,9 @@ from challenges.views import (
      recruitment_campaign_list_view, recruitment_campaign_detail_view,
      manual_correct_submission_view, manual_correct_personality_view,
      leaderboard_view, admin_dashboard_view,
+     interview_create_view, interview_list_view, interview_detail_view,
+     interview_join_view, interview_complete_view, interview_analyze_view,
+     interview_transcript_view, notification_list_view,
 )
 from questions.models import Question
 from wib_challenge.views import json_input
@@ -77,6 +80,15 @@ urlpatterns = [
      path('ecole/tentatives/<int:attempt_id>/corriger/', school_attempt_grade_view, name='school_attempt_grade'),
      path('ecole/mes-epreuves/', student_dashboard_view, name='student_dashboard'),
     path('tableau-de-bord/', admin_dashboard_view, name='admin_dashboard'),
+    path('entretiens/', interview_list_view, name='interview_list'),
+    path('entretiens/ajouter/', interview_create_view, name='interview_create'),
+    path('entretiens/candidat/<int:candidate_id>/ajouter/', interview_create_view, name='interview_create_for_candidate'),
+    path('entretiens/<int:interview_id>/', interview_detail_view, name='interview_detail'),
+    path('entretiens/<int:interview_id>/rejoindre/', interview_join_view, name='interview_join'),
+    path('entretiens/<int:interview_id>/terminer/', interview_complete_view, name='interview_complete'),
+    path('entretiens/<int:interview_id>/transcription/', interview_transcript_view, name='interview_transcript'),
+    path('entretiens/<int:interview_id>/analyser/', interview_analyze_view, name='interview_analyze'),
+    path('notifications/', notification_list_view, name='notification_list'),
      path('recrutement/campagnes/', recruitment_campaign_list_view, name='recruitment_campaign_list'),
      path('recrutement/campagnes/<int:campaign_id>/', recruitment_campaign_detail_view, name='recruitment_campaign_detail'),
      path('recrutement/campagnes/<int:campaign_id>/acces/', recruitment_campaign_access_view, name='recruitment_campaign_access'),

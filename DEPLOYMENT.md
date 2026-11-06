@@ -44,6 +44,10 @@ POSTGRES_PASSWORD=un_mot_de_passe_fort
 ALLOWED_HOSTS=votre-domaine.com,www.votre-domaine.com
 PUBLIC_SITE_URL=https://votre-domaine.com
 CSRF_TRUSTED_ORIGINS=https://votre-domaine.com
+DAILY_API_KEY=
+DAILY_DOMAIN=
+INTERVIEW_RECORDING_ENABLED=true
+INTERVIEW_TRANSCRIPTION_ENABLED=true
 
 # Configuration email (optionnel)
 EMAIL_PROVIDER=smtp
@@ -56,6 +60,8 @@ SMTP_FROM=noreply@wib-challenge.com
 
 `SECRET_KEY`, `POSTGRES_PASSWORD`, `ALLOWED_HOSTS` et `PUBLIC_SITE_URL` sont
 obligatoires. Ils n'ont volontairement pas de valeur par dÃ©faut en production.
+Pour activer les entretiens vidéo, renseignez `DAILY_API_KEY` et `DAILY_DOMAIN`
+dans l'environnement Dokploy. Les clés ne doivent jamais être commitÃ©es.
 
 ### Lancer avec Docker Compose
 ```bash
