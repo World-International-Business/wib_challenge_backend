@@ -3,7 +3,7 @@ Configuration email amelioree avec gestion des erreurs et fallback
 """
 import os
 from django.core.mail.backends.smtp import EmailBackend
-from django.core.mail.backends.console import ConsoleEmailBackend
+from django.core.mail.backends.console import EmailBackend as ConsoleEmailBackend
 import logging
 
 logger = logging.getLogger(__name__)
