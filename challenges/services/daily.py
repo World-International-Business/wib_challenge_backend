@@ -60,12 +60,13 @@ def ensure_room(interview):
         timezone.now() + timedelta(hours=1),
     )
     properties = {
-        'enable_recording': 'cloud',
         'start_video_off': False,
         'start_audio_off': False,
         'max_participants': 2,
         'exp': int(expiration.timestamp()),
     }
+    if getattr(settings, 'INTERVIEW_RECORDING_ENABLED', False):
+        properties['enable_recording'] = 'cloud'
     _request('POST', '/rooms', json={
         'name': room_name,
         'privacy': 'private',
