@@ -4,6 +4,7 @@ from datetime import timedelta
 
 import requests
 from django.conf import settings
+from django.utils import timezone
 
 
 class DailyError(RuntimeError):
@@ -15,6 +16,8 @@ def _config():
     domain = getattr(settings, 'DAILY_DOMAIN', '').strip().rstrip('/')
     if not api_key or not domain:
         raise DailyError('DAILY_API_KEY et DAILY_DOMAIN doivent être configurées.')
+    if not domain.startswith(('http://', 'https://')):
+        domain = f'https://{domain}'
     return api_key, domain
 
 
@@ -24,11 +27,21 @@ def _request(method, path, **kwargs):
         response = requests.request(
             method,
             f'https://api.daily.co/v1{path}',
-            headers={'Authorization': f'Bearer {api_key}', 'Content-Type': 'application/json'},
+            headers={
+                'Authorization': f'Bearer {api_key}',
+                'Content-Type': 'application/json',
+            },
             timeout=20,
             **kwargs,
         )
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except requests.HTTPError as exc:
+            detail = response.text[:300].strip()
+            raise DailyError(
+                f'Erreur Daily ({response.status_code})'
+                + (f' : {detail}' if detail else '.')
+            ) from exc
     except requests.RequestException as exc:
         raise DailyError(f'Erreur Daily : {exc}') from exc
     return response.json() if response.content else {}
@@ -39,14 +52,25 @@ def ensure_room(interview):
     if interview.daily_room_name:
         return interview
     room_name = f'wib-interview-{interview.pk}-{secrets.token_urlsafe(10).lower()}'
+    scheduled_expiration = interview.scheduled_at + timedelta(
+        minutes=interview.duration_minutes + 60
+    )
+    expiration = max(
+        scheduled_expiration,
+        timezone.now() + timedelta(hours=1),
+    )
     properties = {
         'enable_recording': 'cloud',
         'start_video_off': False,
         'start_audio_off': False,
         'max_participants': 2,
-        'exp': int((interview.scheduled_at + timedelta(minutes=interview.duration_minutes + 60)).timestamp()),
+        'exp': int(expiration.timestamp()),
     }
-    _request('POST', '/rooms', json={'name': room_name, 'properties': properties})
+    _request('POST', '/rooms', json={
+        'name': room_name,
+        'privacy': 'private',
+        'properties': properties,
+    })
     interview.daily_room_name = room_name
     interview.daily_room_url = f'{domain}/{room_name}'
     interview.save(update_fields=['daily_room_name', 'daily_room_url'])
@@ -55,12 +79,20 @@ def ensure_room(interview):
 
 def create_meeting_token(interview, *, is_owner):
     ensure_room(interview)
+    expiration = max(
+        interview.scheduled_at + timedelta(minutes=interview.duration_minutes + 60),
+        timezone.now() + timedelta(hours=1),
+    )
     properties = {
         'room_name': interview.daily_room_name,
         'is_owner': is_owner,
-        'exp': int((interview.scheduled_at + timedelta(minutes=interview.duration_minutes + 60)).timestamp()),
+        'exp': int(expiration.timestamp()),
     }
-    return _request('POST', '/meeting-tokens', json={'properties': properties})['token']
+    response = _request('POST', '/meeting-tokens', json={'properties': properties})
+    token = response.get('token')
+    if not token:
+        raise DailyError('Daily n’a pas retourné de jeton de réunion.')
+    return token
 
 
 def start_recording(interview):

@@ -18,6 +18,7 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import RedirectView
 
 from accounts.views import (login_view, register_view, verify_email_view, logout_view, update_profile,
                            student_profile_view, school_staff_profile_view, candidate_profile_view,
@@ -53,6 +54,7 @@ from challenges.admin_views import (
 )
 
 urlpatterns = [
+    path('favicon.ico', RedirectView.as_view(url='/static/images/favicon.png', permanent=False)),
     # Gestion admin personnalisée (doit être avant le catch-all de l'admin Django)
     path('admin/durees/', duration_profile_list_view, name='duration_profile_list'),
     path('admin/durees/ajouter/', duration_profile_create_view, name='duration_profile_create'),
