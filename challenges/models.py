@@ -293,8 +293,11 @@ class Answer(models.Model):
             return 1 if bool(self.is_correct) else 0
         correct_choices = self.question.choices.filter(is_correct=True)
         selected_ids = [choice.id for choice in self.selected_choices.all()]
+        total_correct_choices = correct_choices.count()
+        if not total_correct_choices:
+            return 0.0
         correct_count = correct_choices.filter(id__in=selected_ids).count()
-        return correct_count / correct_choices.count()
+        return correct_count / total_correct_choices
 
     def __str__(self):
         return f'{self.question} '

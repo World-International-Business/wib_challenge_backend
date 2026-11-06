@@ -506,7 +506,9 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
                                             'answers__question', 'challenge__domain'
                                             ).select_related('candidate'),
         challenge_id=challenge_id, candidate_id=candidate.id, id=submission_id)
-    attempt = submission.attempt
+    attempt = SubmissionAttempt.objects.filter(
+        submission=submission,
+    ).first()
 
     answers = []
 
@@ -534,7 +536,8 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
     partial_correct_percent = (partial_correct_count / total_questions * 100) if total_questions > 0 else 0
 
     top_submissions = Submission.objects.filter(
-        challenge__domain=submission.challenge.domain
+        challenge__domain=submission.challenge.domain,
+        result__isnull=False,
     ).select_related('candidate').order_by('-result')[:10]
 
     # Structure pour stocker les données des candidats
@@ -552,10 +555,11 @@ def evaluation_results(request, submission_id=None, slug=None, challenge_id=None
         if sub.candidate.id == candidate.id:
             user_in_top = True
 
-    if not user_in_top:
+    if not user_in_top and submission.result is not None:
         candidates.append(None)
         user_rank = Submission.objects.filter(
             challenge__domain=submission.challenge.domain,
+            result__isnull=False,
             result__gt=submission.result
         ).count() + 1
         candidates.append({
@@ -812,7 +816,10 @@ def submit_evaluation_view(request):
 def generate_challenge(request):
     if request.method != 'POST' or not request.user.has_skill_infos or request.user.is_staff:
         return redirect('home')
-    if Submission.objects.filter(candidate=request.user, challenge__is_logical=False).exists():
+    if request.user.challenges.filter(
+        is_logical=False,
+        submissions__candidate=request.user,
+    ).exists():
         messages.warning(request, 'Vous avez déjà passé un test technique. Pour le repasser, contactez l\'administrateur.')
         return redirect('home')
     try:
