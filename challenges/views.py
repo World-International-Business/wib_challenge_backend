@@ -595,9 +595,11 @@ def personality_evaluation_view(request):
         messages.info(request, 'Vous ne pouvez pas passer d\'évaluation en tant que membre du personnel.')
         return redirect('personality_candidates')
 
-    if request.user.personality_challenges.exists():
-        challenge = request.user.personality_challenges.first()
-    else:
+    challenge = request.user.personality_challenges.order_by('-id').first()
+    if challenge and not challenge.questions.exists():
+        challenge.delete()
+        challenge = None
+    if not challenge:
         if request.user.domain:
             challenge = generate_personality_challenge_for_user(request.user, request.user.domain)
         else:
@@ -659,7 +661,11 @@ def challenge_evaluation_view(request, slug=None, challenge_id=None):
         logical_challenge = Challenge.objects.filter(
             is_logical=True,
             users=request.user
-        ).first()
+        ).order_by('-id').first()
+        if logical_challenge and not logical_challenge.questions.exists():
+            request.user.challenges.remove(logical_challenge)
+            logical_challenge.delete()
+            logical_challenge = None
         has_logical_test = logical_challenge is not None
         logical_passed = has_logical_test and logical_challenge.submissions.filter(
             candidate=request.user
