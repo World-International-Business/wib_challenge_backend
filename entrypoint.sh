@@ -13,30 +13,24 @@ until python manage.py migrate --noinput; do
   sleep 2
 done
 
-# Creer le superutilisateur par defaut si necessaire
-echo "Verification du superutilisateur..."
-python manage.py create_default_admin || echo "Superutilisateur existe deja"
-
-# Initialiser les donnees de base
-echo "Initialisation des donnees de base..."
-python manage.py initialize || echo "Donnees de base deja initialisees"
-
-# Peupler la base de donnees educatives
-echo "Peuplement de la base de donnees educatives..."
-python manage.py seed_education_data || echo "Donnees educatives deja peuplees"
-
-# Creer les parametres par defaut
+# Creer les parametres applicatifs necessaires
 echo "Creation des parametres par defaut..."
-python manage.py create_default_settings || echo "Parametres par defaut existent"
+python manage.py create_default_settings
+
+# Initialiser la structure scolaire uniquement si elle est configuree.
+if [ -n "${EDUCATION_SCHOOL_NAME:-}" ]; then
+  echo "Initialisation de la structure scolaire..."
+  python manage.py initialize_education
+fi
 
 # Collecter les fichiers statiques
 echo "Collecte des fichiers statiques..."
 mkdir -p collected_static
-python manage.py collectstatic --noinput --clear || echo "Collecte des fichiers statiques echouee ou inutile"
+python manage.py collectstatic --noinput --clear
 
 echo "=========================================="
 echo "Initialisation terminee avec succes!"
 echo "=========================================="
 
-# Demarrer le serveur
-exec python manage.py runserver 0.0.0.0:8000
+# Demarrer le serveur de production
+exec gunicorn wib_challenge.wsgi:application --bind 0.0.0.0:8000 --workers "${GUNICORN_WORKERS:-3}" --timeout "${GUNICORN_TIMEOUT:-120}"
