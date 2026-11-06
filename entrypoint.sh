@@ -17,6 +17,12 @@ done
 echo "Creation des parametres par defaut..."
 python manage.py create_default_settings
 
+# Creer le superutilisateur uniquement si les secrets sont fournis par l'environnement.
+if [ -n "${ADMIN_EMAIL:-}" ] && [ -n "${ADMIN_PASSWORD:-}" ]; then
+  echo "Verification du superutilisateur..."
+  python manage.py create_default_admin
+fi
+
 # Initialiser la structure scolaire uniquement si elle est configuree.
 if [ -n "${EDUCATION_SCHOOL_NAME:-}" ]; then
   echo "Initialisation de la structure scolaire..."
