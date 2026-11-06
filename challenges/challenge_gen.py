@@ -40,9 +40,14 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
 
     question_queryset = Question.objects.filter(question_category=question_category)
     if domain:
-        # A domain includes every category and tag below it. Candidate skills
-        # must not hide questions authored for another sub-competence.
-        question_queryset = question_queryset.filter(category__domain=domain)
+        # Technical questions are domain-specific. Personality and logical
+        # questions may be stored in a shared bank when no domain copy exists.
+        domain_questions = question_queryset.filter(category__domain=domain)
+        if (
+            question_category == Question.QuestionCategory.NORMAL
+            or domain_questions.count() >= (settings.minimum_technical_question_count if settings else 20)
+        ):
+            question_queryset = domain_questions
     elif skills:
         question_queryset = question_queryset.filter(tags__in=skills).distinct()
 
@@ -59,11 +64,7 @@ def select_questions(skills: list[Tag] | None = None, question_category: str = Q
             selected_questions.append(question)
             selected_ids.add(question.id)
 
-    minimum_count = (
-        settings.minimum_technical_question_count
-        if settings and question_category == Question.QuestionCategory.NORMAL
-        else 0
-    )
+    minimum_count = settings.minimum_technical_question_count if settings else 20
     if len(selected_questions) < minimum_count:
         remaining = [
             question
