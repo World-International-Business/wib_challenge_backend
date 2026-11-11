@@ -156,6 +156,10 @@ class JobApplication(BaseModel):
         choices=ApplicationStatus.choices,
         default=ApplicationStatus.PENDING
     )
+    needs_human_review = models.BooleanField(default=False, editable=False, db_index=True)
+    review_reason = models.TextField(blank=True, editable=False)
+    review_generation = models.PositiveIntegerField(default=0, editable=False)
+    decision_version = models.PositiveIntegerField(default=0, editable=False)
     ai_analysis = models.TextField(_("Analyse IA du CV"), blank=True)
     ai_decision = models.BooleanField(_("Décision IA"), null=True, blank=True)
 
@@ -248,6 +252,19 @@ class JobApplicationEvaluation(BaseModel):
         ordering = ['-created_at']
 
 
+class RecruitmentDecisionEvent(models.Model):
+    application = models.ForeignKey(JobApplication, on_delete=models.PROTECT, related_name='decision_events')
+    actor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    from_status = models.CharField(max_length=20)
+    to_status = models.CharField(max_length=20)
+    reason = models.TextField(blank=True)
+    policy_version = models.CharField(max_length=64, default='legacy-v1')
+
+    class Meta:
+        ordering = ['created_at', 'pk']
+
+
 class JobApplicationAnalysis(BaseModel):
     class Status(models.TextChoices):
         PENDING = 'pending', _('En attente')
@@ -294,3 +311,114 @@ class JobApplicationAnalysis(BaseModel):
 
     def __str__(self):
         return f"Analysis #{self.id} - application={self.application_id}"
+
+
+class AgentEvent(models.Model):
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT)
+    application = models.ForeignKey(JobApplication, on_delete=models.PROTECT, null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True, db_index=True)
+    action = models.CharField(max_length=100)
+    actor = models.CharField(max_length=10, choices=[('agent', 'Agent'), ('human', 'Human')])
+    target_id = models.CharField(max_length=100)
+    input_data = models.JSONField(default=dict)
+    model_version = models.CharField(max_length=100, blank=True)
+    human_validator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        ordering = ['-timestamp', '-pk']
+
+
+class ReviewNotification(models.Model):
+    application = models.ForeignKey(JobApplication, on_delete=models.CASCADE)
+    generation = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    sent_at = models.DateTimeField(null=True)
+    sent_count = models.PositiveIntegerField(default=0)
+    attempts = models.PositiveIntegerField(default=0)
+    next_attempt_at = models.DateTimeField(null=True)
+    error_code = models.CharField(max_length=50, blank=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['application', 'generation'], name='unique_review_notification')]
+
+
+class ComplianceConsent(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT)
+    purpose = models.CharField(max_length=50)
+    granted = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['user', 'organization', 'purpose'], name='unique_compliance_consent')]
+
+
+class ComplianceRequest(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT)
+    kind = models.CharField(max_length=20, choices=[('access', 'Access'), ('deletion', 'Deletion')])
+    status = models.CharField(max_length=20, default='pending', editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at', '-pk']
+        constraints = [models.UniqueConstraint(fields=['user', 'organization', 'kind'], condition=models.Q(status='pending'), name='unique_pending_compliance_request')]
+
+
+class RetentionPolicy(models.Model):
+    organization = models.OneToOneField(Organization, on_delete=models.PROTECT)
+    candidate_days = models.PositiveIntegerField(default=365)
+    talent_pool_days = models.PositiveIntegerField(default=730)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+
+
+class InterviewBooking(models.Model):
+    application = models.ForeignKey(JobApplication, on_delete=models.CASCADE, related_name='interview_bookings')
+    token_hash = models.CharField(max_length=64, unique=True, editable=False)
+    expires_at = models.DateTimeField()
+    booked_at = models.DateTimeField(null=True, editable=False)
+    selected_slot = models.OneToOneField('InterviewSlot', on_delete=models.PROTECT, null=True, related_name='reservation')
+
+
+class InterviewSlot(models.Model):
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    starts_at = models.DateTimeField()
+    ends_at = models.DateTimeField()
+
+    class Meta:
+        ordering = ['starts_at']
+        constraints = [
+            models.UniqueConstraint(fields=['organization', 'starts_at', 'ends_at'], name='unique_interview_slot'),
+            models.CheckConstraint(condition=models.Q(ends_at__gt=models.F('starts_at')), name='positive_interview_duration'),
+        ]
+
+
+class BookingOption(models.Model):
+    booking = models.ForeignKey(InterviewBooking, on_delete=models.CASCADE, related_name='options')
+    slot = models.ForeignKey(InterviewSlot, on_delete=models.CASCADE)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['booking', 'slot'], name='unique_booking_option')]
+
+
+class OnboardingPlan(models.Model):
+    application = models.OneToOneField(JobApplication, on_delete=models.PROTECT, related_name='onboarding_plan')
+    start_date = models.DateField(null=True, blank=True)
+    steps = models.JSONField(default=list)
+    objectives = models.JSONField(default=dict)
+    administrative_documents = models.JSONField(default=list)
+    version = models.PositiveIntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+
+
+class ContractOTP(models.Model):
+    application = models.OneToOneField(JobApplication, on_delete=models.CASCADE)
+    token_hash = models.CharField(max_length=64)
+    code_hash = models.CharField(max_length=128)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    attempts = models.PositiveIntegerField(default=0)
+    sends = models.PositiveIntegerField(default=1)
+    verified_at = models.DateTimeField(null=True)

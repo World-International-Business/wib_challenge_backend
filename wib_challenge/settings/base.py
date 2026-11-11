@@ -81,6 +81,16 @@ CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', REDIS_URL)
 
 CELERY_TASK_ALWAYS_EAGER = _env_bool('CELERY_TASK_ALWAYS_EAGER', default=False)
 CELERY_TASK_EAGER_PROPAGATES = _env_bool('CELERY_TASK_EAGER_PROPAGATES', default=False)
+REVIEW_NOTIFICATION_INTERVAL_HOURS = config('REVIEW_NOTIFICATION_INTERVAL_HOURS', default=24, cast=int)
+REVIEW_NOTIFICATION_MAX_EMAILS = config('REVIEW_NOTIFICATION_MAX_EMAILS', default=3, cast=int)
+if REVIEW_NOTIFICATION_INTERVAL_HOURS < 1 or REVIEW_NOTIFICATION_MAX_EMAILS < 1:
+    raise ValueError('Review notification interval and maximum must be positive')
+CELERY_BEAT_SCHEDULE = {
+    'dispatch-review-notifications': {
+        'task': 'apps.jobs.tasks.dispatch_review_notifications',
+        'schedule': 60.0,
+    },
+}
 
 # Application definition
 

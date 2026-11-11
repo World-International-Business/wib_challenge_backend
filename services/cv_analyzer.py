@@ -14,6 +14,7 @@ from django.utils import timezone
 from apps.jobs.models import JobOffer, JobApplication, JobApplicationAnalysis
 from apps.candidates.models import CandidateProfile
 from services.utils import get_genai_client
+from services.agent_workflow import record_event, set_human_review
 
 
 class Response(BaseModel):
@@ -93,8 +94,9 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
             analysis.finished_at = timezone.now()
 
             if save:
-                job_application.save()
+                job_application.save(update_fields=['ai_analysis', 'ai_decision', 'updated_at'])
                 analysis.save()
+                set_human_review(job_application.pk, reason='Dossier incomplet : aucun CV ou profil exploitable.')
             return job_application
     else:
         pdf_path = resume.path
@@ -173,14 +175,24 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
     job_application.is_matched = bool(job_application.match_score >= 70 or response.accept)
 
     analysis.status = JobApplicationAnalysis.Status.DONE
-    analysis.provider = JobApplicationAnalysis.Provider.GEMINI
+    local_fallback = response.analyse.startswith(('Analyse locale (fallback)', 'Gemini indisponible'))
+    analysis.provider = JobApplicationAnalysis.Provider.LOCAL if local_fallback else JobApplicationAnalysis.Provider.GEMINI
     analysis.analysis_markdown = response.analyse
     analysis.decision = response.accept
     analysis.finished_at = timezone.now()
+    if response.analyse.startswith("Erreur durant l'analyse Gemini"):
+        analysis.status = JobApplicationAnalysis.Status.FAILED
+        analysis.error = 'provider_failed'
 
     if save:
-        job_application.save()
+        job_application.save(update_fields=['ai_analysis', 'ai_decision', 'match_score', 'is_matched', 'updated_at'])
         analysis.save()
+        failed = response.analyse.startswith("Erreur durant l'analyse Gemini")
+        record_event(job_application, 'analysis.failed' if failed else 'analysis.completed',
+                     data={'analysis_id': analysis.pk},
+                     model_version='keyword-matching-v1' if local_fallback else 'gemini-2.0-flash')
+        set_human_review(job_application.pk, reason='Analyse indisponible : vérification manuelle requise.' if failed
+                         else 'Analyse disponible : décision humaine de présélection requise.')
 
     return job_application
 

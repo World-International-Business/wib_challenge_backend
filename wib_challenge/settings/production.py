@@ -106,14 +106,17 @@ LOGGING['loggers']['django.db.backends'] = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST = config('EMAIL_HOST', default='localhost')
-EMAIL_PORT = 587
-EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER',default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD',default='')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
 EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
 
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER or 'no-reply@pythonanywhere.com'
+EMAIL_TIMEOUT = config('EMAIL_TIMEOUT', default=30, cast=int)
+if EMAIL_USE_TLS and EMAIL_USE_SSL:
+    raise ValueError('EMAIL_USE_TLS and EMAIL_USE_SSL cannot both be enabled')
+
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default=EMAIL_HOST_USER or 'no-reply@pythonanywhere.com')
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 CONTACT_EMAIL = DEFAULT_FROM_EMAIL
 

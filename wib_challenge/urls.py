@@ -24,6 +24,7 @@ from apps.core.views import health_check
 
 urlpatterns = [
     path('administration/', admin.site.urls),
+    path('api/', include('apps.jobs.agent_urls')),
     path('api/', include(('apps.core.urls', 'core'), namespace='core')),
     path('api/jobs/', include(('apps.jobs.urls', 'jobs'), namespace='jobs')),
     path('api/learnings/', include(('apps.learning.urls', 'learning'), namespace='learning')),

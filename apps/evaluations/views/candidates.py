@@ -7,7 +7,10 @@ from django.db import transaction
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from drf_spectacular.utils import extend_schema, OpenApiParameter
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, serializers
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
+from rest_framework.throttling import AnonRateThrottle
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError, NotFound, PermissionDenied, NotAuthenticated
 from rest_framework.generics import get_object_or_404
@@ -32,6 +35,47 @@ class Invitation:
     current: EvaluationInvitation | None
 
 
+class InvitationCheckSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=64)
+
+
+class InvitationCheckResponseSerializer(serializers.Serializer):
+    valid = serializers.BooleanField()
+    evaluation_id = serializers.IntegerField()
+    title = serializers.CharField()
+    expires_at = serializers.DateTimeField()
+    started = serializers.BooleanField()
+    completed = serializers.BooleanField()
+
+
+class InvitationCheckThrottle(AnonRateThrottle):
+    rate = '30/min'
+
+
+class VerifyInvitationView(APIView):
+    permission_classes = [AllowAny]
+    authentication_classes = []
+    throttle_classes = [InvitationCheckThrottle]
+
+    @extend_schema(request=InvitationCheckSerializer, responses={200: InvitationCheckResponseSerializer})
+    def post(self, request):
+        payload = request.data.get('token') or request.data.get('payload') or request.query_params.get('payload')
+        serializer = InvitationCheckSerializer(data={'token': payload})
+        serializer.is_valid(raise_exception=True)
+        invitation = get_object_or_404(EvaluationInvitation.objects.select_related('evaluation'),
+                                       token=serializer.validated_data['token'])
+        if not invitation.is_valid or not invitation.evaluation.is_active:
+            raise PermissionDenied('Invitation indisponible ou expirée.')
+        attempt = SubmissionAttempt.objects.filter(
+            evaluation=invitation.evaluation, participant__candidate=invitation.candidate,
+        ).order_by('-started_at').first()
+        return Response({
+            'valid': True, 'evaluation_id': invitation.evaluation_id,
+            'title': invitation.evaluation.title, 'expires_at': invitation.expires_at,
+            'started': attempt is not None, 'completed': bool(attempt and attempt.is_completed),
+        })
+
+
 @extend_schema(tags=['Sessions d\'évaluations'])
 class CandidateEvaluationViewSet(viewsets.GenericViewSet):
     """Vue pour les candidats qui passent une évaluation avec un token d'invitation"""
@@ -48,7 +92,7 @@ class CandidateEvaluationViewSet(viewsets.GenericViewSet):
     @staticmethod
     def verify_invitation(request):
         """Vérifie si l'invitation est valide"""
-        payload = str(request.GET.get('payload', ''))
+        payload = str(request.query_params.get('payload') or request.data.get('payload') or request.data.get('token') or '')
 
         if not payload or payload == '':
             raise ValidationError(_('Vous devez fournir un token d\'invitation ou id d\'evaluation'))
@@ -97,7 +141,8 @@ class CandidateEvaluationViewSet(viewsets.GenericViewSet):
                 SubmissionAttempt.objects.select_related(
                     'submission', 'participant', 'evaluation'),
                 id=attempt_id,
-                participant=invitation.participant
+                participant=invitation.participant,
+                evaluation=invitation.evaluation,
             )
         else:
             attempt = SubmissionAttempt.objects.filter(

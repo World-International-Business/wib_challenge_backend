@@ -60,6 +60,8 @@ class JobOfferFilter(filters.FilterSet):
 
 
 class JobApplicationFilter(filters.FilterSet):
+    needs_human_review = filters.BooleanFilter(field_name='needs_human_review')
+    needsHumanReview = filters.BooleanFilter(field_name='needs_human_review')
     status = filters.ChoiceFilter(
         choices=JobApplication.ApplicationStatus.choices,
         field_name='status'

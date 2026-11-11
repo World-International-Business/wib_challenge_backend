@@ -2,7 +2,7 @@ from django.urls import path, include
 from rest_framework_nested import routers
 
 from apps.evaluations.views import EvaluationViewSet, EvaluationSearchView
-from apps.evaluations.views.candidates import CandidateEvaluationViewSet
+from apps.evaluations.views.candidates import CandidateEvaluationViewSet, VerifyInvitationView
 from apps.evaluations.views.generated import GeneratePersonalityEvaluationView, GenerateEvaluationFromSpecsView
 from apps.evaluations.views.participants import ParticipantViewSet
 from apps.evaluations.views.questions import EvaluationQuestionsViewSet
@@ -18,6 +18,8 @@ evaluation_router.register('questions', EvaluationQuestionsViewSet, basename='qu
 evaluation_router.register('participants', ParticipantViewSet, basename='participants')
 
 urlpatterns = [
+    path('evaluations/sessions/verify_invitation', VerifyInvitationView.as_view(), name='verify-invitation'),
+    path('evaluations/sessions/verify_invitation/', VerifyInvitationView.as_view(), name='verify-invitation-slash'),
     path('evaluations/', EvaluationSearchView.as_view({'post': 'create', 'get': 'list'}), name='evaluation-search'),
     path('evaluations/builder/', GenerateEvaluationFromSpecsView.as_view(), name='generate-evaluation'),
     path('evaluations/personality-builder/', GeneratePersonalityEvaluationView.as_view(),

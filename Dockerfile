@@ -23,7 +23,7 @@ USER django
 
 COPY --chown=django:django . .
 
-RUN python manage.py collectstatic --noinput && mkdir -p /app/media \
+RUN python manage.py collectstatic --noinput --settings=wib_challenge.settings.base && mkdir -p /app/media \
     && chown -R django:django /app/media && chmod +x ./entrypoint.sh \
     && sed -i 's/\r$//' ./entrypoint.sh
 

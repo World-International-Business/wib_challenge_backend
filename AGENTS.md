@@ -6,6 +6,9 @@
 python manage.py check
 python manage.py check --deploy --settings=wib_challenge.settings.production
 python manage.py test apps.learning apps.payments --keepdb
+python manage.py test apps.jobs --noinput
+python manage.py test apps.jobs.test_agent_api --noinput
+python manage.py send_review_notifications
 python manage.py seed_courses --force
 python manage.py makemigrations --check --dry-run
 ```

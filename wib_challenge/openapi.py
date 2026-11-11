@@ -1,6 +1,15 @@
 import enum
 
 from django.db import models
+from drf_spectacular.extensions import OpenApiAuthenticationExtension
+
+
+class PermissiveJWTAuthenticationScheme(OpenApiAuthenticationExtension):
+    target_class = 'apps.core.authentication.PermissiveJWTAuthentication'
+    name = 'jwtAuth'
+
+    def get_security_definition(self, auto_schema):
+        return {'type': 'http', 'scheme': 'bearer', 'bearerFormat': 'JWT'}
 
 
 def _to_jsonable(value):

@@ -2,10 +2,32 @@ from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
 from apps.organizations.models import Organization
-from .models import JobCategory, JobOffer, JobApplication
+from .models import JobCategory, JobOffer, JobApplication, RecruitmentDecisionEvent
 from ..core.models import Technology
 from ..core.serializers import TagsSerializerField
 from apps.evaluations.models import SubmissionAttempt
+
+
+class RecruitmentDecisionOptionsSerializer(serializers.Serializer):
+    status = serializers.CharField()
+    version = serializers.IntegerField()
+    policy_version = serializers.CharField()
+    allowed_statuses = serializers.ListField(child=serializers.CharField())
+    reason_required_for = serializers.ListField(child=serializers.CharField())
+
+
+class RecruitmentDecisionRequestSerializer(serializers.Serializer):
+    status = serializers.ChoiceField(choices=JobApplication.ApplicationStatus.choices)
+    reason = serializers.CharField(required=False, allow_blank=True)
+    expected_version = serializers.IntegerField(required=False, min_value=0)
+    recruitment_details = serializers.CharField(required=False, allow_blank=True)
+
+
+class RecruitmentDecisionEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RecruitmentDecisionEvent
+        fields = ['id', 'actor', 'created_at', 'from_status', 'to_status', 'reason', 'policy_version']
+        read_only_fields = fields
 
 
 class JobCategorySerializer(serializers.ModelSerializer):
@@ -245,6 +267,7 @@ class OrganizationApplicationSerializer(serializers.ModelSerializer):
             'is_matched',
             'match_score',
             'jobOffer',
+            'needs_human_review', 'review_reason', 'decision_version',
         ]
 
     def get_resumeUrl(self, obj: JobApplication):

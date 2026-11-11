@@ -3,6 +3,7 @@ import secrets
 
 from django.conf import settings
 from django.core.mail import send_mail
+from django.db import transaction
 from django.db.models import Count, Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
@@ -34,7 +35,8 @@ from .serializers import (
     JobCategorySerializer, JobCategoryListSerializer,
     JobOfferListSerializer, JobOfferDetailSerializer,
     JobOfferCreateUpdateSerializer, GenerateJobOfferSerializer, JobApplicationSerializer,
-    OrganizationApplicationSerializer,
+    OrganizationApplicationSerializer, RecruitmentDecisionEventSerializer,
+    RecruitmentDecisionOptionsSerializer, RecruitmentDecisionRequestSerializer,
 )
 from ..accounts.permissions import IsOrganization
 from ..accounts.serializers import UserSerializer
@@ -683,7 +685,7 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 status=status.HTTP_403_FORBIDDEN,
             )
 
-        queryset = self.get_queryset()
+        queryset = self.filter_queryset(self.get_queryset().filter(job_offer__company=user_org))
 
         # Filtres supplémentaires
         job_offer_id = request.query_params.get('job_offer')
@@ -817,6 +819,8 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 analyze_job_application(application, application.job_offer, save=True)
                 return Response({'status': 'processed'}, status=status.HTTP_200_OK)
             except Exception as e:
+                from services.agent_workflow import set_human_review
+                set_human_review(application.pk, reason='Analyse indisponible : intervention requise.')
                 return Response(
                     {
                         'status': 'failed',
@@ -839,6 +843,42 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 status=status.HTTP_503_SERVICE_UNAVAILABLE,
             )
 
+    @extend_schema(responses=RecruitmentDecisionOptionsSerializer)
+    @action(detail=True, methods=['get'], url_path='decision-options')
+    def decision_options(self, request, pk=None):
+        from services.recruitment_decisions import decision_options
+
+        return Response(decision_options(self.get_object(), request.user))
+
+    @extend_schema(responses=RecruitmentDecisionEventSerializer(many=True))
+    @action(detail=True, methods=['get'], url_path='decision-history')
+    def decision_history(self, request, pk=None):
+        from services.recruitment_decisions import require_recruiter
+
+        application = self.get_object()
+        require_recruiter(application, request.user)
+        events = application.decision_events.all()
+        page = self.paginate_queryset(events)
+        if page is not None:
+            return self.get_paginated_response(RecruitmentDecisionEventSerializer(page, many=True).data)
+        return Response(RecruitmentDecisionEventSerializer(events, many=True).data)
+
+    def destroy(self, request, *args, **kwargs):
+        from django.db.models.deletion import ProtectedError
+        from services.recruitment_decisions import require_recruiter
+
+        application = self.get_object()
+        require_recruiter(application, request.user)
+        try:
+            self.perform_destroy(application)
+        except ProtectedError:
+            return Response(
+                {'detail': 'Cette candidature possède un historique protégé. Une procédure de conservation ou d’effacement est nécessaire.'},
+                status=status.HTTP_409_CONFLICT,
+            )
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @extend_schema(request=RecruitmentDecisionRequestSerializer, responses=JobApplicationSerializer)
     @action(detail=True, methods=['patch'], url_path='update-status')
     def update_status(self, request, pk=None):
         """
@@ -854,15 +894,17 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 status=status.HTTP_400_BAD_REQUEST
             )
         
-        old_status = application.status
-        application.status = new_status
-        
+        from services.recruitment_decisions import change_application_status
+
         # Si des détails de recrutement sont fournis (pour le statut 'accepted')
-        if recruitment_details:
-            application.recruitment_details = recruitment_details
-            application.save(update_fields=['status', 'recruitment_details', 'updated_at'])
-        else:
-            application.save(update_fields=['status', 'updated_at'])
+        application, old_status = change_application_status(
+            application_id=application.pk,
+            actor=request.user,
+            target=new_status,
+            recruitment_details=recruitment_details,
+            reason=request.data.get('reason', ''),
+            expected_version=request.data.get('expected_version'),
+        )
         
         # Créer des notifications pour le candidat selon le nouveau statut
         if application.user and old_status != new_status:
@@ -1587,6 +1629,7 @@ class JobMatchView(GenericAPIView):
 @extend_schema(tags=["Contrats"], exclude=False)
 class PublicContractView(APIView):
     permission_classes = [AllowAny]
+    authentication_classes = []
 
     @extend_schema(
         summary="Récupérer les informations du contrat via un token public",
@@ -1627,6 +1670,7 @@ class PublicContractView(APIView):
 @extend_schema(tags=["Contrats"], exclude=False)
 class PublicContractUploadSignedView(APIView):
     permission_classes = [AllowAny]
+    authentication_classes = []
     parser_classes = [MultiPartParser]
 
     @extend_schema(
@@ -1634,14 +1678,14 @@ class PublicContractUploadSignedView(APIView):
         request=None,
         responses={200: OpenApiResponse(description="Contrat signé reçu")},
     )
+    @transaction.atomic
     def post(self, request, token: str):
-        application = JobApplication.objects.filter(contract_token=token).select_related('job_offer').first()
-        if not application:
-            return Response({'detail': 'Token invalide'}, status=status.HTTP_404_NOT_FOUND)
+        from apps.jobs.agent_api import contract_application, contract_otp_verified
+        from services.agent_workflow import record_event
 
-        expires_at = application.contract_token_expires_at
-        if expires_at and timezone.now() > expires_at:
-            return Response({'detail': 'Token expiré'}, status=status.HTTP_410_GONE)
+        application = contract_application(token, lock=True)
+        if not contract_otp_verified(application):
+            return Response({'detail': 'Vérification OTP requise.'}, status=status.HTTP_403_FORBIDDEN)
 
         signed_file = request.FILES.get('signed_contract_file')
         if not signed_file:
@@ -1650,6 +1694,9 @@ class PublicContractUploadSignedView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
+        if signed_file.size > 5 * 1024 * 1024 or signed_file.read(5) != b'%PDF-':
+            return Response({'detail': 'Un PDF de 5 Mo maximum est requis.'}, status=400)
+        signed_file.seek(0)
         application.signed_contract_file = signed_file
         application.contract_status = JobApplication.ContractStatus.SIGNED
         application.contract_signed_at = timezone.now()
@@ -1657,6 +1704,10 @@ class PublicContractUploadSignedView(APIView):
             update_fields=['signed_contract_file', 'contract_status', 'contract_signed_at', 'updated_at']
         )
 
+        record_event(application, 'contract.signed_pdf_received', human=True)
+        if application.status == JobApplication.ApplicationStatus.ACCEPTED:
+            from services.onboarding import initialize_onboarding
+            initialize_onboarding(application)
         org = getattr(application.job_offer, 'company', None)
         if org:
             try:
