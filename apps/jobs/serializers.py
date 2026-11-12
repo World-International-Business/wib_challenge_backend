@@ -88,8 +88,20 @@ class JobOfferDetailSerializer(serializers.ModelSerializer):
         ]
 
 
+class PosteFlexibleField(serializers.PrimaryKeyRelatedField):
+    """Accepte un ID de catégorie ou un titre (résolu/créé automatiquement)."""
+
+    def to_internal_value(self, data):
+        if isinstance(data, str) and not data.strip().isdigit():
+            obj, _ = JobCategory.objects.get_or_create(title=data.strip()[:100])
+            return obj
+        return super().to_internal_value(data)
+
+
 class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
-    skills = TagsSerializerField(slug_field='name', many=True, queryset=Technology.objects.all())
+    skills = TagsSerializerField(slug_field='name', many=True, queryset=Technology.objects.all(), required=False)
+    poste = PosteFlexibleField(queryset=JobCategory.objects.all(), required=False, allow_null=True)
+    poste_title = serializers.CharField(write_only=True, required=False, allow_blank=True)
 
     class Meta:
         model = JobOffer
@@ -99,27 +111,34 @@ class JobOfferCreateUpdateSerializer(WritableNestedModelSerializer):
             'currency', 'job_type', 'experience_level', 'location',
             'remote_allowed', 'application_url', 'application_email',
             'status', 'featured', 'expires_at', 'skills', 'attachments', 'required_documents',
-            'technical_evaluation', 'psychotech_evaluation', 'personality_evaluation'
+            'technical_evaluation', 'psychotech_evaluation', 'personality_evaluation', 'poste_title'
         ]
 
+    def validate(self, attrs):
+        title = attrs.pop('poste_title', '')
+        if not attrs.get('poste'):
+            title = title or (self.instance.poste.title if self.instance and self.instance.poste_id else '')
+            if not title:
+                raise serializers.ValidationError({'poste': 'Ce champ est obligatoire.'})
+            attrs['poste'], _ = JobCategory.objects.get_or_create(title=title.strip()[:100])
+        return attrs
 
-class GenerateJobOfferSerializer(serializers.ModelSerializer):
-    prompt = serializers.CharField(write_only=True)
+
+class OfferGenerationErrorSerializer(serializers.Serializer):
+    error = serializers.CharField()
+    code = serializers.CharField()
+
+
+class GenerateJobOfferSerializer(serializers.Serializer):
+    prompt = serializers.CharField(write_only=True, max_length=20000)
+    title = serializers.CharField(required=False, allow_blank=True, max_length=255)
+    poste = serializers.CharField(required=False, allow_blank=True, max_length=100)
+    description = serializers.CharField(required=False, allow_blank=True, max_length=20000)
+    responsibilities = serializers.CharField(required=False, allow_blank=True, max_length=20000)
+    requirements = serializers.CharField(required=False, allow_blank=True, max_length=20000)
+    benefits = serializers.CharField(required=False, allow_blank=True, max_length=20000)
     analyze = serializers.CharField(read_only=True)
-    skills = TagsSerializerField(slug_field='name', many=True, queryset=Technology.objects.all(), required=False)
-
-    class Meta:
-        model = JobOffer
-        fields = ['title', 'description', 'responsibilities',
-                  'requirements', 'benefits', 'prompt', 'analyze', 'skills']
-        extra_kwargs = {
-            'title': {'required': False},
-            'description': {'required': False},
-            'responsibilities': {'required': False},
-            'requirements': {'required': False},
-            'benefits': {'required': False},
-            'skills': {'required': False}
-        }
+    skills = serializers.ListField(child=serializers.CharField(max_length=100), required=False, max_length=50)
 
 
 

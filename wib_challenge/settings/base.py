@@ -73,6 +73,7 @@ def _env_bool(key: str, default: bool = False) -> bool:
 
 USE_CELERY_FOR_CV_ANALYSIS = _env_bool('USE_CELERY_FOR_CV_ANALYSIS', default=False)
 LOCAL_MATCHING_FALLBACK = _env_bool('LOCAL_MATCHING_FALLBACK', default=False)
+GEMINI_OFFER_MODEL = config('GEMINI_OFFER_MODEL', default='gemini-3.5-flash-lite').strip() or 'gemini-3.5-flash-lite'
 
 # Celery/Redis (optionnel)
 REDIS_URL = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379/0')

@@ -422,3 +422,52 @@ class ContractOTP(models.Model):
     attempts = models.PositiveIntegerField(default=0)
     sends = models.PositiveIntegerField(default=1)
     verified_at = models.DateTimeField(null=True)
+
+
+class OfferConversation(BaseModel):
+    """Conversation persistée de l'agent d'émission de besoin (création d'offre par chat)."""
+
+    class State(models.TextChoices):
+        GREETING = 'greeting', _('Accueil')
+        COLLECTING = 'collecting', _('Collecte du besoin')
+        CLARIFYING = 'clarifying', _('Clarification')
+        DRAFTING = 'drafting', _('Rédaction')
+        REVIEW = 'review', _('Revue')
+        EDITING = 'editing', _('Édition')
+        APPROVED = 'approved', _('Validée')
+        PUBLISHING = 'publishing', _('Publication en cours')
+        PUBLISHED = 'published', _('Publiée')
+
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='offer_conversations')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='offer_conversations')
+    state = models.CharField(max_length=20, choices=State.choices, default=State.COLLECTING)
+    title = models.CharField(max_length=200, blank=True)
+    draft = models.JSONField(default=dict, blank=True)
+    job_offer = models.ForeignKey(JobOffer, on_delete=models.SET_NULL, null=True, blank=True,
+                                  related_name='source_conversations')
+
+    class Meta:
+        ordering = ['-updated_at']
+
+    def __str__(self):
+        return f'Conversation #{self.pk} ({self.state}) - {self.organization_id}'
+
+
+class ConversationMessage(BaseModel):
+    """Message d'une conversation d'émission de besoin (rôle, contenu, blocs typés)."""
+
+    class Role(models.TextChoices):
+        USER = 'user', _('Utilisateur')
+        ASSISTANT = 'assistant', _('Assistant')
+        SYSTEM = 'system', _('Système')
+
+    conversation = models.ForeignKey(OfferConversation, on_delete=models.CASCADE, related_name='messages')
+    role = models.CharField(max_length=10, choices=Role.choices)
+    content = models.TextField(blank=True)
+    blocks = models.JSONField(default=list, blank=True)
+
+    class Meta:
+        ordering = ['created_at', 'pk']
+
+    def __str__(self):
+        return f'{self.role} #{self.pk} - conversation={self.conversation_id}'

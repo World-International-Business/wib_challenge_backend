@@ -5,6 +5,10 @@ from apps.jobs.agent_api import (
     HumanReviewView, InterviewBookView, InterviewSlotsView, PrivacyRequestView,
     RequestOTPView, RetentionView, VerifyOTPView, OnboardingView,
 )
+from apps.jobs.conversation_api import (
+    ConversationApprove, ConversationMessageCreate, ConversationMessageEdit,
+    OfferConversationDetail, OfferConversationListCreate,
+)
 
 
 urlpatterns = [
@@ -24,4 +28,9 @@ urlpatterns = [
     path('jobs/interview-booking/<str:token>/book/', InterviewBookView.as_view(), name='interview-book-alias'),
     path('jobs/contract/<str:token>/request-otp/', RequestOTPView.as_view(), name='contract-request-otp'),
     path('jobs/contract/<str:token>/verify-otp/', VerifyOTPView.as_view(), name='contract-verify-otp'),
+    path('jobs/offer-conversations/', OfferConversationListCreate.as_view(), name='offer-conversations'),
+    path('jobs/offer-conversations/<int:pk>/', OfferConversationDetail.as_view(), name='offer-conversation-detail'),
+    path('jobs/offer-conversations/<int:pk>/messages/', ConversationMessageCreate.as_view(), name='offer-conversation-messages'),
+    path('jobs/offer-conversations/<int:pk>/messages/<int:message_id>/', ConversationMessageEdit.as_view(), name='offer-conversation-message-edit'),
+    path('jobs/offer-conversations/<int:pk>/approve/', ConversationApprove.as_view(), name='offer-conversation-approve'),
 ]

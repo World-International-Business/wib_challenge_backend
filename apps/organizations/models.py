@@ -3,6 +3,10 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
+def default_preferred_channels():
+    return ['site_carriere']
+
+
 class Organization(models.Model):
     class Meta:
         verbose_name = _('Organization')
@@ -29,6 +33,12 @@ class Organization(models.Model):
     logo = models.ImageField(_('Logo'), upload_to='companies/logos/', blank=True, null=True)
     account = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='organization',
                                    verbose_name=_('Compte'))
+    preferred_channels = models.JSONField(_('Canaux de diffusion'), default=default_preferred_channels, blank=True,
+                                          help_text=_("Canaux de diffusion des offres : site_carriere, linkedin, emploi_cm. "
+                                                      "site_carriere est toujours diffusé."))
+    linkedin_page_url = models.URLField(_('Page LinkedIn'), blank=True, null=True)
+    emploi_cm_account = models.CharField(_('Compte Emploi.cm'), max_length=255, blank=True, null=True)
+    hr_alert_email = models.EmailField(_('Email alertes RH'), blank=True, null=True)
     created_at = models.DateTimeField(_('Date de création'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Date de mise à jour'), auto_now=True)
 

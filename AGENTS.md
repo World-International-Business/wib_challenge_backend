@@ -8,6 +8,7 @@ python manage.py check --deploy --settings=wib_challenge.settings.production
 python manage.py test apps.learning apps.payments --keepdb
 python manage.py test apps.jobs --noinput
 python manage.py test apps.jobs.test_agent_api --noinput
+python manage.py test apps.jobs.test_offer_generation --noinput
 python manage.py send_review_notifications
 python manage.py seed_courses --force
 python manage.py makemigrations --check --dry-run
@@ -20,9 +21,25 @@ python manage.py makemigrations --check --dry-run
 - `ALLOWED_HOSTS` : liste sans scheme (`exemple.com,127.0.0.1`).
 - `CSRF_TRUSTED_ORIGINS` et `CORS_ALLOWED_ORIGINS` : avec `https://`.
 - `DATABASE_URL` : PostgreSQL de préférence (`postgres://...` ou `postgresql://...`).
+- `GENAI_API_KEY` : clé Gemini, à configurer sans la journaliser.
+- `GEMINI_OFFER_MODEL` : modèle de génération d’offres, défaut `gemini-3.5-flash-lite`. Cette variable ne change pas les modèles des autres services IA.
 - `PAYMENT_WEBHOOK_BASE_URL`, `CINETPAY_*`, `STRIPE_*`, `PAYPAL_*` : fournies via Dokploy / secrets manager.
 - `AWS_*` ou `PRIVATE_STORAGE_BACKEND=local` : pour contenus et certificats privés.
 - `TRAEFIK_ENABLED=True` et `SECURE_SSL_REDIRECT=False` quand Traefik gère HTTPS.
+
+## Agent conversationnel d'émission de besoin
+
+- `GET/POST /api/jobs/offer-conversations/` — liste des brouillons / création (`content` optionnel = premier message).
+- `GET/DELETE /api/jobs/offer-conversations/{id}/` — historique complet (messages + blocs) / suppression.
+- `POST /api/jobs/offer-conversations/{id}/messages/` — envoi message utilisateur → réponse agent `{message:{role,blocks},state}`.
+- `PATCH /api/jobs/offer-conversations/{id}/messages/{mid}/` — modifier un message utilisateur : tronque la suite et régénère.
+- `POST /api/jobs/offer-conversations/{id}/approve/` — crée l'offre, la publie et diffuse → `{offerId,status,channels}`.
+- `POST /api/jobs/offers/{id}/publish/` — publication + diffusion → `{status,channels,offer}`.
+- `POST /api/jobs/offers/{id}/distribute/` — relance diffusion (`channels` optionnel).
+- Blocs assistant : `text`, `job_card`, `quick_replies`, `confirmation`, `channel_plan`.
+- Canaux réellement branchés : `site_carriere` (réel). `linkedin`/`emploi_cm` = stubs (activés par `LINKEDIN_API_TOKEN`/`EMPLOI_CM_API_TOKEN`, sinon état `failed` "non configuré"). Jamais `published` sans confirmation du canal.
+- `Organization.preferred_channels` (API : `preferredChannels`) pilote la diffusion ; `site_carriere` est toujours inclus. `linkedinPageUrl`/`emploiCmAccount` requis côté org pour ces canaux. `hrAlertEmail` reçoit les alertes needsHumanReview (fallback : email du compte puis `Organization.email`).
+- Audit : `AgentEvent` `offer_agent.reply` / `offer.approved` ; modèle `OFFER_AGENT_MODEL` dans `services/offer_agent.py`.
 
 ## Paiements
 

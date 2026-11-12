@@ -1,5 +1,6 @@
 from datetime import timedelta
 import secrets
+import logging
 
 from django.conf import settings
 from django.core.mail import send_mail
@@ -24,19 +25,19 @@ import requests
 
 from services.cv_analyzer import analyze_job_application
 from services.email_applications import import_email_applications_from_imap
-from services.generate_offer import generate_offer
+from services.generate_offer import generate_offer, OfferGenerationError
 from services.users_job_suggestions import get_users_suggestions_for_job
 from wib_challenge.pagination import paginated_response
 from wib_challenge.permissions import ReadOnly
 from .filters import JobOfferFilter, JobApplicationFilter
-from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation, JobApplicationAnalysis
+from .models import JobCategory, JobOffer, JobApplication, JobApplicationEvaluation, JobApplicationAnalysis, OfferConversation
 from .permissions import CanAccessJobApplication, IsCompanyOwnerOrReadOnly
 from .serializers import (
     JobCategorySerializer, JobCategoryListSerializer,
     JobOfferListSerializer, JobOfferDetailSerializer,
     JobOfferCreateUpdateSerializer, GenerateJobOfferSerializer, JobApplicationSerializer,
     OrganizationApplicationSerializer, RecruitmentDecisionEventSerializer,
-    RecruitmentDecisionOptionsSerializer, RecruitmentDecisionRequestSerializer,
+    RecruitmentDecisionOptionsSerializer, RecruitmentDecisionRequestSerializer, OfferGenerationErrorSerializer,
 )
 from ..accounts.permissions import IsOrganization
 from ..accounts.serializers import UserSerializer
@@ -45,6 +46,9 @@ from apps.evaluations.models import Candidate, EvaluationInvitation, SubmissionA
 from apps.evaluations.utils import send_invitation_email
 from apps.accounts.models import User
 from apps.organizations.models import Notification, UserNotification
+
+
+logger = logging.getLogger(__name__)
 
 
 @extend_schema(tags=['Offres d\'emploi'])
@@ -145,14 +149,26 @@ class JobOfferViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['post'])
     def publish(self, request, pk=None):
-        """Publier une offre d'emploi"""
+        """Publier une offre d'emploi et déclencher la diffusion multi-canaux"""
+        from services.offer_distribution import publish_offer
+
         job = self.get_object()
-        job.status = JobOffer.Status.PUBLISHED
-        job.published_at = job.published_at or timezone.now()
-        job.save()
+        result = publish_offer(job)
+        OfferConversation.objects.filter(job_offer=job).update(state=OfferConversation.State.PUBLISHED)
 
         serializer = self.get_serializer(job)
-        return Response(serializer.data)
+        return Response({**result, 'offer': serializer.data})
+
+    @action(detail=True, methods=['post'])
+    def distribute(self, request, pk=None):
+        """Relancer la diffusion d'une offre sur tous les canaux ou un canal précis"""
+        from services.offer_distribution import distribute_offer
+
+        job = self.get_object()
+        channels = request.data.get('channels')
+        if channels is not None and not isinstance(channels, list):
+            return Response({'detail': "'channels' doit être une liste de noms de canaux."}, status=400)
+        return Response({'channels': distribute_offer(job, channels=channels)})
 
     @action(detail=True, methods=['post'])
     def unpublish(self, request, pk=None):
@@ -177,7 +193,9 @@ class JobOfferViewSet(viewsets.ModelViewSet):
 
     @extend_schema(
         request=GenerateJobOfferSerializer,
-        responses={200: GenerateJobOfferSerializer}
+        responses={200: GenerateJobOfferSerializer, 429: OfferGenerationErrorSerializer,
+                   502: OfferGenerationErrorSerializer, 503: OfferGenerationErrorSerializer,
+                   504: OfferGenerationErrorSerializer}
     )
     @action(detail=False, methods=['post'])
     def generate(self, request):
@@ -187,10 +205,15 @@ class JobOfferViewSet(viewsets.ModelViewSet):
             prompt_description = serializer.validated_data.pop('prompt')
             data = generate_offer(prompt_description, serializer.validated_data)
             serializer = GenerateJobOfferSerializer(data=data)
-            serializer.is_valid(raise_exception=True)
+            if not serializer.is_valid():
+                raise OfferGenerationError('ai_invalid_response', 'Le fournisseur IA a renvoyé des champs invalides. Réessayez.')
             return Response({**data, **serializer.validated_data})
-        except Exception as e:
-            return Response({'error': str(e)}, status=500)
+        except OfferGenerationError as exc:
+            logger.warning('Offer generation failed: %s', exc.code)
+            return Response({'error': str(exc), 'code': exc.code}, status=exc.status_code)
+        except Exception as exc:
+            logger.error('Unexpected offer generation failure: %s', type(exc).__name__)
+            return Response({'error': 'Une erreur interne empêche la génération de l’offre.', 'code': 'offer_generation_failed'}, status=500)
 
     @extend_schema(
         request=JobApplicationSerializer,

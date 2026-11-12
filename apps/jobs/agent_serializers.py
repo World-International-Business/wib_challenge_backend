@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.jobs.models import AgentEvent, ComplianceConsent, ComplianceRequest, RetentionPolicy
+from apps.jobs.models import AgentEvent, ComplianceConsent, ComplianceRequest, RetentionPolicy, OfferConversation, ConversationMessage
 
 
 class AgentEventSerializer(serializers.ModelSerializer):
@@ -173,3 +173,47 @@ class RetentionResponseSerializer(serializers.Serializer):
     configured = serializers.BooleanField()
     updated_at = serializers.DateTimeField(required=False)
     updated_by = serializers.IntegerField(required=False, allow_null=True)
+
+
+class ConversationMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ConversationMessage
+        fields = ['id', 'role', 'content', 'blocks', 'created_at']
+        read_only_fields = fields
+
+
+class OfferConversationListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OfferConversation
+        fields = ['id', 'title', 'state', 'job_offer', 'created_at', 'updated_at']
+        read_only_fields = fields
+
+
+class OfferConversationDetailSerializer(serializers.ModelSerializer):
+    messages = ConversationMessageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = OfferConversation
+        fields = ['id', 'title', 'state', 'draft', 'job_offer', 'messages', 'created_at', 'updated_at']
+        read_only_fields = fields
+
+
+class ConversationMessageInputSerializer(serializers.Serializer):
+    content = serializers.CharField(max_length=20000, allow_blank=False)
+
+
+class AssistantMessageResponseSerializer(serializers.Serializer):
+    message = ConversationMessageSerializer()
+    state = serializers.ChoiceField(choices=OfferConversation.State.choices)
+
+
+class ChannelStatusSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    state = serializers.ChoiceField(choices=['queued', 'publishing', 'published', 'failed'])
+    url = serializers.CharField(required=False)
+    error = serializers.CharField(required=False)
+
+
+class PublishResponseSerializer(serializers.Serializer):
+    status = serializers.CharField()
+    channels = ChannelStatusSerializer(many=True)

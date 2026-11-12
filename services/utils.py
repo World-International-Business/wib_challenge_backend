@@ -11,8 +11,8 @@ def get_genai_client():
     return genai.Client(api_key=config('GENAI_API_KEY'))
 
 
-GEMINI_MODEL = "gemini-2.0-flash"
-GEMINI_MODEL_LITE = "gemini-2.0-flash-lite"
+GEMINI_MODEL = "gemini-3.5-flash"
+GEMINI_MODEL_LITE = "gemini-3.5-flash-lite"
 
 PERSONALITY_CONFIG = {
     'temperature': 0.7,

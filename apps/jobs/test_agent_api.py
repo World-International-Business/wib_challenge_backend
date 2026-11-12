@@ -378,3 +378,72 @@ class AgentAPITests(TestCase):
         invitation.expires_at = timezone.now() - timedelta(seconds=1)
         invitation.save()
         self.assertEqual(self.client.post('/api/evaluations/sessions/verify_invitation/', {'token': invitation.token}, format='json').status_code, 403)
+
+
+@override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend',
+                   PASSWORD_HASHERS=['django.contrib.auth.hashers.MD5PasswordHasher'])
+class OrganizationChannelsTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = get_user_model().objects.create_user(email='org-channels@example.test', password='test')
+        cls.org = Organization.objects.create(account=cls.user, name='OrgChannels')
+        cls.category = JobCategory.objects.create(title='Dev')
+        cls.offer = JobOffer.objects.create(company=cls.org, poste=cls.category, title='Dev',
+                                            description='d', requirements='r', job_type='cdi',
+                                            experience_level='junior', location='Douala')
+
+    def setUp(self):
+        self.client = APIClient()
+        self.client.force_authenticate(user=self.user)
+
+    def test_channel_fields_accepted_in_camel_case_and_filtered(self):
+        response = self.client.patch(f'/api/organizations/{self.org.pk}/', {
+            'preferredChannels': ['linkedin', 'canal_inconnu', 'site_carriere', 'linkedin'],
+            'linkedinPageUrl': 'https://linkedin.com/company/org',
+            'emploiCmAccount': 'org-cm',
+            'hrAlertEmail': 'rh@org.test',
+        }, format='json')
+        self.assertEqual(response.status_code, 200, response.data)
+        data = response.json()
+        self.assertEqual(data['preferredChannels'], ['linkedin', 'site_carriere'])
+        self.assertEqual(data['linkedinPageUrl'], 'https://linkedin.com/company/org')
+        self.assertEqual(data['emploiCmAccount'], 'org-cm')
+        self.assertEqual(data['hrAlertEmail'], 'rh@org.test')
+
+    def test_empty_channel_list_and_missing_fields_do_not_error(self):
+        response = self.client.patch(f'/api/organizations/{self.org.pk}/', {'preferredChannels': []}, format='json')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()['preferredChannels'], [])
+
+    def test_invalid_email_and_url_are_rejected(self):
+        response = self.client.patch(f'/api/organizations/{self.org.pk}/', {'hrAlertEmail': 'pas-un-email'}, format='json')
+        self.assertEqual(response.status_code, 400)
+
+    def test_distribution_uses_preferred_channels_and_site_carriere_always_present(self):
+        self.org.preferred_channels = ['linkedin']
+        self.org.save()
+        response = self.client.post(f'/api/jobs/offers/{self.offer.pk}/distribute/', {}, format='json')
+        states = {c['name']: c['state'] for c in response.json()['channels']}
+        self.assertEqual(states['site_carriere'], 'published')
+        self.assertEqual(states['linkedin'], 'failed')
+        self.assertNotIn('emploi_cm', states)
+
+    def test_linkedin_missing_page_is_explicit_failure(self):
+        self.org.preferred_channels = ['linkedin']
+        self.org.save()
+        with patch.dict('os.environ', {'LINKEDIN_API_TOKEN': 'token-test'}):
+            response = self.client.post(f'/api/jobs/offers/{self.offer.pk}/distribute/', {'channels': ['linkedin']}, format='json')
+        channel = response.json()['channels'][0]
+        self.assertEqual(channel['state'], 'failed')
+        self.assertIn('linkedinPageUrl', channel['error'])
+
+    def test_review_email_routes_to_hr_alert_email(self):
+        self.org.hr_alert_email = 'alertes-rh@org.test'
+        self.org.save()
+        application = JobApplication.objects.create(job_offer=self.offer, applicant_name='C', applicant_email='c@x.test')
+        set_human_review(application.pk, reason='Vérification requise')
+        notice = ReviewNotification.objects.get(application=application)
+        self.assertTrue(dispatch_review_notification(notice.pk))
+        self.assertEqual(mail.outbox[0].to, ['alertes-rh@org.test'])
+        event = AgentEvent.objects.filter(action='review.email_submitted').latest('timestamp')
+        self.assertEqual(event.input_data['recipient'], 'alertes-rh@org.test')

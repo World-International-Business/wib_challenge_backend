@@ -13,7 +13,7 @@ from django.utils import timezone
 
 from apps.jobs.models import JobOffer, JobApplication, JobApplicationAnalysis
 from apps.candidates.models import CandidateProfile
-from services.utils import get_genai_client
+from services.utils import get_genai_client, GEMINI_MODEL
 from services.agent_workflow import record_event, set_human_review
 
 
@@ -190,7 +190,7 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
         failed = response.analyse.startswith("Erreur durant l'analyse Gemini")
         record_event(job_application, 'analysis.failed' if failed else 'analysis.completed',
                      data={'analysis_id': analysis.pk},
-                     model_version='keyword-matching-v1' if local_fallback else 'gemini-2.0-flash')
+                     model_version='keyword-matching-v1' if local_fallback else GEMINI_MODEL)
         set_human_review(job_application.pk, reason='Analyse indisponible : vérification manuelle requise.' if failed
                          else 'Analyse disponible : décision humaine de présélection requise.')
 
@@ -215,7 +215,7 @@ Fiche de poste :
     try:
         client = get_genai_client()
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model=GEMINI_MODEL,
             contents=[
                 *[types.Part.from_bytes(data=png(image), mime_type='image/png') for image in cv_page_images],
                 cv_text,
@@ -333,7 +333,7 @@ Fiche de poste :
     try:
         client = get_genai_client()
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model=GEMINI_MODEL,
             contents=[
                 profile_text,
                 prompt,

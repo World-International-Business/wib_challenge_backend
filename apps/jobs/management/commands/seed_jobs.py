@@ -94,11 +94,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         force = options.get('force', False)
 
-        # Trouver ou créer une organisation "WIB Challenge"
-        org, org_created = Organization.objects.get_or_create(
-            name='WIB Challenge',
-        )
-        if org_created:
+        # Trouver ou créer une organisation : réutilise l'organisation existante si possible
+        org = Organization.objects.filter(name='WIB Challenge').first() or Organization.objects.first()
+        if org is None:
+            from django.contrib.auth import get_user_model
+            account, _ = get_user_model().objects.get_or_create(
+                email='org@wib-challenge.test',
+                defaults={'password': get_user_model().objects.make_random_password()},
+            )
+            org = Organization.objects.create(name='WIB Challenge', account=account)
             self.stdout.write(self.style.SUCCESS('Created organization: WIB Challenge'))
 
         # Créer les catégories d'emploi si elles n'existent pas

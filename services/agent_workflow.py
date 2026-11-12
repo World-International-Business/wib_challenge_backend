@@ -51,7 +51,8 @@ def dispatch_review_notification(notification_id):
         return False
     if notice.next_attempt_at and notice.next_attempt_at > timezone.now():
         return False
-    recipient = application.job_offer.company.account.email
+    company = application.job_offer.company
+    recipient = company.hr_alert_email or company.account.email or company.email or ''
     if not recipient:
         notice.error_code = 'missing_recipient'
         notice.next_attempt_at = timezone.now() + timedelta(hours=1)
@@ -75,6 +76,7 @@ def dispatch_review_notification(notification_id):
         notice.sent_count += 1
         notice.error_code = ''
         notice.next_attempt_at = timezone.now() + timedelta(hours=settings.REVIEW_NOTIFICATION_INTERVAL_HOURS)
-        record_event(application, 'review.email_submitted', data={'generation': notice.generation, 'sequence': notice.sent_count})
+        record_event(application, 'review.email_submitted', data={
+            'generation': notice.generation, 'sequence': notice.sent_count, 'recipient': recipient})
     notice.save(update_fields=['attempts', 'sent_at', 'sent_count', 'error_code', 'next_attempt_at'])
     return not bool(notice.error_code)
