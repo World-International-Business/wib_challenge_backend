@@ -7,6 +7,7 @@ from traceback import print_exception
 from decouple import config
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.tokens import default_token_generator
+from django.core.cache import cache
 from django.core.files.base import ContentFile
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext_lazy as _
@@ -14,7 +15,7 @@ from drf_spectacular.utils import inline_serializer
 from google.auth.transport import requests as google_requests
 from google.oauth2 import id_token
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import APIException, ValidationError
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -83,8 +84,47 @@ PasswordResetResponseSerializer = inline_serializer('PasswordResetResponseSerial
     'detail': serializers.CharField(),
     'uidb64': serializers.CharField(),
     'token': serializers.CharField(),
-    'verification_code': serializers.IntegerField()
+    'verification_code': serializers.CharField(required=False)
 })
+
+
+class PasswordResetByCodeSerializer(serializers.Serializer):
+    uidb64 = serializers.CharField()
+    token = serializers.CharField()
+    code = serializers.CharField(min_length=6, max_length=6)
+    password = serializers.CharField(min_length=8)
+    password_confirm = serializers.CharField()
+
+    @staticmethod
+    def _cache_key(user):
+        return f'password_reset_code:{user.pk}'
+
+    def validate_password_confirm(self, value):
+        if value != self.initial_data.get('password'):
+            raise serializers.ValidationError(_("Les mots de passe ne correspondent pas."))
+        return value
+
+    def validate(self, attrs):
+        try:
+            uid = urlsafe_base64_decode(attrs['uidb64']).decode()
+            user = User.objects.get(pk=uid, is_active=True)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            raise serializers.ValidationError(_("L'utilisateur n'existe pas."))
+
+        if not default_token_generator.check_token(user, attrs['token']):
+            raise serializers.ValidationError(_("Le token est expiré ou invalide."))
+
+        expected = cache.get(self._cache_key(user))
+        if expected is None or str(expected) != attrs['code']:
+            raise serializers.ValidationError({'code': _("Code de vérification invalide ou expiré.")})
+
+        self.user = user
+        return attrs
+
+    def save(self):
+        self.user.set_password(self.validated_data['password'])
+        self.user.save(update_fields=['password'])
+        cache.delete(self._cache_key(self.user))
 
 
 class PasswordResetConfirmSerializer(serializers.Serializer):
@@ -155,51 +195,56 @@ class GoogleLoginSerializer(serializers.Serializer):
         if role and role == User.Roles.ADMIN:
             raise ValidationError("Vous ne pouvez pas créer un compte admin.")
 
+        client_id = config('GOOGLE_OAUTH_CLIENT_ID', default=None)
+        if not client_id:
+            raise APIException("Authentification Google non configurée", code='google_auth_not_configured')
+
         try:
             info = id_token.verify_oauth2_token(
                 id_token_str,
                 google_requests.Request(),
-                audience=config('GOOGLE_OAUTH_CLIENT_ID')
+                audience=client_id
             )
-
-            print(info, json.dumps(info, indent=2))
-
-            email = info.get('email')
-
-            if not email:
-                raise ValidationError("Email introuvable dans le token")
-            elif not User.objects.filter(email=email).exists() and not role:
-                raise ValidationError("Vous devez choisir un rôle avant de vous connecter")
-
-            user, created = User.objects.get_or_create(email=email, defaults={
-                "username": uuid.UUID(int=int(info.get('sub')), version=4) if info.get('sub') else None,
-                "first_name": info.get('given_name', info.get('name', '')).capitalize(),
-                'last_name': info.get('family_name', '').capitalize(),
-                "role": role
-            })
-
-            picture: str = info.get('picture', None)
-            if created and picture is not None:
-                picture = (picture[:picture.rfind('=')] if '=' in picture else picture) + '=s1024-nu-c-d'
-                response = urllib.request.urlopen(picture)
-                ext = mimetypes.guess_extension(response.info().get_content_type())
-                if ext is None:
-                    ext = '.png'
-                file = info.get('sub') + ext
-                user.picture.save(name=file, content=ContentFile(response.read()))
-
-            refresh = RefreshToken.for_user(user)
-
-            return {
-                "access": str(refresh.access_token),
-                "refresh": str(refresh),
-                "data": UserSerializer(user, context=self.context).data
-            }
-        except ValueError as e:
-            print_exception(e)
+        except ValueError:
             raise ValidationError("Token invalide")
-        except Exception as e:
-            raise ValidationError(str(e))
+        except Exception:
+            raise APIException("Vérification du token Google impossible", code='google_verification_failed')
+
+        email = info.get('email')
+        if not email:
+            raise ValidationError("Email introuvable dans le token")
+        if not info.get('email_verified'):
+            raise ValidationError("Email Google non vérifié")
+
+        try:
+            username = str(uuid.UUID(int=int(info.get('sub')), version=4)) if info.get('sub') else uuid.uuid4().hex
+        except (TypeError, ValueError):
+            username = uuid.uuid4().hex
+
+        user, created = User.objects.get_or_create(email=email, defaults={
+            "username": username,
+            "first_name": info.get('given_name', info.get('name', '')).capitalize(),
+            'last_name': info.get('family_name', '').capitalize(),
+            "role": role
+        })
+
+        picture = info.get('picture')
+        if created and picture:
+            try:
+                picture = (picture[:picture.rfind('=')] if '=' in picture else picture) + '=s1024-nu-c-d'
+                response = urllib.request.urlopen(picture, timeout=5)
+                ext = mimetypes.guess_extension(response.info().get_content_type()) or '.png'
+                user.picture.save(name=str(info.get('sub')) + ext, content=ContentFile(response.read()))
+            except Exception:
+                pass
+
+        refresh = RefreshToken.for_user(user)
+
+        return {
+            "access": str(refresh.access_token),
+            "refresh": str(refresh),
+            "data": UserSerializer(user, context=self.context).data
+        }
 
 
 UserRegisterResponse = inline_serializer('UserRegisterResponse', fields={

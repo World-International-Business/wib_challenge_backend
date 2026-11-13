@@ -1,6 +1,8 @@
-import random
+import secrets
 
+from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
+from django.core.cache import cache
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
@@ -11,13 +13,19 @@ from rest_framework import generics, viewsets, status, mixins
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404, GenericAPIView
 from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from apps.accounts.models import User
 from apps.accounts.policy import UserAccountPolicy
 from apps.accounts.serializers import UserSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, \
-    PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer, GoogleLoginSerializer
+    PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer, GoogleLoginSerializer, \
+    PasswordResetByCodeSerializer
 from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageResponseSerializer
+
+
+class PasswordResetThrottle(AnonRateThrottle):
+    rate = '10/min'
 
 
 @extend_schema_view(
@@ -133,6 +141,7 @@ class RegisterUserView(generics.CreateAPIView):
 class PasswordResetView(GenericAPIView):
     permission_classes = []
     serializer_class = PasswordResetSerializer
+    throttle_classes = [PasswordResetThrottle]
 
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
@@ -143,7 +152,8 @@ class PasswordResetView(GenericAPIView):
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
 
-        verification_code = random.randint(100000, 999999)
+        verification_code = str(secrets.randbelow(900000) + 100000)
+        cache.set(f'password_reset_code:{user.pk}', verification_code, timeout=600)
         context = {'verification_code': verification_code, 'uid': uid, 'token': token, }
 
         user.email_user(subject=_("Réinitialisation de mot de passe"),
@@ -151,14 +161,38 @@ class PasswordResetView(GenericAPIView):
                         from_email="security@example.com",
                         html_message=render_to_string('accounts/password_reset_email.html', context), )
 
-        return Response({'detail': _('Un email de réinitialisation de mot de passe vous a été envoyé.'), 'uidb64': uid,
-                         'token': f'{token}|{verification_code}', 'verification_code': verification_code},
-                        status=status.HTTP_200_OK)
+        if settings.DEBUG:
+            print(f'\n{"=" * 60}\n[DEV] Code de réinitialisation pour {user.email} : '
+                  f'{verification_code}\n{"=" * 60}\n')
+
+        data = {'detail': _('Un email de réinitialisation de mot de passe vous a été envoyé.'),
+                'uidb64': uid, 'token': token}
+        if settings.DEBUG:
+            data['verification_code'] = verification_code
+        return Response(data, status=status.HTTP_200_OK)
 
 
 @extend_schema(
     responses={status.HTTP_200_OK: SimpleMessageResponseSerializer, status.HTTP_400_BAD_REQUEST: FieldErrorSerializer},
-    summary="Confirmation de réinitialisation de mot de passe",
+    summary="Réinitialisation du mot de passe par code",
+    description="Réinitialise le mot de passe avec le code de vérification reçu par email",
+    tags=["Authentification"]
+)
+class PasswordResetByCodeView(GenericAPIView):
+    permission_classes = []
+    serializer_class = PasswordResetByCodeSerializer
+    throttle_classes = [PasswordResetThrottle]
+
+    def post(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"message": _("Mot de passe changé")}, status=status.HTTP_200_OK)
+
+
+@extend_schema(
+    responses={status.HTTP_200_OK: SimpleMessageResponseSerializer, status.HTTP_400_BAD_REQUEST: FieldErrorSerializer},
+    summary="Confirmation de réinitialisation de mot de passe (hérité)",
     description="Confirme la réinitialisation du mot de passe avec le code de vérification",
     tags=["Authentification"]
 )

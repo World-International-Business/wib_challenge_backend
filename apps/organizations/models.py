@@ -46,6 +46,62 @@ class Organization(models.Model):
         return self.name
 
 
+class OrganizationChannelCredential(models.Model):
+    """Secret de connexion d'une organisation à un canal de diffusion externe.
+
+    Les secrets sont chiffrés (Fernet) avant stockage — utiliser set_secret /
+    get_secret, jamais le champ brut. Jamais sérialisés dans l'API.
+    """
+
+    class Channel(models.TextChoices):
+        LINKEDIN = 'linkedin', 'LinkedIn'
+        EMPLOI_CM = 'emploi_cm', 'Emploi.cm'
+
+    class Status(models.TextChoices):
+        CONNECTED = 'connected', _('Connecté')
+        PENDING = 'pending', _('En attente')
+        EXPIRED = 'expired', _('Expiré')
+        FAILED = 'failed', _('Échec')
+
+    organization = models.ForeignKey(
+        Organization, on_delete=models.CASCADE, related_name='channel_credentials',
+        verbose_name=_('Organisation'))
+    channel = models.CharField(_('Canal'), max_length=30, choices=Channel.choices)
+    external_id = models.CharField(_('Identifiant externe'), max_length=255, blank=True, default='',
+                                   help_text=_('URN de la page LinkedIn ou identifiant Emploi.cm (non secret)'))
+    secret = models.TextField(_('Secret chiffré'), help_text=_("Token d'accès ou clé API, chiffré"))
+    refresh_secret = models.TextField(_('Refresh token chiffré'), blank=True, default='')
+    status = models.CharField(_('Statut'), max_length=20, choices=Status.choices, default=Status.PENDING)
+    last_error = models.TextField(_('Dernière erreur'), blank=True, default='')
+    expires_at = models.DateTimeField(_('Expiration du token'), null=True, blank=True)
+    created_at = models.DateTimeField(_('Date de création'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Date de mise à jour'), auto_now=True)
+
+    class Meta:
+        verbose_name = _('Credential de canal')
+        verbose_name_plural = _('Credentials de canaux')
+        constraints = [models.UniqueConstraint(fields=['organization', 'channel'], name='unique_org_channel')]
+
+    def set_secret(self, value: str):
+        from services.channel_crypto import encrypt_secret
+        self.secret = encrypt_secret(value) if value else ''
+
+    def get_secret(self) -> str:
+        from services.channel_crypto import decrypt_secret
+        return decrypt_secret(self.secret) if self.secret else ''
+
+    def set_refresh_secret(self, value: str):
+        from services.channel_crypto import encrypt_secret
+        self.refresh_secret = encrypt_secret(value) if value else ''
+
+    def get_refresh_secret(self) -> str:
+        from services.channel_crypto import decrypt_secret
+        return decrypt_secret(self.refresh_secret) if self.refresh_secret else ''
+
+    def __str__(self):
+        return f'{self.organization} / {self.channel} ({self.status})'
+
+
 class Notification(models.Model):
     class Types(models.TextChoices):
         INTERVIEW_REMINDER = 'interview_reminder', _("Rappel d'entretien")
