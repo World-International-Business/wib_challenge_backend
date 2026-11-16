@@ -117,7 +117,11 @@ class HumanReviewView(APIView):
 
     def delete(self, request, pk):
         application = get_object_or_404(scoped_applications(request.user), pk=pk)
-        serializer = ReviewRequestSerializer(data=request.data)
+        require_recruiter(application, request.user)
+        # Le body d'un DELETE est souvent ignore par les clients HTTP :
+        # la justification est aussi acceptee en query param (?reason=...)
+        reason = request.data.get('reason') or request.query_params.get('reason') or ''
+        serializer = ReviewRequestSerializer(data={'reason': reason})
         serializer.is_valid(raise_exception=True)
         application = set_human_review(application.pk, reason=serializer.validated_data['reason'], actor=request.user, required=False)
         return Response({'needs_human_review': application.needs_human_review})
