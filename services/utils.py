@@ -1,7 +1,9 @@
+import time
 from functools import cache
 
 from decouple import config
 from google import genai
+from google.genai.errors import APIError
 
 from apps.evaluations.models import Answer
 
@@ -9,6 +11,29 @@ from apps.evaluations.models import Answer
 @cache
 def get_genai_client():
     return genai.Client(api_key=config('GENAI_API_KEY'))
+
+
+_TRANSIENT_RETRY_DELAYS = (3, 8, 20)
+
+
+def generate_content_with_retry(client, *, model, contents, config, max_attempts=3):
+    """Appelle generateContent en retentant les erreurs transitoires (5xx/UNAVAILABLE).
+
+    Le SDK google-genai ne retente pas les 503 'high demand' : backoff court ici
+    avant de laisser l'erreur remonter. Les 429 (quota) ne sont pas retentées —
+    elles ne se résolvent pas en quelques secondes.
+    """
+    last_exc = None
+    for attempt in range(max_attempts):
+        try:
+            return client.models.generate_content(model=model, contents=contents, config=config)
+        except APIError as exc:
+            last_exc = exc
+            if exc.code is not None and exc.code >= 500 and attempt < max_attempts - 1:
+                time.sleep(_TRANSIENT_RETRY_DELAYS[min(attempt, len(_TRANSIENT_RETRY_DELAYS) - 1)])
+                continue
+            raise
+    raise last_exc
 
 
 GEMINI_MODEL = "gemini-3.5-flash"

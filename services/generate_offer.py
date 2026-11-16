@@ -6,7 +6,7 @@ from httpx import RequestError, TimeoutException
 from pydantic import BaseModel, Field, ValidationError
 
 from apps.jobs.models import JobCategory
-from services.utils import get_genai_client
+from services.utils import generate_content_with_retry, get_genai_client
 
 
 class OfferGenerationError(Exception):
@@ -54,7 +54,7 @@ def generate_offer(prompt_description: str, data: dict):
     except (UndefinedValueError, ValueError) as exc:
         raise OfferGenerationError('ai_not_configured', 'Le service IA n’est pas configuré. Vérifiez GENAI_API_KEY côté serveur.', 503) from exc
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(client, 
             model=settings.GEMINI_OFFER_MODEL,
             contents=[prompt],
             config=GenerateContentConfigDict(response_schema=OfferInfo, response_mime_type='application/json'),

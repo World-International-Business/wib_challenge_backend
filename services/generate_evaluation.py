@@ -3,7 +3,7 @@ from typing import List
 from pydantic import BaseModel, Field
 
 from apps.core.models import Profession
-from services.utils import get_genai_client, GEMINI_MODEL
+from services.utils import generate_content_with_retry, get_genai_client, GEMINI_MODEL
 
 
 class ChoiceModel(BaseModel):
@@ -65,7 +65,7 @@ Génère maintenant le test de personnalité:"""
 
     try:
         client = get_genai_client()
-        response = client.models.generate_content(
+        response = generate_content_with_retry(client, 
             model=GEMINI_MODEL,
             contents=prompt,
             config={

@@ -4,7 +4,7 @@ from django.db import transaction
 from django.utils import timezone
 
 from apps.evaluations.models import Submission, SubmissionAttempt, Answer, EvaluationType
-from services.utils import get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
+from services.utils import generate_content_with_retry, get_genai_client, make_personality_prompt, GEMINI_MODEL, PERSONALITY_CONFIG
 
 logger = logging.getLogger(__name__)
 
@@ -153,7 +153,7 @@ def correct_personality_submission(submission: Submission, attempt: SubmissionAt
 
     prompt = make_personality_prompt(list(answers))
 
-    response = client.models.generate_content(
+    response = generate_content_with_retry(client, 
         model=GEMINI_MODEL,
         contents=[prompt],
         config=PERSONALITY_CONFIG,

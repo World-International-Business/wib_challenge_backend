@@ -7,7 +7,8 @@ from apps.jobs.agent_api import (
 )
 from apps.jobs.conversation_api import (
     ConversationApprove, ConversationMessageCreate, ConversationMessageEdit,
-    OfferConversationDetail, OfferConversationListCreate,
+    ConversationMessageSpeak, OfferConversationDetail, OfferConversationListCreate,
+    TextToSpeechView,
 )
 
 
@@ -32,5 +33,7 @@ urlpatterns = [
     path('jobs/offer-conversations/<int:pk>/', OfferConversationDetail.as_view(), name='offer-conversation-detail'),
     path('jobs/offer-conversations/<int:pk>/messages/', ConversationMessageCreate.as_view(), name='offer-conversation-messages'),
     path('jobs/offer-conversations/<int:pk>/messages/<int:message_id>/', ConversationMessageEdit.as_view(), name='offer-conversation-message-edit'),
+    path('jobs/offer-conversations/<int:pk>/messages/<int:message_id>/speak/', ConversationMessageSpeak.as_view(), name='offer-conversation-message-speak'),
     path('jobs/offer-conversations/<int:pk>/approve/', ConversationApprove.as_view(), name='offer-conversation-approve'),
+    path('tts/', TextToSpeechView.as_view(), name='text-to-speech'),
 ]

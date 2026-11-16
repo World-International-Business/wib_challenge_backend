@@ -1,6 +1,7 @@
 import logging
 
 from django.db import transaction
+from django.http import HttpResponse
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
@@ -17,6 +18,7 @@ from apps.jobs.agent_serializers import (
 )
 from apps.jobs.models import AgentEvent, ConversationMessage, OfferConversation
 from services.offer_agent import OfferAgentError, OFFER_AGENT_MODEL, publish_conversation_offer, run_offer_agent
+from services.tts import synthesize_speech
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +26,42 @@ logger = logging.getLogger(__name__)
 class OfferAgentThrottle(UserRateThrottle):
     """Limite les appels à l'agent LLM."""
     rate = '30/min'
+
+
+class SpeechThrottle(UserRateThrottle):
+    """Limite les appels de synthèse vocale (quota TTS)."""
+    rate = '15/min'
+
+
+def message_speakable_text(message) -> str:
+    """Construit le texte à vocaliser à partir du contenu et des blocs d'un message."""
+    parts = [message.content] if message.content else []
+    for block in message.blocks or []:
+        block_type = block.get('type')
+        if block_type == 'job_card':
+            data = block.get('data') or {}
+            parts.append(
+                f"Fiche de poste : {data.get('title', '')}. "
+                f"{data.get('location', '')}. "
+                f"Salaire : {data.get('salary', '')} {data.get('currency', '')}.")
+        elif block_type == 'summary':
+            data = block.get('data') or {}
+            parts.append(data.get('text') or data.get('summary') or '')
+        elif block_type == 'confirmation':
+            parts.append('Offre validée et publiée.')
+        elif block_type == 'text':
+            content = (block.get('content') or '').strip()
+            if content and content != (message.content or '').strip():
+                parts.append(content)
+    return ' '.join(p for p in parts if p)
+
+
+def _speech_response(request, text):
+    try:
+        wav = synthesize_speech(text, (request.data.get('voice') or '').strip())
+    except OfferAgentError as exc:
+        return agent_error_response(exc)
+    return HttpResponse(wav, content_type='audio/wav')
 
 
 def scoped_conversations(user):
@@ -168,3 +206,25 @@ class ConversationApprove(APIView):
             organization=conversation.organization, actor='human', human_validator=request.user,
             action='offer.approved', target_id=str(offer.pk), input_data={'conversation_id': conversation.pk})
         return Response({'offer_id': offer.pk, **result})
+
+
+@extend_schema_view(post=extend_schema(tags=['Agent d\'offres'], responses={200: 'audio/wav'}))
+class ConversationMessageSpeak(APIView):
+    """Synthétise un message de conversation en audio WAV (voix de Wiba)."""
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [SpeechThrottle]
+
+    def post(self, request, pk, message_id):
+        conversation = get_object_or_404(scoped_conversations(request.user), pk=pk)
+        message = get_object_or_404(conversation.messages, pk=message_id)
+        return _speech_response(request, message_speakable_text(message))
+
+
+@extend_schema_view(post=extend_schema(tags=['Agent d\'offres'], responses={200: 'audio/wav'}))
+class TextToSpeechView(APIView):
+    """Synthèse vocale générique : {text, voice?} -> audio/wav."""
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [SpeechThrottle]
+
+    def post(self, request):
+        return _speech_response(request, (request.data.get('text') or '').strip())

@@ -65,6 +65,29 @@ class OfferGenerationTests(TestCase):
         self.provider.models.generate_content.side_effect = ServerError(503, {'error': {'message': 'private error'}})
         self.assertEqual(self.post().status_code, 503)
 
+    def test_transient_provider_error_is_retried_then_succeeds(self):
+        success = self.provider.models.generate_content.return_value
+        self.provider.models.generate_content.side_effect = [ServerError(503, {'error': {'message': 'overloaded'}}), success]
+        with patch('services.utils.time.sleep'):
+            response = self.post()
+        self.assertEqual(response.status_code, 200, response.data)
+        self.assertEqual(self.provider.models.generate_content.call_count, 2)
+
+    def test_persistent_provider_error_exhausts_retries(self):
+        self.provider.models.generate_content.side_effect = ServerError(503, {'error': {'message': 'overloaded'}})
+        with patch('services.utils.time.sleep'):
+            response = self.post()
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.json()['code'], 'ai_provider_unavailable')
+        self.assertEqual(self.provider.models.generate_content.call_count, 3)
+
+    def test_client_error_is_not_retried(self):
+        self.provider.models.generate_content.side_effect = ClientError(404, {'error': {'message': 'private provider URL or key', 'status': 'NOT_FOUND'}})
+        with patch('services.utils.time.sleep') as sleep:
+            self.post()
+        self.assertEqual(self.provider.models.generate_content.call_count, 1)
+        sleep.assert_not_called()
+
     def test_timeout_is_reported_as_gateway_timeout(self):
         self.provider.models.generate_content.side_effect = ReadTimeout('private request URL')
         response = self.post()

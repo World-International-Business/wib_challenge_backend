@@ -10,7 +10,7 @@ from httpx import RequestError, TimeoutException
 from pydantic import BaseModel, Field, ValidationError
 
 from apps.jobs.models import JobCategory, JobOffer, OfferConversation, ConversationMessage
-from services.utils import get_genai_client
+from services.utils import generate_content_with_retry, get_genai_client
 
 logger = logging.getLogger(__name__)
 
@@ -42,9 +42,14 @@ class JobCard(BaseModel):
     remote_allowed: bool
     salary: str = Field(description='Fourchette salariale ou montant, texte court')
     currency: str = Field(description='Code devise ISO 4217, ex. XAF, EUR')
-    application_instructions: str = Field(description='Consignes de candidature : email, lien, documents à joindre')
+    application_url: str | None = Field(default=None, description='URL externe de candidature si le recruteur en donne une, sinon null')
+    application_email: str | None = Field(default=None, description='Email de réception des candidatures si le recruteur en donne un, sinon null')
+    featured: bool = Field(default=False, description='True uniquement si le recruteur demande une mise en avant')
     required_documents: list[str] = Field(description=f'Documents exigés, parmi : {", ".join(DOCUMENT_TYPES)}')
-    expires_at: str = Field(description="Date d'expiration au format YYYY-MM-DD")
+    expires_at: str | None = Field(default=None, description="Date d'expiration YYYY-MM-DD, uniquement si le recruteur la précise, sinon null")
+    technical_evaluation: str | None = Field(default=None, description="Titre EXACT d'une évaluation technique proposée, ou null")
+    psychotech_evaluation: str | None = Field(default=None, description="Titre EXACT d'une évaluation psychotechnique proposée, ou null")
+    personality_evaluation: str | None = Field(default=None, description="Titre EXACT d'une évaluation de personnalité proposée, ou null")
 
 
 class AgentReply(BaseModel):
@@ -65,22 +70,32 @@ Règles de conduite :
 - Si des informations CRITIQUES manquent (intitulé du poste, type de contrat, lieu,
   niveau attendu), pose au maximum 1 à 2 questions dans `questions` ET reformule-les
   naturellement dans `reply`. N'interroge jamais sur tout à la fois.
-- Si le besoin est suffisamment clair, génère `job_card` COMPLET : aucun champ vide,
-  aucun champ null. Déduis des valeurs raisonnables pour les champs non précisés
-  (salaire adapté au marché de {country}, currency adaptée, expires_at = {default_expiry}
-  par défaut, application_instructions = dépôt CV sur la plateforme sauf précision
-  contraire, required_documents = ["cv"] par défaut).
+- Si le besoin est suffisamment clair, génère `job_card` COMPLET : tous les champs
+  textuels remplis (description, responsibilities, requirements, benefits développés
+  comme une vraie fiche d'offre : missions concrètes, profil recherché, avantages
+  réalistes pour {country}). Déduis des valeurs raisonnables pour les champs non
+  précisés (salaire adapté au marché de {country}, currency adaptée,
+  required_documents = ["cv"] par défaut).
+- Ne pose JAMAIS de question sur la date d'expiration : `expires_at` reste null sauf
+  si le recruteur donne spontanément une date ou une durée ("jusqu'au 20 décembre",
+  "pour 2 mois") — calcule alors la date EXACTE à partir de {today}. Si tu cites une
+  date d'expiration dans `reply`, elle doit être strictement identique à `expires_at`.
+- `application_url` et `application_email` : null sauf si le recruteur fournit un lien
+  ou un email de réception des candidatures.
+- `featured` : false sauf demande explicite de mise en avant de l'offre.
 - Pour `poste`, choisis en priorité un intitulé EXACT parmi les catégories existantes :
   {categories}
+- Évaluations : si une évaluation ci-dessous correspond bien au poste, mets son titre
+  EXACT dans le champ correspondant, sinon null. Ne propose jamais d'évaluation
+  absente de ces listes.
+  Techniques : {eval_technical}
+  Psychotechniques : {eval_psychotech}
+  Personnalité : {eval_personality}
 - `quick_replies` : 0 à 3 réponses courtes et naturelles que le recruteur pourrait cliquer
   (ex. "Oui", "Plutôt senior", "Télétravail possible"). Vide si inutile.
 - `ready_to_publish` = true uniquement quand la fiche est complète et cohérente.
 - Le contenu `reply` est affiché tel quel ; le markdown léger (gras, listes) est accepté.
 """
-
-
-def _default_expiry() -> str:
-    return (timezone.localdate() + datetime.timedelta(days=30)).isoformat()
 
 
 def _history_text(conversation: OfferConversation) -> str:
@@ -96,14 +111,27 @@ def _normalize_job_card(card: JobCard) -> dict:
     data['job_type'] = data['job_type'] if data['job_type'] in JOB_TYPES else 'full_time'
     data['experience_level'] = data['experience_level'] if data['experience_level'] in EXPERIENCE_LEVELS else 'intermediate'
     data['required_documents'] = [doc for doc in data['required_documents'] if doc in DOCUMENT_TYPES] or ['cv']
-    try:
-        expires = datetime.date.fromisoformat(data['expires_at'][:10])
-    except (ValueError, TypeError):
-        expires = timezone.localdate() + datetime.timedelta(days=30)
-    data['expires_at'] = expires.isoformat()
+    expires = None
+    if data['expires_at']:
+        try:
+            parsed = datetime.date.fromisoformat(str(data['expires_at'])[:10])
+            expires = parsed if parsed >= timezone.localdate() else None
+        except (ValueError, TypeError):
+            expires = None
+    data['expires_at'] = expires.isoformat() if expires else None
     category, _ = JobCategory.objects.get_or_create(title=data['poste'].strip()[:100])
     data['poste_id'] = category.pk
     data['poste_title'] = category.title
+    from apps.evaluations.models import Evaluation
+    for field_name, eval_type in (('technical_evaluation', 'technical'),
+                                  ('psychotech_evaluation', 'psychotech'),
+                                  ('personality_evaluation', 'personality')):
+        title = (data.pop(field_name) or '').strip()
+        evaluation = Evaluation.objects.filter(
+            title__iexact=title, evaluation_type=eval_type, is_active=True, archived=False
+        ).first() if title else None
+        data[f'{field_name}_id'] = evaluation.pk if evaluation else None
+        data[f'{field_name}_title'] = evaluation.title if evaluation else None
     return data
 
 
@@ -125,11 +153,18 @@ def build_assistant_blocks(reply: AgentReply, organization) -> tuple[list[dict],
             'remoteAllowed': draft['remote_allowed'],
             'salary': draft['salary'],
             'currency': draft['currency'],
-            'applicationInstructions': draft['application_instructions'],
+            'applicationUrl': draft['application_url'],
+            'applicationEmail': draft['application_email'],
+            'featured': draft['featured'],
             'requiredDocuments': draft['required_documents'],
             'poste': draft['poste_id'],
             'posteTitle': draft['poste_title'],
             'expiresAt': draft['expires_at'],
+            'companyLogo': organization.logo.url if organization.logo else None,
+            'companyName': organization.name,
+            'technicalEvaluation': {'id': draft['technical_evaluation_id'], 'title': draft['technical_evaluation_title']} if draft['technical_evaluation_id'] else None,
+            'psychotechEvaluation': {'id': draft['psychotech_evaluation_id'], 'title': draft['psychotech_evaluation_title']} if draft['psychotech_evaluation_id'] else None,
+            'personalityEvaluation': {'id': draft['personality_evaluation_id'], 'title': draft['personality_evaluation_title']} if draft['personality_evaluation_id'] else None,
         }
         blocks.append({'type': 'job_card', 'data': card_data})
     if reply.quick_replies:
@@ -149,16 +184,23 @@ def run_offer_agent(conversation: OfferConversation) -> ConversationMessage:
     """Exécute l'agent sur l'historique complet et persiste le message assistant."""
     organization = conversation.organization
     categories = ', '.join(JobCategory.objects.order_by('title').values_list('title', flat=True)) or 'aucune'
+    from apps.evaluations.models import Evaluation
+    grouped = {}
+    for eval_type, title in Evaluation.objects.filter(is_active=True, archived=False).order_by('title').values_list('evaluation_type', 'title'):
+        grouped.setdefault(eval_type, []).append(title)
     system = _SYSTEM_PROMPT.format(
         company=organization.name, country=organization.country or 'Cameroun',
-        categories=categories, default_expiry=_default_expiry())
+        categories=categories, today=timezone.localdate().isoformat(),
+        eval_technical=', '.join(grouped.get('technical', [])[:30]) or 'aucune',
+        eval_psychotech=', '.join(grouped.get('psychotech', [])[:30]) or 'aucune',
+        eval_personality=', '.join(grouped.get('personality', [])[:30]) or 'aucune')
     prompt = f"{system}\n\nConversation :\n{_history_text(conversation)}\n\nRéponds au dernier message du recruteur."
     try:
         client = get_genai_client()
     except (UndefinedValueError, ValueError) as exc:
         raise OfferAgentError('ai_not_configured', 'Le service IA n’est pas configuré.', 503) from exc
     try:
-        response = client.models.generate_content(
+        response = generate_content_with_retry(client, 
             model=OFFER_AGENT_MODEL,
             contents=[prompt],
             config=GenerateContentConfigDict(response_schema=AgentReply, response_mime_type='application/json'),
@@ -228,6 +270,12 @@ def publish_conversation_offer(conversation: OfferConversation) -> JobOffer:
         location=draft['location'][:255],
         remote_allowed=draft['remote_allowed'],
         required_documents=draft['required_documents'],
+        application_url=draft.get('application_url') or '',
+        application_email=draft.get('application_email') or '',
+        featured=bool(draft.get('featured')),
+        technical_evaluation_id=draft.get('technical_evaluation_id'),
+        psychotech_evaluation_id=draft.get('psychotech_evaluation_id'),
+        personality_evaluation_id=draft.get('personality_evaluation_id'),
         status=JobOffer.Status.DRAFT,
         expires_at=expires,
     )

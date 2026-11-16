@@ -13,7 +13,7 @@ from django.utils import timezone
 
 from apps.jobs.models import JobOffer, JobApplication, JobApplicationAnalysis
 from apps.candidates.models import CandidateProfile
-from services.utils import get_genai_client, GEMINI_MODEL
+from services.utils import generate_content_with_retry, get_genai_client, GEMINI_MODEL
 from services.agent_workflow import record_event, set_human_review
 
 
@@ -214,7 +214,7 @@ Fiche de poste :
 
     try:
         client = get_genai_client()
-        response = client.models.generate_content(
+        response = generate_content_with_retry(client, 
             model=GEMINI_MODEL,
             contents=[
                 *[types.Part.from_bytes(data=png(image), mime_type='image/png') for image in cv_page_images],
@@ -332,7 +332,7 @@ Fiche de poste :
 
     try:
         client = get_genai_client()
-        response = client.models.generate_content(
+        response = generate_content_with_retry(client, 
             model=GEMINI_MODEL,
             contents=[
                 profile_text,

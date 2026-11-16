@@ -16,8 +16,8 @@ def _card(**over):
         responsibilities='resp', requirements='req', benefits='ben',
         skills=['Django'], job_type='cdi', experience_level='senior',
         location='Douala', remote_allowed=True, salary='1M XAF', currency='XAF',
-        application_instructions='postuler ici', required_documents=['cv'],
-        expires_at='2026-12-12')
+        application_url='https://jobs.example.test/apply', application_email='jobs@example.test',
+        featured=False, required_documents=['cv'], expires_at='2026-12-12')
     return JobCard(**{**data, **over})
 
 
@@ -58,7 +58,10 @@ class OfferConversationTests(TestCase):
         self.assertIn('quick_replies', types)
         card = next(b['data'] for b in assistant['blocks'] if b['type'] == 'job_card')
         self.assertEqual(card['poste'], JobCategory.objects.get(title='Développement Web').pk)
-        self.assertTrue(all(card[k] not in (None, '', []) for k in card))
+        required_keys = ('title', 'description', 'responsibilities', 'requirements', 'benefits',
+                         'skills', 'jobType', 'experienceLevel', 'location', 'salary', 'currency',
+                         'requiredDocuments', 'poste', 'posteTitle')
+        self.assertTrue(all(card[k] not in (None, '', []) for k in required_keys))
 
     def test_clarifying_questions_set_state_and_quick_replies(self):
         response = self._conv_with_reply(_reply(reply='Précisez le salaire ?', questions=['salaire ?'], job_card=None))
@@ -99,6 +102,24 @@ class OfferConversationTests(TestCase):
         states = {c['name']: c['state'] for c in data['channels']}
         self.assertEqual(states['site_carriere'], 'published')
         self.assertEqual(OfferConversation.objects.get(pk=conv_id).state, 'published')
+
+    def test_approve_persists_form_fields_evaluation_and_null_expiry(self):
+        from apps.evaluations.models import Evaluation
+        evaluation = Evaluation.objects.create(
+            title='Test Django', evaluation_type='technical', publisher=self.user)
+        conv_id = self._conv_with_reply(_reply(job_card=_card(
+            technical_evaluation='Test Django', featured=True, expires_at=None))).json()['id']
+        card = next(b['data'] for b in self.client.get(
+            f'/api/jobs/offer-conversations/{conv_id}/').json()['messages'][-1]['blocks'] if b['type'] == 'job_card')
+        self.assertIsNone(card['expiresAt'])
+        self.assertEqual(card['technicalEvaluation']['id'], evaluation.pk)
+        response = self.client.post(f'/api/jobs/offer-conversations/{conv_id}/approve/', {}, format='json')
+        offer = JobOffer.objects.get(pk=response.json()['offerId'])
+        self.assertEqual(offer.application_url, 'https://jobs.example.test/apply')
+        self.assertEqual(offer.application_email, 'jobs@example.test')
+        self.assertTrue(offer.featured)
+        self.assertEqual(offer.technical_evaluation_id, evaluation.pk)
+        self.assertIsNone(offer.expires_at)
 
     def test_approve_without_draft_is_conflict(self):
         conversation = OfferConversation.objects.create(organization=self.user.organization, user=self.user)
