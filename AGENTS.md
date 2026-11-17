@@ -21,6 +21,7 @@ python manage.py makemigrations --check --dry-run
 - `ALLOWED_HOSTS` : liste sans scheme (`exemple.com,127.0.0.1`).
 - `CSRF_TRUSTED_ORIGINS` et `CORS_ALLOWED_ORIGINS` : avec `https://`.
 - `DATABASE_URL` : PostgreSQL de préférence (`postgres://...` ou `postgresql://...`).
+- `GOOGLE_OAUTH_CLIENT_ID` / `GOOGLE_OAUTH_CLIENT_SECRET` / `GOOGLE_OAUTH_REDIRECT_URI` (liste séparée par virgules : `http://localhost:5173/auth/google/callback,https://recrutement.worldwide-international.business/auth/google/callback`) : login Google (ID token + authorization code).
 - `GENAI_API_KEY` : clé Gemini, à configurer sans la journaliser.
 - `GEMINI_OFFER_MODEL` : modèle de génération d’offres, défaut `gemini-3.5-flash-lite`. Cette variable ne change pas les modèles des autres services IA.
 - `PAYMENT_WEBHOOK_BASE_URL`, `CINETPAY_*`, `STRIPE_*`, `PAYPAL_*` : fournies via Dokploy / secrets manager.

@@ -20,6 +20,16 @@ Tu es un développeur frontend senior. Construis le frontend de la plateforme WI
 | Verify | `POST /api/auth/token/verify/` | `{token}` |
 | Logout | `POST /api/auth/logout/` |
 | Forgot password | `POST /api/auth/forgot-password/` |
+| Google login (ID token) | `POST /api/auth/google/` | `{id_token, role?}` — pour Google Identity Services (bouton/popup/One Tap) |
+| Google login (code) | `POST /api/auth/google/callback/` | `{code, role?, redirect_uri?}` — pour le flux redirect OAuth |
+
+### Google OAuth — deux flux supportés
+
+**Flux 1 — ID token (recommandé, GIS)** : le frontend obtient un `id_token` via Google Identity Services puis le poste à `/api/auth/google/`. Le `role` (`developer`/`organization`) est choisi côté frontend — `admin` est refusé.
+
+**Flux 2 — Authorization code (redirect)** : Google redirige vers la route frontend `/auth/google/callback?code=...&state=...` ; le frontend récupère `code` (+ `redirect_uri` utilisé) et le poste à `/api/auth/google/callback/`. `redirect_uri` doit être l'une des URI configurées : `http://localhost:5173/auth/google/callback` (dev) et `https://recrutement.worldwide-international.business/auth/google/callback` (prod).
+
+Les deux retournent `{access, refresh, data: user}` — même format que `/api/auth/login/`. Crée l'utilisateur au premier login ; récupère l'existant ensuite.
 
 Headers : `Authorization: Bearer <access>`. Implémente un intercepteur axios/fetch qui refresh automatiquement sur 401.
 

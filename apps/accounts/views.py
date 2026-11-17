@@ -20,7 +20,7 @@ from apps.accounts.models import User
 from apps.accounts.policy import UserAccountPolicy
 from apps.accounts.serializers import UserSerializer, PasswordChangeSerializer, PasswordResetConfirmSerializer, \
     PasswordResetSerializer, UserRegisterResponse, PasswordResetResponseSerializer, GoogleLoginSerializer, \
-    PasswordResetByCodeSerializer
+    PasswordResetByCodeSerializer, GoogleAuthCodeSerializer
 from wib_challenge.serializers import FieldErrorSerializer, SimpleMessageResponseSerializer
 
 
@@ -225,6 +225,17 @@ class PasswordResetConfirmView(GenericAPIView):
 class GoogleLoginView(GenericAPIView):
     permission_classes = []
     serializer_class = GoogleLoginSerializer
+
+    def post(self, request):
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+
+class GoogleCallbackView(GenericAPIView):
+    """Échange un authorization code Google (flux redirect) contre les JWT WIB."""
+    permission_classes = []
+    serializer_class = GoogleAuthCodeSerializer
 
     def post(self, request):
         serializer = self.get_serializer(data=self.request.data)

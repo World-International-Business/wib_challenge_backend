@@ -3,7 +3,7 @@ from drf_spectacular.utils import extend_schema
 from rest_framework_simplejwt.views import TokenVerifyView, TokenBlacklistView, TokenRefreshView, TokenObtainPairView
 
 from apps.accounts.views import RegisterUserView, UserViewSet, PasswordResetView, PasswordResetConfirmView, \
-    PasswordResetByCodeView, GoogleLoginView
+    PasswordResetByCodeView, GoogleLoginView, GoogleCallbackView
 from wib_challenge.routers import AppRouter
 
 users_router = AppRouter()
@@ -29,7 +29,8 @@ auth_urlpatterns = [
     path('reset-password/', PasswordResetByCodeView.as_view(), name='password_reset_by_code'),
     path('reset-password/<str:uidb64>/<str:token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('logout/', token_blacklist, name='logout'),
-    path('google/', GoogleLoginView.as_view(), name='google_login')
+    path('google/', GoogleLoginView.as_view(), name='google_login'),
+    path('google/callback/', GoogleCallbackView.as_view(), name='google_callback')
 ]
 
 # oauth2_urlpatterns = [

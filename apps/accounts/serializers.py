@@ -183,6 +183,47 @@ class PasswordChangeSerializer(serializers.Serializer):
         return {'message': _('Mot de passe changé')}
 
 
+def _google_user_from_info(info, role=User.Roles.USER):
+    """Crée ou récupère un User à partir des claims Google vérifiés."""
+    email = info.get('email')
+    if not email:
+        raise ValidationError("Email introuvable dans le token")
+    if not info.get('email_verified'):
+        raise ValidationError("Email Google non vérifié")
+
+    try:
+        username = str(uuid.UUID(int=int(info.get('sub')), version=4)) if info.get('sub') else uuid.uuid4().hex
+    except (TypeError, ValueError):
+        username = uuid.uuid4().hex
+
+    user, created = User.objects.get_or_create(email=email, defaults={
+        "username": username,
+        "first_name": info.get('given_name', info.get('name', '')).capitalize(),
+        'last_name': info.get('family_name', '').capitalize(),
+        "role": role
+    })
+
+    picture = info.get('picture')
+    if created and picture:
+        try:
+            picture = (picture[:picture.rfind('=')] if '=' in picture else picture) + '=s1024-nu-c-d'
+            response = urllib.request.urlopen(picture, timeout=5)
+            ext = mimetypes.guess_extension(response.info().get_content_type()) or '.png'
+            user.picture.save(name=str(info.get('sub')) + ext, content=ContentFile(response.read()))
+        except Exception:
+            pass
+    return user
+
+
+def _google_jwt_response(user, context):
+    refresh = RefreshToken.for_user(user)
+    return {
+        "access": str(refresh.access_token),
+        "refresh": str(refresh),
+        "data": UserSerializer(user, context=context).data
+    }
+
+
 class GoogleLoginSerializer(serializers.Serializer):
     id_token = serializers.CharField(required=True)
     role = serializers.ChoiceField(choices=User.Roles.choices, required=False)
@@ -210,41 +251,67 @@ class GoogleLoginSerializer(serializers.Serializer):
         except Exception:
             raise APIException("Vérification du token Google impossible", code='google_verification_failed')
 
-        email = info.get('email')
-        if not email:
-            raise ValidationError("Email introuvable dans le token")
-        if not info.get('email_verified'):
-            raise ValidationError("Email Google non vérifié")
+        user = _google_user_from_info(info, role)
+        return _google_jwt_response(user, self.context)
+
+
+class GoogleAuthCodeSerializer(serializers.Serializer):
+    """Échange un authorization code Google contre les JWT WIB.
+
+    Le frontend reçoit `code` sur sa route callback (redirect_uri déclarée dans
+    Google Cloud), puis le poste ici. GOOGLE_OAUTH_REDIRECT_URI doit correspondre
+    exactement à l'URI de redirection configurée côté Google.
+    """
+    code = serializers.CharField(required=True)
+    role = serializers.ChoiceField(choices=User.Roles.choices, required=False)
+    redirect_uri = serializers.CharField(required=False, allow_blank=True)
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        role = attrs.get('role', User.Roles.USER)
+        if role == User.Roles.ADMIN:
+            raise ValidationError("Vous ne pouvez pas créer un compte admin.")
+
+        client_id = config('GOOGLE_OAUTH_CLIENT_ID', default=None)
+        client_secret = config('GOOGLE_OAUTH_CLIENT_SECRET', default=None)
+        allowed = [u.strip() for u in
+                   (config('GOOGLE_OAUTH_REDIRECT_URI', default='') or '').split(',') if u.strip()]
+        if not all([client_id, client_secret, allowed]):
+            raise APIException("Authentification Google non configurée", code='google_auth_not_configured')
+
+        # Le frontend peut préciser la redirect_uri utilisée (doit être dans la liste
+        # autorisée) ; sinon on prend la première configurée.
+        requested = (attrs.get('redirect_uri') or '').strip()
+        redirect_uri = requested if requested in allowed else allowed[0]
+
+        import requests
+        try:
+            resp = requests.post('https://oauth2.googleapis.com/token', data={
+                'code': attrs['code'],
+                'client_id': client_id,
+                'client_secret': client_secret,
+                'redirect_uri': redirect_uri,
+                'grant_type': 'authorization_code',
+            }, timeout=15)
+            payload = resp.json()
+        except Exception:
+            raise APIException("Échange du code Google impossible", code='google_exchange_failed')
+        if resp.status_code != 200 or 'id_token' not in payload:
+            raise ValidationError("Code Google invalide ou expiré")
 
         try:
-            username = str(uuid.UUID(int=int(info.get('sub')), version=4)) if info.get('sub') else uuid.uuid4().hex
-        except (TypeError, ValueError):
-            username = uuid.uuid4().hex
+            info = id_token.verify_oauth2_token(
+                payload['id_token'],
+                google_requests.Request(),
+                audience=client_id
+            )
+        except ValueError:
+            raise ValidationError("Token invalide")
+        except Exception:
+            raise APIException("Vérification du token Google impossible", code='google_verification_failed')
 
-        user, created = User.objects.get_or_create(email=email, defaults={
-            "username": username,
-            "first_name": info.get('given_name', info.get('name', '')).capitalize(),
-            'last_name': info.get('family_name', '').capitalize(),
-            "role": role
-        })
-
-        picture = info.get('picture')
-        if created and picture:
-            try:
-                picture = (picture[:picture.rfind('=')] if '=' in picture else picture) + '=s1024-nu-c-d'
-                response = urllib.request.urlopen(picture, timeout=5)
-                ext = mimetypes.guess_extension(response.info().get_content_type()) or '.png'
-                user.picture.save(name=str(info.get('sub')) + ext, content=ContentFile(response.read()))
-            except Exception:
-                pass
-
-        refresh = RefreshToken.for_user(user)
-
-        return {
-            "access": str(refresh.access_token),
-            "refresh": str(refresh),
-            "data": UserSerializer(user, context=self.context).data
-        }
+        user = _google_user_from_info(info, role)
+        return _google_jwt_response(user, self.context)
 
 
 UserRegisterResponse = inline_serializer('UserRegisterResponse', fields={
