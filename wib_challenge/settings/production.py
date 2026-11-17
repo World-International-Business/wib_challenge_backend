@@ -70,10 +70,20 @@ else:
 # Configuration CORS
 CORS_ALLOW_CREDENTIALS = True
 
-# Toujours lire CORS_ALLOWED_ORIGINS depuis l'environnement
+# Toujours lire CORS_ALLOWED_ORIGINS depuis l'environnement.
+# Le défaut liste les frontends connus pour éviter un blocage CORS
+# si la variable Dokploy est absente ou incomplète.
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='',
+    default=(
+        'https://recrutement.worldwide-international.business,'
+        'https://worldwide-international.business,'
+        'https://www.worldwide-international.business,'
+        'https://candidate.worldwide-international.business,'
+        'https://organization.worldwide-international.business,'
+        'https://candidats.worldwide-international.business,'
+        'https://tests-evaluations.worldwide-international.business'
+    ),
     cast=lambda v: [s.strip() for s in v.split(',') if s.strip()],
 )
 
