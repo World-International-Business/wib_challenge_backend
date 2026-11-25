@@ -9,12 +9,14 @@ from services.cv_analyzer import analyze_job_application
 
 
 @shared_task(bind=True, autoretry_for=(Exception,), retry_backoff=True, retry_jitter=True, retry_kwargs={"max_retries": 5})
-def analyze_job_application_task(self, application_id: int) -> dict:
+def analyze_job_application_task(self, application_id: int, automatic: bool = False) -> dict:
     """Analyse une candidature en arrière-plan.
 
     Retourne un dict minimal pour logs/monitoring. Les résultats sont persistés en DB.
     """
-    application = JobApplication.objects.select_related('job_offer').get(id=application_id)
+    application = JobApplication.objects.select_related('job_offer__company').get(id=application_id)
+    if automatic and not application.job_offer.company.auto_analyze_applications:
+        return {'application_id': application.id, 'skipped': 'automatic_analysis_disabled'}
 
     # analyse_job_application modifie et sauvegarde déjà l'application
     try:
@@ -40,6 +42,7 @@ def dispatch_review_notifications():
 
     ids = ReviewNotification.objects.filter(
         sent_count__lt=settings.REVIEW_NOTIFICATION_MAX_EMAILS, application__needs_human_review=True,
+        application__job_offer__company__notify_blocking_cases=True,
         generation=F('application__review_generation'),
     ).filter(
         Q(next_attempt_at__isnull=True) | Q(next_attempt_at__lte=timezone.now()),

@@ -307,11 +307,11 @@ class JobOfferViewSet(viewsets.ModelViewSet):
             application.save(update_fields=['documents'])
 
         # Analyse CV en arrière-plan (optionnel)
-        if getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
+        if job_offer.company.auto_analyze_applications and getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
             try:
                 from apps.jobs.tasks import analyze_job_application_task
 
-                analyze_job_application_task.delay(application.id)
+                analyze_job_application_task.delay(application.id, automatic=True)
             except Exception:
                 # On ne bloque pas la candidature si Celery/Redis n'est pas disponible
                 pass
@@ -787,6 +787,9 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
         try:
             analysis = JobApplicationAnalysis.objects.get(application=application)
         except JobApplicationAnalysis.DoesNotExist:
+            if not application.job_offer.company.auto_analyze_applications:
+                return Response({'detail': 'Analyse automatique désactivée. Lancez une analyse manuelle.'},
+                                status=status.HTTP_404_NOT_FOUND)
             # Si aucune analyse n'existe encore, tenter de la lancer immédiatement
             try:
                 analyze_job_application(application, application.job_offer, save=True)

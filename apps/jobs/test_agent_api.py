@@ -47,6 +47,160 @@ class AgentAPITests(TestCase):
     def review(self):
         return set_human_review(self.application.pk, reason='Validation requise')
 
+    def agent_settings_url(self, organization=None):
+        return f'/api/organizations/{(organization or self.organization).pk}/agent-settings/'
+
+    def test_agent_settings_defaults_and_jwt(self):
+        from rest_framework_simplejwt.tokens import AccessToken
+
+        self.assertEqual(self.client.get(self.agent_settings_url()).status_code, 401)
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {AccessToken.for_user(self.recruiter)}')
+        response = self.client.get(self.agent_settings_url())
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {
+            'autoAnalyzeApplications': True, 'notifyBlockingCases': True,
+            'requireHumanApprovalForRejection': True})
+        self.assertEqual(response['X-Wiba-Human-Approval-Required'], 'true')
+
+    def test_agent_settings_partial_persistence_and_audit(self):
+        self.login()
+        response = self.client.patch(self.agent_settings_url(), {'autoAnalyzeApplications': False}, format='json')
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.json()['autoAnalyzeApplications'])
+        self.assertTrue(response.json()['notifyBlockingCases'])
+        self.organization.refresh_from_db()
+        self.assertFalse(self.organization.auto_analyze_applications)
+        self.assertEqual(self.client.get(self.agent_settings_url()).json(), response.json())
+        event = AgentEvent.objects.get(action='organization.agent_settings.updated')
+        self.assertEqual(event.human_validator, self.recruiter)
+        self.assertEqual(event.organization_id, self.organization.pk)
+        self.assertEqual(event.input_data, {'auto_analyze_applications': {'before': True, 'after': False}})
+        self.client.patch(self.agent_settings_url(), {}, format='json')
+        self.assertEqual(AgentEvent.objects.filter(action=event.action).count(), 1)
+
+    def test_agent_settings_strict_validation_and_immutable_policy(self):
+        self.login()
+        for field in ['autoAnalyzeApplications', 'notifyBlockingCases', 'requireHumanApprovalForRejection']:
+            for value in ['false', 'true', 0, 1, None, [], {}]:
+                with self.subTest(field=field, value=value):
+                    response = self.client.patch(self.agent_settings_url(), {field: value}, format='json')
+                    self.assertEqual(response.status_code, 400)
+        response = self.client.patch(self.agent_settings_url(), {
+            'notifyBlockingCases': False, 'requireHumanApprovalForRejection': False}, format='json')
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('obligatoire', str(response.json()))
+        self.organization.refresh_from_db()
+        self.assertTrue(self.organization.notify_blocking_cases)
+        self.assertEqual(self.client.patch(self.agent_settings_url(), {'unknown': True}, format='json').status_code, 400)
+        self.assertEqual(self.client.patch(self.agent_settings_url(), {
+            'requireHumanApprovalForRejection': True}, format='json').status_code, 200)
+
+    def test_agent_settings_tenant_isolation(self):
+        for user in [self.recruiter, self.candidate]:
+            self.login(user)
+            target = self.other_org if user == self.recruiter else self.organization
+            self.assertEqual(self.client.get(self.agent_settings_url(target)).status_code, 404)
+            self.assertEqual(self.client.patch(self.agent_settings_url(target), {
+                'notifyBlockingCases': False}, format='json').status_code, 404)
+        self.other_org.refresh_from_db()
+        self.assertTrue(self.other_org.notify_blocking_cases)
+        self.assertFalse(AgentEvent.objects.filter(action='organization.agent_settings.updated').exists())
+
+    def test_disabled_review_emails_preserve_review_and_retry(self):
+        self.review()
+        notice = ReviewNotification.objects.get()
+        with patch('services.agent_workflow.send_mail', side_effect=RuntimeError('smtp')):
+            dispatch_review_notification(notice.pk)
+        ReviewNotification.objects.filter(pk=notice.pk).update(next_attempt_at=timezone.now() - timedelta(seconds=1))
+        self.login()
+        self.client.patch(self.agent_settings_url(), {'notifyBlockingCases': False}, format='json')
+        with patch('services.agent_workflow.send_mail') as send:
+            self.assertFalse(dispatch_review_notification(notice.pk))
+            send.assert_not_called()
+        notice.refresh_from_db()
+        self.application.refresh_from_db()
+        self.assertEqual(notice.attempts, 1)
+        self.assertEqual(notice.error_code, 'delivery_failed')
+        self.assertTrue(self.application.needs_human_review)
+        self.client.patch(self.agent_settings_url(), {'notifyBlockingCases': True}, format='json')
+        self.assertTrue(dispatch_review_notification(notice.pk))
+        self.assertEqual(len(mail.outbox), 1)
+
+    def test_dispatcher_excludes_organizations_with_email_alerts_disabled(self):
+        from apps.jobs.tasks import dispatch_review_notifications
+
+        self.review()
+        self.organization.notify_blocking_cases = False
+        self.organization.save()
+        with patch('services.agent_workflow.dispatch_review_notification') as dispatch:
+            self.assertEqual(dispatch_review_notifications.run(), {'submitted': 0})
+            dispatch.assert_not_called()
+
+    def test_disabled_review_emails_prevent_first_attempt(self):
+        self.organization.notify_blocking_cases = False
+        self.organization.save()
+        self.review()
+        notice = ReviewNotification.objects.get()
+        self.assertFalse(dispatch_review_notification(notice.pk))
+        notice.refresh_from_db()
+        self.assertEqual(notice.attempts, 0)
+        self.assertEqual(len(mail.outbox), 0)
+
+    def test_disabled_automatic_analysis_does_not_block_manual_task(self):
+        from apps.jobs.tasks import analyze_job_application_task
+
+        self.organization.auto_analyze_applications = False
+        self.organization.save()
+        with patch('apps.jobs.tasks.analyze_job_application') as analyze:
+            result = analyze_job_application_task.run(self.application.pk, automatic=True)
+            self.assertEqual(result['skipped'], 'automatic_analysis_disabled')
+            analyze.assert_not_called()
+            analyze_job_application_task.run(self.application.pk)
+            analyze.assert_called_once()
+        self.application.refresh_from_db()
+        self.assertEqual(self.application.status, 'pending')
+
+    @override_settings(USE_CELERY_FOR_CV_ANALYSIS=False)
+    def test_disabled_automatic_analysis_allows_manual_endpoint_only(self):
+        self.organization.auto_analyze_applications = False
+        self.organization.save()
+        self.login()
+        with patch('apps.jobs.views.analyze_job_application') as analyze:
+            response = self.client.get(f'/api/jobs/applications/{self.application.pk}/extracted-data/')
+            self.assertEqual(response.status_code, 404)
+            analyze.assert_not_called()
+            response = self.client.post(f'/api/jobs/applications/{self.application.pk}/analyze/')
+            self.assertEqual(response.status_code, 200)
+            analyze.assert_called_once()
+
+    def test_agent_settings_cannot_be_changed_through_generic_update(self):
+        self.login()
+        response = self.client.patch(f'/api/organizations/{self.organization.pk}/', {
+            'autoAnalyzeApplications': False, 'notifyBlockingCases': False}, format='json')
+        self.assertEqual(response.status_code, 200)
+        self.organization.refresh_from_db()
+        self.assertTrue(self.organization.auto_analyze_applications)
+        self.assertTrue(self.organization.notify_blocking_cases)
+
+    @override_settings(USE_CELERY_FOR_CV_ANALYSIS=True)
+    def test_new_application_respects_automatic_analysis_setting(self):
+        self.offer.status = JobOffer.Status.PUBLISHED
+        self.offer.save()
+        for enabled in [False, True]:
+            with self.subTest(enabled=enabled):
+                self.organization.auto_analyze_applications = enabled
+                self.organization.save()
+                user = get_user_model().objects.create_user(email=f'apply-{enabled}@example.test', password='test')
+                self.login(user)
+                with patch('apps.jobs.tasks.analyze_job_application_task.delay') as enqueue:
+                    response = self.client.post(f'/api/jobs/offers/{self.offer.pk}/apply/', {
+                        'useProfile': True, 'applicantName': 'Candidate', 'applicantEmail': user.email}, format='json')
+                    self.assertEqual(response.status_code, 201, response.data)
+                    if enabled:
+                        enqueue.assert_called_once_with(response.json()['id'], automatic=True)
+                    else:
+                        enqueue.assert_not_called()
+
     def test_review_deduplicates_email_and_audit(self):
         self.review()
         self.review()

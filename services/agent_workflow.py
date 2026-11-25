@@ -52,6 +52,8 @@ def dispatch_review_notification(notification_id):
     if notice.next_attempt_at and notice.next_attempt_at > timezone.now():
         return False
     company = application.job_offer.company
+    if not company.notify_blocking_cases:
+        return False
     recipient = company.hr_alert_email or company.account.email or company.email or ''
     if not recipient:
         notice.error_code = 'missing_recipient'

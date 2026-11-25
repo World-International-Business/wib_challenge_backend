@@ -14,6 +14,8 @@ python manage.py seed_courses --force
 python manage.py makemigrations --check --dry-run
 ```
 
+Sur le poste Windows local, utiliser `env\Scripts\python.exe` à la place de `python` pour ces commandes : cet environnement contient les dépendances Django.
+
 ## Variables d'environnement critiques en production
 
 - `SECRET_KEY` : > 50 caractères, ne commençant pas par `django-insecure-`.

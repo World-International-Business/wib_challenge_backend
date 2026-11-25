@@ -1,5 +1,9 @@
 from decouple import config
 from django.http import HttpResponseRedirect
+from django.db import transaction
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiResponse
+from apps.core.authentication import PermissiveJWTAuthentication
+from apps.organizations.serializers import AgentSettingsSerializer
 from django.utils import timezone
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
@@ -39,6 +43,46 @@ class OrganizationViewSet(viewsets.ModelViewSet):
         elif self.request.user.is_superuser:
             return Organization.objects.all()
         return Organization.objects.none()
+
+    @extend_schema(
+        methods=['GET', 'PATCH'], request=AgentSettingsSerializer,
+        responses={
+            200: AgentSettingsSerializer,
+            400: OpenApiResponse(description='Champ inconnu, valeur non booléenne ou désactivation interdite de la validation humaine.'),
+            401: OpenApiResponse(description='JWT Bearer absent ou invalide.'),
+            404: OpenApiResponse(description='Organisation inexistante ou non autorisée.'),
+        },
+        description=(
+            'Configuration persistante Wiba de l’organisation du compte connecté (administrateur plateforme autorisé). '
+            'JWT Bearer requis. Tous les réglages valent true initialement. PATCH partiel : booléens JSON stricts, '
+            'champs omis inchangés, champs inconnus refusés (400). Organisation inaccessible : 404 ; JWT absent/invalide : 401. '
+            'requireHumanApprovalForRejection est toujours true, obligatoire et non désactivable (false retourne 400). '
+            'autoAnalyzeApplications contrôle les déclenchements automatiques, sous réserve de l’activation globale Celery, '
+            'sans bloquer les analyses manuelles. notifyBlockingCases suspend les emails et relances sans supprimer les dossiers ni notifications.'),
+        parameters=[OpenApiParameter(
+            name='X-Wiba-Human-Approval-Required', type=bool, location=OpenApiParameter.HEADER,
+            response=True, description='Toujours true : politique de validation humaine non désactivable.')],
+    )
+    @action(detail=True, methods=['get', 'patch'], url_path='agent-settings',
+            authentication_classes=[PermissiveJWTAuthentication], serializer_class=AgentSettingsSerializer)
+    @transaction.atomic
+    def agent_settings(self, request, pk=None):
+        org = self.get_object()
+        if request.method == 'PATCH':
+            org = Organization.objects.select_for_update().get(pk=org.pk)
+            before = dict(AgentSettingsSerializer(org).data)
+            serializer = AgentSettingsSerializer(org, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            org = serializer.save()
+            after = dict(AgentSettingsSerializer(org).data)
+            changes = {key: {'before': before[key], 'after': value}
+                       for key, value in after.items() if before[key] != value}
+            if changes:
+                _record_channel_event(org, 'organization.agent_settings.updated', actor=request.user, data=changes)
+        return Response(AgentSettingsSerializer(org).data, headers={
+            'X-Wiba-Human-Approval-Required': 'true',
+            'Access-Control-Expose-Headers': 'X-Wiba-Human-Approval-Required',
+        })
 
     @action(detail=True, methods=['get'], url_path='channels')
     def channels(self, request, pk=None):

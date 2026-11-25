@@ -213,11 +213,11 @@ def import_email_applications_from_imap() -> dict:
             )
 
             # Analyse CV en arrière-plan (optionnel)
-            if getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
+            if organization.auto_analyze_applications and getattr(settings, 'USE_CELERY_FOR_CV_ANALYSIS', False):
                 try:
                     from apps.jobs.tasks import analyze_job_application_task
 
-                    analyze_job_application_task.delay(application.id)
+                    analyze_job_application_task.delay(application.id, automatic=True)
                 except Exception as e:  # pragma: no cover - protection best effort
                     errors.append(f"Erreur lors de l'enqueue de l'analyse pour application id={application.id}: {e}")
 

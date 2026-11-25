@@ -39,6 +39,13 @@ class Organization(models.Model):
     linkedin_page_url = models.URLField(_('Page LinkedIn'), blank=True, null=True)
     emploi_cm_account = models.CharField(_('Compte Emploi.cm'), max_length=255, blank=True, null=True)
     hr_alert_email = models.EmailField(_('Email alertes RH'), blank=True, null=True)
+    auto_analyze_applications = models.BooleanField(default=True)
+    notify_blocking_cases = models.BooleanField(default=True)
+
+    @property
+    def require_human_approval_for_rejection(self):
+        return True
+
     created_at = models.DateTimeField(_('Date de création'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Date de mise à jour'), auto_now=True)
 
