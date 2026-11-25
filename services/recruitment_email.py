@@ -5,11 +5,13 @@ import ipaddress
 import re
 import socket
 import ssl
+import unicodedata
 import uuid
 from datetime import timedelta
 from email import policy
 from email.parser import BytesParser
 from email.utils import parseaddr
+from html.parser import HTMLParser
 
 import fitz
 from django.conf import settings
@@ -99,6 +101,50 @@ def test_inbox(inbox):
     return {'status': 'connected', 'readOnly': True}
 
 
+class ApplicationHTMLText(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts = []
+        self.hidden = 0
+
+    def handle_starttag(self, tag, attrs):
+        if tag in ('script', 'style', 'head'):
+            self.hidden += 1
+        if tag in ('br', 'p', 'div', 'li'):
+            self.parts.append('\n')
+
+    def handle_endtag(self, tag):
+        if tag in ('script', 'style', 'head') and self.hidden:
+            self.hidden -= 1
+        if tag in ('p', 'div', 'li'):
+            self.parts.append('\n')
+
+    def handle_data(self, data):
+        if not self.hidden:
+            self.parts.append(data)
+
+
+def normalized_words(value):
+    text = ''.join(char for char in unicodedata.normalize('NFKD', value.casefold()) if not unicodedata.combining(char))
+    return re.sub(r'[^\w+#]+', ' ', text).strip()
+
+
+def has_application_message(body):
+    for line in body.splitlines():
+        line = line.strip()
+        words = normalized_words(line)
+        if line == '--' or words in ('cordialement', 'bien cordialement', 'best regards', 'regards', 'sincerely'):
+            break
+        if re.match(r'^(?:le .+ a ecrit|on .+ wrote)$', words):
+            break
+        if line.startswith('>') or words in ('bonjour', 'bonsoir', 'hello', 'hi', 'madame monsieur', 'merci', 'thanks'):
+            continue
+        content = re.sub(r'https?://\S+|[\w.+-]+@[\w.-]+\.\w+', '', line)
+        if any(char.isalpha() for char in content):
+            return True
+    return False
+
+
 def parse_message(raw):
     message = BytesParser(policy=policy.default).parsebytes(raw)
     name, sender = parseaddr(str(message.get('From', '')))
@@ -106,9 +152,13 @@ def parse_message(raw):
         validate_email(sender)
     except ValidationError as exc:
         raise MailboxError('invalid_sender') from exc
-    body = message.get_body(preferencelist=('plain',))
+    body = message.get_body(preferencelist=('plain', 'html'))
     try:
         text = body.get_content()[:50000] if body else ''
+        if body and body.get_content_type() == 'text/html':
+            parser = ApplicationHTMLText()
+            parser.feed(text)
+            text = ''.join(parser.parts)
     except (LookupError, UnicodeError):
         text = ''
     return message, name[:255] or sender, sender, text
@@ -119,10 +169,18 @@ def choose_offer(inbox, subject):
     offers = set(re.findall(r'\[JOB-(\d+)\]', subject, flags=re.IGNORECASE))
     if any(int(value) != inbox.organization_id for value in organizations) or len(offers) > 1:
         return None
-    offer_id = int(next(iter(offers))) if offers else inbox.default_offer_id
-    return JobOffer.objects.filter(
-        pk=offer_id, company_id=inbox.organization_id, status=JobOffer.Status.PUBLISHED,
-    ).filter(Q(expires_at__isnull=True) | Q(expires_at__gt=timezone.now())).first()
+    available = JobOffer.objects.filter(company_id=inbox.organization_id, status=JobOffer.Status.PUBLISHED).filter(
+        Q(expires_at__isnull=True) | Q(expires_at__gt=timezone.now()))
+    if offers:
+        return available.filter(pk=int(next(iter(offers)))).first()
+    subject_words = f' {normalized_words(subject)} '
+    matches = [offer for offer in available if normalized_words(offer.title)
+               and f' {normalized_words(offer.title)} ' in subject_words]
+    if len(matches) == 1:
+        return matches[0]
+    if matches and len({normalized_words(offer.title) for offer in matches}) == 1:
+        return next((offer for offer in matches if offer.pk == inbox.default_offer_id), None)
+    return None
 
 
 def pdf_attachment(message):
@@ -138,11 +196,25 @@ def pdf_attachment(message):
             continue
         try:
             with fitz.open(stream=content, filetype='pdf') as document:
-                if not document.is_encrypted and 0 < document.page_count <= 50:
+                if (not document.is_encrypted and 0 < document.page_count <= 50 and not document.embfile_count()
+                        and any(page.get_text().strip() or page.get_images() or page.get_drawings() for page in document)):
                     return content
         except Exception:
             continue
     return None
+
+
+def application_parts(raw):
+    message, name, sender, body = parse_message(raw)
+    subject = normalized_words(str(message.get('Subject', '')))
+    if not re.search(r'\b(?:candidatures?|postulation|postuler|job application|application for|applying for|apply for)\b', subject):
+        raise MailboxError('candidacy_subject_required')
+    if not has_application_message(body):
+        raise MailboxError('application_message_required')
+    content = pdf_attachment(message)
+    if not content:
+        raise MailboxError('missing_or_unsupported_resume')
+    return message, name, sender, body, content
 
 
 @transaction.atomic
@@ -157,26 +229,24 @@ def assign_message(message_id, offer, *, actor=None):
         if receipt.application and receipt.application.job_offer_id != offer.pk:
             raise MailboxError('already_assigned')
         return receipt
+    if receipt.status == 'ignored':
+        raise MailboxError('automated_message')
+    if offer.status != JobOffer.Status.PUBLISHED or (offer.expires_at and offer.expires_at <= timezone.now()):
+        raise MailboxError('offer_not_open')
     if not receipt.raw_secret:
         raise MailboxError(receipt.error_code or 'message_unavailable')
     raw = base64.b64decode(decrypt_secret(receipt.raw_secret))
-    message, name, sender, body = parse_message(raw)
+    message, name, sender, body, content = application_parts(raw)
     application = JobApplication.objects.create(
         job_offer=offer, applicant_name=name, applicant_email=sender, cover_letter=body,
         source=JobApplication.ApplicationSource.EMAIL,
     )
-    content = pdf_attachment(message)
-    if content:
-        receipt.resume_file.save(f'{uuid.uuid4().hex}.pdf', ContentFile(content), save=False)
+    receipt.resume_file.save(f'{uuid.uuid4().hex}.pdf', ContentFile(content), save=False)
     receipt.application = application
     receipt.status = 'imported'
-    receipt.error_code = '' if content else 'missing_or_unsupported_resume'
-    receipt.analysis_state = 'pending' if inbox.organization.auto_analyze_applications and content else 'manual'
+    receipt.error_code = ''
+    receipt.analysis_state = 'pending' if inbox.organization.auto_analyze_applications else 'manual'
     receipt.save(update_fields=['application', 'status', 'error_code', 'analysis_state', 'resume_file'])
-    from services.agent_workflow import set_human_review
-    if not content:
-        receipt.application = set_human_review(
-            application.pk, reason='Candidature email : CV PDF absent, ambigu, illisible ou non pris en charge. Consultez le message original.')
     audit(inbox, 'email.application_imported', actor=actor, data={'message_id': receipt.pk, 'application_id': application.pk})
     return receipt
 
@@ -202,6 +272,15 @@ def ingest_message(inbox, validity, uid, raw):
         receipt.status = 'ignored'
         receipt.error_code = 'automated_message'
         receipt.save(update_fields=['status', 'error_code'])
+        return receipt, True
+    try:
+        application_parts(raw)
+    except MailboxError as exc:
+        receipt.status = 'incomplete'
+        receipt.analysis_state = 'manual'
+        receipt.error_code = str(exc)
+        receipt.save(update_fields=['status', 'analysis_state', 'error_code'])
+        audit(inbox, 'email.application_incomplete', data={'message_id': receipt.pk, 'error_code': receipt.error_code})
         return receipt, True
     offer = choose_offer(inbox, str(message.get('Subject', '')))
     if offer:

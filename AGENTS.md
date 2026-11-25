@@ -133,3 +133,12 @@ Sur le poste Windows local, utiliser `env\Scripts\python.exe` à la place de `py
 - Le web et le worker doivent partager la base, les secrets de chiffrement existants et le volume privé des CV. Ne pas renouveler ces secrets pour résoudre une erreur de connexion.
 - Vérifier `python manage.py check_email_pipeline --require-shared-database --broker` avant le démarrage de Celery et conserver une seule instance de Beat. Ce contrôle ne lit pas de boîte et n’envoie aucun email.
 - Tests ciblés : `python manage.py test apps.jobs.test_email_pipeline --noinput`. Un HTTP 202 de synchronisation confirme uniquement la mise en file, pas l’import ni l’analyse.
+
+## Filtre commun des candidatures email
+
+- Avant création d’un dossier, `services/recruitment_email.py` exige un objet indiquant une candidature, un message renseigné hors signature/liens/citations et un PDF exploitable. Le HTML est converti en texte sans exécuter scripts ni styles.
+- Les emails incomplets restent chiffrés et consultables : `status=incomplete`, `analysisState=manual`, motif dans `errorCode`, sans dossier créé, analyse, refus ni email automatique de relance. Le candidat doit renvoyer les éléments manquants ; aucun original n’est modifié.
+- L’offre doit être publiée, non expirée et appartenir à l’organisation. Le titre dans l’objet est comparé sans distinction de casse ni d’accents ; les références JOB/ORG restent prises en charge. Un poste ambigu nécessite un rattachement humain ; l’offre par défaut ne sert à départager que des offres portant le même titre explicite.
+- Le rattachement manuel réapplique les contrôles et ne permet pas d’importer un message incomplet ni d’affecter une offre fermée. Les dossiers historiques ne sont pas supprimés ou reclassés rétroactivement.
+- PDF : maximum 5 Mo et 50 pages, non chiffré, non vide, sans fichiers embarqués ; les scans PDF restent utilisables par le traitement OCR existant. Ce contrôle technique n’est pas un antivirus ni une certification du contenu du CV.
+- Les consignes contenues dans les CV ne modifient pas les règles déterministes du filtre. L’analyse IA reçoit aussi une instruction système de traiter les documents candidats comme des données non fiables ; toute décision finale demeure humaine.
