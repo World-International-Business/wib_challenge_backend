@@ -1,3 +1,4 @@
+from django.urls import reverse
 from drf_writable_nested import WritableNestedModelSerializer
 from rest_framework import serializers
 
@@ -142,6 +143,13 @@ class GenerateJobOfferSerializer(serializers.Serializer):
 
 
 
+def email_resume_url(application):
+    receipt = getattr(application, 'email_receipt', None)
+    if receipt and receipt.resume_file and not application.resume:
+        return reverse('organizations:email-inboxes-resume', kwargs={'pk': receipt.inbox_id, 'message_id': receipt.pk})
+    return None
+
+
 class JobApplicationSerializer(serializers.ModelSerializer):
     use_profile = serializers.BooleanField(required=False, write_only=True)
     profession = serializers.SerializerMethodField(read_only=True)
@@ -157,6 +165,13 @@ class JobApplicationSerializer(serializers.ModelSerializer):
             'job_offer': {'required': False},
             'user': {'required': False}
         }
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        private_resume = email_resume_url(instance)
+        if private_resume:
+            data['resume'] = private_resume
+        return data
 
     def get_profession(self, obj):
         """Retourne la profession du candidat depuis son profil"""
@@ -290,6 +305,9 @@ class OrganizationApplicationSerializer(serializers.ModelSerializer):
         ]
 
     def get_resumeUrl(self, obj: JobApplication):
+        private_resume = email_resume_url(obj)
+        if private_resume:
+            return private_resume
         resume = getattr(obj, 'resume', None)
         try:
             return resume.url if resume else None

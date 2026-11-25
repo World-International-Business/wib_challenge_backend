@@ -16,6 +16,22 @@ python manage.py makemigrations --check --dry-run
 
 Sur le poste Windows local, utiliser `env\Scripts\python.exe` à la place de `python` pour ces commandes : cet environnement contient les dépendances Django.
 
+## Réception automatique des candidatures email
+
+- API JWT propriétaire uniquement : `GET/POST /api/email-inboxes/`, `GET/PATCH /api/email-inboxes/{id}/`, `POST .../{id}/test/`, `POST .../{id}/sync/`, `GET .../{id}/messages/`, `POST .../{id}/messages/{mid}/assign/` (`offerId`), `GET .../{id}/messages/{mid}/resume/`, `GET .../{id}/messages/{mid}/original/`.
+- Connexion IMAP TLS 993 avec mot de passe d’application : `host`, `username`, `password` (write-only), `folder` ASCII, `defaultOffer` optionnel. Créer désactivé, tester, puis PATCH `enabled=true`. OAuth messagerie n’est pas pris en charge ; ne pas annoncer le support d’un fournisseur qui interdit ce mode IMAP.
+- Utiliser un dossier de candidatures dédié. L’import lit aussi les messages déjà lus, sans modifier les flags ni déplacer/supprimer les emails. Premier passage : historique du dossier, par lots de 25. UIDVALIDITY/UID et empreinte du contenu empêchent les réimports.
+- Sans offre certaine ou avec une référence à une autre organisation : message `unassigned`, rattachement humain requis. `defaultOffer` est utilisé seulement en l’absence de référence JOB explicite ; les offres fermées/expirées ne sont pas sélectionnées automatiquement.
+- Message max 10 Mo ; CV PDF max 5 Mo/50 pages. Pièce jointe absente, ambiguë ou inexploitable : dossier conservé et revue humaine requise. Original `.eml` chiffré conservé ; les messages dépassant 10 Mo restent dans la boîte source avec une erreur visible. Messages automatiques/listes/notifications de la plateforme ignorés pour prévenir les boucles.
+- CV email hors médias publics : `EMAIL_RESUME_ROOT` (défaut `private_uploads/email_resumes`), partagé entre web et worker. Téléchargements JWT en Blob côté frontend, jamais un lien public direct. Secrets et originaux réutilisent le chiffrement des canaux : garder la même clé entre les services et les déploiements.
+- `autoAnalyzeApplications` pilote la file d’analyse email persistante (indépendante du drapeau web `USE_CELERY_FOR_CV_ANALYSIS`). Reprises avec backoff, maximum 5 tentatives ; les erreurs finales nécessitent une revue humaine. Aucune décision de refus automatique. `notifyBlockingCases` conserve son rôle sur le système d’alertes existant.
+- Celery Beat : synchronisation toutes les 60 s, traitement de la file d’analyse toutes les 30 s. Nécessite un worker et une seule instance Beat, la même base PostgreSQL/MySQL, le même broker (`REDIS_URL` ou `CELERY_BROKER_URL`), la même clé de chiffrement et le même volume privé que le web.
+- Profil Docker optionnel `email` : Redis interne sans port publié, worker et Beat. Avant activation, configurer le broker commun (Redis inclus : `redis://email-redis:6379/0`) dans le gestionnaire de secrets, sans changer les secrets depuis le code. `docker compose --profile email up -d --build`. Ne pas activer un deuxième Beat si Dokploy en gère déjà un.
+- Préflight : `python manage.py check_email_pipeline --require-shared-database --broker` après migrations. Le préflight vérifie base/migrations/chiffrement/stockage privé/broker, pas la connectivité d’une boîte ni la présence d’un worker.
+- Sans broker, exécution administrative contrôlée : `python manage.py import_email_applications --organization <id> --inbox <id> --analyze`. Sans `--analyze`, import uniquement. Cette commande peut traiter de vrais emails et appeler l’IA ; ne pas l’exécuter sur une boîte réelle sans autorisation.
+- Ancien endpoint `POST /api/jobs/applications/sync-email-applications/` : désormais demande asynchrone limitée aux connexions activées/vérifiées du compte (`202`, ou `400` sans connexion, `503` si broker indisponible). Il ne lit plus la boîte IMAP globale.
+- Vérification : `python manage.py test apps.jobs.test_email_pipeline --noinput`, puis `python manage.py test apps.jobs --noinput`. Les tests IMAP/IA utilisent des doubles contrôlés, pas une messagerie ni un fournisseur IA réels.
+
 ## Variables d'environnement critiques en production
 
 - `SECRET_KEY` : > 50 caractères, ne commençant pas par `django-insecure-`.

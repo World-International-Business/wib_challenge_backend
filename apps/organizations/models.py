@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from services.email_storage import RecruitmentResumeStorage
 
 
 def default_preferred_channels():
@@ -51,6 +52,57 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class RecruitmentEmailInbox(models.Model):
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='email_inboxes')
+    host = models.CharField(max_length=253)
+    username = models.CharField(max_length=254)
+    secret = models.TextField()
+    folder = models.CharField(max_length=255, default='INBOX')
+    default_offer = models.ForeignKey('jobs.JobOffer', null=True, blank=True, on_delete=models.SET_NULL)
+    enabled = models.BooleanField(default=False)
+    verified_at = models.DateTimeField(null=True, blank=True)
+    last_sync_at = models.DateTimeField(null=True, blank=True)
+    next_sync_at = models.DateTimeField(null=True, blank=True, db_index=True)
+    error_code = models.CharField(max_length=50, blank=True)
+    failures = models.PositiveIntegerField(default=0)
+    uid_validity = models.CharField(max_length=30, blank=True)
+    last_uid = models.PositiveBigIntegerField(default=0)
+    lease_token = models.CharField(max_length=36, blank=True)
+    locked_until = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [models.UniqueConstraint(
+            fields=['organization', 'host', 'username', 'folder'], name='unique_recruitment_inbox')]
+
+
+class RecruitmentEmailMessage(models.Model):
+    inbox = models.ForeignKey(RecruitmentEmailInbox, on_delete=models.CASCADE, related_name='messages')
+    fingerprint = models.CharField(max_length=64)
+    uid_validity = models.CharField(max_length=30)
+    uid = models.PositiveBigIntegerField()
+    sender = models.CharField(max_length=254, blank=True)
+    subject = models.CharField(max_length=255, blank=True)
+    raw_secret = models.TextField(blank=True)
+    resume_file = models.FileField(storage=RecruitmentResumeStorage(), upload_to='', blank=True)
+    status = models.CharField(max_length=30, default='unassigned')
+    error_code = models.CharField(max_length=50, blank=True)
+    application = models.OneToOneField('jobs.JobApplication', null=True, blank=True, on_delete=models.SET_NULL,
+                                      related_name='email_receipt')
+    analysis_state = models.CharField(max_length=20, default='manual', db_index=True)
+    analysis_attempts = models.PositiveIntegerField(default=0)
+    analysis_next_attempt_at = models.DateTimeField(null=True, blank=True)
+    analysis_locked_until = models.DateTimeField(null=True, blank=True)
+    received_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-received_at']
+        constraints = [
+            models.UniqueConstraint(fields=['inbox', 'fingerprint'], name='unique_recruitment_email_content'),
+            models.UniqueConstraint(fields=['inbox', 'uid_validity', 'uid'], name='unique_recruitment_email_uid'),
+        ]
 
 
 class OrganizationChannelCredential(models.Model):

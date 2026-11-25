@@ -57,8 +57,8 @@ class OrganizationViewSet(viewsets.ModelViewSet):
             'JWT Bearer requis. Tous les réglages valent true initialement. PATCH partiel : booléens JSON stricts, '
             'champs omis inchangés, champs inconnus refusés (400). Organisation inaccessible : 404 ; JWT absent/invalide : 401. '
             'requireHumanApprovalForRejection est toujours true, obligatoire et non désactivable (false retourne 400). '
-            'autoAnalyzeApplications contrôle les déclenchements automatiques, sous réserve de l’activation globale Celery, '
-            'sans bloquer les analyses manuelles. notifyBlockingCases suspend les emails et relances sans supprimer les dossiers ni notifications.'),
+            'autoAnalyzeApplications contrôle les déclenchements automatiques sans bloquer les analyses manuelles. '
+            'La réception web dépend aussi de USE_CELERY_FOR_CV_ANALYSIS ; les emails utilisent une file persistante traitée par les workers ou la commande d’import. notifyBlockingCases suspend les emails et relances sans supprimer les dossiers ni notifications.'),
         parameters=[OpenApiParameter(
             name='X-Wiba-Human-Approval-Required', type=bool, location=OpenApiParameter.HEADER,
             response=True, description='Toujours true : politique de validation humaine non désactivable.')],

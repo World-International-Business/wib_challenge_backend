@@ -24,7 +24,8 @@ from urllib.parse import quote
 import requests
 
 from services.cv_analyzer import analyze_job_application
-from services.email_applications import import_email_applications_from_imap
+from apps.organizations.models import RecruitmentEmailInbox
+from apps.organizations.serializers.email import EmailSyncSerializer
 from services.generate_offer import generate_offer, OfferGenerationError
 from services.users_job_suggestions import get_users_suggestions_for_job
 from wib_challenge.pagination import paginated_response
@@ -736,16 +737,14 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
         return Response(serializer.data)
 
     @extend_schema(
-        summary="Synchroniser les candidatures email depuis la boîte IMAP",
+        summary="Synchroniser les boîtes candidatures de l’organisation connectée",
         description=(
-            "Connecte la boîte email RH IMAP configurée, importe les nouveaux emails UNSEEN "
-            "en tant que JobApplication (source='email') et retourne un résumé."
+            "Compatibilité : demande une synchronisation asynchrone des connexions email activées et vérifiées "
+            "de votre organisation uniquement. Consulter GET /api/email-inboxes/ pour suivre le résultat."
         ),
-        responses={
-            200: OpenApiResponse(
-                description="Résumé de la synchronisation IMAP",
-            )
-        },
+        request=None,
+        responses={202: EmailSyncSerializer, 400: OpenApiResponse(description='Aucune boîte activée et vérifiée.'),
+                   503: OpenApiResponse(description='File indisponible ; la synchronisation périodique réessaiera.')},
     )
     @action(detail=False, methods=['post'], url_path='sync-email-applications')
     def sync_email_applications(self, request):
@@ -760,8 +759,20 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
                 status=status.HTTP_403_FORBIDDEN,
             )
 
-        result = import_email_applications_from_imap()
-        return Response(result, status=status.HTTP_200_OK)
+        ids = list(RecruitmentEmailInbox.objects.filter(
+            organization=request.user.organization, enabled=True, verified_at__isnull=False,
+        ).values_list('pk', flat=True))
+        if not ids:
+            return Response({'detail': 'Connectez, testez puis activez une boîte dans /api/email-inboxes/.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        RecruitmentEmailInbox.objects.filter(pk__in=ids).update(next_sync_at=timezone.now())
+        try:
+            from apps.jobs.tasks import sync_recruitment_inbox
+            for inbox_id in ids:
+                sync_recruitment_inbox.delay(inbox_id)
+        except Exception:
+            return Response({'status': 'pending', 'errorCode': 'queue_unavailable'}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+        return Response({'status': 'queued', 'inboxIds': ids}, status=status.HTTP_202_ACCEPTED)
 
     @extend_schema(
         summary="Données extraites et analyse IA pour une candidature",
@@ -790,6 +801,10 @@ class JobApplicationViewSet(mixins.DestroyModelMixin, viewsets.ReadOnlyModelView
             if not application.job_offer.company.auto_analyze_applications:
                 return Response({'detail': 'Analyse automatique désactivée. Lancez une analyse manuelle.'},
                                 status=status.HTTP_404_NOT_FOUND)
+            email_receipt = getattr(application, 'email_receipt', None)
+            if email_receipt and email_receipt.analysis_state in ('pending', 'processing'):
+                return Response({'status': email_receipt.analysis_state, 'detail': 'Analyse email en file de traitement.'},
+                                status=status.HTTP_202_ACCEPTED)
             # Si aucune analyse n'existe encore, tenter de la lancer immédiatement
             try:
                 analyze_job_application(application, application.job_offer, save=True)

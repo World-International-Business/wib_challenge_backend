@@ -9,9 +9,11 @@ from pydantic import BaseModel
 from typing import Optional
 
 from django.conf import settings
+from django.db import transaction
 from django.utils import timezone
 
 from apps.jobs.models import JobOffer, JobApplication, JobApplicationAnalysis
+from apps.organizations.models import RecruitmentEmailMessage
 from apps.candidates.models import CandidateProfile
 from services.utils import generate_content_with_retry, get_genai_client, GEMINI_MODEL
 from services.agent_workflow import record_event, set_human_review
@@ -34,7 +36,6 @@ def extract_text_native(pdf_path):
 
     for page_num, page in enumerate(doc.pages()):
         text = page.get_text().strip()
-        print(text)
         if text:
             texte_final += f"\n\n### Page {page_num + 1} (texte détecté)\n{text}"
         else:
@@ -51,7 +52,10 @@ def png(image):
     return io.getvalue()
 
 
+@transaction.atomic
 def analyze_job_application(job_application: JobApplication, job_offer: JobOffer, save=True) -> JobApplication:
+    if save:
+        JobApplication.objects.select_for_update().get(pk=job_application.pk)
     # Construire le résumé de la fiche de poste
     fiche_poste_text = f"""
 **Titre**: {job_offer.title}
@@ -73,7 +77,8 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
     if save:
         analysis.save()
 
-    resume = getattr(job_application, 'resume', None)
+    email_receipt = getattr(job_application, 'email_receipt', None)
+    resume = getattr(job_application, 'resume', None) or (email_receipt.resume_file if email_receipt else None)
     user = getattr(job_application, 'user', None)
     profile = getattr(user, 'profile', None) if user else None
 
@@ -193,6 +198,9 @@ def analyze_job_application(job_application: JobApplication, job_offer: JobOffer
                      model_version='keyword-matching-v1' if local_fallback else GEMINI_MODEL)
         set_human_review(job_application.pk, reason='Analyse indisponible : vérification manuelle requise.' if failed
                          else 'Analyse disponible : décision humaine de présélection requise.')
+        if email_receipt and not failed:
+            RecruitmentEmailMessage.objects.filter(pk=email_receipt.pk).update(
+                analysis_state='done', error_code='', analysis_locked_until=None, analysis_next_attempt_at=None)
 
     return job_application
 

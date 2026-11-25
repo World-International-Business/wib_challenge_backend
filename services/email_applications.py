@@ -166,8 +166,8 @@ def import_email_applications_from_imap() -> dict:
             try:
                 import re
 
-                org_match = re.search(r"\\[ORG-(\\d+)\\]", subject)
-                job_match = re.search(r"\\[JOB-(\\d+)\\]", subject)
+                org_match = re.search(r"\[ORG-(\d+)\]", subject)
+                job_match = re.search(r"\[JOB-(\d+)\]", subject)
                 if org_match:
                     org_id = int(org_match.group(1))
                 if job_match:

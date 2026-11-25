@@ -49,3 +49,29 @@ def dispatch_review_notifications():
     ).order_by('pk').values_list('pk', flat=True)[:100]
     sent = sum(dispatch_review_notification(pk) for pk in list(ids))
     return {'submitted': sent}
+
+
+@shared_task(soft_time_limit=600, time_limit=660)
+def sync_recruitment_inbox(inbox_id):
+    from services.recruitment_email import sync_inbox
+    return sync_inbox(inbox_id)
+
+
+@shared_task
+def sync_recruitment_inboxes():
+    from apps.organizations.models import RecruitmentEmailInbox
+    now = timezone.now()
+    ids = RecruitmentEmailInbox.objects.filter(enabled=True, verified_at__isnull=False).filter(
+        Q(next_sync_at__isnull=True) | Q(next_sync_at__lte=now),
+    ).filter(Q(locked_until__isnull=True) | Q(locked_until__lt=now)).order_by('next_sync_at', 'pk').values_list('pk', flat=True)[:100]
+    queued = 0
+    for inbox_id in ids:
+        sync_recruitment_inbox.apply_async(args=[inbox_id], expires=300)
+        queued += 1
+    return {'queued': queued}
+
+
+@shared_task(soft_time_limit=600, time_limit=660)
+def analyze_recruitment_emails():
+    from services.recruitment_email import analyze_pending_messages
+    return analyze_pending_messages()

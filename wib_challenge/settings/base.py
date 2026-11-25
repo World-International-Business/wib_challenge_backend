@@ -63,6 +63,7 @@ IMAP_PORT = config('IMAP_PORT', cast=int, default=993)
 IMAP_USERNAME = config('IMAP_USERNAME', default=None)
 IMAP_PASSWORD = config('IMAP_PASSWORD', default=None)
 IMAP_MAILBOX = config('IMAP_MAILBOX', default='INBOX')
+EMAIL_RESUME_ROOT = config('EMAIL_RESUME_ROOT', default=str(BASE_DIR / 'private_uploads' / 'email_resumes'))
 
 
 def _env_bool(key: str, default: bool = False) -> bool:
@@ -87,6 +88,14 @@ REVIEW_NOTIFICATION_MAX_EMAILS = config('REVIEW_NOTIFICATION_MAX_EMAILS', defaul
 if REVIEW_NOTIFICATION_INTERVAL_HOURS < 1 or REVIEW_NOTIFICATION_MAX_EMAILS < 1:
     raise ValueError('Review notification interval and maximum must be positive')
 CELERY_BEAT_SCHEDULE = {
+    'sync-recruitment-inboxes': {
+        'task': 'apps.jobs.tasks.sync_recruitment_inboxes',
+        'schedule': 60.0,
+    },
+    'analyze-recruitment-emails': {
+        'task': 'apps.jobs.tasks.analyze_recruitment_emails',
+        'schedule': 30.0,
+    },
     'dispatch-review-notifications': {
         'task': 'apps.jobs.tasks.dispatch_review_notifications',
         'schedule': 60.0,

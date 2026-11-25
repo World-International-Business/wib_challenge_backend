@@ -2,9 +2,11 @@ from django.urls import path, include
 
 from apps.organizations.views import OrganizationViewSet, NotificationViewSet, UserNotificationViewSet
 from wib_challenge.routers import AppRouter
+from apps.organizations.views.email import EmailInboxViewSet
 
 router = AppRouter()
 
+router.register(r'email-inboxes', EmailInboxViewSet, basename='email-inboxes')
 router.register(r'organizations', OrganizationViewSet, basename='organizations')
 router.register(r'organizations/notifications', NotificationViewSet, basename='organization-notifications')
 router.register(r'user-notifications', UserNotificationViewSet, basename='user-notifications')

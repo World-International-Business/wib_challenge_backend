@@ -14,9 +14,69 @@ services:
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
+      - private_email_volume:/app/private_uploads/email_resumes
       - logs_volume:/app/logs
     expose:
       - 8000
+    networks:
+      - wib-network
+
+  email-redis:
+    image: redis:7.4.12-alpine
+    profiles: ["email"]
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: always
+    volumes:
+      - email_redis_volume:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - wib-network
+
+  email-worker:
+    build: .
+    profiles: ["email"]
+    env_file:
+      - .env
+    entrypoint: ["sh", "-c"]
+    command:
+      - "python manage.py check_email_pipeline --require-shared-database --broker && exec celery -A wib_challenge worker --loglevel=WARNING --concurrency=2"
+    restart: always
+    healthcheck:
+      disable: true
+    depends_on:
+      web:
+        condition: service_healthy
+      email-redis:
+        condition: service_healthy
+    volumes:
+      - media_volume:/app/media
+      - private_email_volume:/app/private_uploads/email_resumes
+      - logs_volume:/app/logs
+    networks:
+      - wib-network
+
+  email-beat:
+    build: .
+    profiles: ["email"]
+    env_file:
+      - .env
+    entrypoint: ["sh", "-c"]
+    command:
+      - "python manage.py check_email_pipeline --require-shared-database --broker && exec celery -A wib_challenge beat --loglevel=WARNING --schedule=/tmp/wiba-celerybeat"
+    restart: always
+    healthcheck:
+      disable: true
+    depends_on:
+      web:
+        condition: service_healthy
+      email-redis:
+        condition: service_healthy
+    volumes:
+      - logs_volume:/app/logs
     networks:
       - wib-network
 
@@ -48,5 +108,7 @@ networks:
 volumes:
   static_volume:
   media_volume:
+  private_email_volume:
+  email_redis_volume:
   logs_volume:
   nginx_logs:
