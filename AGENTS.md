@@ -123,3 +123,13 @@ Sur le poste Windows local, utiliser `env\Scripts\python.exe` à la place de `py
 - `certificate_generator.py` utilise PyMuPDF (`fitz`); vérifier que `PyMuPDF` est bien installé en production.
 - Le téléchargement de certificat retourne une URL temporaire statique : utiliser des signed URLs S3 quand `PRIVATE_STORAGE_BACKEND=aws`.
 - OpenAPI contient des warnings drf_spectacular sur `EvaluationQuestionProportions` et des conflits d'enum : non bloquants.
+
+## Pipeline email en production Dokploy
+
+- Le service backend actuel suit la branche `dev_back`.
+- Activer le profil `email` avec `docker-compose.yml` et `docker-compose.dokploy.yml`. La surcharge donne aux workers accès au réseau externe `dokploy-network` de la base partagée, sans modifier la configuration locale.
+- Dans le champ de commande personnalisée Dokploy, commencer par `compose` et non `docker compose` : Dokploy préfixe lui-même `docker`. Ajouter `--profile email` et les deux fichiers `-f`, puis `up -d --build`, en conservant le nom de projet généré par Dokploy.
+- `REDIS_URL`, `CELERY_BROKER_URL` et `CELERY_RESULT_BACKEND` doivent désigner le broker réellement accessible ; le profil fournit `email-redis` sur le port interne 6379. Ne pas publier ce port.
+- Le web et le worker doivent partager la base, les secrets de chiffrement existants et le volume privé des CV. Ne pas renouveler ces secrets pour résoudre une erreur de connexion.
+- Vérifier `python manage.py check_email_pipeline --require-shared-database --broker` avant le démarrage de Celery et conserver une seule instance de Beat. Ce contrôle ne lit pas de boîte et n’envoie aucun email.
+- Tests ciblés : `python manage.py test apps.jobs.test_email_pipeline --noinput`. Un HTTP 202 de synchronisation confirme uniquement la mise en file, pas l’import ni l’analyse.
