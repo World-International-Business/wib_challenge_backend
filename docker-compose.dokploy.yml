@@ -1,0 +1,14 @@
+services:
+  email-worker:
+    networks:
+      - wib-network
+      - dokploy-network
+
+  email-beat:
+    networks:
+      - wib-network
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
