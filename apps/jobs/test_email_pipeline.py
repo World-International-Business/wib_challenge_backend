@@ -1,3 +1,4 @@
+﻿import base64
 from datetime import timedelta
 from email.message import EmailMessage
 from io import StringIO
@@ -17,8 +18,8 @@ from apps.organizations.models import Notification, Organization, RecruitmentEma
 from services.channel_crypto import decrypt_secret, encrypt_secret
 from services.cv_analyzer import Response as AnalysisResponse
 from services.recruitment_email import (
-    MailboxError, PublicIMAP, analyze_pending_messages, assign_message, choose_offer,
-    ingest_message, open_inbox, public_address, sync_inbox,
+    GMAIL_READONLY_SCOPE, MailboxError, PublicIMAP, analyze_pending_messages, assign_message,
+    choose_offer, connect_gmail_from_login, ingest_message, open_inbox, public_address, sync_inbox,
 )
 
 
@@ -634,3 +635,192 @@ class EmailPipelineTests(TestCase):
             client._create_socket(15)
         connect.assert_called_once_with(('8.8.8.8', 993), timeout=15)
         client.ssl_context.wrap_socket.assert_called_once_with(connect.return_value, server_hostname='imap.example.test')
+
+
+def fake_gmail_requests(messages=None, *, email='rh@example.test', labels=('INBOX',), token_payload=None, post_status=200):
+    """Double HTTP pour oauth2.googleapis.com/token et l'API Gmail."""
+    api = MagicMock()
+    api.post.return_value = MagicMock(status_code=post_status)
+    api.post.return_value.json.return_value = token_payload or {
+        'access_token': 'access-token', 'refresh_token': 'refresh-token',
+        'scope': 'openid email ' + GMAIL_READONLY_SCOPE}
+    def get(url, params=None, headers=None, timeout=None):
+        response = MagicMock(status_code=200)
+        if url.endswith('/profile'):
+            response.json.return_value = {'emailAddress': email}
+        elif url.endswith('/labels'):
+            response.json.return_value = {'labels': [{'id': name, 'name': name} for name in labels]}
+        elif '/messages/' in url:
+            message_id = url.rsplit('/messages/', 1)[1].split('/')[0]
+            response.json.return_value = {'id': message_id,
+                'raw': base64.urlsafe_b64encode(messages[message_id]).decode().rstrip('=')}
+        else:
+            response.json.return_value = {'messages': [{'id': mid} for mid in (messages or {})]}
+        return response
+    api.get.side_effect = get
+    return api
+
+
+@override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend',
+                   PASSWORD_HASHERS=['django.contrib.auth.hashers.MD5PasswordHasher'])
+class GmailOAuthPipelineTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        users = get_user_model().objects
+        cls.owner = users.create_user(email='rh@example.test', password='test')
+        cls.other = users.create_user(email='other@example.test', password='test')
+        cls.org = Organization.objects.create(account=cls.owner, name='GmailOrg')
+        cls.category = JobCategory.objects.create(title='DevOps')
+        cls.offer = JobOffer.objects.create(company=cls.org, poste=cls.category, title='DevOps', status='published')
+        cls.inbox = RecruitmentEmailInbox.objects.create(
+            organization=cls.org, provider='gmail', host='gmail', username='rh@example.test',
+            oauth_secret=encrypt_secret('gmail-refresh-token'), default_offer=cls.offer,
+            enabled=True, verified_at=timezone.now())
+
+    def setUp(self):
+        self.media = TemporaryDirectory()
+        self.media_override = override_settings(MEDIA_ROOT=self.media.name + '/public',
+                                                EMAIL_RESUME_ROOT=self.media.name + '/private')
+        self.media_override.enable()
+        self.addCleanup(self.media.cleanup)
+        self.addCleanup(self.media_override.disable)
+        self.client = APIClient()
+        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {AccessToken.for_user(self.owner)}')
+
+    def raw_email(self, subject='Candidature DevOps', sender='Candidate <candidate@example.test>'):
+        message = EmailMessage()
+        message['From'] = sender
+        message['To'] = 'rh@example.test'
+        message['Subject'] = subject
+        message.set_content('Bonjour, voici ma candidature pour ce poste.')
+        with fitz.open() as pdf:
+            page = pdf.new_page()
+            page.insert_text((72, 72), 'CV DevOps')
+            content = pdf.tobytes()
+        message.add_attachment(content, maintype='application', subtype='pdf', filename='CV.pdf')
+        return message.as_bytes()
+
+    def gmail_sync(self, messages):
+        with patch('services.recruitment_email.requests', fake_gmail_requests(messages)):
+            return sync_inbox(self.inbox.pk)
+
+    def test_gmail_connect_endpoint_verifies_and_enables_mailbox(self):
+        api = fake_gmail_requests()
+        with patch('services.recruitment_email.requests', api):
+            response = self.client.post('/api/email-inboxes/gmail-connect/', {'code': 'auth-code'}, format='json')
+        self.assertEqual(response.status_code, 201, response.data)
+        inbox = RecruitmentEmailInbox.objects.get(pk=response.json()['id'])
+        self.assertEqual(inbox.provider, 'gmail')
+        self.assertEqual(inbox.username, 'rh@example.test')
+        self.assertTrue(inbox.enabled)
+        self.assertIsNotNone(inbox.verified_at)
+        self.assertEqual(decrypt_secret(inbox.oauth_secret), 'refresh-token')
+        self.assertFalse(inbox.secret)
+        self.assertNotIn('oauthSecret', str(response.json()))
+        self.assertTrue(AgentEvent.objects.filter(action='email.inbox_connected').exists())
+
+    def test_gmail_connect_rejects_missing_scope_or_refresh_token(self):
+        for payload, error in [({'access_token': 'a', 'scope': 'openid email'}, 'gmail_scope_missing'),
+                               ({'access_token': 'a', 'scope': GMAIL_READONLY_SCOPE}, 'oauth_refresh_missing')]:
+            api = fake_gmail_requests(token_payload=payload)
+            with self.subTest(error=error), patch('services.recruitment_email.requests', api):
+                response = self.client.post('/api/email-inboxes/gmail-connect/', {'code': 'auth-code'}, format='json')
+            self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.json()['errorCode'], error)
+        self.assertEqual(RecruitmentEmailInbox.objects.filter(provider='gmail').count(), 1)
+
+    def test_gmail_connect_rejects_foreign_default_offer_and_disabled_toggle(self):
+        foreign = Organization.objects.create(
+            account=get_user_model().objects.create_user(email='f@example.test', password='x'), name='F')
+        foreign_offer = JobOffer.objects.create(company=foreign, poste=self.category, title='X', status='published')
+        response = self.client.post('/api/email-inboxes/gmail-connect/',
+                                    {'code': 'x', 'defaultOffer': foreign_offer.pk, 'enabled': 'yes'}, format='json')
+        self.assertEqual(response.status_code, 400)
+        self.assertFalse(RecruitmentEmailInbox.objects.filter(provider='gmail', username='f@example.test').exists())
+
+    def test_gmail_sync_ingests_application_and_dedupes_on_next_pass(self):
+        result = self.gmail_sync({'a1b2': self.raw_email()})
+        self.assertEqual(result['status'], 'synced')
+        self.assertEqual(result['created'], 1)
+        application = JobApplication.objects.get()
+        self.assertEqual(application.job_offer, self.offer)
+        self.assertEqual(application.source, 'email')
+        self.assertEqual(Notification.objects.filter(type='new_application', related_application=application).count(), 1)
+        second = self.gmail_sync({'a1b2': self.raw_email()})
+        self.assertEqual(second['created'], 0)
+        self.assertEqual(JobApplication.objects.count(), 1)
+        self.assertEqual(RecruitmentEmailMessage.objects.count(), 1)
+
+    def test_gmail_sync_filters_like_imap_and_keeps_incomplete_messages(self):
+        raw = EmailMessage()
+        raw['From'] = 'newsletter@example.test'
+        raw['To'] = 'rh@example.test'
+        raw['Subject'] = 'Facture mensuelle'
+        raw.set_content('Voici votre facture.')
+        result = self.gmail_sync({'a1': raw.as_bytes(), 'b2': self.raw_email()})
+        self.assertEqual(result['created'], 1)
+        self.assertEqual(RecruitmentEmailMessage.objects.filter(status='incomplete').count(), 1)
+        self.assertEqual(JobApplication.objects.count(), 1)
+
+    def test_gmail_watched_label_must_exist(self):
+        self.inbox.folder = 'Candidatures'
+        self.inbox.save()
+        result = self.gmail_sync({'a1': self.raw_email()})
+        self.assertEqual(result['errorCode'], 'folder_unavailable')
+        self.inbox.refresh_from_db()
+        self.assertEqual(self.inbox.error_code, 'folder_unavailable')
+        with patch('services.recruitment_email.requests',
+                   fake_gmail_requests({'a1': self.raw_email()}, labels=('INBOX', 'Candidatures'))):
+            self.assertEqual(sync_inbox(self.inbox.pk)['created'], 1)
+
+    def test_gmail_sync_failure_is_sanitized_and_recovers(self):
+        api = fake_gmail_requests(post_status=400)
+        with patch('services.recruitment_email.requests', api):
+            result = sync_inbox(self.inbox.pk)
+        self.assertEqual(result['errorCode'], 'oauth_token_invalid')
+        self.assertNotIn('gmail-refresh-token', str(result))
+        self.inbox.refresh_from_db()
+        self.assertIsNone(self.inbox.locked_until)
+        self.assertEqual(self.gmail_sync({'a1': self.raw_email()})['created'], 1)
+
+    def test_gmail_test_endpoint_verifies_token_and_label(self):
+        with patch('services.recruitment_email.requests', fake_gmail_requests()):
+            response = self.client.post(f'/api/email-inboxes/{self.inbox.pk}/test/')
+        self.assertEqual(response.status_code, 200, response.data)
+        self.assertEqual(response.json()['provider'], 'gmail')
+
+    def test_gmail_inbox_rejects_password_rotation_and_immutable_fields(self):
+        url = f'/api/email-inboxes/{self.inbox.pk}/'
+        response = self.client.patch(url, {'password': 'unused'}, format='json')
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(self.client.patch(url, {'folder': 'Archive'}, format='json').status_code, 400)
+
+    def test_oauth_login_with_mail_scope_connects_inbox_automatically(self):
+        payload = {'access_token': 'a', 'refresh_token': 'login-refresh', 'scope': GMAIL_READONLY_SCOPE}
+        self.inbox.delete()
+        with patch('services.recruitment_email.requests', fake_gmail_requests()):
+            inbox = connect_gmail_from_login(self.owner, payload)
+        self.assertTrue(inbox.enabled)
+        self.assertEqual(decrypt_secret(inbox.oauth_secret), 'login-refresh')
+        inbox.enabled = False
+        inbox.save()
+        with patch('services.recruitment_email.requests', fake_gmail_requests()):
+            again = connect_gmail_from_login(self.owner, {**payload, 'refresh_token': 'rotated'})
+        self.assertFalse(again.enabled)
+        self.assertEqual(decrypt_secret(again.oauth_secret), 'rotated')
+
+    def test_oauth_login_without_mail_scope_or_organization_does_nothing(self):
+        self.inbox.delete()
+        with patch('services.recruitment_email.requests', fake_gmail_requests()):
+            self.assertIsNone(connect_gmail_from_login(self.owner, {'access_token': 'a', 'scope': 'openid'}))
+            self.assertIsNone(connect_gmail_from_login(self.other, {
+                'access_token': 'a', 'refresh_token': 'r', 'scope': GMAIL_READONLY_SCOPE}))
+        self.assertFalse(RecruitmentEmailInbox.objects.filter(provider='gmail').exists())
+
+    def test_gmail_sync_skips_disabled_and_unverified_inboxes(self):
+        self.inbox.enabled = False
+        self.inbox.save()
+        with patch('services.recruitment_email.requests') as api:
+            self.assertEqual(sync_inbox(self.inbox.pk)['status'], 'busy_or_disabled')
+            api.get.assert_not_called()
+

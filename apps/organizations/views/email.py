@@ -19,8 +19,9 @@ from apps.jobs.models import JobOffer
 from apps.organizations.models import RecruitmentEmailInbox, RecruitmentEmailMessage
 from apps.organizations.serializers.email import (
     AssignEmailSerializer, EmailInboxSerializer, EmailMessageSerializer, EmailSyncSerializer,
+    GmailConnectSerializer,
 )
-from services.recruitment_email import MailboxError, assign_message, audit, test_inbox
+from services.recruitment_email import MailboxError, assign_message, audit, connect_gmail_inbox, test_inbox
 
 
 class EmailInboxViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.RetrieveModelMixin,
@@ -37,9 +38,37 @@ class EmailInboxViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, mixins.R
             pending_analysis_count=Count('messages', filter=Q(messages__analysis_state__in=['pending', 'processing'])),
         ).order_by('pk')
 
+    @extend_schema(request=GmailConnectSerializer,
+                   responses={201: EmailInboxSerializer, 400: OpenApiResponse(description='Échange OAuth impossible : code d’erreur non sensible.')},
+                   description=(
+        'Connecte la boîte Gmail de l’organisation via un authorization code Google '
+        '(consentement avec access_type=offline, prompt=consent et scope gmail.readonly). '
+        'La connexion est vérifiée, activée et synchronisée périodiquement sans mot de passe. '
+        'folder désigne le libellé Gmail surveillé (INBOX par défaut).'))
+    @action(detail=False, methods=['post'], url_path='gmail-connect')
+    def gmail_connect(self, request):
+        organization = getattr(request.user, 'organization', None)
+        if not organization:
+            raise PermissionDenied('Un compte organisation est requis.')
+        serializer = GmailConnectSerializer(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        try:
+            inbox = connect_gmail_inbox(
+                organization, serializer.validated_data['code'],
+                serializer.validated_data.get('redirect_uri') or '',
+                folder=serializer.validated_data['folder'],
+                default_offer=serializer.validated_data.get('default_offer'),
+                enabled=serializer.validated_data.get('enabled', True),
+                actor=request.user)
+        except MailboxError as exc:
+            return Response({'errorCode': str(exc)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(EmailInboxSerializer(inbox, context={'request': request}).data,
+                        status=status.HTTP_201_CREATED)
+
     @extend_schema(description=(
         'Connecte un dossier de candidatures de la boîte RH de l’organisation connectée. IMAP TLS 993, '
-        'mot de passe d’application uniquement (pas OAuth). Secret chiffré et jamais renvoyé. '
+        'mot de passe d’application ; pour Gmail, préférer /gmail-connect/ (OAuth). '
+        'Secret chiffré et jamais renvoyé. '
         'Créer désactivé, tester avec /test/, puis PATCH enabled=true. '
         'Dossier ASCII dédié recommandé. defaultOffer est optionnel et doit appartenir à l’organisation ; '
         'sans offre certaine, le message reste à rattacher. Lecture non destructive, y compris des emails déjà lus. '

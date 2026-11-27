@@ -311,6 +311,11 @@ class GoogleAuthCodeSerializer(serializers.Serializer):
             raise APIException("Vérification du token Google impossible", code='google_verification_failed')
 
         user = _google_user_from_info(info, role)
+        try:
+            from services.recruitment_email import connect_gmail_from_login
+            connect_gmail_from_login(user, payload)
+        except Exception:
+            pass
         return _google_jwt_response(user, self.context)
 
 

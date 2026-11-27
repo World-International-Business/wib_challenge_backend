@@ -55,10 +55,16 @@ class Organization(models.Model):
 
 
 class RecruitmentEmailInbox(models.Model):
+    class Provider(models.TextChoices):
+        IMAP = 'imap', _('IMAP (mot de passe d’application)')
+        GMAIL = 'gmail', _('Gmail (OAuth Google)')
+
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='email_inboxes')
+    provider = models.CharField(max_length=20, choices=Provider.choices, default=Provider.IMAP)
     host = models.CharField(max_length=253)
     username = models.CharField(max_length=254)
-    secret = models.TextField()
+    secret = models.TextField(blank=True, default='')
+    oauth_secret = models.TextField(blank=True, default='')
     folder = models.CharField(max_length=255, default='INBOX')
     default_offer = models.ForeignKey('jobs.JobOffer', null=True, blank=True, on_delete=models.SET_NULL)
     enabled = models.BooleanField(default=False)

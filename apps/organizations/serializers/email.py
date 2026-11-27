@@ -19,10 +19,10 @@ class EmailInboxSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RecruitmentEmailInbox
-        fields = ['id', 'host', 'username', 'password', 'folder', 'default_offer', 'enabled',
+        fields = ['id', 'provider', 'host', 'username', 'password', 'folder', 'default_offer', 'enabled',
                   'verified_at', 'last_sync_at', 'next_sync_at', 'error_code',
                   'pending_assignment_count', 'pending_analysis_count', 'sync_status', 'created_at']
-        read_only_fields = ['id', 'verified_at', 'last_sync_at', 'next_sync_at', 'error_code', 'created_at']
+        read_only_fields = ['id', 'provider', 'verified_at', 'last_sync_at', 'next_sync_at', 'error_code', 'created_at']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -61,10 +61,13 @@ class EmailInboxSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, attrs):
+        is_gmail = self.instance and self.instance.provider == RecruitmentEmailInbox.Provider.GMAIL
         if self.instance:
             for key in ['host', 'username', 'folder']:
                 if key in attrs and attrs[key] != getattr(self.instance, key):
                     raise serializers.ValidationError({key: 'Créez une nouvelle connexion pour changer la boîte ou le dossier ; désactivez l’ancienne.'})
+            if 'password' in attrs and is_gmail:
+                raise serializers.ValidationError({'password': 'Connexion OAuth : reconnectez la boîte via Google, sans mot de passe.'})
         elif not attrs.get('password'):
             raise serializers.ValidationError({'password': 'Un mot de passe d’application IMAP est requis.'})
         if attrs.get('enabled') and (not self.instance or not self.instance.verified_at or 'password' in attrs):
@@ -94,6 +97,32 @@ class EmailMessageSerializer(serializers.ModelSerializer):
         fields = ['id', 'sender', 'subject', 'status', 'error_code', 'application_id', 'analysis_state',
                   'analysis_status', 'analysis_attempts', 'match_score', 'needs_human_review', 'received_at']
         read_only_fields = fields
+
+
+class GmailConnectSerializer(serializers.Serializer):
+    """Connexion d'une boîte Gmail via un authorization code OAuth Google.
+
+    Le frontend doit lancer le consentement Google avec access_type=offline,
+    prompt=consent et le scope gmail.readonly, puis poster le code reçu.
+    """
+    code = serializers.CharField(max_length=2048)
+    redirect_uri = serializers.CharField(required=False, allow_blank=True, max_length=255)
+    folder = serializers.CharField(default='INBOX', max_length=255)
+    default_offer = serializers.PrimaryKeyRelatedField(queryset=JobOffer.objects.none(), required=False, allow_null=True)
+    enabled = StrictBooleanField(required=False, default=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        user = self.context.get('request').user if self.context.get('request') else None
+        organization = getattr(user, 'organization', None)
+        if organization:
+            self.fields['default_offer'].queryset = JobOffer.objects.filter(company=organization)
+
+    def validate_folder(self, value):
+        value = value.strip()
+        if not value or any(ord(character) < 32 or ord(character) == 127 for character in value):
+            raise serializers.ValidationError('Nom de libellé Gmail invalide.')
+        return value
 
 
 class AssignEmailSerializer(serializers.Serializer):

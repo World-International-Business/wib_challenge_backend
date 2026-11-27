@@ -14,11 +14,13 @@ from email.utils import parseaddr
 from html.parser import HTMLParser
 
 import fitz
+import requests
+from decouple import config
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from django.core.validators import validate_email
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.utils import timezone
 
@@ -29,6 +31,10 @@ from services.channel_crypto import decrypt_secret, encrypt_secret
 MAX_EMAIL_BYTES = 10 * 1024 * 1024
 MAX_RESUME_BYTES = 5 * 1024 * 1024
 BATCH_SIZE = 25
+
+GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token'
+GMAIL_API = 'https://gmail.googleapis.com/gmail/v1/users/me'
+GMAIL_READONLY_SCOPE = 'https://www.googleapis.com/auth/gmail.readonly'
 
 
 class MailboxError(Exception):
@@ -86,6 +92,82 @@ def close_inbox(connection):
         pass
 
 
+def _google_client():
+    client_id = config('GOOGLE_OAUTH_CLIENT_ID', default='')
+    client_secret = config('GOOGLE_OAUTH_CLIENT_SECRET', default='')
+    if not client_id or not client_secret:
+        raise MailboxError('oauth_not_configured')
+    return client_id, client_secret
+
+
+def _google_token(data):
+    client_id, client_secret = _google_client()
+    try:
+        response = requests.post(GOOGLE_TOKEN_URL, timeout=15,
+                                 data={'client_id': client_id, 'client_secret': client_secret, **data})
+        payload = response.json()
+    except MailboxError:
+        raise
+    except Exception as exc:
+        raise MailboxError('oauth_exchange_failed') from exc
+    if response.status_code != 200 or not payload.get('access_token'):
+        raise MailboxError('oauth_token_rejected')
+    return payload
+
+
+def gmail_access_token(inbox):
+    refresh = decrypt_secret(inbox.oauth_secret)
+    if not refresh:
+        raise MailboxError('credentials_unavailable')
+    try:
+        return _google_token({'grant_type': 'refresh_token', 'refresh_token': refresh})['access_token']
+    except MailboxError as exc:
+        raise MailboxError('oauth_token_invalid' if str(exc) == 'oauth_token_rejected' else str(exc))
+
+
+def gmail_api(access_token, path, params=None):
+    try:
+        response = requests.get(f'{GMAIL_API}{path}', params=params or {}, timeout=20,
+                                headers={'Authorization': f'Bearer {access_token}'})
+    except Exception as exc:
+        raise MailboxError('connection_failed') from exc
+    if response.status_code in (401, 403):
+        raise MailboxError('oauth_token_invalid')
+    if response.status_code != 200:
+        raise MailboxError('connection_failed')
+    return response.json()
+
+
+def gmail_label_id(access_token, folder):
+    if folder.upper() == 'INBOX':
+        return 'INBOX'
+    labels = gmail_api(access_token, '/labels').get('labels', [])
+    match = next((label for label in labels if label.get('name', '').casefold() == folder.casefold()), None)
+    if not match:
+        raise MailboxError('folder_unavailable')
+    return match['id']
+
+
+def gmail_uid(message_id):
+    return int(message_id, 16) % (2 ** 62)
+
+
+def gmail_raw_message(access_token, message_id):
+    payload = gmail_api(access_token, f'/messages/{message_id}', {'format': 'raw'})
+    encoded = payload.get('raw') or ''
+    try:
+        return base64.urlsafe_b64decode(encoded + '=' * (-len(encoded) % 4))
+    except Exception as exc:
+        raise MailboxError('fetch_failed') from exc
+
+
+def gmail_profile_email(access_token):
+    email = (gmail_api(access_token, '/profile').get('emailAddress') or '').strip().lower()
+    if not email:
+        raise MailboxError('oauth_token_invalid')
+    return email
+
+
 def audit(inbox, action, *, actor=None, data=None):
     AgentEvent.objects.create(
         organization_id=inbox.organization_id, target_id=f'email-inbox:{inbox.pk}',
@@ -95,6 +177,10 @@ def audit(inbox, action, *, actor=None, data=None):
 
 
 def test_inbox(inbox):
+    if inbox.provider == RecruitmentEmailInbox.Provider.GMAIL:
+        gmail_label_id(gmail_access_token(inbox), inbox.folder)
+        RecruitmentEmailInbox.objects.filter(pk=inbox.pk).update(verified_at=timezone.now(), error_code='')
+        return {'status': 'connected', 'readOnly': True, 'provider': 'gmail'}
     connection = open_inbox(inbox)
     close_inbox(connection)
     RecruitmentEmailInbox.objects.filter(pk=inbox.pk).update(verified_at=timezone.now(), error_code='')
@@ -295,6 +381,16 @@ def ingest_message(inbox, validity, uid, raw):
     return receipt, True
 
 
+def _record_sync_failure(inbox, token, exc, result):
+    code = str(exc) if isinstance(exc, MailboxError) else 'sync_failed'
+    RecruitmentEmailInbox.objects.filter(pk=inbox.pk, lease_token=token).update(
+        error_code=code, failures=inbox.failures + 1,
+        next_sync_at=timezone.now() + timedelta(seconds=min(3600, 60 * 2 ** min(inbox.failures, 6))),
+    )
+    audit(inbox, 'email.sync_failed', data={'error_code': code})
+    result.update(status='failed', errorCode=code)
+
+
 def sync_inbox(inbox_id):
     now = timezone.now()
     token = str(uuid.uuid4())
@@ -304,6 +400,55 @@ def sync_inbox(inbox_id):
     if not claimed:
         return {'status': 'busy_or_disabled', 'processed': 0, 'created': 0}
     inbox = RecruitmentEmailInbox.objects.select_related('organization').get(pk=inbox_id)
+    try:
+        if inbox.provider == RecruitmentEmailInbox.Provider.GMAIL:
+            return _sync_gmail(inbox, token)
+        return _sync_imap(inbox, token)
+    finally:
+        RecruitmentEmailInbox.objects.filter(pk=inbox.pk, lease_token=token).update(locked_until=None, lease_token='')
+
+
+def _sync_gmail(inbox, token):
+    result = {'status': 'synced', 'processed': 0, 'created': 0, 'unassigned': 0}
+    try:
+        access = gmail_access_token(inbox)
+        label = gmail_label_id(access, inbox.folder)
+        listed = gmail_api(access, '/messages', {'labelIds': label, 'maxResults': 100}).get('messages', [])
+        candidates = {gmail_uid(item['id']): item['id'] for item in listed if item.get('id')}
+        known = set(RecruitmentEmailMessage.objects.filter(
+            inbox=inbox, uid_validity='gmail', uid__in=list(candidates)).values_list('uid', flat=True))
+        pending = [candidates[uid] for uid in candidates if uid not in known][:BATCH_SIZE]
+        for message_id in pending:
+            if not RecruitmentEmailInbox.objects.filter(pk=inbox.pk, lease_token=token, enabled=True).exists():
+                break
+            raw = gmail_raw_message(access, message_id)
+            uid = gmail_uid(message_id)
+            if len(raw) > MAX_EMAIL_BYTES:
+                RecruitmentEmailMessage.objects.get_or_create(
+                    inbox=inbox, uid_validity='gmail', uid=uid,
+                    defaults={'fingerprint': hashlib.sha256(f'oversize:gmail:{message_id}'.encode()).hexdigest(),
+                              'status': 'error', 'error_code': 'message_too_large'},
+                )
+            else:
+                try:
+                    receipt, created = ingest_message(inbox, 'gmail', uid, raw)
+                except IntegrityError:
+                    result['processed'] += 1
+                    continue
+                result['created'] += int(created and receipt.status == 'imported')
+                result['unassigned'] += int(created and receipt.status == 'unassigned')
+            result['processed'] += 1
+        RecruitmentEmailInbox.objects.filter(pk=inbox.pk, lease_token=token).update(
+            last_sync_at=timezone.now(), verified_at=timezone.now(), error_code='', failures=0,
+            next_sync_at=timezone.now() + timedelta(seconds=60),
+        )
+        audit(inbox, 'email.sync_completed', data=result)
+    except Exception as exc:
+        _record_sync_failure(inbox, token, exc, result)
+    return result
+
+
+def _sync_imap(inbox, token):
     result = {'status': 'synced', 'processed': 0, 'created': 0, 'unassigned': 0}
     connection = None
     try:
@@ -347,18 +492,56 @@ def sync_inbox(inbox_id):
         )
         audit(inbox, 'email.sync_completed', data=result)
     except Exception as exc:
-        code = str(exc) if isinstance(exc, MailboxError) else 'sync_failed'
-        RecruitmentEmailInbox.objects.filter(pk=inbox.pk, lease_token=token).update(
-            error_code=code, failures=inbox.failures + 1,
-            next_sync_at=timezone.now() + timedelta(seconds=min(3600, 60 * 2 ** min(inbox.failures, 6))),
-        )
-        audit(inbox, 'email.sync_failed', data={'error_code': code})
-        result.update(status='failed', errorCode=code)
+        _record_sync_failure(inbox, token, exc, result)
     finally:
         if connection:
             close_inbox(connection)
-        RecruitmentEmailInbox.objects.filter(pk=inbox.pk, lease_token=token).update(locked_until=None, lease_token='')
     return result
+
+
+def connect_gmail_inbox(organization, code, redirect_uri, *, folder='INBOX', default_offer=None, enabled=True, actor=None):
+    """Crée ou réactive une connexion Gmail OAuth pour l'organisation."""
+    allowed = [u.strip() for u in (config('GOOGLE_OAUTH_REDIRECT_URI', default='') or '').split(',') if u.strip()]
+    redirect_uri = redirect_uri if redirect_uri in allowed else (allowed[0] if allowed else redirect_uri)
+    payload = _google_token({'grant_type': 'authorization_code', 'code': code, 'redirect_uri': redirect_uri})
+    if GMAIL_READONLY_SCOPE not in (payload.get('scope') or '').split():
+        raise MailboxError('gmail_scope_missing')
+    refresh = payload.get('refresh_token')
+    if not refresh:
+        raise MailboxError('oauth_refresh_missing')
+    email_address = gmail_profile_email(payload['access_token'])
+    gmail_label_id(payload['access_token'], folder)
+    with transaction.atomic():
+        inbox, created = RecruitmentEmailInbox.objects.update_or_create(
+            organization=organization, provider=RecruitmentEmailInbox.Provider.GMAIL,
+            host='gmail', username=email_address, folder=folder,
+            defaults={'oauth_secret': encrypt_secret(refresh), 'secret': '', 'default_offer': default_offer,
+                      'enabled': bool(enabled), 'verified_at': timezone.now(), 'error_code': '', 'failures': 0,
+                      'next_sync_at': timezone.now()})
+        audit(inbox, 'email.inbox_connected', actor=actor, data={'provider': 'gmail', 'created': created})
+    return inbox
+
+
+def connect_gmail_from_login(user, token_payload):
+    """Connecte la boîte Gmail quand le login OAuth inclut le scope lecture mail."""
+    organization = getattr(user, 'organization', None)
+    refresh = token_payload.get('refresh_token')
+    access = token_payload.get('access_token')
+    if not (organization and refresh and access
+            and GMAIL_READONLY_SCOPE in (token_payload.get('scope') or '').split()):
+        return None
+    email_address = gmail_profile_email(access)
+    inbox, created = RecruitmentEmailInbox.objects.get_or_create(
+        organization=organization, provider=RecruitmentEmailInbox.Provider.GMAIL,
+        host='gmail', username=email_address, folder='INBOX',
+        defaults={'oauth_secret': encrypt_secret(refresh), 'enabled': True,
+                  'verified_at': timezone.now(), 'next_sync_at': timezone.now()})
+    if not created:
+        RecruitmentEmailInbox.objects.filter(pk=inbox.pk).update(
+            oauth_secret=encrypt_secret(refresh), verified_at=timezone.now(), error_code='')
+        inbox.refresh_from_db()
+    audit(inbox, 'email.inbox_connected', data={'provider': 'gmail', 'via': 'login', 'created': created})
+    return inbox
 
 
 def analyze_pending_messages(inbox_id=None):
